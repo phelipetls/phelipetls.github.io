@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>gganimate on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/pt/tags/gganimate/</link>
+    <description>Recent content in gganimate on Phelipe Teles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://phelipetls.github.io/pt/tags/gganimate/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Homicídios em Baltimore: visualizações com ggplot2 e gganimate</title>
+      <link>https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/</link>
+      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/</guid>
+      <description>Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R.</description>
+    </item>
+    
+  </channel>
+</rss>

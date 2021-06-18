@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>javascript on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/softwares/javascript/</link>
+    <description>Recent content in javascript on Phelipe Teles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://phelipetls.github.io/softwares/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Ipeadata Explorer</title>
+      <link>https://phelipetls.github.io/projects/ipeadata-explorer/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/projects/ipeadata-explorer/</guid>
+      <description>This is a frontend written in React for the Ipeadata database, which stores several time series.</description>
+    </item>
+    
+    <item>
+      <title>Minesweeper.js</title>
+      <link>https://phelipetls.github.io/projects/minesweeper/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/projects/minesweeper/</guid>
+      <description>This is a minesweeper implementation in pure JavaScript, to help me learn a basic web development stack with vanilla JS, CSS, Node and PostgreSQL.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>python on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/pt/softwares/python/</link>
+    <description>Recent content in python on Phelipe Teles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 26 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://phelipetls.github.io/pt/softwares/python/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>URL shortener</title>
+      <link>https://phelipetls.github.io/pt/projects/url-shortener/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/projects/url-shortener/</guid>
+      <description>Este é um simples encurtador de URLs feito para aprender o básico de Flask e Vue.</description>
+    </item>
+    
+    <item>
+      <title>Reportforce</title>
+      <link>https://phelipetls.github.io/pt/projects/reportforce/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/projects/reportforce/</guid>
+      <description>Este projeto é um cliente para a API de Analytics da Salesforce, para fazer download de relatórios.</description>
+    </item>
+    
+    <item>
+      <title>MapsBR</title>
+      <link>https://phelipetls.github.io/pt/projects/mapsbr/</link>
+      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/projects/mapsbr/</guid>
+      <description>Esta é uma biblioteca em Python que serve como interface para obter dados geoespaciais de fontes como IBGE ou um servidor ArcGIS em um DataFrame incrementado pela biblioteca geopandas.</description>
+    </item>
+    
+    <item>
+      <title>Seriesbr</title>
+      <link>https://phelipetls.github.io/pt/projects/seriesbr/</link>
+      <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/projects/seriesbr/</guid>
+      <description>Uma biblioteca em Python para ajudar baixar séries temporais de bancos de dados de instituições governamentais do Brasil, como o Banco Central do Brasil, IPEA e IBGE.</description>
+    </item>
+    
+  </channel>
+</rss>

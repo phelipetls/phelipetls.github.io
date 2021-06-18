@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Softwares on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/pt/softwares/</link>
+    <description>Recent content in Softwares on Phelipe Teles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://phelipetls.github.io/pt/softwares/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>chart.js</title>
+      <link>https://phelipetls.github.io/pt/softwares/chart.js/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/chart.js/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cypress</title>
+      <link>https://phelipetls.github.io/pt/softwares/cypress/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/cypress/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>d3</title>
+      <link>https://phelipetls.github.io/pt/softwares/d3/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/d3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://phelipetls.github.io/pt/softwares/javascript/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react</title>
+      <link>https://phelipetls.github.io/pt/softwares/react/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/react/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>react-testing-library</title>
+      <link>https://phelipetls.github.io/pt/softwares/react-testing-library/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/react-testing-library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>flask</title>
+      <link>https://phelipetls.github.io/pt/softwares/flask/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/flask/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pytest</title>
+      <link>https://phelipetls.github.io/pt/softwares/pytest/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/pytest/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>python</title>
+      <link>https://phelipetls.github.io/pt/softwares/python/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sqlalchemy</title>
+      <link>https://phelipetls.github.io/pt/softwares/sqlalchemy/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/sqlalchemy/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>vue</title>
+      <link>https://phelipetls.github.io/pt/softwares/vue/</link>
+      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/vue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>css</title>
+      <link>https://phelipetls.github.io/pt/softwares/css/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/css/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>express</title>
+      <link>https://phelipetls.github.io/pt/softwares/express/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/express/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>node</title>
+      <link>https://phelipetls.github.io/pt/softwares/node/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>postgresql</title>
+      <link>https://phelipetls.github.io/pt/softwares/postgresql/</link>
+      <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/postgresql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pandas</title>
+      <link>https://phelipetls.github.io/pt/softwares/pandas/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/pandas/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>requests</title>
+      <link>https://phelipetls.github.io/pt/softwares/requests/</link>
+      <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/requests/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>unittest</title>
+      <link>https://phelipetls.github.io/pt/softwares/unittest/</link>
+      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/unittest/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
