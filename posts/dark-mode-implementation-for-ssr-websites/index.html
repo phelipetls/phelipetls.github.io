@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="Implementing dark mode in a server side rendered website is not as simple as you may initially think. There are some hacky things we should do to avoid flash of incorrect theme on reload, animation etc." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2021-04-29">
+<meta name="last-modified-date" content="2021-04-29">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Implementing dark mode for SSR websites | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Implementing dark mode for SSR websites" />
+<meta property="og:description" content="Implementing dark mode in a server side rendered website is not as simple as you may initially think. There are some hacky things we should do to avoid flash of incorrect theme on reload, animation etc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/" />
+<meta property="article:published_time" content="2021-04-29T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-29T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Implementing dark mode for SSR websites"/>
+<meta name="twitter:description" content="Implementing dark mode in a server side rendered website is not as simple as you may initially think. There are some hacky things we should do to avoid flash of incorrect theme on reload, animation etc."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Implementing dark mode for SSR websites</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2021-04-29">
+        April 29, 2021
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/tags/hugo/">hugo</a><a class="button button-secondary" href="/tags/html/">html</a><a class="button button-secondary" href="/tags/css/">css</a><a class="button button-secondary" href="/tags/javascript/">javascript</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>Implementing dark mode in a server side rendered website is not as simple as you
+may initially think. There are some hacky things we should do to avoid flash of
+incorrect theme on reload, animation etc.</p>
+<p>In this blog post I&rsquo;ll dive into the implementation details on how to make it
+work in general and then on how to implement it in Hugo-powered websites.</p>
+<h2 class="heading" id="css">
+  CSS
+  <a class="anchor" href="#css">#</a>
+</h2>
+<p>CSS variables makes it very easy to define which colors you&rsquo;ll use for dark or
+light mode:</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">:</span><span class="nd">root</span> <span class="p">{</span>
+  <span class="nv">--black</span><span class="p">:</span> <span class="mh">#000000</span><span class="p">;</span>
+  <span class="nv">--white</span><span class="p">:</span> <span class="mh">#ffffff</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nt">body</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&#34;light&#34;</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nv">--bg-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">white</span><span class="p">);</span>
+  <span class="nv">--fg-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">black</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nt">body</span><span class="o">[</span><span class="nt">data-theme</span><span class="o">=</span><span class="s2">&#34;dark&#34;</span><span class="o">]</span> <span class="p">{</span>
+  <span class="nv">--bg-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">black</span><span class="p">);</span>
+  <span class="nv">--fg-color</span><span class="p">:</span> <span class="nf">var</span><span class="p">(</span><span class="o">--</span><span class="kc">white</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>And that&rsquo;s it.</p>
+<p>To toggle from one theme to another we just need some JavaScript:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;button.theme-toggler&#34;</span><span class="p">);</span>
+
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">theme</span> <span class="o">===</span> <span class="s2">&#34;dark&#34;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&#34;data-theme&#34;</span><span class="p">,</span> <span class="s2">&#34;light&#34;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&#34;data-theme&#34;</span><span class="p">,</span> <span class="s2">&#34;dark&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><h2 class="heading" id="theme-persistence">
+  Theme persistence
+  <a class="anchor" href="#theme-persistence">#</a>
+</h2>
+<p>To make the theme persist, we&rsquo;ll use
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code>localStorage</code></a>.</p>
+<p>Every time the theme changes, we save it to <code>localStorage</code>. When the page
+reloads, we read from <code>localStorage</code> and change the theme:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">storedTheme</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">&#34;__theme&#34;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">storedTheme</span><span class="p">)</span> <span class="p">{</span>
+  <span class="cm">/* Change theme to storedTheme */</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;button.theme-switcher&#34;</span><span class="p">);</span>
+
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="cm">/* Toggle theme */</span>
+<span class="p">});</span>
+</code></pre></div><p>We just need to put this in a <code>script</code> tag at the end of the <code>body</code> tag to make
+it work!&hellip; except the page will flash on reload.</p>
+<p>This is because, at the time the script runs, the page has already been drawn in
+light mode, and just then we change it to dark mode.</p>
+<p>The fix is to set the theme from <code>localStorage</code> <em>as early as possible</em>. But this
+also means that we won&rsquo;t be able to add an event listener to the button because
+it has yet to be created:</p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span> <span class="na">data-theme</span><span class="o">=</span><span class="s">&#34;light&#34;</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">load</span> <span class="nx">theme</span> <span class="nx">from</span> <span class="nx">localStorage</span> <span class="o">--&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+  ...
+
+  <span class="p">&lt;</span><span class="nt">button</span><span class="p">&gt;</span>Change theme<span class="p">&lt;/</span><span class="nt">button</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+    <span class="c">&lt;!--</span> <span class="nx">add</span> <span class="nx">button</span> <span class="nx">logic</span> <span class="o">--&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></div><p>But that way we won&rsquo;t be able to share logic between scripts unless (here comes
+the hack) we use a global variable.</p>
+<p>In the first script, right after the body tag, we set the theme from
+<code>localStorage</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newTheme</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&#34;data-theme&#34;</span><span class="p">,</span> <span class="nx">newTheme</span><span class="p">);</span>
+  <span class="nx">localStorage</span><span class="p">.</span><span class="nx">setItem</span><span class="p">(</span><span class="s2">&#34;__theme&#34;</span><span class="p">,</span> <span class="nx">newTheme</span><span class="p">);</span>
+  <span class="c1">// More logic...
+</span><span class="c1"></span><span class="p">};</span>
+
+<span class="kr">const</span> <span class="nx">storedTheme</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">&#34;__theme&#34;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">storedTheme</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span><span class="p">(</span><span class="nx">storedTheme</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>Then we make the button change the theme:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">button</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;button.theme-toggler&#34;</span><span class="p">);</span>
+
+<span class="nx">button</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;click&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">dataset</span><span class="p">.</span><span class="nx">theme</span> <span class="o">===</span> <span class="s2">&#34;dark&#34;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span><span class="p">(</span><span class="s2">&#34;light&#34;</span><span class="p">);</span>
+    <span class="k">return</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span><span class="p">(</span><span class="s2">&#34;dark&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><p><strong>NOTE:</strong> The script tag <em>has</em> to be inline, otherwise the flash will still
+happen.</p>
+<h2 class="heading" id="transition-between-themes">
+  Transition between themes
+  <a class="anchor" href="#transition-between-themes">#</a>
+</h2>
+<p>This works, but we want some animations:</p>
+<div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">body</span> <span class="p">{</span>
+  <span class="k">transition</span><span class="p">:</span> <span class="kc">color</span> <span class="mf">0.25</span><span class="kt">s</span> <span class="kc">ease</span><span class="o">-</span><span class="n">out</span><span class="p">,</span> <span class="k">background</span> <span class="mf">0.25</span><span class="kt">s</span> <span class="kc">ease</span><span class="o">-</span><span class="n">out</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><p>Now you reload the page and things are broken again, because the transition will
+happen on reload.
+<a href="https://css-tricks.com/transitions-only-after-page-load/">To prevent this, I used this trick from CSS-Tricks:</a></p>
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;preload&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">preload</span> <span class="p">{</span>
+  <span class="kp">-webkit-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="kp">-moz-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="kp">-ms-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
+  <span class="kp">-o-</span><span class="k">transition</span><span class="p">:</span> <span class="kc">none</span> <span class="cp">!important</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;load&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&#34;preload&#34;</span><span class="p">);</span>
+<span class="p">});</span>
+</code></pre></div><h2 class="heading" id="respect-system-preferences">
+  Respect system preferences
+  <a class="anchor" href="#respect-system-preferences">#</a>
+</h2>
+<p>Finally, to respect the
+<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"><code>prefers-color-scheme</code></a>
+media query, we add to our first script:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">storedTheme</span> <span class="o">=</span> <span class="nx">localStorage</span><span class="p">.</span><span class="nx">getItem</span><span class="p">(</span><span class="s2">&#34;__theme&#34;</span><span class="p">);</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="nx">storedTheme</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span><span class="p">(</span><span class="nx">storedTheme</span><span class="p">);</span>
+<span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nb">window</span><span class="p">.</span><span class="nx">matchMedia</span><span class="p">(</span><span class="s2">&#34;(prefers-color-scheme: dark)&#34;</span><span class="p">).</span><span class="nx">matches</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span><span class="p">(</span><span class="s2">&#34;dark&#34;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div><p>So that, if there&rsquo;s nothing in <code>localStorage</code>, we respect system settings.</p>
+<h2 class="heading" id="hugo-implementation-details">
+  Hugo implementation details
+  <a class="anchor" href="#hugo-implementation-details">#</a>
+</h2>
+<p>In <code>layouts/_default/baseof.html</code> template, we need something like this:</p>
+<!-- prettier-ignore -->
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+
+  <span class="p">&lt;</span><span class="nt">body</span> <span class="na">data-theme</span><span class="o">=</span><span class="s">&#34;light&#34;</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;preload&#34;</span><span class="p">&gt;</span>
+    {{ partial &#34;theme.html&#34; }}
+
+    ...
+
+    {{ partial &#34;theme-button.html&#34; }}
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div><p>In <code>partials/theme.html</code> we change theme based on <code>localStorage</code> or
+<code>prefers-color-scheme</code>. In <code>layouts/partials/theme-button.html</code> we customize the
+button.</p>
+<p>Also, to change syntax highlighting colorscheme, we need to add
+<code>pygmentsUseClasses = true</code> to our configuration file.</p>
+<p>Then, we need to generate stylesheets for each different colorscheme and move
+them to our assets folder.</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">hugo gen chromastyles --style<span class="o">=</span>monokai &gt; dark-syntax-highlight.css
+hugo gen chromastyles --style<span class="o">=</span>lovelace &gt; light-syntax-highlight.css
+</code></pre></div><p>Add them to our html (with the dark stylesheet disabled).</p>
+<!-- prettier-ignore -->
+<div class="highlight"><pre class="chroma"><code class="language-html" data-lang="html">{{ $syntaxHighlight := resources.Get &#34;css/light-syntax-highlight.css&#34; }}
+{{ $darkSyntaxHighlight := resources.Get &#34;css/dark-syntax-highlight.css&#34; }}
+
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ $syntaxHighlight.RelPermalink }}&#34;</span> <span class="p">/&gt;</span>
+<span class="p">&lt;</span><span class="nt">link</span> <span class="na">rel</span><span class="o">=</span><span class="s">&#34;stylesheet&#34;</span> <span class="na">href</span><span class="o">=</span><span class="s">&#34;{{ $darkSyntaxHighlight.RelPermalink }}&#34;</span> <span class="na">disabled</span> <span class="p">/&gt;</span>
+</code></pre></div><p>And handle enabling/disabling stylesheet when theme changes with JavaScript:</p>
+<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">__setTheme</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">newTheme</span><span class="p">)</span> <span class="p">{</span>
+  <span class="c1">// ...
+</span><span class="c1"></span>  <span class="kr">const</span> <span class="nx">oldTheme</span> <span class="o">=</span> <span class="nx">newTheme</span> <span class="o">===</span> <span class="s2">&#34;dark&#34;</span> <span class="o">?</span> <span class="s2">&#34;light&#34;</span> <span class="o">:</span> <span class="s2">&#34;dark&#34;</span><span class="p">;</span>
+  <span class="nb">document</span>
+    <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;link[href*=&#39;&#34;</span> <span class="o">+</span> <span class="nx">oldTheme</span> <span class="o">+</span> <span class="s2">&#34;&#39;]&#34;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&#34;disabled&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">);</span>
+  <span class="nb">document</span>
+    <span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s2">&#34;link[href*=&#39;&#34;</span> <span class="o">+</span> <span class="nx">newTheme</span> <span class="o">+</span> <span class="s2">&#34;&#39;]&#34;</span><span class="p">)</span>
+    <span class="p">.</span><span class="nx">removeAttribute</span><span class="p">(</span><span class="s2">&#34;disabled&#34;</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div><p>And that&rsquo;s it, hopefully we can enjoy dark mode now.</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/posts/my-experience-testing-react-applications/">
+          « My experience testing React applications
+        </a>
+      
+
+      
+        <a class="adjacent-post next" href="/posts/extending-vim-with-ripgrep/">
+          Extending Vim with ripgrep »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

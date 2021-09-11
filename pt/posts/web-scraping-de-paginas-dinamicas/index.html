@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="Web scraping pode ficar bem complicado quando a página é dinâmica, você não mais precisa somente carregar o código-fonte da página mas também precisa esperar o JavaScript da página construir a página, que é o caso do site do Reclame Aqui." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2019-08-18">
+<meta name="last-modified-date" content="2019-08-18">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Web Scraping de páginas dinâmicas com Python | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Web Scraping de páginas dinâmicas com Python" />
+<meta property="og:description" content="Web scraping pode ficar bem complicado quando a página é dinâmica, você não mais precisa somente carregar o código-fonte da página mas também precisa esperar o JavaScript da página construir a página, que é o caso do site do Reclame Aqui." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/web-scraping-de-paginas-dinamicas/" />
+<meta property="article:published_time" content="2019-08-18T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-08-18T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Web Scraping de páginas dinâmicas com Python"/>
+<meta name="twitter:description" content="Web scraping pode ficar bem complicado quando a página é dinâmica, você não mais precisa somente carregar o código-fonte da página mas também precisa esperar o JavaScript da página construir a página, que é o caso do site do Reclame Aqui."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/pt/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/pt/posts">Posts</a><a href="https://phelipetls.github.io/pt/projects">Projetos</a><a href="https://phelipetls.github.io/pt/archive">Arquivo</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Web Scraping de páginas dinâmicas com Python</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2019-08-18">
+        August 18, 2019
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/pt/tags/web-scraping/">web-scraping</a><a class="button button-secondary" href="/pt/tags/pandas/">pandas</a><a class="button button-secondary" href="/pt/tags/regex/">regex</a><a class="button button-secondary" href="/pt/tags/dataviz/">dataviz</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>Web scraping pode ficar bem complicado quando a página é dinâmica, você não mais
+precisa somente carregar o código-fonte da página mas também precisa esperar o
+JavaScript da página construir a página, que é o caso do site do Reclame Aqui.</p>
+<p>Nesses casos, precisamos controlar um navegador remotamente por meio de um <em>web
+driver</em>, por exemplo, o <code>geckodriver</code> para o Firefox ou <code>chromedriver</code> para o
+Chrome.</p>
+<p>Para isso, usamos uma biblioteca a partir da qual podemos instruir este
+navegador a fazer o que queremos, por exemplo o <code>Selenium</code>.</p>
+<p>Pros meus propósitos, usarei o <code>Selenium</code> para abrir uma URL e extrair alguma
+informação na página, tarefa para alguma biblioteca que entenda estrutura HTML e
+facilite a extração dos elementos, como a <code>BeautifulSoup</code>.</p>
+<p>Utilizo essas duas bibliotecas no script abaixo. E podemos instalá-las com:</p>
+<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">pip3 instal selenium bs4
+</code></pre></div><p>Para fazer o crawleamento, criei uma classe que aceita o nome de uma empresa e o
+web driver a ser utilizado.</p>
+<p>Ela tem o método <code>ReclameAqui.extrair_informacoes(n_paginas)</code> que vai extrair os
+links e títulos das reclamações das primeiras <code>n_paginas</code>.</p>
+<p>Outro método, o <code>ReclameAqui.extrair_descricoes()</code>, abre cada uma dessas URLs e
+extrai as descrições das informações.</p>
+<p>Para extrair a informação desejada, nós fazemos o <code>BeautifulSoup</code> &ldquo;entender&rdquo; o
+código-fonte primeiro para depois usarmos os métodos para extração de algum
+element do HTML.</p>
+<p>Por exemplo, para extrair o título e os links das reclamações em cada página,
+procuramos por parágrafos que contenham a classe <code>text-detail</code>:
+(<code>&lt;p class='text-detail'&gt;&lt;/p&gt;</code>), e depois procuramos elementos <code>a</code>, que contém o
+título dentro dele e o link dentro do atributo <code>href</code>.</p>
+<p>Já para a descrição, procuramos por um elemento <code>div</code> com a classe
+<code>complain-body</code>, e extraímos o texto dentro dele.</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">time</span> <span class="kn">import</span> <span class="n">sleep</span>
+<span class="kn">from</span> <span class="nn">selenium</span> <span class="kn">import</span> <span class="n">webdriver</span>
+<span class="kn">from</span> <span class="nn">bs4</span> <span class="kn">import</span> <span class="n">BeautifulSoup</span> <span class="k">as</span> <span class="n">bs</span>
+
+
+<span class="k">class</span> <span class="nc">ReclameAqui</span><span class="p">:</span>
+
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&#34;https://www.reclameaqui.com.br/empresa/&#34;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">driver</span><span class="p">,</span> <span class="n">empresa</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">driver</span> <span class="o">=</span> <span class="n">driver</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">empresa</span> <span class="o">=</span> <span class="n">empresa</span>
+
+    <span class="k">def</span> <span class="nf">extrair_informacoes</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_paginas</span><span class="p">):</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">empresa</span> <span class="o">+</span> <span class="s2">&#34;/lista-reclamacoes/?pagina=&#34;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">reclamacoes</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">titulos</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[],</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_paginas</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span>
+
+            <span class="n">reclamacoes_html</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span><span class="s2">&#34;p&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;class&#34;</span><span class="p">:</span> <span class="s2">&#34;text-detail&#34;</span><span class="p">})</span>
+            <span class="n">reclamacoes_na_pagina</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">reclamacao</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;|&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">reclamacao</span> <span class="ow">in</span> <span class="n">reclamacoes_html</span>
+            <span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">reclamacoes</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">reclamacoes_na_pagina</span><span class="p">)</span>
+
+            <span class="n">titulos_e_links</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find_all</span><span class="p">(</span>
+                <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;class&#34;</span><span class="p">:</span> <span class="s2">&#34;link-complain-id-complains&#34;</span><span class="p">}</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">titulos</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">titulo</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span> <span class="k">for</span> <span class="n">titulo</span> <span class="ow">in</span> <span class="n">titulos_e_links</span><span class="p">])</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="n">link</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;href&#34;</span><span class="p">)</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="n">titulos_e_links</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">extrair_descricoes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">urls</span> <span class="o">=</span> <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">base_url</span> <span class="o">+</span> <span class="n">link</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="k">for</span> <span class="n">link</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">links</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">descricoes</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">url</span> <span class="ow">in</span> <span class="n">urls</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+            <span class="n">sleep</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">html</span> <span class="o">=</span> <span class="n">bs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">driver</span><span class="o">.</span><span class="n">page_source</span><span class="p">,</span> <span class="s2">&#34;html.parser&#34;</span><span class="p">)</span>
+            <span class="n">descricao</span> <span class="o">=</span> <span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;div&#34;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&#34;class&#34;</span><span class="p">:</span> <span class="s2">&#34;complain-body&#34;</span><span class="p">})</span><span class="o">.</span><span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">descricoes</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">descricao</span><span class="p">)</span>
+</code></pre></div><p>Esse código deve funcionar para qualquer empresa contanto que a estrutura do
+HTML do ReclameAqui não mude (isto é, o nome das classes e o tipo dos elementos
+onde as informações se encontram).</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/pt/posts/gram-schmidt/">
+          « Processo de Gram-Schmidt com NumPy
+        </a>
+      
+
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Ícones de <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Mudar tema">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

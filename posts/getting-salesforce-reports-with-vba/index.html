@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2020-08-05">
+<meta name="last-modified-date" content="2020-08-05">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Getting Salesforce reports with VBA | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Getting Salesforce reports with VBA" />
+<meta property="og:description" content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/getting-salesforce-reports-with-vba/" />
+<meta property="article:published_time" content="2020-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-05T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Getting Salesforce reports with VBA"/>
+<meta name="twitter:description" content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Getting Salesforce reports with VBA</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2020-08-05">
+        August 05, 2020
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/tags/salesforce/">salesforce</a><a class="button button-secondary" href="/tags/vba/">vba</a><a class="button button-secondary" href="/tags/excel/">excel</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>For those who find themselves in an environment which heavily relies on Excel
+and Salesforce, you may be interested in a way to automate the process of
+downloading reports from inside Excel with VBA only.</p>
+<p>I think there are probably better tools for the job, like Apex, SOQL query or a
+better programming language. I
+<a href="https://github.com/reportforce">created a Python package for this purpose</a> but
+I didn&rsquo;t use it so much because it&rsquo;s hard to integrate with Excel.</p>
+<p>Instead, I looked into a way to do something similar with VBA and I managed to
+do it. In this post I&rsquo;ll share this with you.</p>
+<h2 class="heading" id="authentication">
+  Authentication
+  <a class="anchor" href="#authentication">#</a>
+</h2>
+<p>The more painless way I know of to
+<a href="https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_quickstart_login.htm">authenticate your requests for a Salesforce web service is via SOAP API</a>,
+with username, password and a security token.</p>
+<p>It returns a bunch of XML in the response, but we will only need the session id
+(a JWT) inside of it. This is what the function below does.</p>
+<p>From here onwards, we will need to authenticate every request by passing the
+header <code>Authorization: Bearer $sessionId</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Function</span> <span class="nf">SalesforceLogin</span><span class="p">(</span><span class="n">Username</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                         <span class="n">Password</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                         <span class="n">SecurityToken</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">)</span> <span class="ow">As</span> <span class="kt">String</span>
+
+    <span class="k">Dim</span> <span class="n">Request</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Set</span> <span class="n">Request</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;MSXML2.XMLHTTP.6.0&#34;</span><span class="p">)</span>
+
+    <span class="k">Dim</span> <span class="n">XMLBody</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Dim</span> <span class="n">XMLResponse</span> <span class="ow">As</span> <span class="kt">Object</span>
+
+    <span class="k">Set</span> <span class="n">XMLBody</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;MSXML2.DOMDocument.6.0&#34;</span><span class="p">)</span>
+    <span class="k">Set</span> <span class="n">XMLResponse</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;MSXML2.DOMDocument.6.0&#34;</span><span class="p">)</span>
+
+    <span class="k">Dim</span> <span class="n">Url</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="k">Dim</span> <span class="n">Body</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="k">Dim</span> <span class="n">Response</span> <span class="ow">As</span> <span class="kt">String</span>
+
+    <span class="n">Url</span> <span class="o">=</span> <span class="s">&#34;https://login.salesforce.com/services/Soap/u/47.0&#34;</span>
+
+    <span class="n">Body</span> <span class="o">=</span> <span class="s">&#34;&lt;?xml version=&#34;&#34;1.0&#34;&#34; encoding=&#34;&#34;utf-8&#34;&#34; ?&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;&lt;env:Envelope xmlns:xsd=&#34;&#34;http://www.w3.org/2001/XMLSchema&#34;&#34;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;    xmlns:xsi=&#34;&#34;http://www.w3.org/2001/XMLSchema-instance&#34;&#34;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;    xmlns:env=&#34;&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;&#34;&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;  &lt;env:Body&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;    &lt;n1:login xmlns:n1=&#34;&#34;urn:partner.soap.sforce.com&#34;&#34;&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;      &lt;n1:username&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">Username</span> <span class="o">&amp;</span> <span class="s">&#34;&lt;/n1:username&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;      &lt;n1:password&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">Password</span> <span class="o">&amp;</span> <span class="n">SecurityToken</span> <span class="o">&amp;</span> <span class="s">&#34;&lt;/n1:password&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;    &lt;/n1:login&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;  &lt;/env:Body&gt;&#34;</span> <span class="o">&amp;</span> <span class="n">vbNewLine</span> <span class="o">&amp;</span> _
+           <span class="s">&#34;&lt;/env:Envelope&gt;&#34;</span>
+
+    <span class="n">XMLBody</span><span class="p">.</span><span class="n">LoadXML</span> <span class="n">Body</span>
+
+    <span class="n">Request</span><span class="p">.</span><span class="n">Open</span> <span class="s">&#34;POST&#34;</span><span class="p">,</span> <span class="n">Url</span><span class="p">,</span> <span class="k">False</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">setRequestHeader</span> <span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;text/xml&#34;</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">setRequestHeader</span> <span class="s">&#34;SOAPAction&#34;</span><span class="p">,</span> <span class="s">&#34;login&#34;</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">send</span> <span class="n">XMLBody</span><span class="p">.</span><span class="n">XML</span>
+    <span class="n">Response</span> <span class="o">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">responseText</span>
+
+    <span class="n">XMLResponse</span><span class="p">.</span><span class="n">LoadXML</span> <span class="n">Response</span>
+    <span class="n">XMLResponse</span><span class="p">.</span><span class="n">setProperty</span> <span class="s">&#34;SelectionNamespaces&#34;</span><span class="p">,</span> <span class="s">&#34;xmlns:soapenv=&#34;&#34;http://schemas.xmlsoap.org/soap/envelope/&#34;&#34; xmlns:urn=&#34;&#34;urn:partner.soap.sforce.com&#34;&#34;&#34;</span>
+
+    <span class="k">Dim</span> <span class="n">SessionId</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="n">SessionId</span> <span class="o">=</span> <span class="n">XMLResponse</span><span class="p">.</span><span class="n">SelectSingleNode</span><span class="p">(</span><span class="s">&#34;//urn:result/urn:sessionId&#34;</span><span class="p">).</span><span class="n">Text</span>
+
+    <span class="n">SalesforceLogin</span> <span class="o">=</span> <span class="n">SessionId</span>
+
+    <span class="k">Set</span> <span class="n">Request</span> <span class="o">=</span> <span class="k">Nothing</span>
+
+<span class="k">End</span> <span class="k">Function</span>
+</code></pre></div><h2 class="heading" id="parsing-json-inside-vba">
+  Parsing JSON inside VBA?
+  <a class="anchor" href="#parsing-json-inside-vba">#</a>
+</h2>
+<p>Now, to get an actual report inside Excel we will need to use the Analytics API.
+So far, we didn&rsquo;t had to rely on any external tools, there is an XML parser
+inside VBA, but not a JSON parser at least that I know of. So we&rsquo;re in trouble
+here because that&rsquo;s what Analytics speaks.</p>
+<p>Fortunately, there is a
+<a href="https://github.com/VBA-tools/VBA-JSON">JSON parser implementation for VBA</a>
+which works flawlessly. You just need to download
+<a href="https://raw.githubusercontent.com/VBA-tools/VBA-JSON/master/JsonConverter.bas">this file</a>
+and import it as a module.</p>
+<h2 class="heading" id="unfortunate-api-limitations">
+  Unfortunate API limitations
+  <a class="anchor" href="#unfortunate-api-limitations">#</a>
+</h2>
+<p>This API unfortunately have a
+<a href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_limits_limitations.htm">critical limitation</a>,
+which is to return only a maximum of 2000 rows per report. Also, there is no way
+to filter by row limits.</p>
+<p>This almost turns it useless. The only way I know of is to use a column which
+has only unique values and exclude already seen values with a filter, which is
+what we&rsquo;ll gonna do.</p>
+<h2 class="heading" id="getting-report-metadata">
+  Getting report metadata
+  <a class="anchor" href="#getting-report-metadata">#</a>
+</h2>
+<p>To be able to filter a report, we will need to fetch its metadata, which is a
+huge JSON with key-value pairs describing the report.</p>
+<p>We can get it with a <code>GET</code> request to
+<code>https://$YOUR_INSTANCE_URL/services/data/v47.0/analytics/reports/$REPORT_ID/describe</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Function</span> <span class="nf">GetMetadata</span><span class="p">(</span><span class="n">ReportId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> <span class="n">SessionId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">)</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="k">Dim</span> <span class="n">Request</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Set</span> <span class="n">Request</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;MSXML2.XMLHTTP.6.0&#34;</span><span class="p">)</span>
+    <span class="k">Dim</span> <span class="n">Response</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="k">Dim</span> <span class="n">Url</span> <span class="ow">As</span> <span class="kt">String</span>
+
+    <span class="c">&#39; NOTE: You will need your organization URL here
+</span><span class="c"></span>    <span class="n">Url</span> <span class="o">=</span>  <span class="n">YOUR_INSTANCE_URL</span> <span class="o">&amp;</span> <span class="s">&#34;/services/data/v47.0/analytics/reports/&#34;</span> <span class="o">&amp;</span> <span class="n">ReportId</span> <span class="o">&amp;</span> <span class="s">&#34;/describe&#34;</span>
+
+    <span class="n">Request</span><span class="p">.</span><span class="n">Open</span> <span class="s">&#34;GET&#34;</span><span class="p">,</span> <span class="n">Url</span><span class="p">,</span> <span class="k">False</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">setRequestHeader</span> <span class="s">&#34;Authorization&#34;</span><span class="p">,</span> <span class="s">&#34;Bearer &#34;</span> <span class="o">&amp;</span> <span class="n">SessionId</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">send</span>
+
+    <span class="n">GetMetadata</span> <span class="o">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">responseText</span>
+<span class="k">End</span> <span class="k">Function</span>
+</code></pre></div><h2 class="heading" id="getting-an-individual-report">
+  Getting an individual report
+  <a class="anchor" href="#getting-an-individual-report">#</a>
+</h2>
+<p>With the function below, you will be able to get the report in JSON format.</p>
+<p>This is achieved with a <code>POST</code> request to
+<code>https://$YOUR_INSTANCE_URL/services/data/v47.0/analytics/reports/$REPORT_ID</code>,
+optional metadata goes into the request body, this is what we use to filter the
+report.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Function</span> <span class="nf">GetReport</span><span class="p">(</span><span class="n">ReportId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                   <span class="n">SessionId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                   <span class="k">Optional</span> <span class="n">Metadata</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span> <span class="ow">As</span> <span class="kt">String</span>
+
+    <span class="k">Dim</span> <span class="n">Request</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Set</span> <span class="n">Request</span> <span class="o">=</span> <span class="n">CreateObject</span><span class="p">(</span><span class="s">&#34;MSXML2.XMLHTTP.6.0&#34;</span><span class="p">)</span>
+
+    <span class="k">Dim</span> <span class="n">Response</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="k">Dim</span> <span class="n">Url</span> <span class="ow">As</span> <span class="kt">String</span>
+
+    <span class="n">Url</span> <span class="o">=</span> <span class="n">YOUR_INSTANCE_URL</span> <span class="o">&amp;</span> _
+          <span class="s">&#34;services/data/v47.0/analytics/reports/&#34;</span> <span class="o">&amp;</span> <span class="n">ReportId</span>
+
+    <span class="n">Request</span><span class="p">.</span><span class="n">Open</span> <span class="s">&#34;POST&#34;</span><span class="p">,</span> <span class="n">Url</span><span class="p">,</span> <span class="k">False</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">setRequestHeader</span> <span class="s">&#34;Authorization&#34;</span><span class="p">,</span> <span class="s">&#34;Bearer &#34;</span> <span class="o">&amp;</span> <span class="n">SessionId</span>
+    <span class="n">Request</span><span class="p">.</span><span class="n">setRequestHeader</span> <span class="s">&#34;Content-Type&#34;</span><span class="p">,</span> <span class="s">&#34;application/json&#34;</span>
+
+    <span class="k">If</span> <span class="n">Metadata</span> <span class="o">&lt;&gt;</span> <span class="s">&#34;&#34;</span> <span class="k">Then</span>
+        <span class="n">Request</span><span class="p">.</span><span class="n">send</span> <span class="p">(</span><span class="n">Metadata</span><span class="p">)</span>
+    <span class="k">Else</span>
+        <span class="n">Request</span><span class="p">.</span><span class="n">send</span>
+    <span class="k">End</span> <span class="k">If</span>
+
+    <span class="n">Response</span> <span class="o">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">responseText</span>
+
+    <span class="n">GetReport</span> <span class="o">=</span> <span class="n">Response</span>
+<span class="k">End</span> <span class="k">Function</span>
+</code></pre></div><h2 class="heading" id="writing-the-data-into-a-worksheet">
+  Writing the data into a worksheet
+  <a class="anchor" href="#writing-the-data-into-a-worksheet">#</a>
+</h2>
+<p>Now we need to extract the data and write it into a worksheet.</p>
+<p><a href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm" title="Salesforce documentation on how to decode the factMap">Every thing we need is inside the <code>factMap</code> key</a>.
+This can get complex if we intend to cover matrix and summary reports, which has
+groupings etc., but tabular reports are much simpler.</p>
+<p>What we need to do is to iterate through the values at <code>factMap.T!T.rows</code> and,
+for each row, get every value inside <code>.dataCells</code> array.</p>
+<p>This approach will only cover tabular reports, you can take a look at the
+<a href="https://github.com/phelipetls/reportforce/tree/master/reportforce/helpers" title="Source code for reportforce package on a Github repository">reportforce source code</a>
+if you need to cover these. By the way, there is an option to export to an Excel
+(but not to write to a worksheet, obviously).</p>
+<p>The below function takes care of this, its job is to go through every cell and
+store it in an array, and then append that array to a worksheet range starting
+from column A.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Function</span> <span class="nf">WriteIntoWorksheet</span><span class="p">(</span><span class="n">Report</span> <span class="ow">As</span> <span class="n">Dictionary</span><span class="p">,</span> _
+                            <span class="n">WorksheetName</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                            <span class="n">ColumnLabels</span> <span class="ow">As</span> <span class="kt">Variant</span><span class="p">)</span> <span class="ow">As</span> <span class="kt">Variant</span>
+
+    <span class="k">Dim</span> <span class="n">Rows</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Dim</span> <span class="n">Columns</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Dim</span> <span class="n">ColumnInfo</span>
+
+    <span class="k">Set</span> <span class="n">Columns</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="s">&#34;reportMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;detailColumns&#34;</span><span class="p">)</span>
+    <span class="k">Set</span> <span class="n">ColumnInfo</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="s">&#34;reportExtendedMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;detailColumnInfo&#34;</span><span class="p">)</span>
+    <span class="k">Set</span> <span class="n">Rows</span> <span class="o">=</span> <span class="n">Report</span><span class="p">(</span><span class="s">&#34;factMap&#34;</span><span class="p">)(</span><span class="s">&#34;T!T&#34;</span><span class="p">)(</span><span class="s">&#34;rows&#34;</span><span class="p">)</span>
+
+    <span class="k">Dim</span> <span class="n">Total_Rows</span> <span class="ow">As</span> <span class="kt">Long</span><span class="p">:</span> <span class="n">Total_Rows</span> <span class="o">=</span> <span class="n">Rows</span><span class="p">.</span><span class="n">Count</span>
+    <span class="k">Dim</span> <span class="n">Total_Columns</span> <span class="ow">As</span> <span class="kt">Long</span><span class="p">:</span> <span class="n">Total_Columns</span> <span class="o">=</span> <span class="n">Columns</span><span class="p">.</span><span class="n">Count</span>
+
+    <span class="k">If</span> <span class="n">Total_Rows</span> <span class="o">=</span> <span class="n">0</span> <span class="k">Then</span>
+        <span class="k">Exit</span> <span class="k">Function</span>
+    <span class="nf">End</span> <span class="k">If</span>
+
+    <span class="k">Dim</span> <span class="n">Table</span><span class="p">()</span> <span class="ow">As</span> <span class="kt">Variant</span>
+    <span class="k">ReDim</span> <span class="n">Table</span><span class="p">(</span><span class="n">Total_Rows</span> <span class="o">-</span> <span class="n">1</span><span class="p">,</span> <span class="n">Total_Columns</span> <span class="o">-</span> <span class="n">1</span><span class="p">)</span>
+
+    <span class="k">Dim</span> <span class="n">row</span> <span class="ow">As</span> <span class="kt">Variant</span>
+    <span class="k">Dim</span> <span class="n">cell</span> <span class="ow">As</span> <span class="kt">Variant</span>
+
+    <span class="k">Dim</span> <span class="n">i</span> <span class="ow">As</span> <span class="kt">Long</span><span class="p">:</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span>
+    <span class="k">Dim</span> <span class="n">j</span> <span class="ow">As</span> <span class="kt">Long</span>
+    <span class="k">Dim</span> <span class="n">dataType</span> <span class="ow">As</span> <span class="kt">String</span>
+
+    <span class="k">For</span> <span class="k">Each</span> <span class="n">row</span> <span class="ow">In</span> <span class="n">Rows</span>
+        <span class="n">j</span> <span class="o">=</span> <span class="n">0</span>
+        <span class="k">For</span> <span class="k">Each</span> <span class="n">cell</span> <span class="ow">In</span> <span class="n">row</span><span class="p">(</span><span class="s">&#34;dataCells&#34;</span><span class="p">)</span>
+            <span class="n">dataType</span> <span class="o">=</span> <span class="n">ColumnInfo</span><span class="p">(</span><span class="n">Columns</span><span class="p">(</span><span class="n">j</span> <span class="o">+</span> <span class="n">1</span><span class="p">))(</span><span class="s">&#34;dataType&#34;</span><span class="p">)</span>
+
+            <span class="c">&#39; If column is a date, get value property;
+</span><span class="c"></span>            <span class="c">&#39; Excel understands it better
+</span><span class="c"></span>            <span class="k">If</span> <span class="n">dataType</span> <span class="o">=</span> <span class="s">&#34;date&#34;</span> <span class="k">Then</span>
+                <span class="n">Table</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="s">&#34;value&#34;</span><span class="p">)</span>
+            <span class="k">Else</span>
+                <span class="n">Table</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span> <span class="o">=</span> <span class="n">cell</span><span class="p">(</span><span class="s">&#34;label&#34;</span><span class="p">)</span>
+            <span class="k">End</span> <span class="k">If</span>
+
+            <span class="n">j</span> <span class="o">=</span> <span class="n">j</span> <span class="o">+</span> <span class="n">1</span>
+        <span class="k">Next</span> <span class="n">cell</span>
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span>
+    <span class="k">Next</span> <span class="n">row</span>
+
+    <span class="k">With</span> <span class="n">ThisWorkbook</span><span class="p">.</span><span class="n">Worksheets</span><span class="p">(</span><span class="n">WorksheetName</span><span class="p">)</span>
+        <span class="k">Dim</span> <span class="n">LastRow</span> <span class="ow">As</span> <span class="kt">Long</span>
+        <span class="n">LastRow</span> <span class="o">=</span> <span class="p">.</span><span class="n">Range</span><span class="p">(</span><span class="s">&#34;A:A&#34;</span><span class="p">).</span><span class="n">Find</span><span class="p">(</span><span class="s">&#34;*&#34;</span><span class="p">,</span> _
+                                     <span class="n">SearchOrder</span><span class="p">:</span><span class="o">=</span><span class="n">xlByRows</span><span class="p">,</span> _
+                                     <span class="n">SearchDirection</span><span class="p">:</span><span class="o">=</span><span class="n">xlPrevious</span><span class="p">).</span><span class="n">row</span>
+
+        <span class="p">.</span><span class="n">Range</span><span class="p">(.</span><span class="n">Cells</span><span class="p">(</span><span class="n">LastRow</span> <span class="o">+</span> <span class="n">1</span><span class="p">,</span> <span class="s">&#34;A&#34;</span><span class="p">),</span> _
+               <span class="p">.</span><span class="n">Cells</span><span class="p">(</span><span class="n">Total_Rows</span> <span class="o">+</span> <span class="n">LastRow</span><span class="p">,</span> <span class="n">Total_Columns</span><span class="p">))</span> <span class="o">=</span> <span class="n">Table</span>
+    <span class="k">End</span> <span class="k">With</span>
+
+    <span class="n">WriteIntoWorksheet</span> <span class="o">=</span> <span class="n">Table</span>
+
+<span class="k">End</span> <span class="k">Function</span>
+</code></pre></div><p>We also need to get the values at <code>.reportMetadata.detailColumns</code> and
+<code>reportExtendedMetadata.detailColumnInfo</code> to check how many columns the report
+have and to extract the value at <code>.value</code> if it is a date.</p>
+<h2 class="heading" id="getting-the-entire-report">
+  Getting the entire report
+  <a class="anchor" href="#getting-the-entire-report">#</a>
+</h2>
+<p>To get the entire report, the key thing to overcome the API limitations is a key
+called <code>.allData</code>, which will be <code>true</code> only if we got all the data from the
+API.</p>
+<p>So we get the first 2000 rows and, if <code>.allData</code> is <code>false</code>, we get the values
+of an identifier column, filter them out and request a new report, until we get
+all data.</p>
+<p>We will modify the keys <code>.reportMetadata.standardDateFilter</code> and
+<code>.reportMetadata.reportFilters</code>, to filter dates and other filters respectively.</p>
+<p>If your report has a boolean filter, it&rsquo;s likely that you&rsquo;ll need to change it
+because we will insert new filters. This is already done in the code by changing
+the value at <code>.reportMetadata.reportBooleanFilter</code>, so you only need to pass it
+as a parameter.</p>
+<p>The function looks way more involved because we have to get the report headers
+(the <code>label</code> property of each object inside
+<code>.reportExtendedMetadata.detailColumnInfo</code>, the ones you see in the browser).</p>
+<p>We also need the identifier column API name (an internal value), which we will
+need to filter it.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Sub</span> <span class="nf">DownloadEntireReport</span><span class="p">(</span><span class="n">ReportId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                         <span class="n">WorksheetName</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                         <span class="n">SessionId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> _
+                         <span class="k">Optional</span> <span class="n">IdentifierColumn</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> _
+                         <span class="k">Optional</span> <span class="n">BooleanFilter</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> _
+                         <span class="k">Optional</span> <span class="n">startDate</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">,</span> _
+                         <span class="k">Optional</span> <span class="n">endDate</span> <span class="ow">As</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+
+    <span class="k">Dim</span> <span class="n">Report</span> <span class="ow">As</span> <span class="kt">Object</span>
+
+    <span class="k">Dim</span> <span class="n">ReportMetadata</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Set</span> <span class="n">ReportMetadata</span> <span class="o">=</span> <span class="n">JsonConverter</span><span class="p">.</span><span class="n">ParseJson</span><span class="p">(</span><span class="n">GetMetadata</span><span class="p">(</span><span class="n">ReportId</span><span class="p">,</span> <span class="n">SessionId</span><span class="p">))</span>
+
+    <span class="k">Dim</span> <span class="n">IdentifierColumnApiName</span> <span class="ow">As</span> <span class="kt">String</span>
+    <span class="k">Dim</span> <span class="n">IdentifierColumnPosition</span> <span class="ow">As</span> <span class="kt">Long</span>
+
+    <span class="k">Dim</span> <span class="n">Col</span> <span class="ow">As</span> <span class="kt">Variant</span>
+    <span class="k">Dim</span> <span class="n">i</span> <span class="ow">As</span> <span class="kt">Long</span><span class="p">:</span> <span class="n">i</span> <span class="o">=</span> <span class="n">0</span>
+
+    <span class="k">Dim</span> <span class="n">ColumnDetails</span> <span class="ow">As</span> <span class="kt">Object</span>
+    <span class="k">Set</span> <span class="n">ColumnDetails</span> <span class="o">=</span> <span class="n">ReportMetadata</span><span class="p">(</span><span class="s">&#34;reportExtendedMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;detailColumnInfo&#34;</span><span class="p">)</span>
+
+    <span class="c">&#39; This is an array to store the column headers
+</span><span class="c"></span>    <span class="k">Dim</span> <span class="n">ColumnLabels</span><span class="p">()</span> <span class="ow">As</span> <span class="kt">Variant</span>
+    <span class="k">ReDim</span> <span class="n">ColumnLabels</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="n">ColumnDetails</span><span class="p">.</span><span class="n">Count</span> <span class="o">-</span> <span class="n">1</span><span class="p">)</span>
+
+    <span class="c">&#39; Collection the column headers
+</span><span class="c"></span>    <span class="k">For</span> <span class="k">Each</span> <span class="n">Col</span> <span class="ow">In</span> <span class="n">ColumnDetails</span><span class="p">.</span><span class="n">Keys</span><span class="p">()</span>
+        <span class="n">ColumnLabels</span><span class="p">(</span><span class="n">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span> <span class="o">=</span> <span class="n">ColumnDetails</span><span class="p">(</span><span class="n">Col</span><span class="p">)(</span><span class="s">&#34;label&#34;</span><span class="p">)</span>
+
+        <span class="c">&#39; Remember which column matches the identifier column label
+</span><span class="c"></span>        <span class="k">If</span> <span class="n">ColumnDetails</span><span class="p">(</span><span class="n">Col</span><span class="p">)(</span><span class="s">&#34;label&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="n">IdentifierColumn</span> <span class="k">Then</span>
+            <span class="n">IdentifierColumnApiName</span> <span class="o">=</span> <span class="n">Col</span>
+            <span class="n">IdentifierColumnPosition</span> <span class="o">=</span> <span class="n">i</span>
+        <span class="k">End</span> <span class="k">If</span>
+
+        <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">1</span>
+    <span class="k">Next</span> <span class="n">Col</span>
+
+    <span class="c">&#39; Write column headers starting from A1
+</span><span class="c"></span>    <span class="k">With</span> <span class="n">ThisWorkbook</span><span class="p">.</span><span class="n">Worksheets</span><span class="p">(</span><span class="n">WorksheetName</span><span class="p">)</span>
+        <span class="p">.</span><span class="n">Range</span><span class="p">(.</span><span class="n">Cells</span><span class="p">(</span><span class="n">1</span><span class="p">,</span> <span class="s">&#34;A&#34;</span><span class="p">),</span> <span class="p">.</span><span class="n">Cells</span><span class="p">(</span><span class="n">1</span><span class="p">,</span> <span class="n">ColumnDetails</span><span class="p">.</span><span class="n">Count</span><span class="p">))</span> <span class="o">=</span> <span class="n">ColumnLabels</span>
+    <span class="k">End</span> <span class="k">With</span>
+
+    <span class="k">Dim</span> <span class="n">ReportMetadataJson</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">:</span> <span class="n">ReportMetadataJson</span> <span class="o">=</span> <span class="s">&#34;&#34;</span>
+
+    <span class="c">&#39; Setting date filters, if any
+</span><span class="c"></span>    <span class="k">If</span> <span class="n">startDate</span> <span class="o">&lt;&gt;</span> <span class="s">&#34;&#34;</span> <span class="ow">And</span> <span class="n">endDate</span> <span class="o">&lt;&gt;</span> <span class="s">&#34;&#34;</span> <span class="k">Then</span>
+        <span class="n">ReportMetadata</span><span class="p">(</span><span class="s">&#34;reportMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;standardDateFilter&#34;</span><span class="p">)(</span><span class="s">&#34;durationValue&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="s">&#34;CUSTOM&#34;</span>
+        <span class="n">ReportMetadata</span><span class="p">(</span><span class="s">&#34;reportMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;standardDateFilter&#34;</span><span class="p">)(</span><span class="s">&#34;startDate&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="n">Format</span><span class="p">(</span><span class="n">startDate</span><span class="p">,</span> <span class="s">&#34;yyyy-mm-dd&#34;</span><span class="p">)</span>
+        <span class="n">ReportMetadata</span><span class="p">(</span><span class="s">&#34;reportMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;standardDateFilter&#34;</span><span class="p">)(</span><span class="s">&#34;endDate&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="n">Format</span><span class="p">(</span><span class="n">endDate</span><span class="p">,</span> <span class="s">&#34;yyyy-mm-dd&#34;</span><span class="p">)</span>
+
+        <span class="n">ReportMetadataJson</span> <span class="o">=</span> <span class="n">JsonConverter</span><span class="p">.</span><span class="n">ConvertToJson</span><span class="p">(</span><span class="n">ReportMetadata</span><span class="p">)</span>
+    <span class="k">End</span> <span class="k">If</span>
+
+    <span class="c">&#39; Get first 2000 rows
+</span><span class="c"></span>    <span class="k">Set</span> <span class="n">Report</span> <span class="o">=</span> <span class="n">JsonConverter</span><span class="p">.</span><span class="n">ParseJson</span><span class="p">(</span><span class="n">GetReport</span><span class="p">(</span><span class="n">ReportId</span><span class="p">,</span> <span class="n">SessionId</span><span class="p">,</span> <span class="n">ReportMetadataJson</span><span class="p">))</span>
+
+    <span class="k">Dim</span> <span class="n">ReportTable</span> <span class="ow">As</span> <span class="kt">Variant</span>
+    <span class="n">ReportTable</span> <span class="o">=</span> <span class="n">WriteIntoWorksheet</span><span class="p">(</span><span class="n">Report</span><span class="p">,</span> <span class="n">WorksheetName</span><span class="p">,</span> <span class="n">ColumnLabels</span><span class="p">)</span>
+
+    <span class="c">&#39; Getting Remaining Values By Filtering Out Old Values
+</span><span class="c"></span>
+    <span class="k">If</span> <span class="n">BooleanFilter</span> <span class="o">&lt;&gt;</span> <span class="s">&#34;&#34;</span> <span class="k">Then</span>
+        <span class="n">ReportMetadata</span><span class="p">(</span><span class="s">&#34;reportMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;reportBooleanFilter&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="n">BooleanFilter</span>
+    <span class="k">End</span> <span class="k">If</span>
+
+    <span class="k">Dim</span> <span class="n">IdentifierColumnValues</span>
+    <span class="k">Dim</span> <span class="n">IdentifierColumnFilter</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">:</span> <span class="n">IdentifierColumnFilter</span> <span class="o">=</span> <span class="s">&#34;&#34;</span>
+
+    <span class="k">Dim</span> <span class="n">Filters</span> <span class="ow">As</span> <span class="n">Scripting</span><span class="p">.</span><span class="n">Dictionary</span>
+    <span class="k">Set</span> <span class="n">Filters</span> <span class="o">=</span> <span class="k">New</span> <span class="n">Dictionary</span>
+
+    <span class="k">Dim</span> <span class="n">ReportFilters</span> <span class="ow">As</span> <span class="kt">Object</span>
+
+    <span class="k">Do</span> <span class="n">Until</span> <span class="n">Report</span><span class="p">(</span><span class="s">&#34;allData&#34;</span><span class="p">)</span>
+        <span class="n">IdentifierColumnValues</span> <span class="o">=</span> <span class="n">GetValuesAtColumn</span><span class="p">(</span><span class="n">ReportTable</span><span class="p">,</span> <span class="n">IdentifierColumnPosition</span><span class="p">)</span>
+        <span class="n">IdentifierColumnFilter</span> <span class="o">=</span> <span class="n">IdentifierColumnFilter</span> <span class="o">&amp;</span> _
+                                 <span class="n">Join</span><span class="p">(</span><span class="n">Application</span><span class="p">.</span><span class="n">Transpose</span><span class="p">(</span><span class="n">IdentifierColumnValues</span><span class="p">),</span> <span class="s">&#34;,&#34;</span><span class="p">)</span>
+
+        <span class="n">Filters</span><span class="p">.</span><span class="n">RemoveAll</span>
+        <span class="n">Filters</span><span class="p">.</span><span class="n">Add</span> <span class="s">&#34;filterType&#34;</span><span class="p">,</span> <span class="s">&#34;fieldValue&#34;</span>
+        <span class="n">Filters</span><span class="p">.</span><span class="n">Add</span> <span class="s">&#34;isRunPageEditable&#34;</span><span class="p">,</span> <span class="k">True</span>
+        <span class="n">Filters</span><span class="p">.</span><span class="n">Add</span> <span class="s">&#34;column&#34;</span><span class="p">,</span> <span class="n">IdentifierColumnApiName</span>
+        <span class="n">Filters</span><span class="p">.</span><span class="n">Add</span> <span class="s">&#34;operator&#34;</span><span class="p">,</span> <span class="s">&#34;notEqual&#34;</span>
+        <span class="n">Filters</span><span class="p">.</span><span class="n">Add</span> <span class="s">&#34;value&#34;</span><span class="p">,</span> <span class="n">IdentifierColumnFilter</span>
+
+        <span class="k">Set</span> <span class="n">ReportFilters</span> <span class="o">=</span> <span class="n">ReportMetadata</span><span class="p">(</span><span class="s">&#34;reportMetadata&#34;</span><span class="p">)(</span><span class="s">&#34;reportFilters&#34;</span><span class="p">)</span>
+
+        <span class="c">&#39; If IdentifierColumn was already added, just change the filter value
+</span><span class="c"></span>        <span class="k">If</span> <span class="n">ReportFilters</span><span class="p">(</span><span class="n">ReportFilters</span><span class="p">.</span><span class="n">Count</span><span class="p">)(</span><span class="s">&#34;column&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="n">IdentifierColumn</span> <span class="k">Then</span>
+            <span class="n">ReportFilters</span><span class="p">(</span><span class="n">ReportFilters</span><span class="p">.</span><span class="n">Count</span><span class="p">)(</span><span class="s">&#34;value&#34;</span><span class="p">)</span> <span class="o">=</span> <span class="n">IdentifierColumnFilter</span>
+        <span class="k">Else</span>
+            <span class="n">ReportFilters</span><span class="p">.</span><span class="n">Add</span> <span class="n">Filters</span>
+        <span class="k">End</span> <span class="k">If</span>
+
+        <span class="n">ReportMetadataJson</span> <span class="o">=</span> <span class="n">JsonConverter</span><span class="p">.</span><span class="n">ConvertToJson</span><span class="p">(</span><span class="n">ReportMetadata</span><span class="p">)</span>
+
+        <span class="k">Set</span> <span class="n">Report</span> <span class="o">=</span> <span class="n">JsonConverter</span><span class="p">.</span><span class="n">ParseJson</span><span class="p">(</span><span class="n">GetReport</span><span class="p">(</span><span class="n">ReportId</span><span class="p">,</span> <span class="n">SessionId</span><span class="p">,</span> <span class="n">ReportMetadataJson</span><span class="p">))</span>
+
+        <span class="n">ReportTable</span> <span class="o">=</span> <span class="n">WriteIntoWorksheet</span><span class="p">(</span><span class="n">Report</span><span class="p">,</span> <span class="n">WorksheetName</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+    <span class="k">Loop</span>
+
+<span class="k">End</span> <span class="k">Sub</span>
+</code></pre></div><p>To do the filter, we create a <code>Filters</code> dictionary to store all key-value pairs
+we need, then add it to the <code>reportFilters</code> object, and change its value in
+later iterations. Then we convert the metadata into a JSON string, get a new
+filtered report and repeat the loop until we get all data.</p>
+<p>Also notice that I use a custom function to get all values at a given column,
+<code>GetValuesAtColumn</code>.</p>
+<p><a href="https://gist.github.com/phelipetls/57a27f529561eefe73633093c737b7e0">Get the full source code in this GitHub gist</a>.</p>
+<h2 class="heading" id="how-to-use-it">
+  How to use it
+  <a class="anchor" href="#how-to-use-it">#</a>
+</h2>
+<p>It&rsquo;s up to you how you&rsquo;re gonna use this code. Here&rsquo;s an example.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Sub</span> <span class="nf">DownloadReports</span>
+
+  <span class="k">Dim</span> <span class="n">Username</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> <span class="n">Password</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">,</span> <span class="n">SecurityToken</span> <span class="ow">As</span> <span class="kt">String</span>
+
+  <span class="n">Username</span> <span class="o">=</span> <span class="s">&#34;username&#34;</span>
+  <span class="n">Password</span> <span class="o">=</span> <span class="s">&#34;password&#34;</span>
+  <span class="n">SecurityToken</span> <span class="o">=</span> <span class="s">&#34;secret&#34;</span>
+
+  <span class="k">Dim</span> <span class="n">SessionId</span> <span class="ow">As</span> <span class="kt">String</span>
+  <span class="n">SessionId</span> <span class="o">=</span> <span class="n">SalesforceLogin</span><span class="p">(</span><span class="n">Username</span><span class="p">,</span> <span class="n">Password</span><span class="p">,</span> <span class="n">SecurityToken</span><span class="p">)</span>
+
+  <span class="k">If</span> <span class="n">IsEmpty</span><span class="p">(</span><span class="n">SessionId</span><span class="p">)</span> <span class="k">Then</span>
+      <span class="n">MsgBox</span> <span class="s">&#34;Authentication Error&#34;</span>
+      <span class="k">Exit</span> <span class="k">Sub</span>
+  <span class="nf">End</span> <span class="k">If</span>
+
+  <span class="k">Dim</span> <span class="n">ReportId</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">:</span> <span class="n">ReportId</span> <span class="o">=</span> <span class="s">&#34;REPORT_ID&#34;</span>
+  <span class="k">Dim</span> <span class="n">WorksheetName</span> <span class="ow">As</span> <span class="kt">String</span><span class="p">:</span> <span class="n">WorksheetName</span> <span class="o">=</span> <span class="s">&#34;MY_REPORT&#34;</span>
+
+  <span class="k">Call</span> <span class="n">DownloadEntireReport</span><span class="p">(</span><span class="n">ReportId</span><span class="p">,</span> <span class="n">WorksheetName</span><span class="p">,</span> <span class="n">SessionId</span><span class="p">,</span> _
+                            <span class="n">IdentifierColumn</span><span class="p">:</span><span class="o">=</span><span class="s">&#34;Número do caso&#34;</span><span class="p">,</span> _
+                            <span class="n">BooleanFilter</span><span class="p">:</span><span class="o">=</span><span class="s">&#34;1 AND 2 AND (3 OR 4)&#34;</span><span class="p">,</span> _
+                            <span class="n">startDate</span><span class="p">:</span><span class="o">=</span><span class="s">&#34;01/07/2020&#34;</span><span class="p">,</span> _
+                            <span class="n">endDate</span><span class="p">:</span><span class="o">=</span><span class="s">&#34;31/07/2020&#34;</span><span class="p">)</span>
+
+<span class="k">End</span> <span class="k">Sub</span>
+</code></pre></div><h2 class="heading" id="final-words">
+  Final words
+  <a class="anchor" href="#final-words">#</a>
+</h2>
+<p>You probably have a better way to do it, I would only recommend this approach to
+someone in an environment very dependent on Excel, simply because it is super
+convenient. You can put the report anywhere you want with zero overhead &ndash; no
+need for a library to understand the complexity of an Excel archive.</p>
+<p>And I gotta say, VBA is kind of a hard, its ecosystem is not great, obviously.
+But I was very impressed by what it can do, despite of its shortcomings.
+Nonetheless, it was still fun to write this.</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+
+      
+        <a class="adjacent-post next" href="/posts/async-make-in-nvim-with-lua/">
+          Asynchronous :make in Neovim with Lua »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

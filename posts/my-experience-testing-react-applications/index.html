@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature development by writing test to avoid regressions later, or you develop untested features and bugs will inevitably be introduced later." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2021-04-28">
+<meta name="last-modified-date" content="2021-04-28">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  My experience testing React applications | Phelipe Teles
+</title>
+
+<meta property="og:title" content="My experience testing React applications" />
+<meta property="og:description" content="Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature development by writing test to avoid regressions later, or you develop untested features and bugs will inevitably be introduced later." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/my-experience-testing-react-applications/" />
+<meta property="article:published_time" content="2021-04-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-04-28T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="My experience testing React applications"/>
+<meta name="twitter:description" content="Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature development by writing test to avoid regressions later, or you develop untested features and bugs will inevitably be introduced later."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>My experience testing React applications</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2021-04-28">
+        April 28, 2021
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/tags/react/">react</a><a class="button button-secondary" href="/tags/javascript/">javascript</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature
+development by writing test to avoid regressions later, or you develop untested
+features and bugs will inevitably be introduced later.</p>
+<p>But I can understand how that ends up happening: we have to develop new features
+fast and we don&rsquo;t have time for tests. It&rsquo;s not easy writing tests, but it&rsquo;s a
+skill we have to develop. I try to do this with my side projects.</p>
+<p>I started to write tests for my Python projects with the <code>unittest</code> and <code>pytest</code>
+libraries. I wasn&rsquo;t very good at it as everything was new to me but I was
+obsessed with getting a ~100% test coverage badge in the README so I persisted.
+The benefits were obvious: I could refactor all I wanted later.</p>
+<p>Sometimes tests got ugly because of all the mock/monkeypatch I needed to do to
+make them isolated, which was annoying but it was worth it. It was usually a
+seamless and rewarding experience.</p>
+<p>But writing tests for React applications is a different beast &ndash; we&rsquo;re testing
+user interfaces:</p>
+<ul>
+<li>Things change, often asynchronously, which means we need to wait for them to
+appear or disappear.</li>
+<li>We need to simulate user interactions.</li>
+<li>There are a lot more network requests to mock, so it&rsquo;s harder to isolate.</li>
+<li>Integration test are more useful than unit tests, so tests are more complex.</li>
+<li>It&rsquo;s harder to debug (I didn&rsquo;t find an equivalent of <code>pytest --pdb</code>).</li>
+<li>It&rsquo;s <strong>much slower</strong>.</li>
+</ul>
+<p>In this blog post I&rsquo;m going to talk about my experience with JavaScript
+libraries for testing front-end web apps.</p>
+<h2 class="heading" id="react-testing-library">
+  <code>react-testing-library</code>
+  <a class="anchor" href="#react-testing-library">#</a>
+</h2>
+<p>This library seems to be what everyone is using now, and I do see how that
+happened. It has a very consistent API and good documentation.</p>
+<p>I liked that:</p>
+<ul>
+<li>You can get elements on the screen with
+<a href="https://testing-library.com/docs/queries/about/">queries that resembles the DOM API</a>.</li>
+<li>You don&rsquo;t have to
+<a href="https://kentcdodds.com/blog/common-mistakes-with-react-testing-library#wrapping-things-in-act-unnecessarily">wrap anything in <code>act</code></a>.</li>
+</ul>
+<p>I disliked that:</p>
+<ul>
+<li>It was hard to debug (difficult to grasp the UI state from the output of
+<code>screen.debug()</code>)</li>
+<li>You have to
+<a href="https://testing-library.com/docs/guide-disappearance">wait for appearance and disappearance explicitly</a>.</li>
+<li>Requires some boilerplate to
+<a href="(https://testing-library.com/docs/react-testing-library/setup/)">set up your tests</a>
+(for example, to wrap some components in
+<a href="https://reactrouter.com/web/api/MemoryRouter">MemoryRouter</a>, context
+providers,
+<a href="https://react-query.tanstack.com/reference/QueryClient">QueryClient</a>).</li>
+<li>Your tests have to run in a node.js/jsdom environment, so (for example) if you
+use canvas in your app,
+<a href="https://github.com/jsdom/jsdom#canvas-support">it won&rsquo;t work out of the box</a>.</li>
+</ul>
+<p>But it got the job done most of the time.</p>
+<p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
+<h2 class="heading" id="nock">
+  <code>nock</code>
+  <a class="anchor" href="#nock">#</a>
+</h2>
+<p>The <code>nock</code> library works in node-only environment and has a well-thought, easy
+to use API.</p>
+<p>In my experience, it has just a few unexpected issues like
+<a href="https://www.npmjs.com/package/nock#axios">not working with axios out of the box</a>.</p>
+<h2 class="heading" id="msw">
+  <code>msw</code>
+  <a class="anchor" href="#msw">#</a>
+</h2>
+<p>I later also tried <code>msw</code> after reading
+<a href="https://kentcdodds.com/blog/stop-mocking-fetch/">Stop mocking fetch</a> by Kent C.
+Odds, and I liked it at lot. It can work in a browser (as a service worker) or
+node.js (by intercepting requests made by native modules).</p>
+<p>The problems I had with it is that it does not recognize URL search/query params
+in the URL,
+<a href="https://github.com/mswjs/msw/issues/71">you have to parse it yourself in the response handler</a>.
+This is by design though, it&rsquo;s just something I disliked.</p>
+<p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
+which I thought made tests harder to read. It doesn&rsquo;t have to be like that of
+course, but it&rsquo;s response handlers can get pretty long so it&rsquo;s a sane option.</p>
+<h2 class="heading" id="cypress">
+  <code>cypress</code>
+  <a class="anchor" href="#cypress">#</a>
+</h2>
+<p>All of these led me to try <a href="https://docs.cypress.io/"><code>Cypress</code></a>, and I&rsquo;m
+inclined to say it is my favorite solution so far.</p>
+<p>You don&rsquo;t have to explicitly wait for anything to appear or disappear because it
+does so automatically by
+<a href="https://docs.cypress.io/guides/core-concepts/retry-ability">retrying it multiple times until a timeout is reached</a>
+and it has a built-in API for mocking network requests with the
+<a href="https://docs.cypress.io/api/commands/intercept">intercept function</a>.</p>
+<p>But it&rsquo;s not perfect either:</p>
+<ul>
+<li>It has its own quirks like using the <code>window</code> object might not work as you
+expect because
+<a href="https://docs.cypress.io/api/commands/window#Cypress-uses-2-different-windows">Cypress uses two different windows</a>.</li>
+<li>The <code>intercept</code> API has some unexpected behaviors like
+<a href="https://github.com/cypress-io/cypress/issues/15956">requiring URLs to be properly encoded</a>,
+and others only recently fixed like its
+<a href="https://github.com/cypress-io/cypress/issues/9302">most recent calls not overriding earlier ones</a>.</li>
+</ul>
+<p>The benefits far outweigh these problems, mainly around debuggability:</p>
+<ul>
+<li>Each step (assertion, interceptions) is traced and shown by the test runner.</li>
+<li>You have access to browser debugging capabilities, so you have access to the
+browser DevTools.</li>
+<li>There are snapshots of the UI state for each step.</li>
+<li>Screenshots and videos of the test runs are recorded by default.</li>
+</ul>
+<h2 class="heading" id="conclusion">
+  Conclusion
+  <a class="anchor" href="#conclusion">#</a>
+</h2>
+<p>I think everyone would agree that Cypress is much well-suited for integration
+tests. I thought <code>react-testing-library</code> to be complicated for complex
+functional tests, so I&rsquo;d prefer to use it for unit testing small component
+logic.</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/posts/migrating-from-cra-to-vite/">
+          « Migrating from create-react-app to Vite
+        </a>
+      
+
+      
+        <a class="adjacent-post next" href="/posts/dark-mode-implementation-for-ssr-websites/">
+          Implementing dark mode for SSR websites »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

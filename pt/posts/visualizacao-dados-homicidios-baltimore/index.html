@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2019-04-07">
+<meta name="last-modified-date" content="2019-04-07">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Homicídios em Baltimore: visualizações com ggplot2 e gganimate | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate" />
+<meta property="og:description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/" />
+<meta property="article:published_time" content="2019-04-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-04-07T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate"/>
+<meta name="twitter:description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/pt/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/pt/posts">Posts</a><a href="https://phelipetls.github.io/pt/projects">Projetos</a><a href="https://phelipetls.github.io/pt/archive">Arquivo</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Homicídios em Baltimore: visualizações com ggplot2 e gganimate</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2019-04-07">
+        April 07, 2019
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/pt/tags/dataviz/">dataviz</a><a class="button button-secondary" href="/pt/tags/tidyverse/">tidyverse</a><a class="button button-secondary" href="/pt/tags/gganimate/">gganimate</a><a class="button button-secondary" href="/pt/tags/ggplot2/">ggplot2</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>Neste post pretendo continuar o que foi iniciado no último, onde transformamos
+dados contidos em texto em um data.frame, um formato muito mais amigável para a
+exploração e visualização de dados no R.</p>
+<p>O procedimento geral agora, com os dados já limpos, é transformá-los e fazer a
+visualização que queremos. Daí o uso extensivo do tidyverse antes de chamar o
+ggplot2.</p>
+<p>Ok, vamos primeiro olhar para a nossa
+<a href="https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv" title="Link do arquivo raw">base de dados</a>
+e ver que perguntas gostaríamos de responder:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&#34;https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">na.omit</span><span class="p">()</span>
+
+<span class="n">df</span> <span class="o">%&gt;%</span> <span class="nf">head</span><span class="p">()</span>
+</code></pre></div><pre><code>## # A tibble: 6 x 8
+##   causas         lon   lat raca  genero idade data       endereco
+##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;
+## 1 Shooting     -76.7  39.3 Black Male      17 2007-01-01 3400 Clifton Ave.
+## 2 Shooting     -76.7  39.3 Black Male      26 2007-01-02 4900 Challedon Ro~
+## 3 Blunt Force  -76.6  39.3 Black Female    44 2007-01-02 2000 West North A~
+## 4 Asphyxiation -76.6  39.4 Black Male      21 2007-01-03 5900 Northwood Dr~
+## 5 Blunt Force  -76.6  39.2 White Male      61 2007-01-05 500 Maude Ave.
+## 6 Shooting     -76.6  39.4 Black Male      46 2007-01-05 5200 Ready Ave.
+</code></pre>
+<p>Há diversas questões a serem exploradas aqui, a primeira e mais sensível que vem
+a mente é a racial: quais raças costumam ser vítimas de homicídio? Vamos,
+naturalmente, estar interessados também na mesma pergunta para diferentes
+características das pessoas, como gênero, idade etc. e como elas se relacionam
+umas com as outras. Por exemplo, será que mulheres negras acabam vítimas de
+homicídios muito mais que as brancas?</p>
+<p>Os dados nos possibilitam também enxergar a distribuição geográfica, que áreas
+da cidade são as mais violentas etc.</p>
+<p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
+Será que vem declinando com o passar dos anos?</p>
+<h2 class="heading" id="evolução-do-número-de-vítimas-no-tempo">
+  Evolução do número de vítimas no tempo
+  <a class="anchor" href="#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo">#</a>
+</h2>
+<p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
+visualização com um gráfico de linhas:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
+
+<span class="c1"># configurando o tema</span>
+<span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_minimal</span><span class="p">())</span>
+<span class="nf">theme_update</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&#34;bottom&#34;</span><span class="p">)</span>
+
+<span class="c1"># criando a variável pro ano</span>
+<span class="n">df</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">ano</span> <span class="o">=</span> <span class="nf">year</span><span class="p">(</span><span class="n">data</span><span class="p">))</span>
+
+<span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">count</span><span class="p">(</span><span class="n">ano</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ano</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">n</span>
+  <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_line</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s">&#34;\nAno&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Número de homicídios na cidade de Baltimore por ano&#34;</span>
+  <span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-2-1.png" alt="plot1"></p>
+<p>Ok, uma boa notícia, parece que o número de homicídios vem reduzindo com os
+anos…</p>
+<p>Exceto por essa queda brusca em 2012, que deveria gerar suspeitas. De fato, essa
+queda será esclarecida por outra visualização mais adiante. Se desconsiderarmos
+2012, o quadro da violência não parece apresentar melhoras tão significativas.</p>
+<p>É interessante visualizar também como isso se deu para as diferentes raças:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="c1"># contagem dos casos por raça e ano</span>
+  <span class="nf">count</span><span class="p">(</span><span class="n">raca</span><span class="p">,</span> <span class="n">ano</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ano</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="n">raca</span>
+  <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Raça das vítimas de homicídios em Baltimore&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Set1&#34;</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="s">&#34;Raça&#34;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span> <span class="o">=</span> <span class="m">2007</span><span class="o">:</span><span class="m">2012</span><span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-3-1.png" alt="plot2"><!-- --></p>
+<p>Essa é a primeira visualização do que já era esperado: na cidade de Baltimore, a
+violência afeta muito mais os negros do que a qualquer outra raça. Impressiona a
+magnitude da desigualdade.</p>
+<p>Um gráfico interessante que vi <a href="https://homicides.news.baltimoresun.com/">aqui</a>,
+foi o do crescimento acumulado do número de vítimas por mês para cada ano, que
+tentei replicar abaixo:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">acumulado</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">mes</span> <span class="o">=</span> <span class="nf">month</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">count</span><span class="p">(</span><span class="n">ano</span><span class="p">,</span> <span class="n">mes</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">group_by</span><span class="p">(</span><span class="n">ano</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">soma_cumulativa</span> <span class="o">=</span> <span class="nf">cumsum</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">na.omit</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">mes</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">soma_cumulativa</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="nf">factor</span><span class="p">(</span><span class="n">ano</span><span class="p">),</span>
+    <span class="n">group</span> <span class="o">=</span> <span class="n">ano</span>
+  <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Dark2&#34;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="s">&#34;# acumulado de homicídios\n&#34;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Evolução temporal dos homicídios em Baltimore&#34;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Ano&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_line</span><span class="p">(</span><span class="n">size</span> <span class="o">=</span> <span class="m">1.2</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_x_continuous</span><span class="p">(</span>
+    <span class="n">breaks</span> <span class="o">=</span> <span class="m">1</span><span class="o">:</span><span class="m">12</span><span class="p">,</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="nf">month</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">data</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">levels</span><span class="p">()</span>
+  <span class="p">)</span>
+
+
+<span class="n">acumulado</span>
+</code></pre></div><p><img src="./unnamed-chunk-4-1.png" alt="plot3"><!-- --></p>
+<p>E aqui fica claro o porquê da queda em 2012: não temos os dados de todos os
+meses. Também salta aos olhos que a violência diminuiu em relação a 2007, mas se
+manteve mais ou menos estável no resto do período.</p>
+<h2 class="heading" id="aspectos-sociais-das-vítimas">
+  Aspectos sociais das vítimas
+  <a class="anchor" href="#aspectos-sociais-das-v%c3%adtimas">#</a>
+</h2>
+<p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
+grupos:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">idade</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">raca</span><span class="p">),</span>
+    <span class="n">binwidth</span> <span class="o">=</span> <span class="m">5</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">facet_grid</span><span class="p">(</span><span class="n">. </span><span class="o">~</span> <span class="n">genero</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Set1&#34;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s">&#34;Idade&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Raça&#34;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Número de homicídios na cidade de Baltimore&#34;</span><span class="p">,</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Por gênero, raça e idade (de 2007 até maio de 2012)&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_x_continuous</span><span class="p">(</span><span class="n">breaks</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">10</span><span class="p">))</span>
+</code></pre></div><p><img src="./unnamed-chunk-5-1.png" alt="plot3"><!-- --></p>
+<p>E assim podemos ver que o mais afetado pela violência é o homem negro da faixa
+dos 20-30 anos. Se olharmos bem, pode-se também observar que a mulher negra está
+em posição mais vulnerável à violência que a branca, provavelmente porque vive
+nas regiões onde a violência é maior.</p>
+<p>Também impressiona o contraste entre os números para cada gênero. Os homens são
+muito mais propensos a serem mortos violentamente.</p>
+<h2 class="heading" id="que-causa-de-morte-é-a-mais-comum">
+  Que causa de morte é a mais comum?
+  <a class="anchor" href="#que-causa-de-morte-%c3%a9-a-mais-comum">#</a>
+</h2>
+<p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
+barras:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">causas</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="n">causas</span>
+  <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_bar</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;Causas&#34;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Causas de morte mais comuns&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_fill_brewer</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Set1&#34;</span><span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-6-1.png" alt="plot5"><!-- --></p>
+<p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
+esfaqueamento e contusão.</p>
+<h2 class="heading" id="mapas-e-animações">
+  Mapas e animações
+  <a class="anchor" href="#mapas-e-anima%c3%a7%c3%b5es">#</a>
+</h2>
+<p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
+primeiro plotar o mapa da cidade. O código abaixo mostra como fazer isso, com a
+ajuda do dataset <code>county</code> do pacote <code>maps</code>, de onde extraímos as coordenadas
+geográficas, para depois plotar com <code>geom_polyon()</code>.</p>
+<p>Uma vez com o mapa, minha ideia foi criar uma animação para visualizar o aspecto
+temporal, espacial e qualitativo (nesse caso, pela raça das vítimas) com um
+único gráfico. Para isso, vamos usar a função <code>gganimate::transition_manual</code>, de
+forma a mostrar por mês o crescimento no número de vítimas:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">gganimate</span><span class="p">)</span>
+
+<span class="c1"># mapa de baltimore city</span>
+<span class="n">baltimore_map</span> <span class="o">&lt;-</span> <span class="nf">map_data</span><span class="p">(</span><span class="s">&#34;county&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span><span class="n">subregion</span> <span class="o">==</span> <span class="s">&#34;baltimore city&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">long</span><span class="p">,</span> <span class="n">lat</span><span class="p">,</span> <span class="n">group</span> <span class="o">=</span> <span class="n">group</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_polygon</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;lightgray&#34;</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;black&#34;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">coord_map</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">theme_void</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">theme</span><span class="p">(</span><span class="n">legend.position</span> <span class="o">=</span> <span class="s">&#34;bottom&#34;</span><span class="p">)</span>
+
+<span class="c1"># criando variável para cada mês de cada ano</span>
+<span class="n">df</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">arrange</span><span class="p">(</span><span class="n">data</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">ano_mes</span> <span class="o">=</span> <span class="nf">format</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s">&#34;%B de %Y&#34;</span><span class="p">))</span>
+
+<span class="c1"># criando a animação</span>
+<span class="n">anim</span> <span class="o">&lt;-</span> <span class="n">baltimore_map</span> <span class="o">+</span>
+  <span class="nf">geom_point</span><span class="p">(</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">df</span><span class="p">,</span>
+    <span class="nf">aes</span><span class="p">(</span><span class="n">lon</span><span class="p">,</span>
+      <span class="n">lat</span><span class="p">,</span>
+      <span class="n">group</span> <span class="o">=</span> <span class="n">ano_mes</span><span class="p">,</span>
+      <span class="n">color</span> <span class="o">=</span> <span class="n">raca</span>
+    <span class="p">),</span>
+    <span class="n">size</span> <span class="o">=</span> <span class="m">3.5</span><span class="p">,</span> <span class="n">alpha</span> <span class="o">=</span> <span class="m">.7</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Que raças e regiões são mais vulneráveis ao homicídio?&#34;</span><span class="p">,</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;{ current_frame }&#34;</span><span class="p">,</span>
+    <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;Raça&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">scale_color_brewer</span><span class="p">(</span><span class="n">palette</span> <span class="o">=</span> <span class="s">&#34;Set1&#34;</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">transition_manual</span><span class="p">(</span><span class="nf">factor</span><span class="p">(</span><span class="n">ano_mes</span><span class="p">,</span> <span class="c1"># ordernando os meses</span>
+    <span class="n">levels</span> <span class="o">=</span> <span class="nf">unique</span><span class="p">(</span><span class="n">ano_mes</span><span class="p">)</span>
+  <span class="p">),</span>
+  <span class="n">cumulative</span> <span class="o">=</span> <span class="bp">T</span>
+  <span class="p">)</span>
+
+<span class="c1"># desacelerando a animação (padrão é 10fps)</span>
+<span class="nf">animate</span><span class="p">(</span><span class="n">anim</span><span class="p">,</span> <span class="n">fps</span> <span class="o">=</span> <span class="m">5</span><span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-7-1.gif" alt="gif1"><!-- --></p>
+<p>Fica evidente daí como a violência é concentrada em certos bairros.</p>
+<p>Outra ideia é visualizar a evolução dos homicídios no tempo, por causa de morte.
+Para isso, vamos usar ot <code>gganimate::transition_states</code>, para visualizarmos as
+mudanças ocorridas no decorrer dos anos.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">count</span><span class="p">(</span><span class="n">ano</span><span class="p">,</span> <span class="n">causas</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">causas</span><span class="p">,</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">n</span><span class="p">,</span>
+    <span class="n">fill</span> <span class="o">=</span> <span class="n">causas</span>
+  <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_col</span><span class="p">(</span><span class="n">show.legend</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">label</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="nf">round</span><span class="p">(</span><span class="n">n</span><span class="p">)),</span>
+    <span class="n">hjust</span> <span class="o">=</span> <span class="m">-0.2</span>
+  <span class="p">))</span> <span class="o">+</span>
+  <span class="nf">coord_flip</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Causas de morte mais comuns&#34;</span><span class="p">,</span>
+    <span class="n">subtitle</span> <span class="o">=</span> <span class="s">&#34;Ano: { closest_state }&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">transition_states</span><span class="p">(</span><span class="n">ano</span><span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-8-1.gif" alt="gif2"><!-- --></p>
+<p>E que tal animarmos aquele gráfico do número acumulado? Vamos usar o
+<code>gganimate::transition_reveal()</code> para revelar ao longo do eixo do tempo como os
+números crescem.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">acumulado</span> <span class="o">+</span>
+  <span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
+    <span class="n">xend</span> <span class="o">=</span> <span class="m">12.5</span><span class="p">,</span>
+    <span class="n">yend</span> <span class="o">=</span> <span class="n">soma_cumulativa</span>
+  <span class="p">),</span>
+  <span class="n">linetype</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">color</span> <span class="o">=</span> <span class="s">&#34;grey&#34;</span>
+  <span class="p">)</span> <span class="o">+</span>
+  <span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">13</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">soma_cumulativa</span><span class="p">)))</span> <span class="o">+</span>
+  <span class="nf">transition_reveal</span><span class="p">(</span><span class="n">mes</span><span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-9-1.gif" alt="gif3"><!-- --></p>
+<h2 class="heading" id="conclusões">
+  Conclusões
+  <a class="anchor" href="#conclus%c3%b5es">#</a>
+</h2>
+<p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
+talvez uma das maiores vantagens de se usar o R, e espero que te ajude a criar
+as suas próprias visualizações, apesar de não ter sido exatamente o intuito ser
+didático.</p>
+<p>O gganimate é bem novo ainda e tem relativamente pouca informação sobre na
+internet. Eu demorei bastante para fazer alguns desses gráficos, mas acho que o
+resultado valeu a pena.</p>
+<p>Para aprender mais sobre ggplot2, tente este
+<a href="http://www.cookbook-r.com/Graphs/">cookbook</a> é ótimo. Para maiores referências
+sobre animações, tente o respositório
+<a href="https://github.com/ropenscilabs/learngganimate">learngganimate</a>, esse
+<a href="https://cran.r-project.org/web/packages/gganimate/vignettes/gganimate.html">vignette</a>
+ou o próprio <a href="https://gganimate.com/">site do pacote</a>.</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/pt/posts/homicidios-em-baltimore-minerando-dados-r/">
+          « Extraindo dados de texto com regex no R
+        </a>
+      
+
+      
+        <a class="adjacent-post next" href="/pt/posts/game-of-thrones-text-mining/">
+          Mineração de Texto com as legendas de Game of Thrones »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Ícones de <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Mudar tema">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

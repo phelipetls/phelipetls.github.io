@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2020-08-12">
+<meta name="last-modified-date" content="2020-08-12">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Asynchronous :make in Neovim with Lua | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Asynchronous :make in Neovim with Lua" />
+<meta property="og:description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/" />
+<meta property="article:published_time" content="2020-08-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-08-12T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Asynchronous :make in Neovim with Lua"/>
+<meta name="twitter:description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Asynchronous :make in Neovim with Lua</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2020-08-12">
+        August 12, 2020
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/tags/lua/">lua</a><a class="button button-secondary" href="/tags/nvim/">nvim</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>The <code>:make</code> command in Vim is quite useful, it runs whatever program is under
+the <code>makeprg</code> option and returns its output in the quickfix list, where you&rsquo;ll
+be able to hop through the errors if they were parsed correctly by the
+<code>errorformat</code> option.</p>
+<p>For example, if you want to lint a Python file with <code>flake8</code>, it would suffice
+to</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">setlocal</span> <span class="nx">makeprg</span><span class="p">=</span><span class="nx">flake8</span>\ %<span class="err">
+</span><span class="err"></span><span class="nx">setlocal</span> <span class="nx">errorformat</span><span class="p">=</span>%<span class="nx">f</span>:%<span class="nx">l</span>:%<span class="nx">c</span>:\ %<span class="nx">t</span>%<span class="nx">n</span>\ %<span class="nx">m</span><span class="err">
+</span></code></pre></div><p>Or, you could create a <code>:h compiler</code> plugin named <code>flake8</code>, that set these
+options when you run <code>:compiler flake8</code>,
+<a href="https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/flake8.vim">as I have in my config</a>.</p>
+<p>There are a bunch of compiler plugins built into Vim that you might be
+interested, for example, <code>:compiler pyunit</code> for test suites written with the
+<code>unittest</code> library.</p>
+<p>It works great once you have these options set correctly (although the
+<code>errorformat</code> can be tricky).</p>
+<p>The only &ldquo;problem&rdquo; is that it is synchronous. Which means that for some
+expensive programs, you will not be able to edit until it finishes. In this post
+we will solve this in Neovim with Lua.</p>
+<p>In a previous revision of this post, I used
+<a href="https://github.com/luvit/luv/blob/master/docs.md">libuv bindings for Lua</a>,
+accessible under <code>vim.loop</code>, but this is kind of a low level approach. An
+alternative is to use the <code>jobstart()</code> function, which offers several
+conveniences.</p>
+<p>I put the following Lua script under <code>~/.config/nvim/lua/</code> (if you use Neovim
+you can get yours with <code>:echo stdpath(&quot;config&quot;)</code>) for it to be available at
+runtime as <a href="https://www.tutorialspoint.com/lua/lua_modules.htm">Lua module</a>,
+named <code>async_make</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">M</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="kr">function</span> <span class="nc">M</span><span class="p">.</span><span class="nf">make</span><span class="p">()</span>
+  <span class="kd">local</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;&#34;</span><span class="p">}</span>
+  <span class="kd">local</span> <span class="n">winnr</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">win_getid</span><span class="p">()</span>
+  <span class="kd">local</span> <span class="n">bufnr</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_win_get_buf</span><span class="p">(</span><span class="n">winnr</span><span class="p">)</span>
+
+  <span class="kd">local</span> <span class="n">makeprg</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_get_option</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;makeprg&#34;</span><span class="p">)</span>
+  <span class="kr">if</span> <span class="ow">not</span> <span class="n">makeprg</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+
+  <span class="kd">local</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">expandcmd</span><span class="p">(</span><span class="n">makeprg</span><span class="p">)</span>
+
+  <span class="kd">local</span> <span class="kr">function</span> <span class="nf">on_event</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&#34;stdout&#34;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&#34;stderr&#34;</span> <span class="kr">then</span>
+      <span class="kr">if</span> <span class="n">data</span> <span class="kr">then</span>
+        <span class="n">vim.list_extend</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+      <span class="kr">end</span>
+    <span class="kr">end</span>
+
+    <span class="kr">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&#34;exit&#34;</span> <span class="kr">then</span>
+      <span class="n">vim.fn</span><span class="p">.</span><span class="n">setqflist</span><span class="p">({},</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">,</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span><span class="p">,</span>
+        <span class="n">efm</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_get_option</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;errorformat&#34;</span><span class="p">)</span>
+      <span class="p">})</span>
+      <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_command</span><span class="p">(</span><span class="s2">&#34;doautocmd QuickFixCmdPost&#34;</span><span class="p">)</span>
+    <span class="kr">end</span>
+  <span class="kr">end</span>
+
+  <span class="kd">local</span> <span class="n">job_id</span> <span class="o">=</span>
+    <span class="n">vim.fn</span><span class="p">.</span><span class="n">jobstart</span><span class="p">(</span>
+    <span class="n">cmd</span><span class="p">,</span>
+    <span class="p">{</span>
+      <span class="n">on_stderr</span> <span class="o">=</span> <span class="n">on_event</span><span class="p">,</span>
+      <span class="n">on_stdout</span> <span class="o">=</span> <span class="n">on_event</span><span class="p">,</span>
+      <span class="n">on_exit</span> <span class="o">=</span> <span class="n">on_event</span><span class="p">,</span>
+      <span class="n">stdout_buffered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="n">stderr_buffered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="kr">return</span> <span class="n">M</span>
+</code></pre></div><p>This function first get the current window number and the buffer in it, which I
+will then use to get the local values of <code>makeprg</code> and <code>errorformat</code>.</p>
+<p>Then I expand the <code>makeprg</code> with <code>expandcmd()</code>, which transforms something like
+<code>make %</code> to <code>make ~/program.c</code>, and store it in a variable to be used by
+<code>jobstart()</code>.</p>
+<p>Then I create the function <code>on_event</code> to be a catch-all handler for job events.
+The callbacks passed to <code>on_stdout</code>, <code>on_stderr</code> and <code>on_exit</code> will receive the
+following arguments: <code>({chan-id}, {data}, {name})</code>. So we take advantage of the
+third parameter here (see <code>:h channel-callback</code>).</p>
+<p>When we receive data from <code>stdout</code> and <code>stderr</code>, we extend the <code>lines</code> variable
+with it. Because of <code>stdout_buffered</code> and <code>stderr_buffered</code>, the callback will
+only be called when all of the output was gathered (see <code>:h channel-buffered</code>).</p>
+<p>When the program exits, we populate the quickfix list. This is done with
+<code>:h setqflist()</code>. We give it a title (the expanded <code>makeprg</code>), the lines to be
+parsed and the <code>errorformat</code> to parse the lines with.</p>
+<p>Finally we trigger whatever <code>autocmd</code> is under the <code>QuickFixCmdPost</code> event.</p>
+<p>Then, I&rsquo;m able to use it inside <code>nvim</code> like this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">command</span><span class="p">!</span> <span class="nx">Make</span> <span class="nx">silent</span> <span class="nx">lua</span> <span class="nx">require</span><span class="s1">&#39;async_make&#39;</span>.<span class="nx">make</span><span class="p">()</span><span class="err">
+</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">space</span><span class="p">&gt;</span><span class="nx">m</span> :<span class="nx">Make</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+</span></code></pre></div><p>Then, if you may wish to run it on save, use this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">augroup</span> <span class="nx">LintOnSave</span><span class="err">
+</span><span class="err"></span>  <span class="nx">autocmd</span><span class="p">!</span> <span class="nx">BufWritePost</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">Make</span><span class="err">
+</span><span class="err"></span><span class="nx">augroup</span> <span class="nx">END</span><span class="err">
+</span></code></pre></div><p>A command to disable it is convenient (you can re-enable it with <code>:e&lt;CR&gt;</code>):</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">command</span><span class="p">!</span> <span class="nx">DisableLintOnSave</span> <span class="nx">autocmd</span><span class="p">!</span> <span class="nx">LintOnSave</span> <span class="nx">BufWritePost</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span><span class="err">
+</span></code></pre></div><p><a href="https://gist.github.com/phelipetls/639a1b5f021d17c4124cccc83e518566">Get the full code in this gist</a>.</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/posts/getting-salesforce-reports-with-vba/">
+          « Getting Salesforce reports with VBA
+        </a>
+      
+
+      
+        <a class="adjacent-post next" href="/posts/vim-errorformat-for-pytest/">
+          A Vim errorformat for pytest »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

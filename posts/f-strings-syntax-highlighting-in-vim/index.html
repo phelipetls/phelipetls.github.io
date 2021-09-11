@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2020-10-28">
+<meta name="last-modified-date" content="2020-10-28">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Python f-strings syntax highlighting in Vim | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Python f-strings syntax highlighting in Vim" />
+<meta property="og:description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/" />
+<meta property="article:published_time" content="2020-10-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-10-28T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Python f-strings syntax highlighting in Vim"/>
+<meta name="twitter:description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences."/>
+
+
+
+    
+      
+        <link href="/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.css" rel="stylesheet" />
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Python f-strings syntax highlighting in Vim</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2020-10-28">
+        October 28, 2020
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/tags/vim/">vim</a><a class="button button-secondary" href="/tags/python/">python</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p><strong>UPDATE 2020-10-30</strong>: First iteration of this post was very naive, supporting
+only the very basic. See the
+<a href="https://gist.github.com/phelipetls/8726d6cd68e66ad6b83586ae53f3b3d8/revisions#diff-8108a43d0db89a371349e6de001c6932fba065485f6790dddd5b011e7ae7f527">diff</a>
+that adds support for string modifiers and escape sequences.</p>
+<p>Getting Python syntax highlighting to work in Vim requires very little code, to
+my surprise.</p>
+<p><img src="./before.png" alt="Before"> <img src="./after.png" alt="After"></p>
+<p>Here is everything that you need and an explanation below.</p>
+<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; in ~/.config/nvim/after/syntax or ~/.vim/after/syntax</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>{{<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>}}<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">region</span> <span class="nx">pythonfString</span> <span class="nx">matchgroup</span><span class="p">=</span><span class="nx">pythonQuotes</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">start</span><span class="p">=+</span>[<span class="nx">fF</span>]\@<span class="m">1</span><span class="p">&lt;=</span>\<span class="nx">z</span><span class="p">(</span>[&#39;<span class="s2">&#34;]\)+ end=&#34;</span>\<span class="nx">z1</span>&#34;<span class="err">
+</span><span class="err"></span>      \ <span class="nx">contains</span><span class="p">=</span>@<span class="nx">Spell</span><span class="p">,</span><span class="nx">pythonEscape</span><span class="p">,</span><span class="nx">pythonInterpolation</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">region</span> <span class="nx">pythonfDocstring</span> <span class="nx">matchgroup</span><span class="p">=</span><span class="nx">pythonQuotes</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">start</span><span class="p">=+</span>[<span class="nx">fF</span>]\@<span class="m">1</span><span class="p">&lt;=</span>\<span class="nx">z</span><span class="p">(</span><span class="s1">&#39;&#39;</span>&#39;\<span class="p">|</span><span class="s2">&#34;&#34;&#34;\)+ end=&#34;</span>\<span class="nx">z1</span>&#34; <span class="nx">keepend</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">contains</span><span class="p">=</span>@<span class="nx">Spell</span><span class="p">,</span><span class="nx">pythonEscape</span><span class="p">,</span><span class="nx">pythonSpaceError</span><span class="p">,</span><span class="nx">pythonInterpolation</span><span class="p">,</span><span class="nx">pythonDoctest</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">region</span> <span class="nx">pythonInterpolation</span> <span class="nx">contained</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">matchgroup</span><span class="p">=</span><span class="nx">SpecialChar</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">start</span><span class="p">=+</span>{{\@<span class="p">!+</span> <span class="nx">end</span><span class="p">=+</span>}}\@<span class="p">!+</span> <span class="nx">skip</span><span class="p">=+</span>{{<span class="p">+</span> <span class="nx">keepend</span><span class="err">
+</span><span class="err"></span>      \ <span class="nx">contains</span><span class="p">=</span><span class="nx">ALLBUT</span><span class="p">,</span><span class="nx">pythonDecoratorName</span><span class="p">,</span><span class="nx">pythonDecorator</span><span class="p">,</span><span class="nx">pythonFunction</span><span class="p">,</span><span class="nx">pythonDoctestValue</span><span class="p">,</span><span class="nx">pythonDoctest</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonStringModifier</span> <span class="sr">/:\(.[&lt;^=&gt;]\)\?[-+ ]\?#\?0\?[0-9]*[_,]\?\(\.[0-9]*\)\?[bcdeEfFgGnosxX%]\?/</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonInterpolation</span><span class="err">
+</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonStringModifier</span> <span class="sr">/![sra]/</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonInterpolation</span><span class="err">
+</span><span class="err">
+</span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonfString</span> <span class="nx">String</span><span class="err">
+</span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonfDocstring</span> <span class="nx">String</span><span class="err">
+</span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonStringModifier</span> <span class="nx">PreProc</span><span class="err">
+</span></code></pre></div><h2 class="heading" id="declaring-a-syntax-region-for-f-strings">
+  Declaring a syntax region for f-strings
+  <a class="anchor" href="#declaring-a-syntax-region-for-f-strings">#</a>
+</h2>
+<p>The first two lines define a new syntax region (see <code>:h syn-region</code>) called
+<code>pythonfString</code>.</p>
+<p>We then declare how it starts with the regex <code>[fF]\@1&lt;=\z(['&quot;]\)</code>, which is
+equivalent to <code>(?:&lt;=[fF])(['&quot;])</code> in Perl regular expressions (see <code>:h \@&lt;=</code>).
+The second line just handles the case of a docstring.</p>
+<p>The string will end how it starts, so we can just reference the captured group
+using <code>\z1</code> (we need to prefix it with <code>z</code> because it is an external pattern,
+see <code>:h \z(</code>).</p>
+<p>The <code>matchgroup</code> argument tells Vim which highlight group it should use to
+highlight the start/end pattern. The group <code>pythonQuotes</code> come from the default
+syntax file.</p>
+<h2 class="heading" id="handling-expressions-inside-f-strings">
+  Handling expressions inside f-strings
+  <a class="anchor" href="#handling-expressions-inside-f-strings">#</a>
+</h2>
+<p>We also need to declare what this region contains.</p>
+<p>For this we declare another region called <code>pythonInterpolation</code>, which starts
+with &ldquo;{&rdquo; (but not with &ldquo;{{&rdquo;, which will actually produce a literal &ldquo;{&quot;) and
+closes with &ldquo;}&rdquo;. With that in mind, we use the regex <code>{{\@!</code> because we don&rsquo;t
+want a match if the preceding token is present (see <code>:h \@!</code>).</p>
+<p>This region may contain only expressions, so stuff like a function declaration
+does not make sense (notice there is a syntax for that, <code>:helpgrep ALLBUT</code>)</p>
+<h2 class="heading" id="handling-string-modifiers">
+  Handling string modifiers
+  <a class="anchor" href="#handling-string-modifiers">#</a>
+</h2>
+<p>f-strings supports
+<a href="https://docs.python.org/3/library/string.html#format-examples"><code>str.format</code> syntax</a>
+for formatting, for example:</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;The value of pi is approximately {math.pi:.3f}.&#34;</span><span class="p">)</span>
+</code></pre></div><p>So I read the
+<a href="https://docs.python.org/3/library/string.html#format-specification-mini-language">Python docs</a>
+and wrote a regex based on it, but regexes are always easier to write than to
+read so I wouldn&rsquo;t recommend you trying.</p>
+<p>It&rsquo;s also possible to convert a value as if wrapping them in functions such as
+<code>ascii()</code>, <code>repr()</code>, <code>str()</code> with <code>!a</code>, <code>!r</code>, <code>!s</code> respectively, so we need to
+handle this also.</p>
+<p>For this, I declared a syntax group with <code>:h syn-match</code> and pass the regexes
+that should be used.</p>
+<p>It should only be highlighted inside a <code>pythonInterpolation</code> so we take
+advantage of the <code>containedin</code> argument (see <code>:h syn-containedin</code>).</p>
+<h2 class="heading" id="highlighting-declared-groups">
+  Highlighting declared groups
+  <a class="anchor" href="#highlighting-declared-groups">#</a>
+</h2>
+<p>Finally, we link these new highlight groups with an appropriate/whichever you
+like highlight group (see <code>:h hi-link</code> and <code>:h group-name</code>). I chose <code>String</code>
+for f-strings and <code>PreProc</code> for modifiers. And it should work as expected.</p>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/posts/deploying-flask-app-on-heroku/">
+          « Deploying a Flask app on a Heroku free dyno
+        </a>
+      
+
+      
+        <a class="adjacent-post next" href="/posts/configuring-eslint-to-work-with-neovim-lsp/">
+          Configuring eslint to work with Neovim LSP »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+        <script src="/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js"></script>
+      
+        <script src="/posts/f-strings-syntax-highlighting-in-vim/script.js"></script>
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

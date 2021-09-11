@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>hugo on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/tags/hugo/</link>
+    <description>Recent content in hugo on Phelipe Teles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 29 Apr 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://phelipetls.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Implementing dark mode for SSR websites</title>
+      <link>https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/</link>
+      <pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/</guid>
+      <description>Implementing dark mode in a server side rendered website is not as simple as you may initially think. There are some hacky things we should do to avoid flash of incorrect theme on reload, animation etc.</description>
+    </item>
+    
+  </channel>
+</rss>

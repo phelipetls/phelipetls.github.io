@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="O altíssimo spread bancário 1 brasileiro é um motivo de preocupação das autoridades, já que dificulta uma economia mais guiada pelo crédito, dificultando o crescimento etc." />
+<meta name="deploy-date" content="2021-09-11">
+<meta name="publish-date" content="2019-03-31">
+<meta name="last-modified-date" content="2019-03-31">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/normalize.min.css" />
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Spread bancário brasileiro: limpeza e visualização de dados | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Spread bancário brasileiro: limpeza e visualização de dados" />
+<meta property="og:description" content="O altíssimo spread bancário 1 brasileiro é um motivo de preocupação das autoridades, já que dificulta uma economia mais guiada pelo crédito, dificultando o crescimento etc." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/spread-bancario-brasileiro-r/" />
+<meta property="article:published_time" content="2019-03-31T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-03-31T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Spread bancário brasileiro: limpeza e visualização de dados"/>
+<meta name="twitter:description" content="O altíssimo spread bancário 1 brasileiro é um motivo de preocupação das autoridades, já que dificulta uma economia mais guiada pelo crédito, dificultando o crescimento etc."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body data-theme="light" class="preload">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header>
+  <h1>
+    <a href="https://phelipetls.github.io/pt/">
+      Phelipe Teles
+    </a>
+  </h1>
+
+  <nav><a href="https://phelipetls.github.io/pt/posts">Posts</a><a href="https://phelipetls.github.io/pt/projects">Projetos</a><a href="https://phelipetls.github.io/pt/archive">Arquivo</a></nav>
+</header>
+
+
+    <main>
+      
+  <article class="post">
+    <h1>Spread bancário brasileiro: limpeza e visualização de dados</h1>
+
+    <div class="metadata">
+      <time
+        datetime="2019-03-31">
+        March 31, 2019
+      </time>
+
+      
+        <div class="tags"><a class="button button-secondary" href="/pt/tags/tidyverse/">tidyverse</a><a class="button button-secondary" href="/pt/tags/dataviz/">dataviz</a><a class="button button-secondary" href="/pt/tags/ggplot2/">ggplot2</a></div>
+      
+    </div>
+
+    <hr>
+
+    <p>O altíssimo spread bancário <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup> brasileiro é um motivo de preocupação das
+autoridades, já que dificulta uma economia mais guiada pelo crédito,
+dificultando o crescimento etc. Como estou estudando isso para monografia,
+pensei em visualizar exatamente quão alto ele é. Imaginei que não seria tão
+difícil com a ajuda do R, e não foi mesmo. Nesse post vou falar sobre a coleta
+de dados, o tratamento com o tidyverse e a visualização com o ggplot2.</p>
+<p>Normalmente, pego séries econômicas sem sair do R e num formato já muito
+conveniente, com a ajuda de bibliotecas como rbcb, ipeadatar, sidrar etc. Mas,
+para esse caso em específico, eu tive que de fato sair procurando.</p>
+<p>Acabei descobrindo que o World Bank registra a série <em>Interest rate spread
+(lending rate minus deposit rate, %)</em> anualmente para cada país. Além disso, foi
+tudo disponibilizado para download em um .csv.</p>
+<p>E, como normalmente acontece com dados “selvagens”, ele não estava num formato
+<em>tidy</em>, limpo, que é como gostaríamos que estivesse para facilitar as coisas
+quando usamos R.</p>
+<p>Se você não sabe, um <em>tidy dataset</em> é aquele em que cada coluna corresponde a
+uma variável e cada linha a uma observação.</p>
+<h2 class="heading" id="limpando-os-dados">
+  Limpando os dados
+  <a class="anchor" href="#limpando-os-dados">#</a>
+</h2>
+<p>Os dados eu baixei <a href="https://data.worldbank.org/indicator/fr.inr.lndp">daqui</a> e o
+arquivo eu nomeei “spreads.csv”. Vamos olhar como eles estão organizados e por
+que teremos que limpá-los.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">dados</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&#34;~/Blog/phelipetls.github.io/assets/spreads.csv&#34;</span><span class="p">,</span>
+  <span class="n">skip</span> <span class="o">=</span> <span class="m">4</span>
+<span class="p">))</span>
+</code></pre></div><pre><code>## # A tibble: 264 x 64
+##    `Country Name` `Country Code` `Indicator Name` `Indicator Code` `1960`
+##    &lt;chr&gt;          &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;             &lt;dbl&gt;
+##  1 Aruba          ABW            Interest rate s~ FR.INR.LNDP          NA
+##  2 Afghanistan    AFG            Interest rate s~ FR.INR.LNDP          NA
+##  3 Angola         AGO            Interest rate s~ FR.INR.LNDP          NA
+##  4 Albania        ALB            Interest rate s~ FR.INR.LNDP          NA
+##  5 Andorra        AND            Interest rate s~ FR.INR.LNDP          NA
+##  6 Arab World     ARB            Interest rate s~ FR.INR.LNDP          NA
+##  7 United Arab E~ ARE            Interest rate s~ FR.INR.LNDP          NA
+##  8 Argentina      ARG            Interest rate s~ FR.INR.LNDP          NA
+##  9 Armenia        ARM            Interest rate s~ FR.INR.LNDP          NA
+## 10 American Samoa ASM            Interest rate s~ FR.INR.LNDP          NA
+## # ... with 254 more rows, and 59 more variables: `1961` &lt;dbl&gt;,
+## #   `1962` &lt;dbl&gt;, `1963` &lt;dbl&gt;, `1964` &lt;dbl&gt;, `1965` &lt;dbl&gt;, `1966` &lt;dbl&gt;,
+## #   `1967` &lt;dbl&gt;, `1968` &lt;dbl&gt;, `1969` &lt;dbl&gt;, `1970` &lt;dbl&gt;, `1971` &lt;dbl&gt;,
+## #   `1972` &lt;dbl&gt;, `1973` &lt;dbl&gt;, `1974` &lt;dbl&gt;, `1975` &lt;dbl&gt;, `1976` &lt;dbl&gt;,
+## #   `1977` &lt;dbl&gt;, `1978` &lt;dbl&gt;, `1979` &lt;dbl&gt;, `1980` &lt;dbl&gt;, `1981` &lt;dbl&gt;,
+## #   `1982` &lt;dbl&gt;, `1983` &lt;dbl&gt;, `1984` &lt;dbl&gt;, `1985` &lt;dbl&gt;, `1986` &lt;dbl&gt;,
+## #   `1987` &lt;dbl&gt;, `1988` &lt;dbl&gt;, `1989` &lt;dbl&gt;, `1990` &lt;dbl&gt;, `1991` &lt;dbl&gt;,
+## #   `1992` &lt;dbl&gt;, `1993` &lt;dbl&gt;, `1994` &lt;dbl&gt;, `1995` &lt;dbl&gt;, `1996` &lt;dbl&gt;,
+## #   `1997` &lt;dbl&gt;, `1998` &lt;dbl&gt;, `1999` &lt;dbl&gt;, `2000` &lt;dbl&gt;, `2001` &lt;dbl&gt;,
+## #   `2002` &lt;dbl&gt;, `2003` &lt;dbl&gt;, `2004` &lt;dbl&gt;, `2005` &lt;dbl&gt;, `2006` &lt;dbl&gt;,
+## #   `2007` &lt;dbl&gt;, `2008` &lt;dbl&gt;, `2009` &lt;dbl&gt;, `2010` &lt;dbl&gt;, `2011` &lt;dbl&gt;,
+## #   `2012` &lt;dbl&gt;, `2013` &lt;dbl&gt;, `2014` &lt;dbl&gt;, `2015` &lt;dbl&gt;, `2016` &lt;dbl&gt;,
+## #   `2017` &lt;dbl&gt;, `2018` &lt;lgl&gt;, X64 &lt;lgl&gt;
+</code></pre>
+<p>Além de um bando de NA, veja como a informação para cada ano está organizada. A
+cada coluna temos um ano, e abaixo o spread para cada país naquele ano. Pode até
+ser mais fácil visualizar os dados assim, mas não trabalhar com eles no R. O que
+devemos observar é que todas essas colunas são na verdade instâncias de uma
+única variável, o ano, e os valores também, o spread. Queremos, então, condensar
+toda essa massa de dados em duas colunas, transformar desse formato largo
+(<em>wide</em>) para um formato comprido (<em>long</em>).</p>
+<p>Isso é uma tarefa muito fácil para função <code>tidyr::gather</code>. O que ela faz é
+reunir um monte de colunas em uma coluna só. O primeiro argumento da função pede
+o nome da variável das colunas, o segundo, o nome da variável dos valores, e o
+terceiro, quais são as colunas que você quer reunir.</p>
+<p>Mas, perceba também como os nomes estão sujos. O R não gosta de espaços etc. nos
+nomes das colunas, então teremos que cuidar disso também. Isso é muito fácil de
+fazer com a função <code>janitor::clean_names()</code>.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">janitor</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">dados</span> <span class="o">&lt;-</span> <span class="n">dados</span> <span class="o">%&gt;%</span>
+  <span class="nf">clean_names</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="n">x64</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">gather</span><span class="p">(</span><span class="s">&#34;ano&#34;</span><span class="p">,</span> <span class="s">&#34;spread&#34;</span><span class="p">,</span> <span class="n">x1960</span><span class="o">:</span><span class="n">x2018</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span>
+    <span class="n">ano</span> <span class="o">=</span> <span class="nf">str_remove</span><span class="p">(</span><span class="n">ano</span><span class="p">,</span> <span class="s">&#34;x&#34;</span><span class="p">),</span>
+    <span class="n">ano</span> <span class="o">=</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="n">ano</span><span class="p">)</span>
+  <span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">select</span><span class="p">(</span><span class="o">-</span><span class="nf">starts_with</span><span class="p">(</span><span class="s">&#34;indicator&#34;</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">na.omit</span><span class="p">())</span>
+</code></pre></div><pre><code>## # A tibble: 5,225 x 4
+##    country_name   country_code   ano spread
+##    &lt;chr&gt;          &lt;chr&gt;        &lt;dbl&gt;  &lt;dbl&gt;
+##  1 Japan          JPN           1960  3.87
+##  2 Japan          JPN           1961  3.92
+##  3 Japan          JPN           1962  4.21
+##  4 Japan          JPN           1963  3.79
+##  5 Japan          JPN           1964  3.90
+##  6 Japan          JPN           1965  3.80
+##  7 France         FRA           1966  0.350
+##  8 Japan          JPN           1966  3.48
+##  9 France         FRA           1967  0.350
+## 10 United Kingdom GBR           1967  1.29
+## # ... with 5,215 more rows
+</code></pre>
+<p>Aconteceram algumas coisas aqui: primeiro, o <code>readr::read_csv</code> criou uma nova
+coluna “x64”, que não me interessa então a tirei (a função dá um warning, mas eu
+o omiti aqui). Daí que o clean_names prefixou um “x” às colunas com números, que
+também removi com <code>stringr::str_remove()</code>. Eu também não vou precisar das
+colunas com informações sobre o indicador. E, pronto, está limpo.</p>
+<h2 class="heading" id="visualização">
+  Visualização
+  <a class="anchor" href="#visualiza%c3%a7%c3%a3o">#</a>
+</h2>
+<p>Vamos primeiro ver como evoluiu o spread no Brasil no decorrer do tempo.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">dados</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span><span class="n">country_name</span> <span class="o">==</span> <span class="s">&#34;Brazil&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">ano</span><span class="p">,</span> <span class="n">spread</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_line</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="s">&#34;\nAno&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&#34;Spread\n&#34;</span><span class="p">,</span>
+    <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Spread no Brasil ao ano\n&#34;</span>
+  <span class="p">)</span>
+</code></pre></div><p><img src="./unnamed-chunk-7-1.png" alt="img3"></p>
+<p>Veja como o spread vinha caindo sistematicamente, embora ainda fosse muito alto
+pros padrões internacionais. Com a crise, ele voltou a aumentar, voltando aos
+níveis do início do século.</p>
+<p>Para visualizações entre países, seria interessante filtrar a base antes, por
+exemplo, como se compara o spread do Brasil com o de outros países da América do
+Sul? Para isso, vou usar
+<a href="https://raw.githubusercontent.com/lukes/ISO-3166-Countries-with-Regional-Codes/master/all/all.csv">essa</a>
+base de dados, porque nela encontro o código de cada país, o nome de sua
+“região” e se ele é desenvolvido ou não.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;https://pkgstore.datahub.io/core/country-codes/country-codes_csv/data/3b9fd39bdadd7edd7f7dcee708f47e1b/country-codes_csv.csv&#34;</span>
+
+<span class="n">paises</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">clean_names</span><span class="p">()</span> <span class="o">%&gt;%</span>
+  <span class="nf">select</span><span class="p">(</span>
+    <span class="n">iso3166_1_alpha_3</span><span class="p">,</span>
+    <span class="n">intermediate_region_name</span><span class="p">,</span>
+    <span class="n">developed_developing_countries</span>
+  <span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">setNames</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;codigo&#34;</span><span class="p">,</span> <span class="s">&#34;regiao&#34;</span><span class="p">,</span> <span class="s">&#34;status_desenvolvimento&#34;</span><span class="p">))</span>
+</code></pre></div><pre><code>## Parsed with column specification:
+## cols(
+##   .default = col_character(),
+##   `ISO4217-currency_minor_unit` = col_number(),
+##   M49 = col_double(),
+##   GAUL = col_number(),
+##   `Geoname ID` = col_double(),
+##   `Global Code` = col_logical(),
+##   `Intermediate Region Code` = col_double(),
+##   `Region Code` = col_double(),
+##   `Sub-region Code` = col_double()
+## )
+
+## See spec(...) for full column specifications.
+</code></pre>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">paises</span> <span class="o">%&gt;%</span> <span class="nf">glimpse</span><span class="p">()</span>
+</code></pre></div><pre><code>## Observations: 250
+## Variables: 3
+## $ codigo                 &lt;chr&gt; &quot;TWN&quot;, &quot;AFG&quot;, &quot;ALB&quot;, &quot;DZA&quot;, &quot;ASM&quot;, &quot;AND...
+## $ regiao                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, &quot;Middle Africa&quot;...
+## $ status_desenvolvimento &lt;chr&gt; NA, &quot;Developing&quot;, &quot;Developed&quot;, &quot;Develop...
+</code></pre>
+<p>Vamos obter um vetor com o código dos países da América do Sul, para assim
+podermos filtrar a base do spread.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">america_sul</span> <span class="o">&lt;-</span> <span class="n">paises</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span><span class="n">regiao</span> <span class="o">==</span> <span class="s">&#34;South America&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">pull</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+
+<span class="n">america_sul</span>
+</code></pre></div><pre><code>##  [1] &quot;ARG&quot; &quot;BOL&quot; &quot;BVT&quot; &quot;BRA&quot; &quot;CHL&quot; &quot;COL&quot; &quot;ECU&quot; &quot;FLK&quot; &quot;GUF&quot; &quot;GUY&quot; &quot;PRY&quot;
+## [12] &quot;PER&quot; &quot;SGS&quot; &quot;SUR&quot; &quot;URY&quot; &quot;VEN&quot;
+</code></pre>
+<p>E com isso podemos fazer uma visualização dos spreads na América do Sul, para os
+anos de 2015 a 2017, por exemplo. No que podemos ver que o Brasil domina em
+termos de spread, para nossa infelicidade:</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_minimal</span><span class="p">())</span>
+
+<span class="n">anos</span> <span class="o">&lt;-</span> <span class="m">2015</span><span class="o">:</span><span class="m">2017</span>
+
+<span class="n">dados</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span>
+    <span class="n">country_code</span> <span class="o">%in%</span> <span class="n">america_sul</span><span class="p">,</span>
+    <span class="n">ano</span> <span class="o">%in%</span> <span class="n">anos</span>
+  <span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">mutate</span><span class="p">(</span><span class="n">country_name</span> <span class="o">=</span> <span class="nf">fct_reorder</span><span class="p">(</span><span class="n">country_name</span><span class="p">,</span> <span class="n">spread</span><span class="p">))</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">country_name</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">spread</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="s">&#34;Spread&#34;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">facet_wrap</span><span class="p">(</span><span class="n">. </span><span class="o">~</span> <span class="n">ano</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">coord_flip</span><span class="p">()</span>
+</code></pre></div><p><img src="./output_9_0.png" alt="img1"></p>
+<p>E que tal contrastar os 15 maiores spreads de países em desenvolvimento versus
+desenvolvidos, pro ano de 2017? Na outra tabela tem uma coluna que pode nos
+ajudar com isso. Para isso, fiz um join para depois filtrar e criar os gráficos
+que eu queria.</p>
+<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">left_join</span><span class="p">(</span><span class="n">dados</span><span class="p">,</span> <span class="n">paises</span><span class="p">,</span> <span class="n">by</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">country_code</span> <span class="o">=</span> <span class="s">&#34;codigo&#34;</span><span class="p">))</span>
+
+<span class="n">plot1</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span><span class="n">ano</span> <span class="o">==</span> <span class="m">2017</span><span class="p">,</span> <span class="n">status_desenvolvimento</span> <span class="o">==</span> <span class="s">&#34;Developing&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">top_n</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">spread</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="nf">reorder</span><span class="p">(</span><span class="n">country_name</span><span class="p">,</span> <span class="n">spread</span><span class="p">),</span> <span class="n">spread</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;Em desenvolvimento&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">coord_flip</span><span class="p">()</span>
+
+<span class="n">plot2</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
+  <span class="nf">filter</span><span class="p">(</span><span class="n">ano</span> <span class="o">==</span> <span class="m">2017</span><span class="p">,</span> <span class="n">status_desenvolvimento</span> <span class="o">==</span> <span class="s">&#34;Developed&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">top_n</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="n">spread</span><span class="p">)</span> <span class="o">%&gt;%</span>
+  <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="nf">reorder</span><span class="p">(</span><span class="n">country_name</span><span class="p">,</span> <span class="n">spread</span><span class="p">),</span> <span class="n">spread</span><span class="p">))</span> <span class="o">+</span>
+  <span class="nf">geom_col</span><span class="p">()</span> <span class="o">+</span>
+  <span class="nf">labs</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#34;Desenvolvidos&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">expand_limits</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="m">45</span><span class="p">)</span> <span class="o">+</span>
+  <span class="nf">coord_flip</span><span class="p">()</span>
+
+<span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
+<span class="nf">grid.arrange</span><span class="p">(</span><span class="n">plot1</span><span class="p">,</span> <span class="n">plot2</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</code></pre></div><p><img src="./output_11_0.png" alt="img2"></p>
+<p>Vemos, assim, que a situação do Brasil é meio crítica quando se olha para o
+mercado de crédito. Está no meio de países muito pequenos ou pobres (não que o
+Brasil também não seja) no lado subdesenvolvido. Enquanto que no lado dos
+desenvolvidos, está em peso o Leste Europeu etc., antigos países soviéticos.</p>
+<p>Não é tão claro, ao menos para mim, o porquê disso, é justamente o meu intuito
+entender. Se, por um lado, alguns culpam a concentração bancária, que no Brasil
+não é desprezível mesmo, por outro ela não nessariamente significa que o mercado
+não é competitivo, sendo também um fator a considerar os ganhos de eficiência
+que isso pode significar, com o advento das economias de escala. Normalmente se
+fala com razão do alto nível da Selic (ou de sua volatilidade), que implica um
+custo de oportunidade para investimentos (e um risco para os bancos, que
+eventualmente têm de recorrer ao mercado interbancário quando há descompassos
+entre demandas por empréstimos e ofertas de depósitos), hoje já se questiona
+isto, visto que a Selic está estável há meses e em níveis historicamente baixos.
+Outra razão pode ser a inadimplência, que realmente é considerável e da qual os
+bancos se protegem via spread. Ou mesmo o cumpulsório, as instituições, os
+impostos etc.</p>
+<p>Enfim, é um assunto bastante extenso, que para mim ainda é um tanto quanto
+nebuloso. O plano é analisar os seus determinantes quantitativamente, a partir
+da estimação de um modelo, provavelmente um de vetores autorregressivos.</p>
+<p>paga aos depositantes.</p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>A diferença entre o que banco cobra ao emprestar e o que ele <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+
+    <hr>
+
+    <div class="adjacent-posts">
+      
+        <a class="adjacent-post previous" href="/pt/posts/metodo-de-newton/">
+          « Método de Newton
+        </a>
+      
+
+      
+        <a class="adjacent-post next" href="/pt/posts/homicidios-em-baltimore-minerando-dados-r/">
+          Extraindo dados de texto com regex no R »
+        </a>
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="px-8 py-1">
+  <div>Ícones de <a href="https://boxicons.com/">Boxicons</a></div>
+  <span class="links">
+    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a href="https://github.com/phelipetls">GitHub</a> |
+    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button class="button button-primary icon theme-toggler" aria-label="Mudar tema">
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("button.theme-toggler");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

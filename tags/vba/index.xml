@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>vba on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/tags/vba/</link>
+    <description>Recent content in vba on Phelipe Teles</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 05 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://phelipetls.github.io/tags/vba/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Getting Salesforce reports with VBA</title>
+      <link>https://phelipetls.github.io/posts/getting-salesforce-reports-with-vba/</link>
+      <pubDate>Wed, 05 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/posts/getting-salesforce-reports-with-vba/</guid>
+      <description>For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only.</description>
+    </item>
+    
+  </channel>
+</rss>
