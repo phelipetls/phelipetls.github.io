@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="h-full" lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Quando comecei a estudar R, via muito os vídeos do [Roger Peng]. Este vídeo foi um que particularmente me impressionou, em que ele faz uso de regular expressions para manipular e extrair informações de texto." />
-<meta name="deploy-date" content="2021-09-11">
+<meta name="deploy-date" content="2021-09-14">
 <meta name="publish-date" content="2019-04-01">
 <meta name="last-modified-date" content="2019-04-01">
 <meta name="author" content="">
@@ -22,8 +22,8 @@
   
   
   
-  <link rel="stylesheet" href="/css/normalize.min.css" />
   <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
   <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-theme="light" class="preload">
+  <body class="preload text-normal bg-background flex flex-col container max-w-2xl min-h-full px-4 py-2 my-0 mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
     <script>
   window.__setTheme = function(newTheme) {
     document.body.setAttribute("data-theme", newTheme);
@@ -78,34 +78,37 @@
   })
 </script>
 
-    <header>
-  <h1>
-    <a href="https://phelipetls.github.io/pt/">
+    <header class="mb-8">
+  <div class="flex flex-col justify-between gap-2 sm:flex-row">
+    <a class="no-underline font-bold text-primary" href="https://phelipetls.github.io/pt/">
       Phelipe Teles
     </a>
-  </h1>
 
-  <nav><a href="https://phelipetls.github.io/pt/posts">Posts</a><a href="https://phelipetls.github.io/pt/projects">Projetos</a><a href="https://phelipetls.github.io/pt/archive">Arquivo</a></nav>
+    <nav class="flex flex-row flex-wrap gap-2"><a class="no-underline text-normal" href="https://phelipetls.github.io/pt/posts">Posts</a><a class="no-underline text-normal" href="https://phelipetls.github.io/pt/projects">Projetos</a></nav>
+  </div>
 </header>
 
 
-    <main>
+    <main class="flex flex-1 flex-col">
       
   <article class="post">
     <h1>Extraindo dados de texto com regex no R</h1>
 
-    <div class="metadata">
-      <time
-        datetime="2019-04-01">
-        April 01, 2019
+    <div class="flex flex-col gap-2 flex-wrap align-center sm:flex-row sm:justify-between my-1">
+      <time datetime="2019-04-01">
+        Apr 01, 2019
       </time>
 
-      
-        <div class="tags"><a class="button button-secondary" href="/pt/tags/tidyverse/">tidyverse</a><a class="button button-secondary" href="/pt/tags/regex/">regex</a></div>
-      
+      <div class="sm:flex gap-2">
+        
+          <a class="no-underline text-normal" href="/pt/tags/tidyverse/">#tidyverse</a>
+        
+          <a class="no-underline text-normal" href="/pt/tags/regex/">#regex</a>
+        
+      </div>
     </div>
 
-    <hr>
+    <hr />
 
     <p>Quando comecei a estudar R, via muito os vídeos do [Roger Peng].
 <a href="https://youtu.be/q8SzNKib5-4">Este vídeo foi um que particularmente me impressionou</a>,
@@ -131,9 +134,9 @@ que pudermos.</p>
 <p>Há algum padrão na forma do registro, mas nem sempre é respeitado. Por exemplo,
 a coordenada geográfica sempre vêm primeiro; a causa da morte depois de “Cause:
 ”; a raça, o sexo e a idade vêm todas tipo “black male, 17 years old”.</p>
-<h2 class="heading" id="expressões-regulares-regex">
+<h2 class="group pt-3" id="expressões-regulares-regex">
   Expressões regulares (regex)
-  <a class="anchor" href="#express%c3%b5es-regulares-regex">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#express%c3%b5es-regulares-regex">#</a>
 </h2>
 <p>O melhor modo de proceder é com Expressões Regulares, ou regex, que é, digamos,
 uma “linguagem” para encontrar padrões em strings, para daí extrair, substituir,
@@ -145,73 +148,73 @@ condição lógica etc.</p>
 <table>
 <thead>
 <tr>
-<th align="center">Qualitativos</th>
-<th align="left">Combina com:</th>
+<th style="text-align:center">Qualitativos</th>
+<th style="text-align:left">Combina com:</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><code>\w</code></td>
-<td align="left">qualquer caractere alfanúmerico ou _</td>
+<td style="text-align:center"><code>\w</code></td>
+<td style="text-align:left">qualquer caractere alfanúmerico ou _</td>
 </tr>
 <tr>
-<td align="center"><code>[A-Z]</code></td>
-<td align="left">qualquer caractere alfanúmerico ou _</td>
+<td style="text-align:center"><code>[A-Z]</code></td>
+<td style="text-align:left">qualquer caractere alfanúmerico ou _</td>
 </tr>
 <tr>
-<td align="center"><code>\d</code></td>
-<td align="left">qualquer número</td>
+<td style="text-align:center"><code>\d</code></td>
+<td style="text-align:left">qualquer número</td>
 </tr>
 <tr>
-<td align="center"><code>[0-9]</code></td>
-<td align="left">qualquer número</td>
+<td style="text-align:center"><code>[0-9]</code></td>
+<td style="text-align:left">qualquer número</td>
 </tr>
 <tr>
-<td align="center"><code>\s</code></td>
-<td align="left">qualquer espaço</td>
+<td style="text-align:center"><code>\s</code></td>
+<td style="text-align:left">qualquer espaço</td>
 </tr>
 <tr>
-<td align="center"><code>.</code></td>
-<td align="left">qualquer coisa</td>
+<td style="text-align:center"><code>.</code></td>
+<td style="text-align:left">qualquer coisa</td>
 </tr>
 </tbody>
 </table>
 <table>
 <thead>
 <tr>
-<th align="center">Quantitativos</th>
-<th align="left">Significa que:</th>
+<th style="text-align:center">Quantitativos</th>
+<th style="text-align:left">Significa que:</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td align="center"><code>?</code></td>
-<td align="left">o caractere precedente é opcional</td>
+<td style="text-align:center"><code>?</code></td>
+<td style="text-align:left">o caractere precedente é opcional</td>
 </tr>
 <tr>
-<td align="center"><code>+</code></td>
-<td align="left">o caractere precedente é obrigatório</td>
+<td style="text-align:center"><code>+</code></td>
+<td style="text-align:left">o caractere precedente é obrigatório</td>
 </tr>
 <tr>
-<td align="center"><code>*</code></td>
-<td align="left">o caractere é opcional, podendo ocorrer nenhuma ou muitas vezes</td>
+<td style="text-align:center"><code>*</code></td>
+<td style="text-align:left">o caractere é opcional, podendo ocorrer nenhuma ou muitas vezes</td>
 </tr>
 <tr>
-<td align="center"><code>{m,n}</code></td>
-<td align="left">pode ocorrer no mínimo m, no máximo n vezes</td>
+<td style="text-align:center"><code>{m,n}</code></td>
+<td style="text-align:left">pode ocorrer no mínimo m, no máximo n vezes</td>
 </tr>
 </tbody>
 </table>
-<h2 class="heading" id="extraindo-as-variáveis-com-stringr">
+<h2 class="group pt-3" id="extraindo-as-variáveis-com-stringr">
   Extraindo as variáveis com stringr
-  <a class="anchor" href="#extraindo-as-vari%c3%a1veis-com-stringr">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#extraindo-as-vari%c3%a1veis-com-stringr">#</a>
 </h2>
 <p>Para extrairmos os dados do texto, vamos usar o pacote stringr do tidyverse,
 mais especificamente a função <code>stringr::str_match</code>, que extrai de uma string o
 padrão e seus grupos.</p>
-<h2 class="heading" id="causa-da-morte">
+<h2 class="group pt-3" id="causa-da-morte">
   Causa da morte
-  <a class="anchor" href="#causa-da-morte">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#causa-da-morte">#</a>
 </h2>
 <p>Ok, vamos começar extraindo a causa da morte. As primeiras linhas indicam que
 ela é registrada deste modo: “Cause: <em>descrição</em>”, sendo a descrição uma string
@@ -236,9 +239,9 @@ da linha com a função <code>stringr::str_match</code>.</p>
 ## [5,] &quot;Cause: blunt force&quot;  &quot;blunt force&quot;
 ## [6,] &quot;Cause: shooting&quot;     &quot;shooting&quot;
 </code></pre>
-<h2 class="heading" id="latitude-e-longitude">
+<h2 class="group pt-3" id="latitude-e-longitude">
   Latitude e Longitude
-  <a class="anchor" href="#latitude-e-longitude">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#latitude-e-longitude">#</a>
 </h2>
 <p>Agora, a latitude e longitude. As strings que as representam são formadas por
 números <code>\d</code>, sinais de menos, <code>-</code> e pontos <code>.</code>. Para indicar que queremos um
@@ -258,9 +261,9 @@ colchetes, o <code>.</code> não é um metacharacter, mas um ponto comum mesmo.<
 ## [5,] &quot;39.238928, -76.602718&quot; &quot;39.238928&quot; &quot;-76.602718&quot;
 ## [6,] &quot;39.352676, -76.607979&quot; &quot;39.352676&quot; &quot;-76.607979&quot;
 </code></pre>
-<h2 class="heading" id="raça">
+<h2 class="group pt-3" id="raça">
   Raça
-  <a class="anchor" href="#ra%c3%a7a">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#ra%c3%a7a">#</a>
 </h2>
 <p>Outra coisa em que estamos interessados é na raça da pessoa. Esse caso, no
 entanto, é mais irregular.</p>
@@ -294,9 +297,9 @@ Daí que:</p>
 <p>Veja que, inseri um grupo a mais para indicar que é opcional todo o grupo “fe”
 em sexo, ele pode ou não ocorrer. Daí que o uso de grupos pode não ser somente
 para extrair.</p>
-<h2 class="heading" id="gênero">
+<h2 class="group pt-3" id="gênero">
   Gênero
-  <a class="anchor" href="#g%c3%aanero">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#g%c3%aanero">#</a>
 </h2>
 <p>Esse caso é muito similar ao anterior:</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">genero</span> <span class="o">&lt;-</span> <span class="nf">str_match</span><span class="p">(</span>
@@ -322,9 +325,9 @@ para extrair.</p>
 ## [1249,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 ## [1250,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 </code></pre>
-<h2 class="heading" id="idade">
+<h2 class="group pt-3" id="idade">
   Idade
-  <a class="anchor" href="#idade">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#idade">#</a>
 </h2>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">idade</span> <span class="o">&lt;-</span> <span class="nf">str_match</span><span class="p">(</span>
   <span class="n">homicides</span><span class="p">,</span>
@@ -349,9 +352,9 @@ para extrair.</p>
 ## [1249,] &quot;Age: 62&quot; NA   &quot;62&quot;
 ## [1250,] &quot;Age: 65&quot; NA   &quot;65&quot;
 </code></pre>
-<h2 class="heading" id="data">
+<h2 class="group pt-3" id="data">
   Data
-  <a class="anchor" href="#data">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#data">#</a>
 </h2>
 <p>Pelas primeiras linhas, vemos que a data normalmente vem depois de “Found on”.</p>
 <p>Precisamos também uma regex para capturar a data. Ela deve conter:</p>
@@ -377,9 +380,9 @@ opcional a mais <code>?</code>.</p>
 ## [5,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 ## [6,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 </code></pre>
-<h2 class="heading" id="endereço">
+<h2 class="group pt-3" id="endereço">
   Endereço
-  <a class="anchor" href="#endere%c3%a7o">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#endere%c3%a7o">#</a>
 </h2>
 <p>Também pode ser interessante termos disponível o endereço de cada morte:</p>
 <div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">endereco</span> <span class="o">&lt;-</span> <span class="nf">str_match</span><span class="p">(</span>
@@ -396,9 +399,9 @@ opcional a mais <code>?</code>.</p>
 ## [5,] &quot;&gt;500 Maude Ave.&lt;br /&gt;&quot;       &quot;500 Maude Ave.&quot;
 ## [6,] &quot;&gt;5200 Ready Ave.&lt;br /&gt;&quot;      &quot;5200 Ready Ave.&quot;
 </code></pre>
-<h2 class="heading" id="agregando-tudo-em-um-dataframe">
+<h2 class="group pt-3" id="agregando-tudo-em-um-dataframe">
   Agregando tudo em um data.frame
-  <a class="anchor" href="#agregando-tudo-em-um-dataframe">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#agregando-tudo-em-um-dataframe">#</a>
 </h2>
 <p>Agora precisamos juntar tudo num data.frame. Vamos pegar só as colunas dos
 grupos que nos interessam.</p>
@@ -462,17 +465,17 @@ data precisa estar no formato Date) etc:</p>
 <p>Em um próximo post, pretendo visualizar esses dados com ggplot2 e gganimate.</p>
 
 
-    <hr>
+    <hr />
 
-    <div class="adjacent-posts">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       
-        <a class="adjacent-post previous" href="/pt/posts/spread-bancario-brasileiro-r/">
+        <a href="/pt/posts/spread-bancario-brasileiro-r/">
           « Spread bancário brasileiro: limpeza e visualização de dados
         </a>
       
 
       
-        <a class="adjacent-post next" href="/pt/posts/visualizacao-dados-homicidios-baltimore/">
+        <a class="text-right" href="/pt/posts/visualizacao-dados-homicidios-baltimore/">
           Homicídios em Baltimore: visualizações com ggplot2 e gganimate »
         </a>
       
@@ -481,12 +484,15 @@ data precisa estar no formato Date) etc:</p>
 
     </main>
 
-    <footer class="px-8 py-1">
-  <div>Ícones de <a href="https://boxicons.com/">Boxicons</a></div>
-  <span class="links">
-    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
-    <a href="https://github.com/phelipetls">GitHub</a> |
-    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+    <footer class="mt-8 mb-3 text-center text-sm">
+  <div>
+    Ícones de <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
+  </div>
+
+  <span>
+    <a class="text-primary" href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a class="text-primary" href="https://github.com/phelipetls">GitHub</a> |
+    <a class="text-primary" href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
   </span>
 </footer>
 
@@ -495,11 +501,14 @@ data precisa estar no formato Date) etc:</p>
       
     
 
-    <button class="button button-primary icon theme-toggler" aria-label="Mudar tema">
-  <svg width="24" height="24" viewBox="0 0 24 24">
+    <button
+  id="theme-button"
+  class="text-background bg-primary rounded-full w-12 h-12 fixed bottom-6 right-6 opacity-75 hover:opacity-100 transition transition-opacity duration-75 ease-in-out"
+  aria-label="Mudar tema"
+>
+  <svg class="mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24">
     <defs>
       <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
-
 
       <g id="sun">
 <path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
@@ -509,7 +518,6 @@ data precisa estar no formato Date) etc:</p>
 <path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
 </g>
 
-
     </defs>
 
     <use href="#sun" />
@@ -517,7 +525,7 @@ data precisa estar no formato Date) etc:</p>
 </button>
 
 <script>
-  const btn = document.querySelector("button.theme-toggler");
+  const btn = document.querySelector("#theme-button");
   const btnSvgIcon = document.querySelector("use")
 
   const changeTogglerSvgIcon = function(theme) {

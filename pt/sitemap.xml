@@ -153,6 +153,21 @@
   </url>
   
   <url>
+    <loc>https://phelipetls.github.io/pt/softwares/typescript/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/softwares/typescript/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/softwares/typescript/"
+                />
+  </url>
+  
+  <url>
     <loc>https://phelipetls.github.io/pt/softwares/flask/</loc>
     <lastmod>2020-08-26T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -555,20 +570,6 @@
   <url>
     <loc>https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/</loc>
     <lastmod>2019-02-18T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/archive/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/archive/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/archive/"
-                />
   </url>
   
   <url>

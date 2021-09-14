@@ -6,11 +6,7 @@
     <description>Recent content in gganimate on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://phelipetls.github.io/pt/tags/gganimate/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 07 Apr 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/pt/tags/gganimate/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Homicídios em Baltimore: visualizações com ggplot2 e gganimate</title>
       <link>https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/</link>

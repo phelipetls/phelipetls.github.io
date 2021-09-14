@@ -318,6 +318,21 @@
   </url>
   
   <url>
+    <loc>https://phelipetls.github.io/softwares/typescript/</loc>
+    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/softwares/typescript/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/softwares/typescript/"
+                />
+  </url>
+  
+  <url>
     <loc>https://phelipetls.github.io/softwares/flask/</loc>
     <lastmod>2020-08-26T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -594,20 +609,6 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://phelipetls.github.io/projects/seriesbr/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/archive/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/archive/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/archive/"
                 />
   </url>
   

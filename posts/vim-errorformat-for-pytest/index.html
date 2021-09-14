@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-full" lang="en">
   <head>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on Stack Overflow
  I really like Vim&rsquo;s :h errorformat feature, but only when I manage to get it right." />
-<meta name="deploy-date" content="2021-09-11">
+<meta name="deploy-date" content="2021-09-14">
 <meta name="publish-date" content="2020-10-07">
 <meta name="last-modified-date" content="2020-10-07">
 <meta name="author" content="">
@@ -23,8 +23,8 @@
   
   
   
-  <link rel="stylesheet" href="/css/normalize.min.css" />
   <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
   <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
 
@@ -53,7 +53,7 @@
     
   </head>
 
-  <body data-theme="light" class="preload">
+  <body class="preload text-normal bg-background flex flex-col container max-w-2xl min-h-full px-4 py-2 my-0 mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
     <script>
   window.__setTheme = function(newTheme) {
     document.body.setAttribute("data-theme", newTheme);
@@ -81,34 +81,37 @@
   })
 </script>
 
-    <header>
-  <h1>
-    <a href="https://phelipetls.github.io/">
+    <header class="mb-8">
+  <div class="flex flex-col justify-between gap-2 sm:flex-row">
+    <a class="no-underline font-bold text-primary" href="https://phelipetls.github.io/">
       Phelipe Teles
     </a>
-  </h1>
 
-  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+    <nav class="flex flex-row flex-wrap gap-2"><a class="no-underline text-normal" href="https://phelipetls.github.io/posts">Posts</a><a class="no-underline text-normal" href="https://phelipetls.github.io/projects">Projects</a></nav>
+  </div>
 </header>
 
 
-    <main>
+    <main class="flex flex-1 flex-col">
       
   <article class="post">
     <h1>A Vim errorformat for pytest</h1>
 
-    <div class="metadata">
-      <time
-        datetime="2020-10-07">
-        October 07, 2020
+    <div class="flex flex-col gap-2 flex-wrap align-center sm:flex-row sm:justify-between my-1">
+      <time datetime="2020-10-07">
+        Oct 07, 2020
       </time>
 
-      
-        <div class="tags"><a class="button button-secondary" href="/tags/python/">python</a><a class="button button-secondary" href="/tags/vim/">vim</a></div>
-      
+      <div class="sm:flex gap-2">
+        
+          <a class="no-underline text-normal" href="/tags/python/">#python</a>
+        
+          <a class="no-underline text-normal" href="/tags/vim/">#vim</a>
+        
+      </div>
     </div>
 
-    <hr>
+    <hr />
 
     <blockquote>
 <p>Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on
@@ -169,9 +172,9 @@ E     ?               +++++
 ============================== 3 failed in 0.03s ===============================
 </code></pre>
 <p>Now, for the difficult part.</p>
-<h2 class="heading" id="writing-an-errorformat">
+<h2 class="group pt-3" id="writing-an-errorformat">
   Writing an errorformat
-  <a class="anchor" href="#writing-an-errorformat">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#writing-an-errorformat">#</a>
 </h2>
 <p>To make Vim understand these lines so that we can jump to each error, we must
 give patterns. It will then go through every line testing against those
@@ -188,9 +191,9 @@ multiple lines.</p>
 <p>I found out that <code>pytest</code> gives inconsistent patterns depending on the error
 (test failure, missing fixture and syntax error), so I had to handle them
 separately.</p>
-<h2 class="heading" id="handling-test-failures">
+<h2 class="group pt-3" id="handling-test-failures">
   Handling test failures
-  <a class="anchor" href="#handling-test-failures">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#handling-test-failures">#</a>
 </h2>
 <p>A test failure starts like this:</p>
 <pre><code>______________________________ TEST_NAME ______________________________
@@ -236,9 +239,9 @@ test_set_comparison|22|  AssertionError: assert {'1', '0', '3', '8'} == {'0', '3
 </code></pre>
 <p>So far, it will understand tests failures but not syntax errors, import errors
 and fixture errors, which would fail silently. This is no good.</p>
-<h2 class="heading" id="syntax-errors">
+<h2 class="group pt-3" id="syntax-errors">
   Syntax errors
-  <a class="anchor" href="#syntax-errors">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#syntax-errors">#</a>
 </h2>
 <p>For syntax errors, we need to parse something like this:</p>
 <pre><code>============================= test session starts ==============================
@@ -285,9 +288,9 @@ its length to later use as column number.</p>
 exactly, which is needed to distinguish it from the others, see <code>:h \@=</code>.</p>
 <p>We also need to include a continuation format (any line starting with E and
 space that didn&rsquo;t match the earlier ones).</p>
-<h2 class="heading" id="import-errors">
+<h2 class="group pt-3" id="import-errors">
   Import errors
-  <a class="anchor" href="#import-errors">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#import-errors">#</a>
 </h2>
 <p>Import errors are also slightly different:</p>
 <pre><code>============================= test session starts ==============================
@@ -318,9 +321,9 @@ E   ModuleNotFoundError: No module named 'pytes'
 to capture the filename. It ends with an <code>E %m</code> and we already a pattern to
 capture this. But we do need to tell how it continues, and it&rsquo;s fine to just put
 something that would match anything like <code>%C%.%#</code>.</p>
-<h2 class="heading" id="fixture-errors">
+<h2 class="group pt-3" id="fixture-errors">
   Fixture errors
-  <a class="anchor" href="#fixture-errors">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#fixture-errors">#</a>
 </h2>
 <p>Fixture errors are also in a different format:</p>
 <pre><code>_____________________ ERROR at setup of test_zero_division _____________________
@@ -337,9 +340,9 @@ cord_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
 </code></pre>
 <p>The line <code>%+ZE %.%#not found</code> means that the error will match <code>E .*not found</code>,
 the preceding <code>+</code> will include the whole line as a message.</p>
-<h2 class="heading" id="further-improvements">
+<h2 class="group pt-3" id="further-improvements">
   Further improvements
-  <a class="anchor" href="#further-improvements">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#further-improvements">#</a>
 </h2>
 <p>Notice how syntax, import and fixture errors are preceded with something like</p>
 <pre><code>______________________________ ERROR.* ______________________________
@@ -350,9 +353,9 @@ it will ignore it first.</p>
 <p>Also, if all tests passed, capture it too:</p>
 <pre><code>  \%+G%[=]%\\+\ %*\\d\ passed%.%#,
 </code></pre>
-<h2 class="heading" id="conclusion">
+<h2 class="group pt-3" id="conclusion">
   Conclusion
-  <a class="anchor" href="#conclusion">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>Check out the whole
 <a href="https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/pytest.vim">compiler plugin</a>
@@ -370,17 +373,17 @@ a lot.</p>
 integrate a command line program into Vim.</p>
 
 
-    <hr>
+    <hr />
 
-    <div class="adjacent-posts">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       
-        <a class="adjacent-post previous" href="/posts/async-make-in-nvim-with-lua/">
+        <a href="/posts/async-make-in-nvim-with-lua/">
           « Asynchronous :make in Neovim with Lua
         </a>
       
 
       
-        <a class="adjacent-post next" href="/posts/deploying-flask-app-on-heroku/">
+        <a class="text-right" href="/posts/deploying-flask-app-on-heroku/">
           Deploying a Flask app on a Heroku free dyno »
         </a>
       
@@ -389,12 +392,15 @@ integrate a command line program into Vim.</p>
 
     </main>
 
-    <footer class="px-8 py-1">
-  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
-  <span class="links">
-    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
-    <a href="https://github.com/phelipetls">GitHub</a> |
-    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+    <footer class="mt-8 mb-3 text-center text-sm">
+  <div>
+    Icons by <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
+  </div>
+
+  <span>
+    <a class="text-primary" href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a class="text-primary" href="https://github.com/phelipetls">GitHub</a> |
+    <a class="text-primary" href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
   </span>
 </footer>
 
@@ -403,11 +409,14 @@ integrate a command line program into Vim.</p>
       
     
 
-    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
-  <svg width="24" height="24" viewBox="0 0 24 24">
+    <button
+  id="theme-button"
+  class="text-background bg-primary rounded-full w-12 h-12 fixed bottom-6 right-6 opacity-75 hover:opacity-100 transition transition-opacity duration-75 ease-in-out"
+  aria-label="Change theme"
+>
+  <svg class="mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24">
     <defs>
       <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
-
 
       <g id="sun">
 <path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
@@ -417,7 +426,6 @@ integrate a command line program into Vim.</p>
 <path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
 </g>
 
-
     </defs>
 
     <use href="#sun" />
@@ -425,7 +433,7 @@ integrate a command line program into Vim.</p>
 </button>
 
 <script>
-  const btn = document.querySelector("button.theme-toggler");
+  const btn = document.querySelector("#theme-button");
   const btnSvgIcon = document.querySelector("use")
 
   const changeTogglerSvgIcon = function(theme) {

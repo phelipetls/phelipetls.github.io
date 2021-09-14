@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-full" lang="en">
   <head>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature development by writing test to avoid regressions later, or you develop untested features and bugs will inevitably be introduced later." />
-<meta name="deploy-date" content="2021-09-11">
+<meta name="deploy-date" content="2021-09-14">
 <meta name="publish-date" content="2021-04-28">
 <meta name="last-modified-date" content="2021-04-28">
 <meta name="author" content="">
@@ -22,8 +22,8 @@
   
   
   
-  <link rel="stylesheet" href="/css/normalize.min.css" />
   <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
   <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-theme="light" class="preload">
+  <body class="preload text-normal bg-background flex flex-col container max-w-2xl min-h-full px-4 py-2 my-0 mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
     <script>
   window.__setTheme = function(newTheme) {
     document.body.setAttribute("data-theme", newTheme);
@@ -78,34 +78,37 @@
   })
 </script>
 
-    <header>
-  <h1>
-    <a href="https://phelipetls.github.io/">
+    <header class="mb-8">
+  <div class="flex flex-col justify-between gap-2 sm:flex-row">
+    <a class="no-underline font-bold text-primary" href="https://phelipetls.github.io/">
       Phelipe Teles
     </a>
-  </h1>
 
-  <nav><a href="https://phelipetls.github.io/posts">Posts</a><a href="https://phelipetls.github.io/projects">Projects</a><a href="https://phelipetls.github.io/archive">Archive</a></nav>
+    <nav class="flex flex-row flex-wrap gap-2"><a class="no-underline text-normal" href="https://phelipetls.github.io/posts">Posts</a><a class="no-underline text-normal" href="https://phelipetls.github.io/projects">Projects</a></nav>
+  </div>
 </header>
 
 
-    <main>
+    <main class="flex flex-1 flex-col">
       
   <article class="post">
     <h1>My experience testing React applications</h1>
 
-    <div class="metadata">
-      <time
-        datetime="2021-04-28">
-        April 28, 2021
+    <div class="flex flex-col gap-2 flex-wrap align-center sm:flex-row sm:justify-between my-1">
+      <time datetime="2021-04-28">
+        Apr 28, 2021
       </time>
 
-      
-        <div class="tags"><a class="button button-secondary" href="/tags/react/">react</a><a class="button button-secondary" href="/tags/javascript/">javascript</a></div>
-      
+      <div class="sm:flex gap-2">
+        
+          <a class="no-underline text-normal" href="/tags/react/">#react</a>
+        
+          <a class="no-underline text-normal" href="/tags/javascript/">#javascript</a>
+        
+      </div>
     </div>
 
-    <hr>
+    <hr />
 
     <p>Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature
 development by writing test to avoid regressions later, or you develop untested
@@ -133,9 +136,9 @@ appear or disappear.</li>
 </ul>
 <p>In this blog post I&rsquo;m going to talk about my experience with JavaScript
 libraries for testing front-end web apps.</p>
-<h2 class="heading" id="react-testing-library">
+<h2 class="group pt-3" id="react-testing-library">
   <code>react-testing-library</code>
-  <a class="anchor" href="#react-testing-library">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#react-testing-library">#</a>
 </h2>
 <p>This library seems to be what everyone is using now, and I do see how that
 happened. It has a very consistent API and good documentation.</p>
@@ -164,17 +167,17 @@ use canvas in your app,
 </ul>
 <p>But it got the job done most of the time.</p>
 <p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
-<h2 class="heading" id="nock">
+<h2 class="group pt-3" id="nock">
   <code>nock</code>
-  <a class="anchor" href="#nock">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#nock">#</a>
 </h2>
 <p>The <code>nock</code> library works in node-only environment and has a well-thought, easy
 to use API.</p>
 <p>In my experience, it has just a few unexpected issues like
 <a href="https://www.npmjs.com/package/nock#axios">not working with axios out of the box</a>.</p>
-<h2 class="heading" id="msw">
+<h2 class="group pt-3" id="msw">
   <code>msw</code>
-  <a class="anchor" href="#msw">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#msw">#</a>
 </h2>
 <p>I later also tried <code>msw</code> after reading
 <a href="https://kentcdodds.com/blog/stop-mocking-fetch/">Stop mocking fetch</a> by Kent C.
@@ -187,9 +190,9 @@ This is by design though, it&rsquo;s just something I disliked.</p>
 <p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
 which I thought made tests harder to read. It doesn&rsquo;t have to be like that of
 course, but it&rsquo;s response handlers can get pretty long so it&rsquo;s a sane option.</p>
-<h2 class="heading" id="cypress">
+<h2 class="group pt-3" id="cypress">
   <code>cypress</code>
-  <a class="anchor" href="#cypress">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#cypress">#</a>
 </h2>
 <p>All of these led me to try <a href="https://docs.cypress.io/"><code>Cypress</code></a>, and I&rsquo;m
 inclined to say it is my favorite solution so far.</p>
@@ -216,9 +219,9 @@ browser DevTools.</li>
 <li>There are snapshots of the UI state for each step.</li>
 <li>Screenshots and videos of the test runs are recorded by default.</li>
 </ul>
-<h2 class="heading" id="conclusion">
+<h2 class="group pt-3" id="conclusion">
   Conclusion
-  <a class="anchor" href="#conclusion">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>I think everyone would agree that Cypress is much well-suited for integration
 tests. I thought <code>react-testing-library</code> to be complicated for complex
@@ -226,17 +229,17 @@ functional tests, so I&rsquo;d prefer to use it for unit testing small component
 logic.</p>
 
 
-    <hr>
+    <hr />
 
-    <div class="adjacent-posts">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       
-        <a class="adjacent-post previous" href="/posts/migrating-from-cra-to-vite/">
+        <a href="/posts/migrating-from-cra-to-vite/">
           « Migrating from create-react-app to Vite
         </a>
       
 
       
-        <a class="adjacent-post next" href="/posts/dark-mode-implementation-for-ssr-websites/">
+        <a class="text-right" href="/posts/dark-mode-implementation-for-ssr-websites/">
           Implementing dark mode for SSR websites »
         </a>
       
@@ -245,12 +248,15 @@ logic.</p>
 
     </main>
 
-    <footer class="px-8 py-1">
-  <div>Icons by <a href="https://boxicons.com/">Boxicons</a></div>
-  <span class="links">
-    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
-    <a href="https://github.com/phelipetls">GitHub</a> |
-    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+    <footer class="mt-8 mb-3 text-center text-sm">
+  <div>
+    Icons by <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
+  </div>
+
+  <span>
+    <a class="text-primary" href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a class="text-primary" href="https://github.com/phelipetls">GitHub</a> |
+    <a class="text-primary" href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
   </span>
 </footer>
 
@@ -259,11 +265,14 @@ logic.</p>
       
     
 
-    <button class="button button-primary icon theme-toggler" aria-label="Change theme">
-  <svg width="24" height="24" viewBox="0 0 24 24">
+    <button
+  id="theme-button"
+  class="text-background bg-primary rounded-full w-12 h-12 fixed bottom-6 right-6 opacity-75 hover:opacity-100 transition transition-opacity duration-75 ease-in-out"
+  aria-label="Change theme"
+>
+  <svg class="mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24">
     <defs>
       <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
-
 
       <g id="sun">
 <path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
@@ -273,7 +282,6 @@ logic.</p>
 <path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
 </g>
 
-
     </defs>
 
     <use href="#sun" />
@@ -281,7 +289,7 @@ logic.</p>
 </button>
 
 <script>
-  const btn = document.querySelector("button.theme-toggler");
+  const btn = document.querySelector("#theme-button");
   const btnSvgIcon = document.querySelector("use")
 
   const changeTogglerSvgIcon = function(theme) {

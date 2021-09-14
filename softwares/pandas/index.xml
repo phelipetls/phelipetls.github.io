@@ -6,11 +6,7 @@
     <description>Recent content in pandas on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://phelipetls.github.io/softwares/pandas/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sat, 25 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/softwares/pandas/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Reportforce</title>
       <link>https://phelipetls.github.io/projects/reportforce/</link>
@@ -35,7 +31,7 @@
       <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/seriesbr/</guid>
-      <description>A Python package to get time series from brazilian government institutions&amp;rsquo; databases, such as the Brazilian Central Bank, Institute of Applied Economic Research and Brazilian Institute of Geography and Statistics.</description>
+      <description>A Python package to get time series from brazilian government institutions&#39; databases, such as the Brazilian Central Bank, Institute of Applied Economic Research and Brazilian Institute of Geography and Statistics.</description>
     </item>
     
   </channel>

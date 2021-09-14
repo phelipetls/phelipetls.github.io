@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html class="h-full" lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson, que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis)." />
-<meta name="deploy-date" content="2021-09-11">
+<meta name="deploy-date" content="2021-09-14">
 <meta name="publish-date" content="2019-02-18">
 <meta name="last-modified-date" content="2019-02-18">
 <meta name="author" content="">
@@ -22,8 +22,8 @@
   
   
   
-  <link rel="stylesheet" href="/css/normalize.min.css" />
   <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/tailwind.min.css" />
   <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
   <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
 
@@ -50,7 +50,7 @@
     
   </head>
 
-  <body data-theme="light" class="preload">
+  <body class="preload text-normal bg-background flex flex-col container max-w-2xl min-h-full px-4 py-2 my-0 mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
     <script>
   window.__setTheme = function(newTheme) {
     document.body.setAttribute("data-theme", newTheme);
@@ -78,34 +78,37 @@
   })
 </script>
 
-    <header>
-  <h1>
-    <a href="https://phelipetls.github.io/pt/">
+    <header class="mb-8">
+  <div class="flex flex-col justify-between gap-2 sm:flex-row">
+    <a class="no-underline font-bold text-primary" href="https://phelipetls.github.io/pt/">
       Phelipe Teles
     </a>
-  </h1>
 
-  <nav><a href="https://phelipetls.github.io/pt/posts">Posts</a><a href="https://phelipetls.github.io/pt/projects">Projetos</a><a href="https://phelipetls.github.io/pt/archive">Arquivo</a></nav>
+    <nav class="flex flex-row flex-wrap gap-2"><a class="no-underline text-normal" href="https://phelipetls.github.io/pt/posts">Posts</a><a class="no-underline text-normal" href="https://phelipetls.github.io/pt/projects">Projetos</a></nav>
+  </div>
 </header>
 
 
-    <main>
+    <main class="flex flex-1 flex-col">
       
   <article class="post">
     <h1>Puzzle do cavalo no tabuleiro infinito com NumPy</h1>
 
-    <div class="metadata">
-      <time
-        datetime="2019-02-18">
-        February 18, 2019
+    <div class="flex flex-col gap-2 flex-wrap align-center sm:flex-row sm:justify-between my-1">
+      <time datetime="2019-02-18">
+        Feb 18, 2019
       </time>
 
-      
-        <div class="tags"><a class="button button-secondary" href="/pt/tags/numpy/">numpy</a><a class="button button-secondary" href="/pt/tags/matplotlib/">matplotlib</a></div>
-      
+      <div class="sm:flex gap-2">
+        
+          <a class="no-underline text-normal" href="/pt/tags/numpy/">#numpy</a>
+        
+          <a class="no-underline text-normal" href="/pt/tags/matplotlib/">#matplotlib</a>
+        
+      </div>
     </div>
 
-    <hr>
+    <hr />
 
     <p>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no
 <a href="http://varianceexplained.org/r/knight-chess/">blog do David Robinson</a>, que
@@ -119,9 +122,9 @@ facilita a criação de visualizações do problema com o ggplot2.</p>
 seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
 operações vetorizadas e eficientes.</p>
-<h2 class="heading" id="o-que-está-por-trás-da-eficiência-do-numpy">
+<h2 class="group pt-3" id="o-que-está-por-trás-da-eficiência-do-numpy">
   O que está por trás da eficiência do Numpy
-  <a class="anchor" href="#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy">#</a>
 </h2>
 <p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
 de tipagem dinâmica e de script (não-compilada): ele não é tão bom em fazer
@@ -178,9 +181,9 @@ TypeError                                 Traceback (most recent call last)
 TypeError: can't convert complex to int
 </code></pre>
 <p>Esse comportamento é muito similar ao vetor do R.</p>
-<h2 class="heading" id="simulando-os-movimentos-do-cavalo">
+<h2 class="group pt-3" id="simulando-os-movimentos-do-cavalo">
   Simulando os movimentos do cavalo
-  <a class="anchor" href="#simulando-os-movimentos-do-cavalo">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#simulando-os-movimentos-do-cavalo">#</a>
 </h2>
 <p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p>
 <ul>
@@ -316,9 +319,9 @@ simples histograma, feito com 100 repetições do experimento.</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">knight_probs</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
 </code></pre></div><p><img src="./histograma.png" alt="Histograma"></p>
-<h2 class="heading" id="a-eficiência-em-números">
+<h2 class="group pt-3" id="a-eficiência-em-números">
   A eficiência em números
-  <a class="anchor" href="#a-efici%c3%aancia-em-n%c3%bameros">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#a-efici%c3%aancia-em-n%c3%bameros">#</a>
 </h2>
 <p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
 verificar isso facilmente com o magic command do IPython, o %%timeit. Criei uma
@@ -343,9 +346,9 @@ algoritmo.</p>
 <p>É extraordinariamente rápido. Mesmo quando se trata de cálculos com uma matriz
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
 Python seria absurdamente mais lento.</p>
-<h2 class="heading" id="conclusões">
+<h2 class="group pt-3" id="conclusões">
   Conclusões
-  <a class="anchor" href="#conclus%c3%b5es">#</a>
+  <a class="hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
 </h2>
 <p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
 ferramenta muito útil, garantindo eficiência com uma sintaxe simples e limpa. Há
@@ -359,13 +362,13 @@ objetivo é crescer na área de data science.</p>
 Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.</p>
 
 
-    <hr>
+    <hr />
 
-    <div class="adjacent-posts">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
       
 
       
-        <a class="adjacent-post next" href="/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/">
+        <a class="text-right" href="/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/">
           Três algoritmos para a sequência de Fibonacci »
         </a>
       
@@ -374,12 +377,15 @@ Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.
 
     </main>
 
-    <footer class="px-8 py-1">
-  <div>Ícones de <a href="https://boxicons.com/">Boxicons</a></div>
-  <span class="links">
-    <a href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
-    <a href="https://github.com/phelipetls">GitHub</a> |
-    <a href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+    <footer class="mt-8 mb-3 text-center text-sm">
+  <div>
+    Ícones de <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
+  </div>
+
+  <span>
+    <a class="text-primary" href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a class="text-primary" href="https://github.com/phelipetls">GitHub</a> |
+    <a class="text-primary" href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
   </span>
 </footer>
 
@@ -388,11 +394,14 @@ Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.
       
     
 
-    <button class="button button-primary icon theme-toggler" aria-label="Mudar tema">
-  <svg width="24" height="24" viewBox="0 0 24 24">
+    <button
+  id="theme-button"
+  class="text-background bg-primary rounded-full w-12 h-12 fixed bottom-6 right-6 opacity-75 hover:opacity-100 transition transition-opacity duration-75 ease-in-out"
+  aria-label="Mudar tema"
+>
+  <svg class="mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24">
     <defs>
       <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
-
 
       <g id="sun">
 <path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
@@ -402,7 +411,6 @@ Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.
 <path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
 </g>
 
-
     </defs>
 
     <use href="#sun" />
@@ -410,7 +418,7 @@ Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.
 </button>
 
 <script>
-  const btn = document.querySelector("button.theme-toggler");
+  const btn = document.querySelector("#theme-button");
   const btnSvgIcon = document.querySelector("use")
 
   const changeTogglerSvgIcon = function(theme) {

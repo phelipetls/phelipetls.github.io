@@ -6,11 +6,7 @@
     <description>Recent content in Softwares on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://phelipetls.github.io/pt/softwares/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/pt/softwares/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>chart.js</title>
       <link>https://phelipetls.github.io/pt/softwares/chart.js/</link>
@@ -62,6 +58,15 @@
       <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/softwares/react-testing-library/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>typescript</title>
+      <link>https://phelipetls.github.io/pt/softwares/typescript/</link>
+      <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://phelipetls.github.io/pt/softwares/typescript/</guid>
       <description></description>
     </item>
     

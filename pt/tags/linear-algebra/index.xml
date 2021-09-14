@@ -6,11 +6,7 @@
     <description>Recent content in linear-algebra on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate>
-    
-	<atom:link href="https://phelipetls.github.io/pt/tags/linear-algebra/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Sun, 04 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/pt/tags/linear-algebra/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Processo de Gram-Schmidt com NumPy</title>
       <link>https://phelipetls.github.io/pt/posts/gram-schmidt/</link>
