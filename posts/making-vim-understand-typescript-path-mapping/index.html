@@ -349,6 +349,9 @@ is now just ignores these other configurations completely.</p>
     <span class="kr">return</span> <span class="p">{}</span>
   <span class="kr">end</span>
 
+  <span class="kd">local</span> <span class="n">json</span> <span class="o">=</span> <span class="n">decode_json_with_comments</span><span class="p">(</span><span class="n">tsconfig_fname</span><span class="p">)</span>
+<span class="hl">  <span class="kd">local</span> <span class="n">base_url</span> <span class="o">=</span> <span class="n">json</span> <span class="ow">and</span> <span class="n">json.compilerOptions</span> <span class="ow">and</span> <span class="n">json.compilerOptions</span><span class="p">.</span><span class="n">baseUrl</span> <span class="ow">or</span> <span class="n">prev_base_url</span>
+</span>
   <span class="kd">local</span> <span class="n">alias_to_paths</span> <span class="o">=</span> <span class="p">{}</span>
 
   <span class="c1">-- ...</span>
