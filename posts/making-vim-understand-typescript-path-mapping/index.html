@@ -112,11 +112,11 @@
     <p>Vim has this well-known feature of opening the path under cursor with <a href="http://vimdoc.sourceforge.net/htmldoc/editing.html#gf"><code>:h gf</code></a>. <a href="https://vim.fandom.com/wiki/Open_file_under_cursor">This article
 explains well how this
 works</a>.</p>
-<p>Thinks work out of the box with full paths with no special characters, like
-<code>/home/phelipe/script.js</code> but it even expands <code>~</code> and environment variables,
+<p>Things work out of the box with full paths with no special characters, like
+<code>/home/phelipe/script.js</code>, but it also expands <code>~</code> and environment variables,
 like <code>$HOME/script.js</code> or <code>~/script.js</code>.</p>
 <p>Things don&rsquo;t work well when languages have special syntax to import a file,
-i.e. most languages. For example, Java:</p>
+which is most languages. For example, Java:</p>
 <div class="highlight"><pre class="chroma"><code class="language-java" data-lang="java"><span class="kn">import</span> <span class="nn">foo.bar</span>
 </code></pre></div><p>Or Python:</p>
 <div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">module</span>
@@ -172,7 +172,7 @@ function:</p>
 </span><span class="err"></span><span class="c">&#34; after/ftplugin/typescript.vim</span><span class="err">
 </span><span class="err"></span><span class="c">
 </span><span class="c">&#34; It&#39;s common in JavaScript to omit the file extension</span><span class="err">
-</span><span class="err"></span><span class="c">&#34; Also some plugins mess this up...</span><span class="err">
+</span><span class="err"></span><span class="c">&#34; Also some plugins mess this up so I overwite it...</span><span class="err">
 </span><span class="err"></span><span class="nx">setlocal</span> <span class="nx">suffixesadd</span><span class="p">=</span>.<span class="nx">js</span><span class="p">,</span>.<span class="nx">jsx</span><span class="p">,</span>.<span class="nx">ts</span><span class="p">,</span>.<span class="nx">tsx</span><span class="p">,</span>.<span class="nx">d</span>.<span class="nx">ts</span><span class="err">
 </span><span class="err">
 </span><span class="err"></span><span class="k">if</span> <span class="nx">has</span><span class="p">(</span><span class="s2">&#34;nvim&#34;</span><span class="p">)</span><span class="err">
@@ -220,7 +220,7 @@ upwards starting from the current file&rsquo;s directory with the <a href="https
 <div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">get_tsconfig_file</span><span class="p">()</span>
   <span class="kr">return</span> <span class="n">find_file</span><span class="p">(</span><span class="s2">&#34;tsconfig.json&#34;</span><span class="p">,</span> <span class="s2">&#34;.;&#34;</span><span class="p">)</span> <span class="ow">or</span> <span class="n">find_file</span><span class="p">(</span><span class="s2">&#34;jsconfig.json&#34;</span><span class="p">,</span> <span class="s2">&#34;.;&#34;</span><span class="p">)</span>
 <span class="kr">end</span>
-</code></pre></div><p>You&rsquo;ll notice the <code>find_file</code> usage, which is just wrapper around <code>findfile</code>
+</code></pre></div><p>You&rsquo;ll notice the <code>find_file</code> usage, which is just a wrapper around <code>findfile</code>
 that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are not falsy in Lua):</p>
 <div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">find_file</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
   <span class="kd">local</span> <span class="n">found</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">findfile</span><span class="p">(</span><span class="n">fname</span><span class="p">,</span> <span class="n">path</span> <span class="ow">or</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
@@ -233,10 +233,10 @@ that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are no
   Reading JSON with comments
   <a class="hidden text-highlight group-hover:inline" href="#reading-json-with-comments">#</a>
 </h3>
-<p>Then we&rsquo;ll need to read the <code>tsconfig.json</code> file. Vim has a function to
-serialize JSON, <a href="https://vimhelp.org/eval.txt.html#json_decode%28%29"><code>:h json_decode</code></a>, which is
-great, except that <code>tsconfig.json</code> is not strictly JSON, since it allows
-comments. No problem, we can just remove them before we pass it to
+<p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
+JSON, <a href="https://vimhelp.org/eval.txt.html#json_decode%28%29"><code>:h json_decode</code></a>,
+which is great, except that <code>tsconfig.json</code> is not strictly JSON, since it
+allows comments. No problem, we can just remove them before we pass it to
 <code>json_decode</code>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">remove_comments</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
   <span class="kr">return</span> <span class="n">line</span><span class="p">:</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&#34;/%*.*%*/&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">):</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&#34;//.*&#34;</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">)</span>
@@ -251,7 +251,7 @@ comments. No problem, we can just remove them before we pass it to
   <a class="hidden text-highlight group-hover:inline" href="#parsing-compileroptionspaths">#</a>
 </h3>
 <p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
-aliases into their real full paths. For example, given this configuration:</p>
+aliases into their full paths. For example, given this configuration:</p>
 <div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
   <span class="nt">&#34;compilerOptions&#34;</span><span class="p">:</span> <span class="p">{</span>
     <span class="nt">&#34;baseUrl&#34;</span><span class="p">:</span> <span class="s2">&#34;.&#34;</span><span class="p">,</span>
@@ -372,7 +372,10 @@ slow, unreliable or making my computer fans go crazy.</p>
 the API is cumbersome to use. I tried to get go-to-defintion working for
 TypeScript by using <code>:h include-search</code> but had a hard time and eventually gave
 up (the <code>v:fname</code> API is not enough for nested imports), but it&rsquo;s nice to have
-a working <code>gf</code> at least&hellip;</p>
+a working <code>gf</code> at least&hellip; It&rsquo;s also a good idea to <a href="https://github.com/tpope/vim-apathy/blame/master/after/ftplugin/javascript_apathy.vim">check out what the
+vim-apathy plugin does for
+JavaScript</a>
+if you want to dive more deep into it.</p>
 
 
     <hr />
