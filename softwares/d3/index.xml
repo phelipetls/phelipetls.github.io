@@ -13,7 +13,7 @@
       <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/ipeadata-explorer/</guid>
-      <description>This is a frontend written in React for the Ipeadata database, which stores several time series.</description>
+      <description>This is a single page application written in React for students and researches to explore and visualize the Ipeadata database.</description>
     </item>
     
   </channel>

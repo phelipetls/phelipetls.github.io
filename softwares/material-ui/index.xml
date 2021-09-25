@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>react on Phelipe Teles</title>
-    <link>https://phelipetls.github.io/softwares/react/</link>
-    <description>Recent content in react on Phelipe Teles</description>
+    <title>material-ui on Phelipe Teles</title>
+    <link>https://phelipetls.github.io/softwares/material-ui/</link>
+    <description>Recent content in material-ui on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/softwares/react/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 02 Sep 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/softwares/material-ui/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Ipeadata Explorer</title>
       <link>https://phelipetls.github.io/projects/ipeadata-explorer/</link>
