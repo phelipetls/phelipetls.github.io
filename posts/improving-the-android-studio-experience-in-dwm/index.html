@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
+<meta name="deploy-date" content="2022-01-25">
+<meta name="publish-date" content="2022-01-25">
+<meta name="last-modified-date" content="2022-01-25">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+
+
+
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/css/main.min.css" />
+  <link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+  <link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+
+<title>
+  Improving the Android Studio experience in dwm | Phelipe Teles
+</title>
+
+<meta property="og:title" content="Improving the Android Studio experience in dwm" />
+<meta property="og:description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/improving-the-android-studio-experience-in-dwm/" />
+<meta property="article:published_time" content="2022-01-25T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-01-25T00:00:00+00:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Improving the Android Studio experience in dwm"/>
+<meta name="twitter:description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator."/>
+
+
+
+    
+      
+    
+  </head>
+
+  <body class="preload text-normal bg-background flex flex-col container max-w-2xl min-h-full px-4 py-2 my-0 mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
+    <script>
+  window.__setTheme = function(newTheme) {
+    document.body.setAttribute("data-theme", newTheme);
+    localStorage.setItem("__theme", newTheme);
+    const oldTheme = newTheme === "dark" ? "light" : "dark";
+    document
+      .querySelector("link[href*='" + oldTheme + "']")
+      .setAttribute("disabled", "");
+    document
+      .querySelector("link[href*='" + newTheme + "']")
+      .removeAttribute("disabled");
+  };
+
+  const storedTheme = localStorage.getItem("__theme");
+
+  if (storedTheme) {
+    window.__setTheme(storedTheme);
+  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    window.__setTheme("dark");
+  }
+
+   
+  window.addEventListener("load", function() {
+    document.body.classList.remove("preload")
+  })
+</script>
+
+    <header class="mb-8">
+  <div class="flex flex-col justify-between gap-2 sm:flex-row">
+    <a class="no-underline font-bold text-primary" href="https://phelipetls.github.io/">
+      Phelipe Teles
+    </a>
+
+    <nav class="flex flex-row flex-wrap gap-2"><a
+          class="no-underline text-normal"
+          href="https://phelipetls.github.io/posts"
+        >
+            Posts
+        </a><a
+          class="no-underline text-normal"
+          href="https://phelipetls.github.io/projects"
+        >
+            Projects
+        </a></nav>
+  </div>
+</header>
+
+
+    <main class="flex flex-1 flex-col">
+      
+  <article class="post">
+    <h1>Improving the Android Studio experience in dwm</h1>
+
+    <div class="flex flex-col gap-2 flex-wrap align-center sm:flex-row sm:justify-between my-1">
+      <time datetime="2022-01-25">
+        Jan 25, 2022
+      </time>
+
+      <div class="sm:flex gap-2">
+        
+          <a class="no-underline text-normal" href="/tags/c/">#c</a>
+        
+          <a class="no-underline text-normal" href="/tags/linux/">#linux</a>
+        
+          <a class="no-underline text-normal" href="/tags/dwm/">#dwm</a>
+        
+          <a class="no-underline text-normal" href="/tags/x11/">#x11</a>
+        
+      </div>
+    </div>
+
+    <hr />
+
+    <p>In this post, I want to share how I started to change <a href="dwm.suckless.org/">dwm</a>
+source code in order to improve my experience with Android Emulator.</p>
+<p>First, let me briefly explain the problem. When you launch Android Emulator, a
+window with the Android device and a window with buttons to control it appear
+(maybe a modal window saying &ldquo;Loading state&hellip;&rdquo; too).</p>
+<p>The device window is usually the one I&rsquo;m mostly interested in. I don&rsquo;t recall
+ever wanting to focus the other ones (expect by interacting with the mouse) and
+I don&rsquo;t want them to show up in the taskbar (since I use the
+<a href="https://dwm.suckless.org/patches/awesomebar/"><code>awesomebar</code></a> patch).</p>
+<p>At first, I went in and modified the source code ignore these windows by their
+<code>WM_NAME</code> properties, which is easy to find out with <code>xprop</code>. The thing is
+they&rsquo;re very badly named and not very distinct from each other).</p>
+<p>But later I learned that these other windows are <a href="https://en.wikipedia.org/wiki/Transient_(computer_programming)"><em>transient
+windows</em></a> in
+X11:</p>
+<blockquote>
+<p>A window is said to be transient for another window if it belongs to that
+other window and may not outlast it: a dialog box, such as an alert message,
+is a common example.</p>
+</blockquote>
+<p>These windows have a property called
+<a href="https://tronche.com/gui/x/icccm/sec-4.html#WM_TRANSIENT_FOR"><code>WM_TRANSIENT_FOR</code></a>,
+whose value we can get with an Xlib function named
+<a href="https://tronche.com/gui/x/xlib/ICC/client-to-window-manager/XGetTransientForHint.html"><code>XGetTransientForHint</code></a>.</p>
+<p>Here&rsquo;s an example on how to use this function, taken from the <a href="https://git.suckless.org/dwm/file/dwm.c.html#l1038"><code>dwm</code> source
+code</a>:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<span class="nf">manage</span><span class="p">(</span><span class="n">Window</span> <span class="n">w</span><span class="p">,</span> <span class="n">XWindowAttributes</span> <span class="o">*</span><span class="n">wa</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">Window</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">None</span><span class="p">;</span>
+
+	<span class="c1">// ...
+</span><span class="c1"></span>
+<span class="hl">	<span class="k">if</span> <span class="p">(</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">wintoclient</span><span class="p">(</span><span class="n">trans</span><span class="p">)))</span> <span class="p">{</span>
+</span><span class="hl">		<span class="n">c</span><span class="o">-&gt;</span><span class="n">mon</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">mon</span><span class="p">;</span>
+</span><span class="hl">		<span class="n">c</span><span class="o">-&gt;</span><span class="n">tags</span> <span class="o">=</span> <span class="n">t</span><span class="o">-&gt;</span><span class="n">tags</span><span class="p">;</span>
+</span>	<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+		<span class="c1">// ...
+</span><span class="c1"></span>	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p>As you can see, it&rsquo;s pretty simple, <code>XGetTransientForHint</code> assigns a <code>Window</code>
+to the <code>trans</code> variable, if it succeeds, and then we get the respective
+<code>Client</code> with the <code>wintoclient</code> function.</p>
+<p>This example provided me with enough knowledge to solve most of my problems:</p>
+<ul>
+<li>I don&rsquo;t want them in the taskbar.</li>
+<li>I don&rsquo;t want them in the monocle layout count.</li>
+<li>I never want to focus on these transient windows with the keyboard.</li>
+<li>When I apply the nth tag to the leader window, the same tag should be applied
+to its transient windows.</li>
+<li>On floating layout, if I focus on a leader window, I want its transient
+windows to be raised into view as well.</li>
+</ul>
+<h2 class="group pt-3" id="skipping-transient-windows-in-the-taskbar">
+  Skipping transient windows in the taskbar
+  <a class="hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-the-taskbar">#</a>
+</h2>
+<p>The taskbar is drawn by the <code>drawbar</code> function.</p>
+<p>Since I applied the <code>awesomebar</code> patch to my <code>dwm</code> build, I wanted to ignore
+transient windows in the taskbar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<span class="nf">drawbar</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="c1">// ...
+</span><span class="c1"></span>	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">Window</span> <span class="n">trans</span><span class="p">;</span>
+
+	<span class="c1">// ...
+</span><span class="c1"></span>	<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">clients</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+<span class="hl">		<span class="k">if</span> <span class="p">(</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
+</span><span class="hl">			<span class="n">n</span><span class="o">++</span><span class="p">;</span>
+</span>		<span class="c1">// ...
+</span><span class="c1"></span>	<span class="p">}</span>
+
+	<span class="c1">// ...
+</span><span class="c1"></span>
+	<span class="k">if</span> <span class="p">((</span><span class="n">w</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">ww</span> <span class="o">-</span> <span class="n">sw</span> <span class="o">-</span> <span class="n">stw</span> <span class="o">-</span> <span class="n">x</span><span class="p">)</span> <span class="o">&gt;</span> <span class="n">bh</span><span class="p">)</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
+			<span class="c1">// ...
+</span><span class="c1"></span>			<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">clients</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
+				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">||</span> <span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
+					<span class="k">continue</span><span class="p">;</span>
+<span class="hl">				<span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">sel</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+</span><span class="hl">					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeSel</span><span class="p">;</span>
+</span>				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">HIDDEN</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeHid</span><span class="p">;</span>
+				<span class="k">else</span>
+					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeNorm</span><span class="p">;</span>
+				<span class="n">drw_setscheme</span><span class="p">(</span><span class="n">drw</span><span class="p">,</span> <span class="n">scheme</span><span class="p">[</span><span class="n">scm</span><span class="p">]);</span>
+				<span class="c1">// ...
+</span><span class="c1"></span>			<span class="p">}</span>
+		<span class="c1">// ...
+</span><span class="c1"></span>		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><p>We need to be careful here and also change the <code>buttonpress</code> function, which
+handles clicks in the taskbar:</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/dwm.c b/dwm.c
+</span><span class="gh"></span><span class="gd">--- a/dwm.c
+</span><span class="gd"></span><span class="gi">+++ b/dwm.c
+</span><span class="gi"></span><span class="gu">@@ -518,6 +518,7 @@ buttonpress(XEvent *e)
+</span><span class="gu"></span>	Client *c;
+	Monitor *m;
+	XButtonPressedEvent *ev = &amp;e-&gt;xbutton;
+<span class="gi">+	Window trans = None;
+</span><span class="gi"></span> 
+	click = ClkRootWin;
+	/* focus monitor if necessary */
+<span class="gu">@@ -546,7 +547,7 @@ buttonpress(XEvent *e)
+</span><span class="gu"></span> 
+			if (c) {
+				do {
+<span class="gd">-					if (!ISVISIBLE(c))
+</span><span class="gd"></span><span class="gi">+					if (!ISVISIBLE(c) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans))
+</span><span class="gi"></span>						continue;
+					else
+						x += (1.0 / (double)m-&gt;bt) * m-&gt;btw;
+</code></pre></div><p>Later, by investigating various <code>xprop</code> output, I found that some windows give
+a hint called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;t include
+them in the taskbar, <a href="https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc">so I went ahead with
+it</a>.</p>
+<h2 class="group pt-3" id="skipping-transient-windows-in-monocle-layout-count">
+  Skipping transient windows in monocle layout count
+  <a class="hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-monocle-layout-count">#</a>
+</h2>
+<p>This is simple, we just need to <em>not</em> increment a counter when the window is
+transient:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<span class="nf">monocle</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">;</span>
+	<span class="n">Window</span> <span class="n">trans</span><span class="p">;</span>
+
+	<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">clients</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
+<span class="hl">		<span class="k">if</span> <span class="p">(</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
+</span>			<span class="n">n</span><span class="o">++</span><span class="p">;</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="cm">/* override layout symbol */</span>
+<span class="hl">		<span class="n">snprintf</span><span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="s">&#34;[%d]&#34;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+</span>	<span class="c1">// ...
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></div><h2 class="group pt-3" id="do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">
+  Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
+  <a class="hidden text-highlight group-hover:inline" href="#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">#</a>
+</h2>
+<p>I started by checking which function is bound to these keys in <code>config.h</code>: the
+<code>focusstack</code> function.</p>
+<p>Then it&rsquo;s quick to realize I just need to add another condition to the various
+if statements (careful not to mix up the <code>i</code> and <code>c</code> variables):</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
+</span><span class="gh">index 86e4a41..852666b 100644
+</span><span class="gh"></span><span class="gd">--- a/suckless/dwm/dwm.c
+</span><span class="gd"></span><span class="gi">+++ b/suckless/dwm/dwm.c
+</span><span class="gi"></span><span class="gu">@@ -1053,6 +1053,7 @@ void
+</span><span class="gu"></span> focusstack(int inc, int hid)
+ {
+	Client *c = NULL, *i;
+<span class="gi">+	Window trans = None;
+</span><span class="gi"></span> 
+	if (!selmon-&gt;sel &amp;&amp; !hid)
+		return;
+<span class="gu">@@ -1062,22 +1063,22 @@ focusstack(int inc, int hid)
+</span><span class="gu"></span>	if (inc &gt; 0) {
+		if (selmon-&gt;sel)
+			for (c = selmon-&gt;sel-&gt;next;
+<span class="gd">-					 c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)));
+</span><span class="gd"></span><span class="gi">+					 c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans));
+</span><span class="gi"></span>					 c = c-&gt;next);
+		if (!c)
+			for (c = selmon-&gt;clients;
+<span class="gd">-					 c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)));
+</span><span class="gd"></span><span class="gi">+					 c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans));
+</span><span class="gi"></span>					 c = c-&gt;next);
+	} else {
+		if (selmon-&gt;sel) {
+			for (i = selmon-&gt;clients; i != selmon-&gt;sel; i = i-&gt;next)
+<span class="gd">-				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)))
+</span><span class="gd"></span><span class="gi">+				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))
+</span><span class="gi"></span>					c = i;
+		} else
+			c = selmon-&gt;clients;
+		if (!c)
+			for (; i; i = i-&gt;next)
+<span class="gd">-				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)))
+</span><span class="gd"></span><span class="gi">+				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))
+</span><span class="gi"></span>					c = i;
+	}
+</code></pre></div><h2 class="group pt-3" id="applying-nth-tag-to-a-leader-windows-transient-windows">
+  Applying nth tag to a leader window&rsquo;s transient windows
+  <a class="hidden text-highlight group-hover:inline" href="#applying-nth-tag-to-a-leader-windows-transient-windows">#</a>
+</h2>
+<p>To achieve this, I also started by checking which function is bound to
+<kbd>Mod</kbd> + <kbd>Shift</kbd> + <kbd>n</kbd> in <code>config.h</code>, which is the
+<code>tag</code> function.</p>
+<p>Then I modified it to apply the same tag to all transient windows whose window
+leader is the selected client:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<span class="nf">tag</span><span class="p">(</span><span class="k">const</span> <span class="n">Arg</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+	<span class="n">Window</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">None</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="n">selmon</span><span class="o">-&gt;</span><span class="n">sel</span> <span class="o">&amp;&amp;</span> <span class="n">arg</span><span class="o">-&gt;</span><span class="n">ui</span> <span class="o">&amp;</span> <span class="n">TAGMASK</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">selmon</span><span class="o">-&gt;</span><span class="n">sel</span><span class="o">-&gt;</span><span class="n">tags</span> <span class="o">=</span> <span class="n">arg</span><span class="o">-&gt;</span><span class="n">ui</span> <span class="o">&amp;</span> <span class="n">TAGMASK</span><span class="p">;</span>
+
+<span class="hl">		<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">selmon</span><span class="o">-&gt;</span><span class="n">stack</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">snext</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">			<span class="k">if</span> <span class="p">(</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">wintoclient</span><span class="p">(</span><span class="n">trans</span><span class="p">)))</span> <span class="p">{</span>
+</span><span class="hl">				<span class="k">if</span> <span class="p">(</span><span class="n">selmon</span><span class="o">-&gt;</span><span class="n">sel</span> <span class="o">==</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">					<span class="n">c</span><span class="o">-&gt;</span><span class="n">tags</span> <span class="o">=</span> <span class="n">arg</span><span class="o">-&gt;</span><span class="n">ui</span> <span class="o">&amp;</span> <span class="n">TAGMASK</span><span class="p">;</span>
+</span><span class="hl">				<span class="p">}</span>
+</span><span class="hl">			<span class="p">}</span>
+</span><span class="hl">		<span class="p">}</span>
+</span>
+		<span class="n">focus</span><span class="p">(</span><span class="nb">NULL</span><span class="p">);</span>
+		<span class="n">arrange</span><span class="p">(</span><span class="n">selmon</span><span class="p">);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><h2 class="group pt-3" id="raising-all-transient-windows-when-the-leader-window-gets-focused">
+  Raising all transient windows when the leader window gets focused
+  <a class="hidden text-highlight group-hover:inline" href="#raising-all-transient-windows-when-the-leader-window-gets-focused">#</a>
+</h2>
+<p>Since the transient windows do not appear in the taskbar and we also ignore
+them in the <code>focusstack</code> function, there is no way to focus on them if they&rsquo;re
+not visible on the screen.</p>
+<p>So in floating layout there&rsquo;s an UX problem where transient windows are never
+visible.</p>
+<p>The natural thing to do here is to raise all windows into view when the leader
+window gets focus:</p>
+<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
+</span><span class="gh">index 389c61d..70a6dc1 100644
+</span><span class="gh"></span><span class="gd">--- a/suckless/dwm/dwm.c
+</span><span class="gd"></span><span class="gi">+++ b/suckless/dwm/dwm.c
+</span><span class="gi"></span><span class="gu">@@ -1001,6 +1001,9 @@ expose(XEvent *e)
+</span><span class="gu"></span> void
+ focus(Client *c)
+ {
+<span class="gi">+	Client *i = NULL, *t = NULL;
+</span><span class="gi">+	Window trans = None;
+</span><span class="gi">+
+</span><span class="gi"></span> 	if (!c || !ISVISIBLE(c))
+ 		for (c = selmon-&gt;stack; c &amp;&amp; (!ISVISIBLE(c) || HIDDEN(c)); c = c-&gt;snext);
+ 	if (selmon-&gt;sel &amp;&amp; selmon-&gt;sel != c) {
+<span class="gu">@@ -1023,6 +1026,12 @@ focus(Client *c)
+</span><span class="gu"></span> 		grabbuttons(c, 1);
+ 		XSetWindowBorder(dpy, c-&gt;win, scheme[SchemeSel][ColBorder].pixel);
+ 		setfocus(c);
+<span class="gi">+
+</span><span class="gi">+		for (i = selmon-&gt;stack; i; i = i-&gt;snext) {
+</span><span class="gi">+			if (ISVISIBLE(i) &amp;&amp; XGetTransientForHint(dpy, i-&gt;win, &amp;trans) &amp;&amp; (t = wintoclient(trans)) &amp;&amp; (t == c)) {
+</span><span class="gi">+				XRaiseWindow(dpy, i-&gt;win);
+</span><span class="gi">+			}
+</span><span class="gi">+		}
+</span><span class="gi"></span> 	} else {
+ 		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
+ 		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
+</code></pre></div><h2 class="group pt-3" id="final-result">
+  Final result
+  <a class="hidden text-highlight group-hover:inline" href="#final-result">#</a>
+</h2>
+<p>Here&rsquo;s a demonstration of the final result:</p>
+<video controls width="100%">
+  <source src="./demo.mp4" type="video/mp4">
+</video>
+
+
+    <hr />
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      
+        <a href="/posts/making-vim-understand-typescript-path-mapping/">
+          « Making Vim understand TypeScript path mapping
+        </a>
+      
+
+      
+    </div>
+  </article>
+
+    </main>
+
+    <footer class="mt-8 mb-3 text-center text-sm">
+  <div>
+    Icons by <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
+  </div>
+
+  <span>
+    <a class="text-primary" href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
+    <a class="text-primary" href="https://github.com/phelipetls">GitHub</a> |
+    <a class="text-primary" href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
+  </span>
+</footer>
+
+
+    
+      
+    
+
+    <button
+  id="theme-button"
+  class="text-background bg-primary rounded-full w-12 h-12 fixed bottom-6 right-6 opacity-75 hover:opacity-100 transition transition-opacity duration-75 ease-in-out"
+  aria-label="Change theme"
+>
+  <svg class="mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+      <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+    </defs>
+
+    <use href="#sun" />
+  </svg>
+</button>
+
+<script>
+  const btn = document.querySelector("#theme-button");
+  const btnSvgIcon = document.querySelector("use")
+
+  const changeTogglerSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon"
+    btnSvgIcon.setAttribute("href", icon)
+  }
+
+  const theme = localStorage.getItem("__theme");
+  if (theme) {
+    changeTogglerSvgIcon(theme)
+  }
+
+  btn.addEventListener("click", function() {
+    if (document.body.dataset.theme === "dark") {
+      window.__setTheme("light");
+      changeTogglerSvgIcon("light")
+      return;
+    }
+    window.__setTheme("dark");
+    changeTogglerSvgIcon("dark")
+  });
+</script>
+
+  </body>
+</html>

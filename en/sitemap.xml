@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://phelipetls.github.io/</loc>
-    <lastmod>2021-09-15T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
@@ -15,6 +15,61 @@
                 hreflang="en"
                 href="https://phelipetls.github.io/"
                 />
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/c/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/dwm/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/posts/improving-the-android-studio-experience-in-dwm/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/linux/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/posts/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/tags/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/x11/</loc>
+    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -30,36 +85,6 @@
   <url>
     <loc>https://phelipetls.github.io/tags/nvim/</loc>
     <lastmod>2021-09-15T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/posts/</loc>
-    <lastmod>2021-09-15T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/posts/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/tags/</loc>
-    <lastmod>2021-09-15T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/tags/"
-                />
   </url>
   
   <url>
