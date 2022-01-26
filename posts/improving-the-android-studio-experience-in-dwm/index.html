@@ -130,10 +130,11 @@ window with the Android device and a window with buttons to control it appear
 ever wanting to focus the other ones (except by interacting with the mouse) and
 I don&rsquo;t want them to show up in the taskbar (since I use the
 <a href="https://dwm.suckless.org/patches/awesomebar/"><code>awesomebar</code></a> patch).</p>
-<p>At first, I went in and modified the source code ignore these windows by their
-<code>WM_NAME</code> properties, which is easy to find out with <code>xprop</code>. The thing is
-they&rsquo;re very badly named and not very distinct from each other).</p>
-<p>But later I learned that these other windows are <a href="https://en.wikipedia.org/wiki/Transient_(computer_programming)"><em>transient
+<p>At first, I went in and modified the source code to ignore these windows by
+their <code>WM_NAME</code> properties, which is easy to find out with <code>xprop</code>. But these
+windows are very badly named and their names are not very distinct from the
+device window.</p>
+<p>Later I learned that these other windows are <a href="https://en.wikipedia.org/wiki/Transient_(computer_programming)"><em>transient
 windows</em></a> in
 X11:</p>
 <blockquote>
@@ -242,7 +243,7 @@ handles clicks in the taskbar:</p>
 						x += (1.0 / (double)m-&gt;bt) * m-&gt;btw;
 </code></pre></div><p>Later, by investigating various <code>xprop</code> output, I found that some windows give
 a hint called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;t include
-them in the taskbar, <a href="https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc">so I went ahead with
+them in the taskbar, it seemed like a good idea so <a href="https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc">I implemented
 it</a>.</p>
 <h2 class="group pt-3" id="skipping-transient-windows-in-monocle-layout-count">
   Skipping transient windows in monocle layout count
@@ -254,9 +255,9 @@ transient:</p>
 <span class="nf">monocle</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">;</span>
-	<span class="n">Window</span> <span class="n">trans</span><span class="p">;</span>
-
+<span class="hl">	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">;</span>
+</span><span class="hl">	<span class="n">Window</span> <span class="n">trans</span><span class="p">;</span>
+</span>
 	<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">clients</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
 <span class="hl">		<span class="k">if</span> <span class="p">(</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
 </span><span class="hl">			<span class="n">n</span><span class="o">++</span><span class="p">;</span>
