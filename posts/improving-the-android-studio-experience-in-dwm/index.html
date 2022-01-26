@@ -259,10 +259,10 @@ transient:</p>
 
 	<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">clients</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span>
 <span class="hl">		<span class="k">if</span> <span class="p">(</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
-</span>			<span class="n">n</span><span class="o">++</span><span class="p">;</span>
-	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="cm">/* override layout symbol */</span>
-<span class="hl">		<span class="n">snprintf</span><span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="s">&#34;[%d]&#34;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
-</span>	<span class="c1">// ...
+</span><span class="hl">			<span class="n">n</span><span class="o">++</span><span class="p">;</span>
+</span>	<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="cm">/* override layout symbol */</span>
+		<span class="n">snprintf</span><span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="s">&#34;[%d]&#34;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
+	<span class="c1">// ...
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><h2 class="group pt-3" id="do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">
   Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
