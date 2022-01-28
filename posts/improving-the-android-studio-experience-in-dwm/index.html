@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
-<meta name="deploy-date" content="2022-01-26">
+<meta name="deploy-date" content="2022-01-28">
 <meta name="publish-date" content="2022-01-25">
 <meta name="last-modified-date" content="2022-01-25">
 <meta name="author" content="">
@@ -151,9 +151,9 @@ code</a>:</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">manage</span><span class="p">(</span><span class="n">Window</span> <span class="n">w</span><span class="p">,</span> <span class="n">XWindowAttributes</span> <span class="o">*</span><span class="n">wa</span><span class="p">)</span>
 <span class="p">{</span>
-	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
-	<span class="n">Window</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">None</span><span class="p">;</span>
-
+<span class="hl">	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
+</span><span class="hl">	<span class="n">Window</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">None</span><span class="p">;</span>
+</span>
 	<span class="c1">// ...
 </span><span class="c1"></span>
 <span class="hl">	<span class="k">if</span> <span class="p">(</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">wintoclient</span><span class="p">(</span><span class="n">trans</span><span class="p">)))</span> <span class="p">{</span>
@@ -164,13 +164,13 @@ code</a>:</p>
 </span><span class="c1"></span>	<span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div><p>As you can see, it&rsquo;s pretty simple, <code>XGetTransientForHint</code> assigns a <code>Window</code>
-to the <code>trans</code> variable, if it succeeds, and then we get the respective
+to the <code>trans</code> variable (if it succeeds), and then we get the respective
 <code>Client</code> with the <code>wintoclient</code> function.</p>
 <p>This example provided me with enough knowledge to solve most of my problems:</p>
 <ul>
 <li>I don&rsquo;t want them in the taskbar.</li>
 <li>I don&rsquo;t want them in the monocle layout count.</li>
-<li>I never want to focus on these transient windows with the keyboard.</li>
+<li>I never want to focus them with the keyboard.</li>
 <li>When I apply the nth tag to the leader window, the same tag should be applied
 to its transient windows.</li>
 <li>On floating layout, if I focus on a leader window, I want its transient
@@ -181,8 +181,7 @@ windows to be raised into view as well.</li>
   <a class="hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-the-taskbar">#</a>
 </h2>
 <p>The taskbar is drawn by the <code>drawbar</code> function.</p>
-<p>Since I applied the <code>awesomebar</code> patch to my <code>dwm</code> build, I wanted to ignore
-transient windows in the taskbar:</p>
+<p>I just need to check if a window is transient and, if so, skip:</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">drawbar</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
 <span class="p">{</span>
@@ -203,11 +202,11 @@ transient windows in the taskbar:</p>
 		<span class="k">if</span> <span class="p">(</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
 			<span class="c1">// ...
 </span><span class="c1"></span>			<span class="k">for</span> <span class="p">(</span><span class="n">c</span> <span class="o">=</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">clients</span><span class="p">;</span> <span class="n">c</span><span class="p">;</span> <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">next</span><span class="p">)</span> <span class="p">{</span>
-				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">||</span> <span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
-					<span class="k">continue</span><span class="p">;</span>
-<span class="hl">				<span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">sel</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
-</span><span class="hl">					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeSel</span><span class="p">;</span>
-</span>				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">HIDDEN</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
+<span class="hl">				<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="o">||</span> <span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
+</span><span class="hl">					<span class="k">continue</span><span class="p">;</span>
+</span>				<span class="k">if</span> <span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">sel</span> <span class="o">==</span> <span class="n">c</span><span class="p">)</span>
+					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeSel</span><span class="p">;</span>
+				<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">HIDDEN</span><span class="p">(</span><span class="n">c</span><span class="p">))</span>
 					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeHid</span><span class="p">;</span>
 				<span class="k">else</span>
 					<span class="n">scm</span> <span class="o">=</span> <span class="n">SchemeNorm</span><span class="p">;</span>
@@ -241,16 +240,16 @@ handles clicks in the taskbar:</p>
 </span><span class="gi"></span>						continue;
 					else
 						x += (1.0 / (double)m-&gt;bt) * m-&gt;btw;
-</code></pre></div><p>Later, by investigating various <code>xprop</code> output, I found that some windows give
-a hint called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;t include
-them in the taskbar, it seemed like a good idea so <a href="https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc">I implemented
-it</a>.</p>
+</code></pre></div><p>Later, by investigating <code>xprop</code> output, I found that some windows give a hint
+called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;t include them
+in the taskbar, this seemed like a better idea too so <a href="https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc">I implemented it as
+well</a>.</p>
 <h2 class="group pt-3" id="skipping-transient-windows-in-monocle-layout-count">
   Skipping transient windows in monocle layout count
   <a class="hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-monocle-layout-count">#</a>
 </h2>
 <p>This is simple, we just need to <em>not</em> increment a counter when the window is
-transient:</p>
+transient, in the <code>monocle</code> function:</p>
 <div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">monocle</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
 <span class="p">{</span>
@@ -348,10 +347,11 @@ leader is the selected client:</p>
 <p>Since the transient windows do not appear in the taskbar and we also ignore
 them in the <code>focusstack</code> function, there is no way to focus on them if they&rsquo;re
 not visible on the screen.</p>
-<p>So in floating layout there&rsquo;s an UX problem where transient windows are never
+<p>So in floating layout there&rsquo;s an usability problem: transient windows are never
 visible.</p>
-<p>The natural thing to do here is to raise all windows into view when the leader
-window gets focus:</p>
+<p>The fix is to raise all transient windows when a window gets focused. Also,
+if a transient window gets focused in a non-floating layout, we should raise it
+as well since transient windows are always floating in dwm). Here&rsquo;s the code:</p>
 <div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
 </span><span class="gh">index 389c61d..70a6dc1 100644
 </span><span class="gh"></span><span class="gd">--- a/suckless/dwm/dwm.c
@@ -360,7 +360,7 @@ window gets focus:</p>
 </span><span class="gu"></span> void
  focus(Client *c)
  {
-<span class="gi">+	Client *i = NULL, *t = NULL;
+<span class="gi">+	Client *i, *t;
 </span><span class="gi">+	Window trans = None;
 </span><span class="gi">+
 </span><span class="gi"></span> 	if (!c || !ISVISIBLE(c))
@@ -370,16 +370,55 @@ window gets focus:</p>
 </span><span class="gu"></span> 		grabbuttons(c, 1);
  		XSetWindowBorder(dpy, c-&gt;win, scheme[SchemeSel][ColBorder].pixel);
  		setfocus(c);
-<span class="gi">+
+
+<span class="gi">+		if (XGetTransientForHint(dpy, c-&gt;win, &amp;trans)) {
+</span><span class="gi">+			XRaiseWindow(dpy, c-&gt;win);
+</span><span class="gi">+		}
+</span><span class="gi">+
 </span><span class="gi">+		for (i = selmon-&gt;stack; i; i = i-&gt;snext) {
-</span><span class="gi">+			if (ISVISIBLE(i) &amp;&amp; XGetTransientForHint(dpy, i-&gt;win, &amp;trans) &amp;&amp; (t = wintoclient(trans)) &amp;&amp; (t == c)) {
+</span><span class="gi">+			if (ISVISIBLE(i) &amp;&amp; (XGetTransientForHint(dpy, i-&gt;win, &amp;trans) &amp;&amp; (t = wintoclient(trans)) &amp;&amp; (t == c))) {
 </span><span class="gi">+				XRaiseWindow(dpy, i-&gt;win);
 </span><span class="gi">+			}
 </span><span class="gi">+		}
 </span><span class="gi"></span> 	} else {
  		XSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);
  		XDeleteProperty(dpy, root, netatom[NetActiveWindow]);
-</code></pre></div><h2 class="group pt-3" id="final-result">
+</code></pre></div><p>This create another problem though&hellip; When the leader window gets unfocused,
+their transient windows would always reamin on top of everything else!</p>
+<p>Thanks to <a href="https://www.reddit.com/r/dwm/comments/sctdxt/comment/huaveje">a comment by
+r/bakkeby</a>, I
+found out that I could use
+<a href="https://tronche.com/gui/x/xlib/window/XLowerWindow.html"><code>XLowerWindow</code></a> in
+the <code>unfocus</code> function to fix this:</p>
+<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<span class="nf">unfocus</span><span class="p">(</span><span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">setfocus</span><span class="p">)</span>
+<span class="p">{</span>
+	<span class="n">Client</span> <span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
+	<span class="n">Window</span> <span class="n">trans</span> <span class="o">=</span> <span class="n">None</span><span class="p">;</span>
+
+	<span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">c</span><span class="p">)</span>
+		<span class="k">return</span><span class="p">;</span>
+	<span class="n">grabbuttons</span><span class="p">(</span><span class="n">c</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
+	<span class="n">XSetWindowBorder</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="n">scheme</span><span class="p">[</span><span class="n">SchemeNorm</span><span class="p">][</span><span class="n">ColBorder</span><span class="p">].</span><span class="n">pixel</span><span class="p">);</span>
+
+<span class="hl">	<span class="k">if</span> <span class="p">(</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">))</span>
+</span><span class="hl">		<span class="n">XLowerWindow</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">);</span>
+</span><span class="hl">
+</span><span class="hl">	<span class="k">for</span> <span class="p">(</span><span class="n">i</span> <span class="o">=</span> <span class="n">c</span><span class="o">-&gt;</span><span class="n">mon</span><span class="o">-&gt;</span><span class="n">stack</span><span class="p">;</span> <span class="n">i</span><span class="p">;</span> <span class="n">i</span> <span class="o">=</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">snext</span><span class="p">)</span> <span class="p">{</span>
+</span><span class="hl">		<span class="k">if</span> <span class="p">(</span><span class="n">ISVISIBLE</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">XGetTransientForHint</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">trans</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">=</span> <span class="n">wintoclient</span><span class="p">(</span><span class="n">trans</span><span class="p">))</span> <span class="o">&amp;&amp;</span> <span class="p">(</span><span class="n">t</span> <span class="o">==</span> <span class="n">c</span><span class="p">)))</span> <span class="p">{</span>
+</span><span class="hl">			<span class="n">XLowerWindow</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">i</span><span class="o">-&gt;</span><span class="n">win</span><span class="p">);</span>
+</span><span class="hl">		<span class="p">}</span>
+</span><span class="hl">	<span class="p">}</span>
+</span>
+	<span class="k">if</span> <span class="p">(</span><span class="n">setfocus</span><span class="p">)</span> <span class="p">{</span>
+		<span class="n">XSetInputFocus</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">RevertToPointerRoot</span><span class="p">,</span> <span class="n">CurrentTime</span><span class="p">);</span>
+		<span class="n">XDeleteProperty</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">netatom</span><span class="p">[</span><span class="n">NetActiveWindow</span><span class="p">]);</span>
+	<span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div><p><strong>Warning</strong>: this is pretty cutting-edge and coming from a person with
+no expertise in C, so it might be broken in several ways. I&rsquo;m just messing
+around.</p>
+<h2 class="group pt-3" id="final-result">
   Final result
   <a class="hidden text-highlight group-hover:inline" href="#final-result">#</a>
 </h2>
@@ -398,6 +437,10 @@ window gets focus:</p>
         </a>
       
 
+      
+        <a class="text-right col-start-2 col-end-2" href="/posts/nodejs-one-liner-to-read-json-files/">
+          Node.js one-liner to read JSON files »
+        </a>
       
     </div>
   </article>

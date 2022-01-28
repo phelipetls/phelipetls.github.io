@@ -4,7 +4,7 @@
   
   <url>
     <loc>https://phelipetls.github.io/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="pt"
@@ -14,6 +14,46 @@
                 rel="alternate"
                 hreflang="en"
                 href="https://phelipetls.github.io/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/javascript/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/posts/nodejs-one-liner-to-read-json-files/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/posts/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/posts/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/tags/</loc>
+    <lastmod>2022-01-26T00:00:00+00:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/tags/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/tags/"
                 />
   </url>
   
@@ -35,36 +75,6 @@
   <url>
     <loc>https://phelipetls.github.io/tags/linux/</loc>
     <lastmod>2022-01-25T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/posts/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/posts/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/tags/</loc>
-    <lastmod>2022-01-25T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/tags/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/tags/"
-                />
   </url>
   
   <url>
@@ -99,11 +109,6 @@
   
   <url>
     <loc>https://phelipetls.github.io/posts/automating-svg-to-jsx-conversion-with-svgr/</loc>
-    <lastmod>2021-09-08T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/tags/javascript/</loc>
     <lastmod>2021-09-08T00:00:00+00:00</lastmod>
   </url>
   
