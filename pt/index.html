@@ -135,8 +135,8 @@
     <p>Olá 👋, sou um desenvolvedor front-end.</p>
 <p>Atualmente trabalho na Mutual, construíndo aplicações mobile e web com React,
 React Native e TypeScript.</p>
-<p>Além de desenvolvimento front-end, também me interesso por desenvolvimento
-back-end, Linux, DevOps, visualização de dados, Econometria, Estatística.</p>
+<p>Também me interesso por desenvolvimento back-end, Linux, DevOps, visualização
+de dados, Econometria e Estatística.</p>
 
   </article>
 
@@ -159,28 +159,12 @@ back-end, Linux, DevOps, visualização de dados, Econometria, Estatística.</p>
       
     
 
-    <script>
-  const themeButton = document.querySelector("#theme-button");
-  const svgIcon = document.querySelector("#theme-button-svg-icon");
+    
 
-  const toggleSvgIcon = function(theme) {
-    const icon = theme === "dark" ? "#sun" : "#moon";
-    svgIcon.setAttribute("href", icon);
-  }
+    
+      
+    
 
-  const theme = localStorage.getItem("__theme");
-
-  if (theme) {
-    toggleSvgIcon(theme);
-  }
-
-  themeButton.addEventListener("click", function() {
-    const newTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
-
-    window.__setTheme(newTheme);
-    toggleSvgIcon(newTheme);
-  });
-</script>
-
+    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
   </body>
 </html>

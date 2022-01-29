@@ -173,7 +173,22 @@
         </li>
       
         <li>
+          <a href="https://phelipetls.github.io/tags/linux/">linux</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/dwm/">dwm</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
           <a href="https://phelipetls.github.io/tags/html/">html</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/vba/">vba</a>
           <span>(1)</span>
         </li>
       
@@ -183,7 +198,12 @@
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/c/">c</a>
+          <a href="https://phelipetls.github.io/tags/ripgrep/">ripgrep</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/hugo/">hugo</a>
           <span>(1)</span>
         </li>
       
@@ -193,7 +213,7 @@
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/eslint/">eslint</a>
+          <a href="https://phelipetls.github.io/tags/x11/">x11</a>
           <span>(1)</span>
         </li>
       
@@ -213,7 +233,7 @@
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/dwm/">dwm</a>
+          <a href="https://phelipetls.github.io/tags/eslint/">eslint</a>
           <span>(1)</span>
         </li>
       
@@ -223,32 +243,12 @@
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/linux/">linux</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/ripgrep/">ripgrep</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/vba/">vba</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/x11/">x11</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
           <a href="https://phelipetls.github.io/tags/flask/">flask</a>
           <span>(1)</span>
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/hugo/">hugo</a>
+          <a href="https://phelipetls.github.io/tags/c/">c</a>
           <span>(1)</span>
         </li>
       
@@ -274,28 +274,12 @@
       
     
 
-    <script>
-  const themeButton = document.querySelector("#theme-button");
-  const svgIcon = document.querySelector("#theme-button-svg-icon");
+    
 
-  const toggleSvgIcon = function(theme) {
-    const icon = theme === "dark" ? "#sun" : "#moon";
-    svgIcon.setAttribute("href", icon);
-  }
+    
+      
+    
 
-  const theme = localStorage.getItem("__theme");
-
-  if (theme) {
-    toggleSvgIcon(theme);
-  }
-
-  themeButton.addEventListener("click", function() {
-    const newTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
-
-    window.__setTheme(newTheme);
-    toggleSvgIcon(newTheme);
-  });
-</script>
-
+    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
   </body>
 </html>

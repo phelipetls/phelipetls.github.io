@@ -208,7 +208,7 @@ API</a>.</p>
 
         <p><strong>Python</strong> library to get geospatial data from the <a href="https://servicodados.ibge.gov.br/api/docs/malhas?versao=2">IBGE
 API</a> or an ArcGIS
-server directly into a <a href="https://geopandas.org/"><code>geopandas</code></a> DataFrame.</p>
+server directly into a <a href="https://geopandas.org/">geopandas</a> DataFrame.</p>
 
       </article>
     
@@ -226,8 +226,8 @@ server directly into a <a href="https://geopandas.org/"><code>geopandas</code></
         <p>A <strong>Python</strong> library to get time series from databases maintained by brazilian
 institutions, such as <a href="https://www3.bcb.gov.br/sgspub">BCB</a>,
 <a href="http://ipeadata.gov.br/beta3/">IPEA</a> and
-<a href="https://sidra.ibge.gov.br/home/ipp/brasil">IBGE</a>, into a <strong>pandas</strong>
-<code>DataFrame</code>.</p>
+<a href="https://sidra.ibge.gov.br/home/ipp/brasil">IBGE</a>, into a
+<a href="https://pandas.pydata.org">pandas</a> DataFrame.</p>
 
       </article>
     
@@ -252,28 +252,12 @@ institutions, such as <a href="https://www3.bcb.gov.br/sgspub">BCB</a>,
       
     
 
-    <script>
-  const themeButton = document.querySelector("#theme-button");
-  const svgIcon = document.querySelector("#theme-button-svg-icon");
+    
 
-  const toggleSvgIcon = function(theme) {
-    const icon = theme === "dark" ? "#sun" : "#moon";
-    svgIcon.setAttribute("href", icon);
-  }
+    
+      
+    
 
-  const theme = localStorage.getItem("__theme");
-
-  if (theme) {
-    toggleSvgIcon(theme);
-  }
-
-  themeButton.addEventListener("click", function() {
-    const newTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
-
-    window.__setTheme(newTheme);
-    toggleSvgIcon(newTheme);
-  });
-</script>
-
+    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
   </body>
 </html>

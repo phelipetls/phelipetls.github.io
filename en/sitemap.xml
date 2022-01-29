@@ -347,32 +347,4 @@
                 />
   </url>
   
-  <url>
-    <loc>https://phelipetls.github.io/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/softwares/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/"
-                />
-  </url>
-  
 </urlset>

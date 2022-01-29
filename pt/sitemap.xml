@@ -272,32 +272,4 @@
     <lastmod>2019-02-18T00:00:00+00:00</lastmod>
   </url>
   
-  <url>
-    <loc>https://phelipetls.github.io/pt/categories/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/categories/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/categories/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/</loc>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/"
-                />
-  </url>
-  
 </urlset>
