@@ -3,51 +3,6 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://phelipetls.github.io/pt/softwares/chart.js/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/chart.js/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/chart.js/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/cypress/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/cypress/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/cypress/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/d3/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/d3/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/d3/"
-                />
-  </url>
-  
-  <url>
     <loc>https://phelipetls.github.io/pt/projects/ipeadata-explorer/</loc>
     <lastmod>2020-09-02T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -59,36 +14,6 @@
                 rel="alternate"
                 hreflang="pt"
                 href="https://phelipetls.github.io/pt/projects/ipeadata-explorer/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/javascript/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/javascript/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/javascript/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/material-ui/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/material-ui/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/material-ui/"
                 />
   </url>
   
@@ -108,36 +33,6 @@
   </url>
   
   <url>
-    <loc>https://phelipetls.github.io/pt/softwares/react/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/react/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/react/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/react-testing-library/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/react-testing-library/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/react-testing-library/"
-                />
-  </url>
-  
-  <url>
     <loc>https://phelipetls.github.io/pt/</loc>
     <lastmod>2020-09-02T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -149,96 +44,6 @@
                 rel="alternate"
                 hreflang="pt"
                 href="https://phelipetls.github.io/pt/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/typescript/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/typescript/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/typescript/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/flask/</loc>
-    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/flask/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/flask/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/pytest/</loc>
-    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/pytest/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/pytest/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/python/</loc>
-    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/python/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/python/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/sqlalchemy/</loc>
-    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/sqlalchemy/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/sqlalchemy/"
                 />
   </url>
   
@@ -258,51 +63,6 @@
   </url>
   
   <url>
-    <loc>https://phelipetls.github.io/pt/softwares/vue/</loc>
-    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/vue/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/vue/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/css/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/css/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/css/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/express/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/express/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/express/"
-                />
-  </url>
-  
-  <url>
     <loc>https://phelipetls.github.io/pt/projects/minesweeper/</loc>
     <lastmod>2020-06-16T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -314,51 +74,6 @@
                 rel="alternate"
                 hreflang="pt"
                 href="https://phelipetls.github.io/pt/projects/minesweeper/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/node/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/node/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/node/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/postgresql/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/postgresql/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/postgresql/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/pandas/</loc>
-    <lastmod>2020-01-25T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/pandas/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/pandas/"
                 />
   </url>
   
@@ -378,21 +93,6 @@
   </url>
   
   <url>
-    <loc>https://phelipetls.github.io/pt/softwares/requests/</loc>
-    <lastmod>2020-01-25T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/requests/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/requests/"
-                />
-  </url>
-  
-  <url>
     <loc>https://phelipetls.github.io/pt/projects/mapsbr/</loc>
     <lastmod>2019-12-29T00:00:00+00:00</lastmod>
     <xhtml:link
@@ -404,21 +104,6 @@
                 rel="alternate"
                 hreflang="pt"
                 href="https://phelipetls.github.io/pt/projects/mapsbr/"
-                />
-  </url>
-  
-  <url>
-    <loc>https://phelipetls.github.io/pt/softwares/unittest/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/softwares/unittest/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/softwares/unittest/"
                 />
   </url>
   
@@ -598,6 +283,20 @@
                 rel="alternate"
                 hreflang="pt"
                 href="https://phelipetls.github.io/pt/categories/"
+                />
+  </url>
+  
+  <url>
+    <loc>https://phelipetls.github.io/pt/softwares/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/softwares/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/softwares/"
                 />
   </url>
   

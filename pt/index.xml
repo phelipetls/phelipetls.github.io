@@ -13,7 +13,7 @@
       <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/projects/ipeadata-explorer/</guid>
-      <description>Um SPA escrito em React para estudantes e pesquisadores explorarem e visualizarem a base de dados do Ipeadata.</description>
+      <description>Aplicação em React para explorar e visualizar a base de dados do Ipeadata.</description>
     </item>
     
     <item>
@@ -22,7 +22,7 @@
       <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/projects/url-shortener/</guid>
-      <description>Este é um simples encurtador de URLs feito para aprender o básico de Flask e Vue.</description>
+      <description>Encurtador de URLs feito para aprender o básico de Flask e Vue.</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/projects/minesweeper/</guid>
-      <description>Esta é uma implementação de campo minado escrito com JavaScript, CSS, Node.js e PostgreSQL, para me ajudar a aprender uma stack básica de desenvolvimento web.</description>
+      <description>Implementação de Campo Minado que me ajudou a aprender desenvolvimento web full-stack básico com JavaScript, CSS, Node.js e PostgreSQL.</description>
     </item>
     
     <item>
@@ -40,7 +40,7 @@
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/projects/reportforce/</guid>
-      <description>Este projeto é um cliente para a API de Analytics da Salesforce, para fazer download de relatórios.</description>
+      <description>Biblioteca em Python para obter relatórios da Salesforce por meio de sua Analytics REST API.</description>
     </item>
     
     <item>
@@ -49,7 +49,7 @@
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/projects/mapsbr/</guid>
-      <description>Esta é uma biblioteca em Python que serve como interface para obter dados geoespaciais de fontes como IBGE ou um servidor ArcGIS em um DataFrame incrementado pela biblioteca geopandas.</description>
+      <description>Biblioteca em Python para obter dados geoespaciais da API de malhas do IBGE ou de um servidor ArcGIS em um DataFrame do geopandas</description>
     </item>
     
     <item>
@@ -58,7 +58,7 @@
       <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/projects/seriesbr/</guid>
-      <description>Uma biblioteca em Python para ajudar baixar séries temporais de bancos de dados de instituições governamentais do Brasil, como o Banco Central do Brasil, IPEA e IBGE.</description>
+      <description>Biblioteca em Python para obter séries temporais de bancos de dados mantidos por instituições brasileiras como o BCB, IPEA e IBGE em um DataFrame do pandas.</description>
     </item>
     
     <item>

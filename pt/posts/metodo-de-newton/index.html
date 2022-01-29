@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial." />
-<meta name="deploy-date" content="2022-01-28">
+<meta name="deploy-date" content="2022-01-29">
 <meta name="publish-date" content="2019-03-17">
 <meta name="last-modified-date" content="2019-03-17">
 <meta name="author" content="">
@@ -58,7 +58,7 @@
     
   </head>
 
-  <body class="preload text-normal bg-background flex flex-col container max-w-2xl min-h-full px-4 py-2 my-0 mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
+  <body class="px-4 py-8 preload text-normal bg-background flex flex-col container max-w-2xl min-h-full mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
     <script>
   window.__setTheme = function(newTheme) {
     document.body.setAttribute("data-theme", newTheme);
@@ -86,24 +86,57 @@
   })
 </script>
 
-    <header class="mb-8">
-  <div class="flex flex-col justify-between gap-2 sm:flex-row">
-    <a class="no-underline font-bold text-primary" href="https://phelipetls.github.io/pt/">
-      Phelipe Teles
-    </a>
 
-    <nav class="flex flex-row flex-wrap gap-2"><a
-          class="no-underline text-normal"
-          href="https://phelipetls.github.io/pt/posts"
-        >
-            Posts
-        </a><a
-          class="no-underline text-normal"
-          href="https://phelipetls.github.io/pt/projects"
-        >
-            Projetos
-        </a></nav>
-  </div>
+    <header class="mb-16">
+  <h1 class="mb-4">
+    <div class="flex justify-between">
+      <a class="border-0 font-bold" href="https://phelipetls.github.io/pt/">
+        Phelipe Teles
+      </a>
+
+      <button
+        id="theme-button"
+        class="text-background bg-primary rounded-lg px-1 ring-divider ring-offset-background focus:ring-offset-2 focus:ring-4"
+        aria-label="Mudar tema"
+      >
+        <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24">
+          <defs>
+            <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+
+            <g id="sun">
+<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
+<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
+<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
+<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
+<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
+</g>
+
+          </defs>
+
+          <use id="theme-button-svg-icon" href="#sun" />
+        </svg>
+      </button>
+    </div>
+  </h1>
+
+  
+
+  <nav class="flex flex-row flex-wrap gap-2"><a
+        class="text-normal "
+        href="https://phelipetls.github.io/pt/"
+      >
+        Sobre
+      </a><a
+        class="text-normal "
+        href="https://phelipetls.github.io/pt/posts/"
+      >
+        Posts
+      </a><a
+        class="text-normal "
+        href="https://phelipetls.github.io/pt/projects/"
+      >
+        Projetos
+      </a></nav>
 </header>
 
 
@@ -112,23 +145,33 @@
   <article>
     <h1>Método de Newton</h1>
 
-    <div class="flex flex-col gap-2 flex-wrap align-center sm:flex-row sm:justify-between my-1">
-      <time datetime="2019-03-17">
-        Mar 17, 2019
-      </time>
+    <time datetime="2019-03-17">
+      Mar 17, 2019
+    </time>
 
-      <div class="sm:flex gap-2">
-        
-          <a class="no-underline text-normal" href="/pt/tags/matplotlib/">#matplotlib</a>
-        
-          <a class="no-underline text-normal" href="/pt/tags/numpy/">#numpy</a>
-        
-          <a class="no-underline text-normal" href="/pt/tags/sympy/">#sympy</a>
-        
-      </div>
+    <div class="sm:flex gap-2 mt-2">
+      
+  
+    <a
+      class="no-underline rounded px-2 bg-background-code border border-divider hover:bg-highlight hover:text-background"
+      href="/pt/tags/matplotlib/"
+    >matplotlib</a>
+  
+    <a
+      class="no-underline rounded px-2 bg-background-code border border-divider hover:bg-highlight hover:text-background"
+      href="/pt/tags/numpy/"
+    >numpy</a>
+  
+    <a
+      class="no-underline rounded px-2 bg-background-code border border-divider hover:bg-highlight hover:text-background"
+      href="/pt/tags/sympy/"
+    >sympy</a>
+  
+
+
     </div>
 
-    <hr />
+    <hr class="my-8" />
 
     <p>O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de
 uma equação, normalmente uma para a qual a solução não é tão trivial. Por
@@ -472,26 +515,38 @@ basta plotar o gráfico em questão para ter uma ideia de onde estão as raízes
 como acabamos de fazer aqui com a ajuda do matplotlib.</p>
 
 
-    <hr />
+    <hr class="my-8" />
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div class="grid grid-cols-auto gap-4">
       
-        <a class="col-start-1 col-end-1" href="/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/">
-          « Três algoritmos para a sequência de Fibonacci
-        </a>
+        <div class="flex group gap-2 col-start-1 col-end-1">
+          <div class="group-hover:text-highlight">
+            ←
+          </div>
+
+          <a class="border-0" href="/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/">
+            Três algoritmos para a sequência de Fibonacci
+          </a>
+        </div>
       
 
       
-        <a class="text-right col-start-2 col-end-2" href="/pt/posts/spread-bancario-brasileiro-r/">
-          Spread bancário brasileiro: limpeza e visualização de dados »
-        </a>
+        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+          <a class="border-0 text-right" href="/pt/posts/spread-bancario-brasileiro-r/">
+            Spread bancário brasileiro: limpeza e visualização de dados
+          </a>
+
+          <div class="group-hover:text-highlight">
+            →
+          </div>
+        </div>
       
     </div>
   </article>
 
     </main>
 
-    <footer class="mt-8 mb-3 text-center text-sm">
+    <footer class="mt-16 text-center">
   <div>
     Ícones de <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
   </div>
@@ -508,51 +563,26 @@ como acabamos de fazer aqui com a ajuda do matplotlib.</p>
       
     
 
-    <button
-  id="theme-button"
-  class="text-background bg-primary rounded-full w-12 h-12 fixed bottom-6 right-6 opacity-75 hover:opacity-100 transition transition-opacity duration-75 ease-in-out"
-  aria-label="Mudar tema"
->
-  <svg class="mx-auto fill-current" width="24" height="24" viewBox="0 0 24 24">
-    <defs>
-      <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+    <script>
+  const themeButton = document.querySelector("#theme-button");
+  const svgIcon = document.querySelector("#theme-button-svg-icon");
 
-      <g id="sun">
-<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
-<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
-<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
-<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
-<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
-</g>
-
-    </defs>
-
-    <use href="#sun" />
-  </svg>
-</button>
-
-<script>
-  const btn = document.querySelector("#theme-button");
-  const btnSvgIcon = document.querySelector("use")
-
-  const changeTogglerSvgIcon = function(theme) {
-    const icon = theme === "dark" ? "#sun" : "#moon"
-    btnSvgIcon.setAttribute("href", icon)
+  const toggleSvgIcon = function(theme) {
+    const icon = theme === "dark" ? "#sun" : "#moon";
+    svgIcon.setAttribute("href", icon);
   }
 
   const theme = localStorage.getItem("__theme");
+
   if (theme) {
-    changeTogglerSvgIcon(theme)
+    toggleSvgIcon(theme);
   }
 
-  btn.addEventListener("click", function() {
-    if (document.body.dataset.theme === "dark") {
-      window.__setTheme("light");
-      changeTogglerSvgIcon("light")
-      return;
-    }
-    window.__setTheme("dark");
-    changeTogglerSvgIcon("dark")
+  themeButton.addEventListener("click", function() {
+    const newTheme = document.body.dataset.theme === "dark" ? "light" : "dark";
+
+    window.__setTheme(newTheme);
+    toggleSvgIcon(newTheme);
   });
 </script>
 

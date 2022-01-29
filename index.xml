@@ -124,7 +124,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Wed, 02 Sep 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/ipeadata-explorer/</guid>
-      <description>This is a single page application written in React for students and researches to explore and visualize the Ipeadata database.</description>
+      <description>A React app to explore and visualize the Ipeadata database.</description>
     </item>
     
     <item>
@@ -133,7 +133,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/url-shortener/</guid>
-      <description>This is a simple URL shortener made for learning the basics of Flask and Vue.</description>
+      <description>Simple URL shortener made for learning the very basics of Flask and Vue.</description>
     </item>
     
     <item>
@@ -160,7 +160,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/minesweeper/</guid>
-      <description>This is a minesweeper implementation in pure JavaScript, to help me learn a basic web development stack with vanilla JS, CSS, Node and PostgreSQL.</description>
+      <description>A Minesweeper implementation that helped me learn the very basics of full-stack web development with JavaScript, CSS, Node.js and PostgreSQL.</description>
     </item>
     
     <item>
@@ -169,7 +169,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Sat, 25 Jan 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/reportforce/</guid>
-      <description>This project is a client for Salesforce&amp;rsquo;s Analytics REST API for downloading reports.</description>
+      <description>A Python library to get reports from Salesforce through the Analytics REST API.</description>
     </item>
     
     <item>
@@ -178,7 +178,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/mapsbr/</guid>
-      <description>This library provides an interface to get geospatial data from an IBGE API or an ArcGIS server in an augmented geopandas DataFrame.</description>
+      <description>Python library to get geospatial data from the IBGE API or an ArcGIS server directly into a geopandas DataFrame.</description>
     </item>
     
     <item>
@@ -187,7 +187,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/projects/seriesbr/</guid>
-      <description>A Python package to get time series from brazilian government institutions&#39; databases, such as the Brazilian Central Bank, Institute of Applied Economic Research and Brazilian Institute of Geography and Statistics.</description>
+      <description>A Python library to get time series from databases maintained by brazilian institutions, such as BCB, IPEA and IBGE, into a pandas DataFrame.</description>
     </item>
     
   </channel>
