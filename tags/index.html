@@ -47,33 +47,37 @@
   </head>
 
   <body class="px-4 py-8 preload text-normal bg-background flex flex-col container max-w-2xl min-h-full mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
-    <script>
-  window.__setTheme = function(newTheme) {
-    document.body.setAttribute("data-theme", newTheme);
-    localStorage.setItem("__theme", newTheme);
-    const oldTheme = newTheme === "dark" ? "light" : "dark";
-    document
-      .querySelector("link[href*='" + oldTheme + "']")
-      .setAttribute("disabled", "");
-    document
-      .querySelector("link[href*='" + newTheme + "']")
-      .removeAttribute("disabled");
-  };
+    
 
-  const storedTheme = localStorage.getItem("__theme");
+    
+      
+    
 
-  if (storedTheme) {
-    window.__setTheme(storedTheme);
-  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    window.__setTheme("dark");
-  }
+    <script>window.__setTheme = function(newTheme) {
+  document.body.setAttribute("data-theme", newTheme);
+  localStorage.setItem("__theme", newTheme);
+  const oldTheme = newTheme === "dark" ? "light" : "dark";
+  document
+    .querySelector("link[href*='" + oldTheme + "']")
+    .setAttribute("disabled", "");
+  document
+    .querySelector("link[href*='" + newTheme + "']")
+    .removeAttribute("disabled");
+};
 
-   
-  window.addEventListener("load", function() {
-    document.body.classList.remove("preload")
-  })
+const storedTheme = localStorage.getItem("__theme");
+
+if (storedTheme) {
+  window.__setTheme(storedTheme);
+} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  window.__setTheme("dark");
+}
+
+/* Enable animations */
+window.addEventListener("load", function() {
+  document.body.classList.remove("preload")
+})
 </script>
-
 
     <header class="mb-16">
   <h1 class="mb-4">
@@ -157,16 +161,6 @@
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/python/">python</a>
-          <span>(3)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/typescript/">typescript</a>
-          <span>(3)</span>
-        </li>
-      
-        <li>
           <a href="https://phelipetls.github.io/tags/nvim/">nvim</a>
           <span>(3)</span>
         </li>
@@ -177,32 +171,27 @@
         </li>
       
         <li>
+          <a href="https://phelipetls.github.io/tags/python/">python</a>
+          <span>(3)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/typescript/">typescript</a>
+          <span>(3)</span>
+        </li>
+      
+        <li>
           <a href="https://phelipetls.github.io/tags/react/">react</a>
           <span>(2)</span>
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/ripgrep/">ripgrep</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/linux/">linux</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/salesforce/">salesforce</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/tools/">tools</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
           <a href="https://phelipetls.github.io/tags/css/">css</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/x11/">x11</a>
           <span>(1)</span>
         </li>
       
@@ -212,32 +201,12 @@
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/html/">html</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
           <a href="https://phelipetls.github.io/tags/hugo/">hugo</a>
           <span>(1)</span>
         </li>
       
         <li>
-          <a href="https://phelipetls.github.io/tags/lsp/">lsp</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/flask/">flask</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/excel/">excel</a>
-          <span>(1)</span>
-        </li>
-      
-        <li>
-          <a href="https://phelipetls.github.io/tags/x11/">x11</a>
+          <a href="https://phelipetls.github.io/tags/ripgrep/">ripgrep</a>
           <span>(1)</span>
         </li>
       
@@ -252,7 +221,42 @@
         </li>
       
         <li>
+          <a href="https://phelipetls.github.io/tags/html/">html</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/lsp/">lsp</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/salesforce/">salesforce</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/tools/">tools</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/excel/">excel</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/linux/">linux</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
           <a href="https://phelipetls.github.io/tags/heroku/">heroku</a>
+          <span>(1)</span>
+        </li>
+      
+        <li>
+          <a href="https://phelipetls.github.io/tags/flask/">flask</a>
           <span>(1)</span>
         </li>
       
@@ -280,23 +284,16 @@
 
 
     
+
+    
+    
+
+    
       
-    
-
-    
-
-    
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-
-    
-
-    
-      
-    
-
     <script src="https://phelipetls.github.io/js/resume-download.js"></script>
   </body>
 </html>

@@ -50,33 +50,37 @@
   </head>
 
   <body class="px-4 py-8 preload text-normal bg-background flex flex-col container max-w-2xl min-h-full mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
-    <script>
-  window.__setTheme = function(newTheme) {
-    document.body.setAttribute("data-theme", newTheme);
-    localStorage.setItem("__theme", newTheme);
-    const oldTheme = newTheme === "dark" ? "light" : "dark";
-    document
-      .querySelector("link[href*='" + oldTheme + "']")
-      .setAttribute("disabled", "");
-    document
-      .querySelector("link[href*='" + newTheme + "']")
-      .removeAttribute("disabled");
-  };
+    
 
-  const storedTheme = localStorage.getItem("__theme");
+    
+      
+    
 
-  if (storedTheme) {
-    window.__setTheme(storedTheme);
-  } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-    window.__setTheme("dark");
-  }
+    <script>window.__setTheme = function(newTheme) {
+  document.body.setAttribute("data-theme", newTheme);
+  localStorage.setItem("__theme", newTheme);
+  const oldTheme = newTheme === "dark" ? "light" : "dark";
+  document
+    .querySelector("link[href*='" + oldTheme + "']")
+    .setAttribute("disabled", "");
+  document
+    .querySelector("link[href*='" + newTheme + "']")
+    .removeAttribute("disabled");
+};
 
-   
-  window.addEventListener("load", function() {
-    document.body.classList.remove("preload")
-  })
+const storedTheme = localStorage.getItem("__theme");
+
+if (storedTheme) {
+  window.__setTheme(storedTheme);
+} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  window.__setTheme("dark");
+}
+
+/* Enable animations */
+window.addEventListener("load", function() {
+  document.body.classList.remove("preload")
+})
 </script>
-
 
     <header class="mb-16">
   <h1 class="mb-4">
@@ -298,27 +302,20 @@ for f-strings and <code>PreProc</code> for modifiers. And it should work as expe
 
 
     
-      
-        <script src="/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js"></script>
-      
-        <script src="/posts/f-strings-syntax-highlighting-in-vim/script.js"></script>
-      
+      <script src="/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js"></script>
+    
+      <script src="/posts/f-strings-syntax-highlighting-in-vim/script.js"></script>
     
 
     
+    
 
     
+      
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-
-    
-
-    
-      
-    
-
     <script src="https://phelipetls.github.io/js/resume-download.js"></script>
   </body>
 </html>
