@@ -6,7 +6,7 @@
 
 <meta name="description" content="tl;dr: Use waitress instead of gunicorn
 diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#43;&#43;&#43; b/Procfile @@ -1 &#43;1 @@ -web: gunicorn &#34;app:create_app()&#34; &#43;web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &#39;app:create_app&#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier." />
-<meta name="deploy-date" content="2022-01-29">
+<meta name="deploy-date" content="2022-01-30">
 <meta name="publish-date" content="2020-10-11">
 <meta name="last-modified-date" content="2020-10-11">
 <meta name="author" content="">
@@ -114,24 +114,30 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#
   
 
   <nav class="flex flex-row flex-wrap gap-2"><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/"
       >
         About
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/posts/"
       >
         Posts
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/projects/"
       >
         Projects
-      </a><a id="resume-download" class="text-normal">
-      Resumé
-    </a>
-  </nav>
+      </a><a
+        id="resume-download"
+        class="text-normal "
+        href="https://phelipetls.github.io"
+      >
+        Resumé
+      </a></nav>
 </header>
 
 
@@ -238,9 +244,9 @@ and
 
     <hr class="my-8" />
 
-    <div class="grid grid-cols-auto gap-4">
-      
-        <div class="flex group gap-2 col-start-1 col-end-1">
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+      <div class="flex group gap-2 sm:max-w-1/2">
+        
           <div class="group-hover:text-highlight">
             ←
           </div>
@@ -248,11 +254,11 @@ and
           <a class="border-0" href="/posts/vim-errorformat-for-pytest/">
             A Vim errorformat for pytest
           </a>
-        </div>
-      
+        
+      </div>
 
-      
-        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+      <div class="flex group justify-end gap-2 sm:max-w-1/2">
+        
           <a class="border-0 text-right" href="/posts/f-strings-syntax-highlighting-in-vim/">
             Python f-strings syntax highlighting in Vim
           </a>
@@ -260,8 +266,8 @@ and
           <div class="group-hover:text-highlight">
             →
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </article>
 

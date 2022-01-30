@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only." />
-<meta name="deploy-date" content="2022-01-29">
+<meta name="deploy-date" content="2022-01-30">
 <meta name="publish-date" content="2020-08-05">
 <meta name="last-modified-date" content="2020-08-05">
 <meta name="author" content="">
@@ -111,24 +111,30 @@
   
 
   <nav class="flex flex-row flex-wrap gap-2"><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/"
       >
         About
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/posts/"
       >
         Posts
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/projects/"
       >
         Projects
-      </a><a id="resume-download" class="text-normal">
-      Resumé
-    </a>
-  </nav>
+      </a><a
+        id="resume-download"
+        class="text-normal "
+        href="https://phelipetls.github.io"
+      >
+        Resumé
+      </a></nav>
 </header>
 
 
@@ -576,11 +582,13 @@ Nonetheless, it was still fun to write this.</p>
 
     <hr class="my-8" />
 
-    <div class="grid grid-cols-auto gap-4">
-      
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+      <div class="flex group gap-2 sm:max-w-1/2">
+        
+      </div>
 
-      
-        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+      <div class="flex group justify-end gap-2 sm:max-w-1/2">
+        
           <a class="border-0 text-right" href="/posts/async-make-in-nvim-with-lua/">
             Asynchronous :make in Neovim with Lua
           </a>
@@ -588,8 +596,8 @@ Nonetheless, it was still fun to write this.</p>
           <div class="group-hover:text-highlight">
             →
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </article>
 

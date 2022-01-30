@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Vim has this well-known feature of opening the path under cursor with :h gf. This article explains well how this works." />
-<meta name="deploy-date" content="2022-01-29">
+<meta name="deploy-date" content="2022-01-30">
 <meta name="publish-date" content="2021-09-15">
 <meta name="last-modified-date" content="2021-09-15">
 <meta name="author" content="">
@@ -111,24 +111,30 @@
   
 
   <nav class="flex flex-row flex-wrap gap-2"><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/"
       >
         About
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/posts/"
       >
         Posts
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/projects/"
       >
         Projects
-      </a><a id="resume-download" class="text-normal">
-      Resumé
-    </a>
-  </nav>
+      </a><a
+        id="resume-download"
+        class="text-normal "
+        href="https://phelipetls.github.io"
+      >
+        Resumé
+      </a></nav>
 </header>
 
 
@@ -444,9 +450,9 @@ if you want to dive more deep into it.</p>
 
     <hr class="my-8" />
 
-    <div class="grid grid-cols-auto gap-4">
-      
-        <div class="flex group gap-2 col-start-1 col-end-1">
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+      <div class="flex group gap-2 sm:max-w-1/2">
+        
           <div class="group-hover:text-highlight">
             ←
           </div>
@@ -454,11 +460,11 @@ if you want to dive more deep into it.</p>
           <a class="border-0" href="/posts/automating-svg-to-jsx-conversion-with-svgr/">
             Automating svg to jsx conversion with svgr
           </a>
-        </div>
-      
+        
+      </div>
 
-      
-        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+      <div class="flex group justify-end gap-2 sm:max-w-1/2">
+        
           <a class="border-0 text-right" href="/posts/improving-the-android-studio-experience-in-dwm/">
             Improving the Android Studio experience in dwm
           </a>
@@ -466,8 +472,8 @@ if you want to dive more deep into it.</p>
           <div class="group-hover:text-highlight">
             →
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </article>
 

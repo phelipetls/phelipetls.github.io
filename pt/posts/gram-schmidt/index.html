@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Em Álgebra Linear, processo de Gram-Schmidt é um algoritmo usado para tornar um conjunto de vetores perpendiculares entre si (o que também se conhece por ortogonalização)." />
-<meta name="deploy-date" content="2022-01-29">
+<meta name="deploy-date" content="2022-01-30">
 <meta name="publish-date" content="2019-08-04">
 <meta name="last-modified-date" content="2019-08-04">
 <meta name="author" content="">
@@ -122,24 +122,30 @@
   
 
   <nav class="flex flex-row flex-wrap gap-2"><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/pt/"
       >
         Sobre
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/pt/posts/"
       >
         Posts
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/pt/projects/"
       >
         Projetos
-      </a><a id="resume-download" class="text-normal">
-      Currículo
-    </a>
-  </nav>
+      </a><a
+        id="resume-download"
+        class="text-normal "
+        href="https://phelipetls.github.io/pt/"
+      >
+        Resumé
+      </a></nav>
 </header>
 
 
@@ -355,9 +361,9 @@ fácil de se lidar numericamente.</p>
 
     <hr class="my-8" />
 
-    <div class="grid grid-cols-auto gap-4">
-      
-        <div class="flex group gap-2 col-start-1 col-end-1">
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+      <div class="flex group gap-2 sm:max-w-1/2">
+        
           <div class="group-hover:text-highlight">
             ←
           </div>
@@ -365,11 +371,11 @@ fácil de se lidar numericamente.</p>
           <a class="border-0" href="/pt/posts/game-of-thrones-text-mining/">
             Mineração de Texto com as legendas de Game of Thrones
           </a>
-        </div>
-      
+        
+      </div>
 
-      
-        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+      <div class="flex group justify-end gap-2 sm:max-w-1/2">
+        
           <a class="border-0 text-right" href="/pt/posts/web-scraping-de-paginas-dinamicas/">
             Web Scraping de páginas dinâmicas com Python
           </a>
@@ -377,8 +383,8 @@ fácil de se lidar numericamente.</p>
           <div class="group-hover:text-highlight">
             →
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </article>
 

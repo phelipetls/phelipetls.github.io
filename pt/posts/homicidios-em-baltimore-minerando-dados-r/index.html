@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Quando comecei a estudar R, via muito os vídeos do [Roger Peng]. Este vídeo foi um que particularmente me impressionou, em que ele faz uso de regular expressions para manipular e extrair informações de texto." />
-<meta name="deploy-date" content="2022-01-29">
+<meta name="deploy-date" content="2022-01-30">
 <meta name="publish-date" content="2019-04-01">
 <meta name="last-modified-date" content="2019-04-01">
 <meta name="author" content="">
@@ -111,24 +111,30 @@
   
 
   <nav class="flex flex-row flex-wrap gap-2"><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/pt/"
       >
         Sobre
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/pt/posts/"
       >
         Posts
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/pt/projects/"
       >
         Projetos
-      </a><a id="resume-download" class="text-normal">
-      Currículo
-    </a>
-  </nav>
+      </a><a
+        id="resume-download"
+        class="text-normal "
+        href="https://phelipetls.github.io/pt/"
+      >
+        Resumé
+      </a></nav>
 </header>
 
 
@@ -517,9 +523,9 @@ data precisa estar no formato Date) etc:</p>
 
     <hr class="my-8" />
 
-    <div class="grid grid-cols-auto gap-4">
-      
-        <div class="flex group gap-2 col-start-1 col-end-1">
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+      <div class="flex group gap-2 sm:max-w-1/2">
+        
           <div class="group-hover:text-highlight">
             ←
           </div>
@@ -527,11 +533,11 @@ data precisa estar no formato Date) etc:</p>
           <a class="border-0" href="/pt/posts/spread-bancario-brasileiro-r/">
             Spread bancário brasileiro: limpeza e visualização de dados
           </a>
-        </div>
-      
+        
+      </div>
 
-      
-        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+      <div class="flex group justify-end gap-2 sm:max-w-1/2">
+        
           <a class="border-0 text-right" href="/pt/posts/visualizacao-dados-homicidios-baltimore/">
             Homicídios em Baltimore: visualizações com ggplot2 e gganimate
           </a>
@@ -539,8 +545,8 @@ data precisa estar no formato Date) etc:</p>
           <div class="group-hover:text-highlight">
             →
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </article>
 

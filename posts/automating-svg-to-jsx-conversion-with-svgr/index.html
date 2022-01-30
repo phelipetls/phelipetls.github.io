@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="I found that getting svg files from Figma ready to be used in your React applications can be a bottleneck and prone to error." />
-<meta name="deploy-date" content="2022-01-29">
+<meta name="deploy-date" content="2022-01-30">
 <meta name="publish-date" content="2021-09-08">
 <meta name="last-modified-date" content="2021-09-08">
 <meta name="author" content="">
@@ -111,24 +111,30 @@
   
 
   <nav class="flex flex-row flex-wrap gap-2"><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/"
       >
         About
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/posts/"
       >
         Posts
       </a><a
+        id=""
         class="text-normal "
         href="https://phelipetls.github.io/projects/"
       >
         Projects
-      </a><a id="resume-download" class="text-normal">
-      Resumé
-    </a>
-  </nav>
+      </a><a
+        id="resume-download"
+        class="text-normal "
+        href="https://phelipetls.github.io"
+      >
+        Resumé
+      </a></nav>
 </header>
 
 
@@ -358,9 +364,9 @@ running a cli program, which isn&rsquo;t bad.</p>
 
     <hr class="my-8" />
 
-    <div class="grid grid-cols-auto gap-4">
-      
-        <div class="flex group gap-2 col-start-1 col-end-1">
+    <div class="flex flex-col sm:flex-row justify-between gap-4">
+      <div class="flex group gap-2 sm:max-w-1/2">
+        
           <div class="group-hover:text-highlight">
             ←
           </div>
@@ -368,11 +374,11 @@ running a cli program, which isn&rsquo;t bad.</p>
           <a class="border-0" href="/posts/extending-vim-with-ripgrep/">
             Extending Vim with ripgrep
           </a>
-        </div>
-      
+        
+      </div>
 
-      
-        <div class="flex group justify-end gap-2 col-start-2 col-end-2">
+      <div class="flex group justify-end gap-2 sm:max-w-1/2">
+        
           <a class="border-0 text-right" href="/posts/making-vim-understand-typescript-path-mapping/">
             Making Vim understand TypeScript path mapping
           </a>
@@ -380,8 +386,8 @@ running a cli program, which isn&rsquo;t bad.</p>
           <div class="group-hover:text-highlight">
             →
           </div>
-        </div>
-      
+        
+      </div>
     </div>
   </article>
 
