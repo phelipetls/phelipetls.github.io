@@ -6,7 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Um blog para compartilhar meus interesses em programação, estatística e mais" />
-<meta name="deploy-date" content="2022-01-30">
+<meta name="deploy-date" content="2022-01-31">
 <meta name="publish-date" content="2020-09-02">
 <meta name="last-modified-date" content="2020-09-02">
 <meta name="author" content="">
@@ -92,17 +92,11 @@ window.addEventListener("load", function() {
         class="text-background bg-primary rounded-lg px-1 ring-divider ring-offset-background focus:ring-offset-2 focus:ring-2"
         aria-label="Mudar tema"
       >
-        <svg class="fill-current" width="24" height="24" viewBox="0 0 24 24">
+        <svg width="24" height="24" viewBox="0 0 24 24">
           <defs>
-            <path id="moon" d="M20.742,13.045c-0.677,0.18-1.376,0.271-2.077,0.271c-2.135,0-4.14-0.83-5.646-2.336c-2.008-2.008-2.799-4.967-2.064-7.723 c0.092-0.345-0.007-0.713-0.259-0.965C10.444,2.04,10.077,1.938,9.73,2.034C8.028,2.489,6.476,3.382,5.241,4.616 c-3.898,3.898-3.898,10.243,0,14.143c1.889,1.889,4.401,2.93,7.072,2.93c2.671,0,5.182-1.04,7.07-2.929 c1.236-1.237,2.13-2.791,2.583-4.491c0.092-0.345-0.008-0.713-0.26-0.965C21.454,13.051,21.085,12.951,20.742,13.045z M17.97,17.346c-1.511,1.511-3.52,2.343-5.656,2.343c-2.137,0-4.146-0.833-5.658-2.344c-3.118-3.119-3.118-8.195,0-11.314 c0.602-0.602,1.298-1.102,2.06-1.483c-0.222,2.885,0.814,5.772,2.89,7.848c2.068,2.069,4.927,3.12,7.848,2.891 C19.072,16.046,18.571,16.743,17.97,17.346z"></path>
+            <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 
-            <g id="sun">
-<path id="sun" d="M6.995 12c0 2.761 2.246 5.007 5.007 5.007s5.007-2.246 5.007-5.007-2.246-5.007-5.007-5.007S6.995 9.239 6.995 12zM11 19H13V22H11zM11 2H13V5H11zM2 11H5V13H2zM19 11H22V13H19z"/>
-<path transform="rotate(-134.999 5.99 18.01)" d="M4.989 16.51H6.989V19.51H4.989z"/>
-<path transform="rotate(-45.001 18.01 5.99)" d="M16.51 4.99H19.511000000000003V6.99H16.51z"/>
-<path transform="rotate(-134.983 5.99 5.99)" d="M4.489 4.99H7.489V6.99H4.489z"/>
-<path transform="rotate(134.999 18.01 18.01)" d="M17.01 16.51H19.01V19.511000000000003H17.01z"/>
-</g>
+            <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 
           </defs>
 
@@ -114,7 +108,7 @@ window.addEventListener("load", function() {
 
   
 
-  <nav class="flex flex-row flex-wrap gap-2"><a
+  <nav class="flex flex-row flex-wrap gap-2" aria-label="Navegação principal"><a
         id=""
         class="text-normal border-primary"
         href="https://phelipetls.github.io/pt/"
@@ -147,15 +141,30 @@ window.addEventListener("load", function() {
   <article>
     
     
-    
 
-    <img
-      alt="Foto minha"
-      width="200"
-      height="200"
-      class="rounded-full sm:float-left sm:mr-4 border-4 border-divider"
-      src="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=200"
-    ></img>
+    <div class="sm:float-left sm:mr-4 mb-4 sm:mb-0">
+      <img
+        alt="Foto minha"
+        width="200"
+        height="200"
+        class="rounded-full border-4 border-divider"
+        src="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=200"
+      ></img>
+
+      <div class="mt-4 flex gap-2 justify-center align-end">
+        <a class="border-0" href="phelipe_teles@hotmail.com">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+        </a>
+
+        <a class="border-0" href="https://linkedin.com/in/phelipeteles">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+        </a>
+
+        <a class="border-0" href="https://github.com/phelipetls">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+        </a>
+      </div>
+    </div>
 
     <p>Olá 👋, sou um desenvolvedor front-end.</p>
 <p>Atualmente trabalho na Mutual, construíndo aplicações mobile e web com React,
@@ -169,14 +178,14 @@ de dados, Econometria e Estatística.</p>
 
     <footer class="mt-16 text-center">
   <div>
-    Ícones de <a class="text-primary" href="https://boxicons.com/">Boxicons</a>
+    Ícones de <a class="text-primary" href="https://feathericons.com/">Feather Icons</a>
   </div>
 
-  <span>
-    <a class="text-primary" href="mailto:phelipe_teles@hotmail.com">E-Mail</a> |
-    <a class="text-primary" href="https://github.com/phelipetls">GitHub</a> |
-    <a class="text-primary" href="https://linkedin.com/in/phelipeteles">LinkedIn</a>
-  </span>
+  <div>Todo conteúdo está sob a licença
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+  Creative Commons Attribution 4.0
+</a>
+</div>
 </footer>
 
 
