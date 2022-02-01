@@ -146,15 +146,29 @@ window.addEventListener("load", function() {
       
   <section class="grid-cols-2">
     
+    
 
     <aside class="sm:float-left sm:mr-4 mb-4 sm:mb-0">
-      <img
-        alt="Foto minha"
-        width="200"
-        height="200"
-        class="rounded-full border-4 border-divider"
-        src="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=200"
-      ></img>
+      <div class="relative" style="width: 200px; height: 200px;">
+        <canvas
+          id="gravatar-blurhash"
+          class="absolute w-full h-full inset-0 rounded-full border-4 border-divider"
+          width="200"
+          height="200"
+        ></canvas>
+
+        <div class="relative h-full">
+          <img
+            id="gravatar"
+            alt="Foto minha"
+            width="200"
+            height="200"
+            class="absolute h-full w-full rounded-full border-4 border-divider"
+            src="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=200"
+            loading="lazy"
+          ></img>
+        </div>
+      </div>
 
       <nav class="flex sm:hidden gap-2 mt-4 justify-center align-end" aria-label="Contatos">
         <a class="border-0" href="mailto:phelipe_teles@hotmail.com" title="E-mail">
@@ -230,5 +244,23 @@ de dados, Econometria e Estatística.</p>
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
     <script src="https://phelipetls.github.io/js/resume-download.js"></script>
+
+    
+  
+
+  
+
+  
+  
+  
+
+  <script>(()=>{const digitCharacters=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#","$","%","*","+",",","-",".",":",";","=","?","@","[","]","^","_","{","|","}","~"];const decode83=(str)=>{let value=0;for(let i=0;i<str.length;i++){const c=str[i];const digit=digitCharacters.indexOf(c);value=value*83+digit;}
+return value;};const sRGBToLinear=(value)=>{let v=value/255;if(v<=0.04045){return v/12.92;}else{return Math.pow((v+0.055)/1.055,2.4);}};const linearTosRGB=(value)=>{let v=Math.max(0,Math.min(1,value));if(v<=31308e-7){return Math.round(v*12.92*255+0.5);}else{return Math.round((1.055*Math.pow(v,1/2.4)-0.055)*255+0.5);}};const sign=(n)=>n<0?-1:1;const signPow=(val,exp)=>sign(val)*Math.pow(Math.abs(val),exp);class ValidationError extends Error{constructor(message){super(message);this.name="ValidationError";this.message=message;}}
+const validateBlurhash=(blurhash2)=>{if(!blurhash2||blurhash2.length<6){throw new ValidationError("The blurhash string must be at least 6 characters");}
+const sizeFlag=decode83(blurhash2[0]);const numY=Math.floor(sizeFlag/9)+1;const numX=sizeFlag%9+1;if(blurhash2.length!==4+2*numX*numY){throw new ValidationError(`blurhash length mismatch: length is ${blurhash2.length} but it should be ${4+2*numX*numY}`);}};const decodeDC=(value)=>{const intR=value>>16;const intG=value>>8&255;const intB=value&255;return[sRGBToLinear(intR),sRGBToLinear(intG),sRGBToLinear(intB)];};const decodeAC=(value,maximumValue)=>{const quantR=Math.floor(value/(19*19));const quantG=Math.floor(value/19)%19;const quantB=value%19;const rgb=[signPow((quantR-9)/9,2)*maximumValue,signPow((quantG-9)/9,2)*maximumValue,signPow((quantB-9)/9,2)*maximumValue];return rgb;};const decode=(blurhash2,width2,height2,punch)=>{validateBlurhash(blurhash2);punch=punch|1;const sizeFlag=decode83(blurhash2[0]);const numY=Math.floor(sizeFlag/9)+1;const numX=sizeFlag%9+1;const quantisedMaximumValue=decode83(blurhash2[1]);const maximumValue=(quantisedMaximumValue+1)/166;const colors=new Array(numX*numY);for(let i=0;i<colors.length;i++){if(i===0){const value=decode83(blurhash2.substring(2,6));colors[i]=decodeDC(value);}else{const value=decode83(blurhash2.substring(4+i*2,6+i*2));colors[i]=decodeAC(value,maximumValue*punch);}}
+const bytesPerRow=width2*4;const pixels2=new Uint8ClampedArray(bytesPerRow*height2);for(let y=0;y<height2;y++){for(let x=0;x<width2;x++){let r=0;let g=0;let b=0;for(let j=0;j<numY;j++){for(let i=0;i<numX;i++){const basis=Math.cos(Math.PI*x*i/width2)*Math.cos(Math.PI*y*j/height2);let color=colors[i+j*numX];r+=color[0]*basis;g+=color[1]*basis;b+=color[2]*basis;}}
+let intR=linearTosRGB(r);let intG=linearTosRGB(g);let intB=linearTosRGB(b);pixels2[4*x+0+y*bytesPerRow]=intR;pixels2[4*x+1+y*bytesPerRow]=intG;pixels2[4*x+2+y*bytesPerRow]=intB;pixels2[4*x+3+y*bytesPerRow]=255;}}
+return pixels2;};var decode_default=decode;const width=Number("200");const height=Number("200");const pixels=decode_default("UZGuUQs,yDax~pRj-;oJ%gRj-pj[WURkjYfQ",width,height);const canvas=document.getElementById("gravatar-blurhash");const ctx=canvas.getContext("2d");const imageData=ctx.createImageData(width,height);imageData.data.set(pixels);ctx.putImageData(imageData,0,0);})();</script>
+
   </body>
 </html>
