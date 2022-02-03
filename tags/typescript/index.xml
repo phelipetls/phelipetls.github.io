@@ -6,6 +6,7 @@
     <description>Recent content in typescript on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Content licensed under a Creative Commons Attribution 4.0 International license</copyright>
     <lastBuildDate>Wed, 15 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Making Vim understand TypeScript path mapping</title>
@@ -31,7 +32,7 @@
       <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/migrating-from-cra-to-vite/</guid>
-      <description>I started to learn React with create-react-app like everyone else, and it really does its job well. I never had to worry too much about tooling but&amp;hellip; it is slow to start up.</description>
+      <description>How and why to migrate a CRA project to Vite</description>
     </item>
     
   </channel>

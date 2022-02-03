@@ -6,7 +6,7 @@
 
 <meta name="description" content="tl;dr: Use waitress instead of gunicorn
 diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#43;&#43;&#43; b/Procfile @@ -1 &#43;1 @@ -web: gunicorn &#34;app:create_app()&#34; &#43;web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &#39;app:create_app&#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier." />
-<meta name="deploy-date" content="2022-02-02">
+<meta name="deploy-date" content="2022-02-03">
 <meta name="publish-date" content="2020-10-11">
 <meta name="last-modified-date" content="2020-10-11">
 <meta name="author" content="">
@@ -48,6 +48,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#
 <meta name="twitter:title" content="Deploying a Flask app on a Heroku free dyno"/>
 <meta name="twitter:description" content="tl;dr: Use waitress instead of gunicorn
 diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#43;&#43;&#43; b/Procfile @@ -1 &#43;1 @@ -web: gunicorn &#34;app:create_app()&#34; &#43;web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &#39;app:create_app&#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier."/>
+
 
 
 
@@ -100,7 +101,7 @@ window.addEventListener("load", function() {
     <div>
       <button
         id="theme-button"
-        class="rounded-full text-primary border border-primary p-1"
+        class="rounded-full text-primary p-1"
         aria-label="Change theme"
       >
         <svg width="24" height="24" viewBox="0 0 24 24">
@@ -137,12 +138,6 @@ window.addEventListener("load", function() {
         href="https://phelipetls.github.io/projects/"
       >
         Projects
-      </a><a
-        id=""
-        class="text-normal "
-        href="https://phelipetls.github.io/resume/phelipe-teles-resume.pdf"
-      >
-        Resumé
       </a></nav>
 </header>
 
@@ -277,6 +272,12 @@ and
     </main>
 
     <footer class="mt-16 text-right text-sm">
+  <div>
+    <a href="http://tinyletter.com/phelipetls">
+      Subscribe
+    </a>
+    ·
+    </div>
 
   <div>All content is under the
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">

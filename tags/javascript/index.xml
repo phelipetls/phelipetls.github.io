@@ -6,6 +6,7 @@
     <description>Recent content in javascript on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Content licensed under a Creative Commons Attribution 4.0 International license</copyright>
     <lastBuildDate>Wed, 26 Jan 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Node.js one-liner to read JSON files</title>
@@ -13,8 +14,7 @@
       <pubDate>Wed, 26 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/nodejs-one-liner-to-read-json-files/</guid>
-      <description>Imagine we have the following JSON file and we want to use the highlighted line&amp;rsquo;s value in a script.
-{ &amp;#34;expo&amp;#34;: { &amp;#34;name&amp;#34;: &amp;#34;MyApp&amp;#34;,  &amp;#34;slug&amp;#34;: &amp;#34;myapp&amp;#34;, &amp;#34;version&amp;#34;: &amp;#34;1.</description>
+      <description>How to use Node instead of jq for trivial property accessors</description>
     </item>
     
     <item>
@@ -27,12 +27,12 @@
     </item>
     
     <item>
-      <title>Implementing dark mode for SSR websites</title>
+      <title>Implementing dark mode in static or SSR websites</title>
       <link>https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/</link>
       <pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/</guid>
-      <description>Implementing dark mode in a server side rendered website is not as simple as you may initially think. There are some hacky things we should do to avoid flash of incorrect theme on reload, animation etc.</description>
+      <description>From the basic to the hacky stuff you should do to deliver the best experience.</description>
     </item>
     
     <item>
@@ -41,7 +41,8 @@
       <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/my-experience-testing-react-applications/</guid>
-      <description>Testing is not easy, it&amp;rsquo;s a trade-off: either you slow down new feature development by writing test to avoid regressions later, or you develop untested features and bugs will inevitably be introduced later.</description>
+      <description>Thoughts about writing integration tests for React apps, from
+react-testing-library to Cypress.</description>
     </item>
     
     <item>
@@ -50,7 +51,7 @@
       <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/migrating-from-cra-to-vite/</guid>
-      <description>I started to learn React with create-react-app like everyone else, and it really does its job well. I never had to worry too much about tooling but&amp;hellip; it is slow to start up.</description>
+      <description>How and why to migrate a CRA project to Vite</description>
     </item>
     
   </channel>

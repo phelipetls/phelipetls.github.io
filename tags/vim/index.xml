@@ -6,6 +6,7 @@
     <description>Recent content in vim on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Content licensed under a Creative Commons Attribution 4.0 International license</copyright>
     <lastBuildDate>Wed, 15 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/tags/vim/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Making Vim understand TypeScript path mapping</title>
@@ -22,7 +23,7 @@
       <pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</guid>
-      <description>In this post I want to talk about how I use ripgrep in vim (nvim to me but it doesn&amp;rsquo;t matter here).</description>
+      <description>Take full advantage of Vim&amp;rsquo;s shel integration and the quick fix list.</description>
     </item>
     
     <item>

@@ -6,6 +6,7 @@
     <description>Recent content in react on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
+    <copyright>Content licensed under a Creative Commons Attribution 4.0 International license</copyright>
     <lastBuildDate>Wed, 08 Sep 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/tags/react/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Automating svg to jsx conversion with svgr</title>
@@ -22,7 +23,8 @@
       <pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/my-experience-testing-react-applications/</guid>
-      <description>Testing is not easy, it&amp;rsquo;s a trade-off: either you slow down new feature development by writing test to avoid regressions later, or you develop untested features and bugs will inevitably be introduced later.</description>
+      <description>Thoughts about writing integration tests for React apps, from
+react-testing-library to Cypress.</description>
     </item>
     
   </channel>
