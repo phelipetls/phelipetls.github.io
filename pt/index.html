@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html class="h-full" lang="pt-BR">
   <head>
-	<meta name="generator" content="Hugo 0.75.0" />
+	<meta name="generator" content="Hugo 0.88.1" />
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Um blog para compartilhar meus interesses em programação, estatística e mais" />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2020-09-02">
 <meta name="last-modified-date" content="2020-09-02">
 <meta name="author" content="">
@@ -40,7 +40,7 @@
 <meta property="og:description" content="Um blog para compartilhar meus interesses em programação, estatística e mais" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://phelipetls.github.io/pt/" />
-<meta property="og:updated_time" content="2020-09-02T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Sobre"/>
@@ -224,13 +224,14 @@ de dados, Econometria e Estatística.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Assine
     </a>
-    ·
-    <a href="https://phelipetls.github.io/pt/index.xml">RSS</a>
-    </div><a class="inline-block" href="https://phelipetls.github.io/" title="Read in English">
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/pt/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
+    </div><a class="inline-block mb-2" href="https://phelipetls.github.io/" title="Read in English">
         Read in English
       </a>
     
@@ -261,13 +262,7 @@ de dados, Econometria e Estatística.</p>
   
   
 
-  <script>(()=>{const digitCharacters=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#","$","%","*","+",",","-",".",":",";","=","?","@","[","]","^","_","{","|","}","~"];const decode83=(str)=>{let value=0;for(let i=0;i<str.length;i++){const c=str[i];const digit=digitCharacters.indexOf(c);value=value*83+digit;}
-return value;};const sRGBToLinear=(value)=>{let v=value/255;if(v<=0.04045){return v/12.92;}else{return Math.pow((v+0.055)/1.055,2.4);}};const linearTosRGB=(value)=>{let v=Math.max(0,Math.min(1,value));if(v<=31308e-7){return Math.round(v*12.92*255+0.5);}else{return Math.round((1.055*Math.pow(v,1/2.4)-0.055)*255+0.5);}};const sign=(n)=>n<0?-1:1;const signPow=(val,exp)=>sign(val)*Math.pow(Math.abs(val),exp);class ValidationError extends Error{constructor(message){super(message);this.name="ValidationError";this.message=message;}}
-const validateBlurhash=(blurhash2)=>{if(!blurhash2||blurhash2.length<6){throw new ValidationError("The blurhash string must be at least 6 characters");}
-const sizeFlag=decode83(blurhash2[0]);const numY=Math.floor(sizeFlag/9)+1;const numX=sizeFlag%9+1;if(blurhash2.length!==4+2*numX*numY){throw new ValidationError(`blurhash length mismatch: length is ${blurhash2.length} but it should be ${4+2*numX*numY}`);}};const decodeDC=(value)=>{const intR=value>>16;const intG=value>>8&255;const intB=value&255;return[sRGBToLinear(intR),sRGBToLinear(intG),sRGBToLinear(intB)];};const decodeAC=(value,maximumValue)=>{const quantR=Math.floor(value/(19*19));const quantG=Math.floor(value/19)%19;const quantB=value%19;const rgb=[signPow((quantR-9)/9,2)*maximumValue,signPow((quantG-9)/9,2)*maximumValue,signPow((quantB-9)/9,2)*maximumValue];return rgb;};const decode=(blurhash2,width2,height2,punch)=>{validateBlurhash(blurhash2);punch=punch|1;const sizeFlag=decode83(blurhash2[0]);const numY=Math.floor(sizeFlag/9)+1;const numX=sizeFlag%9+1;const quantisedMaximumValue=decode83(blurhash2[1]);const maximumValue=(quantisedMaximumValue+1)/166;const colors=new Array(numX*numY);for(let i=0;i<colors.length;i++){if(i===0){const value=decode83(blurhash2.substring(2,6));colors[i]=decodeDC(value);}else{const value=decode83(blurhash2.substring(4+i*2,6+i*2));colors[i]=decodeAC(value,maximumValue*punch);}}
-const bytesPerRow=width2*4;const pixels2=new Uint8ClampedArray(bytesPerRow*height2);for(let y=0;y<height2;y++){for(let x=0;x<width2;x++){let r=0;let g=0;let b=0;for(let j=0;j<numY;j++){for(let i=0;i<numX;i++){const basis=Math.cos(Math.PI*x*i/width2)*Math.cos(Math.PI*y*j/height2);let color=colors[i+j*numX];r+=color[0]*basis;g+=color[1]*basis;b+=color[2]*basis;}}
-let intR=linearTosRGB(r);let intG=linearTosRGB(g);let intB=linearTosRGB(b);pixels2[4*x+0+y*bytesPerRow]=intR;pixels2[4*x+1+y*bytesPerRow]=intG;pixels2[4*x+2+y*bytesPerRow]=intB;pixels2[4*x+3+y*bytesPerRow]=255;}}
-return pixels2;};var decode_default=decode;const width=200;const height=200;const pixels=decode_default("UZGuUQs,yDax~pRj-;oJ%gRj-pj[WURkjYfQ",width,height);const canvas=document.getElementById("gravatar-blurhash");const ctx=canvas.getContext("2d");const imageData=ctx.createImageData(width,height);imageData.data.set(pixels);ctx.putImageData(imageData,0,0);})();</script>
+  <script>(()=>{var r=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#","$","%","*","+",",","-",".",":",";","=","?","@","[","]","^","_","{","|","}","~"],a=b=>{let a=0;for(let c=0;c<b.length;c++){const d=b[c],e=r.indexOf(d);a=a*83+e}return a},b=b=>{let a=b/255;return a<=.04045?a/12.92:Math.pow((a+.055)/1.055,2.4)},c=b=>{let a=Math.max(0,Math.min(1,b));return a<=.0031308?Math.round(a*12.92*255+.5):Math.round((1.055*Math.pow(a,1/2.4)-.055)*255+.5)},q=a=>a<0?-1:1,d=(a,b)=>q(a)*Math.pow(Math.abs(a),b),g=class extends Error{constructor(a){super(a),this.name="ValidationError",this.message=a}},n=b=>{if(!b||b.length<6)throw new g("The blurhash string must be at least 6 characters");const c=a(b[0]),d=Math.floor(c/9)+1,e=c%9+1;if(b.length!==4+2*e*d)throw new g(`blurhash length mismatch: length is ${b.length} but it should be ${4+2*e*d}`)},m=a=>{const c=a>>16,d=a>>8&255,e=a&255;return[b(c),b(d),b(e)]},j=(a,b)=>{const c=Math.floor(a/(19*19)),e=Math.floor(a/19)%19,f=a%19,g=[d((c-9)/9,2)*b,d((e-9)/9,2)*b,d((f-9)/9,2)*b];return g},k=(b,g,h,k)=>{n(b),k=k|1;const l=a(b[0]),o=Math.floor(l/9)+1,i=l%9+1,p=a(b[1]),q=(p+1)/166,f=new Array(i*o);for(let c=0;c<f.length;c++)if(c===0){const d=a(b.substring(2,6));f[c]=m(d)}else{const d=a(b.substring(4+c*2,6+c*2));f[c]=j(d,q*k)}const d=g*4,e=new Uint8ClampedArray(d*h);for(let a=0;a<h;a++)for(let b=0;b<g;b++){let j=0,k=0,l=0;for(let c=0;c<o;c++)for(let d=0;d<i;d++){const e=Math.cos(Math.PI*b*d/g)*Math.cos(Math.PI*a*c/h);let m=f[d+c*i];j+=m[0]*e,k+=m[1]*e,l+=m[2]*e}let m=c(j),n=c(k),p=c(l);e[4*b+0+a*d]=m,e[4*b+1+a*d]=n,e[4*b+2+a*d]=p,e[4*b+3+a*d]=255}return e},l=k,i=200,h=200,o=l("UZGuUQs,yDax~pRj-;oJ%gRj-pj[WURkjYfQ",i,h),p=document.getElementById("gravatar-blurhash"),f=p.getContext("2d"),e=f.createImageData(i,h);e.data.set(o),f.putImageData(e,0,0)})()</script>
 
   </body>
 </html>

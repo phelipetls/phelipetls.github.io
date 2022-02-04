@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2020-10-28">
 <meta name="last-modified-date" content="2020-10-28">
 <meta name="author" content="">
@@ -38,9 +38,10 @@
 <meta property="og:title" content="Python f-strings syntax highlighting in Vim" />
 <meta property="og:description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-28T00:00:00+00:00" />
 <meta property="article:modified_time" content="2020-10-28T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Python f-strings syntax highlighting in Vim"/>
@@ -127,7 +128,7 @@ window.addEventListener("load", function() {
         About
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/posts/"
       >
         Posts
@@ -175,7 +176,7 @@ that adds support for string modifiers and escape sequences.</p>
 my surprise.</p>
 <p><img src="./before.png" alt="Before"> <img src="./after.png" alt="After"></p>
 <p>Here is everything that you need and an explanation below.</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; in ~/.config/nvim/after/syntax or ~/.vim/after/syntax</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; in ~/.config/nvim/after/syntax or ~/.vim/after/syntax</span><span class="err">
 </span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>{{<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">
 </span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>}}<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">
 </span><span class="err">
@@ -230,8 +231,8 @@ does not make sense (notice there is a syntax for that, <code>:helpgrep ALLBUT</
 <p>f-strings supports
 <a href="https://docs.python.org/3/library/string.html#format-examples"><code>str.format</code> syntax</a>
 for formatting, for example:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
-<span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="s2">&#34;The value of pi is approximately {math.pi:.3f}.&#34;</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;The value of pi is approximately </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">.&#34;</span><span class="p">)</span>
 </code></pre></div><p>So I read the
 <a href="https://docs.python.org/3/library/string.html#format-specification-mini-language">Python docs</a>
 and wrote a regex based on it, but regexes are always easier to write than to
@@ -284,11 +285,13 @@ for f-strings and <code>PreProc</code> for modifiers. And it should work as expe
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Subscribe
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>All content is under the

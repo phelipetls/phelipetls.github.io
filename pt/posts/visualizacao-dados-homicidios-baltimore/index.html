@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2019-04-07">
 <meta name="last-modified-date" content="2019-04-07">
 <meta name="author" content="">
@@ -38,9 +38,10 @@
 <meta property="og:title" content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate" />
 <meta property="og:description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/" />
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-04-07T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-04-07T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate"/>
@@ -125,7 +126,7 @@ window.addEventListener("load", function() {
         Sobre
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/pt/posts/"
       >
         Posts
@@ -182,7 +183,7 @@ ggplot2.</p>
 <p>Ok, vamos primeiro olhar para a nossa
 <a href="https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv" title="Link do arquivo raw">base de dados</a>
 e ver que perguntas gostaríamos de responder:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">tidyverse</span><span class="p">)</span>
 
 <span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">read_csv</span><span class="p">(</span><span class="s">&#34;https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="nf">na.omit</span><span class="p">()</span>
@@ -214,7 +215,7 @@ Será que vem declinando com o passar dos anos?</p>
 </h2>
 <p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
 visualização com um gráfico de linhas:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">lubridate</span><span class="p">)</span>
 
 <span class="c1"># configurando o tema</span>
 <span class="nf">theme_set</span><span class="p">(</span><span class="nf">theme_minimal</span><span class="p">())</span>
@@ -242,7 +243,7 @@ anos…</p>
 queda será esclarecida por outra visualização mais adiante. Se desconsiderarmos
 2012, o quadro da violência não parece apresentar melhoras tão significativas.</p>
 <p>É interessante visualizar também como isso se deu para as diferentes raças:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
   <span class="c1"># contagem dos casos por raça e ano</span>
   <span class="nf">count</span><span class="p">(</span><span class="n">raca</span><span class="p">,</span> <span class="n">ano</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
@@ -264,7 +265,7 @@ magnitude da desigualdade.</p>
 <p>Um gráfico interessante que vi <a href="https://homicides.news.baltimoresun.com/">aqui</a>,
 foi o do crescimento acumulado do número de vítimas por mês para cada ano, que
 tentei replicar abaixo:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">acumulado</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">acumulado</span> <span class="o">&lt;-</span> <span class="n">df</span> <span class="o">%&gt;%</span>
   <span class="nf">mutate</span><span class="p">(</span><span class="n">mes</span> <span class="o">=</span> <span class="nf">month</span><span class="p">(</span><span class="n">data</span><span class="p">))</span> <span class="o">%&gt;%</span>
   <span class="nf">count</span><span class="p">(</span><span class="n">ano</span><span class="p">,</span> <span class="n">mes</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="nf">group_by</span><span class="p">(</span><span class="n">ano</span><span class="p">)</span> <span class="o">%&gt;%</span>
@@ -301,7 +302,7 @@ manteve mais ou menos estável no resto do período.</p>
 </h2>
 <p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
 grupos:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
   <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">idade</span><span class="p">))</span> <span class="o">+</span>
   <span class="nf">geom_histogram</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">fill</span> <span class="o">=</span> <span class="n">raca</span><span class="p">),</span>
     <span class="n">binwidth</span> <span class="o">=</span> <span class="m">5</span>
@@ -328,7 +329,7 @@ muito mais propensos a serem mortos violentamente.</p>
 </h2>
 <p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
 barras:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
   <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">causas</span><span class="p">,</span>
     <span class="n">fill</span> <span class="o">=</span> <span class="n">causas</span>
@@ -355,7 +356,7 @@ geográficas, para depois plotar com <code>geom_polyon()</code>.</p>
 temporal, espacial e qualitativo (nesse caso, pela raça das vítimas) com um
 único gráfico. Para isso, vamos usar a função <code>gganimate::transition_manual</code>, de
 forma a mostrar por mês o crescimento no número de vítimas:</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">gganimate</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="nf">library</span><span class="p">(</span><span class="n">gganimate</span><span class="p">)</span>
 
 <span class="c1"># mapa de baltimore city</span>
 <span class="n">baltimore_map</span> <span class="o">&lt;-</span> <span class="nf">map_data</span><span class="p">(</span><span class="s">&#34;county&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
@@ -401,7 +402,7 @@ forma a mostrar por mês o crescimento no número de vítimas:</p>
 <p>Outra ideia é visualizar a evolução dos homicídios no tempo, por causa de morte.
 Para isso, vamos usar ot <code>gganimate::transition_states</code>, para visualizarmos as
 mudanças ocorridas no decorrer dos anos.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">df</span> <span class="o">%&gt;%</span>
   <span class="nf">count</span><span class="p">(</span><span class="n">ano</span><span class="p">,</span> <span class="n">causas</span><span class="p">)</span> <span class="o">%&gt;%</span>
   <span class="nf">ggplot</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
     <span class="n">x</span> <span class="o">=</span> <span class="n">causas</span><span class="p">,</span>
@@ -424,7 +425,7 @@ mudanças ocorridas no decorrer dos anos.</p>
 <p>E que tal animarmos aquele gráfico do número acumulado? Vamos usar o
 <code>gganimate::transition_reveal()</code> para revelar ao longo do eixo do tempo como os
 números crescem.</p>
-<div class="highlight"><pre class="chroma"><code class="language-r" data-lang="r"><span class="n">acumulado</span> <span class="o">+</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">acumulado</span> <span class="o">+</span>
   <span class="nf">geom_segment</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span>
     <span class="n">xend</span> <span class="o">=</span> <span class="m">12.5</span><span class="p">,</span>
     <span class="n">yend</span> <span class="o">=</span> <span class="n">soma_cumulativa</span>
@@ -485,11 +486,13 @@ ou o próprio <a href="https://gganimate.com/">site do pacote</a>.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Assine
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/pt/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>Todo conteúdo está sob a licença

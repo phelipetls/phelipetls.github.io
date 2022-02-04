@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="I found that getting svg files from Figma ready to be used in your React applications can be a bottleneck and prone to error." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2021-09-08">
 <meta name="last-modified-date" content="2021-09-08">
 <meta name="author" content="">
@@ -38,9 +38,10 @@
 <meta property="og:title" content="Automating svg to jsx conversion with svgr" />
 <meta property="og:description" content="I found that getting svg files from Figma ready to be used in your React applications can be a bottleneck and prone to error." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/automating-svg-to-jsx-conversion-with-svgr/" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/automating-svg-to-jsx-conversion-with-svgr/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-09-08T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-09-08T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Automating svg to jsx conversion with svgr"/>
@@ -125,7 +126,7 @@ window.addEventListener("load", function() {
         About
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/posts/"
       >
         Posts
@@ -179,11 +180,11 @@ intimidating since it&rsquo;s a
 <a href="https://github.com/jamiebuilds/babel-handbook/blob/master/translations/en/plugin-handbook.md">huge</a>
 topic, but worth it.</p>
 <p>In this blog post I want to share a template that converts a svg like this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-svg" data-lang="svg"><span class="nt">&lt;svg</span> <span class="na">role=</span><span class="s">&#34;img&#34;</span> <span class="na">viewBox=</span><span class="s">&#34;0 0 24 24&#34;</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span><span class="nt">&gt;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-svg" data-lang="svg"><span class="nt">&lt;svg</span> <span class="na">role=</span><span class="s">&#34;img&#34;</span> <span class="na">viewBox=</span><span class="s">&#34;0 0 24 24&#34;</span> <span class="na">xmlns=</span><span class="s">&#34;http://www.w3.org/2000/svg&#34;</span><span class="nt">&gt;</span>
   <span class="nt">&lt;path</span> <span class="na">d=</span><span class="s">&#34;&#34;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/svg&gt;</span>
 </code></pre></div><p>&hellip;into this React component:</p>
-<div class="highlight"><pre class="chroma"><code class="language-tsx" data-lang="tsx"><span class="kr">import</span> <span class="nx">React</span> <span class="kr">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-tsx" data-lang="tsx"><span class="kr">import</span> <span class="nx">React</span> <span class="kr">from</span> <span class="s2">&#34;react&#34;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="p">{</span> <span class="nx">SvgIcon</span><span class="p">,</span> <span class="nx">SvgIconProps</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;@material-ui/core&#34;</span><span class="p">;</span>
 
 <span class="kr">export</span> <span class="kr">const</span> <span class="nx">SvgComponent</span>: <span class="kt">React.FC</span><span class="p">&lt;</span><span class="nt">SvgIconProps</span><span class="p">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="nx">props</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
@@ -198,7 +199,7 @@ topic, but worth it.</p>
 obvious how to insert with babel. So let&rsquo;s get to it.</p>
 <p>First, the full code if you&rsquo;re only interested in that, but I&rsquo;ll break down the
 code further below:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="p">{</span>
   <span class="nx">identifier</span><span class="p">,</span>
   <span class="nx">tsTypeAnnotation</span><span class="p">,</span>
   <span class="nx">tsTypeReference</span><span class="p">,</span>
@@ -251,7 +252,7 @@ code further below:</p>
 <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">template</span>
 </code></pre></div><p>First, we use the TypeScript plugin by default to build the AST, there is no
 opt out of it:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">plugins</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jsx&#39;</span><span class="p">,</span> <span class="s1">&#39;typescript&#39;</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">plugins</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jsx&#39;</span><span class="p">,</span> <span class="s1">&#39;typescript&#39;</span><span class="p">]</span>
 
 <span class="kr">const</span> <span class="nx">typescriptTemplate</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">smart</span><span class="p">({</span> <span class="nx">plugins</span> <span class="p">})</span>
 </code></pre></div><h2 class="group pt-3" id="jsx">
@@ -265,7 +266,7 @@ opt out of it:</p>
 <a href="https://babeljs.io/docs/en/babel-types#jsxclosingelement">closing</a> elements to
 be <code>SvgIcon</code> and reuse the child elements (don&rsquo;t mind doing this recursively,
 but we could I guess).</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">wrappedJsx</span> <span class="o">=</span> <span class="nx">jsxElement</span><span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">wrappedJsx</span> <span class="o">=</span> <span class="nx">jsxElement</span><span class="p">(</span>
   <span class="nx">jsxOpeningElement</span><span class="p">(</span><span class="nx">jsxIdentifier</span><span class="p">(</span><span class="s1">&#39;SvgIcon&#39;</span><span class="p">),</span> <span class="p">[</span>
     <span class="p">...</span><span class="nx">jsx</span><span class="p">.</span><span class="nx">openingElement</span><span class="p">.</span><span class="nx">attributes</span><span class="p">,</span>
     <span class="nx">jsxSpreadAttribute</span><span class="p">(</span><span class="nx">identifier</span><span class="p">(</span><span class="s1">&#39;props&#39;</span><span class="p">)),</span>
@@ -283,7 +284,7 @@ element and also spread <code>props</code> into them using
 </h2>
 <p>Now, to inject the type annotation into the template is what took me the most part.</p>
 <p>Initially I thought that this would have worked:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ...
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// ...
 </span><span class="c1"></span>
 <span class="k">return</span> <span class="nx">typescriptTemplate</span><span class="p">.</span><span class="nx">ast</span><span class="sb">`
 </span><span class="sb">  import React from &#39;react&#39;
@@ -294,15 +295,14 @@ element and also spread <code>props</code> into them using
 </span><span class="sb">      </span><span class="si">${</span><span class="nx">wrappedJsx</span><span class="si">}</span><span class="sb">
 </span><span class="sb">    )
 </span><span class="sb">  }
-</span><span class="sb">`</span>
-</code></pre></div>
+</span><span class="sb">`</span></code></pre></div>
 <p>But the type annotation, <code>: React.FC&lt;SvgIconProps&gt;</code> is stripped out from the
 final output file.</p>
 <p>Then I went with this hack:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentName</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;SvgComponent: React.FC&lt;SvgIconProps&gt;&#39;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentName</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;SvgComponent: React.FC&lt;SvgIconProps&gt;&#39;</span>
 </code></pre></div><p>This works but it doesn&rsquo;t spark joy&hellip; Then I decided to put in more effort and
 I came up with this (more verbose) solution:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentName</span><span class="p">.</span><span class="nx">typeAnnotation</span> <span class="o">=</span> <span class="nx">tsTypeAnnotation</span><span class="p">(</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">componentName</span><span class="p">.</span><span class="nx">typeAnnotation</span> <span class="o">=</span> <span class="nx">tsTypeAnnotation</span><span class="p">(</span>
   <span class="nx">tsTypeReference</span><span class="p">(</span>
     <span class="nx">identifier</span><span class="p">(</span><span class="s1">&#39;React.FC&#39;</span><span class="p">),</span>
     <span class="nx">tsTypeParameterInstantiation</span><span class="p">([</span><span class="nx">tsTypeReference</span><span class="p">(</span><span class="nx">identifier</span><span class="p">(</span><span class="s1">&#39;SvgIconProps&#39;</span><span class="p">))])</span>
@@ -323,7 +323,7 @@ In case you didn&rsquo;t know, this is a built-in feature called
 <p>You could also configure your project to use a template by default with a
 <a href="https://react-svgr.com/docs/configuration-files/"><code>.svgrrc</code></a> file at the
 project&rsquo;s root folder:</p>
-<div class="highlight"><pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// .svgrrc.js
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">// .svgrrc.js
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
 <span class="nx">template</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./path/to/template.js&#39;</span><span class="p">)</span>
 <span class="p">}</span>
@@ -392,11 +392,13 @@ running a cli program, which isn&rsquo;t bad.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Subscribe
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>All content is under the

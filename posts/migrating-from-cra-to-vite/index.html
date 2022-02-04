@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="How and why to migrate a CRA project to Vite" />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2021-04-23">
 <meta name="last-modified-date" content="2021-04-23">
 <meta name="author" content="">
@@ -38,9 +38,10 @@
 <meta property="og:title" content="Migrating from create-react-app to Vite" />
 <meta property="og:description" content="How and why to migrate a CRA project to Vite" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/migrating-from-cra-to-vite/" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/migrating-from-cra-to-vite/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-23T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-04-23T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Migrating from create-react-app to Vite"/>
@@ -125,7 +126,7 @@ window.addEventListener("load", function() {
         About
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/posts/"
       >
         Posts
@@ -179,9 +180,9 @@ written in Typescript, to Vite. And it was more easy than I expected.</p>
   <a class="hidden text-highlight group-hover:inline" href="#initial-setup">#</a>
 </h2>
 <p>First, I installed Vite:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">npm install vite
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm install vite
 </code></pre></div><p>Updated my npm scripts:</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/package.json b/package.json
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/package.json b/package.json
 </span><span class="gh">index f3307f5..32724e4 100644
 </span><span class="gh"></span><span class="gd">--- a/package.json
 </span><span class="gd"></span><span class="gi">+++ b/package.json
@@ -198,7 +199,7 @@ written in Typescript, to Vite. And it was more easy than I expected.</p>
 <a href="https://vitejs.dev/guide/#index-html-and-project-root">The reasons for the following steps are explained in more detail here</a>.</p>
 <p>Moved my <code>index.html</code> from the <code>./public</code> folder to my project&rsquo;s root folder and
 added a <code>script</code> tag with my JS entry point as its <code>src</code> attribute.</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/public/index.html b/index.html
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/public/index.html b/index.html
 </span><span class="gh"></span>similarity index 88%
 rename from public/index.html
 rename to index.html
@@ -226,9 +227,9 @@ understand.</p>
 supports, apart from
 <a href="https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping">path mapping</a>,
 <code>include</code> and <code>exclude</code> properties as well:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">npm install vite-tsconfig-paths
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm install vite-tsconfig-paths
 </code></pre></div><p>Once installed, we add it to our <code>vite.config.ts</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;vite&#34;</span><span class="p">;</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-ts" data-lang="ts"><span class="kr">import</span> <span class="p">{</span> <span class="nx">defineConfig</span> <span class="p">}</span> <span class="kr">from</span> <span class="s2">&#34;vite&#34;</span><span class="p">;</span>
 <span class="kr">import</span> <span class="nx">tsconfigPaths</span> <span class="kr">from</span> <span class="s2">&#34;vite-tsconfig-paths&#34;</span><span class="p">;</span>
 
 <span class="kr">export</span> <span class="k">default</span> <span class="nx">defineConfig</span><span class="p">({</span>
@@ -250,7 +251,7 @@ out how to run my Jest tests without <code>react-scripts test</code>.</p>
 <p>Fortunately, there is project to help with that called
 <a href="https://kulshekhar.github.io/ts-jest/"><code>ts-jest</code></a>. All we need to do is add it
 as a jest preset in <code>jest.config.js</code>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
   <span class="nx">preset</span><span class="o">:</span> <span class="s2">&#34;ts-jest&#34;</span><span class="p">,</span>
   <span class="nx">setupFilesAfterEnv</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;&lt;rootDir&gt;src/setupTests.ts&#34;</span><span class="p">],</span>
   <span class="nx">testPathIgnorePatterns</span><span class="o">:</span> <span class="p">[</span><span class="s2">&#34;&lt;rootDir&gt;/cypress/&#34;</span><span class="p">],</span>
@@ -272,7 +273,7 @@ imports that look up paths inside <code>tsconfig.json</code> <code>include</code
 boot, though I haven&rsquo;t checked how great hot reloading is.</p>
 <p>But I&rsquo;m amazed by that first experience and how straightforward it was.</p>
 <p>Finally, I uninstalled my CRA-related dev dependencies:</p>
-<div class="highlight"><pre class="chroma"><code class="language-sh" data-lang="sh">npm uninstall react-scripts customize-cra react-app-rewired babel-plugin-import
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm uninstall react-scripts customize-cra react-app-rewired babel-plugin-import
 </code></pre></div>
 
     <hr class="my-8" />
@@ -307,11 +308,13 @@ boot, though I haven&rsquo;t checked how great hot reloading is.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Subscribe
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>All content is under the

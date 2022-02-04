@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Take full advantage of Vim&rsquo;s shel integration and the quick fix list." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2021-06-11">
 <meta name="last-modified-date" content="2021-06-11">
 <meta name="author" content="">
@@ -38,9 +38,10 @@
 <meta property="og:title" content="Extending Vim with ripgrep" />
 <meta property="og:description" content="Take full advantage of Vim&rsquo;s shel integration and the quick fix list." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/extending-vim-with-ripgrep/" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/extending-vim-with-ripgrep/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-06-11T00:00:00+00:00" />
 <meta property="article:modified_time" content="2021-06-11T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Extending Vim with ripgrep"/>
@@ -125,7 +126,7 @@ window.addEventListener("load", function() {
         About
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/posts/"
       >
         Posts
@@ -174,7 +175,7 @@ but it doesn&rsquo;t matter here).</p>
 <p>This is a crucial part of my daily workflow. It&rsquo;s fast because of <code>ripgrep</code> and
 extensible because of how nicely <code>vim</code> is integrated with the command line.</p>
 <p>Here&rsquo;s the configuration needed:</p>
-<div class="highlight"><pre class="chroma"><code class="language-vim" data-lang="vim"><span class="k">if</span> <span class="nx">executable</span><span class="p">(</span><span class="s2">&#34;rg&#34;</span><span class="p">)</span><span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="k">if</span> <span class="nx">executable</span><span class="p">(</span><span class="s2">&#34;rg&#34;</span><span class="p">)</span><span class="err">
 </span><span class="err"></span>  <span class="nx">set</span> <span class="nx">grepprg</span><span class="p">=</span><span class="nx">rg</span>\ <span class="p">--</span><span class="nx">vimgrep</span>\ <span class="p">--</span><span class="nx">smart</span><span class="p">-</span><span class="nx">case</span>\ <span class="p">--</span><span class="nx">hidden</span><span class="err">
 </span><span class="err"></span>  <span class="nx">set</span> <span class="nx">grepformat</span><span class="p">=</span>%<span class="nx">f</span>:%<span class="nx">l</span>:%<span class="nx">c</span>:%<span class="nx">m</span><span class="err">
 </span><span class="err"></span><span class="k">endif</span><span class="err">
@@ -207,9 +208,9 @@ want to share how I do.</p>
 <p>This is nice but here is where it truly shines. I can give any command line
 output as an argument.</p>
 <p>Say I want to search in files modified between git revisions:</p>
-<pre><code>:grep foo `git diff --name-only master..`
+<pre tabindex="0"><code>:grep foo `git diff --name-only master..`
 </code></pre><p>Or only modified files:</p>
-<pre><code>:grep foo `git ls-files --modified`
+<pre tabindex="0"><code>:grep foo `git ls-files --modified`
 </code></pre><p>I don&rsquo;t use this everyday but I enjoy it when I do.</p>
 <h2 class="group pt-3" id="usage-with-vim">
   Usage with Vim
@@ -244,7 +245,7 @@ enjoy using and makes development more fun (to me).</p>
 <hr>
 <ol>
 <li id="fn:1" role="doc-endnote">
-<p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>. <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </section>
@@ -282,11 +283,13 @@ enjoy using and makes development more fun (to me).</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Subscribe
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>All content is under the

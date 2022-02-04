@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="A sequência de fibonacci é uma velha conhecida dos que estudam programação. Por isso, esse post não deve soar tão estimulante para pessoas que trabalham com programação há muito tempo, mas prometo que algo ainda pode ser aproveitado." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2019-03-03">
 <meta name="last-modified-date" content="2019-03-03">
 <meta name="author" content="">
@@ -49,9 +49,10 @@
 <meta property="og:title" content="Três algoritmos para a sequência de Fibonacci" />
 <meta property="og:description" content="A sequência de fibonacci é uma velha conhecida dos que estudam programação. Por isso, esse post não deve soar tão estimulante para pessoas que trabalham com programação há muito tempo, mas prometo que algo ainda pode ser aproveitado." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/" />
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-03-03T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-03-03T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Três algoritmos para a sequência de Fibonacci"/>
@@ -136,7 +137,7 @@ window.addEventListener("load", function() {
         Sobre
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/pt/posts/"
       >
         Posts
@@ -209,7 +210,7 @@ $$</p>
 F_n = F_{n-1} + F_{n-2}
 $$</p>
 <p>Com isso em mente, podemos escrever o algoritmo que muitos já devem conhecer.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">std_fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">std_fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>  <span class="c1"># tuple assignment</span>
 
     <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
@@ -235,7 +236,7 @@ calculamos o número de fibonacci, que é a soma desses dois. O primeiro, então
 do número de fibonacci, de forma que no próximo loop, a soma será 1 + 1, e no
 próximo 1 + 2, 2 + 3 etc.</p>
 <p>Para comparação, vamos testar sua performance em termos de eficiência.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">std_fib</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">std_fib</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div><pre><code>2.46 ms ± 96.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </code></pre>
 <h2 class="group pt-3" id="por-recursão">
@@ -244,7 +245,7 @@ próximo 1 + 2, 2 + 3 etc.</p>
 </h2>
 <p>Como não sou estudante de ciência da computação, esse eu conheci recentemente
 até e achei maravilhoso. Ele tem a vantagem de ser bem legível, limpo.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">rec_fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">rec_fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">n</span>
     <span class="k">else</span><span class="p">:</span>
@@ -261,7 +262,7 @@ respectivamente, 0 e 1. Para todos os outros, calculamos de forma recursiva. Por
 exemplo, \( F_3 = F_2 + F_1 = F_1 + F_0 + F_1 = 1 + 0 + 1 = 2 \)</p>
 <p>E é uma boa maneira de introduzir o conceito de recursão na computação. Agora
 vejamos quão eficiente ele é.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">rec_fib</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">rec_fib</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div><pre><code>4.81 ms ± 625 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </code></pre>
 <p>Para calcular o vigésimo número ele demorou muito mais do que o algoritmo
@@ -281,7 +282,7 @@ exatamente o que precisamos!</p>
 <p>Agora, como poderíamos fazer isso? Um jeito bem eficiente é usar um hash table,
 o que no Python é um set ou um dictionary. A vantagem dessa estrutura de dados é
 que o tempo de procura independe de quantos dados armazenados você tem ali:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ffib</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">memo</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">}):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">ffib</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">memo</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">1</span><span class="p">}):</span>
     <span class="k">try</span><span class="p">:</span>  <span class="c1"># tente retornar um valor no &#39;memorizador&#39;</span>
         <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
 
@@ -289,10 +290,10 @@ que o tempo de procura independe de quantos dados armazenados você tem ali:</p>
         <span class="n">fib</span> <span class="o">=</span> <span class="n">ffib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">+</span> <span class="n">ffib</span><span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">fib</span>  <span class="c1"># guarde-o</span>
         <span class="k">return</span> <span class="n">memo</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
-</code></pre></div><div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">ffib</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">ffib</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span>
 </code></pre></div><pre><code>178 ns ± 0.385 ns per loop (mean ± std. dev. of 7 runs, 10000000 loops each)
 </code></pre>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">ffib</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">ffib</span><span class="p">(</span><span class="mi">1000</span><span class="p">)</span>
 </code></pre></div><pre><code>183 ns ± 8.12 ns per loop (mean ± std. dev. of 7 runs, 1000000 loops each)
 </code></pre>
 <p>O que é muito mais rápido. É bem impressionante o quanto essa técnica pôde
@@ -390,13 +391,13 @@ vezes a matriz A transforme os autovetores, a direção deles nunca muda).</p>
 <p>Agora resta calcular tudo com o NumPy.</p>
 <p>O primeiro passo é criar a matriz A. Logo depois, obter os
 autovalores/autovetores, nessa ordem, com a função <em>numpy.linalg.eig()</em>.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>
 
 <span class="n">evalues</span><span class="p">,</span> <span class="n">evectors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">eig</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
 
-<span class="k">print</span><span class="p">(</span><span class="n">evalues</span><span class="p">,</span> <span class="n">evectors</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evalues</span><span class="p">,</span> <span class="n">evectors</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
 </code></pre></div><pre><code>[ 1.61803399 -0.61803399]
 
 [[ 0.85065081 -0.52573111]
@@ -404,12 +405,12 @@ autovalores/autovetores, nessa ordem, com a função <em>numpy.linalg.eig()</em>
 </code></pre>
 <p>Mas, lembrando que queremos os autovalores na matriz diagonal \( \Lambda \).
 Também precisamos calcular o vetor c.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Lambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">evalues</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">Lambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">evalues</span><span class="p">)</span>
 
 <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">evectors</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">])[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
 </code></pre></div><p>Antes, vamos olhar para a nossa matriz \( \Lambda \), porque ela pode revelar
 coisas interessantes:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Lambda</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">Lambda</span>
 </code></pre></div><pre><code>array([[ 1.61803399,  0.        ],
        [ 0.        , -0.61803399]])
 </code></pre>
@@ -426,18 +427,18 @@ crescimento dos números, com o outro termo tentendo a 0 com k aumentando
 arbitrariamente. Fica claro também que esses números crescem exponencialmente.</p>
 <p>Agora, vamos criar uma função para calcular \( u_k \). Nela usaremos a matriz
 \( S \) (evectors), o vetor c e a matriz \( \Lambda \).</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">FIB</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">(</span><span class="n">evectors</span> <span class="err">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">Lambda</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="err">@</span> <span class="n">c</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">FIB</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">evectors</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">matrix_power</span><span class="p">(</span><span class="n">Lambda</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span> <span class="o">@</span> <span class="n">c</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
 
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">15</span><span class="p">):</span>
-    <span class="k">print</span><span class="p">(</span><span class="n">FIB</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">FIB</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">end</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\t</span><span class="s2">&#34;</span><span class="p">)</span>
 </code></pre></div><pre><code>[1.]    [2.]    [3.]    [5.]    [8.]    [13.]   [21.]   [34.]   [55.]   [89.]   [144.]  [233.]  [377.]  [610.]
 </code></pre>
 <p>Tudo o que fiz foi calcular \( u_k \) com a fórmula e extrair do vetor
 resultante a primeira linha (\( F_k \)).</p>
 <p>E quanto à sua eficiência?</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">FIB</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">timeit</span> <span class="n">FIB</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 </code></pre></div><pre><code>32.8 µs ± 1.46 µs per loop (mean ± std. dev. of 7 runs, 10000 loops each)
 </code></pre>
 <p>Não surpreende ser tão rápido, estamos usando o NumPy afinal.</p>
@@ -491,11 +492,13 @@ que conta com ótimas visualizações do que acabamos de fazer aqui.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Assine
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/pt/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>Todo conteúdo está sob a licença

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="Em Álgebra Linear, processo de Gram-Schmidt é um algoritmo usado para tornar um conjunto de vetores perpendiculares entre si (o que também se conhece por ortogonalização)." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2019-08-04">
 <meta name="last-modified-date" content="2019-08-04">
 <meta name="author" content="">
@@ -49,9 +49,10 @@
 <meta property="og:title" content="Processo de Gram-Schmidt com NumPy" />
 <meta property="og:description" content="Em Álgebra Linear, processo de Gram-Schmidt é um algoritmo usado para tornar um conjunto de vetores perpendiculares entre si (o que também se conhece por ortogonalização)." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/gram-schmidt/" />
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/gram-schmidt/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-08-04T00:00:00+00:00" />
 <meta property="article:modified_time" content="2019-08-04T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Processo de Gram-Schmidt com NumPy"/>
@@ -136,7 +137,7 @@ window.addEventListener("load", function() {
         Sobre
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/pt/posts/"
       >
         Posts
@@ -191,8 +192,8 @@ vetor sobre o outro, isso quer dizer que os dois vetores não tem uma
 &ldquo;correlação&rdquo; em termos de direção. Geometricamente, também quer dizer que eles
 estão separados por um ângulo de 90º.</p>
 <p>Por exemplo, os três vetores abaixo são vetores ortogonais:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
 <span class="n">ax</span> <span class="o">=</span> <span class="n">fig</span><span class="o">.</span><span class="n">add_subplot</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s1">&#39;3d&#39;</span><span class="p">)</span>
@@ -225,7 +226,7 @@ $$</p>
 <p>Como eles fazem isso? A ideia básica é a seguinte e está intimamente ligada ao
 conceito de projeção. Por isso, vamos entender o que é isso antes.</p>
 <p>Abaixo, uma imagem da projeção de um vetor \( a_1 \) sobre \( a_2 \).</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
@@ -247,8 +248,8 @@ conceito de projeção. Por isso, vamos entender o que é isso antes.</p>
 
 <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$a_1$&#34;</span><span class="p">,</span> <span class="n">a1</span> <span class="o">+</span> <span class="mf">0.5</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$a_2$&#34;</span><span class="p">,</span> <span class="n">a2</span> <span class="o">+</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$\hat{x}a_2$&#34;</span><span class="p">,</span> <span class="n">projection</span> <span class="o">-</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$e = a_1 - \hat{x}a_2$&#34;</span><span class="p">,</span> <span class="n">e</span> <span class="o">+</span> <span class="n">projection</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$\hat</span><span class="si">{x}</span><span class="s2">a_2$&#34;</span><span class="p">,</span> <span class="n">projection</span> <span class="o">-</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$e = a_1 - \hat</span><span class="si">{x}</span><span class="s2">a_2$&#34;</span><span class="p">,</span> <span class="n">e</span> <span class="o">+</span> <span class="n">projection</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Projeção de </span><span class="se">\\</span><span class="s2">( a_1 </span><span class="se">\\</span><span class="s2">) em </span><span class="se">\\</span><span class="s2">( a_2 </span><span class="se">\\</span><span class="s2">)&#34;</span><span class="p">)</span>
 </code></pre></div><p><img src="./projecao-vetorial.png" alt="Projeção vetorial"></p>
 <p>Dados esses dois vetores, podemos gerar um vetor perpendicular ao \( a_2 \)
@@ -291,7 +292,7 @@ matriz é a <em>residual maker</em> na regressão linear. E é justamente o que 
 precisar.</p>
 <p>Agora, para o algoritmo propriamente dito. Vamos usar uma matriz 3x3 qualquer e
 tentar torná-lo ortogonal.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
 
 <span class="n">A</span>
@@ -306,7 +307,7 @@ usar a <em>annhilator matrix</em>.</p>
 <p>No caso do terceito, faremos o mesmo mas sobre o espaço expandido pelos dois
 primeiros vetores.</p>
 <p>Vamos ver se isso funciona. O código abaixo replica esse processo.</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">orthogonalize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">orthogonalize</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
     <span class="c1"># vetor a ser ortogonalizado</span>
     <span class="n">b</span> <span class="o">=</span> <span class="n">A</span><span class="p">[:,</span> <span class="n">n</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
     <span class="c1"># se for o primeiro vetor, somente normalize (norma igual a um)</span>
@@ -321,7 +322,7 @@ primeiros vetores.</p>
         <span class="n">I</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="c1"># construir a annihilator matrix, para projetar o vetor b no sub-espaço</span>
         <span class="c1"># ortogonal ao espaço coluna de X, em R^n</span>
-        <span class="n">M</span> <span class="o">=</span> <span class="n">I</span> <span class="o">-</span> <span class="n">X</span> <span class="err">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="err">@</span> <span class="n">X</span><span class="p">)</span> <span class="err">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+        <span class="n">M</span> <span class="o">=</span> <span class="n">I</span> <span class="o">-</span> <span class="n">X</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
         <span class="c1"># fazer a projeção e retornar normalizado</span>
         <span class="n">e</span> <span class="o">=</span> <span class="n">M</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">e</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">e</span><span class="p">)</span>
@@ -338,7 +339,7 @@ primeiros vetores.</p>
        [ 0.14002801,  0.72814504, -0.67096718]])
 </code></pre>
 <p>Se tudo está correto, a multiplicação \( Q^{T}Q \) deve retornar a identidade:</p>
-<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Q</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">Q</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">Q</span><span class="p">)</span>
 </code></pre></div><pre><code>array([[ 1.00000000e+00, -1.38777878e-17, -8.04911693e-16],
        [-1.38777878e-17,  1.00000000e+00,  6.66133815e-16],
        [-8.04911693e-16,  6.66133815e-16,  1.00000000e+00]])
@@ -389,11 +390,13 @@ fácil de se lidar numericamente.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Assine
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/pt/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>Todo conteúdo está sob a licença

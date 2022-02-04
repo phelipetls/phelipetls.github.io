@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
-<meta name="deploy-date" content="2022-02-03">
+<meta name="deploy-date" content="2022-02-04">
 <meta name="publish-date" content="2022-01-25">
 <meta name="last-modified-date" content="2022-01-25">
 <meta name="author" content="">
@@ -38,9 +38,10 @@
 <meta property="og:title" content="Improving the Android Studio experience in dwm" />
 <meta property="og:description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/improving-the-android-studio-experience-in-dwm/" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/improving-the-android-studio-experience-in-dwm/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-25T00:00:00+00:00" />
 <meta property="article:modified_time" content="2022-01-25T00:00:00+00:00" />
+
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Improving the Android Studio experience in dwm"/>
@@ -125,7 +126,7 @@ window.addEventListener("load", function() {
         About
       </a><a
         id=""
-        class="text-normal "
+        class="text-normal border-primary"
         href="https://phelipetls.github.io/posts/"
       >
         Posts
@@ -200,7 +201,7 @@ whose value we can get with an Xlib function named
 <a href="https://tronche.com/gui/x/xlib/ICC/client-to-window-manager/XGetTransientForHint.html"><code>XGetTransientForHint</code></a>.</p>
 <p>Here&rsquo;s an example on how to use this function, taken from the <a href="https://git.suckless.org/dwm/file/dwm.c.html#l1038"><code>dwm</code> source
 code</a>:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">manage</span><span class="p">(</span><span class="n">Window</span> <span class="n">w</span><span class="p">,</span> <span class="n">XWindowAttributes</span> <span class="o">*</span><span class="n">wa</span><span class="p">)</span>
 <span class="p">{</span>
 <span class="hl">	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
@@ -234,7 +235,7 @@ windows to be raised into view as well.</li>
 </h2>
 <p>The taskbar is drawn by the <code>drawbar</code> function.</p>
 <p>I just need to check if a window is transient and, if so, skip:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">drawbar</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="c1">// ...
@@ -272,7 +273,7 @@ windows to be raised into view as well.</li>
 </span><span class="c1"></span><span class="p">}</span>
 </code></pre></div><p>We need to be careful here and also change the <code>buttonpress</code> function, which
 handles clicks in the taskbar:</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/dwm.c b/dwm.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/dwm.c b/dwm.c
 </span><span class="gh"></span><span class="gd">--- a/dwm.c
 </span><span class="gd"></span><span class="gi">+++ b/dwm.c
 </span><span class="gi"></span><span class="gu">@@ -518,6 +518,7 @@ buttonpress(XEvent *e)
@@ -302,7 +303,7 @@ well</a>.</p>
 </h2>
 <p>This is simple, we just need to <em>not</em> increment a counter when the window is
 transient, in the <code>monocle</code> function:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">monocle</span><span class="p">(</span><span class="n">Monitor</span> <span class="o">*</span><span class="n">m</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="kt">unsigned</span> <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
@@ -324,7 +325,7 @@ transient, in the <code>monocle</code> function:</p>
 <code>focusstack</code> function.</p>
 <p>Then it&rsquo;s quick to realize I just need to add another condition to the various
 if statements (careful not to mix up the <code>i</code> and <code>c</code> variables):</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
 </span><span class="gh">index 86e4a41..852666b 100644
 </span><span class="gh"></span><span class="gd">--- a/suckless/dwm/dwm.c
 </span><span class="gd"></span><span class="gi">+++ b/suckless/dwm/dwm.c
@@ -371,7 +372,7 @@ if statements (careful not to mix up the <code>i</code> and <code>c</code> varia
 <code>tag</code> function.</p>
 <p>Then I modified it to apply the same tag to all transient windows whose window
 leader is the selected client:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">tag</span><span class="p">(</span><span class="k">const</span> <span class="n">Arg</span> <span class="o">*</span><span class="n">arg</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span> <span class="o">=</span> <span class="nb">NULL</span><span class="p">;</span>
@@ -404,7 +405,7 @@ visible.</p>
 <p>The fix is to raise all transient windows when a window gets focused. Also,
 if a transient window gets focused in a non-floating layout, we should raise it
 as well since transient windows are always floating in dwm). Here&rsquo;s the code:</p>
-<div class="highlight"><pre class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-diff" data-lang="diff"><span class="gh">diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c
 </span><span class="gh">index 389c61d..70a6dc1 100644
 </span><span class="gh"></span><span class="gd">--- a/suckless/dwm/dwm.c
 </span><span class="gd"></span><span class="gi">+++ b/suckless/dwm/dwm.c
@@ -442,7 +443,7 @@ r/bakkeby</a>, I
 found out that I could use
 <a href="https://tronche.com/gui/x/xlib/window/XLowerWindow.html"><code>XLowerWindow</code></a> in
 the <code>unfocus</code> function to fix this:</p>
-<div class="highlight"><pre class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="kt">void</span>
 <span class="nf">unfocus</span><span class="p">(</span><span class="n">Client</span> <span class="o">*</span><span class="n">c</span><span class="p">,</span> <span class="kt">int</span> <span class="n">setfocus</span><span class="p">)</span>
 <span class="p">{</span>
 	<span class="n">Client</span> <span class="o">*</span><span class="n">i</span><span class="p">,</span> <span class="o">*</span><span class="n">t</span><span class="p">;</span>
@@ -512,11 +513,13 @@ around.</p>
     </main>
 
     <footer class="mt-16 text-right text-sm">
-  <div>
+  <div class="mb-2">
     <a href="http://tinyletter.com/phelipetls">
       Subscribe
     </a>
-    ·
+    &nbsp;·&nbsp;
+      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
     </div>
 
   <div>All content is under the
