@@ -151,20 +151,21 @@ window.addEventListener("load", function() {
       Oct 28, 2020
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/vim/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-vim</a>
-  
-    <a href="/tags/python/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-python</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/vim/" class="no-underline">vim</a><span class="last:hidden">,</span>
+
+  <a href="/tags/python/" class="no-underline">python</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -198,9 +199,9 @@ my surprise.</p>
 </span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonfString</span> <span class="nx">String</span><span class="err">
 </span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonfDocstring</span> <span class="nx">String</span><span class="err">
 </span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonStringModifier</span> <span class="nx">PreProc</span><span class="err">
-</span></code></pre></div><h2 class="group pt-3" id="declaring-a-syntax-region-for-f-strings">
+</span></code></pre></div><h2 class="group mb-8 mt-8" id="declaring-a-syntax-region-for-f-strings">
   Declaring a syntax region for f-strings
-  <a class="hidden text-highlight group-hover:inline" href="#declaring-a-syntax-region-for-f-strings">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#declaring-a-syntax-region-for-f-strings">#</a>
 </h2>
 <p>The first two lines define a new syntax region (see <code>:h syn-region</code>) called
 <code>pythonfString</code>.</p>
@@ -213,9 +214,9 @@ see <code>:h \z(</code>).</p>
 <p>The <code>matchgroup</code> argument tells Vim which highlight group it should use to
 highlight the start/end pattern. The group <code>pythonQuotes</code> come from the default
 syntax file.</p>
-<h2 class="group pt-3" id="handling-expressions-inside-f-strings">
+<h2 class="group mb-8 mt-8" id="handling-expressions-inside-f-strings">
   Handling expressions inside f-strings
-  <a class="hidden text-highlight group-hover:inline" href="#handling-expressions-inside-f-strings">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#handling-expressions-inside-f-strings">#</a>
 </h2>
 <p>We also need to declare what this region contains.</p>
 <p>For this we declare another region called <code>pythonInterpolation</code>, which starts
@@ -224,9 +225,9 @@ closes with &ldquo;}&rdquo;. With that in mind, we use the regex <code>{{\@!</co
 want a match if the preceding token is present (see <code>:h \@!</code>).</p>
 <p>This region may contain only expressions, so stuff like a function declaration
 does not make sense (notice there is a syntax for that, <code>:helpgrep ALLBUT</code>)</p>
-<h2 class="group pt-3" id="handling-string-modifiers">
+<h2 class="group mb-8 mt-8" id="handling-string-modifiers">
   Handling string modifiers
-  <a class="hidden text-highlight group-hover:inline" href="#handling-string-modifiers">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#handling-string-modifiers">#</a>
 </h2>
 <p>f-strings supports
 <a href="https://docs.python.org/3/library/string.html#format-examples"><code>str.format</code> syntax</a>
@@ -244,9 +245,9 @@ handle this also.</p>
 that should be used.</p>
 <p>It should only be highlighted inside a <code>pythonInterpolation</code> so we take
 advantage of the <code>containedin</code> argument (see <code>:h syn-containedin</code>).</p>
-<h2 class="group pt-3" id="highlighting-declared-groups">
+<h2 class="group mb-8 mt-8" id="highlighting-declared-groups">
   Highlighting declared groups
-  <a class="hidden text-highlight group-hover:inline" href="#highlighting-declared-groups">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#highlighting-declared-groups">#</a>
 </h2>
 <p>Finally, we link these new highlight groups with an appropriate/whichever you
 like highlight group (see <code>:h hi-link</code> and <code>:h group-name</code>). I chose <code>String</code>
@@ -294,7 +295,7 @@ for f-strings and <code>PreProc</code> for modifiers. And it should work as expe
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -317,11 +318,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

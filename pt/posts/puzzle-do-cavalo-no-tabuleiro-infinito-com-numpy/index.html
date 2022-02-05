@@ -149,20 +149,21 @@ window.addEventListener("load", function() {
       Feb 18, 2019
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/pt/tags/numpy/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-numpy</a>
-  
-    <a href="/pt/tags/matplotlib/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-matplotlib</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/pt/tags/numpy/" class="no-underline">numpy</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/matplotlib/" class="no-underline">matplotlib</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -178,9 +179,9 @@ facilita a criação de visualizações do problema com o ggplot2.</p>
 seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
 operações vetorizadas e eficientes.</p>
-<h2 class="group pt-3" id="o-que-está-por-trás-da-eficiência-do-numpy">
+<h2 class="group mb-8 mt-8" id="o-que-está-por-trás-da-eficiência-do-numpy">
   O que está por trás da eficiência do Numpy
-  <a class="hidden text-highlight group-hover:inline" href="#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy">#</a>
 </h2>
 <p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
 de tipagem dinâmica e de script (não-compilada): ele não é tão bom em fazer
@@ -237,9 +238,9 @@ TypeError                                 Traceback (most recent call last)
 TypeError: can't convert complex to int
 </code></pre>
 <p>Esse comportamento é muito similar ao vetor do R.</p>
-<h2 class="group pt-3" id="simulando-os-movimentos-do-cavalo">
+<h2 class="group mb-8 mt-8" id="simulando-os-movimentos-do-cavalo">
   Simulando os movimentos do cavalo
-  <a class="hidden text-highlight group-hover:inline" href="#simulando-os-movimentos-do-cavalo">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#simulando-os-movimentos-do-cavalo">#</a>
 </h2>
 <p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p>
 <ul>
@@ -375,9 +376,9 @@ simples histograma, feito com 100 repetições do experimento.</p>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">knight_probs</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
 </code></pre></div><p><img src="./histograma.png" alt="Histograma"></p>
-<h2 class="group pt-3" id="a-eficiência-em-números">
+<h2 class="group mb-8 mt-8" id="a-eficiência-em-números">
   A eficiência em números
-  <a class="hidden text-highlight group-hover:inline" href="#a-efici%c3%aancia-em-n%c3%bameros">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#a-efici%c3%aancia-em-n%c3%bameros">#</a>
 </h2>
 <p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
 verificar isso facilmente com o magic command do IPython, o %%timeit. Criei uma
@@ -402,9 +403,9 @@ algoritmo.</p>
 <p>É extraordinariamente rápido. Mesmo quando se trata de cálculos com uma matriz
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
 Python seria absurdamente mais lento.</p>
-<h2 class="group pt-3" id="conclusões">
+<h2 class="group mb-8 mt-8" id="conclusões">
   Conclusões
-  <a class="hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
 </h2>
 <p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
 ferramenta muito útil, garantindo eficiência com uma sintaxe simples e limpa. Há
@@ -469,11 +470,13 @@ Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

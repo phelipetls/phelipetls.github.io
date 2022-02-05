@@ -149,28 +149,25 @@ window.addEventListener("load", function() {
       Apr 07, 2019
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/pt/tags/dataviz/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-dataviz</a>
-  
-    <a href="/pt/tags/tidyverse/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-tidyverse</a>
-  
-    <a href="/pt/tags/gganimate/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-gganimate</a>
-  
-    <a href="/pt/tags/ggplot2/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-ggplot2</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/pt/tags/dataviz/" class="no-underline">dataviz</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/tidyverse/" class="no-underline">tidyverse</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/gganimate/" class="no-underline">gganimate</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/ggplot2/" class="no-underline">ggplot2</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -209,9 +206,9 @@ homicídios muito mais que as brancas?</p>
 da cidade são as mais violentas etc.</p>
 <p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
 Será que vem declinando com o passar dos anos?</p>
-<h2 class="group pt-3" id="evolução-do-número-de-vítimas-no-tempo">
+<h2 class="group mb-8 mt-8" id="evolução-do-número-de-vítimas-no-tempo">
   Evolução do número de vítimas no tempo
-  <a class="hidden text-highlight group-hover:inline" href="#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo">#</a>
 </h2>
 <p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
 visualização com um gráfico de linhas:</p>
@@ -296,9 +293,9 @@ tentei replicar abaixo:</p>
 <p>E aqui fica claro o porquê da queda em 2012: não temos os dados de todos os
 meses. Também salta aos olhos que a violência diminuiu em relação a 2007, mas se
 manteve mais ou menos estável no resto do período.</p>
-<h2 class="group pt-3" id="aspectos-sociais-das-vítimas">
+<h2 class="group mb-8 mt-8" id="aspectos-sociais-das-vítimas">
   Aspectos sociais das vítimas
-  <a class="hidden text-highlight group-hover:inline" href="#aspectos-sociais-das-v%c3%adtimas">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#aspectos-sociais-das-v%c3%adtimas">#</a>
 </h2>
 <p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
 grupos:</p>
@@ -323,9 +320,9 @@ em posição mais vulnerável à violência que a branca, provavelmente porque v
 nas regiões onde a violência é maior.</p>
 <p>Também impressiona o contraste entre os números para cada gênero. Os homens são
 muito mais propensos a serem mortos violentamente.</p>
-<h2 class="group pt-3" id="que-causa-de-morte-é-a-mais-comum">
+<h2 class="group mb-8 mt-8" id="que-causa-de-morte-é-a-mais-comum">
   Que causa de morte é a mais comum?
-  <a class="hidden text-highlight group-hover:inline" href="#que-causa-de-morte-%c3%a9-a-mais-comum">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#que-causa-de-morte-%c3%a9-a-mais-comum">#</a>
 </h2>
 <p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
 barras:</p>
@@ -344,9 +341,9 @@ barras:</p>
 </code></pre></div><p><img src="./unnamed-chunk-6-1.png" alt="plot5"><!-- --></p>
 <p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
 esfaqueamento e contusão.</p>
-<h2 class="group pt-3" id="mapas-e-animações">
+<h2 class="group mb-8 mt-8" id="mapas-e-animações">
   Mapas e animações
-  <a class="hidden text-highlight group-hover:inline" href="#mapas-e-anima%c3%a7%c3%b5es">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#mapas-e-anima%c3%a7%c3%b5es">#</a>
 </h2>
 <p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
 primeiro plotar o mapa da cidade. O código abaixo mostra como fazer isso, com a
@@ -435,9 +432,9 @@ números crescem.</p>
   <span class="nf">geom_text</span><span class="p">(</span><span class="nf">aes</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">13</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="n">soma_cumulativa</span><span class="p">)))</span> <span class="o">+</span>
   <span class="nf">transition_reveal</span><span class="p">(</span><span class="n">mes</span><span class="p">)</span>
 </code></pre></div><p><img src="./unnamed-chunk-9-1.gif" alt="gif3"><!-- --></p>
-<h2 class="group pt-3" id="conclusões">
+<h2 class="group mb-8 mt-8" id="conclusões">
   Conclusões
-  <a class="hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
 </h2>
 <p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
 talvez uma das maiores vantagens de se usar o R, e espero que te ajude a criar
@@ -513,11 +510,13 @@ ou o próprio <a href="https://gganimate.com/">site do pacote</a>.</p>
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

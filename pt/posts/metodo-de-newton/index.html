@@ -160,24 +160,23 @@ window.addEventListener("load", function() {
       Mar 17, 2019
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/pt/tags/matplotlib/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-matplotlib</a>
-  
-    <a href="/pt/tags/numpy/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-numpy</a>
-  
-    <a href="/pt/tags/sympy/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-sympy</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/pt/tags/matplotlib/" class="no-underline">matplotlib</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/numpy/" class="no-underline">numpy</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/sympy/" class="no-underline">sympy</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -222,9 +221,9 @@ parábola, que não é linear, é claro.</p>
 novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
 solução.</p>
-<h2 class="group pt-3" id="aproximação-linear">
+<h2 class="group mb-8 mt-8" id="aproximação-linear">
   Aproximação Linear
-  <a class="hidden text-highlight group-hover:inline" href="#aproxima%c3%a7%c3%a3o-linear">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#aproxima%c3%a7%c3%a3o-linear">#</a>
 </h2>
 <p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
 exemplo, retomando a função quadrática. A derivada dela é obtida pela regra da
@@ -318,9 +317,9 @@ e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
 <p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
 inevitavelmente teria lidar com cálculo diferencial. Para isso, existe uma
 biblioteca que pode nos ajudar.</p>
-<h2 class="group pt-3" id="introduzindo-sympy">
+<h2 class="group mb-8 mt-8" id="introduzindo-sympy">
   Introduzindo SymPy
-  <a class="hidden text-highlight group-hover:inline" href="#introduzindo-sympy">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#introduzindo-sympy">#</a>
 </h2>
 <p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
 contamos com funções para calcular limites, derivadas, integrais, expandir
@@ -345,9 +344,9 @@ polinômicos, simplificar expressões etc.</p>
 praticamente só aceita funções do próprio SymPy. Para a utilizarmos como uma
 função qualquer, devemos usar <code>lambdify()</code>. Para nossos objetivos, essa última e
 a função diff serão suficientes.</p>
-<h2 class="group pt-3" id="um-código-para-o-algoritmo">
+<h2 class="group mb-8 mt-8" id="um-código-para-o-algoritmo">
   Um código para o algoritmo
-  <a class="hidden text-highlight group-hover:inline" href="#um-c%c3%b3digo-para-o-algoritmo">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#um-c%c3%b3digo-para-o-algoritmo">#</a>
 </h2>
 <p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p>
 <p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
@@ -439,9 +438,9 @@ nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
 
 -2.0588469658492823
 </code></pre>
-<h2 class="group pt-3" id="limitações-do-método">
+<h2 class="group mb-8 mt-8" id="limitações-do-método">
   Limitações do método
-  <a class="hidden text-highlight group-hover:inline" href="#limita%c3%a7%c3%b5es-do-m%c3%a9todo">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#limita%c3%a7%c3%b5es-do-m%c3%a9todo">#</a>
 </h2>
 <p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
 criou. Por exemplo, imagine que usemos como estimativa um valor próximo de um
@@ -512,9 +511,9 @@ Veja o gráfico.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
 </code></pre></div><p><img src="./output_26_1.png" alt="png"></p>
-<h2 class="group pt-3" id="conclusões">
+<h2 class="group mb-8 mt-8" id="conclusões">
   Conclusões
-  <a class="hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
 </h2>
 <p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
 bastante simples sem sacrificar o lado da eficiência, mas também vimos que há
@@ -582,11 +581,13 @@ como acabamos de fazer aqui com a ajuda do matplotlib.</p>
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

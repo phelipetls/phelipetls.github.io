@@ -149,28 +149,25 @@ window.addEventListener("load", function() {
       Apr 29, 2021
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/hugo/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-hugo</a>
-  
-    <a href="/tags/html/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-html</a>
-  
-    <a href="/tags/css/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-css</a>
-  
-    <a href="/tags/javascript/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-javascript</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/hugo/" class="no-underline">hugo</a><span class="last:hidden">,</span>
+
+  <a href="/tags/html/" class="no-underline">html</a><span class="last:hidden">,</span>
+
+  <a href="/tags/css/" class="no-underline">css</a><span class="last:hidden">,</span>
+
+  <a href="/tags/javascript/" class="no-underline">javascript</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -179,9 +176,9 @@ simple as you may initially think. There are some hacky things we should do to
 avoid flash of incorrect theme on reload, animation etc.</p>
 <p>In this blog post I&rsquo;ll dive into the implementation details on how to make it
 work in general and then on how to implement it in Hugo-powered websites.</p>
-<h2 class="group pt-3" id="css">
+<h2 class="group mb-8 mt-8" id="css">
   CSS
-  <a class="hidden text-highlight group-hover:inline" href="#css">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#css">#</a>
 </h2>
 <p>CSS variables makes it very easy to define which colors you&rsquo;ll use for dark or
 light mode:</p>
@@ -210,9 +207,9 @@ light mode:</p>
   <span class="p">}</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&#34;data-theme&#34;</span><span class="p">,</span> <span class="s2">&#34;dark&#34;</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div><h2 class="group pt-3" id="theme-persistence">
+</code></pre></div><h2 class="group mb-8 mt-8" id="theme-persistence">
   Theme persistence
-  <a class="hidden text-highlight group-hover:inline" href="#theme-persistence">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#theme-persistence">#</a>
 </h2>
 <p>To make the theme persist, we&rsquo;ll use
 <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code>localStorage</code></a>.</p>
@@ -276,9 +273,9 @@ the hack) we use a global variable.</p>
 <span class="p">});</span>
 </code></pre></div><p><strong>NOTE:</strong> The script tag <em>has</em> to be inline, otherwise the flash will still
 happen.</p>
-<h2 class="group pt-3" id="transition-between-themes">
+<h2 class="group mb-8 mt-8" id="transition-between-themes">
   Transition between themes
-  <a class="hidden text-highlight group-hover:inline" href="#transition-between-themes">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#transition-between-themes">#</a>
 </h2>
 <p>This works, but we want some animations:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-css" data-lang="css"><span class="nt">body</span> <span class="p">{</span>
@@ -297,9 +294,9 @@ happen on reload.
 </code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&#34;load&#34;</span><span class="p">,</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>
   <span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s2">&#34;preload&#34;</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div><h2 class="group pt-3" id="respect-system-preferences">
+</code></pre></div><h2 class="group mb-8 mt-8" id="respect-system-preferences">
   Respect system preferences
-  <a class="hidden text-highlight group-hover:inline" href="#respect-system-preferences">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#respect-system-preferences">#</a>
 </h2>
 <p>Finally, to respect the
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"><code>prefers-color-scheme</code></a>
@@ -312,9 +309,9 @@ media query, we add to our first script:</p>
   <span class="nb">window</span><span class="p">.</span><span class="mi">__</span><span class="nx">setTheme</span><span class="p">(</span><span class="s2">&#34;dark&#34;</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>So that, if there&rsquo;s nothing in <code>localStorage</code>, we respect system settings.</p>
-<h2 class="group pt-3" id="hugo-implementation-details">
+<h2 class="group mb-8 mt-8" id="hugo-implementation-details">
   Hugo implementation details
-  <a class="hidden text-highlight group-hover:inline" href="#hugo-implementation-details">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#hugo-implementation-details">#</a>
 </h2>
 <p>In <code>layouts/_default/baseof.html</code> template, we need something like this:</p>
 <!-- prettier-ignore -->
@@ -402,7 +399,7 @@ hugo gen chromastyles --style<span class="o">=</span>lovelace &gt; light-syntax-
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -421,11 +418,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

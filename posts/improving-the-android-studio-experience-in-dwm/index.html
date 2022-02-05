@@ -149,28 +149,25 @@ window.addEventListener("load", function() {
       Jan 25, 2022
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/c/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-c</a>
-  
-    <a href="/tags/linux/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-linux</a>
-  
-    <a href="/tags/dwm/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-dwm</a>
-  
-    <a href="/tags/x11/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-x11</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/c/" class="no-underline">c</a><span class="last:hidden">,</span>
+
+  <a href="/tags/linux/" class="no-underline">linux</a><span class="last:hidden">,</span>
+
+  <a href="/tags/dwm/" class="no-underline">dwm</a><span class="last:hidden">,</span>
+
+  <a href="/tags/x11/" class="no-underline">x11</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -229,9 +226,9 @@ to its transient windows.</li>
 <li>On floating layout, if I focus on a leader window, I want its transient
 windows to be raised into view as well.</li>
 </ul>
-<h2 class="group pt-3" id="skipping-transient-windows-in-the-taskbar">
+<h2 class="group mb-8 mt-8" id="skipping-transient-windows-in-the-taskbar">
   Skipping transient windows in the taskbar
-  <a class="hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-the-taskbar">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-the-taskbar">#</a>
 </h2>
 <p>The taskbar is drawn by the <code>drawbar</code> function.</p>
 <p>I just need to check if a window is transient and, if so, skip:</p>
@@ -297,9 +294,9 @@ handles clicks in the taskbar:</p>
 called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;t include them
 in the taskbar, this seemed like a better idea too so <a href="https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc">I implemented it as
 well</a>.</p>
-<h2 class="group pt-3" id="skipping-transient-windows-in-monocle-layout-count">
+<h2 class="group mb-8 mt-8" id="skipping-transient-windows-in-monocle-layout-count">
   Skipping transient windows in monocle layout count
-  <a class="hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-monocle-layout-count">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#skipping-transient-windows-in-monocle-layout-count">#</a>
 </h2>
 <p>This is simple, we just need to <em>not</em> increment a counter when the window is
 transient, in the <code>monocle</code> function:</p>
@@ -317,9 +314,9 @@ transient, in the <code>monocle</code> function:</p>
 		<span class="n">snprintf</span><span class="p">(</span><span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="k">sizeof</span> <span class="n">m</span><span class="o">-&gt;</span><span class="n">ltsymbol</span><span class="p">,</span> <span class="s">&#34;[%d]&#34;</span><span class="p">,</span> <span class="n">n</span><span class="p">);</span>
 	<span class="c1">// ...
 </span><span class="c1"></span><span class="p">}</span>
-</code></pre></div><h2 class="group pt-3" id="do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">
+</code></pre></div><h2 class="group mb-8 mt-8" id="do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">
   Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
-  <a class="hidden text-highlight group-hover:inline" href="#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd">#</a>
 </h2>
 <p>I started by checking which function is bound to these keys in <code>config.h</code>: the
 <code>focusstack</code> function.</p>
@@ -363,9 +360,9 @@ if statements (careful not to mix up the <code>i</code> and <code>c</code> varia
 </span><span class="gd"></span><span class="gi">+				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))
 </span><span class="gi"></span>					c = i;
 	}
-</code></pre></div><h2 class="group pt-3" id="applying-nth-tag-to-a-leader-windows-transient-windows">
+</code></pre></div><h2 class="group mb-8 mt-8" id="applying-nth-tag-to-a-leader-windows-transient-windows">
   Applying nth tag to a leader window&rsquo;s transient windows
-  <a class="hidden text-highlight group-hover:inline" href="#applying-nth-tag-to-a-leader-windows-transient-windows">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#applying-nth-tag-to-a-leader-windows-transient-windows">#</a>
 </h2>
 <p>To achieve this, I also started by checking which function is bound to
 <kbd>Mod</kbd> + <kbd>Shift</kbd> + <kbd>n</kbd> in <code>config.h</code>, which is the
@@ -393,9 +390,9 @@ leader is the selected client:</p>
 		<span class="n">arrange</span><span class="p">(</span><span class="n">selmon</span><span class="p">);</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><h2 class="group pt-3" id="raising-all-transient-windows-when-the-leader-window-gets-focused">
+</code></pre></div><h2 class="group mb-8 mt-8" id="raising-all-transient-windows-when-the-leader-window-gets-focused">
   Raising all transient windows when the leader window gets focused
-  <a class="hidden text-highlight group-hover:inline" href="#raising-all-transient-windows-when-the-leader-window-gets-focused">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#raising-all-transient-windows-when-the-leader-window-gets-focused">#</a>
 </h2>
 <p>Since the transient windows do not appear in the taskbar and we also ignore
 them in the <code>focusstack</code> function, there is no way to focus on them if they&rsquo;re
@@ -471,9 +468,9 @@ the <code>unfocus</code> function to fix this:</p>
 </code></pre></div><p><strong>Warning</strong>: this is pretty cutting-edge and coming from a person with
 no expertise in C, so it might be broken in several ways. I&rsquo;m just messing
 around.</p>
-<h2 class="group pt-3" id="final-result">
+<h2 class="group mb-8 mt-8" id="final-result">
   Final result
-  <a class="hidden text-highlight group-hover:inline" href="#final-result">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#final-result">#</a>
 </h2>
 <p>Here&rsquo;s a demonstration of the final result:</p>
 <video controls width="100%">
@@ -522,7 +519,7 @@ around.</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -541,11 +538,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

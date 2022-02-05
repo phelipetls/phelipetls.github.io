@@ -149,20 +149,21 @@ window.addEventListener("load", function() {
       Apr 23, 2021
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/javascript/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-javascript</a>
-  
-    <a href="/tags/typescript/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-typescript</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/javascript/" class="no-underline">javascript</a><span class="last:hidden">,</span>
+
+  <a href="/tags/typescript/" class="no-underline">typescript</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -175,9 +176,9 @@ more noticeably <a href="https://github.com/evanw/esbuild">esbuild</a> and
 <a href="https://vitejs.dev/">Vite</a>.</p>
 <p>I wanted to try this out and thought about migrating a small app of mine, mostly
 written in Typescript, to Vite. And it was more easy than I expected.</p>
-<h2 class="group pt-3" id="initial-setup">
+<h2 class="group mb-8 mt-8" id="initial-setup">
   Initial setup
-  <a class="hidden text-highlight group-hover:inline" href="#initial-setup">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#initial-setup">#</a>
 </h2>
 <p>First, I installed Vite:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">npm install vite
@@ -215,9 +216,9 @@ rename to index.html
  &lt;/html&gt;
 </code></pre></div><p>I didn&rsquo;t had to but if you have any <code>%PUBLIC_URL%</code> in your html file, just
 replace it with <code>/</code>, as explained in the linked article.</p>
-<h2 class="group pt-3" id="typescript-setup">
+<h2 class="group mb-8 mt-8" id="typescript-setup">
   TypeScript setup
-  <a class="hidden text-highlight group-hover:inline" href="#typescript-setup">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#typescript-setup">#</a>
 </h2>
 <p>At this point, I couldn&rsquo;t get my app to run because my project used
 <code>tsconfig.json</code> <code>include</code> properties to make absolute imports, which Vite didn&rsquo;t
@@ -241,9 +242,9 @@ supports, apart from
 </code></pre></div><p>I also set the output directory to be <code>build</code>, instead of the default <code>dist</code>,
 because that&rsquo;s what CRA uses.</p>
 <p>After that, I was able to start a server and see my app running.</p>
-<h2 class="group pt-3" id="jest-setup">
+<h2 class="group mb-8 mt-8" id="jest-setup">
   Jest setup
-  <a class="hidden text-highlight group-hover:inline" href="#jest-setup">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#jest-setup">#</a>
 </h2>
 <p>Because I intended to remove <code>react-scripts</code> from my project, I needed to figure
 out how to run my Jest tests without <code>react-scripts test</code>.</p>
@@ -265,9 +266,9 @@ the <code>@testing-library/jest-dom/extend-expect</code> wouldn&rsquo;t be impor
 <li>Add <code>&quot;src&quot;</code> to <code>moduleDirectories</code>, because it would not understand absolute
 imports that look up paths inside <code>tsconfig.json</code> <code>include</code> property</li>
 </ul>
-<h2 class="group pt-3" id="conclusion">
+<h2 class="group mb-8 mt-8" id="conclusion">
   Conclusion
-  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>This seems to be working fine so far, development environment is much faster to
 boot, though I haven&rsquo;t checked how great hot reloading is.</p>
@@ -317,7 +318,7 @@ boot, though I haven&rsquo;t checked how great hot reloading is.</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -336,11 +337,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

@@ -152,20 +152,21 @@ window.addEventListener("load", function() {
       Oct 07, 2020
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/python/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-python</a>
-  
-    <a href="/tags/vim/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-vim</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/python/" class="no-underline">python</a><span class="last:hidden">,</span>
+
+  <a href="/tags/vim/" class="no-underline">vim</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -228,9 +229,9 @@ E     ?               +++++
 ============================== 3 failed in 0.03s ===============================
 </code></pre>
 <p>Now, for the difficult part.</p>
-<h2 class="group pt-3" id="writing-an-errorformat">
+<h2 class="group mb-8 mt-8" id="writing-an-errorformat">
   Writing an errorformat
-  <a class="hidden text-highlight group-hover:inline" href="#writing-an-errorformat">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#writing-an-errorformat">#</a>
 </h2>
 <p>To make Vim understand these lines so that we can jump to each error, we must
 give patterns. It will then go through every line testing against those
@@ -247,9 +248,9 @@ multiple lines.</p>
 <p>I found out that <code>pytest</code> gives inconsistent patterns depending on the error
 (test failure, missing fixture and syntax error), so I had to handle them
 separately.</p>
-<h2 class="group pt-3" id="handling-test-failures">
+<h2 class="group mb-8 mt-8" id="handling-test-failures">
   Handling test failures
-  <a class="hidden text-highlight group-hover:inline" href="#handling-test-failures">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#handling-test-failures">#</a>
 </h2>
 <p>A test failure starts like this:</p>
 <pre><code>______________________________ TEST_NAME ______________________________
@@ -295,9 +296,9 @@ test_set_comparison|22|  AssertionError: assert {'1', '0', '3', '8'} == {'0', '3
 </code></pre>
 <p>So far, it will understand tests failures but not syntax errors, import errors
 and fixture errors, which would fail silently. This is no good.</p>
-<h2 class="group pt-3" id="syntax-errors">
+<h2 class="group mb-8 mt-8" id="syntax-errors">
   Syntax errors
-  <a class="hidden text-highlight group-hover:inline" href="#syntax-errors">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#syntax-errors">#</a>
 </h2>
 <p>For syntax errors, we need to parse something like this:</p>
 <pre><code>============================= test session starts ==============================
@@ -344,9 +345,9 @@ its length to later use as column number.</p>
 exactly, which is needed to distinguish it from the others, see <code>:h \@=</code>.</p>
 <p>We also need to include a continuation format (any line starting with E and
 space that didn&rsquo;t match the earlier ones).</p>
-<h2 class="group pt-3" id="import-errors">
+<h2 class="group mb-8 mt-8" id="import-errors">
   Import errors
-  <a class="hidden text-highlight group-hover:inline" href="#import-errors">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#import-errors">#</a>
 </h2>
 <p>Import errors are also slightly different:</p>
 <pre><code>============================= test session starts ==============================
@@ -377,9 +378,9 @@ E   ModuleNotFoundError: No module named 'pytes'
 to capture the filename. It ends with an <code>E %m</code> and we already a pattern to
 capture this. But we do need to tell how it continues, and it&rsquo;s fine to just put
 something that would match anything like <code>%C%.%#</code>.</p>
-<h2 class="group pt-3" id="fixture-errors">
+<h2 class="group mb-8 mt-8" id="fixture-errors">
   Fixture errors
-  <a class="hidden text-highlight group-hover:inline" href="#fixture-errors">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#fixture-errors">#</a>
 </h2>
 <p>Fixture errors are also in a different format:</p>
 <pre><code>_____________________ ERROR at setup of test_zero_division _____________________
@@ -396,9 +397,9 @@ cord_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
 </code></pre>
 <p>The line <code>%+ZE %.%#not found</code> means that the error will match <code>E .*not found</code>,
 the preceding <code>+</code> will include the whole line as a message.</p>
-<h2 class="group pt-3" id="further-improvements">
+<h2 class="group mb-8 mt-8" id="further-improvements">
   Further improvements
-  <a class="hidden text-highlight group-hover:inline" href="#further-improvements">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#further-improvements">#</a>
 </h2>
 <p>Notice how syntax, import and fixture errors are preceded with something like</p>
 <pre><code>______________________________ ERROR.* ______________________________
@@ -409,9 +410,9 @@ it will ignore it first.</p>
 <p>Also, if all tests passed, capture it too:</p>
 <pre><code>  \%+G%[=]%\\+\ %*\\d\ passed%.%#,
 </code></pre>
-<h2 class="group pt-3" id="conclusion">
+<h2 class="group mb-8 mt-8" id="conclusion">
   Conclusion
-  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>Check out the whole
 <a href="https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/pytest.vim">compiler plugin</a>
@@ -470,7 +471,7 @@ integrate a command line program into Vim.</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -489,11 +490,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

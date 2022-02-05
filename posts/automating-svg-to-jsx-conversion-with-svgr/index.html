@@ -149,24 +149,23 @@ window.addEventListener("load", function() {
       Sep 08, 2021
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/react/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-react</a>
-  
-    <a href="/tags/javascript/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-javascript</a>
-  
-    <a href="/tags/typescript/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-typescript</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/react/" class="no-underline">react</a><span class="last:hidden">,</span>
+
+  <a href="/tags/javascript/" class="no-underline">javascript</a><span class="last:hidden">,</span>
+
+  <a href="/tags/typescript/" class="no-underline">typescript</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -255,9 +254,9 @@ opt out of it:</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">const</span> <span class="nx">plugins</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;jsx&#39;</span><span class="p">,</span> <span class="s1">&#39;typescript&#39;</span><span class="p">]</span>
 
 <span class="kr">const</span> <span class="nx">typescriptTemplate</span> <span class="o">=</span> <span class="nx">template</span><span class="p">.</span><span class="nx">smart</span><span class="p">({</span> <span class="nx">plugins</span> <span class="p">})</span>
-</code></pre></div><h2 class="group pt-3" id="jsx">
+</code></pre></div><h2 class="group mb-8 mt-8" id="jsx">
   Jsx
-  <a class="hidden text-highlight group-hover:inline" href="#jsx">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#jsx">#</a>
 </h2>
 <p>Now, the jsx part. Our goal is to replace the built-in <code>svg</code> element with the
 <code>SvgIcon</code> component. We can do this by creating a new
@@ -278,9 +277,9 @@ but we could I guess).</p>
 </code></pre></div><p>You&rsquo;ll notice how we reuse the same attributes from the original jsx opening
 element and also spread <code>props</code> into them using
 <a href="https://babeljs.io/docs/en/babel-types#jsxspreadattribute">jsxSpreadAttribute</a>.</p>
-<h2 class="group pt-3" id="type-annotation">
+<h2 class="group mb-8 mt-8" id="type-annotation">
   Type Annotation
-  <a class="hidden text-highlight group-hover:inline" href="#type-annotation">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#type-annotation">#</a>
 </h2>
 <p>Now, to inject the type annotation into the template is what took me the most part.</p>
 <p>Initially I thought that this would have worked:</p>
@@ -312,9 +311,9 @@ I came up with this (more verbose) solution:</p>
 nodes so the next time I have to do it will be hopefully more easy. I figured
 this out by reading the <a href="https://babeljs.io/docs/en/babel-types">babel-types</a>
 docs.</p>
-<h2 class="group pt-3" id="usage-in-vim">
+<h2 class="group mb-8 mt-8" id="usage-in-vim">
   Usage in Vim
-  <a class="hidden text-highlight group-hover:inline" href="#usage-in-vim">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#usage-in-vim">#</a>
 </h2>
 <p>If you&rsquo;re a vimmer, you can convert the current file by using <code>%!npx @svgr/cli --template path/to/template.js</code>, which will pass the entire file to the command
 as standard input and replace its content with the command&rsquo;s standard output.
@@ -327,18 +326,18 @@ project&rsquo;s root folder:</p>
 </span><span class="c1"></span><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
 <span class="nx">template</span><span class="o">:</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;./path/to/template.js&#39;</span><span class="p">)</span>
 <span class="p">}</span>
-</code></pre></div><h2 class="group pt-3" id="usage-in-vs-code">
+</code></pre></div><h2 class="group mb-8 mt-8" id="usage-in-vs-code">
   Usage in VS Code
-  <a class="hidden text-highlight group-hover:inline" href="#usage-in-vs-code">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#usage-in-vs-code">#</a>
 </h2>
 <p>Of course, svgr also has a <a href="https://marketplace.visualstudio.com/items?itemName=NathHorrigan.code-svgr">VS Code
 extension</a>.
 But, if you prefer, you could use the <a href="https://marketplace.visualstudio.com/items?itemName=ryu1kn.edit-with-shell">Edit With Shell
 Command</a>
 extension, which allows you to do something similar to Vim&rsquo;s filter.</p>
-<h2 class="group pt-3" id="todos">
+<h2 class="group mb-8 mt-8" id="todos">
   TODOs
-  <a class="hidden text-highlight group-hover:inline" href="#todos">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#todos">#</a>
 </h2>
 <p>Here are some improvements I couldn&rsquo;t figure out how to do/don&rsquo;t care so much,
 but it would be nice to have:</p>
@@ -348,9 +347,9 @@ but it would be nice to have:</p>
 <li>Remove semicolons.</li>
 </ul>
 <p>Right now this still requires some manual labor to get 100% right, but it&rsquo;s ok.</p>
-<h2 class="group pt-3" id="conclusion">
+<h2 class="group mb-8 mt-8" id="conclusion">
   Conclusion
-  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>Ideally I shouldn&rsquo;t be converting svg files into React components in this ad
 hoc way, but rather use a library with all the icons ready, which unfortunately
@@ -401,7 +400,7 @@ running a cli program, which isn&rsquo;t bad.</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -420,11 +419,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

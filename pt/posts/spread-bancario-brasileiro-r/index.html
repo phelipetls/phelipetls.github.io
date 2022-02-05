@@ -149,24 +149,23 @@ window.addEventListener("load", function() {
       Mar 31, 2019
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/pt/tags/tidyverse/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-tidyverse</a>
-  
-    <a href="/pt/tags/dataviz/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-dataviz</a>
-  
-    <a href="/pt/tags/ggplot2/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-ggplot2</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/pt/tags/tidyverse/" class="no-underline">tidyverse</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/dataviz/" class="no-underline">dataviz</a><span class="last:hidden">,</span>
+
+  <a href="/pt/tags/ggplot2/" class="no-underline">ggplot2</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -187,9 +186,9 @@ tudo disponibilizado para download em um .csv.</p>
 quando usamos R.</p>
 <p>Se você não sabe, um <em>tidy dataset</em> é aquele em que cada coluna corresponde a
 uma variável e cada linha a uma observação.</p>
-<h2 class="group pt-3" id="limpando-os-dados">
+<h2 class="group mb-8 mt-8" id="limpando-os-dados">
   Limpando os dados
-  <a class="hidden text-highlight group-hover:inline" href="#limpando-os-dados">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#limpando-os-dados">#</a>
 </h2>
 <p>Os dados eu baixei <a href="https://data.worldbank.org/indicator/fr.inr.lndp">daqui</a> e o
 arquivo eu nomeei “spreads.csv”. Vamos olhar como eles estão organizados e por
@@ -272,9 +271,9 @@ coluna “x64”, que não me interessa então a tirei (a função dá um warnin
 o omiti aqui). Daí que o clean_names prefixou um “x” às colunas com números, que
 também removi com <code>stringr::str_remove()</code>. Eu também não vou precisar das
 colunas com informações sobre o indicador. E, pronto, está limpo.</p>
-<h2 class="group pt-3" id="visualização">
+<h2 class="group mb-8 mt-8" id="visualização">
   Visualização
-  <a class="hidden text-highlight group-hover:inline" href="#visualiza%c3%a7%c3%a3o">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#visualiza%c3%a7%c3%a3o">#</a>
 </h2>
 <p>Vamos primeiro ver como evoluiu o spread no Brasil no decorrer do tempo.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="n">dados</span> <span class="o">%&gt;%</span>
@@ -472,11 +471,13 @@ da estimação de um modelo, provavelmente um de vetores autorregressivos.</p>
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

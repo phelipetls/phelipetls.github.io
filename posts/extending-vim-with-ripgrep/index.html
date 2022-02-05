@@ -149,24 +149,23 @@ window.addEventListener("load", function() {
       Jun 11, 2021
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/tools/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-tools</a>
-  
-    <a href="/tags/vim/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-vim</a>
-  
-    <a href="/tags/ripgrep/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-ripgrep</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/tools/" class="no-underline">tools</a><span class="last:hidden">,</span>
+
+  <a href="/tags/vim/" class="no-underline">vim</a><span class="last:hidden">,</span>
+
+  <a href="/tags/ripgrep/" class="no-underline">ripgrep</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -181,9 +180,9 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 </span><span class="err"></span><span class="k">endif</span><span class="err">
 </span></code></pre></div><p>At first, it was not obvious to me how I could use it beyond <code>:grep foo</code>, so I
 want to share how I do.</p>
-<h2 class="group pt-3" id="common-use-cases">
+<h2 class="group mb-8 mt-8" id="common-use-cases">
   Common use cases
-  <a class="hidden text-highlight group-hover:inline" href="#common-use-cases">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#common-use-cases">#</a>
 </h2>
 <ul>
 <li>Search for <code>foo</code> in current working directory: <code>:grep foo</code>.</li>
@@ -191,9 +190,9 @@ want to share how I do.</p>
 <li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</li>
 <li>Search for <code>foo</code> in current file directory&rsquo;s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
-<h2 class="group pt-3" id="less-common-use-cases">
+<h2 class="group mb-8 mt-8" id="less-common-use-cases">
   Less common use cases
-  <a class="hidden text-highlight group-hover:inline" href="#less-common-use-cases">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#less-common-use-cases">#</a>
 </h2>
 <ul>
 <li>Search for the exact word <code>foo</code> (not <code>foobar</code>): <code>:grep -w foo</code> (equivalent to
@@ -201,9 +200,9 @@ want to share how I do.</p>
 <li>Search for <code>foo</code> in JavaScript files: <code>:grep foo -t js</code></li>
 <li>Search for <code>foo</code> in files matching a glob: <code>:grep foo -g '*.js'</code></li>
 </ul>
-<h2 class="group pt-3" id="extensibility">
+<h2 class="group mb-8 mt-8" id="extensibility">
   Extensibility
-  <a class="hidden text-highlight group-hover:inline" href="#extensibility">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#extensibility">#</a>
 </h2>
 <p>This is nice but here is where it truly shines. I can give any command line
 output as an argument.</p>
@@ -212,18 +211,18 @@ output as an argument.</p>
 </code></pre><p>Or only modified files:</p>
 <pre tabindex="0"><code>:grep foo `git ls-files --modified`
 </code></pre><p>I don&rsquo;t use this everyday but I enjoy it when I do.</p>
-<h2 class="group pt-3" id="usage-with-vim">
+<h2 class="group mb-8 mt-8" id="usage-with-vim">
   Usage with Vim
-  <a class="hidden text-highlight group-hover:inline" href="#usage-with-vim">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#usage-with-vim">#</a>
 </h2>
 <p>This will populate the quickfix list with the search results, so I can navigate
 them with commands I&rsquo;m already familiar with.</p>
 <p>For example, to replace foo with bar across files (asking me to confirm
 before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Sometimes I narrow the
 search down with <code>:Cfilter</code> too.</p>
-<h2 class="group pt-3" id="downsides">
+<h2 class="group mb-8 mt-8" id="downsides">
   Downsides
-  <a class="hidden text-highlight group-hover:inline" href="#downsides">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#downsides">#</a>
 </h2>
 <p><s>A downside is that you can&rsquo;t use backreferences or look-around in regex. In
 the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&amp;utm_medium=web2x&amp;context=3">thanks to
@@ -234,9 +233,9 @@ or <code>--engine auto</code> and I can&rsquo;t wait to use it!!</p>
 <p>Another one is that it&rsquo;s synchronous, so if the directory is huge it may block <code>vim</code>
 for a few seconds. But I don&rsquo;t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
-<h2 class="group pt-3" id="conclusion">
+<h2 class="group mb-8 mt-8" id="conclusion">
   Conclusion
-  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>This might be one of the few sane reasons why I insist on using <code>nvim</code> for
 development (<code>vim-fugitive</code> and LSP as well). It&rsquo;s just one of those things I
@@ -292,7 +291,7 @@ enjoy using and makes development more fun (to me).</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -311,11 +310,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

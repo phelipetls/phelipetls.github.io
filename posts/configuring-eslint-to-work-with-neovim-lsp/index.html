@@ -149,28 +149,25 @@ window.addEventListener("load", function() {
       Dec 28, 2020
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/lua/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-lua</a>
-  
-    <a href="/tags/nvim/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-nvim</a>
-  
-    <a href="/tags/lsp/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-lsp</a>
-  
-    <a href="/tags/eslint/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-eslint</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/lua/" class="no-underline">lua</a><span class="last:hidden">,</span>
+
+  <a href="/tags/nvim/" class="no-underline">nvim</a><span class="last:hidden">,</span>
+
+  <a href="/tags/lsp/" class="no-underline">lsp</a><span class="last:hidden">,</span>
+
+  <a href="/tags/eslint/" class="no-underline">eslint</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -179,16 +176,16 @@ eslint</a>
 Go.</p>
 <p>These Language Servers are generic in that they were made to be powered by
 command-line tools and for any programming language.</p>
-<h2 class="group pt-3" id="making-eslint-faster-with-eslint_d">
+<h2 class="group mb-8 mt-8" id="making-eslint-faster-with-eslint_d">
   Making eslint faster with eslint_d
-  <a class="hidden text-highlight group-hover:inline" href="#making-eslint-faster-with-eslint_d">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#making-eslint-faster-with-eslint_d">#</a>
 </h2>
 <p>To reduce latency when invoking <code>eslint</code>, I&rsquo;m gonna use
 <a href="https://github.com/mantoni/eslint_d.js/"><code>eslint_d</code></a>, which runs <code>eslint</code> as a
 daemon process.</p>
-<h2 class="group pt-3" id="configuring-eslint_d-in-efm-langserver">
+<h2 class="group mb-8 mt-8" id="configuring-eslint_d-in-efm-langserver">
   Configuring eslint_d in efm-langserver
-  <a class="hidden text-highlight group-hover:inline" href="#configuring-eslint_d-in-efm-langserver">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#configuring-eslint_d-in-efm-langserver">#</a>
 </h2>
 <p>It&rsquo;s possible to configure it with a YAML file, by following their README. I did
 this initially I found that it&rsquo;s more powerful to configure it with Lua.</p>
@@ -270,9 +267,9 @@ configuration. So I created a function to do this:</p>
 
   <span class="kr">return</span> <span class="kc">false</span>
 <span class="kr">end</span>
-</code></pre></div><h2 class="group pt-3" id="conclusion">
+</code></pre></div><h2 class="group mb-8 mt-8" id="conclusion">
   Conclusion
-  <a class="hidden text-highlight group-hover:inline" href="#conclusion">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
 <p>This is kind like a poor replacement for the VS Code eslint extension, which
 does a similar thing as <code>eslint_d</code>. And it works ok, it&rsquo;s pretty fast, much
@@ -322,7 +319,7 @@ broken for example, but I didn&rsquo;t manage to do it just yet.</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -341,11 +338,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     

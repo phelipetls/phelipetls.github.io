@@ -149,24 +149,23 @@ window.addEventListener("load", function() {
       Aug 05, 2020
     </time>
 
-    <div class="sm:flex gap-2 mt-4">
-      
-  
-    <a href="/tags/salesforce/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-salesforce</a>
-  
-    <a href="/tags/vba/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-vba</a>
-  
-    <a href="/tags/excel/"class="inline-flex items-center gap-1 no-underline rounded px-3 border border-divider hover:bg-highlight hover:text-background">
-      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-excel</a>
-  
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
 
 
-    </div>
+  <a href="/tags/salesforce/" class="no-underline">salesforce</a><span class="last:hidden">,</span>
+
+  <a href="/tags/vba/" class="no-underline">vba</a><span class="last:hidden">,</span>
+
+  <a href="/tags/excel/" class="no-underline">excel</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
 
     <hr class="my-8" />
 
@@ -179,9 +178,9 @@ better programming language. I
 I didn&rsquo;t use it so much because it&rsquo;s hard to integrate with Excel.</p>
 <p>Instead, I looked into a way to do something similar with VBA and I managed to
 do it. In this post I&rsquo;ll share this with you.</p>
-<h2 class="group pt-3" id="authentication">
+<h2 class="group mb-8 mt-8" id="authentication">
   Authentication
-  <a class="hidden text-highlight group-hover:inline" href="#authentication">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#authentication">#</a>
 </h2>
 <p>The more painless way I know of to
 <a href="https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_quickstart_login.htm">authenticate your requests for a Salesforce web service is via SOAP API</a>,
@@ -240,9 +239,9 @@ header <code>Authorization: Bearer $sessionId</code>.</p>
     <span class="k">Set</span> <span class="n">Request</span> <span class="o">=</span> <span class="k">Nothing</span>
 
 <span class="k">End</span> <span class="k">Function</span>
-</code></pre></div><h2 class="group pt-3" id="parsing-json-inside-vba">
+</code></pre></div><h2 class="group mb-8 mt-8" id="parsing-json-inside-vba">
   Parsing JSON inside VBA?
-  <a class="hidden text-highlight group-hover:inline" href="#parsing-json-inside-vba">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#parsing-json-inside-vba">#</a>
 </h2>
 <p>Now, to get an actual report inside Excel we will need to use the Analytics API.
 So far, we didn&rsquo;t had to rely on any external tools, there is an XML parser
@@ -253,9 +252,9 @@ here because that&rsquo;s what Analytics speaks.</p>
 which works flawlessly. You just need to download
 <a href="https://raw.githubusercontent.com/VBA-tools/VBA-JSON/master/JsonConverter.bas">this file</a>
 and import it as a module.</p>
-<h2 class="group pt-3" id="unfortunate-api-limitations">
+<h2 class="group mb-8 mt-8" id="unfortunate-api-limitations">
   Unfortunate API limitations
-  <a class="hidden text-highlight group-hover:inline" href="#unfortunate-api-limitations">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#unfortunate-api-limitations">#</a>
 </h2>
 <p>This API unfortunately have a
 <a href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_limits_limitations.htm">critical limitation</a>,
@@ -264,9 +263,9 @@ to filter by row limits.</p>
 <p>This almost turns it useless. The only way I know of is to use a column which
 has only unique values and exclude already seen values with a filter, which is
 what we&rsquo;ll gonna do.</p>
-<h2 class="group pt-3" id="getting-report-metadata">
+<h2 class="group mb-8 mt-8" id="getting-report-metadata">
   Getting report metadata
-  <a class="hidden text-highlight group-hover:inline" href="#getting-report-metadata">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#getting-report-metadata">#</a>
 </h2>
 <p>To be able to filter a report, we will need to fetch its metadata, which is a
 huge JSON with key-value pairs describing the report.</p>
@@ -287,9 +286,9 @@ huge JSON with key-value pairs describing the report.</p>
 
     <span class="n">GetMetadata</span> <span class="o">=</span> <span class="n">Request</span><span class="p">.</span><span class="n">responseText</span>
 <span class="k">End</span> <span class="k">Function</span>
-</code></pre></div><h2 class="group pt-3" id="getting-an-individual-report">
+</code></pre></div><h2 class="group mb-8 mt-8" id="getting-an-individual-report">
   Getting an individual report
-  <a class="hidden text-highlight group-hover:inline" href="#getting-an-individual-report">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#getting-an-individual-report">#</a>
 </h2>
 <p>With the function below, you will be able to get the report in JSON format.</p>
 <p>This is achieved with a <code>POST</code> request to
@@ -323,9 +322,9 @@ report.</p>
 
     <span class="n">GetReport</span> <span class="o">=</span> <span class="n">Response</span>
 <span class="k">End</span> <span class="k">Function</span>
-</code></pre></div><h2 class="group pt-3" id="writing-the-data-into-a-worksheet">
+</code></pre></div><h2 class="group mb-8 mt-8" id="writing-the-data-into-a-worksheet">
   Writing the data into a worksheet
-  <a class="hidden text-highlight group-hover:inline" href="#writing-the-data-into-a-worksheet">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#writing-the-data-into-a-worksheet">#</a>
 </h2>
 <p>Now we need to extract the data and write it into a worksheet.</p>
 <p><a href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm" title="Salesforce documentation on how to decode the factMap">Every thing we need is inside the <code>factMap</code> key</a>.
@@ -403,9 +402,9 @@ from column A.</p>
 </code></pre></div><p>We also need to get the values at <code>.reportMetadata.detailColumns</code> and
 <code>reportExtendedMetadata.detailColumnInfo</code> to check how many columns the report
 have and to extract the value at <code>.value</code> if it is a date.</p>
-<h2 class="group pt-3" id="getting-the-entire-report">
+<h2 class="group mb-8 mt-8" id="getting-the-entire-report">
   Getting the entire report
-  <a class="hidden text-highlight group-hover:inline" href="#getting-the-entire-report">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#getting-the-entire-report">#</a>
 </h2>
 <p>To get the entire report, the key thing to overcome the API limitations is a key
 called <code>.allData</code>, which will be <code>true</code> only if we got all the data from the
@@ -535,9 +534,9 @@ filtered report and repeat the loop until we get all data.</p>
 <p>Also notice that I use a custom function to get all values at a given column,
 <code>GetValuesAtColumn</code>.</p>
 <p><a href="https://gist.github.com/phelipetls/57a27f529561eefe73633093c737b7e0">Get the full source code in this GitHub gist</a>.</p>
-<h2 class="group pt-3" id="how-to-use-it">
+<h2 class="group mb-8 mt-8" id="how-to-use-it">
   How to use it
-  <a class="hidden text-highlight group-hover:inline" href="#how-to-use-it">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#how-to-use-it">#</a>
 </h2>
 <p>It&rsquo;s up to you how you&rsquo;re gonna use this code. Here&rsquo;s an example.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vb" data-lang="vb"><span class="k">Sub</span> <span class="nf">DownloadReports</span>
@@ -566,9 +565,9 @@ filtered report and repeat the loop until we get all data.</p>
                             <span class="n">endDate</span><span class="p">:</span><span class="o">=</span><span class="s">&#34;31/07/2020&#34;</span><span class="p">)</span>
 
 <span class="k">End</span> <span class="k">Sub</span>
-</code></pre></div><h2 class="group pt-3" id="final-words">
+</code></pre></div><h2 class="group mb-8 mt-8" id="final-words">
   Final words
-  <a class="hidden text-highlight group-hover:inline" href="#final-words">#</a>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#final-words">#</a>
 </h2>
 <p>You probably have a better way to do it, I would only recommend this approach to
 someone in an environment very dependent on Excel, simply because it is super
@@ -612,7 +611,7 @@ Nonetheless, it was still fun to write this.</p>
 
     </div>
 
-  <div>All content is under the
+  <div>All content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
   Creative Commons Attribution 4.0
 </a>
@@ -631,11 +630,13 @@ license
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
 
-    <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-    <script>
-        window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-        panelbear('config', { site: 'I8KFO1BpnCi' });
-    </script>
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
 
     
     
