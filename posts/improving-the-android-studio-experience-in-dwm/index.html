@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
-<meta name="deploy-date" content="2022-02-04">
+<meta name="deploy-date" content="2022-02-05">
 <meta name="publish-date" content="2022-01-25">
 <meta name="last-modified-date" content="2022-01-25">
 <meta name="author" content="">
@@ -439,7 +439,7 @@ as well since transient windows are always floating in dwm). Here&rsquo;s the co
 </code></pre></div><p>This create another problem though&hellip; When the leader window gets unfocused,
 their transient windows would always reamin on top of everything else!</p>
 <p>Thanks to <a href="https://www.reddit.com/r/dwm/comments/sctdxt/comment/huaveje">a comment by
-r/bakkeby</a>, I
+/u/bakkeby</a>, I
 found out that I could use
 <a href="https://tronche.com/gui/x/xlib/window/XLowerWindow.html"><code>XLowerWindow</code></a> in
 the <code>unfocus</code> function to fix this:</p>
