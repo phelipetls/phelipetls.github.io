@@ -14,7 +14,7 @@
       <pubDate>Wed, 26 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/nodejs-one-liner-to-read-json-files/</guid>
-      <description>How to use Node instead of jq for trivial property accessors</description>
+      <description>How to use Node instead of jq for trivial property accessors.</description>
     </item>
     
     <item>
@@ -51,7 +51,7 @@ react-testing-library to Cypress.</description>
       <pubDate>Fri, 23 Apr 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/migrating-from-cra-to-vite/</guid>
-      <description>How and why to migrate a CRA project to Vite</description>
+      <description>How and why to migrate a CRA project to Vite.</description>
     </item>
     
   </channel>
