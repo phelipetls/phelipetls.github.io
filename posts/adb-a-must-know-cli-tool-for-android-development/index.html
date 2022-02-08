@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en">
+  <head>
+    <meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<meta name="description" content="adb is a CLI that lets you control your Android device from your computer. In this post I want to share its features that made me enjoy more mobile development." />
+<meta name="deploy-date" content="2022-02-08">
+<meta name="publish-date" content="2022-02-07">
+<meta name="last-modified-date" content="2022-02-07">
+<meta name="author" content="">
+<meta name="color-scheme" content="dark light">
+
+
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Merriweather" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" />
+
+
+
+
+
+
+  
+  
+  
+
+
+<link rel="stylesheet" href="/css/main.min.css" />
+<link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
+<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+
+<title>
+  adb: a must-know CLI tool for Android development | Phelipe Teles
+</title>
+
+
+
+<meta property="og:title" content="adb: a must-know CLI tool for Android development" />
+<meta property="og:description" content="adb is a CLI that lets you control your Android device from your computer. In this post I want to share its features that made me enjoy more mobile development." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://phelipetls.github.io/posts/adb-a-must-know-cli-tool-for-android-development/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2022-02-07T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-07T00:00:00+00:00" />
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="adb: a must-know CLI tool for Android development"/>
+<meta name="twitter:description" content="adb is a CLI that lets you control your Android device from your computer. In this post I want to share its features that made me enjoy more mobile development."/>
+
+
+
+
+
+    
+      
+    
+  </head>
+
+  <body class="px-4 py-8 preload text-normal bg-background flex flex-col container max-w-2xl min-h-full mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
+    
+
+    
+      
+    
+
+    <script>window.__setTheme = function(newTheme) {
+  document.body.setAttribute("data-theme", newTheme);
+  localStorage.setItem("__theme", newTheme);
+  const oldTheme = newTheme === "dark" ? "light" : "dark";
+  document
+    .querySelector("link[href*='" + oldTheme + "']")
+    .setAttribute("disabled", "");
+  document
+    .querySelector("link[href*='" + newTheme + "']")
+    .removeAttribute("disabled");
+};
+
+const storedTheme = localStorage.getItem("__theme");
+
+if (storedTheme) {
+  window.__setTheme(storedTheme);
+} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  window.__setTheme("dark");
+}
+
+/* Enable animations */
+window.addEventListener("load", function() {
+  document.body.classList.remove("preload")
+})
+</script>
+
+    <header class="mb-16">
+  <div class="flex justify-between">
+    <h1 class="mb-4">
+      <a class="border-0 font-bold" href="https://phelipetls.github.io/">
+        Phelipe Teles
+      </a>
+    </h1>
+
+    <div>
+      <button
+        id="theme-button"
+        class="rounded-full text-primary p-1"
+        aria-label="Change theme"
+      >
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <defs>
+            <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+
+            <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+
+          </defs>
+
+          <use id="theme-button-svg-icon" href="#sun" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  
+
+  <nav class="flex flex-row flex-wrap gap-2" aria-label="Main navigation"><a
+        id=""
+        class="text-normal "
+        href="https://phelipetls.github.io/"
+      >
+        About
+      </a><a
+        id=""
+        class="text-normal border-primary"
+        href="https://phelipetls.github.io/posts/"
+      >
+        Posts
+      </a><a
+        id=""
+        class="text-normal "
+        href="https://phelipetls.github.io/projects/"
+      >
+        Projects
+      </a></nav>
+</header>
+
+
+    <main class="flex flex-1 flex-col">
+      
+  <article>
+    <h1>adb: a must-know CLI tool for Android development</h1>
+
+    <time datetime="2022-02-07">
+      Feb 07, 2022
+    </time>
+
+    
+      <div class="mt-4">
+        <span class="mr-1">
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+
+</span>
+
+
+  <a href="/tags/react-native/" class="no-underline">react native</a><span class="last:hidden">,</span>
+
+  <a href="/tags/android/" class="no-underline">android</a><span class="last:hidden">,</span>
+
+  <a href="/tags/mobile/" class="no-underline">mobile</a><span class="last:hidden">,</span>
+
+
+      </div>
+    
+
+    <hr class="my-8" />
+
+    <p><a href="https://developer.android.com/studio/command-line/adb"><code>adb</code></a> is a CLI that
+lets you control your Android device from your computer. In this post I want to
+share its features that made me enjoy more mobile development.</p>
+<!-- more -->
+<h2 class="group mb-8 mt-8" id="initial-setup">
+  Initial Setup
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#initial-setup">#</a>
+</h2>
+<p>First, you&rsquo;ll need to connect your device to your computer, either <a href="https://developer.android.com/studio/command-line/adb#Enabling">through
+USB</a> or <a href="https://developer.android.com/studio/command-line/adb#connect-to-a-device-over-wi-fi-android-11+">purely
+via
+Wi-Fi</a>
+(<em>if you&rsquo;re on Android 11+</em>), but it&rsquo;s also possible to use <code>adb</code> over Wi-Fi on
+Android 10 or lower if you follow some <a href="https://developer.android.com/studio/command-line/adb#wireless">initial
+steps</a> while
+connected over USB.</p>
+<p>If everything works correctly, by running <code>adb devices</code> you should see
+something like this:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">$ adb devices
+
+List of devices attached
+emulator-5554	device
+0035714150	device
+</code></pre></div><h2 class="group mb-8 mt-8" id="record-screen-with-adb-shell-screenrecord">
+  Record screen with <code>adb shell screenrecord</code>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#record-screen-with-adb-shell-screenrecord">#</a>
+</h2>
+<p>It&rsquo;s as simple as running <code>adb shell screenrecord /sdcard/video.mp4</code> to start
+recording and then <kbd>Ctrl</kbd> + <kbd>C</kbd> when you&rsquo;re done. And then
+<code>adb pull /sdcard/video.mp4 ~/Videos/video.mp4</code> to get it into your computer.</p>
+<p>This is invaluable to me. I&rsquo;m now able to more easily record how a feature
+works or to demonstrate a bug.</p>
+<p>It&rsquo;s also useful to know some of the <a href="https://developer.android.com/studio/command-line/adb#screenrecord">command line
+options</a>,
+my favorite ones being to limit the video size <code>--size</code> and limit recording
+time <code>--time-limit</code>.</p>
+<p>I usually run <code>adb shell screenrecord --size 320x568 --time-limit=120 /sdcard/video.mp4</code>, to keep the video small.</p>
+<h2 class="group mb-8 mt-8" id="capture-screen-with-adb-shell-screencap">
+  Capture screen with <code>adb shell screencap</code>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#capture-screen-with-adb-shell-screencap">#</a>
+</h2>
+<p>This is straightforward, just capture the screen with <code>adb shell screencap /sdcard/img.png</code>, then getit locally with <code>adb pull /sdcard/img.png ~/Images/img.png</code>.</p>
+<h2 class="group mb-8 mt-8" id="debugging-with-adb-logcat">
+  Debugging with <code>adb logcat</code>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#debugging-with-adb-logcat">#</a>
+</h2>
+<p>This has proved useful to me so many times. In the context of React Native
+development, this is usually less useful during development on debug builds.
+But in release builds it&rsquo;s the only way to debug when something wrong happens.</p>
+<p>For example, when an app crashes or some SDK call is not working, you&rsquo;ll
+probably be able to see why with <code>adb logcat</code>.</p>
+<p>The downside is that the output can be overwhelming, since it&rsquo;s usually a wall
+of text that is growing constantly. So it&rsquo;s useful to know how you can filter
+this
+output.</p>
+<p>For example, if I wanted to see only logs tagged with <code>Sentry</code>, <code>ReactNative</code>
+and <code>ReactNativeJS</code> at any priority:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">adb logcat Sentry:* ReactNative:* ReactNativeJS:* *:S
+</code></pre></div><p>The official Google
+<a href="https://developer.android.com/studio/command-line/logcat#filteringOutput">documentation</a>
+explains nicely how this works.</p>
+<h2 class="group mb-8 mt-8" id="networking-with-adb-reverse">
+  Networking with <code>adb reverse</code>
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#networking-with-adb-reverse">#</a>
+</h2>
+<p>This one is best explained through an example.</p>
+<p>Image you want to see your <a href="https://storybook.js.org/">Storybook</a> files in a
+mobile web browser. In your computer&rsquo;s browser, it works if you go to
+<code>localhost:6006</code> but not in your mobile device&rsquo;s browser.</p>
+<p>Well, you can solve this with <code>adb reverse tcp:6006 tcp:6006</code>.</p>
+<p>This is useful for any web server running in your local computer, e.g., a web
+API server or a webpack development server.</p>
+<p>In the React Native world, we sometimes need to run <code>adb reverse tcp:8081 tcp:8081</code> it the device is stuck at loading the JS bundle or can&rsquo;t find it at
+all. If you run this once without knowing what it does, now you know. It&rsquo;s
+routing a your mobile device&rsquo;s request to <code>localhost:8081</code> to your computer&rsquo;s
+<code>localhost</code>.</p>
+<p>There&rsquo;s also <code>adb forward</code>, which is the opposite of <code>adb reverse</code>, so it&rsquo;s
+hardly as useful.</p>
+<h2 class="group mb-8 mt-8" id="startkill-app">
+  Start/kill app
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#startkill-app">#</a>
+</h2>
+<p>You can start and kill an app with the <code>adb shell am</code>, in which <code>am</code> stands for
+<a href="https://developer.android.com/studio/command-line/adb#am"><em>Activity Manager</em></a>.</p>
+<p>Given the app&rsquo;s package name, you can start it with:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">adb shell am start -n com.company.app/.MainActivity
+</code></pre></div><p>And kill it with:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">adb shell am force-stop com.company.app
+</code></pre></div><p>You can also open a URL, this is specially useful to test deep links:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh">adb shell am start -a android.intent.action.VIEW -d company://Screen
+</code></pre></div><h2 class="group mb-8 mt-8" id="install-and-uninstall-apps">
+  Install and uninstall apps
+  <a class="border-0 hidden text-highlight group-hover:inline" href="#install-and-uninstall-apps">#</a>
+</h2>
+<p>You can install an <code>.apk</code> file with <code>adb install app.apk</code>.</p>
+<p>And uninstall it with <code>adb uninstall com.company.app</code>.</p>
+<p>This is usually how I do it, but there&rsquo;s also the <code>pm</code> command, which stands
+for <a href="https://developer.android.com/studio/command-line/adb#pm">Package
+Manager</a>, that is a
+more powerful interface to manage apps. Apart from enabling you to install and
+uninstall apps, you can also clear data, grant/revoke permissions etc.</p>
+
+
+    <hr class="my-8" />
+
+    <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
+      <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+        
+          <div class="flex items-center group-hover:text-highlight">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </div>
+
+          <a class="border-0" href="/posts/nodejs-one-liner-to-read-json-files/" title="Previous post">
+            Node.js one-liner to read JSON files
+          </a>
+        
+      </div>
+
+      <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+        
+      </div>
+    </nav>
+  </article>
+
+    </main>
+
+    <footer class="mt-16 text-right text-sm">
+  <div class="mb-2">
+    <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+
+    </div>
+
+  <div>All content is under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
+  Creative Commons Attribution 4.0
+</a>
+license
+</div>
+</footer>
+
+
+    
+
+    
+
+    
+      
+    
+
+    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
+
+    
+      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
+      <script>
+          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
+          panelbear('config', { site: 'I8KFO1BpnCi' });
+      </script>
+    
+
+    
+    
+  </body>
+</html>
