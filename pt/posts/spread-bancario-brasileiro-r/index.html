@@ -41,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/pt/posts/spread-bancario-brasileiro-r/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-03-31T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-08T23:09:39-03:00" />
+<meta property="article:modified_time" content="2022-02-08T23:45:59-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -304,7 +304,14 @@ colunas com informações sobre o indicador. E, pronto, está limpo.</p>
     <span class="n">x</span> <span class="o">=</span> <span class="s">&#34;\nAno&#34;</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="s">&#34;Spread\n&#34;</span><span class="p">,</span>
     <span class="n">title</span> <span class="o">=</span> <span class="s">&#34;Spread no Brasil ao ano\n&#34;</span>
   <span class="p">)</span>
-</code></pre></div><p><img src="./unnamed-chunk-7-1.png" alt="img3"></p>
+</code></pre></div><p><img
+  src="./unnamed-chunk-7-1.png"
+  alt="img3"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Veja como o spread vinha caindo sistematicamente, embora ainda fosse muito alto
 pros padrões internacionais. Com a crise, ele voltou a aumentar, voltando aos
 níveis do início do século.</p>
@@ -379,7 +386,14 @@ termos de spread, para nossa infelicidade:</p>
   <span class="nf">labs</span><span class="p">(</span><span class="n">y</span> <span class="o">=</span> <span class="s">&#34;Spread&#34;</span><span class="p">,</span> <span class="n">x</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span> <span class="o">+</span>
   <span class="nf">facet_wrap</span><span class="p">(</span><span class="n">. </span><span class="o">~</span> <span class="n">ano</span><span class="p">)</span> <span class="o">+</span>
   <span class="nf">coord_flip</span><span class="p">()</span>
-</code></pre></div><p><img src="./output_9_0.png" alt="img1"></p>
+</code></pre></div><p><img
+  src="./output_9_0.png"
+  alt="img1"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>E que tal contrastar os 15 maiores spreads de países em desenvolvimento versus
 desenvolvidos, pro ano de 2017? Na outra tabela tem uma coluna que pode nos
 ajudar com isso. Para isso, fiz um join para depois filtrar e criar os gráficos
@@ -405,7 +419,14 @@ que eu queria.</p>
 
 <span class="nf">library</span><span class="p">(</span><span class="n">gridExtra</span><span class="p">)</span>
 <span class="nf">grid.arrange</span><span class="p">(</span><span class="n">plot1</span><span class="p">,</span> <span class="n">plot2</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
-</code></pre></div><p><img src="./output_11_0.png" alt="img2"></p>
+</code></pre></div><p><img
+  src="./output_11_0.png"
+  alt="img2"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Vemos, assim, que a situação do Brasil é meio crítica quando se olha para o
 mercado de crédito. Está no meio de países muito pequenos ou pobres (não que o
 Brasil também não seja) no lado subdesenvolvido. Enquanto que no lado dos

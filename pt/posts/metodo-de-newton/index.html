@@ -52,7 +52,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/pt/posts/metodo-de-newton/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-03-17T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-08T23:09:39-03:00" />
+<meta property="article:modified_time" content="2022-02-08T23:45:59-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -218,7 +218,14 @@ que ela mesma usa. Vamos entender como isso funciona então.</p>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">))</span>
-</code></pre></div><p><img src="./output_1_1.png" alt="png"></p>
+</code></pre></div><p><img
+  src="./output_1_1.png"
+  alt="png"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Podemos verificar que ela intercepta o eixo x quando \( x \) é um pouquinho
 acima de 2, quer dizer, quando \( x = \sqrt{5} \approx 2.23 \).</p>
 <p>Ok, mas como chegamos até ali com cálculo diferencial? O raciocínio é como
@@ -231,7 +238,14 @@ mais fácil de lidar. E, para isso, é claro que precisamos calcular \( f^{'}(1)
 deve ser um ponto mais próximo da raiz, mas não exatamente a raiz. Isto porque
 estamos calculando a raiz de uma reta pra nos aproximarmos da raiz de uma
 parábola, que não é linear, é claro.</p>
-<p><img src="./newtonraphson1.png" alt="Img"></p>
+<p><img
+  src="./newtonraphson1.png"
+  alt="Img"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Até então, o método não parece tão impressionante. Mas e se fizermos isso de
 novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
@@ -275,7 +289,14 @@ aproximação linear.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">tang</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">label</span><span class="o">=</span><span class="sa">r</span><span class="s2">&#34;$2x - 6$&#34;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">3.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</code></pre></div><p><img src="./output_3_1.png" alt="png"></p>
+</code></pre></div><p><img
+  src="./output_3_1.png"
+  alt="png"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Nesse zoom, também podemos ver que a reta tangente ao ponto \( (1, -4) \)
 cruza o eixo \( x \) um pouco mais adiante de \( 2.23 \). Mais
 especificamente, quando \( 2x - 6 = 0 \Rightarrow 2x = 6 \Rightarrow x = 3 \).</p>
@@ -328,7 +349,14 @@ e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</code></pre></div><p><img src="./newton_visualization.png" alt="Image"></p>
+</code></pre></div><p><img
+  src="./newton_visualization.png"
+  alt="Image"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
 inevitavelmente teria lidar com cálculo diferencial. Para isso, existe uma
 biblioteca que pode nos ajudar.</p>
@@ -440,7 +468,14 @@ estar entre 1 e 2, e foi a que achamos. E uma outra está muito próxima de -2.<
 <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;grey&#34;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">7.5</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
-</code></pre></div><p><img src="./output_17_1.png" alt="png"></p>
+</code></pre></div><p><img
+  src="./output_17_1.png"
+  alt="png"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Vamos tentar achar essa outra raiz com nossa função. Para isso, basta mudarmos
 nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">newton</span><span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">3</span> <span class="o">-</span> <span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.5</span><span class="p">)</span>
@@ -487,7 +522,14 @@ Por exemplo, consideremos a função \( x^3 - x \).</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">hlines</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&#34;grey&#34;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-</code></pre></div><p><img src="./output_20_1.png" alt="png"></p>
+</code></pre></div><p><img
+  src="./output_20_1.png"
+  alt="png"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Pelo gráfico, salta à vista que as três raízes são 0, 1 e -1. Ok, mas imagine
 que queiramos estimar a raiz não-nula positiva com este método.</p>
 <p>Não poderíamos escolher 0.5 como estimativa, porque isso nos jogaria para o
@@ -525,7 +567,14 @@ Veja o gráfico.</p>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-</code></pre></div><p><img src="./output_26_1.png" alt="png"></p>
+</code></pre></div><p><img
+  src="./output_26_1.png"
+  alt="png"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <h2 class="group mb-8 mt-8" id="conclusões">
   Conclusões
   <a class="border-0 hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>

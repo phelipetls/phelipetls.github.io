@@ -41,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-08T23:09:39-03:00" />
+<meta property="article:modified_time" content="2022-02-08T23:45:59-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -195,7 +195,21 @@ only the very basic. See the
 that adds support for string modifiers and escape sequences.</p>
 <p>Getting Python syntax highlighting to work in Vim requires very little code, to
 my surprise.</p>
-<p><img src="./before.png" alt="Before"> <img src="./after.png" alt="After"></p>
+<p><img
+  src="./before.png"
+  alt="Before"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+ <img
+  src="./after.png"
+  alt="After"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Here is everything that you need and an explanation below.</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; in ~/.config/nvim/after/syntax or ~/.vim/after/syntax</span><span class="err">
 </span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>{{<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">

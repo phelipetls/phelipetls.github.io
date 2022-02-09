@@ -52,7 +52,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/pt/posts/gram-schmidt/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-08-04T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-08T23:09:39-03:00" />
+<meta property="article:modified_time" content="2022-02-08T23:45:59-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -219,7 +219,14 @@ estão separados por um ângulo de 90º.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_zlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-</code></pre></div><p><img src="./vetores.png" alt="Vetores na terceira dimensão"></p>
+</code></pre></div><p><img
+  src="./vetores.png"
+  alt="Vetores na terceira dimensão"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Para ver isso com matrizes, vamos supor uma matriz \( Q \) cujas colunas são
 vetores ortogonais com o comprimento
 (<a
@@ -270,7 +277,14 @@ conceito de projeção. Por isso, vamos entender o que é isso antes.</p>
 <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$\hat</span><span class="si">{x}</span><span class="s2">a_2$&#34;</span><span class="p">,</span> <span class="n">projection</span> <span class="o">-</span> <span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="s2">&#34;$e = a_1 - \hat</span><span class="si">{x}</span><span class="s2">a_2$&#34;</span><span class="p">,</span> <span class="n">e</span> <span class="o">+</span> <span class="n">projection</span> <span class="o">+</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">15</span><span class="p">)</span>
 <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">r</span><span class="s2">&#34;Projeção de </span><span class="se">\\</span><span class="s2">( a_1 </span><span class="se">\\</span><span class="s2">) em </span><span class="se">\\</span><span class="s2">( a_2 </span><span class="se">\\</span><span class="s2">)&#34;</span><span class="p">)</span>
-</code></pre></div><p><img src="./projecao-vetorial.png" alt="Projeção vetorial"></p>
+</code></pre></div><p><img
+  src="./projecao-vetorial.png"
+  alt="Projeção vetorial"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Dados esses dois vetores, podemos gerar um vetor perpendicular ao \( a_2 \)
 que denominaremos \( e \), que é o resultado da subtração em \( a_1 \) do
 que ele tem em comum com \( a_2 \) (o \( \hat{x} \)).</p>

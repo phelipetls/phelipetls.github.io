@@ -41,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2019-02-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-08T23:09:39-03:00" />
+<meta property="article:modified_time" content="2022-02-08T23:45:59-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -272,7 +272,14 @@ aqui. O único trabalho que tive foi o de escrever o código em Python.</li>
 cartesiano, em que o cavalo está no ponto de origem, (0, 0), podendo saltar dali
 para oito casas possíveis, com igual probabilidade, respeitando sempre as regras
 do xadrez, como na imagem:</p>
-<p><img src="./knight_moves.png" alt="Knight"></p>
+<p><img
+  src="./knight_moves.png"
+  alt="Knight"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <p>Daí podemos notar que, se o cavalo pular para uma casa de coordenada x, a
 coordenada y terá que ser igual a 3 - abs(x). Mas devemos tomar o cuidado para
 assegurar que a coordenada y também possa ser negativa.</p>
@@ -395,7 +402,14 @@ simples histograma, feito com 100 repetições do experimento.</p>
 <span class="n">knight_probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">knight_infinite_board</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">knight_probs</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
-</code></pre></div><p><img src="./histograma.png" alt="Histograma"></p>
+</code></pre></div><p><img
+  src="./histograma.png"
+  alt="Histograma"
+  
+  class="rounded my-8"
+  style="background-color: white;"
+/>
+</p>
 <h2 class="group mb-8 mt-8" id="a-eficiência-em-números">
   A eficiência em números
   <a class="border-0 hidden text-highlight group-hover:inline" href="#a-efici%c3%aancia-em-n%c3%bameros">#</a>
