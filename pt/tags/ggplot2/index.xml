@@ -14,7 +14,7 @@
       <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/posts/game-of-thrones-text-mining/</guid>
-      <description>Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext, que torna trivial esse tipo de tarefa.</description>
+      <description>Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa.</description>
     </item>
     
     <item>

@@ -14,7 +14,7 @@
       <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/making-vim-understand-typescript-path-mapping/</guid>
-      <description>Vim has this well-known feature of opening the path under cursor with :h gf. This article explains well how this works.</description>
+      <description>Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .</description>
     </item>
     
     <item>
@@ -23,7 +23,7 @@
       <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/configuring-eslint-to-work-with-neovim-lsp/</guid>
-      <description>The way we&amp;rsquo;ll get this to work is by using a generic Language Server called efm-langserver, which is written in Go.</description>
+      <description>The way we&amp;rsquo;ll get this to work is by using a generic Language Server called efm-langserver , which is written in Go.</description>
     </item>
     
     <item>

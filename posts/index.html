@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="" />
-<meta name="deploy-date" content="2022-02-08">
-<meta name="publish-date" content="2022-02-07">
-<meta name="last-modified-date" content="2022-02-07">
+<meta name="deploy-date" content="2022-02-09">
+<meta name="publish-date" content="0001-01-01">
+<meta name="last-modified-date" content="2022-02-08">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -23,15 +23,12 @@
 
 
 
-
-  
   
   
 
 
 <link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
 
 <title>
   Posts | Phelipe Teles
@@ -68,13 +65,6 @@
     <script>window.__setTheme = function(newTheme) {
   document.body.setAttribute("data-theme", newTheme);
   localStorage.setItem("__theme", newTheme);
-  const oldTheme = newTheme === "dark" ? "light" : "dark";
-  document
-    .querySelector("link[href*='" + oldTheme + "']")
-    .setAttribute("disabled", "");
-  document
-    .querySelector("link[href*='" + newTheme + "']")
-    .removeAttribute("disabled");
 };
 
 const storedTheme = localStorage.getItem("__theme");
@@ -93,7 +83,7 @@ window.addEventListener("load", function() {
 
     <header class="mb-16">
   <div class="flex justify-between">
-    <h1 class="mb-4">
+    <h1 class="mb-4 text-3xl">
       <a class="border-0 font-bold" href="https://phelipetls.github.io/">
         Phelipe Teles
       </a>
@@ -160,7 +150,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2022-02-07">
               
-                Feb, 07
+                February, 07
               
             </time>
           </div>
@@ -174,7 +164,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2022-01-26">
               
-                Jan, 26
+                January, 26
               
             </time>
           </div>
@@ -188,7 +178,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2022-01-25">
               
-                Jan, 25
+                January, 25
               
             </time>
           </div>
@@ -209,7 +199,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2021-09-15">
               
-                Sep, 15
+                September, 15
               
             </time>
           </div>
@@ -223,7 +213,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2021-09-08">
               
-                Sep, 08
+                September, 08
               
             </time>
           </div>
@@ -237,7 +227,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2021-06-11">
               
-                Jun, 11
+                June, 11
               
             </time>
           </div>
@@ -251,7 +241,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2021-04-29">
               
-                Apr, 29
+                April, 29
               
             </time>
           </div>
@@ -265,7 +255,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2021-04-28">
               
-                Apr, 28
+                April, 28
               
             </time>
           </div>
@@ -279,7 +269,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2021-04-23">
               
-                Apr, 23
+                April, 23
               
             </time>
           </div>
@@ -300,7 +290,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2020-12-28">
               
-                Dec, 28
+                December, 28
               
             </time>
           </div>
@@ -314,7 +304,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2020-10-28">
               
-                Oct, 28
+                October, 28
               
             </time>
           </div>
@@ -328,7 +318,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2020-10-11">
               
-                Oct, 11
+                October, 11
               
             </time>
           </div>
@@ -342,7 +332,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2020-10-07">
               
-                Oct, 07
+                October, 07
               
             </time>
           </div>
@@ -356,7 +346,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2020-08-12">
               
-                Aug, 12
+                August, 12
               
             </time>
           </div>
@@ -370,7 +360,7 @@ window.addEventListener("load", function() {
           <div class="flex flex-wrap gap-2">
             <time datetime="2020-08-05">
               
-                Aug, 05
+                August, 05
               
             </time>
           </div>
@@ -384,11 +374,13 @@ window.addEventListener("load", function() {
 
     <footer class="mt-16 text-right text-sm">
   <div class="mb-2">
-    <a href="https://buttondown.email/phelipetls/">
-      Subscribe
-    </a>
-    &nbsp;·&nbsp;
-      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+    
+      <a href="https://buttondown.email/phelipetls/">Subscribe</a>
+
+      &nbsp;·&nbsp;
+    
+
+    <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
 
     </div><a class="inline-block mb-2" href="https://phelipetls.github.io/pt/posts/" title="Leia em Português">
         Leia em Português
@@ -397,9 +389,7 @@ window.addEventListener("load", function() {
   
 
   <div>All content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  Creative Commons Attribution 4.0
-</a>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
 license
 </div>
 </footer>

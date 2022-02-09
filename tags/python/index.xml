@@ -23,8 +23,7 @@
       <pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/deploying-flask-app-on-heroku/</guid>
-      <description>tl;dr: Use waitress instead of gunicorn
-diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &amp;#34;app:create_app()&amp;#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &amp;#39;app:create_app&amp;#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&amp;rsquo;s free dyno tier.</description>
+      <description>tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &amp;#34;app:create_app()&amp;#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &amp;#39;app:create_app&amp;#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&amp;rsquo;s free dyno tier.</description>
     </item>
     
     <item>
@@ -33,8 +32,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/vim-errorformat-for-pytest/</guid>
-      <description>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on Stack Overflow
- I really like Vim&amp;rsquo;s :h errorformat feature, but only when I manage to get it right.</description>
+      <description>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on Stack Overflow  I really like Vim&amp;rsquo;s :h errorformat feature, but only when I manage to get it right.</description>
     </item>
     
   </channel>

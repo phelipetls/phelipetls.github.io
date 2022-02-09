@@ -6,9 +6,9 @@
 
 <meta name="description" content="Thoughts about writing integration tests for React apps, from
 react-testing-library to Cypress." />
-<meta name="deploy-date" content="2022-02-08">
+<meta name="deploy-date" content="2022-02-09">
 <meta name="publish-date" content="2021-04-28">
-<meta name="last-modified-date" content="2021-04-28">
+<meta name="last-modified-date" content="2022-02-08">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -24,15 +24,12 @@ react-testing-library to Cypress." />
 
 
 
-
-  
   
   
 
 
 <link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
 
 <title>
   My experience testing React applications | Phelipe Teles
@@ -46,7 +43,7 @@ react-testing-library to Cypress." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/my-experience-testing-react-applications/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2021-04-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-04-28T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-08T21:24:44-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -73,13 +70,6 @@ react-testing-library to Cypress."/>
     <script>window.__setTheme = function(newTheme) {
   document.body.setAttribute("data-theme", newTheme);
   localStorage.setItem("__theme", newTheme);
-  const oldTheme = newTheme === "dark" ? "light" : "dark";
-  document
-    .querySelector("link[href*='" + oldTheme + "']")
-    .setAttribute("disabled", "");
-  document
-    .querySelector("link[href*='" + newTheme + "']")
-    .removeAttribute("disabled");
 };
 
 const storedTheme = localStorage.getItem("__theme");
@@ -98,7 +88,7 @@ window.addEventListener("load", function() {
 
     <header class="mb-16">
   <div class="flex justify-between">
-    <h1 class="mb-4">
+    <h1 class="mb-4 text-3xl">
       <a class="border-0 font-bold" href="https://phelipetls.github.io/">
         Phelipe Teles
       </a>
@@ -151,14 +141,30 @@ window.addEventListener("load", function() {
     <main class="flex flex-1 flex-col">
       
   <article>
-    <h1>My experience testing React applications</h1>
+    <div class="mb-4">
+      <time datetime="2021-04-28">
+        
+          April 28, 2021
+        
+      </time>
 
-    <time datetime="2021-04-28">
-      Apr 28, 2021
-    </time>
+      
+        <span>
+          &nbsp;·&nbsp;
+
+          <time datetime="2022-02-08">
+            Last modified at Feb 08, 2022
+          </time>
+        </span>
+      
+    </div>
+
+    <h1 class="text-4xl mb-4">
+      My experience testing React applications
+    </h1>
 
     
-      <div class="mt-4">
+      <div>
         <span class="mr-1">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
 
@@ -210,25 +216,60 @@ happened. It has a very consistent API and good documentation.</p>
 <p>I liked that:</p>
 <ul>
 <li>You can get elements on the screen with
-<a href="https://testing-library.com/docs/queries/about/">queries that resembles the DOM API</a>.</li>
+<a
+  href="https://testing-library.com/docs/queries/about/"
+  
+  class=""
+>queries that resembles the DOM API</a>
+.</li>
 <li>You don&rsquo;t have to
-<a href="https://kentcdodds.com/blog/common-mistakes-with-react-testing-library#wrapping-things-in-act-unnecessarily">wrap anything in <code>act</code></a>.</li>
+<a
+  href="https://kentcdodds.com/blog/common-mistakes-with-react-testing-library#wrapping-things-in-act-unnecessarily"
+  
+  class=""
+>wrap anything in <code>act</code></a>
+.</li>
 </ul>
 <p>I disliked that:</p>
 <ul>
 <li>It was hard to debug (difficult to grasp the UI state from the output of
 <code>screen.debug()</code>)</li>
 <li>You have to
-<a href="https://testing-library.com/docs/guide-disappearance">wait for appearance and disappearance explicitly</a>.</li>
+<a
+  href="https://testing-library.com/docs/guide-disappearance"
+  
+  class=""
+>wait for appearance and disappearance explicitly</a>
+.</li>
 <li>Requires some boilerplate to
-<a href="(https://testing-library.com/docs/react-testing-library/setup/)">set up your tests</a>
+<a
+  href="%28https://testing-library.com/docs/react-testing-library/setup/%29"
+  
+  class=""
+>set up your tests</a>
+
 (for example, to wrap some components in
-<a href="https://reactrouter.com/web/api/MemoryRouter">MemoryRouter</a>, context
+<a
+  href="https://reactrouter.com/web/api/MemoryRouter"
+  
+  class=""
+>MemoryRouter</a>
+, context
 providers,
-<a href="https://react-query.tanstack.com/reference/QueryClient">QueryClient</a>).</li>
+<a
+  href="https://react-query.tanstack.com/reference/QueryClient"
+  
+  class=""
+>QueryClient</a>
+).</li>
 <li>Your tests have to run in a node.js/jsdom environment, so (for example) if you
 use canvas in your app,
-<a href="https://github.com/jsdom/jsdom#canvas-support">it won&rsquo;t work out of the box</a>.</li>
+<a
+  href="https://github.com/jsdom/jsdom#canvas-support"
+  
+  class=""
+>it won&rsquo;t work out of the box</a>
+.</li>
 </ul>
 <p>But it got the job done most of the time.</p>
 <p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
@@ -239,18 +280,33 @@ use canvas in your app,
 <p>The <code>nock</code> library works in node-only environment and has a well-thought, easy
 to use API.</p>
 <p>In my experience, it has just a few unexpected issues like
-<a href="https://www.npmjs.com/package/nock#axios">not working with axios out of the box</a>.</p>
+<a
+  href="https://www.npmjs.com/package/nock#axios"
+  
+  class=""
+>not working with axios out of the box</a>
+.</p>
 <h2 class="group mb-8 mt-8" id="msw">
   <code>msw</code>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#msw">#</a>
 </h2>
 <p>I later also tried <code>msw</code> after reading
-<a href="https://kentcdodds.com/blog/stop-mocking-fetch/">Stop mocking fetch</a> by Kent C.
+<a
+  href="https://kentcdodds.com/blog/stop-mocking-fetch/"
+  
+  class=""
+>Stop mocking fetch</a>
+ by Kent C.
 Odds, and I liked it at lot. It can work in a browser (as a service worker) or
 node.js (by intercepting requests made by native modules).</p>
 <p>The problems I had with it is that it does not recognize URL search/query params
 in the URL,
-<a href="https://github.com/mswjs/msw/issues/71">you have to parse it yourself in the response handler</a>.
+<a
+  href="https://github.com/mswjs/msw/issues/71"
+  
+  class=""
+>you have to parse it yourself in the response handler</a>
+.
 This is by design though, it&rsquo;s just something I disliked.</p>
 <p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
 which I thought made tests harder to read. It doesn&rsquo;t have to be like that of
@@ -259,22 +315,52 @@ course, but it&rsquo;s response handlers can get pretty long so it&rsquo;s a san
   <code>cypress</code>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#cypress">#</a>
 </h2>
-<p>All of these led me to try <a href="https://docs.cypress.io/"><code>Cypress</code></a>, and I&rsquo;m
+<p>All of these led me to try <a
+  href="https://docs.cypress.io/"
+  
+  class="border-normal"
+><code>Cypress</code></a>
+, and I&rsquo;m
 inclined to say it is my favorite solution so far.</p>
 <p>You don&rsquo;t have to explicitly wait for anything to appear or disappear because it
 does so automatically by
-<a href="https://docs.cypress.io/guides/core-concepts/retry-ability">retrying it multiple times until a timeout is reached</a>
+<a
+  href="https://docs.cypress.io/guides/core-concepts/retry-ability"
+  
+  class=""
+>retrying it multiple times until a timeout is reached</a>
+
 and it has a built-in API for mocking network requests with the
-<a href="https://docs.cypress.io/api/commands/intercept">intercept function</a>.</p>
+<a
+  href="https://docs.cypress.io/api/commands/intercept"
+  
+  class=""
+>intercept function</a>
+.</p>
 <p>But it&rsquo;s not perfect either:</p>
 <ul>
 <li>It has its own quirks like using the <code>window</code> object might not work as you
 expect because
-<a href="https://docs.cypress.io/api/commands/window#Cypress-uses-2-different-windows">Cypress uses two different windows</a>.</li>
+<a
+  href="https://docs.cypress.io/api/commands/window#Cypress-uses-2-different-windows"
+  
+  class=""
+>Cypress uses two different windows</a>
+.</li>
 <li>The <code>intercept</code> API has some unexpected behaviors like
-<a href="https://github.com/cypress-io/cypress/issues/15956">requiring URLs to be properly encoded</a>,
+<a
+  href="https://github.com/cypress-io/cypress/issues/15956"
+  
+  class=""
+>requiring URLs to be properly encoded</a>
+,
 and others only recently fixed like its
-<a href="https://github.com/cypress-io/cypress/issues/9302">most recent calls not overriding earlier ones</a>.</li>
+<a
+  href="https://github.com/cypress-io/cypress/issues/9302"
+  
+  class=""
+>most recent calls not overriding earlier ones</a>
+.</li>
 </ul>
 <p>The benefits far outweigh these problems, mainly around debuggability:</p>
 <ul>
@@ -327,18 +413,18 @@ logic.</p>
 
     <footer class="mt-16 text-right text-sm">
   <div class="mb-2">
-    <a href="https://buttondown.email/phelipetls/">
-      Subscribe
-    </a>
-    &nbsp;·&nbsp;
-      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+    
+      <a href="https://buttondown.email/phelipetls/">Subscribe</a>
+
+      &nbsp;·&nbsp;
+    
+
+    <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
 
     </div>
 
   <div>All content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  Creative Commons Attribution 4.0
-</a>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
 license
 </div>
 </footer>

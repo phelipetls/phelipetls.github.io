@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only." />
-<meta name="deploy-date" content="2022-02-08">
+<meta name="deploy-date" content="2022-02-09">
 <meta name="publish-date" content="2020-08-05">
-<meta name="last-modified-date" content="2020-08-05">
+<meta name="last-modified-date" content="2022-02-08">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -23,15 +23,12 @@
 
 
 
-
-  
   
   
 
 
 <link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
 
 <title>
   Getting Salesforce reports with VBA | Phelipe Teles
@@ -44,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/getting-salesforce-reports-with-vba/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-08-05T00:00:00+00:00" />
-<meta property="article:modified_time" content="2020-08-05T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-02-08T21:24:44-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -70,13 +67,6 @@
     <script>window.__setTheme = function(newTheme) {
   document.body.setAttribute("data-theme", newTheme);
   localStorage.setItem("__theme", newTheme);
-  const oldTheme = newTheme === "dark" ? "light" : "dark";
-  document
-    .querySelector("link[href*='" + oldTheme + "']")
-    .setAttribute("disabled", "");
-  document
-    .querySelector("link[href*='" + newTheme + "']")
-    .removeAttribute("disabled");
 };
 
 const storedTheme = localStorage.getItem("__theme");
@@ -95,7 +85,7 @@ window.addEventListener("load", function() {
 
     <header class="mb-16">
   <div class="flex justify-between">
-    <h1 class="mb-4">
+    <h1 class="mb-4 text-3xl">
       <a class="border-0 font-bold" href="https://phelipetls.github.io/">
         Phelipe Teles
       </a>
@@ -148,14 +138,30 @@ window.addEventListener("load", function() {
     <main class="flex flex-1 flex-col">
       
   <article>
-    <h1>Getting Salesforce reports with VBA</h1>
+    <div class="mb-4">
+      <time datetime="2020-08-05">
+        
+          August 05, 2020
+        
+      </time>
 
-    <time datetime="2020-08-05">
-      Aug 05, 2020
-    </time>
+      
+        <span>
+          &nbsp;·&nbsp;
+
+          <time datetime="2022-02-08">
+            Last modified at Feb 08, 2022
+          </time>
+        </span>
+      
+    </div>
+
+    <h1 class="text-4xl mb-4">
+      Getting Salesforce reports with VBA
+    </h1>
 
     
-      <div class="mt-4">
+      <div>
         <span class="mr-1">
   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
 
@@ -179,7 +185,12 @@ and Salesforce, you may be interested in a way to automate the process of
 downloading reports from inside Excel with VBA only.</p>
 <p>I think there are probably better tools for the job, like Apex, SOQL query or a
 better programming language. I
-<a href="https://github.com/reportforce">created a Python package for this purpose</a> but
+<a
+  href="https://github.com/reportforce"
+  
+  class=""
+>created a Python package for this purpose</a>
+ but
 I didn&rsquo;t use it so much because it&rsquo;s hard to integrate with Excel.</p>
 <p>Instead, I looked into a way to do something similar with VBA and I managed to
 do it. In this post I&rsquo;ll share this with you.</p>
@@ -188,7 +199,12 @@ do it. In this post I&rsquo;ll share this with you.</p>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#authentication">#</a>
 </h2>
 <p>The more painless way I know of to
-<a href="https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_quickstart_login.htm">authenticate your requests for a Salesforce web service is via SOAP API</a>,
+<a
+  href="https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_quickstart_login.htm"
+  
+  class=""
+>authenticate your requests for a Salesforce web service is via SOAP API</a>
+,
 with username, password and a security token.</p>
 <p>It returns a bunch of XML in the response, but we will only need the session id
 (a JWT) inside of it. This is what the function below does.</p>
@@ -253,16 +269,31 @@ So far, we didn&rsquo;t had to rely on any external tools, there is an XML parse
 inside VBA, but not a JSON parser at least that I know of. So we&rsquo;re in trouble
 here because that&rsquo;s what Analytics speaks.</p>
 <p>Fortunately, there is a
-<a href="https://github.com/VBA-tools/VBA-JSON">JSON parser implementation for VBA</a>
+<a
+  href="https://github.com/VBA-tools/VBA-JSON"
+  
+  class=""
+>JSON parser implementation for VBA</a>
+
 which works flawlessly. You just need to download
-<a href="https://raw.githubusercontent.com/VBA-tools/VBA-JSON/master/JsonConverter.bas">this file</a>
+<a
+  href="https://raw.githubusercontent.com/VBA-tools/VBA-JSON/master/JsonConverter.bas"
+  
+  class=""
+>this file</a>
+
 and import it as a module.</p>
 <h2 class="group mb-8 mt-8" id="unfortunate-api-limitations">
   Unfortunate API limitations
   <a class="border-0 hidden text-highlight group-hover:inline" href="#unfortunate-api-limitations">#</a>
 </h2>
 <p>This API unfortunately have a
-<a href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_limits_limitations.htm">critical limitation</a>,
+<a
+  href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_limits_limitations.htm"
+  
+  class=""
+>critical limitation</a>
+,
 which is to return only a maximum of 2000 rows per report. Also, there is no way
 to filter by row limits.</p>
 <p>This almost turns it useless. The only way I know of is to use a column which
@@ -332,13 +363,23 @@ report.</p>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#writing-the-data-into-a-worksheet">#</a>
 </h2>
 <p>Now we need to extract the data and write it into a worksheet.</p>
-<p><a href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm" title="Salesforce documentation on how to decode the factMap">Every thing we need is inside the <code>factMap</code> key</a>.
+<p><a
+  href="https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm"
+  title="Salesforce documentation on how to decode the factMap"
+  class=""
+>Every thing we need is inside the <code>factMap</code> key</a>
+.
 This can get complex if we intend to cover matrix and summary reports, which has
 groupings etc., but tabular reports are much simpler.</p>
 <p>What we need to do is to iterate through the values at <code>factMap.T!T.rows</code> and,
 for each row, get every value inside <code>.dataCells</code> array.</p>
 <p>This approach will only cover tabular reports, you can take a look at the
-<a href="https://github.com/phelipetls/reportforce/tree/master/reportforce/helpers" title="Source code for reportforce package on a Github repository">reportforce source code</a>
+<a
+  href="https://github.com/phelipetls/reportforce/tree/master/reportforce/helpers"
+  title="Source code for reportforce package on a Github repository"
+  class=""
+>reportforce source code</a>
+
 if you need to cover these. By the way, there is an option to export to an Excel
 (but not to write to a worksheet, obviously).</p>
 <p>The below function takes care of this, its job is to go through every cell and
@@ -538,7 +579,12 @@ later iterations. Then we convert the metadata into a JSON string, get a new
 filtered report and repeat the loop until we get all data.</p>
 <p>Also notice that I use a custom function to get all values at a given column,
 <code>GetValuesAtColumn</code>.</p>
-<p><a href="https://gist.github.com/phelipetls/57a27f529561eefe73633093c737b7e0">Get the full source code in this GitHub gist</a>.</p>
+<p><a
+  href="https://gist.github.com/phelipetls/57a27f529561eefe73633093c737b7e0"
+  
+  class=""
+>Get the full source code in this GitHub gist</a>
+.</p>
 <h2 class="group mb-8 mt-8" id="how-to-use-it">
   How to use it
   <a class="border-0 hidden text-highlight group-hover:inline" href="#how-to-use-it">#</a>
@@ -608,18 +654,18 @@ Nonetheless, it was still fun to write this.</p>
 
     <footer class="mt-16 text-right text-sm">
   <div class="mb-2">
-    <a href="https://buttondown.email/phelipetls/">
-      Subscribe
-    </a>
-    &nbsp;·&nbsp;
-      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+    
+      <a href="https://buttondown.email/phelipetls/">Subscribe</a>
+
+      &nbsp;·&nbsp;
+    
+
+    <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
 
     </div>
 
   <div>All content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  Creative Commons Attribution 4.0
-</a>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
 license
 </div>
 </footer>

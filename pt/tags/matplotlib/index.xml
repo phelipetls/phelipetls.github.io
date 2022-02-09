@@ -23,7 +23,7 @@
       <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/</guid>
-      <description>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson, que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).</description>
+      <description>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).</description>
     </item>
     
   </channel>

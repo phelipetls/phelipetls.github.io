@@ -6,8 +6,7 @@
     <description>Recent content in Posts on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Conteúdo licenciado sob a licença Creative Commons Attribution 4.0 International</copyright>
-    <lastBuildDate>Sun, 18 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/pt/posts/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Conteúdo licenciado sob a licença Creative Commons Attribution 4.0 International</copyright><atom:link href="https://phelipetls.github.io/pt/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Web Scraping de páginas dinâmicas com Python</title>
       <link>https://phelipetls.github.io/pt/posts/web-scraping-de-paginas-dinamicas/</link>
@@ -32,7 +31,7 @@
       <pubDate>Sat, 20 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/posts/game-of-thrones-text-mining/</guid>
-      <description>Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext, que torna trivial esse tipo de tarefa.</description>
+      <description>Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa.</description>
     </item>
     
     <item>
@@ -50,7 +49,7 @@
       <pubDate>Mon, 01 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/posts/homicidios-em-baltimore-minerando-dados-r/</guid>
-      <description>Quando comecei a estudar R, via muito os vídeos do [Roger Peng]. Este vídeo foi um que particularmente me impressionou, em que ele faz uso de regular expressions para manipular e extrair informações de texto.</description>
+      <description>Quando comecei a estudar R, via muito os vídeos do [Roger Peng]. Este vídeo foi um que particularmente me impressionou , em que ele faz uso de regular expressions para manipular e extrair informações de texto.</description>
     </item>
     
     <item>
@@ -86,7 +85,7 @@
       <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/</guid>
-      <description>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson, que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).</description>
+      <description>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).</description>
     </item>
     
   </channel>

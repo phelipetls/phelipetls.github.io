@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="" />
-<meta name="deploy-date" content="2022-02-08">
+<meta name="deploy-date" content="2022-02-09">
 <meta name="publish-date" content="2021-04-29">
-<meta name="last-modified-date" content="2021-04-29">
+<meta name="last-modified-date" content="2022-02-08">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -23,15 +23,12 @@
 
 
 
-
-  
   
   
 
 
 <link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/light-syntax-highlight.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" disabled />
+<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
 
 <title>
   html | Phelipe Teles
@@ -68,13 +65,6 @@
     <script>window.__setTheme = function(newTheme) {
   document.body.setAttribute("data-theme", newTheme);
   localStorage.setItem("__theme", newTheme);
-  const oldTheme = newTheme === "dark" ? "light" : "dark";
-  document
-    .querySelector("link[href*='" + oldTheme + "']")
-    .setAttribute("disabled", "");
-  document
-    .querySelector("link[href*='" + newTheme + "']")
-    .removeAttribute("disabled");
 };
 
 const storedTheme = localStorage.getItem("__theme");
@@ -93,7 +83,7 @@ window.addEventListener("load", function() {
 
     <header class="mb-16">
   <div class="flex justify-between">
-    <h1 class="mb-4">
+    <h1 class="mb-4 text-3xl">
       <a class="border-0 font-bold" href="https://phelipetls.github.io/">
         Phelipe Teles
       </a>
@@ -183,18 +173,18 @@ window.addEventListener("load", function() {
 
     <footer class="mt-16 text-right text-sm">
   <div class="mb-2">
-    <a href="https://buttondown.email/phelipetls/">
-      Subscribe
-    </a>
-    &nbsp;·&nbsp;
-      <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
+    
+      <a href="https://buttondown.email/phelipetls/">Subscribe</a>
+
+      &nbsp;·&nbsp;
+    
+
+    <a href="https://phelipetls.github.io/posts/index.xml">RSS</a> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg>
 
     </div>
 
   <div>All content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">
-  Creative Commons Attribution 4.0
-</a>
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
 license
 </div>
 </footer>

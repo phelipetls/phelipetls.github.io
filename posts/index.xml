@@ -6,8 +6,7 @@
     <description>Recent content in Posts on Phelipe Teles</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <copyright>Content licensed under a Creative Commons Attribution 4.0 International license</copyright>
-    <lastBuildDate>Mon, 07 Feb 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://phelipetls.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <copyright>Content licensed under a Creative Commons Attribution 4.0 International license</copyright><atom:link href="https://phelipetls.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>adb: a must-know CLI tool for Android development</title>
       <link>https://phelipetls.github.io/posts/adb-a-must-know-cli-tool-for-android-development/</link>
@@ -41,7 +40,7 @@
       <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/making-vim-understand-typescript-path-mapping/</guid>
-      <description>Vim has this well-known feature of opening the path under cursor with :h gf. This article explains well how this works.</description>
+      <description>Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .</description>
     </item>
     
     <item>
@@ -96,7 +95,7 @@ react-testing-library to Cypress.</description>
       <pubDate>Mon, 28 Dec 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/configuring-eslint-to-work-with-neovim-lsp/</guid>
-      <description>The way we&amp;rsquo;ll get this to work is by using a generic Language Server called efm-langserver, which is written in Go.</description>
+      <description>The way we&amp;rsquo;ll get this to work is by using a generic Language Server called efm-langserver , which is written in Go.</description>
     </item>
     
     <item>
@@ -114,8 +113,7 @@ react-testing-library to Cypress.</description>
       <pubDate>Sun, 11 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/deploying-flask-app-on-heroku/</guid>
-      <description>tl;dr: Use waitress instead of gunicorn
-diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &amp;#34;app:create_app()&amp;#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &amp;#39;app:create_app&amp;#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&amp;rsquo;s free dyno tier.</description>
+      <description>tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &amp;#34;app:create_app()&amp;#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &amp;#39;app:create_app&amp;#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&amp;rsquo;s free dyno tier.</description>
     </item>
     
     <item>
@@ -124,8 +122,7 @@ diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile ++
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/vim-errorformat-for-pytest/</guid>
-      <description>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on Stack Overflow
- I really like Vim&amp;rsquo;s :h errorformat feature, but only when I manage to get it right.</description>
+      <description>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on Stack Overflow  I really like Vim&amp;rsquo;s :h errorformat feature, but only when I manage to get it right.</description>
     </item>
     
     <item>

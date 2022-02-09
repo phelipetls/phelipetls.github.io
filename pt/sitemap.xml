@@ -3,7 +3,7 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://phelipetls.github.io/pt/projects/ipeadata-explorer/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -15,34 +15,8 @@
                 href="https://phelipetls.github.io/pt/projects/ipeadata-explorer/"
                 />
   </url><url>
-    <loc>https://phelipetls.github.io/pt/projects/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/projects/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/projects/"
-                />
-  </url><url>
-    <loc>https://phelipetls.github.io/pt/</loc>
-    <lastmod>2020-09-02T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/"
-                />
-  </url><url>
     <loc>https://phelipetls.github.io/pt/projects/url-shortener/</loc>
-    <lastmod>2020-08-26T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -55,7 +29,7 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/projects/minesweeper/</loc>
-    <lastmod>2020-06-16T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -68,7 +42,7 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/projects/reportforce/</loc>
-    <lastmod>2020-01-25T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -81,7 +55,7 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/projects/mapsbr/</loc>
-    <lastmod>2019-12-29T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -94,7 +68,7 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/projects/seriesbr/</loc>
-    <lastmod>2019-11-22T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -107,29 +81,16 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/dataviz/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/pandas/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://phelipetls.github.io/pt/posts/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/posts/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/posts/"
-                />
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/regex/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -142,22 +103,22 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/web-scraping-de-paginas-dinamicas/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/web-scraping/</loc>
-    <lastmod>2019-08-18T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/linear-algebra/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/numpy/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/gram-schmidt/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/python/</loc>
-    <lastmod>2019-08-04T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
     <xhtml:link
                 rel="alternate"
                 hreflang="en"
@@ -170,42 +131,81 @@
                 />
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/ggplot2/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/game-of-thrones-text-mining/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/tidytext/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/tidyverse/</loc>
-    <lastmod>2019-04-20T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/gganimate/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/homicidios-em-baltimore-minerando-dados-r/</loc>
-    <lastmod>2019-04-01T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/spread-bancario-brasileiro-r/</loc>
-    <lastmod>2019-03-31T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/matplotlib/</loc>
-    <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/metodo-de-newton/</loc>
-    <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/tags/sympy/</loc>
-    <lastmod>2019-03-17T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/</loc>
-    <lastmod>2019-03-03T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
   </url><url>
     <loc>https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/</loc>
-    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
+  </url><url>
+    <loc>https://phelipetls.github.io/pt/posts/</loc>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/posts/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/posts/"
+                />
+  </url><url>
+    <loc>https://phelipetls.github.io/pt/projects/</loc>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/projects/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/projects/"
+                />
+  </url><url>
+    <loc>https://phelipetls.github.io/pt/</loc>
+    <lastmod>2022-02-08T21:24:44-03:00</lastmod>
+    <xhtml:link
+                rel="alternate"
+                hreflang="en"
+                href="https://phelipetls.github.io/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="pt"
+                href="https://phelipetls.github.io/pt/"
+                />
   </url>
 </urlset>

@@ -14,7 +14,7 @@
       <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/making-vim-understand-typescript-path-mapping/</guid>
-      <description>Vim has this well-known feature of opening the path under cursor with :h gf. This article explains well how this works.</description>
+      <description>Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .</description>
     </item>
     
     <item>

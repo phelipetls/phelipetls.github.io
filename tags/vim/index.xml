@@ -14,7 +14,7 @@
       <pubDate>Wed, 15 Sep 2021 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/making-vim-understand-typescript-path-mapping/</guid>
-      <description>Vim has this well-known feature of opening the path under cursor with :h gf. This article explains well how this works.</description>
+      <description>Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .</description>
     </item>
     
     <item>
@@ -41,8 +41,7 @@
       <pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate>
       
       <guid>https://phelipetls.github.io/posts/vim-errorformat-for-pytest/</guid>
-      <description>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on Stack Overflow
- I really like Vim&amp;rsquo;s :h errorformat feature, but only when I manage to get it right.</description>
+      <description>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on Stack Overflow  I really like Vim&amp;rsquo;s :h errorformat feature, but only when I manage to get it right.</description>
     </item>
     
   </channel>
