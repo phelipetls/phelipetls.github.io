@@ -7,7 +7,7 @@
 <meta name="description" content="tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#43;&#43;&#43; b/Procfile @@ -1 &#43;1 @@ -web: gunicorn &#34;app:create_app()&#34; &#43;web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &#39;app:create_app&#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier." />
 <meta name="deploy-date" content="2022-02-09">
 <meta name="publish-date" content="2020-10-11">
-<meta name="last-modified-date" content="2022-02-08">
+<meta name="last-modified-date" content="2022-02-09">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -41,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/deploying-flask-app-on-heroku/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-11T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-08T23:45:59-03:00" />
+<meta property="article:modified_time" content="2022-02-09T06:57:52-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -158,8 +158,8 @@ window.addEventListener("load", function() {
           &nbsp;·&nbsp;
         </span>
 
-        <time class="italic" datetime="2022-02-08">
-          Last modified at February 08, 2022
+        <time class="italic" datetime="2022-02-09">
+          Last modified at February 09, 2022
         </time>
       
     </div>

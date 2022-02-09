@@ -62,11 +62,11 @@
     </item>
     
     <item>
-      <title>Implementing dark mode in static or SSR websites</title>
-      <link>https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/</link>
+      <title>Implementing dark mode for static websites</title>
+      <link>https://phelipetls.github.io/posts/implementing-dark-mode-for-static-websites/</link>
       <pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate>
       
-      <guid>https://phelipetls.github.io/posts/dark-mode-implementation-for-ssr-websites/</guid>
+      <guid>https://phelipetls.github.io/posts/implementing-dark-mode-for-static-websites/</guid>
       <description>From the basic to the hacky stuff you should do to deliver the best experience.</description>
     </item>
     
