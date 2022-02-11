@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator." />
-<meta name="deploy-date" content="2022-02-09">
+<meta name="deploy-date" content="2022-02-11">
 <meta name="publish-date" content="2022-01-25">
-<meta name="last-modified-date" content="2022-02-09">
+<meta name="last-modified-date" content="2022-02-10">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -41,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/improving-the-android-studio-experience-in-dwm/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-01-25T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-09T07:47:10-03:00" />
+<meta property="article:modified_time" content="2022-02-10T22:33:16-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -57,7 +57,7 @@
     
   </head>
 
-  <body class="px-4 py-8 preload text-normal bg-background flex flex-col container max-w-2xl min-h-full mx-auto transition transition-colors duration-75 ease-out" data-theme="light">
+  <body class="px-4 py-8 preload text-foreground bg-background flex flex-col container max-w-prose min-h-full mx-auto transition transition-colors duration-75 ease-out">
     
 
     
@@ -117,19 +117,19 @@ window.addEventListener("load", function() {
 
   <nav class="flex flex-row flex-wrap gap-2" aria-label="Main navigation"><a
         id=""
-        class="text-normal "
+        class="text-foreground "
         href="https://phelipetls.github.io/"
       >
         About
       </a><a
         id=""
-        class="text-normal border-primary"
+        class="text-foreground border-primary"
         href="https://phelipetls.github.io/posts/"
       >
         Posts
       </a><a
         id=""
-        class="text-normal "
+        class="text-foreground "
         href="https://phelipetls.github.io/projects/"
       >
         Projects
@@ -158,8 +158,8 @@ window.addEventListener("load", function() {
           &nbsp;·&nbsp;
         </span>
 
-        <time class="italic" datetime="2022-02-09">
-          Last modified at February 09, 2022
+        <time class="italic" datetime="2022-02-10">
+          Last modified at February 10, 2022
         </time>
       
     </div>
@@ -202,7 +202,7 @@ I don&rsquo;t want them to show up in the taskbar (since I use the
 <a
   href="https://dwm.suckless.org/patches/awesomebar/"
   
-  class="border-normal"
+  class="border-foreground"
 ><code>awesomebar</code></a>
  patch).</p>
 <p>At first, I went in and modified the source code to ignore these windows by
@@ -226,20 +226,20 @@ is a common example.</p>
 <a
   href="https://tronche.com/gui/x/icccm/sec-4.html#WM_TRANSIENT_FOR"
   
-  class="border-normal"
+  class="border-foreground"
 ><code>WM_TRANSIENT_FOR</code></a>
 ,
 whose value we can get with an Xlib function named
 <a
   href="https://tronche.com/gui/x/xlib/ICC/client-to-window-manager/XGetTransientForHint.html"
   
-  class="border-normal"
+  class="border-foreground"
 ><code>XGetTransientForHint</code></a>
 .</p>
 <p>Here&rsquo;s an example on how to use this function, taken from the <a
   href="https://git.suckless.org/dwm/file/dwm.c.html#l1038"
   
-  class="border-normal"
+  class="border-foreground"
 ><code>dwm</code> source
 code</a>
 :</p>
@@ -496,7 +496,7 @@ found out that I could use
 <a
   href="https://tronche.com/gui/x/xlib/window/XLowerWindow.html"
   
-  class="border-normal"
+  class="border-foreground"
 ><code>XLowerWindow</code></a>
  in
 the <code>unfocus</code> function to fix this:</p>
@@ -525,9 +525,17 @@ the <code>unfocus</code> function to fix this:</p>
 		<span class="n">XDeleteProperty</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">netatom</span><span class="p">[</span><span class="n">NetActiveWindow</span><span class="p">]);</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><p><strong>Warning</strong>: this is pretty cutting-edge and coming from a person with
+</code></pre></div><section class="flex gap-4 my-8 px-8 py-4 rounded bg-warn-background text-warn border-2 border-warn-border">
+  <div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><title>Warn</title><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="15" y1="9" x2="9" y2="15"></line><line x1="9" y1="9" x2="15" y2="15"></line></svg>
+</div>
+
+  <div>
+    This is pretty cutting-edge and coming from a person with
 no expertise in C, so it might be broken in several ways. I&rsquo;m just messing
-around.</p>
+around.
+  </div>
+</section>
+
 <h2 class="group mb-8 mt-8" id="final-result">
   Final result
   <a class="border-0 hidden text-highlight group-hover:inline" href="#final-result">#</a>
