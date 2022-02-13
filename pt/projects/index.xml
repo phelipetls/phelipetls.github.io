@@ -17,15 +17,6 @@
     </item>
     
     <item>
-      <title>URL shortener</title>
-      <link>https://phelipetls.github.io/pt/projects/url-shortener/</link>
-      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://phelipetls.github.io/pt/projects/url-shortener/</guid>
-      <description>Encurtador de URLs feito para aprender o básico de Flask e Vue.</description>
-    </item>
-    
-    <item>
       <title>Minesweeper.js</title>
       <link>https://phelipetls.github.io/pt/projects/minesweeper/</link>
       <pubDate>Tue, 16 Jun 2020 00:00:00 +0000</pubDate>

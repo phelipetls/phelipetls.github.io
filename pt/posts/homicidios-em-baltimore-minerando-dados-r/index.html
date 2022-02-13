@@ -16,8 +16,9 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Merriweather" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
 
 
 
@@ -64,22 +65,22 @@
       
     
 
-    <script>window.__setTheme = function(newTheme) {
-  document.body.setAttribute("data-theme", newTheme);
-  localStorage.setItem("__theme", newTheme);
-};
+    <script>window.__setTheme = function (newTheme) {
+  document.body.setAttribute('data-theme', newTheme)
+  localStorage.setItem('__theme', newTheme)
+}
 
-const storedTheme = localStorage.getItem("__theme");
+const storedTheme = localStorage.getItem('__theme')
 
 if (storedTheme) {
-  window.__setTheme(storedTheme);
-} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  window.__setTheme("dark");
+  window.__setTheme(storedTheme)
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  window.__setTheme('dark')
 }
 
 /* Enable animations */
-window.addEventListener("load", function() {
-  document.body.classList.remove("preload")
+window.addEventListener('load', function () {
+  document.body.classList.remove('preload')
 })
 </script>
 
@@ -111,30 +112,29 @@ window.addEventListener("load", function() {
     </nav>
 
     <button
-      id="theme-button"
-      class="rounded-full text-primary p-1"
-      aria-label="Mudar tema"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <title>Ícone do tema</title>
+  id="theme-button"
+  class="rounded-full p-1"
+  aria-label="Mudar tema"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <title>Ícone do tema</title>
 
-        <defs>
-          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <defs>
+      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 
-          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 
-        </defs>
+    </defs>
 
-        <use id="theme-button-svg-icon" href="#sun" />
-      </svg>
-    </button>
+    <use id="theme-button-svg-icon" href="#sun" />
+  </svg>
+</button>
+
   </div>
 </div>
 
 
-
-
-      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+      <div class="py-16 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
         <main class="flex flex-1 flex-col">
           
   <article>
@@ -209,7 +209,7 @@ que pudermos.</p>
 <p>Há algum padrão na forma do registro, mas nem sempre é respeitado. Por exemplo,
 a coordenada geográfica sempre vêm primeiro; a causa da morte depois de “Cause:
 ”; a raça, o sexo e a idade vêm todas tipo “black male, 17 years old”.</p>
-<h2 class="group mb-8 mt-8" id="expressões-regulares-regex">
+<h2 class="text-primary group mb-8 mt-16" id="expressões-regulares-regex">
   Expressões regulares (regex)
   <a class="border-0 hidden text-highlight group-hover:inline" href="#express%c3%b5es-regulares-regex">#</a>
 </h2>
@@ -280,14 +280,14 @@ condição lógica etc.</p>
 </tr>
 </tbody>
 </table>
-<h2 class="group mb-8 mt-8" id="extraindo-as-variáveis-com-stringr">
+<h2 class="text-primary group mb-8 mt-16" id="extraindo-as-variáveis-com-stringr">
   Extraindo as variáveis com stringr
   <a class="border-0 hidden text-highlight group-hover:inline" href="#extraindo-as-vari%c3%a1veis-com-stringr">#</a>
 </h2>
 <p>Para extrairmos os dados do texto, vamos usar o pacote stringr do tidyverse,
 mais especificamente a função <code>stringr::str_match</code>, que extrai de uma string o
 padrão e seus grupos.</p>
-<h2 class="group mb-8 mt-8" id="causa-da-morte">
+<h2 class="text-primary group mb-8 mt-16" id="causa-da-morte">
   Causa da morte
   <a class="border-0 hidden text-highlight group-hover:inline" href="#causa-da-morte">#</a>
 </h2>
@@ -314,7 +314,7 @@ da linha com a função <code>stringr::str_match</code>.</p>
 ## [5,] &quot;Cause: blunt force&quot;  &quot;blunt force&quot;
 ## [6,] &quot;Cause: shooting&quot;     &quot;shooting&quot;
 </code></pre>
-<h2 class="group mb-8 mt-8" id="latitude-e-longitude">
+<h2 class="text-primary group mb-8 mt-16" id="latitude-e-longitude">
   Latitude e Longitude
   <a class="border-0 hidden text-highlight group-hover:inline" href="#latitude-e-longitude">#</a>
 </h2>
@@ -336,7 +336,7 @@ colchetes, o <code>.</code> não é um metacharacter, mas um ponto comum mesmo.<
 ## [5,] &quot;39.238928, -76.602718&quot; &quot;39.238928&quot; &quot;-76.602718&quot;
 ## [6,] &quot;39.352676, -76.607979&quot; &quot;39.352676&quot; &quot;-76.607979&quot;
 </code></pre>
-<h2 class="group mb-8 mt-8" id="raça">
+<h2 class="text-primary group mb-8 mt-16" id="raça">
   Raça
   <a class="border-0 hidden text-highlight group-hover:inline" href="#ra%c3%a7a">#</a>
 </h2>
@@ -372,7 +372,7 @@ Daí que:</p>
 <p>Veja que, inseri um grupo a mais para indicar que é opcional todo o grupo “fe”
 em sexo, ele pode ou não ocorrer. Daí que o uso de grupos pode não ser somente
 para extrair.</p>
-<h2 class="group mb-8 mt-8" id="gênero">
+<h2 class="text-primary group mb-8 mt-16" id="gênero">
   Gênero
   <a class="border-0 hidden text-highlight group-hover:inline" href="#g%c3%aanero">#</a>
 </h2>
@@ -400,7 +400,7 @@ para extrair.</p>
 ## [1249,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 ## [1250,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 </code></pre>
-<h2 class="group mb-8 mt-8" id="idade">
+<h2 class="text-primary group mb-8 mt-16" id="idade">
   Idade
   <a class="border-0 hidden text-highlight group-hover:inline" href="#idade">#</a>
 </h2>
@@ -427,7 +427,7 @@ para extrair.</p>
 ## [1249,] &quot;Age: 62&quot; NA   &quot;62&quot;
 ## [1250,] &quot;Age: 65&quot; NA   &quot;65&quot;
 </code></pre>
-<h2 class="group mb-8 mt-8" id="data">
+<h2 class="text-primary group mb-8 mt-16" id="data">
   Data
   <a class="border-0 hidden text-highlight group-hover:inline" href="#data">#</a>
 </h2>
@@ -455,7 +455,7 @@ opcional a mais <code>?</code>.</p>
 ## [5,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 ## [6,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 </code></pre>
-<h2 class="group mb-8 mt-8" id="endereço">
+<h2 class="text-primary group mb-8 mt-16" id="endereço">
   Endereço
   <a class="border-0 hidden text-highlight group-hover:inline" href="#endere%c3%a7o">#</a>
 </h2>
@@ -474,7 +474,7 @@ opcional a mais <code>?</code>.</p>
 ## [5,] &quot;&gt;500 Maude Ave.&lt;br /&gt;&quot;       &quot;500 Maude Ave.&quot;
 ## [6,] &quot;&gt;5200 Ready Ave.&lt;br /&gt;&quot;      &quot;5200 Ready Ave.&quot;
 </code></pre>
-<h2 class="group mb-8 mt-8" id="agregando-tudo-em-um-dataframe">
+<h2 class="text-primary group mb-8 mt-16" id="agregando-tudo-em-um-dataframe">
   Agregando tudo em um data.frame
   <a class="border-0 hidden text-highlight group-hover:inline" href="#agregando-tudo-em-um-dataframe">#</a>
 </h2>
@@ -543,30 +543,31 @@ data precisa estar no formato Date) etc:</p>
     <hr class="my-8" />
 
     <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Navegação entre posts">
-      <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-        
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </div>
-
-          <a class="border-0" href="/pt/posts/spread-bancario-brasileiro-r/" title="Post anterior">
-            Spread bancário brasileiro: limpeza e visualização de dados
-          </a>
-        
+  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+    
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </div>
 
-      <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-        
-          <a class="border-0" href="/pt/posts/visualizacao-dados-homicidios-baltimore/" title="Próximo post">
-            Homicídios em Baltimore: visualizações com ggplot2 e gganimate
-          </a>
+      <a class="border-0" href="/pt/posts/spread-bancario-brasileiro-r/" title="Post anterior">
+        Spread bancário brasileiro: limpeza e visualização de dados
+      </a>
+    
+  </div>
 
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </div>
-        
+  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+    
+      <a class="border-0" href="/pt/posts/visualizacao-dados-homicidios-baltimore/" title="Próximo post">
+        Homicídios em Baltimore: visualizações com ggplot2 e gganimate
+      </a>
+
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </div>
-    </nav>
+    
+  </div>
+</nav>
+
   </article>
 
         </main>
@@ -590,29 +591,17 @@ data precisa estar no formato Date) etc:</p>
     
 
     
+    
 
     
+      
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
+    <script src="https://phelipetls.github.io/js/nav.js"></script>
 
     
-      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-      <script>
-          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-          panelbear('config', { site: 'I8KFO1BpnCi' });
-      </script>
     
-
-    
-  
-
-  
-    
-  
-
-  <script src="https://phelipetls.github.io/js/nav.js"></script>
-
   </body>
 </html>

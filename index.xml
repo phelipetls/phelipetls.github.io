@@ -135,15 +135,6 @@ react-testing-library to Cypress.</description>
     </item>
     
     <item>
-      <title>URL shortener</title>
-      <link>https://phelipetls.github.io/projects/url-shortener/</link>
-      <pubDate>Wed, 26 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://phelipetls.github.io/projects/url-shortener/</guid>
-      <description>Simple URL shortener made for learning the very basics of Flask and Vue.</description>
-    </item>
-    
-    <item>
       <title>Asynchronous :make in Neovim with Lua</title>
       <link>https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/</link>
       <pubDate>Wed, 12 Aug 2020 00:00:00 +0000</pubDate>

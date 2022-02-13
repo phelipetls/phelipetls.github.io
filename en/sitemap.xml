@@ -149,19 +149,6 @@
                 href="https://phelipetls.github.io/projects/ipeadata-explorer/"
                 />
   </url><url>
-    <loc>https://phelipetls.github.io/projects/url-shortener/</loc>
-    <lastmod>2022-01-29T10:27:46-03:00</lastmod>
-    <xhtml:link
-                rel="alternate"
-                hreflang="pt"
-                href="https://phelipetls.github.io/pt/projects/url-shortener/"
-                />
-    <xhtml:link
-                rel="alternate"
-                hreflang="en"
-                href="https://phelipetls.github.io/projects/url-shortener/"
-                />
-  </url><url>
     <loc>https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/</loc>
     <lastmod>2021-04-25T11:44:48-03:00</lastmod>
   </url><url>

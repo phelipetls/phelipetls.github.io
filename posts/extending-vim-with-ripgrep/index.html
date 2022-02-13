@@ -16,8 +16,9 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Merriweather" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
 
 
 
@@ -64,22 +65,22 @@
       
     
 
-    <script>window.__setTheme = function(newTheme) {
-  document.body.setAttribute("data-theme", newTheme);
-  localStorage.setItem("__theme", newTheme);
-};
+    <script>window.__setTheme = function (newTheme) {
+  document.body.setAttribute('data-theme', newTheme)
+  localStorage.setItem('__theme', newTheme)
+}
 
-const storedTheme = localStorage.getItem("__theme");
+const storedTheme = localStorage.getItem('__theme')
 
 if (storedTheme) {
-  window.__setTheme(storedTheme);
-} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  window.__setTheme("dark");
+  window.__setTheme(storedTheme)
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  window.__setTheme('dark')
 }
 
 /* Enable animations */
-window.addEventListener("load", function() {
-  document.body.classList.remove("preload")
+window.addEventListener('load', function () {
+  document.body.classList.remove('preload')
 })
 </script>
 
@@ -111,30 +112,29 @@ window.addEventListener("load", function() {
     </nav>
 
     <button
-      id="theme-button"
-      class="rounded-full text-primary p-1"
-      aria-label="Change theme"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <title>Theme icon</title>
+  id="theme-button"
+  class="rounded-full p-1"
+  aria-label="Change theme"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <title>Theme icon</title>
 
-        <defs>
-          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <defs>
+      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 
-          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 
-        </defs>
+    </defs>
 
-        <use id="theme-button-svg-icon" href="#sun" />
-      </svg>
-    </button>
+    <use id="theme-button-svg-icon" href="#sun" />
+  </svg>
+</button>
+
   </div>
 </div>
 
 
-
-
-      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+      <div class="py-16 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
         <main class="flex flex-1 flex-col">
           
   <article>
@@ -193,7 +193,7 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 </span><span class="err"></span><span class="k">endif</span><span class="err">
 </span></code></pre></div><p>At first, it was not obvious to me how I could use it beyond <code>:grep foo</code>, so I
 want to share how I do.</p>
-<h2 class="group mb-8 mt-8" id="common-use-cases">
+<h2 class="text-primary group mb-8 mt-16" id="common-use-cases">
   Common use cases
   <a class="border-0 hidden text-highlight group-hover:inline" href="#common-use-cases">#</a>
 </h2>
@@ -203,7 +203,7 @@ want to share how I do.</p>
 <li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</li>
 <li>Search for <code>foo</code> in current file directory&rsquo;s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
-<h2 class="group mb-8 mt-8" id="less-common-use-cases">
+<h2 class="text-primary group mb-8 mt-16" id="less-common-use-cases">
   Less common use cases
   <a class="border-0 hidden text-highlight group-hover:inline" href="#less-common-use-cases">#</a>
 </h2>
@@ -213,7 +213,7 @@ want to share how I do.</p>
 <li>Search for <code>foo</code> in JavaScript files: <code>:grep foo -t js</code></li>
 <li>Search for <code>foo</code> in files matching a glob: <code>:grep foo -g '*.js'</code></li>
 </ul>
-<h2 class="group mb-8 mt-8" id="extensibility">
+<h2 class="text-primary group mb-8 mt-16" id="extensibility">
   Extensibility
   <a class="border-0 hidden text-highlight group-hover:inline" href="#extensibility">#</a>
 </h2>
@@ -224,7 +224,7 @@ output as an argument.</p>
 </code></pre><p>Or only modified files:</p>
 <pre tabindex="0"><code>:grep foo `git ls-files --modified`
 </code></pre><p>I don&rsquo;t use this everyday but I enjoy it when I do.</p>
-<h2 class="group mb-8 mt-8" id="usage-with-vim">
+<h2 class="text-primary group mb-8 mt-16" id="usage-with-vim">
   Usage with Vim
   <a class="border-0 hidden text-highlight group-hover:inline" href="#usage-with-vim">#</a>
 </h2>
@@ -233,7 +233,7 @@ them with commands I&rsquo;m already familiar with.</p>
 <p>For example, to replace foo with bar across files (asking me to confirm
 before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Sometimes I narrow the
 search down with <code>:Cfilter</code> too.</p>
-<h2 class="group mb-8 mt-8" id="downsides">
+<h2 class="text-primary group mb-8 mt-16" id="downsides">
   Downsides
   <a class="border-0 hidden text-highlight group-hover:inline" href="#downsides">#</a>
 </h2>
@@ -251,7 +251,7 @@ or <code>--engine auto</code> and I can&rsquo;t wait to use it!!</p>
 <p>Another one is that it&rsquo;s synchronous, so if the directory is huge it may block <code>vim</code>
 for a few seconds. But I don&rsquo;t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
-<h2 class="group mb-8 mt-8" id="conclusion">
+<h2 class="text-primary group mb-8 mt-16" id="conclusion">
   Conclusion
   <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
@@ -271,30 +271,31 @@ enjoy using and makes development more fun (to me).</p>
     <hr class="my-8" />
 
     <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
-      <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-        
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </div>
-
-          <a class="border-0" href="/posts/implementing-dark-mode-for-static-websites/" title="Previous post">
-            Implementing dark mode for static websites
-          </a>
-        
+  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+    
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </div>
 
-      <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-        
-          <a class="border-0" href="/posts/automating-svg-to-jsx-conversion-with-svgr/" title="Next post">
-            Automating svg to jsx conversion with svgr
-          </a>
+      <a class="border-0" href="/posts/implementing-dark-mode-for-static-websites/" title="Previous post">
+        Implementing dark mode for static websites
+      </a>
+    
+  </div>
 
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </div>
-        
+  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+    
+      <a class="border-0" href="/posts/automating-svg-to-jsx-conversion-with-svgr/" title="Next post">
+        Automating svg to jsx conversion with svgr
+      </a>
+
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </div>
-    </nav>
+    
+  </div>
+</nav>
+
   </article>
 
         </main>
@@ -323,29 +324,17 @@ license
     
 
     
+    
 
     
+      
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
+    <script src="https://phelipetls.github.io/js/nav.js"></script>
 
     
-      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-      <script>
-          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-          panelbear('config', { site: 'I8KFO1BpnCi' });
-      </script>
     
-
-    
-  
-
-  
-    
-  
-
-  <script src="https://phelipetls.github.io/js/nav.js"></script>
-
   </body>
 </html>

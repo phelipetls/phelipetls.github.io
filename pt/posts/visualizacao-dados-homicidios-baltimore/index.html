@@ -16,8 +16,9 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Merriweather" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
 
 
 
@@ -64,22 +65,22 @@
       
     
 
-    <script>window.__setTheme = function(newTheme) {
-  document.body.setAttribute("data-theme", newTheme);
-  localStorage.setItem("__theme", newTheme);
-};
+    <script>window.__setTheme = function (newTheme) {
+  document.body.setAttribute('data-theme', newTheme)
+  localStorage.setItem('__theme', newTheme)
+}
 
-const storedTheme = localStorage.getItem("__theme");
+const storedTheme = localStorage.getItem('__theme')
 
 if (storedTheme) {
-  window.__setTheme(storedTheme);
-} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  window.__setTheme("dark");
+  window.__setTheme(storedTheme)
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  window.__setTheme('dark')
 }
 
 /* Enable animations */
-window.addEventListener("load", function() {
-  document.body.classList.remove("preload")
+window.addEventListener('load', function () {
+  document.body.classList.remove('preload')
 })
 </script>
 
@@ -111,30 +112,29 @@ window.addEventListener("load", function() {
     </nav>
 
     <button
-      id="theme-button"
-      class="rounded-full text-primary p-1"
-      aria-label="Mudar tema"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <title>Ícone do tema</title>
+  id="theme-button"
+  class="rounded-full p-1"
+  aria-label="Mudar tema"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <title>Ícone do tema</title>
 
-        <defs>
-          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <defs>
+      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 
-          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 
-        </defs>
+    </defs>
 
-        <use id="theme-button-svg-icon" href="#sun" />
-      </svg>
-    </button>
+    <use id="theme-button-svg-icon" href="#sun" />
+  </svg>
+</button>
+
   </div>
 </div>
 
 
-
-
-      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+      <div class="py-16 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
         <main class="flex flex-1 flex-col">
           
   <article>
@@ -224,7 +224,7 @@ homicídios muito mais que as brancas?</p>
 da cidade são as mais violentas etc.</p>
 <p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
 Será que vem declinando com o passar dos anos?</p>
-<h2 class="group mb-8 mt-8" id="evolução-do-número-de-vítimas-no-tempo">
+<h2 class="text-primary group mb-8 mt-16" id="evolução-do-número-de-vítimas-no-tempo">
   Evolução do número de vítimas no tempo
   <a class="border-0 hidden text-highlight group-hover:inline" href="#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo">#</a>
 </h2>
@@ -337,7 +337,7 @@ tentei replicar abaixo:</p>
 <p>E aqui fica claro o porquê da queda em 2012: não temos os dados de todos os
 meses. Também salta aos olhos que a violência diminuiu em relação a 2007, mas se
 manteve mais ou menos estável no resto do período.</p>
-<h2 class="group mb-8 mt-8" id="aspectos-sociais-das-vítimas">
+<h2 class="text-primary group mb-8 mt-16" id="aspectos-sociais-das-vítimas">
   Aspectos sociais das vítimas
   <a class="border-0 hidden text-highlight group-hover:inline" href="#aspectos-sociais-das-v%c3%adtimas">#</a>
 </h2>
@@ -371,7 +371,7 @@ em posição mais vulnerável à violência que a branca, provavelmente porque v
 nas regiões onde a violência é maior.</p>
 <p>Também impressiona o contraste entre os números para cada gênero. Os homens são
 muito mais propensos a serem mortos violentamente.</p>
-<h2 class="group mb-8 mt-8" id="que-causa-de-morte-é-a-mais-comum">
+<h2 class="text-primary group mb-8 mt-16" id="que-causa-de-morte-é-a-mais-comum">
   Que causa de morte é a mais comum?
   <a class="border-0 hidden text-highlight group-hover:inline" href="#que-causa-de-morte-%c3%a9-a-mais-comum">#</a>
 </h2>
@@ -399,7 +399,7 @@ barras:</p>
 <!-- --></p>
 <p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
 esfaqueamento e contusão.</p>
-<h2 class="group mb-8 mt-8" id="mapas-e-animações">
+<h2 class="text-primary group mb-8 mt-16" id="mapas-e-animações">
   Mapas e animações
   <a class="border-0 hidden text-highlight group-hover:inline" href="#mapas-e-anima%c3%a7%c3%b5es">#</a>
 </h2>
@@ -511,7 +511,7 @@ números crescem.</p>
   style="background-color: white;"
 />
 <!-- --></p>
-<h2 class="group mb-8 mt-8" id="conclusões">
+<h2 class="text-primary group mb-8 mt-16" id="conclusões">
   Conclusões
   <a class="border-0 hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
 </h2>
@@ -553,30 +553,31 @@ ou o próprio <a
     <hr class="my-8" />
 
     <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Navegação entre posts">
-      <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-        
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </div>
-
-          <a class="border-0" href="/pt/posts/homicidios-em-baltimore-minerando-dados-r/" title="Post anterior">
-            Extraindo dados de texto com regex no R
-          </a>
-        
+  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+    
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </div>
 
-      <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-        
-          <a class="border-0" href="/pt/posts/game-of-thrones-text-mining/" title="Próximo post">
-            Mineração de Texto com as legendas de Game of Thrones
-          </a>
+      <a class="border-0" href="/pt/posts/homicidios-em-baltimore-minerando-dados-r/" title="Post anterior">
+        Extraindo dados de texto com regex no R
+      </a>
+    
+  </div>
 
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </div>
-        
+  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+    
+      <a class="border-0" href="/pt/posts/game-of-thrones-text-mining/" title="Próximo post">
+        Mineração de Texto com as legendas de Game of Thrones
+      </a>
+
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </div>
-    </nav>
+    
+  </div>
+</nav>
+
   </article>
 
         </main>
@@ -600,29 +601,17 @@ ou o próprio <a
     
 
     
+    
 
     
+      
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
+    <script src="https://phelipetls.github.io/js/nav.js"></script>
 
     
-      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-      <script>
-          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-          panelbear('config', { site: 'I8KFO1BpnCi' });
-      </script>
     
-
-    
-  
-
-  
-    
-  
-
-  <script src="https://phelipetls.github.io/js/nav.js"></script>
-
   </body>
 </html>

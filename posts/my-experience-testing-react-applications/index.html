@@ -17,8 +17,9 @@ react-testing-library to Cypress." />
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Merriweather" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
 
 
 
@@ -67,22 +68,22 @@ react-testing-library to Cypress."/>
       
     
 
-    <script>window.__setTheme = function(newTheme) {
-  document.body.setAttribute("data-theme", newTheme);
-  localStorage.setItem("__theme", newTheme);
-};
+    <script>window.__setTheme = function (newTheme) {
+  document.body.setAttribute('data-theme', newTheme)
+  localStorage.setItem('__theme', newTheme)
+}
 
-const storedTheme = localStorage.getItem("__theme");
+const storedTheme = localStorage.getItem('__theme')
 
 if (storedTheme) {
-  window.__setTheme(storedTheme);
-} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  window.__setTheme("dark");
+  window.__setTheme(storedTheme)
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  window.__setTheme('dark')
 }
 
 /* Enable animations */
-window.addEventListener("load", function() {
-  document.body.classList.remove("preload")
+window.addEventListener('load', function () {
+  document.body.classList.remove('preload')
 })
 </script>
 
@@ -114,30 +115,29 @@ window.addEventListener("load", function() {
     </nav>
 
     <button
-      id="theme-button"
-      class="rounded-full text-primary p-1"
-      aria-label="Change theme"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <title>Theme icon</title>
+  id="theme-button"
+  class="rounded-full p-1"
+  aria-label="Change theme"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <title>Theme icon</title>
 
-        <defs>
-          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <defs>
+      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 
-          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 
-        </defs>
+    </defs>
 
-        <use id="theme-button-svg-icon" href="#sun" />
-      </svg>
-    </button>
+    <use id="theme-button-svg-icon" href="#sun" />
+  </svg>
+</button>
+
   </div>
 </div>
 
 
-
-
-      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+      <div class="py-16 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
         <main class="flex flex-1 flex-col">
           
   <article>
@@ -209,7 +209,7 @@ appear or disappear.</li>
 </ul>
 <p>In this blog post I&rsquo;m going to talk about my experience with JavaScript
 libraries for testing front-end web apps.</p>
-<h2 class="group mb-8 mt-8" id="react-testing-library">
+<h2 class="text-primary group mb-8 mt-16" id="react-testing-library">
   <code>react-testing-library</code>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#react-testing-library">#</a>
 </h2>
@@ -275,7 +275,7 @@ use canvas in your app,
 </ul>
 <p>But it got the job done most of the time.</p>
 <p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
-<h2 class="group mb-8 mt-8" id="nock">
+<h2 class="text-primary group mb-8 mt-16" id="nock">
   <code>nock</code>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#nock">#</a>
 </h2>
@@ -288,7 +288,7 @@ to use API.</p>
   class=""
 >not working with axios out of the box</a>
 .</p>
-<h2 class="group mb-8 mt-8" id="msw">
+<h2 class="text-primary group mb-8 mt-16" id="msw">
   <code>msw</code>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#msw">#</a>
 </h2>
@@ -313,7 +313,7 @@ This is by design though, it&rsquo;s just something I disliked.</p>
 <p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
 which I thought made tests harder to read. It doesn&rsquo;t have to be like that of
 course, but it&rsquo;s response handlers can get pretty long so it&rsquo;s a sane option.</p>
-<h2 class="group mb-8 mt-8" id="cypress">
+<h2 class="text-primary group mb-8 mt-16" id="cypress">
   <code>cypress</code>
   <a class="border-0 hidden text-highlight group-hover:inline" href="#cypress">#</a>
 </h2>
@@ -372,7 +372,7 @@ browser DevTools.</li>
 <li>There are snapshots of the UI state for each step.</li>
 <li>Screenshots and videos of the test runs are recorded by default.</li>
 </ul>
-<h2 class="group mb-8 mt-8" id="conclusion">
+<h2 class="text-primary group mb-8 mt-16" id="conclusion">
   Conclusion
   <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
 </h2>
@@ -385,30 +385,31 @@ logic.</p>
     <hr class="my-8" />
 
     <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
-      <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-        
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-          </div>
-
-          <a class="border-0" href="/posts/migrating-from-cra-to-vite/" title="Previous post">
-            Migrating from create-react-app to Vite
-          </a>
-        
+  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+    
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
       </div>
 
-      <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-        
-          <a class="border-0" href="/posts/implementing-dark-mode-for-static-websites/" title="Next post">
-            Implementing dark mode for static websites
-          </a>
+      <a class="border-0" href="/posts/migrating-from-cra-to-vite/" title="Previous post">
+        Migrating from create-react-app to Vite
+      </a>
+    
+  </div>
 
-          <div class="flex items-center group-hover:text-highlight">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-          </div>
-        
+  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+    
+      <a class="border-0" href="/posts/implementing-dark-mode-for-static-websites/" title="Next post">
+        Implementing dark mode for static websites
+      </a>
+
+      <div class="flex items-center group-hover:text-highlight">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </div>
-    </nav>
+    
+  </div>
+</nav>
+
   </article>
 
         </main>
@@ -437,29 +438,17 @@ license
     
 
     
+    
 
     
+      
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
+    <script src="https://phelipetls.github.io/js/nav.js"></script>
 
     
-      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-      <script>
-          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-          panelbear('config', { site: 'I8KFO1BpnCi' });
-      </script>
     
-
-    
-  
-
-  
-    
-  
-
-  <script src="https://phelipetls.github.io/js/nav.js"></script>
-
   </body>
 </html>

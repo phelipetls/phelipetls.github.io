@@ -16,8 +16,9 @@
 <link rel="icon" href="/icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 
-<link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Merriweather" />
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
 
 
 
@@ -62,22 +63,22 @@
       
     
 
-    <script>window.__setTheme = function(newTheme) {
-  document.body.setAttribute("data-theme", newTheme);
-  localStorage.setItem("__theme", newTheme);
-};
+    <script>window.__setTheme = function (newTheme) {
+  document.body.setAttribute('data-theme', newTheme)
+  localStorage.setItem('__theme', newTheme)
+}
 
-const storedTheme = localStorage.getItem("__theme");
+const storedTheme = localStorage.getItem('__theme')
 
 if (storedTheme) {
-  window.__setTheme(storedTheme);
-} else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-  window.__setTheme("dark");
+  window.__setTheme(storedTheme)
+} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  window.__setTheme('dark')
 }
 
 /* Enable animations */
-window.addEventListener("load", function() {
-  document.body.classList.remove("preload")
+window.addEventListener('load', function () {
+  document.body.classList.remove('preload')
 })
 </script>
 
@@ -109,30 +110,29 @@ window.addEventListener("load", function() {
     </nav>
 
     <button
-      id="theme-button"
-      class="rounded-full text-primary p-1"
-      aria-label="Mudar tema"
-    >
-      <svg width="24" height="24" viewBox="0 0 24 24">
-        <title>Ícone do tema</title>
+  id="theme-button"
+  class="rounded-full p-1"
+  aria-label="Mudar tema"
+>
+  <svg width="24" height="24" viewBox="0 0 24 24">
+    <title>Ícone do tema</title>
 
-        <defs>
-          <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+    <defs>
+      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
 
-          <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
 
-        </defs>
+    </defs>
 
-        <use id="theme-button-svg-icon" href="#sun" />
-      </svg>
-    </button>
+    <use id="theme-button-svg-icon" href="#sun" />
+  </svg>
+</button>
+
   </div>
 </div>
 
 
-
-
-      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+      <div class="py-16 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
         <main class="flex flex-1 flex-col">
           
   <section>
@@ -297,29 +297,17 @@ window.addEventListener("load", function() {
     
 
     
+    
 
     
+      
       
     
 
     <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
+    <script src="https://phelipetls.github.io/js/nav.js"></script>
 
     
-      <script async src="https://cdn.panelbear.com/analytics.js?site=I8KFO1BpnCi"></script>
-      <script>
-          window.panelbear = window.panelbear || function() { (window.panelbear.q = window.panelbear.q || []).push(arguments); };
-          panelbear('config', { site: 'I8KFO1BpnCi' });
-      </script>
     
-
-    
-  
-
-  
-    
-  
-
-  <script src="https://phelipetls.github.io/js/nav.js"></script>
-
   </body>
 </html>
