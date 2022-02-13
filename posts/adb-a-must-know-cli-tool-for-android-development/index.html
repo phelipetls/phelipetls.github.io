@@ -42,7 +42,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/adb-a-must-know-cli-tool-for-android-development/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2022-02-07T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-13T18:10:27-03:00" />
+<meta property="article:modified_time" content="2022-02-13T18:16:23-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -285,7 +285,7 @@ process is bound to port <code>6060</code> there.</p>
 <p>You can solve this problem by running <code>adb reverse tcp:6006 tcp:6006</code>. Now your
 mobile device will have access to the server running on your computer.</p>
 <p>An example from React Native is the Metro bundler, that usually serves the
-bundled JS of your app at port <code>8081</code>, so we need to run <code>adb reverse tcp:8081 tcp:8081</code> to make the server reachable by the Android device. This is usually
+bundled JS of your app at port <code>8081</code>, so we need to run <code>adb reverse tcp:8081 tcp:8081</code> to make the server available at your mobile device. This is usually
 done under the hood when we run <code>npx react-native run-android</code>, but if the
 device can&rsquo;t find the JS bundle or is stuck loading it we usually need to run
 it again.</p>
