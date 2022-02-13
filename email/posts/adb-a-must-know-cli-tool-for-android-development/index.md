@@ -67,12 +67,12 @@ process is bound to port <code>6060</code> there.</p>
 <p>You can solve this problem by running <code>adb reverse tcp:6006 tcp:6006</code>. Now your
 mobile device will have access to the server running on your computer.</p>
 <p>An example from React Native is the Metro bundler, that usually serves the
-bundled JS of your app at port <code>8081</code>, so we need to run <code>adb reverse tcp:8081 tcp:8081</code> to make the server available at your mobile device. This is usually
+bundled JS of your app at port <code>8081</code>, so we need to run <code>adb reverse tcp:8081 tcp:8081</code> to make the server available in your mobile device. This is usually
 done under the hood when we run <code>npx react-native run-android</code>, but if the
 device can&rsquo;t find the JS bundle or is stuck loading it we usually need to run
 it again.</p>
 <p>There&rsquo;s also <code>adb forward</code>, in case you need to make a web server running on
-your phone also available to your computer.</p>
+your phone also available in your computer.</p>
 <h1>
   Start/kill apps
 </h1>
