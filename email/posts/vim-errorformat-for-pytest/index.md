@@ -18,7 +18,7 @@ to control verbosity level with <code>-v</code>, <code>-vv</code> and <code>-q</
 <code>pytest --tb=short -vv</code>.</p>
 <p>To run pytest in Vim I then put this line in a <code>:h compiler</code> plugin (see
 <code>:h write-compiler-plugin</code>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim">    <span class="nx">CompilerSet</span> <span class="nx">makeprg</span><span class="p">=</span><span class="nx">pytest</span>\ <span class="p">--</span><span class="nx">tb</span><span class="p">=</span><span class="nx">short</span>\ <span class="p">-</span><span class="nx">vv</span>\ $*\ %<span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">CompilerSet</span> <span class="nx">makeprg</span><span class="p">=</span><span class="nx">pytest</span>\ <span class="p">--</span><span class="nx">tb</span><span class="p">=</span><span class="nx">short</span>\ <span class="p">-</span><span class="nx">vv</span>\ $*\ %<span class="err">
 </span></code></pre></div><p>So that I can run <code>pytest</code> with <code>:make</code> or even with more arguments with
 <code>:make -k mytest</code>, which will replace the token <code>$*</code>.</p>
 <p>It outputs something like this:</p>

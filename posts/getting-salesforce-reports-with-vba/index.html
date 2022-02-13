@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full" lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -57,7 +57,7 @@
     
   </head>
 
-  <body class="px-4 py-8 preload text-foreground bg-background flex flex-col container max-w-prose min-h-full mx-auto transition transition-colors duration-75 ease-out">
+  <body class="preload text-foreground bg-background transition transition-colors duration-75 ease-out">
     
 
     
@@ -83,13 +83,32 @@ window.addEventListener("load", function() {
 })
 </script>
 
-    <header class="mb-16">
-  <div class="flex justify-between mb-4">
-    <h1 class="text-3xl mb-0">
-      <a class="border-0" href="https://phelipetls.github.io/">
-        Phelipe Teles
-      </a>
-    </h1>
+    <div class="flex flex-col min-h-screen">
+      <div class="nav-container overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 py-2 sm:py-4 mt-6 flex-shrink-0 z-50">
+  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
+    <nav class="" aria-label="Main navigation">
+      
+
+      <div class="flex flex-row flex-wrap gap-2"><a
+            id=""
+            class="text-foreground "
+            href="https://phelipetls.github.io/"
+          >
+            About
+          </a><a
+            id=""
+            class="text-foreground border-primary"
+            href="https://phelipetls.github.io/posts/"
+          >
+            Posts
+          </a><a
+            id=""
+            class="text-foreground "
+            href="https://phelipetls.github.io/projects/"
+          >
+            Projects
+          </a></div>
+    </nav>
 
     <button
       id="theme-button"
@@ -110,33 +129,14 @@ window.addEventListener("load", function() {
       </svg>
     </button>
   </div>
-
-  
-
-  <nav class="flex flex-row flex-wrap gap-2" aria-label="Main navigation"><a
-        id=""
-        class="text-foreground "
-        href="https://phelipetls.github.io/"
-      >
-        About
-      </a><a
-        id=""
-        class="text-foreground border-primary"
-        href="https://phelipetls.github.io/posts/"
-      >
-        Posts
-      </a><a
-        id=""
-        class="text-foreground "
-        href="https://phelipetls.github.io/projects/"
-      >
-        Projects
-      </a></nav>
-</header>
+</div>
 
 
-    <main class="flex flex-1 flex-col">
-      
+
+
+      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+        <main class="flex flex-1 flex-col">
+          
   <article>
     <h1 class="text-4xl mb-4">
       Getting Salesforce reports with VBA
@@ -652,9 +652,9 @@ Nonetheless, it was still fun to write this.</p>
     </nav>
   </article>
 
-    </main>
+        </main>
 
-    <footer class="mt-16 text-right text-sm">
+        <footer class="mt-16 text-right text-sm">
   <div class="mb-2">
     
       <a href="https://buttondown.email/phelipetls/">Subscribe</a>
@@ -672,6 +672,8 @@ license
 </div>
 </footer>
 
+      </div>
+    </div>
 
     
 
@@ -692,6 +694,13 @@ license
     
 
     
+  
+
+  
     
+  
+
+  <script src="https://phelipetls.github.io/js/nav.js"></script>
+
   </body>
 </html>

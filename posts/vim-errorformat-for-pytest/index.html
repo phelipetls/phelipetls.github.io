@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-full" lang="en">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,7 +7,7 @@
 <meta name="description" content="Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on Stack Overflow  I really like Vim&rsquo;s :h errorformat feature, but only when I manage to get it right." />
 <meta name="deploy-date" content="2022-02-13">
 <meta name="publish-date" content="2020-10-07">
-<meta name="last-modified-date" content="2021-05-23">
+<meta name="last-modified-date" content="2022-02-12">
 <meta name="author" content="">
 <meta name="color-scheme" content="dark light">
 
@@ -41,7 +41,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://phelipetls.github.io/posts/vim-errorformat-for-pytest/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2020-10-07T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-05-23T18:50:12-03:00" />
+<meta property="article:modified_time" content="2022-02-12T17:41:11-03:00" />
 
 
 <meta name="twitter:card" content="summary"/>
@@ -57,7 +57,7 @@
     
   </head>
 
-  <body class="px-4 py-8 preload text-foreground bg-background flex flex-col container max-w-prose min-h-full mx-auto transition transition-colors duration-75 ease-out">
+  <body class="preload text-foreground bg-background transition transition-colors duration-75 ease-out">
     
 
     
@@ -83,13 +83,32 @@ window.addEventListener("load", function() {
 })
 </script>
 
-    <header class="mb-16">
-  <div class="flex justify-between mb-4">
-    <h1 class="text-3xl mb-0">
-      <a class="border-0" href="https://phelipetls.github.io/">
-        Phelipe Teles
-      </a>
-    </h1>
+    <div class="flex flex-col min-h-screen">
+      <div class="nav-container overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 py-2 sm:py-4 mt-6 flex-shrink-0 z-50">
+  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
+    <nav class="" aria-label="Main navigation">
+      
+
+      <div class="flex flex-row flex-wrap gap-2"><a
+            id=""
+            class="text-foreground "
+            href="https://phelipetls.github.io/"
+          >
+            About
+          </a><a
+            id=""
+            class="text-foreground border-primary"
+            href="https://phelipetls.github.io/posts/"
+          >
+            Posts
+          </a><a
+            id=""
+            class="text-foreground "
+            href="https://phelipetls.github.io/projects/"
+          >
+            Projects
+          </a></div>
+    </nav>
 
     <button
       id="theme-button"
@@ -110,33 +129,14 @@ window.addEventListener("load", function() {
       </svg>
     </button>
   </div>
-
-  
-
-  <nav class="flex flex-row flex-wrap gap-2" aria-label="Main navigation"><a
-        id=""
-        class="text-foreground "
-        href="https://phelipetls.github.io/"
-      >
-        About
-      </a><a
-        id=""
-        class="text-foreground border-primary"
-        href="https://phelipetls.github.io/posts/"
-      >
-        Posts
-      </a><a
-        id=""
-        class="text-foreground "
-        href="https://phelipetls.github.io/projects/"
-      >
-        Projects
-      </a></nav>
-</header>
+</div>
 
 
-    <main class="flex flex-1 flex-col">
-      
+
+
+      <div class="mt-8 py-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+        <main class="flex flex-1 flex-col">
+          
   <article>
     <h1 class="text-4xl mb-4">
       A Vim errorformat for pytest
@@ -156,8 +156,8 @@ window.addEventListener("load", function() {
           &nbsp;·&nbsp;
         </span>
 
-        <time class="italic" datetime="2021-05-23">
-          Last modified at May 23, 2021
+        <time class="italic" datetime="2022-02-12">
+          Last modified at February 12, 2022
         </time>
       
     </div>
@@ -199,7 +199,7 @@ to control verbosity level with <code>-v</code>, <code>-vv</code> and <code>-q</
 <code>pytest --tb=short -vv</code>.</p>
 <p>To run pytest in Vim I then put this line in a <code>:h compiler</code> plugin (see
 <code>:h write-compiler-plugin</code>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim">    <span class="nx">CompilerSet</span> <span class="nx">makeprg</span><span class="p">=</span><span class="nx">pytest</span>\ <span class="p">--</span><span class="nx">tb</span><span class="p">=</span><span class="nx">short</span>\ <span class="p">-</span><span class="nx">vv</span>\ $*\ %<span class="err">
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">CompilerSet</span> <span class="nx">makeprg</span><span class="p">=</span><span class="nx">pytest</span>\ <span class="p">--</span><span class="nx">tb</span><span class="p">=</span><span class="nx">short</span>\ <span class="p">-</span><span class="nx">vv</span>\ $*\ %<span class="err">
 </span></code></pre></div><p>So that I can run <code>pytest</code> with <code>:make</code> or even with more arguments with
 <code>:make -k mytest</code>, which will replace the token <code>$*</code>.</p>
 <p>It outputs something like this:</p>
@@ -484,9 +484,9 @@ integrate a command line program into Vim.</p>
     </nav>
   </article>
 
-    </main>
+        </main>
 
-    <footer class="mt-16 text-right text-sm">
+        <footer class="mt-16 text-right text-sm">
   <div class="mb-2">
     
       <a href="https://buttondown.email/phelipetls/">Subscribe</a>
@@ -504,6 +504,8 @@ license
 </div>
 </footer>
 
+      </div>
+    </div>
 
     
 
@@ -524,6 +526,13 @@ license
     
 
     
+  
+
+  
     
+  
+
+  <script src="https://phelipetls.github.io/js/nav.js"></script>
+
   </body>
 </html>
