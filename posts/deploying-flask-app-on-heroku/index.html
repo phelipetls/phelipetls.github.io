@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
 <meta name="description" content="tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile &#43;&#43;&#43; b/Procfile @@ -1 &#43;1 @@ -web: gunicorn &#34;app:create_app()&#34; &#43;web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call &#39;app:create_app&#39; Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier." />
-<meta name="deploy-date" content="2022-02-13">
+<meta name="deploy-date" content="2022-02-14">
 <meta name="publish-date" content="2020-10-11">
 <meta name="last-modified-date" content="2021-04-24">
 <meta name="author" content="">
@@ -108,6 +108,12 @@ window.addEventListener('load', function () {
             href="https://phelipetls.github.io/projects/"
           >
             Projects
+          </a><a
+            id=""
+            class="text-foreground "
+            href="https://phelipetls.github.io/resume/"
+          >
+            Resumé
           </a></div>
     </nav>
 
