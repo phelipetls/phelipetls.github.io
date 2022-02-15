@@ -184,7 +184,15 @@
   }
   window.addEventListener("scroll", (0, import_lodash.default)(handleScroll, 300), false);
   var observer = new IntersectionObserver(function([e]) {
-    e.target.classList.toggle("stuck", e.intersectionRatio < 1);
-  }, { rootMargin: "-1px 0px 0px 0px", threshold: [1] });
+    if (e.isIntersecting) {
+      navContainer.classList.add("stuck");
+    } else {
+      navContainer.classList.remove("stuck");
+    }
+  }, {
+    root: document.querySelector(".scroll-container"),
+    rootMargin: `-${navContainer.clientHeight}px 0px 0px 0px`,
+    threshold: 1
+  });
   observer.observe(navContainer);
 })();

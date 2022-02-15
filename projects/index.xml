@@ -35,15 +35,6 @@
     </item>
     
     <item>
-      <title>mapsbr</title>
-      <link>https://phelipetls.github.io/projects/mapsbr/</link>
-      <pubDate>Sun, 29 Dec 2019 00:00:00 +0000</pubDate>
-      
-      <guid>https://phelipetls.github.io/projects/mapsbr/</guid>
-      <description>Python library to get geospatial data from the IBGE API or an ArcGIS server directly into a geopandas DataFrame.</description>
-    </item>
-    
-    <item>
       <title>seriesbr</title>
       <link>https://phelipetls.github.io/projects/seriesbr/</link>
       <pubDate>Fri, 22 Nov 2019 00:00:00 +0000</pubDate>
