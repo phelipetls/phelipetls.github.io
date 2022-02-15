@@ -171,7 +171,7 @@
 
   // <stdin>
   var import_lodash = __toModule(require_lodash());
-  var navContainer = document.querySelector(".nav-container");
+  var navContainer = document.querySelector("[data-nav-container]");
   var lastScrollPosition = window.scrollY;
   function handleScroll() {
     const newScrollPosition = window.scrollY;
@@ -192,7 +192,7 @@
       navContainer.classList.remove("stuck");
     }
   }, {
-    root: document.querySelector(".scroll-container"),
+    root: document.querySelector("[data-scroll-container]"),
     rootMargin: `-${navContainer.clientHeight}px 0px 0px 0px`,
     threshold: 1
   });

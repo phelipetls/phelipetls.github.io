@@ -56,7 +56,7 @@
     
   </head>
 
-  <body class="preload text-foreground bg-background transition transition-colors duration-75 ease-out">
+  <body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
     
 
     
@@ -80,12 +80,12 @@ if (storedTheme) {
 
 /* Enable animations */
 window.addEventListener('load', function () {
-  document.body.classList.remove('preload')
+  document.body.removeAttribute('data-preload')
 })
 </script>
 
-    <div class="scroll-container flex flex-col min-h-screen">
-      <div class="nav-container overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 py-4 mt-6 flex-shrink-0 z-50">
+    <div data-scroll-container class="flex flex-col min-h-screen">
+      <div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 py-4 mt-6 flex-shrink-0 z-50">
   <div class="flex items-center justify-between mx-auto max-w-prose px-4">
     <nav class="" aria-label="Main navigation">
       
@@ -231,25 +231,22 @@ window.addEventListener('load', function () {
 
         </main>
 
-        <footer class="mt-16">
-  <div class="flex flex-wrap j gap-2 justify-between items-start">
+        <footer class="flex flex-col mt-16 gap-4">
+  <div class="flex flex-wrap gap-2 justify-center sm:justify-between">
     <nav
-      class="flex gap-4"
+      class="flex gap-4 order-last sm:order-first"
       aria-label="Links"
     >
-      <a class="border-0" href="mailto:phelipe_teles@hotmail.com" title="E-mail">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><title>E-Mail</title><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-
+      <a href="mailto:phelipe_teles@hotmail.com" title="E-mail">
+  E-mail
 </a>
 
-<a class="border-0" href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><title>LinkedIn</title><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-
+<a href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
+  LinkedIn
 </a>
 
-<a class="border-0" href="https://github.com/phelipetls" title="GitHub">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><title>GitHub</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-
+<a href="https://github.com/phelipetls" title="GitHub">
+  GitHub
 </a>
 
     </nav>
@@ -266,9 +263,7 @@ window.addEventListener('load', function () {
     </nav>
   </div>
 
-  <hr />
-
-  <p>
+  <p class="text-center mt-4">
     This content is under a
 <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
 license.
