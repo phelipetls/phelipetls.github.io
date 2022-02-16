@@ -1,193 +1,82 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<meta name="description" content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis)." />
-<meta name="deploy-date" content="2022-02-16">
-<meta name="publish-date" content="2019-02-18">
-<meta name="last-modified-date" content="2021-04-25">
-<meta name="author" content="">
-<meta name="color-scheme" content="dark light">
-
-
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
-
-
-
-
-
-  
-  
-
-
-<link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
-
+<!doctype html><html lang=pt-br>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).">
+<meta name=deploy-date content="2022-02-16">
+<meta name=publish-date content="2019-02-18">
+<meta name=last-modified-date content="2021-04-25">
+<meta name=author content>
+<meta name=color-scheme content="dark light">
+<link rel=icon href=/favicon.ico sizes=any>
+<link rel=icon href=/icon.svg type=image/svg+xml>
+<link rel=apple-touch-icon href=/apple-touch-icon.png>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
+<link rel=stylesheet href="/css/main.min.css">
+<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
 <title>
-  Puzzle do cavalo no tabuleiro infinito com NumPy | Phelipe Teles
+Puzzle do cavalo no tabuleiro infinito com NumPy | Phelipe Teles
 </title>
-
-
-
-<meta property="og:title" content="Puzzle do cavalo no tabuleiro infinito com NumPy" />
-<meta property="og:description" content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis)." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2019-02-18T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-04-25T11:44:48-03:00" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Puzzle do cavalo no tabuleiro infinito com NumPy"/>
-<meta name="twitter:description" content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis)."/>
-
-
-
-
-
-    
-      
-    
-  </head>
-
-  <body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
-    
-
-    
-      
-    
-
-    <script>window.__setTheme = function (newTheme) {
-  document.body.setAttribute('data-theme', newTheme)
-  localStorage.setItem('__theme', newTheme)
-}
-
-const storedTheme = localStorage.getItem('__theme')
-
-if (storedTheme) {
-  window.__setTheme(storedTheme)
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  window.__setTheme('dark')
-} else {
-  window.__setTheme('light')
-}
-
-/* Enable animations */
-window.addEventListener('load', function () {
-  document.body.removeAttribute('data-preload')
-})
-</script>
-
-    <div data-scroll-container class="flex flex-col min-h-screen">
-      <div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
-  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
-    <nav class="" aria-label="Navegação principal">
-      
-
-      <div class="flex flex-row flex-wrap gap-2"><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/pt/"
-          >
-            Sobre
-          </a><a
-            id=""
-            class="text-foreground border-primary"
-            href="https://phelipetls.github.io/pt/posts/"
-          >
-            Posts
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/pt/projects/"
-          >
-            Projetos
-          </a></div>
-    </nav>
-
-    <button
-  id="theme-button"
-  class="rounded-full p-1"
-  aria-label="Mudar tema"
->
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <title>Ícone do tema</title>
-
-    <defs>
-      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-
-      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-
-    </defs>
-
-    <use id="theme-button-svg-icon" href="#sun" />
-  </svg>
+<meta property="og:title" content="Puzzle do cavalo no tabuleiro infinito com NumPy">
+<meta property="og:description" content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2019-02-18T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-04-25T11:44:48-03:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Puzzle do cavalo no tabuleiro infinito com NumPy">
+<meta name=twitter:description content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).">
+</head>
+<body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
+<script>window.__setTheme=function(a){document.body.setAttribute('data-theme',a),localStorage.setItem('__theme',a)};const storedTheme=localStorage.getItem('__theme');storedTheme?window.__setTheme(storedTheme):window.matchMedia('(prefers-color-scheme: dark)').matches?window.__setTheme('dark'):window.__setTheme('light'),window.addEventListener('load',function(){document.body.removeAttribute('data-preload')})</script>
+<div data-scroll-container class="flex flex-col min-h-screen">
+<div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
+<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<nav aria-label="Navegação principal">
+<div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/pt/>
+Sobre
+</a><a class="text-foreground border-primary" href=https://phelipetls.github.io/pt/posts/>
+Posts
+</a><a class=text-foreground href=https://phelipetls.github.io/pt/projects/>
+Projetos
+</a></div>
+</nav>
+<button id=theme-button class="rounded-full p-1" aria-label="Mudar tema"><svg width="24" height="24" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</defs>
+<use id=theme-button-svg-icon href=#sun>
+</svg>
 </button>
-
-  </div>
 </div>
-
-
-      <div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
-        <main class="flex flex-1 flex-col">
-          
-  <article>
-    <h1 class="text-4xl mb-4">
-      Puzzle do cavalo no tabuleiro infinito com NumPy
-    </h1>
-
-    <div class="mb-4">
-      <time datetime="2019-02-18">
-        
-          18 de Fevereiro
-        
-      </time>
-
-      <br class="inline sm:hidden" />
-
-      
-        <span class="hidden sm:inline">
-          &nbsp;·&nbsp;
-        </span>
-
-        <time class="italic" datetime="2021-04-25">
-          Editado em 25 de Agosto
-        </time>
-      
-    </div>
-
-    
-      <div>
-        <span class="mr-1">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-
+</div>
+<div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+<main class="flex flex-1 flex-col">
+<article>
+<h1 class="text-4xl mb-4">
+Puzzle do cavalo no tabuleiro infinito com NumPy
+</h1>
+<div class=mb-4>
+<time datetime=2019-02-18>
+18 de Fevereiro
+</time>
+<br class="inline sm:hidden">
+<span class="hidden sm:inline">
+&nbsp;·&nbsp;
 </span>
-
-
-  <a href="/pt/tags/numpy/" class="no-underline">numpy</a><span class="last:hidden">,</span>
-
-  <a href="/pt/tags/matplotlib/" class="no-underline">matplotlib</a><span class="last:hidden">,</span>
-
-
-      </div>
-    
-
-    <hr class="my-8" />
-
-    <p>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no
-<a
-  href="http://varianceexplained.org/r/knight-chess/"
-  
-  class=""
->blog do David Robinson</a>
+<time class=italic datetime=2021-04-25>
+Editado em 25 de Agosto
+</time>
+</div>
+<div>
+<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+</span>
+<a href=/pt/tags/numpy/ class=no-underline>numpy</a><span class=last:hidden>,</span>
+<a href=/pt/tags/matplotlib/ class=no-underline>matplotlib</a><span class=last:hidden>,</span>
+</div>
+<hr class=my-8>
+<p>Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no
+<a href=http://varianceexplained.org/r/knight-chess/>blog do David Robinson</a>
 , que
 consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial
 após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo
@@ -199,9 +88,9 @@ facilita a criação de visualizações do problema com o ggplot2.</p>
 seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
 operações vetorizadas e eficientes.</p>
-<h2 class="text-primary group mb-8 mt-16" id="o-que-está-por-trás-da-eficiência-do-numpy">
-  O que está por trás da eficiência do Numpy
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=o-que-está-por-trás-da-eficiência-do-numpy>
+O que está por trás da eficiência do Numpy
+<a class="border-0 hidden text-highlight group-hover:inline" href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy>#</a>
 </h2>
 <p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
 de tipagem dinâmica e de script (não-compilada): ele não é tão bom em fazer
@@ -215,9 +104,9 @@ antemão que a lista é composta somente de integers, por exemplo. Então, o que
 ele fará a cada operação é primeiro verificar o tipo de cada elemento para
 depois descobrir que &ldquo;soma&rdquo; ele deve fazer. Porque, por exemplo, somar dois
 integers é diferente de somar dois strings:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span>
-</code></pre></div><pre tabindex="0"><code>3
-</code></pre><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="s2">&#34;1&#34;</span> <span class="o">+</span> <span class="s2">&#34;2&#34;</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=mi>1</span> <span class=o>+</span> <span class=mi>2</span>
+</code></pre></div><pre tabindex=0><code>3
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=s2>&#34;1&#34;</span> <span class=o>+</span> <span class=s2>&#34;2&#34;</span>
 </code></pre></div><pre><code>'12'
 </code></pre>
 <p>E é esse type-checking uma das razões que acabam retardando muito a operação
@@ -232,21 +121,21 @@ operações rodam no background em código C.</p>
 <p>O custo disso é que a estrutura básica do Numpy perde a flexibilidade da lista,
 já que ele comportará um tipo de dado somente. Mas é um custo que estamos
 dispostos a pagar. Por exemplo:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
 
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+<span class=n>a</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>array</span><span class=p>([</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>])</span>
 
-<span class="n">a</span><span class="o">.</span><span class="n">dtype</span>
+<span class=n>a</span><span class=o>.</span><span class=n>dtype</span>
 </code></pre></div><pre><code>dtype('int32')
 </code></pre>
 <p>Se tentarmos incluir um string nesse ndarray, ele será convertido para um
 integer:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&#34;12&#34;</span>
-<span class="n">a</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>a</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=s2>&#34;12&#34;</span>
+<span class=n>a</span>
 </code></pre></div><pre><code>array([12,  2,  3,  4])
 </code></pre>
 <p>Mas se tentarmos incluir um número complexo, obtemos um erro:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span><span class="n">j</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>a</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span> <span class=o>=</span> <span class=mi>2</span> <span class=o>+</span> <span class=mi>1</span><span class=n>j</span>
 </code></pre></div><pre><code>---------------------------------------------------------------------------
 
 TypeError                                 Traceback (most recent call last)
@@ -258,9 +147,9 @@ TypeError                                 Traceback (most recent call last)
 TypeError: can't convert complex to int
 </code></pre>
 <p>Esse comportamento é muito similar ao vetor do R.</p>
-<h2 class="text-primary group mb-8 mt-16" id="simulando-os-movimentos-do-cavalo">
-  Simulando os movimentos do cavalo
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#simulando-os-movimentos-do-cavalo">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=simulando-os-movimentos-do-cavalo>
+Simulando os movimentos do cavalo
+<a class="border-0 hidden text-highlight group-hover:inline" href=#simulando-os-movimentos-do-cavalo>#</a>
 </h2>
 <p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p>
 <ul>
@@ -272,33 +161,27 @@ aqui. O único trabalho que tive foi o de escrever o código em Python.</li>
 cartesiano, em que o cavalo está no ponto de origem, (0, 0), podendo saltar dali
 para oito casas possíveis, com igual probabilidade, respeitando sempre as regras
 do xadrez, como na imagem:</p>
-<p><img
-  src="./knight_moves.png"
-  alt="Knight"
-  
-  class="rounded my-8"
-  style="background-color: white;"
-/>
+<p><img src=./knight_moves.png alt=Knight class="rounded my-8" style=background-color:#fff>
 </p>
 <p>Daí podemos notar que, se o cavalo pular para uma casa de coordenada x, a
 coordenada y terá que ser igual a 3 - abs(x). Mas devemos tomar o cuidado para
 assegurar que a coordenada y também possa ser negativa.</p>
 <p>Com isso em mente, podemos simular um único salto.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="c1"># sorteamos um dos números em parênteses para obter o x</span>
-<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">))</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=c1># sorteamos um dos números em parênteses para obter o x</span>
+<span class=n>x</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>2</span><span class=p>))</span>
 
-<span class="c1"># e calculamos o y pela relação já descrita</span>
-<span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+<span class=c1># e calculamos o y pela relação já descrita</span>
+<span class=n>y</span> <span class=o>=</span> <span class=p>(</span><span class=mi>3</span> <span class=o>-</span> <span class=nb>abs</span><span class=p>(</span><span class=n>x</span><span class=p>))</span> <span class=o>*</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>))</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>y</span><span class=p>)</span>
 </code></pre></div><pre><code>2 1
 </code></pre>
 <p>Mas, é claro, não é interessante simular somente um salto. Queremos, na verdade,
 20 deles, precisamos de um vetor.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">move_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
-<span class="n">move_y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">move_x</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>move_x</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>2</span><span class=p>),</span> <span class=n>size</span><span class=o>=</span><span class=mi>20</span><span class=p>)</span>
+<span class=n>move_y</span> <span class=o>=</span> <span class=p>(</span><span class=mi>3</span> <span class=o>-</span> <span class=nb>abs</span><span class=p>(</span><span class=n>move_x</span><span class=p>))</span> <span class=o>*</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>),</span> <span class=n>size</span><span class=o>=</span><span class=mi>20</span><span class=p>)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">move_x</span><span class="p">,</span> <span class="n">move_y</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>move_x</span><span class=p>,</span> <span class=n>move_y</span><span class=p>,</span> <span class=n>sep</span><span class=o>=</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>&#34;</span><span class=p>)</span>
 </code></pre></div><pre><code>[-2  1 -1  2  1  1  2  2 -1 -2 -2  2 -1  2 -2  2 -1  1  2  1]
 [-1  2  2 -1 -2 -2  1 -1  2  1 -1  1  2 -1 -1  1 -2 -2  1  2]
 </code></pre>
@@ -311,12 +194,12 @@ está feito!</p>
 adianta termos somente uma amostra com vinte saltos aleatórios do cavalo,
 precisamos de muitas mais. Vejamos com cem mil vezes mais. Com o Numpy, isso é
 bem fácil de ser feito.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">move_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span> <span class="o">*</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100000</span><span class="p">))</span>
-<span class="n">move_y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">move_x</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span> <span class="o">*</span> <span class="mi">100000</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
-    <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100000</span><span class="p">)</span>
-<span class="p">)</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>move_x</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>2</span><span class=p>),</span> <span class=n>size</span><span class=o>=</span><span class=mi>20</span> <span class=o>*</span> <span class=mi>100000</span><span class=p>)</span><span class=o>.</span><span class=n>reshape</span><span class=p>((</span><span class=mi>20</span><span class=p>,</span> <span class=mi>100000</span><span class=p>))</span>
+<span class=n>move_y</span> <span class=o>=</span> <span class=p>(</span><span class=mi>3</span> <span class=o>-</span> <span class=nb>abs</span><span class=p>(</span><span class=n>move_x</span><span class=p>))</span> <span class=o>*</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>),</span> <span class=n>size</span><span class=o>=</span><span class=mi>20</span> <span class=o>*</span> <span class=mi>100000</span><span class=p>)</span><span class=o>.</span><span class=n>reshape</span><span class=p>(</span>
+    <span class=p>(</span><span class=mi>20</span><span class=p>,</span> <span class=mi>100000</span><span class=p>)</span>
+<span class=p>)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">move_x</span><span class="p">,</span> <span class="n">move_y</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>  <span class="c1"># sep = &#39;\n\n&#39; serve para espaçar o output do print</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>move_x</span><span class=p>,</span> <span class=n>move_y</span><span class=p>,</span> <span class=n>sep</span><span class=o>=</span><span class=s2>&#34;</span><span class=se>\n\n</span><span class=s2>&#34;</span><span class=p>)</span>  <span class=c1># sep = &#39;\n\n&#39; serve para espaçar o output do print</span>
 </code></pre></div><pre><code>[[ 1 -2  1 ... -1  2  2]
  [ 1  1 -2 ...  2  2 -2]
  [ 1  2 -1 ... -1  1  1]
@@ -346,10 +229,10 @@ axis igualado a 0, o que quer dizer que ele vai fazer a soma cumulativa &ldquo;d
 the rows&rdquo;, linhas abaixo (o 0 é porque a linha é o &ldquo;primeiro&rdquo; elemento do
 &ldquo;shape&rdquo; de uma matriz bidimensional, (20, 100000)), o que é justamente o que
 queremos, já que interpretamos cada linha como um salto:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="n">position_x</span> <span class="o">=</span> <span class="n">move_x</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-<span class="n">position_y</span> <span class="o">=</span> <span class="n">move_y</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>position_x</span> <span class=o>=</span> <span class=n>move_x</span><span class=o>.</span><span class=n>cumsum</span><span class=p>(</span><span class=n>axis</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
+<span class=n>position_y</span> <span class=o>=</span> <span class=n>move_y</span><span class=o>.</span><span class=n>cumsum</span><span class=p>(</span><span class=n>axis</span><span class=o>=</span><span class=mi>0</span><span class=p>)</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">position_x</span><span class="p">,</span> <span class="n">position_y</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<span class=nb>print</span><span class=p>(</span><span class=n>position_x</span><span class=p>,</span> <span class=n>position_y</span><span class=p>,</span> <span class=n>sep</span><span class=o>=</span><span class=s2>&#34;</span><span class=se>\n\n</span><span class=s2>&#34;</span><span class=p>)</span>
 </code></pre></div><pre><code>[[ 1 -2  1 ... -1  2  2]
  [ 2 -1 -1 ...  1  4  0]
  [ 3  1 -2 ...  0  5  1]
@@ -370,7 +253,7 @@ queremos, já que interpretamos cada linha como um salto:</p>
 linha (onde ele parou no plano quando deu o último salto), podemos extrair
 somente ela pedindo a linha de indíce -1 de nossa matriz (no Python, -1 equivale
 ao último elemento, -2 ao penúltimo etc.).</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="nb">print</span><span class="p">(</span><span class="n">position_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">position_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;</span><span class="se">\n\n</span><span class="s2">&#34;</span><span class="p">)</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=nb>print</span><span class=p>(</span><span class=n>position_x</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=n>position_y</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>],</span> <span class=n>sep</span><span class=o>=</span><span class=s2>&#34;</span><span class=se>\n\n</span><span class=s2>&#34;</span><span class=p>)</span>
 </code></pre></div><pre><code>[ 2 -6 -5 ...  7 14  7]
 
 [  8  -6 -15 ...   3   6  -1]
@@ -378,7 +261,7 @@ ao último elemento, -2 ao penúltimo etc.).</p>
 <p>Agora, para de fato termos uma estimativa da probabilidade do cavalo voltar à
 origem após 20 saltos aleatórios, vamos calcular a frequência relativa desse
 evento em cem mil tentativas. Podemos fazer isso da seguinte maneira:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="p">((</span><span class="n">position_x</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">position_y</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=p>((</span><span class=n>position_x</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=o>&amp;</span> <span class=p>(</span><span class=n>position_y</span><span class=p>[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span> <span class=o>==</span> <span class=mi>0</span><span class=p>))</span><span class=o>.</span><span class=n>mean</span><span class=p>()</span>
 </code></pre></div><pre><code>0.00648
 </code></pre>
 <p>Aqui, o que o Numpy fez primeiro foi criar um vetor de booleans, ao comparar os
@@ -395,51 +278,45 @@ seja, a cada 1000 tentativas, podemos esperar que, em média, em 6 delas o caval
 voltará à origem após dar 20 saltos aleatórios.</p>
 <p>Podemos ter um relance da distribuição de probabilidades do problema com um
 simples histograma, feito com 100 repetições do experimento.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+<span class=o>%</span><span class=n>matplotlib</span> <span class=n>inline</span>
 
-<span class="c1"># isso é uma list comprehension</span>
-<span class="n">knight_probs</span> <span class="o">=</span> <span class="p">[</span><span class="n">knight_infinite_board</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">)]</span>
+<span class=c1># isso é uma list comprehension</span>
+<span class=n>knight_probs</span> <span class=o>=</span> <span class=p>[</span><span class=n>knight_infinite_board</span><span class=p>(</span><span class=mi>100000</span><span class=p>)</span> <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>100</span><span class=p>)]</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">knight_probs</span><span class="p">,</span> <span class="n">bins</span> <span class="o">=</span> <span class="mi">20</span><span class="p">)</span>
-</code></pre></div><p><img
-  src="./histograma.png"
-  alt="Histograma"
-  
-  class="rounded my-8"
-  style="background-color: white;"
-/>
+<span class=n>plt</span><span class=o>.</span><span class=n>hist</span><span class=p>(</span><span class=n>knight_probs</span><span class=p>,</span> <span class=n>bins</span> <span class=o>=</span> <span class=mi>20</span><span class=p>)</span>
+</code></pre></div><p><img src=./histograma.png alt=Histograma class="rounded my-8" style=background-color:#fff>
 </p>
-<h2 class="text-primary group mb-8 mt-16" id="a-eficiência-em-números">
-  A eficiência em números
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#a-efici%c3%aancia-em-n%c3%bameros">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=a-eficiência-em-números>
+A eficiência em números
+<a class="border-0 hidden text-highlight group-hover:inline" href=#a-efici%c3%aancia-em-n%c3%bameros>#</a>
 </h2>
 <p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
 verificar isso facilmente com o magic command do IPython, o %%timeit. Criei uma
 função que toma como argumento qualquer número de tentativas para testarmos o
 algoritmo.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">knight_infinite_board</span><span class="p">(</span><span class="n">trials</span><span class="p">):</span>
-    <span class="n">move_x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span> <span class="o">*</span> <span class="n">trials</span><span class="p">)</span>
-    <span class="n">move_y</span> <span class="o">=</span> <span class="p">(</span><span class="mi">3</span> <span class="o">-</span> <span class="nb">abs</span><span class="p">(</span><span class="n">move_x</span><span class="p">))</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span> <span class="o">*</span> <span class="n">trials</span><span class="p">)</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>knight_infinite_board</span><span class=p>(</span><span class=n>trials</span><span class=p>):</span>
+    <span class=n>move_x</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>2</span><span class=p>),</span> <span class=n>size</span><span class=o>=</span><span class=mi>20</span> <span class=o>*</span> <span class=n>trials</span><span class=p>)</span>
+    <span class=n>move_y</span> <span class=o>=</span> <span class=p>(</span><span class=mi>3</span> <span class=o>-</span> <span class=nb>abs</span><span class=p>(</span><span class=n>move_x</span><span class=p>))</span> <span class=o>*</span> <span class=n>np</span><span class=o>.</span><span class=n>random</span><span class=o>.</span><span class=n>choice</span><span class=p>((</span><span class=mi>1</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>),</span> <span class=n>size</span><span class=o>=</span><span class=mi>20</span> <span class=o>*</span> <span class=n>trials</span><span class=p>)</span>
 
-    <span class="n">position_x</span> <span class="o">=</span> <span class="n">move_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="n">trials</span><span class="p">))</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
-    <span class="n">position_y</span> <span class="o">=</span> <span class="n">move_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="n">trials</span><span class="p">))</span><span class="o">.</span><span class="n">cumsum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class=n>position_x</span> <span class=o>=</span> <span class=n>move_x</span><span class=o>.</span><span class=n>reshape</span><span class=p>((</span><span class=mi>20</span><span class=p>,</span> <span class=n>trials</span><span class=p>))</span><span class=o>.</span><span class=n>cumsum</span><span class=p>(</span><span class=n>axis</span><span class=o>=</span><span class=mi>0</span><span class=p>)[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
+    <span class=n>position_y</span> <span class=o>=</span> <span class=n>move_y</span><span class=o>.</span><span class=n>reshape</span><span class=p>((</span><span class=mi>20</span><span class=p>,</span> <span class=n>trials</span><span class=p>))</span><span class=o>.</span><span class=n>cumsum</span><span class=p>(</span><span class=n>axis</span><span class=o>=</span><span class=mi>0</span><span class=p>)[</span><span class=o>-</span><span class=mi>1</span><span class=p>]</span>
 
-    <span class="k">return</span> <span class="p">((</span><span class="n">position_x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">position_y</span> <span class="o">==</span> <span class="mi">0</span><span class="p">))</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%%</span><span class="n">timeit</span>
-<span class="n">knight_infinite_board</span><span class="p">(</span><span class="mi">100000</span><span class="p">)</span> <span class="c1"># cem mil tentativas</span>
+    <span class=k>return</span> <span class=p>((</span><span class=n>position_x</span> <span class=o>==</span> <span class=mi>0</span><span class=p>)</span> <span class=o>&amp;</span> <span class=p>(</span><span class=n>position_y</span> <span class=o>==</span> <span class=mi>0</span><span class=p>))</span><span class=o>.</span><span class=n>mean</span><span class=p>()</span>
+</code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=o>%%</span><span class=n>timeit</span>
+<span class=n>knight_infinite_board</span><span class=p>(</span><span class=mi>100000</span><span class=p>)</span> <span class=c1># cem mil tentativas</span>
 </code></pre></div><pre><code>130 ms ± 4.16 ms per loop (mean ± std. dev. of 7 runs, 10 loops each)
 </code></pre>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="o">%%</span><span class="n">timeit</span>
-<span class="n">knight_infinite_board</span><span class="p">(</span><span class="mi">1000000</span><span class="p">)</span> <span class="c1"># 1 milhão!</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=o>%%</span><span class=n>timeit</span>
+<span class=n>knight_infinite_board</span><span class=p>(</span><span class=mi>1000000</span><span class=p>)</span> <span class=c1># 1 milhão!</span>
 </code></pre></div><pre><code>1.15 s ± 97.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </code></pre>
 <p>É extraordinariamente rápido. Mesmo quando se trata de cálculos com uma matriz
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
 Python seria absurdamente mais lento.</p>
-<h2 class="text-primary group mb-8 mt-16" id="conclusões">
-  Conclusões
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclus%c3%b5es">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=conclusões>
+Conclusões
+<a class="border-0 hidden text-highlight group-hover:inline" href=#conclus%c3%b5es>#</a>
 </h2>
 <p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
 ferramenta muito útil, garantindo eficiência com uma sintaxe simples e limpa. Há
@@ -451,79 +328,42 @@ isso um conhecimento apropriado de suas funcionalidades pode ajudar muito se o
 objetivo é crescer na área de data science.</p>
 <p>Pretendo trazer outros posts em que o usarei, mas por ora ficarei por aqui.
 Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.</p>
-
-  </article>
-
-  
-
-  <hr class="my-8" />
-
-  <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Navegação entre posts">
-  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-    
-  </div>
-
-  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-    
-      <a class="border-0" href="/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/" title="Próximo post">
-        Três algoritmos para a sequência de Fibonacci
-      </a>
-
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </div>
-    
-  </div>
+</article>
+<hr class=my-8>
+<nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Navegação entre posts">
+<div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+</div>
+<div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<a class=border-0 href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/ title="Próximo post">
+Três algoritmos para a sequência de Fibonacci
+</a>
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+</div>
+</div>
 </nav>
-
-
-        </main>
-      </div>
-
-      <footer class="flex flex-col py-8 gap-4">
-  <div class="flex flex-wrap gap-2 justify-center">
-    <nav
-      class="flex gap-4 order-last sm:order-first"
-      aria-label="Links"
-    >
-      <a href="mailto:phelipe_teles@hotmail.com" title="E-mail">
-  E-mail
+</main>
+</div>
+<footer class="flex flex-col py-8 gap-4">
+<div class="flex flex-wrap gap-2 justify-center">
+<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<a href=mailto:phelipe_teles@hotmail.com title=E-mail>
+E-mail
 </a>
-
-<a href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
-  LinkedIn
+<a href=https://linkedin.com/in/phelipeteles title=LinkedIn>
+LinkedIn
 </a>
-
-<a href="https://github.com/phelipetls" title="GitHub">
-  GitHub
+<a href=https://github.com/phelipetls title=GitHub>
+GitHub
 </a>
-
-    </nav>
-  </div>
-
-  <p class="text-center">
-    Este conteúdo está sob a licença
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
-
-  </p>
+</nav>
+</div>
+<p class=text-center>
+Este conteúdo está sob a licença
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.
+</p>
 </footer>
-
-    </div>
-
-    
-
-    
-    
-
-    
-      
-      
-    
-
-    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-    <script src="https://phelipetls.github.io/js/nav.js"></script>
-
-    
-    
-  </body>
+</div>
+<script src=https://phelipetls.github.io/js/toggle-theme.js></script>
+<script src=https://phelipetls.github.io/js/nav.js></script>
+</body>
 </html>

@@ -1,197 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<meta name="description" content="Thoughts about writing integration tests for React apps, from
-react-testing-library to Cypress." />
-<meta name="deploy-date" content="2022-02-16">
-<meta name="publish-date" content="2021-04-28">
-<meta name="last-modified-date" content="2022-02-02">
-<meta name="author" content="">
-<meta name="color-scheme" content="dark light">
-
-
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
-
-
-
-
-
-  
-  
-
-
-<link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
-
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Thoughts about writing integration tests for React apps, from
+react-testing-library to Cypress.">
+<meta name=deploy-date content="2022-02-16">
+<meta name=publish-date content="2021-04-28">
+<meta name=last-modified-date content="2022-02-02">
+<meta name=author content>
+<meta name=color-scheme content="dark light">
+<link rel=icon href=/favicon.ico sizes=any>
+<link rel=icon href=/icon.svg type=image/svg+xml>
+<link rel=apple-touch-icon href=/apple-touch-icon.png>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
+<link rel=stylesheet href="/css/main.min.css">
+<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
 <title>
-  My experience testing React applications | Phelipe Teles
+My experience testing React applications | Phelipe Teles
 </title>
-
-
-
-<meta property="og:title" content="My experience testing React applications" />
+<meta property="og:title" content="My experience testing React applications">
 <meta property="og:description" content="Thoughts about writing integration tests for React apps, from
-react-testing-library to Cypress." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/my-experience-testing-react-applications/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2021-04-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-02-02T23:33:24-03:00" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="My experience testing React applications"/>
-<meta name="twitter:description" content="Thoughts about writing integration tests for React apps, from
-react-testing-library to Cypress."/>
-
-
-
-
-
-    
-      
-    
-  </head>
-
-  <body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
-    
-
-    
-      
-    
-
-    <script>window.__setTheme = function (newTheme) {
-  document.body.setAttribute('data-theme', newTheme)
-  localStorage.setItem('__theme', newTheme)
-}
-
-const storedTheme = localStorage.getItem('__theme')
-
-if (storedTheme) {
-  window.__setTheme(storedTheme)
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  window.__setTheme('dark')
-} else {
-  window.__setTheme('light')
-}
-
-/* Enable animations */
-window.addEventListener('load', function () {
-  document.body.removeAttribute('data-preload')
-})
-</script>
-
-    <div data-scroll-container class="flex flex-col min-h-screen">
-      <div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
-  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
-    <nav class="" aria-label="Main navigation">
-      
-
-      <div class="flex flex-row flex-wrap gap-2"><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/"
-          >
-            About
-          </a><a
-            id=""
-            class="text-foreground border-primary"
-            href="https://phelipetls.github.io/posts/"
-          >
-            Posts
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/projects/"
-          >
-            Projects
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/embedded-resume/"
-          >
-            Resumé
-          </a></div>
-    </nav>
-
-    <button
-  id="theme-button"
-  class="rounded-full p-1"
-  aria-label="Change theme"
->
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <title>Theme icon</title>
-
-    <defs>
-      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-
-      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-
-    </defs>
-
-    <use id="theme-button-svg-icon" href="#sun" />
-  </svg>
+react-testing-library to Cypress.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://phelipetls.github.io/posts/my-experience-testing-react-applications/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2021-04-28T00:00:00+00:00">
+<meta property="article:modified_time" content="2022-02-02T23:33:24-03:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="My experience testing React applications">
+<meta name=twitter:description content="Thoughts about writing integration tests for React apps, from
+react-testing-library to Cypress.">
+</head>
+<body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
+<script>window.__setTheme=function(a){document.body.setAttribute('data-theme',a),localStorage.setItem('__theme',a)};const storedTheme=localStorage.getItem('__theme');storedTheme?window.__setTheme(storedTheme):window.matchMedia('(prefers-color-scheme: dark)').matches?window.__setTheme('dark'):window.__setTheme('light'),window.addEventListener('load',function(){document.body.removeAttribute('data-preload')})</script>
+<div data-scroll-container class="flex flex-col min-h-screen">
+<div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
+<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<nav aria-label="Main navigation">
+<div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
+About
+</a><a class="text-foreground border-primary" href=https://phelipetls.github.io/posts/>
+Posts
+</a><a class=text-foreground href=https://phelipetls.github.io/projects/>
+Projects
+</a><a class=text-foreground href=https://phelipetls.github.io/embedded-resume/>
+Resumé
+</a></div>
+</nav>
+<button id=theme-button class="rounded-full p-1" aria-label="Change theme"><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</defs>
+<use id=theme-button-svg-icon href=#sun>
+</svg>
 </button>
-
-  </div>
 </div>
-
-
-      <div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
-        <main class="flex flex-1 flex-col">
-          
-  <article>
-    <h1 class="text-4xl mb-4">
-      My experience testing React applications
-    </h1>
-
-    <div class="mb-4">
-      <time datetime="2021-04-28">
-        
-          April 28, 2021
-        
-      </time>
-
-      <br class="inline sm:hidden" />
-
-      
-        <span class="hidden sm:inline">
-          &nbsp;·&nbsp;
-        </span>
-
-        <time class="italic" datetime="2022-02-02">
-          Last modified at February 02, 2022
-        </time>
-      
-    </div>
-
-    
-      <div>
-        <span class="mr-1">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-
+</div>
+<div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+<main class="flex flex-1 flex-col">
+<article>
+<h1 class="text-4xl mb-4">
+My experience testing React applications
+</h1>
+<div class=mb-4>
+<time datetime=2021-04-28>
+April 28, 2021
+</time>
+<br class="inline sm:hidden">
+<span class="hidden sm:inline">
+&nbsp;·&nbsp;
 </span>
-
-
-  <a href="/tags/react/" class="no-underline">react</a><span class="last:hidden">,</span>
-
-  <a href="/tags/javascript/" class="no-underline">javascript</a><span class="last:hidden">,</span>
-
-
-      </div>
-    
-
-    <hr class="my-8" />
-
-    <p>Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature
+<time class=italic datetime=2022-02-02>
+Last modified at February 02, 2022
+</time>
+</div>
+<div>
+<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+</span>
+<a href=/tags/react/ class=no-underline>react</a><span class=last:hidden>,</span>
+<a href=/tags/javascript/ class=no-underline>javascript</a><span class=last:hidden>,</span>
+</div>
+<hr class=my-8>
+<p>Testing is not easy, it&rsquo;s a trade-off: either you slow down new feature
 development by writing test to avoid regressions later, or you develop untested
 features and bugs will inevitably be introduced later.</p>
 <p>But I can understand how that ends up happening: we have to develop new features
@@ -217,27 +106,19 @@ appear or disappear.</li>
 </ul>
 <p>In this blog post I&rsquo;m going to talk about my experience with JavaScript
 libraries for testing front-end web apps.</p>
-<h2 class="text-primary group mb-8 mt-16" id="react-testing-library">
-  <code>react-testing-library</code>
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#react-testing-library">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=react-testing-library>
+<code>react-testing-library</code>
+<a class="border-0 hidden text-highlight group-hover:inline" href=#react-testing-library>#</a>
 </h2>
 <p>This library seems to be what everyone is using now, and I do see how that
 happened. It has a very consistent API and good documentation.</p>
 <p>I liked that:</p>
 <ul>
 <li>You can get elements on the screen with
-<a
-  href="https://testing-library.com/docs/queries/about/"
-  
-  class=""
->queries that resembles the DOM API</a>
+<a href=https://testing-library.com/docs/queries/about/>queries that resembles the DOM API</a>
 .</li>
 <li>You don&rsquo;t have to
-<a
-  href="https://kentcdodds.com/blog/common-mistakes-with-react-testing-library#wrapping-things-in-act-unnecessarily"
-  
-  class=""
->wrap anything in <code>act</code></a>
+<a href=https://kentcdodds.com/blog/common-mistakes-with-react-testing-library#wrapping-things-in-act-unnecessarily>wrap anything in <code>act</code></a>
 .</li>
 </ul>
 <p>I disliked that:</p>
@@ -245,131 +126,73 @@ happened. It has a very consistent API and good documentation.</p>
 <li>It was hard to debug (difficult to grasp the UI state from the output of
 <code>screen.debug()</code>)</li>
 <li>You have to
-<a
-  href="https://testing-library.com/docs/guide-disappearance"
-  
-  class=""
->wait for appearance and disappearance explicitly</a>
+<a href=https://testing-library.com/docs/guide-disappearance>wait for appearance and disappearance explicitly</a>
 .</li>
 <li>Requires some boilerplate to
-<a
-  href="%28https://testing-library.com/docs/react-testing-library/setup/%29"
-  
-  class=""
->set up your tests</a>
-
+<a href=%28https://testing-library.com/docs/react-testing-library/setup/%29>set up your tests</a>
 (for example, to wrap some components in
-<a
-  href="https://reactrouter.com/web/api/MemoryRouter"
-  
-  class=""
->MemoryRouter</a>
+<a href=https://reactrouter.com/web/api/MemoryRouter>MemoryRouter</a>
 , context
 providers,
-<a
-  href="https://react-query.tanstack.com/reference/QueryClient"
-  
-  class=""
->QueryClient</a>
+<a href=https://react-query.tanstack.com/reference/QueryClient>QueryClient</a>
 ).</li>
 <li>Your tests have to run in a node.js/jsdom environment, so (for example) if you
 use canvas in your app,
-<a
-  href="https://github.com/jsdom/jsdom#canvas-support"
-  
-  class=""
->it won&rsquo;t work out of the box</a>
+<a href=https://github.com/jsdom/jsdom#canvas-support>it won&rsquo;t work out of the box</a>
 .</li>
 </ul>
 <p>But it got the job done most of the time.</p>
 <p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
-<h2 class="text-primary group mb-8 mt-16" id="nock">
-  <code>nock</code>
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#nock">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=nock>
+<code>nock</code>
+<a class="border-0 hidden text-highlight group-hover:inline" href=#nock>#</a>
 </h2>
 <p>The <code>nock</code> library works in node-only environment and has a well-thought, easy
 to use API.</p>
 <p>In my experience, it has just a few unexpected issues like
-<a
-  href="https://www.npmjs.com/package/nock#axios"
-  
-  class=""
->not working with axios out of the box</a>
+<a href=https://www.npmjs.com/package/nock#axios>not working with axios out of the box</a>
 .</p>
-<h2 class="text-primary group mb-8 mt-16" id="msw">
-  <code>msw</code>
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#msw">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=msw>
+<code>msw</code>
+<a class="border-0 hidden text-highlight group-hover:inline" href=#msw>#</a>
 </h2>
 <p>I later also tried <code>msw</code> after reading
-<a
-  href="https://kentcdodds.com/blog/stop-mocking-fetch/"
-  
-  class=""
->Stop mocking fetch</a>
- by Kent C.
+<a href=https://kentcdodds.com/blog/stop-mocking-fetch/>Stop mocking fetch</a>
+by Kent C.
 Odds, and I liked it at lot. It can work in a browser (as a service worker) or
 node.js (by intercepting requests made by native modules).</p>
 <p>The problems I had with it is that it does not recognize URL search/query params
 in the URL,
-<a
-  href="https://github.com/mswjs/msw/issues/71"
-  
-  class=""
->you have to parse it yourself in the response handler</a>
+<a href=https://github.com/mswjs/msw/issues/71>you have to parse it yourself in the response handler</a>
 .
 This is by design though, it&rsquo;s just something I disliked.</p>
 <p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
 which I thought made tests harder to read. It doesn&rsquo;t have to be like that of
 course, but it&rsquo;s response handlers can get pretty long so it&rsquo;s a sane option.</p>
-<h2 class="text-primary group mb-8 mt-16" id="cypress">
-  <code>cypress</code>
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#cypress">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=cypress>
+<code>cypress</code>
+<a class="border-0 hidden text-highlight group-hover:inline" href=#cypress>#</a>
 </h2>
-<p>All of these led me to try <a
-  href="https://docs.cypress.io/"
-  
-  class="border-foreground"
-><code>Cypress</code></a>
+<p>All of these led me to try <a href=https://docs.cypress.io/ class=border-foreground><code>Cypress</code></a>
 , and I&rsquo;m
 inclined to say it is my favorite solution so far.</p>
 <p>You don&rsquo;t have to explicitly wait for anything to appear or disappear because it
 does so automatically by
-<a
-  href="https://docs.cypress.io/guides/core-concepts/retry-ability"
-  
-  class=""
->retrying it multiple times until a timeout is reached</a>
-
+<a href=https://docs.cypress.io/guides/core-concepts/retry-ability>retrying it multiple times until a timeout is reached</a>
 and it has a built-in API for mocking network requests with the
-<a
-  href="https://docs.cypress.io/api/commands/intercept"
-  
-  class=""
->intercept function</a>
+<a href=https://docs.cypress.io/api/commands/intercept>intercept function</a>
 .</p>
 <p>But it&rsquo;s not perfect either:</p>
 <ul>
 <li>It has its own quirks like using the <code>window</code> object might not work as you
 expect because
-<a
-  href="https://docs.cypress.io/api/commands/window#Cypress-uses-2-different-windows"
-  
-  class=""
->Cypress uses two different windows</a>
+<a href=https://docs.cypress.io/api/commands/window#Cypress-uses-2-different-windows>Cypress uses two different windows</a>
 .</li>
 <li>The <code>intercept</code> API has some unexpected behaviors like
-<a
-  href="https://github.com/cypress-io/cypress/issues/15956"
-  
-  class=""
->requiring URLs to be properly encoded</a>
+<a href=https://github.com/cypress-io/cypress/issues/15956>requiring URLs to be properly encoded</a>
 ,
 and others only recently fixed like its
-<a
-  href="https://github.com/cypress-io/cypress/issues/9302"
-  
-  class=""
->most recent calls not overriding earlier ones</a>
+<a href=https://github.com/cypress-io/cypress/issues/9302>most recent calls not overriding earlier ones</a>
 .</li>
 </ul>
 <p>The benefits far outweigh these problems, mainly around debuggability:</p>
@@ -380,125 +203,75 @@ browser DevTools.</li>
 <li>There are snapshots of the UI state for each step.</li>
 <li>Screenshots and videos of the test runs are recorded by default.</li>
 </ul>
-<h2 class="text-primary group mb-8 mt-16" id="conclusion">
-  Conclusion
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#conclusion">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=conclusion>
+Conclusion
+<a class="border-0 hidden text-highlight group-hover:inline" href=#conclusion>#</a>
 </h2>
 <p>I think everyone would agree that Cypress is much well-suited for integration
 tests. I thought <code>react-testing-library</code> to be complicated for complex
 functional tests, so I&rsquo;d prefer to use it for unit testing small component
 logic.</p>
-
-  </article>
-
-  
-    <div class="rounded border-2 border-divider p-4 my-8">
-      <p class="text-center">
-        Subscribe via 
-  <a href="https://phelipetls.github.io/posts/index.xml">RSS</a>
-  
- or e-mail. <i>Unsubscribe at any time</i>.
-      </p>
-
-      <form
-        class="embeddable-buttondown-form flex justify-center items-center my-4"
-        action="https://buttondown.email/api/emails/embed-subscribe/phelipetls"
-        method="post"
-        target="popupwindow"
-        onsubmit="window.open('https://buttondown.email/phelipetls', 'popupwindow')"
-      >
-        <label for="bd-email" class="hidden">E-mail</label>
-        <input type="email" name="email" id="bd-email" placeholder='E-mail' class="h-full p-2 rounded min-w-0" />
-        <button class="btn btn-primary rounded-r" type="submit" value="Subscribe">
-          Subscribe
-        </button>
-      </form>
-
-      <p class="text-center">
-        <a href="https://buttondown.email" target="_blank">
-          Powered by Buttondown
-        </a>
-      </p>
-    </div>
-  
-
-  <hr class="my-8" />
-
-  <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
-  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-    
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </div>
-
-      <a class="border-0" href="/posts/migrating-from-cra-to-vite/" title="Previous post">
-        Migrating from create-react-app to Vite
-      </a>
-    
-  </div>
-
-  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-    
-      <a class="border-0" href="/posts/implementing-dark-mode-for-static-websites/" title="Next post">
-        Implementing dark mode for static websites
-      </a>
-
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </div>
-    
-  </div>
+</article>
+<div class="rounded border-2 border-divider p-4 my-8">
+<p class=text-center>
+Subscribe via
+<a href=https://phelipetls.github.io/posts/index.xml>RSS</a>
+or e-mail. <i>Unsubscribe at any time</i>.
+</p>
+<form class="embeddable-buttondown-form flex justify-center items-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
+<label for=bd-email class=hidden>E-mail</label>
+<input type=email name=email id=bd-email placeholder=E-mail class="h-full p-2 rounded min-w-0">
+<button class="btn btn-primary rounded-r" type=submit value=Subscribe>
+Subscribe
+</button>
+</form>
+<p class=text-center>
+<a href=https://buttondown.email target=_blank>
+Powered by Buttondown
+</a>
+</p>
+</div>
+<hr class=my-8>
+<nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
+<div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+</div>
+<a class=border-0 href=/posts/migrating-from-cra-to-vite/ title="Previous post">
+Migrating from create-react-app to Vite
+</a>
+</div>
+<div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<a class=border-0 href=/posts/implementing-dark-mode-for-static-websites/ title="Next post">
+Implementing dark mode for static websites
+</a>
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+</div>
+</div>
 </nav>
-
-
-        </main>
-      </div>
-
-      <footer class="flex flex-col py-8 gap-4">
-  <div class="flex flex-wrap gap-2 justify-center">
-    <nav
-      class="flex gap-4 order-last sm:order-first"
-      aria-label="Links"
-    >
-      <a href="mailto:phelipe_teles@hotmail.com" title="E-mail">
-  E-mail
+</main>
+</div>
+<footer class="flex flex-col py-8 gap-4">
+<div class="flex flex-wrap gap-2 justify-center">
+<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<a href=mailto:phelipe_teles@hotmail.com title=E-mail>
+E-mail
 </a>
-
-<a href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
-  LinkedIn
+<a href=https://linkedin.com/in/phelipeteles title=LinkedIn>
+LinkedIn
 </a>
-
-<a href="https://github.com/phelipetls" title="GitHub">
-  GitHub
+<a href=https://github.com/phelipetls title=GitHub>
+GitHub
 </a>
-
-    </nav>
-  </div>
-
-  <p class="text-center">
-    This content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+</nav>
+</div>
+<p class=text-center>
+This content is under a
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.
-
-  </p>
+</p>
 </footer>
-
-    </div>
-
-    
-
-    
-    
-
-    
-      
-      
-    
-
-    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-    <script src="https://phelipetls.github.io/js/nav.js"></script>
-
-    
-    
-  </body>
+</div>
+<script src=https://phelipetls.github.io/js/toggle-theme.js></script>
+<script src=https://phelipetls.github.io/js/nav.js></script>
+</body>
 </html>

@@ -1,208 +1,93 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<meta name="description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option." />
-<meta name="deploy-date" content="2022-02-16">
-<meta name="publish-date" content="2020-08-12">
-<meta name="last-modified-date" content="2021-04-25">
-<meta name="author" content="">
-<meta name="color-scheme" content="dark light">
-
-
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
-
-
-
-
-
-  
-  
-
-
-<link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
-
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option.">
+<meta name=deploy-date content="2022-02-16">
+<meta name=publish-date content="2020-08-12">
+<meta name=last-modified-date content="2021-04-25">
+<meta name=author content>
+<meta name=color-scheme content="dark light">
+<link rel=icon href=/favicon.ico sizes=any>
+<link rel=icon href=/icon.svg type=image/svg+xml>
+<link rel=apple-touch-icon href=/apple-touch-icon.png>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
+<link rel=stylesheet href="/css/main.min.css">
+<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
 <title>
-  Asynchronous :make in Neovim with Lua | Phelipe Teles
+Asynchronous :make in Neovim with Lua | Phelipe Teles
 </title>
-
-
-
-<meta property="og:title" content="Asynchronous :make in Neovim with Lua" />
-<meta property="og:description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-08-12T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-04-25T11:44:48-03:00" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Asynchronous :make in Neovim with Lua"/>
-<meta name="twitter:description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option."/>
-
-
-
-
-
-    
-      
-    
-  </head>
-
-  <body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
-    
-
-    
-      
-    
-
-    <script>window.__setTheme = function (newTheme) {
-  document.body.setAttribute('data-theme', newTheme)
-  localStorage.setItem('__theme', newTheme)
-}
-
-const storedTheme = localStorage.getItem('__theme')
-
-if (storedTheme) {
-  window.__setTheme(storedTheme)
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  window.__setTheme('dark')
-} else {
-  window.__setTheme('light')
-}
-
-/* Enable animations */
-window.addEventListener('load', function () {
-  document.body.removeAttribute('data-preload')
-})
-</script>
-
-    <div data-scroll-container class="flex flex-col min-h-screen">
-      <div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
-  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
-    <nav class="" aria-label="Main navigation">
-      
-
-      <div class="flex flex-row flex-wrap gap-2"><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/"
-          >
-            About
-          </a><a
-            id=""
-            class="text-foreground border-primary"
-            href="https://phelipetls.github.io/posts/"
-          >
-            Posts
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/projects/"
-          >
-            Projects
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/embedded-resume/"
-          >
-            Resumé
-          </a></div>
-    </nav>
-
-    <button
-  id="theme-button"
-  class="rounded-full p-1"
-  aria-label="Change theme"
->
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <title>Theme icon</title>
-
-    <defs>
-      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-
-      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-
-    </defs>
-
-    <use id="theme-button-svg-icon" href="#sun" />
-  </svg>
+<meta property="og:title" content="Asynchronous :make in Neovim with Lua">
+<meta property="og:description" content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://phelipetls.github.io/posts/async-make-in-nvim-with-lua/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-08-12T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-04-25T11:44:48-03:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Asynchronous :make in Neovim with Lua">
+<meta name=twitter:description content="The :make command in Vim is quite useful, it runs whatever program is under the makeprg option and returns its output in the quickfix list, where you&rsquo;ll be able to hop through the errors if they were parsed correctly by the errorformat option.">
+</head>
+<body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
+<script>window.__setTheme=function(a){document.body.setAttribute('data-theme',a),localStorage.setItem('__theme',a)};const storedTheme=localStorage.getItem('__theme');storedTheme?window.__setTheme(storedTheme):window.matchMedia('(prefers-color-scheme: dark)').matches?window.__setTheme('dark'):window.__setTheme('light'),window.addEventListener('load',function(){document.body.removeAttribute('data-preload')})</script>
+<div data-scroll-container class="flex flex-col min-h-screen">
+<div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
+<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<nav aria-label="Main navigation">
+<div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
+About
+</a><a class="text-foreground border-primary" href=https://phelipetls.github.io/posts/>
+Posts
+</a><a class=text-foreground href=https://phelipetls.github.io/projects/>
+Projects
+</a><a class=text-foreground href=https://phelipetls.github.io/embedded-resume/>
+Resumé
+</a></div>
+</nav>
+<button id=theme-button class="rounded-full p-1" aria-label="Change theme"><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</defs>
+<use id=theme-button-svg-icon href=#sun>
+</svg>
 </button>
-
-  </div>
 </div>
-
-
-      <div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
-        <main class="flex flex-1 flex-col">
-          
-  <article>
-    <h1 class="text-4xl mb-4">
-      Asynchronous :make in Neovim with Lua
-    </h1>
-
-    <div class="mb-4">
-      <time datetime="2020-08-12">
-        
-          August 12, 2020
-        
-      </time>
-
-      <br class="inline sm:hidden" />
-
-      
-        <span class="hidden sm:inline">
-          &nbsp;·&nbsp;
-        </span>
-
-        <time class="italic" datetime="2021-04-25">
-          Last modified at April 25, 2021
-        </time>
-      
-    </div>
-
-    
-      <div>
-        <span class="mr-1">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-
+</div>
+<div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+<main class="flex flex-1 flex-col">
+<article>
+<h1 class="text-4xl mb-4">
+Asynchronous :make in Neovim with Lua
+</h1>
+<div class=mb-4>
+<time datetime=2020-08-12>
+August 12, 2020
+</time>
+<br class="inline sm:hidden">
+<span class="hidden sm:inline">
+&nbsp;·&nbsp;
 </span>
-
-
-  <a href="/tags/lua/" class="no-underline">lua</a><span class="last:hidden">,</span>
-
-  <a href="/tags/nvim/" class="no-underline">nvim</a><span class="last:hidden">,</span>
-
-
-      </div>
-    
-
-    <hr class="my-8" />
-
-    <p>The <code>:make</code> command in Vim is quite useful, it runs whatever program is under
+<time class=italic datetime=2021-04-25>
+Last modified at April 25, 2021
+</time>
+</div>
+<div>
+<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+</span>
+<a href=/tags/lua/ class=no-underline>lua</a><span class=last:hidden>,</span>
+<a href=/tags/nvim/ class=no-underline>nvim</a><span class=last:hidden>,</span>
+</div>
+<hr class=my-8>
+<p>The <code>:make</code> command in Vim is quite useful, it runs whatever program is under
 the <code>makeprg</code> option and returns its output in the quickfix list, where you&rsquo;ll
 be able to hop through the errors if they were parsed correctly by the
 <code>errorformat</code> option.</p>
 <p>For example, if you want to lint a Python file with <code>flake8</code>, it would suffice
 to</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">setlocal</span> <span class="nx">makeprg</span><span class="p">=</span><span class="nx">flake8</span>\ %<span class="err">
-</span><span class="err"></span><span class="nx">setlocal</span> <span class="nx">errorformat</span><span class="p">=</span>%<span class="nx">f</span>:%<span class="nx">l</span>:%<span class="nx">c</span>:\ %<span class="nx">t</span>%<span class="nx">n</span>\ %<span class="nx">m</span><span class="err">
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=nx>setlocal</span> <span class=nx>makeprg</span><span class=p>=</span><span class=nx>flake8</span>\ %<span class=err>
+</span><span class=err></span><span class=nx>setlocal</span> <span class=nx>errorformat</span><span class=p>=</span>%<span class=nx>f</span>:%<span class=nx>l</span>:%<span class=nx>c</span>:\ %<span class=nx>t</span>%<span class=nx>n</span>\ %<span class=nx>m</span><span class=err>
 </span></code></pre></div><p>Or, you could create a <code>:h compiler</code> plugin named <code>flake8</code>, that set these
 options when you run <code>:compiler flake8</code>,
-<a
-  href="https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/flake8.vim"
-  
-  class=""
->as I have in my config</a>
+<a href=https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/flake8.vim>as I have in my config</a>
 .</p>
 <p>There are a bunch of compiler plugins built into Vim that you might be
 interested, for example, <code>:compiler pyunit</code> for test suites written with the
@@ -213,67 +98,59 @@ interested, for example, <code>:compiler pyunit</code> for test suites written w
 expensive programs, you will not be able to edit until it finishes. In this post
 we will solve this in Neovim with Lua.</p>
 <p>In a previous revision of this post, I used
-<a
-  href="https://github.com/luvit/luv/blob/master/docs.md"
-  
-  class=""
->libuv bindings for Lua</a>
+<a href=https://github.com/luvit/luv/blob/master/docs.md>libuv bindings for Lua</a>
 ,
 accessible under <code>vim.loop</code>, but this is kind of a low level approach. An
 alternative is to use the <code>jobstart()</code> function, which offers several
 conveniences.</p>
 <p>I put the following Lua script under <code>~/.config/nvim/lua/</code> (if you use Neovim
-you can get yours with <code>:echo stdpath(&quot;config&quot;)</code>) for it to be available at
-runtime as <a
-  href="https://www.tutorialspoint.com/lua/lua_modules.htm"
-  
-  class=""
->Lua module</a>
+you can get yours with <code>:echo stdpath("config")</code>) for it to be available at
+runtime as <a href=https://www.tutorialspoint.com/lua/lua_modules.htm>Lua module</a>
 ,
 named <code>async_make</code>.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">M</span> <span class="o">=</span> <span class="p">{}</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=n>M</span> <span class=o>=</span> <span class=p>{}</span>
 
-<span class="kr">function</span> <span class="nc">M</span><span class="p">.</span><span class="nf">make</span><span class="p">()</span>
-  <span class="kd">local</span> <span class="n">lines</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;&#34;</span><span class="p">}</span>
-  <span class="kd">local</span> <span class="n">winnr</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">win_getid</span><span class="p">()</span>
-  <span class="kd">local</span> <span class="n">bufnr</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_win_get_buf</span><span class="p">(</span><span class="n">winnr</span><span class="p">)</span>
+<span class=kr>function</span> <span class=nc>M</span><span class=p>.</span><span class=nf>make</span><span class=p>()</span>
+  <span class=kd>local</span> <span class=n>lines</span> <span class=o>=</span> <span class=p>{</span><span class=s2>&#34;&#34;</span><span class=p>}</span>
+  <span class=kd>local</span> <span class=n>winnr</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>win_getid</span><span class=p>()</span>
+  <span class=kd>local</span> <span class=n>bufnr</span> <span class=o>=</span> <span class=n>vim.api</span><span class=p>.</span><span class=n>nvim_win_get_buf</span><span class=p>(</span><span class=n>winnr</span><span class=p>)</span>
 
-  <span class="kd">local</span> <span class="n">makeprg</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_get_option</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;makeprg&#34;</span><span class="p">)</span>
-  <span class="kr">if</span> <span class="ow">not</span> <span class="n">makeprg</span> <span class="kr">then</span> <span class="kr">return</span> <span class="kr">end</span>
+  <span class=kd>local</span> <span class=n>makeprg</span> <span class=o>=</span> <span class=n>vim.api</span><span class=p>.</span><span class=n>nvim_buf_get_option</span><span class=p>(</span><span class=n>bufnr</span><span class=p>,</span> <span class=s2>&#34;makeprg&#34;</span><span class=p>)</span>
+  <span class=kr>if</span> <span class=ow>not</span> <span class=n>makeprg</span> <span class=kr>then</span> <span class=kr>return</span> <span class=kr>end</span>
 
-  <span class="kd">local</span> <span class="n">cmd</span> <span class="o">=</span> <span class="n">vim.fn</span><span class="p">.</span><span class="n">expandcmd</span><span class="p">(</span><span class="n">makeprg</span><span class="p">)</span>
+  <span class=kd>local</span> <span class=n>cmd</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>expandcmd</span><span class=p>(</span><span class=n>makeprg</span><span class=p>)</span>
 
-  <span class="kd">local</span> <span class="kr">function</span> <span class="nf">on_event</span><span class="p">(</span><span class="n">job_id</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">event</span><span class="p">)</span>
-    <span class="kr">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&#34;stdout&#34;</span> <span class="ow">or</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&#34;stderr&#34;</span> <span class="kr">then</span>
-      <span class="kr">if</span> <span class="n">data</span> <span class="kr">then</span>
-        <span class="n">vim.list_extend</span><span class="p">(</span><span class="n">lines</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
-      <span class="kr">end</span>
-    <span class="kr">end</span>
+  <span class=kd>local</span> <span class=kr>function</span> <span class=nf>on_event</span><span class=p>(</span><span class=n>job_id</span><span class=p>,</span> <span class=n>data</span><span class=p>,</span> <span class=n>event</span><span class=p>)</span>
+    <span class=kr>if</span> <span class=n>event</span> <span class=o>==</span> <span class=s2>&#34;stdout&#34;</span> <span class=ow>or</span> <span class=n>event</span> <span class=o>==</span> <span class=s2>&#34;stderr&#34;</span> <span class=kr>then</span>
+      <span class=kr>if</span> <span class=n>data</span> <span class=kr>then</span>
+        <span class=n>vim.list_extend</span><span class=p>(</span><span class=n>lines</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+      <span class=kr>end</span>
+    <span class=kr>end</span>
 
-    <span class="kr">if</span> <span class="n">event</span> <span class="o">==</span> <span class="s2">&#34;exit&#34;</span> <span class="kr">then</span>
-      <span class="n">vim.fn</span><span class="p">.</span><span class="n">setqflist</span><span class="p">({},</span> <span class="s2">&#34; &#34;</span><span class="p">,</span> <span class="p">{</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="n">cmd</span><span class="p">,</span>
-        <span class="n">lines</span> <span class="o">=</span> <span class="n">lines</span><span class="p">,</span>
-        <span class="n">efm</span> <span class="o">=</span> <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_buf_get_option</span><span class="p">(</span><span class="n">bufnr</span><span class="p">,</span> <span class="s2">&#34;errorformat&#34;</span><span class="p">)</span>
-      <span class="p">})</span>
-      <span class="n">vim.api</span><span class="p">.</span><span class="n">nvim_command</span><span class="p">(</span><span class="s2">&#34;doautocmd QuickFixCmdPost&#34;</span><span class="p">)</span>
-    <span class="kr">end</span>
-  <span class="kr">end</span>
+    <span class=kr>if</span> <span class=n>event</span> <span class=o>==</span> <span class=s2>&#34;exit&#34;</span> <span class=kr>then</span>
+      <span class=n>vim.fn</span><span class=p>.</span><span class=n>setqflist</span><span class=p>({},</span> <span class=s2>&#34; &#34;</span><span class=p>,</span> <span class=p>{</span>
+        <span class=n>title</span> <span class=o>=</span> <span class=n>cmd</span><span class=p>,</span>
+        <span class=n>lines</span> <span class=o>=</span> <span class=n>lines</span><span class=p>,</span>
+        <span class=n>efm</span> <span class=o>=</span> <span class=n>vim.api</span><span class=p>.</span><span class=n>nvim_buf_get_option</span><span class=p>(</span><span class=n>bufnr</span><span class=p>,</span> <span class=s2>&#34;errorformat&#34;</span><span class=p>)</span>
+      <span class=p>})</span>
+      <span class=n>vim.api</span><span class=p>.</span><span class=n>nvim_command</span><span class=p>(</span><span class=s2>&#34;doautocmd QuickFixCmdPost&#34;</span><span class=p>)</span>
+    <span class=kr>end</span>
+  <span class=kr>end</span>
 
-  <span class="kd">local</span> <span class="n">job_id</span> <span class="o">=</span>
-    <span class="n">vim.fn</span><span class="p">.</span><span class="n">jobstart</span><span class="p">(</span>
-    <span class="n">cmd</span><span class="p">,</span>
-    <span class="p">{</span>
-      <span class="n">on_stderr</span> <span class="o">=</span> <span class="n">on_event</span><span class="p">,</span>
-      <span class="n">on_stdout</span> <span class="o">=</span> <span class="n">on_event</span><span class="p">,</span>
-      <span class="n">on_exit</span> <span class="o">=</span> <span class="n">on_event</span><span class="p">,</span>
-      <span class="n">stdout_buffered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-      <span class="n">stderr_buffered</span> <span class="o">=</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">}</span>
-  <span class="p">)</span>
-<span class="kr">end</span>
+  <span class=kd>local</span> <span class=n>job_id</span> <span class=o>=</span>
+    <span class=n>vim.fn</span><span class=p>.</span><span class=n>jobstart</span><span class=p>(</span>
+    <span class=n>cmd</span><span class=p>,</span>
+    <span class=p>{</span>
+      <span class=n>on_stderr</span> <span class=o>=</span> <span class=n>on_event</span><span class=p>,</span>
+      <span class=n>on_stdout</span> <span class=o>=</span> <span class=n>on_event</span><span class=p>,</span>
+      <span class=n>on_exit</span> <span class=o>=</span> <span class=n>on_event</span><span class=p>,</span>
+      <span class=n>stdout_buffered</span> <span class=o>=</span> <span class=kc>true</span><span class=p>,</span>
+      <span class=n>stderr_buffered</span> <span class=o>=</span> <span class=kc>true</span><span class=p>,</span>
+    <span class=p>}</span>
+  <span class=p>)</span>
+<span class=kr>end</span>
 
-<span class="kr">return</span> <span class="n">M</span>
+<span class=kr>return</span> <span class=n>M</span>
 </code></pre></div><p>This function first get the current window number and the buffer in it, which I
 will then use to get the local values of <code>makeprg</code> and <code>errorformat</code>.</p>
 <p>Then I expand the <code>makeprg</code> with <code>expandcmd()</code>, which transforms something like
@@ -291,131 +168,77 @@ only be called when all of the output was gathered (see <code>:h channel-buffere
 parsed and the <code>errorformat</code> to parse the lines with.</p>
 <p>Finally we trigger whatever <code>autocmd</code> is under the <code>QuickFixCmdPost</code> event.</p>
 <p>Then, I&rsquo;m able to use it inside <code>nvim</code> like this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">command</span><span class="p">!</span> <span class="nx">Make</span> <span class="nx">silent</span> <span class="nx">lua</span> <span class="nx">require</span><span class="s1">&#39;async_make&#39;</span>.<span class="nx">make</span><span class="p">()</span><span class="err">
-</span><span class="err"></span><span class="nx">nnoremap</span> <span class="p">&lt;</span><span class="nx">silent</span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="nx">space</span><span class="p">&gt;</span><span class="nx">m</span> :<span class="nx">Make</span><span class="p">&lt;</span><span class="nx">CR</span><span class="p">&gt;</span><span class="err">
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=nx>command</span><span class=p>!</span> <span class=nx>Make</span> <span class=nx>silent</span> <span class=nx>lua</span> <span class=nx>require</span><span class=s1>&#39;async_make&#39;</span>.<span class=nx>make</span><span class=p>()</span><span class=err>
+</span><span class=err></span><span class=nx>nnoremap</span> <span class=p>&lt;</span><span class=nx>silent</span><span class=p>&gt;</span> <span class=p>&lt;</span><span class=nx>space</span><span class=p>&gt;</span><span class=nx>m</span> :<span class=nx>Make</span><span class=p>&lt;</span><span class=nx>CR</span><span class=p>&gt;</span><span class=err>
 </span></code></pre></div><p>Then, if you may wish to run it on save, use this:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">augroup</span> <span class="nx">LintOnSave</span><span class="err">
-</span><span class="err"></span>  <span class="nx">autocmd</span><span class="p">!</span> <span class="nx">BufWritePost</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span> <span class="nx">Make</span><span class="err">
-</span><span class="err"></span><span class="nx">augroup</span> <span class="nx">END</span><span class="err">
-</span></code></pre></div><p>A command to disable it is convenient (you can re-enable it with <code>:e&lt;CR&gt;</code>):</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="nx">command</span><span class="p">!</span> <span class="nx">DisableLintOnSave</span> <span class="nx">autocmd</span><span class="p">!</span> <span class="nx">LintOnSave</span> <span class="nx">BufWritePost</span> <span class="p">&lt;</span><span class="nx">buffer</span><span class="p">&gt;</span><span class="err">
-</span></code></pre></div><p><a
-  href="https://gist.github.com/phelipetls/639a1b5f021d17c4124cccc83e518566"
-  
-  class=""
->Get the full code in this gist</a>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=nx>augroup</span> <span class=nx>LintOnSave</span><span class=err>
+</span><span class=err></span>  <span class=nx>autocmd</span><span class=p>!</span> <span class=nx>BufWritePost</span> <span class=p>&lt;</span><span class=nx>buffer</span><span class=p>&gt;</span> <span class=nx>Make</span><span class=err>
+</span><span class=err></span><span class=nx>augroup</span> <span class=nx>END</span><span class=err>
+</span></code></pre></div><p>A command to disable it is convenient (you can re-enable it with <code>:e&lt;CR></code>):</p>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=nx>command</span><span class=p>!</span> <span class=nx>DisableLintOnSave</span> <span class=nx>autocmd</span><span class=p>!</span> <span class=nx>LintOnSave</span> <span class=nx>BufWritePost</span> <span class=p>&lt;</span><span class=nx>buffer</span><span class=p>&gt;</span><span class=err>
+</span></code></pre></div><p><a href=https://gist.github.com/phelipetls/639a1b5f021d17c4124cccc83e518566>Get the full code in this gist</a>
 .</p>
-
-  </article>
-
-  
-    <div class="rounded border-2 border-divider p-4 my-8">
-      <p class="text-center">
-        Subscribe via 
-  <a href="https://phelipetls.github.io/posts/index.xml">RSS</a>
-  
- or e-mail. <i>Unsubscribe at any time</i>.
-      </p>
-
-      <form
-        class="embeddable-buttondown-form flex justify-center items-center my-4"
-        action="https://buttondown.email/api/emails/embed-subscribe/phelipetls"
-        method="post"
-        target="popupwindow"
-        onsubmit="window.open('https://buttondown.email/phelipetls', 'popupwindow')"
-      >
-        <label for="bd-email" class="hidden">E-mail</label>
-        <input type="email" name="email" id="bd-email" placeholder='E-mail' class="h-full p-2 rounded min-w-0" />
-        <button class="btn btn-primary rounded-r" type="submit" value="Subscribe">
-          Subscribe
-        </button>
-      </form>
-
-      <p class="text-center">
-        <a href="https://buttondown.email" target="_blank">
-          Powered by Buttondown
-        </a>
-      </p>
-    </div>
-  
-
-  <hr class="my-8" />
-
-  <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
-  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-    
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </div>
-
-      <a class="border-0" href="/posts/getting-salesforce-reports-with-vba/" title="Previous post">
-        Getting Salesforce reports with VBA
-      </a>
-    
-  </div>
-
-  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-    
-      <a class="border-0" href="/posts/vim-errorformat-for-pytest/" title="Next post">
-        A Vim errorformat for pytest
-      </a>
-
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </div>
-    
-  </div>
+</article>
+<div class="rounded border-2 border-divider p-4 my-8">
+<p class=text-center>
+Subscribe via
+<a href=https://phelipetls.github.io/posts/index.xml>RSS</a>
+or e-mail. <i>Unsubscribe at any time</i>.
+</p>
+<form class="embeddable-buttondown-form flex justify-center items-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
+<label for=bd-email class=hidden>E-mail</label>
+<input type=email name=email id=bd-email placeholder=E-mail class="h-full p-2 rounded min-w-0">
+<button class="btn btn-primary rounded-r" type=submit value=Subscribe>
+Subscribe
+</button>
+</form>
+<p class=text-center>
+<a href=https://buttondown.email target=_blank>
+Powered by Buttondown
+</a>
+</p>
+</div>
+<hr class=my-8>
+<nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
+<div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+</div>
+<a class=border-0 href=/posts/getting-salesforce-reports-with-vba/ title="Previous post">
+Getting Salesforce reports with VBA
+</a>
+</div>
+<div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<a class=border-0 href=/posts/vim-errorformat-for-pytest/ title="Next post">
+A Vim errorformat for pytest
+</a>
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+</div>
+</div>
 </nav>
-
-
-        </main>
-      </div>
-
-      <footer class="flex flex-col py-8 gap-4">
-  <div class="flex flex-wrap gap-2 justify-center">
-    <nav
-      class="flex gap-4 order-last sm:order-first"
-      aria-label="Links"
-    >
-      <a href="mailto:phelipe_teles@hotmail.com" title="E-mail">
-  E-mail
+</main>
+</div>
+<footer class="flex flex-col py-8 gap-4">
+<div class="flex flex-wrap gap-2 justify-center">
+<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<a href=mailto:phelipe_teles@hotmail.com title=E-mail>
+E-mail
 </a>
-
-<a href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
-  LinkedIn
+<a href=https://linkedin.com/in/phelipeteles title=LinkedIn>
+LinkedIn
 </a>
-
-<a href="https://github.com/phelipetls" title="GitHub">
-  GitHub
+<a href=https://github.com/phelipetls title=GitHub>
+GitHub
 </a>
-
-    </nav>
-  </div>
-
-  <p class="text-center">
-    This content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+</nav>
+</div>
+<p class=text-center>
+This content is under a
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.
-
-  </p>
+</p>
 </footer>
-
-    </div>
-
-    
-
-    
-    
-
-    
-      
-      
-    
-
-    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-    <script src="https://phelipetls.github.io/js/nav.js"></script>
-
-    
-    
-  </body>
+</div>
+<script src=https://phelipetls.github.io/js/toggle-theme.js></script>
+<script src=https://phelipetls.github.io/js/nav.js></script>
+</body>
 </html>

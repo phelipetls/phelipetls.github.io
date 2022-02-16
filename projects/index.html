@@ -1,267 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<meta name="description" content="" />
-<meta name="deploy-date" content="2022-02-16">
-<meta name="publish-date" content="0001-01-01">
-<meta name="last-modified-date" content="2022-01-29">
-<meta name="author" content="">
-<meta name="color-scheme" content="dark light">
-
-
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
-
-
-
-
-
-  
-  
-
-
-<link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
-
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content>
+<meta name=deploy-date content="2022-02-16">
+<meta name=publish-date content="0001-01-01">
+<meta name=last-modified-date content="2022-01-29">
+<meta name=author content>
+<meta name=color-scheme content="dark light">
+<link rel=icon href=/favicon.ico sizes=any>
+<link rel=icon href=/icon.svg type=image/svg+xml>
+<link rel=apple-touch-icon href=/apple-touch-icon.png>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
+<link rel=stylesheet href="/css/main.min.css">
+<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
 <title>
-  Projects | Phelipe Teles
+Projects | Phelipe Teles
 </title>
-
-
-
-<meta property="og:title" content="Projects" />
-<meta property="og:description" content="A blog to share my interests (mostly programming)" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://phelipetls.github.io/projects/" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Projects"/>
-<meta name="twitter:description" content="A blog to share my interests (mostly programming)"/>
-
-
-
-
-
-    
-      
-    
-  </head>
-
-  <body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
-    
-
-    
-      
-    
-
-    <script>window.__setTheme = function (newTheme) {
-  document.body.setAttribute('data-theme', newTheme)
-  localStorage.setItem('__theme', newTheme)
-}
-
-const storedTheme = localStorage.getItem('__theme')
-
-if (storedTheme) {
-  window.__setTheme(storedTheme)
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  window.__setTheme('dark')
-} else {
-  window.__setTheme('light')
-}
-
-/* Enable animations */
-window.addEventListener('load', function () {
-  document.body.removeAttribute('data-preload')
-})
-</script>
-
-    <div data-scroll-container class="flex flex-col min-h-screen">
-      <div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
-  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
-    <nav class="" aria-label="Main navigation">
-      
-
-      <div class="flex flex-row flex-wrap gap-2"><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/"
-          >
-            About
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/posts/"
-          >
-            Posts
-          </a><a
-            id=""
-            class="text-foreground border-primary"
-            href="https://phelipetls.github.io/projects/"
-          >
-            Projects
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/embedded-resume/"
-          >
-            Resumé
-          </a></div>
-    </nav>
-
-    <button
-  id="theme-button"
-  class="rounded-full p-1"
-  aria-label="Change theme"
->
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <title>Theme icon</title>
-
-    <defs>
-      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-
-      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-
-    </defs>
-
-    <use id="theme-button-svg-icon" href="#sun" />
-  </svg>
+<meta property="og:title" content="Projects">
+<meta property="og:description" content="A blog to share my interests (mostly programming)">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://phelipetls.github.io/projects/">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Projects">
+<meta name=twitter:description content="A blog to share my interests (mostly programming)">
+</head>
+<body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
+<script>window.__setTheme=function(a){document.body.setAttribute('data-theme',a),localStorage.setItem('__theme',a)};const storedTheme=localStorage.getItem('__theme');storedTheme?window.__setTheme(storedTheme):window.matchMedia('(prefers-color-scheme: dark)').matches?window.__setTheme('dark'):window.__setTheme('light'),window.addEventListener('load',function(){document.body.removeAttribute('data-preload')})</script>
+<div data-scroll-container class="flex flex-col min-h-screen">
+<div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
+<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<nav aria-label="Main navigation">
+<div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
+About
+</a><a class=text-foreground href=https://phelipetls.github.io/posts/>
+Posts
+</a><a class="text-foreground border-primary" href=https://phelipetls.github.io/projects/>
+Projects
+</a><a class=text-foreground href=https://phelipetls.github.io/embedded-resume/>
+Resumé
+</a></div>
+</nav>
+<button id=theme-button class="rounded-full p-1" aria-label="Change theme"><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</defs>
+<use id=theme-button-svg-icon href=#sun>
+</svg>
 </button>
-
-  </div>
 </div>
-
-
-      <div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
-        <main class="flex flex-1 flex-col">
-          
-  <section>
-    
-      <article class="mb-16 last:mb-0">
-        <div>
-          <h2 class="inline-block">
-            <a href="http://ipeadata-explorer.surge.sh">Ipeadata Explorer</a>
-          </h2>
-
-          (<time class="text-lg" datetime="2020-09-02">
-            2020
-          </time>)
-        </div>
-
-        <p>A <strong>React</strong> app to explore and visualize the
-<a href="http://ipeadata.gov.br/api/">Ipeadata</a> database.</p>
-
-      </article>
-    
-      <article class="mb-16 last:mb-0">
-        <div>
-          <h2 class="inline-block">
-            <a href="https://some-minesweeper.herokuapp.com">Minesweeper.js</a>
-          </h2>
-
-          (<time class="text-lg" datetime="2020-06-16">
-            2020
-          </time>)
-        </div>
-
-        <p>A Minesweeper implementation that helped me learn the very basics of full-stack
+</div>
+<div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+<main class="flex flex-1 flex-col">
+<section>
+<article class="mb-16 last:mb-0">
+<div>
+<h2 class=inline-block>
+<a href=http://ipeadata-explorer.surge.sh>Ipeadata Explorer</a>
+</h2>
+(<time class=text-lg datetime=2020-09-02>
+2020
+</time>)
+</div>
+<p>A <strong>React</strong> app to explore and visualize the
+<a href=http://ipeadata.gov.br/api/>Ipeadata</a> database.</p>
+</article>
+<article class="mb-16 last:mb-0">
+<div>
+<h2 class=inline-block>
+<a href=https://some-minesweeper.herokuapp.com>Minesweeper.js</a>
+</h2>
+(<time class=text-lg datetime=2020-06-16>
+2020
+</time>)
+</div>
+<p>A Minesweeper implementation that helped me learn the very basics of full-stack
 web development with <strong>JavaScript</strong>, <strong>CSS</strong>, <strong>Node.js</strong> and <strong>PostgreSQL</strong>.</p>
-
-      </article>
-    
-      <article class="mb-16 last:mb-0">
-        <div>
-          <h2 class="inline-block">
-            <a href="https://reportforce.readthedocs.io">reportforce</a>
-          </h2>
-
-          (<time class="text-lg" datetime="2020-01-25">
-            2020
-          </time>)
-        </div>
-
-        <p>A <strong>Python</strong> library to get reports from <strong>Salesforce</strong> through the <a href="https://resources.docs.salesforce.com/226/latest/en-us/sfdc/pdf/bi_dev_guide_rest.pdf">Analytics REST
+</article>
+<article class="mb-16 last:mb-0">
+<div>
+<h2 class=inline-block>
+<a href=https://reportforce.readthedocs.io>reportforce</a>
+</h2>
+(<time class=text-lg datetime=2020-01-25>
+2020
+</time>)
+</div>
+<p>A <strong>Python</strong> library to get reports from <strong>Salesforce</strong> through the <a href=https://resources.docs.salesforce.com/226/latest/en-us/sfdc/pdf/bi_dev_guide_rest.pdf>Analytics REST
 API</a>.</p>
-
-      </article>
-    
-      <article class="mb-16 last:mb-0">
-        <div>
-          <h2 class="inline-block">
-            <a href="https://seriesbr.readthedocs.io">seriesbr</a>
-          </h2>
-
-          (<time class="text-lg" datetime="2019-11-22">
-            2019
-          </time>)
-        </div>
-
-        <p>A <strong>Python</strong> library to get time series from databases maintained by brazilian
-institutions, such as <a href="https://www3.bcb.gov.br/sgspub">BCB</a>,
-<a href="http://ipeadata.gov.br/beta3/">IPEA</a> and
-<a href="https://sidra.ibge.gov.br/home/ipp/brasil">IBGE</a>, into a
-<a href="https://pandas.pydata.org">pandas</a> DataFrame.</p>
-
-      </article>
-    
-  </section>
-
-        </main>
-      </div>
-
-      <footer class="flex flex-col py-8 gap-4">
-  <div class="flex flex-wrap gap-2 justify-center">
-    <nav
-      class="flex gap-4 order-last sm:order-first"
-      aria-label="Links"
-    >
-      <a href="mailto:phelipe_teles@hotmail.com" title="E-mail">
-  E-mail
+</article>
+<article class="mb-16 last:mb-0">
+<div>
+<h2 class=inline-block>
+<a href=https://seriesbr.readthedocs.io>seriesbr</a>
+</h2>
+(<time class=text-lg datetime=2019-11-22>
+2019
+</time>)
+</div>
+<p>A <strong>Python</strong> library to get time series from databases maintained by brazilian
+institutions, such as <a href=https://www3.bcb.gov.br/sgspub>BCB</a>,
+<a href=http://ipeadata.gov.br/beta3/>IPEA</a> and
+<a href=https://sidra.ibge.gov.br/home/ipp/brasil>IBGE</a>, into a
+<a href=https://pandas.pydata.org>pandas</a> DataFrame.</p>
+</article>
+</section>
+</main>
+</div>
+<footer class="flex flex-col py-8 gap-4">
+<div class="flex flex-wrap gap-2 justify-center">
+<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<a href=mailto:phelipe_teles@hotmail.com title=E-mail>
+E-mail
 </a>
-
-<a href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
-  LinkedIn
+<a href=https://linkedin.com/in/phelipeteles title=LinkedIn>
+LinkedIn
 </a>
-
-<a href="https://github.com/phelipetls" title="GitHub">
-  GitHub
+<a href=https://github.com/phelipetls title=GitHub>
+GitHub
 </a>
-
-    </nav>
-  </div>
-
-  <p class="text-center">
-    This content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+</nav>
+</div>
+<p class=text-center>
+This content is under a
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.
-
-  </p>
+</p>
 </footer>
-
-    </div>
-
-    
-
-    
-    
-
-    
-      
-      
-    
-
-    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-    <script src="https://phelipetls.github.io/js/nav.js"></script>
-
-    
-    
-  </body>
+</div>
+<script src=https://phelipetls.github.io/js/toggle-theme.js></script>
+<script src=https://phelipetls.github.io/js/nav.js></script>
+</body>
 </html>

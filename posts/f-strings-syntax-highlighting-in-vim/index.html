@@ -1,252 +1,123 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-
-<meta name="description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences." />
-<meta name="deploy-date" content="2022-02-16">
-<meta name="publish-date" content="2020-10-28">
-<meta name="last-modified-date" content="2021-04-24">
-<meta name="author" content="">
-<meta name="color-scheme" content="dark light">
-
-
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/icon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel="stylesheet">
-
-
-
-
-
-  
-  
-
-
-<link rel="stylesheet" href="/css/main.min.css" />
-<link rel="stylesheet" href="/css/dark-syntax-highlight.min.css" />
-
+<!doctype html><html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences.">
+<meta name=deploy-date content="2022-02-16">
+<meta name=publish-date content="2020-10-28">
+<meta name=last-modified-date content="2021-04-24">
+<meta name=author content>
+<meta name=color-scheme content="dark light">
+<link rel=icon href=/favicon.ico sizes=any>
+<link rel=icon href=/icon.svg type=image/svg+xml>
+<link rel=apple-touch-icon href=/apple-touch-icon.png>
+<link rel=preconnect href=https://fonts.googleapis.com>
+<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
+<link rel=stylesheet href="/css/main.min.css">
+<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
 <title>
-  Python f-strings syntax highlighting in Vim | Phelipe Teles
+Python f-strings syntax highlighting in Vim | Phelipe Teles
 </title>
-
-
-
-<meta property="og:title" content="Python f-strings syntax highlighting in Vim" />
-<meta property="og:description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences." />
-<meta property="og:type" content="article" />
-<meta property="og:url" content="https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/" /><meta property="article:section" content="posts" />
-<meta property="article:published_time" content="2020-10-28T00:00:00+00:00" />
-<meta property="article:modified_time" content="2021-04-24T13:17:50-03:00" />
-
-
-<meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Python f-strings syntax highlighting in Vim"/>
-<meta name="twitter:description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences."/>
-
-
-
-
-
-    
-      
-        <link href="/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.css" rel="stylesheet" />
-      
-    
-  </head>
-
-  <body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
-    
-
-    
-      
-    
-
-    <script>window.__setTheme = function (newTheme) {
-  document.body.setAttribute('data-theme', newTheme)
-  localStorage.setItem('__theme', newTheme)
-}
-
-const storedTheme = localStorage.getItem('__theme')
-
-if (storedTheme) {
-  window.__setTheme(storedTheme)
-} else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-  window.__setTheme('dark')
-} else {
-  window.__setTheme('light')
-}
-
-/* Enable animations */
-window.addEventListener('load', function () {
-  document.body.removeAttribute('data-preload')
-})
-</script>
-
-    <div data-scroll-container class="flex flex-col min-h-screen">
-      <div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
-  <div class="flex items-center justify-between mx-auto max-w-prose px-4">
-    <nav class="" aria-label="Main navigation">
-      
-
-      <div class="flex flex-row flex-wrap gap-2"><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/"
-          >
-            About
-          </a><a
-            id=""
-            class="text-foreground border-primary"
-            href="https://phelipetls.github.io/posts/"
-          >
-            Posts
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/projects/"
-          >
-            Projects
-          </a><a
-            id=""
-            class="text-foreground "
-            href="https://phelipetls.github.io/embedded-resume/"
-          >
-            Resumé
-          </a></div>
-    </nav>
-
-    <button
-  id="theme-button"
-  class="rounded-full p-1"
-  aria-label="Change theme"
->
-  <svg width="24" height="24" viewBox="0 0 24 24">
-    <title>Theme icon</title>
-
-    <defs>
-      <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-
-      <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-
-    </defs>
-
-    <use id="theme-button-svg-icon" href="#sun" />
-  </svg>
+<meta property="og:title" content="Python f-strings syntax highlighting in Vim">
+<meta property="og:description" content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/"><meta property="article:section" content="posts">
+<meta property="article:published_time" content="2020-10-28T00:00:00+00:00">
+<meta property="article:modified_time" content="2021-04-24T13:17:50-03:00">
+<meta name=twitter:card content="summary">
+<meta name=twitter:title content="Python f-strings syntax highlighting in Vim">
+<meta name=twitter:description content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences.">
+<link href=/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.css rel=stylesheet>
+</head>
+<body data-preload class="text-foreground bg-background transition transition-colors duration-75 ease-out">
+<script>window.__setTheme=function(a){document.body.setAttribute('data-theme',a),localStorage.setItem('__theme',a)};const storedTheme=localStorage.getItem('__theme');storedTheme?window.__setTheme(storedTheme):window.matchMedia('(prefers-color-scheme: dark)').matches?window.__setTheme('dark'):window.__setTheme('light'),window.addEventListener('load',function(){document.body.removeAttribute('data-preload')})</script>
+<div data-scroll-container class="flex flex-col min-h-screen">
+<div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
+<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<nav aria-label="Main navigation">
+<div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
+About
+</a><a class="text-foreground border-primary" href=https://phelipetls.github.io/posts/>
+Posts
+</a><a class=text-foreground href=https://phelipetls.github.io/projects/>
+Projects
+</a><a class=text-foreground href=https://phelipetls.github.io/embedded-resume/>
+Resumé
+</a></div>
+</nav>
+<button id=theme-button class="rounded-full p-1" aria-label="Change theme"><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+</defs>
+<use id=theme-button-svg-icon href=#sun>
+</svg>
 </button>
-
-  </div>
 </div>
-
-
-      <div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
-        <main class="flex flex-1 flex-col">
-          
-  <article>
-    <h1 class="text-4xl mb-4">
-      Python f-strings syntax highlighting in Vim
-    </h1>
-
-    <div class="mb-4">
-      <time datetime="2020-10-28">
-        
-          October 28, 2020
-        
-      </time>
-
-      <br class="inline sm:hidden" />
-
-      
-        <span class="hidden sm:inline">
-          &nbsp;·&nbsp;
-        </span>
-
-        <time class="italic" datetime="2021-04-24">
-          Last modified at April 24, 2021
-        </time>
-      
-    </div>
-
-    
-      <div>
-        <span class="mr-1">
-  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display: inline;"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-
+</div>
+<div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
+<main class="flex flex-1 flex-col">
+<article>
+<h1 class="text-4xl mb-4">
+Python f-strings syntax highlighting in Vim
+</h1>
+<div class=mb-4>
+<time datetime=2020-10-28>
+October 28, 2020
+</time>
+<br class="inline sm:hidden">
+<span class="hidden sm:inline">
+&nbsp;·&nbsp;
 </span>
-
-
-  <a href="/tags/vim/" class="no-underline">vim</a><span class="last:hidden">,</span>
-
-  <a href="/tags/python/" class="no-underline">python</a><span class="last:hidden">,</span>
-
-
-      </div>
-    
-
-    <hr class="my-8" />
-
-    <p><strong>UPDATE 2020-10-30</strong>: First iteration of this post was very naive, supporting
+<time class=italic datetime=2021-04-24>
+Last modified at April 24, 2021
+</time>
+</div>
+<div>
+<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+</span>
+<a href=/tags/vim/ class=no-underline>vim</a><span class=last:hidden>,</span>
+<a href=/tags/python/ class=no-underline>python</a><span class=last:hidden>,</span>
+</div>
+<hr class=my-8>
+<p><strong>UPDATE 2020-10-30</strong>: First iteration of this post was very naive, supporting
 only the very basic. See the
-<a
-  href="https://gist.github.com/phelipetls/8726d6cd68e66ad6b83586ae53f3b3d8/revisions#diff-8108a43d0db89a371349e6de001c6932fba065485f6790dddd5b011e7ae7f527"
-  
-  class=""
->diff</a>
-
+<a href=https://gist.github.com/phelipetls/8726d6cd68e66ad6b83586ae53f3b3d8/revisions#diff-8108a43d0db89a371349e6de001c6932fba065485f6790dddd5b011e7ae7f527>diff</a>
 that adds support for string modifiers and escape sequences.</p>
 <p>Getting Python syntax highlighting to work in Vim requires very little code, to
 my surprise.</p>
-<p><img
-  src="./before.png"
-  alt="Before"
-  
-  class="rounded my-8"
-  style="background-color: white;"
-/>
- <img
-  src="./after.png"
-  alt="After"
-  
-  class="rounded my-8"
-  style="background-color: white;"
-/>
+<p><img src=./before.png alt=Before class="rounded my-8" style=background-color:#fff>
+<img src=./after.png alt=After class="rounded my-8" style=background-color:#fff>
 </p>
 <p>Here is everything that you need and an explanation below.</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-vim" data-lang="vim"><span class="c">&#34; in ~/.config/nvim/after/syntax or ~/.vim/after/syntax</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>{{<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonEscape</span> <span class="p">+</span>}}<span class="p">+</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonfString</span><span class="p">,</span><span class="nx">pythonfDocstring</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">region</span> <span class="nx">pythonfString</span> <span class="nx">matchgroup</span><span class="p">=</span><span class="nx">pythonQuotes</span><span class="err">
-</span><span class="err"></span>      \ <span class="nx">start</span><span class="p">=+</span>[<span class="nx">fF</span>]\@<span class="m">1</span><span class="p">&lt;=</span>\<span class="nx">z</span><span class="p">(</span>[&#39;<span class="s2">&#34;]\)+ end=&#34;</span>\<span class="nx">z1</span>&#34;<span class="err">
-</span><span class="err"></span>      \ <span class="nx">contains</span><span class="p">=</span>@<span class="nx">Spell</span><span class="p">,</span><span class="nx">pythonEscape</span><span class="p">,</span><span class="nx">pythonInterpolation</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">region</span> <span class="nx">pythonfDocstring</span> <span class="nx">matchgroup</span><span class="p">=</span><span class="nx">pythonQuotes</span><span class="err">
-</span><span class="err"></span>      \ <span class="nx">start</span><span class="p">=+</span>[<span class="nx">fF</span>]\@<span class="m">1</span><span class="p">&lt;=</span>\<span class="nx">z</span><span class="p">(</span><span class="s1">&#39;&#39;</span>&#39;\<span class="p">|</span><span class="s2">&#34;&#34;&#34;\)+ end=&#34;</span>\<span class="nx">z1</span>&#34; <span class="nx">keepend</span><span class="err">
-</span><span class="err"></span>      \ <span class="nx">contains</span><span class="p">=</span>@<span class="nx">Spell</span><span class="p">,</span><span class="nx">pythonEscape</span><span class="p">,</span><span class="nx">pythonSpaceError</span><span class="p">,</span><span class="nx">pythonInterpolation</span><span class="p">,</span><span class="nx">pythonDoctest</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">region</span> <span class="nx">pythonInterpolation</span> <span class="nx">contained</span><span class="err">
-</span><span class="err"></span>      \ <span class="nx">matchgroup</span><span class="p">=</span><span class="nx">SpecialChar</span><span class="err">
-</span><span class="err"></span>      \ <span class="nx">start</span><span class="p">=+</span>{{\@<span class="p">!+</span> <span class="nx">end</span><span class="p">=+</span>}}\@<span class="p">!+</span> <span class="nx">skip</span><span class="p">=+</span>{{<span class="p">+</span> <span class="nx">keepend</span><span class="err">
-</span><span class="err"></span>      \ <span class="nx">contains</span><span class="p">=</span><span class="nx">ALLBUT</span><span class="p">,</span><span class="nx">pythonDecoratorName</span><span class="p">,</span><span class="nx">pythonDecorator</span><span class="p">,</span><span class="nx">pythonFunction</span><span class="p">,</span><span class="nx">pythonDoctestValue</span><span class="p">,</span><span class="nx">pythonDoctest</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonStringModifier</span> <span class="sr">/:\(.[&lt;^=&gt;]\)\?[-+ ]\?#\?0\?[0-9]*[_,]\?\(\.[0-9]*\)\?[bcdeEfFgGnosxX%]\?/</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonInterpolation</span><span class="err">
-</span><span class="err"></span><span class="nx">syn</span> <span class="nx">match</span> <span class="nx">pythonStringModifier</span> <span class="sr">/![sra]/</span> <span class="nx">contained</span> <span class="nx">containedin</span><span class="p">=</span><span class="nx">pythonInterpolation</span><span class="err">
-</span><span class="err">
-</span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonfString</span> <span class="nx">String</span><span class="err">
-</span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonfDocstring</span> <span class="nx">String</span><span class="err">
-</span><span class="err"></span><span class="nx">hi</span> <span class="nx">link</span> <span class="nx">pythonStringModifier</span> <span class="nx">PreProc</span><span class="err">
-</span></code></pre></div><h2 class="text-primary group mb-8 mt-16" id="declaring-a-syntax-region-for-f-strings">
-  Declaring a syntax region for f-strings
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#declaring-a-syntax-region-for-f-strings">#</a>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=c>&#34; in ~/.config/nvim/after/syntax or ~/.vim/after/syntax</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>match</span> <span class=nx>pythonEscape</span> <span class=p>+</span>{{<span class=p>+</span> <span class=nx>contained</span> <span class=nx>containedin</span><span class=p>=</span><span class=nx>pythonfString</span><span class=p>,</span><span class=nx>pythonfDocstring</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>match</span> <span class=nx>pythonEscape</span> <span class=p>+</span>}}<span class=p>+</span> <span class=nx>contained</span> <span class=nx>containedin</span><span class=p>=</span><span class=nx>pythonfString</span><span class=p>,</span><span class=nx>pythonfDocstring</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>region</span> <span class=nx>pythonfString</span> <span class=nx>matchgroup</span><span class=p>=</span><span class=nx>pythonQuotes</span><span class=err>
+</span><span class=err></span>      \ <span class=nx>start</span><span class=p>=+</span>[<span class=nx>fF</span>]\@<span class=m>1</span><span class=p>&lt;=</span>\<span class=nx>z</span><span class=p>(</span>[&#39;<span class=s2>&#34;]\)+ end=&#34;</span>\<span class=nx>z1</span>&#34;<span class=err>
+</span><span class=err></span>      \ <span class=nx>contains</span><span class=p>=</span>@<span class=nx>Spell</span><span class=p>,</span><span class=nx>pythonEscape</span><span class=p>,</span><span class=nx>pythonInterpolation</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>region</span> <span class=nx>pythonfDocstring</span> <span class=nx>matchgroup</span><span class=p>=</span><span class=nx>pythonQuotes</span><span class=err>
+</span><span class=err></span>      \ <span class=nx>start</span><span class=p>=+</span>[<span class=nx>fF</span>]\@<span class=m>1</span><span class=p>&lt;=</span>\<span class=nx>z</span><span class=p>(</span><span class=s1>&#39;&#39;</span>&#39;\<span class=p>|</span><span class=s2>&#34;&#34;&#34;\)+ end=&#34;</span>\<span class=nx>z1</span>&#34; <span class=nx>keepend</span><span class=err>
+</span><span class=err></span>      \ <span class=nx>contains</span><span class=p>=</span>@<span class=nx>Spell</span><span class=p>,</span><span class=nx>pythonEscape</span><span class=p>,</span><span class=nx>pythonSpaceError</span><span class=p>,</span><span class=nx>pythonInterpolation</span><span class=p>,</span><span class=nx>pythonDoctest</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>region</span> <span class=nx>pythonInterpolation</span> <span class=nx>contained</span><span class=err>
+</span><span class=err></span>      \ <span class=nx>matchgroup</span><span class=p>=</span><span class=nx>SpecialChar</span><span class=err>
+</span><span class=err></span>      \ <span class=nx>start</span><span class=p>=+</span>{{\@<span class=p>!+</span> <span class=nx>end</span><span class=p>=+</span>}}\@<span class=p>!+</span> <span class=nx>skip</span><span class=p>=+</span>{{<span class=p>+</span> <span class=nx>keepend</span><span class=err>
+</span><span class=err></span>      \ <span class=nx>contains</span><span class=p>=</span><span class=nx>ALLBUT</span><span class=p>,</span><span class=nx>pythonDecoratorName</span><span class=p>,</span><span class=nx>pythonDecorator</span><span class=p>,</span><span class=nx>pythonFunction</span><span class=p>,</span><span class=nx>pythonDoctestValue</span><span class=p>,</span><span class=nx>pythonDoctest</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>match</span> <span class=nx>pythonStringModifier</span> <span class=sr>/:\(.[&lt;^=&gt;]\)\?[-+ ]\?#\?0\?[0-9]*[_,]\?\(\.[0-9]*\)\?[bcdeEfFgGnosxX%]\?/</span> <span class=nx>contained</span> <span class=nx>containedin</span><span class=p>=</span><span class=nx>pythonInterpolation</span><span class=err>
+</span><span class=err></span><span class=nx>syn</span> <span class=nx>match</span> <span class=nx>pythonStringModifier</span> <span class=sr>/![sra]/</span> <span class=nx>contained</span> <span class=nx>containedin</span><span class=p>=</span><span class=nx>pythonInterpolation</span><span class=err>
+</span><span class=err>
+</span><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonfString</span> <span class=nx>String</span><span class=err>
+</span><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonfDocstring</span> <span class=nx>String</span><span class=err>
+</span><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonStringModifier</span> <span class=nx>PreProc</span><span class=err>
+</span></code></pre></div><h2 class="text-primary group mb-8 mt-16" id=declaring-a-syntax-region-for-f-strings>
+Declaring a syntax region for f-strings
+<a class="border-0 hidden text-highlight group-hover:inline" href=#declaring-a-syntax-region-for-f-strings>#</a>
 </h2>
 <p>The first two lines define a new syntax region (see <code>:h syn-region</code>) called
 <code>pythonfString</code>.</p>
-<p>We then declare how it starts with the regex <code>[fF]\@1&lt;=\z(['&quot;]\)</code>, which is
-equivalent to <code>(?:&lt;=[fF])(['&quot;])</code> in Perl regular expressions (see <code>:h \@&lt;=</code>).
+<p>We then declare how it starts with the regex <code>[fF]\@1&lt;=\z(['"]\)</code>, which is
+equivalent to <code>(?:&lt;=[fF])(['"])</code> in Perl regular expressions (see <code>:h \@&lt;=</code>).
 The second line just handles the case of a docstring.</p>
 <p>The string will end how it starts, so we can just reference the captured group
 using <code>\z1</code> (we need to prefix it with <code>z</code> because it is an external pattern,
@@ -254,38 +125,28 @@ see <code>:h \z(</code>).</p>
 <p>The <code>matchgroup</code> argument tells Vim which highlight group it should use to
 highlight the start/end pattern. The group <code>pythonQuotes</code> come from the default
 syntax file.</p>
-<h2 class="text-primary group mb-8 mt-16" id="handling-expressions-inside-f-strings">
-  Handling expressions inside f-strings
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#handling-expressions-inside-f-strings">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=handling-expressions-inside-f-strings>
+Handling expressions inside f-strings
+<a class="border-0 hidden text-highlight group-hover:inline" href=#handling-expressions-inside-f-strings>#</a>
 </h2>
 <p>We also need to declare what this region contains.</p>
 <p>For this we declare another region called <code>pythonInterpolation</code>, which starts
-with &ldquo;{&rdquo; (but not with &ldquo;{{&rdquo;, which will actually produce a literal &ldquo;{&quot;) and
+with &ldquo;{&rdquo; (but not with &ldquo;{{&rdquo;, which will actually produce a literal &ldquo;{") and
 closes with &ldquo;}&rdquo;. With that in mind, we use the regex <code>{{\@!</code> because we don&rsquo;t
 want a match if the preceding token is present (see <code>:h \@!</code>).</p>
 <p>This region may contain only expressions, so stuff like a function declaration
 does not make sense (notice there is a syntax for that, <code>:helpgrep ALLBUT</code>)</p>
-<h2 class="text-primary group mb-8 mt-16" id="handling-string-modifiers">
-  Handling string modifiers
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#handling-string-modifiers">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=handling-string-modifiers>
+Handling string modifiers
+<a class="border-0 hidden text-highlight group-hover:inline" href=#handling-string-modifiers>#</a>
 </h2>
 <p>f-strings supports
-<a
-  href="https://docs.python.org/3/library/string.html#format-examples"
-  
-  class="border-foreground"
-><code>str.format</code> syntax</a>
-
+<a href=https://docs.python.org/3/library/string.html#format-examples class=border-foreground><code>str.format</code> syntax</a>
 for formatting, for example:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">math</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&#34;The value of pi is approximately </span><span class="si">{</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2">.&#34;</span><span class="p">)</span>
+<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>math</span>
+<span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;The value of pi is approximately </span><span class=si>{</span><span class=n>math</span><span class=o>.</span><span class=n>pi</span><span class=si>:</span><span class=s2>.3f</span><span class=si>}</span><span class=s2>.&#34;</span><span class=p>)</span>
 </code></pre></div><p>So I read the
-<a
-  href="https://docs.python.org/3/library/string.html#format-specification-mini-language"
-  
-  class=""
->Python docs</a>
-
+<a href=https://docs.python.org/3/library/string.html#format-specification-mini-language>Python docs</a>
 and wrote a regex based on it, but regexes are always easier to write than to
 read so I wouldn&rsquo;t recommend you trying.</p>
 <p>It&rsquo;s also possible to convert a value as if wrapping them in functions such as
@@ -295,128 +156,76 @@ handle this also.</p>
 that should be used.</p>
 <p>It should only be highlighted inside a <code>pythonInterpolation</code> so we take
 advantage of the <code>containedin</code> argument (see <code>:h syn-containedin</code>).</p>
-<h2 class="text-primary group mb-8 mt-16" id="highlighting-declared-groups">
-  Highlighting declared groups
-  <a class="border-0 hidden text-highlight group-hover:inline" href="#highlighting-declared-groups">#</a>
+<h2 class="text-primary group mb-8 mt-16" id=highlighting-declared-groups>
+Highlighting declared groups
+<a class="border-0 hidden text-highlight group-hover:inline" href=#highlighting-declared-groups>#</a>
 </h2>
 <p>Finally, we link these new highlight groups with an appropriate/whichever you
 like highlight group (see <code>:h hi-link</code> and <code>:h group-name</code>). I chose <code>String</code>
 for f-strings and <code>PreProc</code> for modifiers. And it should work as expected.</p>
-
-  </article>
-
-  
-    <div class="rounded border-2 border-divider p-4 my-8">
-      <p class="text-center">
-        Subscribe via 
-  <a href="https://phelipetls.github.io/posts/index.xml">RSS</a>
-  
- or e-mail. <i>Unsubscribe at any time</i>.
-      </p>
-
-      <form
-        class="embeddable-buttondown-form flex justify-center items-center my-4"
-        action="https://buttondown.email/api/emails/embed-subscribe/phelipetls"
-        method="post"
-        target="popupwindow"
-        onsubmit="window.open('https://buttondown.email/phelipetls', 'popupwindow')"
-      >
-        <label for="bd-email" class="hidden">E-mail</label>
-        <input type="email" name="email" id="bd-email" placeholder='E-mail' class="h-full p-2 rounded min-w-0" />
-        <button class="btn btn-primary rounded-r" type="submit" value="Subscribe">
-          Subscribe
-        </button>
-      </form>
-
-      <p class="text-center">
-        <a href="https://buttondown.email" target="_blank">
-          Powered by Buttondown
-        </a>
-      </p>
-    </div>
-  
-
-  <hr class="my-8" />
-
-  <nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
-  <div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
-    
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
-      </div>
-
-      <a class="border-0" href="/posts/deploying-flask-app-on-heroku/" title="Previous post">
-        Deploying a Flask app on a Heroku free dyno
-      </a>
-    
-  </div>
-
-  <div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
-    
-      <a class="border-0" href="/posts/configuring-eslint-to-work-with-neovim-lsp/" title="Next post">
-        Configuring eslint to work with Neovim LSP
-      </a>
-
-      <div class="flex items-center group-hover:text-highlight">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
-      </div>
-    
-  </div>
+</article>
+<div class="rounded border-2 border-divider p-4 my-8">
+<p class=text-center>
+Subscribe via
+<a href=https://phelipetls.github.io/posts/index.xml>RSS</a>
+or e-mail. <i>Unsubscribe at any time</i>.
+</p>
+<form class="embeddable-buttondown-form flex justify-center items-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
+<label for=bd-email class=hidden>E-mail</label>
+<input type=email name=email id=bd-email placeholder=E-mail class="h-full p-2 rounded min-w-0">
+<button class="btn btn-primary rounded-r" type=submit value=Subscribe>
+Subscribe
+</button>
+</form>
+<p class=text-center>
+<a href=https://buttondown.email target=_blank>
+Powered by Buttondown
+</a>
+</p>
+</div>
+<hr class=my-8>
+<nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
+<div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+</div>
+<a class=border-0 href=/posts/deploying-flask-app-on-heroku/ title="Previous post">
+Deploying a Flask app on a Heroku free dyno
+</a>
+</div>
+<div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<a class=border-0 href=/posts/configuring-eslint-to-work-with-neovim-lsp/ title="Next post">
+Configuring eslint to work with Neovim LSP
+</a>
+<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+</div>
+</div>
 </nav>
-
-
-        </main>
-      </div>
-
-      <footer class="flex flex-col py-8 gap-4">
-  <div class="flex flex-wrap gap-2 justify-center">
-    <nav
-      class="flex gap-4 order-last sm:order-first"
-      aria-label="Links"
-    >
-      <a href="mailto:phelipe_teles@hotmail.com" title="E-mail">
-  E-mail
+</main>
+</div>
+<footer class="flex flex-col py-8 gap-4">
+<div class="flex flex-wrap gap-2 justify-center">
+<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<a href=mailto:phelipe_teles@hotmail.com title=E-mail>
+E-mail
 </a>
-
-<a href="https://linkedin.com/in/phelipeteles" title="LinkedIn">
-  LinkedIn
+<a href=https://linkedin.com/in/phelipeteles title=LinkedIn>
+LinkedIn
 </a>
-
-<a href="https://github.com/phelipetls" title="GitHub">
-  GitHub
+<a href=https://github.com/phelipetls title=GitHub>
+GitHub
 </a>
-
-    </nav>
-  </div>
-
-  <p class="text-center">
-    This content is under a
-<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+</nav>
+</div>
+<p class=text-center>
+This content is under a
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.
-
-  </p>
+</p>
 </footer>
-
-    </div>
-
-    
-      <script src="/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js"></script>
-    
-      <script src="/posts/f-strings-syntax-highlighting-in-vim/script.js"></script>
-    
-
-    
-    
-
-    
-      
-      
-    
-
-    <script src="https://phelipetls.github.io/js/toggle-theme.js"></script>
-    <script src="https://phelipetls.github.io/js/nav.js"></script>
-
-    
-    
-  </body>
+</div>
+<script src=/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js></script>
+<script src=/posts/f-strings-syntax-highlighting-in-vim/script.js></script>
+<script src=https://phelipetls.github.io/js/toggle-theme.js></script>
+<script src=https://phelipetls.github.io/js/nav.js></script>
+</body>
 </html>
