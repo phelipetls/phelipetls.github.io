@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &#34;app:create_app()&#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call 'app:create_app' Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier.">
-<meta name=deploy-date content="2022-02-17">
+<meta name=deploy-date content="2022-02-18">
 <meta name=publish-date content="2020-10-11">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -171,15 +171,15 @@ Powered by Buttondown
 </p>
 </div>
 <hr class=my-8>
-<nav class="grid grid-cols-1 gap-2 sm:grid-cols-2" aria-label="Posts navigation">
-<div class="sm:col-start-1 sm:col-end-1 h-full flex items-center gap-2 group">
+<nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
+<div class="flex items-center gap-2 group">
 <div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/posts/vim-errorformat-for-pytest/ title="Previous post">
 A Vim errorformat for pytest
 </a>
 </div>
-<div class="sm:col-start-2 sm:col-end-2 text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
 <a class=border-0 href=/posts/f-strings-syntax-highlighting-in-vim/ title="Next post">
 Python f-strings syntax highlighting in Vim
 </a>
