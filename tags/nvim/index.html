@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content>
-<meta name=deploy-date content="2022-02-18">
+<meta name=deploy-date content="2022-02-20">
 <meta name=publish-date content="2021-09-15">
 <meta name=last-modified-date content="2021-10-02">
 <meta name=author content>
@@ -28,9 +28,9 @@ nvim | Phelipe Teles
 <meta name=twitter:description content="A blog to share my interests (mostly programming)">
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-75 ease-out">
-<script>window.__setTheme=function(a){document.body.setAttribute('data-theme',a),localStorage.setItem('__theme',a)};const storedTheme=localStorage.getItem('__theme');storedTheme?window.__setTheme(storedTheme):window.matchMedia('(prefers-color-scheme: dark)').matches?window.__setTheme('dark'):window.__setTheme('light'),window.addEventListener('load',function(){document.body.removeAttribute('data-preload')})</script>
+<script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="overflow-hidden sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-50">
+<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
@@ -43,11 +43,22 @@ Projects
 Resumé
 </a></div>
 </nav>
-<button data-theme-button class="rounded-full p-1" aria-label="Change theme"><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<button data-theme-button class=p-1 aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 </defs>
 <use data-theme-button-svg-icon href=#sun>
 </svg>
 </button>
+<ul data-theme-menu id=theme-menu class="hidden absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
+<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+Light
+</li>
+<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+Dark
+</li>
+<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+Auto
+</li>
+</ul>
 </div>
 </div>
 <div class="my-8 px-4 flex-1 max-w-prose mx-auto flex flex-col container mx-auto">
@@ -126,7 +137,7 @@ license.
 </p>
 </footer>
 </div>
-<script src=https://phelipetls.github.io/js/toggle-theme.min.js></script>
+<script src=https://phelipetls.github.io/js/theme-button.min.js></script>
 <script src=https://phelipetls.github.io/js/nav.min.js></script>
 </body>
 </html>
