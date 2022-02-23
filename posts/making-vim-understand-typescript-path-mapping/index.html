@@ -35,22 +35,22 @@ Making Vim understand TypeScript path mapping | Phelipe Teles
 <div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
-<div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
+<div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
 About
-</a><a class="text-foreground border-primary" href=https://phelipetls.github.io/posts/>
+</a><a class=border-primary href=https://phelipetls.github.io/posts/>
 Posts
-</a><a class=text-foreground href=https://phelipetls.github.io/projects/>
+</a><a href=https://phelipetls.github.io/projects/>
 Projects
-</a><a class=text-foreground href=https://phelipetls.github.io/embedded-resume/>
+</a><a href=https://phelipetls.github.io/embedded-resume/>
 Resumé
 </a></div>
 </nav>
-<button data-theme-button class=p-1 aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<button data-theme-button class="p-1 btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 </defs>
 <use data-theme-button-svg-icon href=#sun>
 </svg>
 </button>
-<ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
+<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
 <li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
@@ -68,29 +68,29 @@ Auto
 <article>
 <div class="border-t-4 border-primary mb-8" style=width:8ch>
 </div>
+<div class="flex flex-row items-center gap-2 mb-4">
+<time class="uppercase text-sm" datetime=2021-09-15>
+September 15, 2021
+</time>
+·
+<div class="uppercase text-sm">
+Last modified:
+<time datetime=2021-10-02>
+October 02, 2021
+</time>
+</div>
+</div>
 <h1 class="text-4xl mb-4">
 Making Vim understand TypeScript path mapping
 </h1>
 <div class=mb-4>
-<time datetime=2021-09-15>
-September 15, 2021
-</time>
-<br class="inline sm:hidden">
-<span class="hidden sm:inline text-heading">
-&nbsp;·&nbsp;
-</span>
-<time class=italic datetime=2021-10-02>
-Last modified at October 02, 2021
-</time>
-</div>
-<div>
 <a href=/tags/typescript/ class="no-underline rounded-full border-2 px-2">typescript</a>
 <a href=/tags/vim/ class="no-underline rounded-full border-2 px-2">vim</a>
 <a href=/tags/nvim/ class="no-underline rounded-full border-2 px-2">nvim</a>
 <a href=/tags/lua/ class="no-underline rounded-full border-2 px-2">lua</a>
 </div>
 <hr class=my-8>
-<p>Vim has this well-known feature of opening the path under cursor with <a href=http://vimdoc.sourceforge.net/htmldoc/editing.html#gf class=border-foreground><code>:h gf</code></a>
+<p>Vim has this well-known feature of opening the path under cursor with <a href=http://vimdoc.sourceforge.net/htmldoc/editing.html#gf><code>:h gf</code></a>
 . <a href=https://vim.fandom.com/wiki/Open_file_under_cursor>This article
 explains well how this
 works</a>
@@ -106,7 +106,7 @@ which is most languages. For example, Java:</p>
 <span class=kn>import</span> <span class=nn>.module</span>
 <span class=kn>import</span> <span class=nn>..module</span>
 </code></pre></div><p>But it&rsquo;s possible to configure Vim to understand this special syntax with the
-<a href=http://vimdoc.sourceforge.net/htmldoc/options.html#%27includeexpr%27 class=border-foreground><code>:h includeexpr</code></a>
+<a href=http://vimdoc.sourceforge.net/htmldoc/options.html#%27includeexpr%27><code>:h includeexpr</code></a>
 option, which is a function that receives the filename in the special variable
 <code>v:fname</code> so you can manipulate it.</p>
 <p>For Java, such a function could just replace <code>.</code> with <code>/</code>, but for Python <a href=https://github.com/vim/vim/blob/4b4b1b84eee70b74fa3bb57624533c65bafd8428/runtime/ftplugin/python.vim#L19,L35>it&rsquo;s
@@ -207,7 +207,7 @@ Finding <code>tsconfig.json</code>
 </a>
 </h3>
 <p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
-upwards starting from the current file&rsquo;s directory with the <a href=https://vimhelp.org/eval.txt.html#findfile%28%29 class=border-foreground><code>:h findfile</code></a>
+upwards starting from the current file&rsquo;s directory with the <a href=https://vimhelp.org/eval.txt.html#findfile%28%29><code>:h findfile</code></a>
 function:
 <code>findfile('tsconfig.json', '.;')</code>.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_file</span><span class=p>()</span>
@@ -229,7 +229,7 @@ Reading JSON with comments
 </a>
 </h3>
 <p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
-JSON, <a href=https://vimhelp.org/eval.txt.html#json_decode%28%29 class=border-foreground><code>:h json_decode</code></a>
+JSON, <a href=https://vimhelp.org/eval.txt.html#json_decode%28%29><code>:h json_decode</code></a>
 ,
 which is great, except that <code>tsconfig.json</code> is not strictly JSON, since it
 allows comments. No problem, we can just remove them before we pass it to
@@ -331,7 +331,7 @@ Handling configuration inheritance
 </a>
 </h3>
 <p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
-<a href=https://www.typescriptlang.org/tsconfig#extends class=border-foreground><code>extends</code></a>
+<a href=https://www.typescriptlang.org/tsconfig#extends><code>extends</code></a>
 option, which
 allows you to inherit from other configuration files.</p>
 <p>If a <code>tsconfig.json</code> inherits from another configuration, our algorithm as it
@@ -387,7 +387,7 @@ vim-apathy plugin does for
 JavaScript</a>
 if you want to dive more deep into it.</p>
 </article>
-<div class="rounded border-2 border-divider p-4 my-8">
+<div class="rounded border-2 border-divider p-4 my-8 shadow">
 <p class=text-center>
 Subscribe via
 <a href=https://phelipetls.github.io/posts/index.xml>RSS</a>
