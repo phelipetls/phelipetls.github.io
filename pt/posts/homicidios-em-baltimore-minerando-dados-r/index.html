@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Quando comecei a estudar R, via muito os vídeos do [Roger Peng]. Este vídeo foi um que particularmente me impressionou , em que ele faz uso de regular expressions para manipular e extrair informações de texto.">
-<meta name=deploy-date content="2022-02-22">
+<meta name=deploy-date content="2022-02-23">
 <meta name=publish-date content="2019-04-01">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -32,7 +32,7 @@ Extraindo dados de texto com regex no R | Phelipe Teles
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Navegação principal">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/pt/>
@@ -49,13 +49,13 @@ Projetos
 </svg>
 </button>
 <ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1>
-<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Claro
 </li>
-<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Escuro
 </li>
-<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 Auto
 </li>
 </ul>
@@ -64,6 +64,8 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<div class="border-t-4 border-primary mb-8" style=width:8ch>
+</div>
 <h1 class="text-4xl mb-4">
 Extraindo dados de texto com regex no R
 </h1>
@@ -72,7 +74,7 @@ Extraindo dados de texto com regex no R
 1 de Abril
 </time>
 <br class="inline sm:hidden">
-<span class="hidden sm:inline">
+<span class="hidden sm:inline text-heading">
 &nbsp;·&nbsp;
 </span>
 <time class=italic datetime=2021-04-24>
@@ -80,10 +82,8 @@ Editado em 24 de Agosto
 </time>
 </div>
 <div>
-<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-</span>
-<a href=/pt/tags/tidyverse/ class=no-underline>tidyverse</a><span class=last:hidden>,</span>
-<a href=/pt/tags/regex/ class=no-underline>regex</a><span class=last:hidden>,</span>
+<a href=/pt/tags/tidyverse/ class="no-underline rounded-full border-2 px-2">tidyverse</a>
+<a href=/pt/tags/regex/ class="no-underline rounded-full border-2 px-2">regex</a>
 </div>
 <hr class=my-8>
 <p>Quando comecei a estudar R, via muito os vídeos do [Roger Peng].
@@ -111,9 +111,11 @@ que pudermos.</p>
 <p>Há algum padrão na forma do registro, mas nem sempre é respeitado. Por exemplo,
 a coordenada geográfica sempre vêm primeiro; a causa da morte depois de “Cause:
 ”; a raça, o sexo e a idade vêm todas tipo “black male, 17 years old”.</p>
-<h2 class="text-primary group mb-8 mt-16" id=expressões-regulares-regex>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=expressões-regulares-regex>
 Expressões regulares (regex)
-<a class="border-0 hidden text-highlight group-hover:inline" href=#express%c3%b5es-regulares-regex>#</a>
+<a class="border-0 text-primary" href=#express%c3%b5es-regulares-regex>
+#
+</a>
 </h2>
 <p>O melhor modo de proceder é com Expressões Regulares, ou regex, que é, digamos,
 uma “linguagem” para encontrar padrões em strings, para daí extrair, substituir,
@@ -182,16 +184,20 @@ condição lógica etc.</p>
 </tr>
 </tbody>
 </table>
-<h2 class="text-primary group mb-8 mt-16" id=extraindo-as-variáveis-com-stringr>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=extraindo-as-variáveis-com-stringr>
 Extraindo as variáveis com stringr
-<a class="border-0 hidden text-highlight group-hover:inline" href=#extraindo-as-vari%c3%a1veis-com-stringr>#</a>
+<a class="border-0 text-primary" href=#extraindo-as-vari%c3%a1veis-com-stringr>
+#
+</a>
 </h2>
 <p>Para extrairmos os dados do texto, vamos usar o pacote stringr do tidyverse,
 mais especificamente a função <code>stringr::str_match</code>, que extrai de uma string o
 padrão e seus grupos.</p>
-<h2 class="text-primary group mb-8 mt-16" id=causa-da-morte>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=causa-da-morte>
 Causa da morte
-<a class="border-0 hidden text-highlight group-hover:inline" href=#causa-da-morte>#</a>
+<a class="border-0 text-primary" href=#causa-da-morte>
+#
+</a>
 </h2>
 <p>Ok, vamos começar extraindo a causa da morte. As primeiras linhas indicam que
 ela é registrada deste modo: “Cause: <em>descrição</em>”, sendo a descrição uma string
@@ -216,9 +222,11 @@ da linha com a função <code>stringr::str_match</code>.</p>
 ## [5,] &quot;Cause: blunt force&quot;  &quot;blunt force&quot;
 ## [6,] &quot;Cause: shooting&quot;     &quot;shooting&quot;
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=latitude-e-longitude>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=latitude-e-longitude>
 Latitude e Longitude
-<a class="border-0 hidden text-highlight group-hover:inline" href=#latitude-e-longitude>#</a>
+<a class="border-0 text-primary" href=#latitude-e-longitude>
+#
+</a>
 </h2>
 <p>Agora, a latitude e longitude. As strings que as representam são formadas por
 números <code>\d</code>, sinais de menos, <code>-</code> e pontos <code>.</code>. Para indicar que queremos um
@@ -238,9 +246,11 @@ colchetes, o <code>.</code> não é um metacharacter, mas um ponto comum mesmo.<
 ## [5,] &quot;39.238928, -76.602718&quot; &quot;39.238928&quot; &quot;-76.602718&quot;
 ## [6,] &quot;39.352676, -76.607979&quot; &quot;39.352676&quot; &quot;-76.607979&quot;
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=raça>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=raça>
 Raça
-<a class="border-0 hidden text-highlight group-hover:inline" href=#ra%c3%a7a>#</a>
+<a class="border-0 text-primary" href=#ra%c3%a7a>
+#
+</a>
 </h2>
 <p>Outra coisa em que estamos interessados é na raça da pessoa. Esse caso, no
 entanto, é mais irregular.</p>
@@ -274,9 +284,11 @@ Daí que:</p>
 <p>Veja que, inseri um grupo a mais para indicar que é opcional todo o grupo “fe”
 em sexo, ele pode ou não ocorrer. Daí que o uso de grupos pode não ser somente
 para extrair.</p>
-<h2 class="text-primary group mb-8 mt-16" id=gênero>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=gênero>
 Gênero
-<a class="border-0 hidden text-highlight group-hover:inline" href=#g%c3%aanero>#</a>
+<a class="border-0 text-primary" href=#g%c3%aanero>
+#
+</a>
 </h2>
 <p>Esse caso é muito similar ao anterior:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>genero</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
@@ -302,9 +314,11 @@ Gênero
 ## [1249,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 ## [1250,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=idade>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=idade>
 Idade
-<a class="border-0 hidden text-highlight group-hover:inline" href=#idade>#</a>
+<a class="border-0 text-primary" href=#idade>
+#
+</a>
 </h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>idade</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
   <span class=n>homicides</span><span class=p>,</span>
@@ -329,9 +343,11 @@ Idade
 ## [1249,] &quot;Age: 62&quot; NA   &quot;62&quot;
 ## [1250,] &quot;Age: 65&quot; NA   &quot;65&quot;
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=data>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=data>
 Data
-<a class="border-0 hidden text-highlight group-hover:inline" href=#data>#</a>
+<a class="border-0 text-primary" href=#data>
+#
+</a>
 </h2>
 <p>Pelas primeiras linhas, vemos que a data normalmente vem depois de “Found on”.</p>
 <p>Precisamos também uma regex para capturar a data. Ela deve conter:</p>
@@ -357,9 +373,11 @@ opcional a mais <code>?</code>.</p>
 ## [5,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 ## [6,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=endereço>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=endereço>
 Endereço
-<a class="border-0 hidden text-highlight group-hover:inline" href=#endere%c3%a7o>#</a>
+<a class="border-0 text-primary" href=#endere%c3%a7o>
+#
+</a>
 </h2>
 <p>Também pode ser interessante termos disponível o endereço de cada morte:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>endereco</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
@@ -376,9 +394,11 @@ Endereço
 ## [5,] &quot;&gt;500 Maude Ave.&lt;br /&gt;&quot;       &quot;500 Maude Ave.&quot;
 ## [6,] &quot;&gt;5200 Ready Ave.&lt;br /&gt;&quot;      &quot;5200 Ready Ave.&quot;
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=agregando-tudo-em-um-dataframe>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=agregando-tudo-em-um-dataframe>
 Agregando tudo em um data.frame
-<a class="border-0 hidden text-highlight group-hover:inline" href=#agregando-tudo-em-um-dataframe>#</a>
+<a class="border-0 text-primary" href=#agregando-tudo-em-um-dataframe>
+#
+</a>
 </h2>
 <p>Agora precisamos juntar tudo num data.frame. Vamos pegar só as colunas dos
 grupos que nos interessam.</p>
@@ -443,18 +463,18 @@ data precisa estar no formato Date) etc:</p>
 </article>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
-<div class="flex items-center gap-2 group">
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+<div class="flex items-center gap-2">
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/pt/posts/spread-bancario-brasileiro-r/ title="Post anterior">
 Spread bancário brasileiro: limpeza e visualização de dados
 </a>
 </div>
-<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2">
 <a class=border-0 href=/pt/posts/visualizacao-dados-homicidios-baltimore/ title="Próximo post">
 Homicídios em Baltimore: visualizações com ggplot2 e gganimate
 </a>
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 </div>
 </div>
 </nav>

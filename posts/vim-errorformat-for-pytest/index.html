@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on Stack Overflow  I really like Vim&rsquo;s :h errorformat feature, but only when I manage to get it right.">
-<meta name=deploy-date content="2022-02-22">
+<meta name=deploy-date content="2022-02-23">
 <meta name=publish-date content="2020-10-07">
 <meta name=last-modified-date content="2022-02-12">
 <meta name=author content>
@@ -32,7 +32,7 @@ A Vim errorformat for pytest | Phelipe Teles
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
@@ -51,13 +51,13 @@ Resumé
 </svg>
 </button>
 <ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 Auto
 </li>
 </ul>
@@ -66,6 +66,8 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<div class="border-t-4 border-primary mb-8" style=width:8ch>
+</div>
 <h1 class="text-4xl mb-4">
 A Vim errorformat for pytest
 </h1>
@@ -74,7 +76,7 @@ A Vim errorformat for pytest
 October 07, 2020
 </time>
 <br class="inline sm:hidden">
-<span class="hidden sm:inline">
+<span class="hidden sm:inline text-heading">
 &nbsp;·&nbsp;
 </span>
 <time class=italic datetime=2022-02-12>
@@ -82,10 +84,8 @@ Last modified at February 12, 2022
 </time>
 </div>
 <div>
-<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-</span>
-<a href=/tags/python/ class=no-underline>python</a><span class=last:hidden>,</span>
-<a href=/tags/vim/ class=no-underline>vim</a><span class=last:hidden>,</span>
+<a href=/tags/python/ class="no-underline rounded-full border-2 px-2">python</a>
+<a href=/tags/vim/ class="no-underline rounded-full border-2 px-2">vim</a>
 </div>
 <hr class=my-8>
 <blockquote>
@@ -148,9 +148,11 @@ E     ?               +++++
 ============================== 3 failed in 0.03s ===============================
 </code></pre>
 <p>Now, for the difficult part.</p>
-<h2 class="text-primary group mb-8 mt-16" id=writing-an-errorformat>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=writing-an-errorformat>
 Writing an errorformat
-<a class="border-0 hidden text-highlight group-hover:inline" href=#writing-an-errorformat>#</a>
+<a class="border-0 text-primary" href=#writing-an-errorformat>
+#
+</a>
 </h2>
 <p>To make Vim understand these lines so that we can jump to each error, we must
 give patterns. It will then go through every line testing against those
@@ -167,9 +169,11 @@ multiple lines.</p>
 <p>I found out that <code>pytest</code> gives inconsistent patterns depending on the error
 (test failure, missing fixture and syntax error), so I had to handle them
 separately.</p>
-<h2 class="text-primary group mb-8 mt-16" id=handling-test-failures>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=handling-test-failures>
 Handling test failures
-<a class="border-0 hidden text-highlight group-hover:inline" href=#handling-test-failures>#</a>
+<a class="border-0 text-primary" href=#handling-test-failures>
+#
+</a>
 </h2>
 <p>A test failure starts like this:</p>
 <pre><code>______________________________ TEST_NAME ______________________________
@@ -215,9 +219,11 @@ test_set_comparison|22|  AssertionError: assert {'1', '0', '3', '8'} == {'0', '3
 </code></pre>
 <p>So far, it will understand tests failures but not syntax errors, import errors
 and fixture errors, which would fail silently. This is no good.</p>
-<h2 class="text-primary group mb-8 mt-16" id=syntax-errors>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=syntax-errors>
 Syntax errors
-<a class="border-0 hidden text-highlight group-hover:inline" href=#syntax-errors>#</a>
+<a class="border-0 text-primary" href=#syntax-errors>
+#
+</a>
 </h2>
 <p>For syntax errors, we need to parse something like this:</p>
 <pre><code>============================= test session starts ==============================
@@ -264,9 +270,11 @@ its length to later use as column number.</p>
 exactly, which is needed to distinguish it from the others, see <code>:h \@=</code>.</p>
 <p>We also need to include a continuation format (any line starting with E and
 space that didn&rsquo;t match the earlier ones).</p>
-<h2 class="text-primary group mb-8 mt-16" id=import-errors>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=import-errors>
 Import errors
-<a class="border-0 hidden text-highlight group-hover:inline" href=#import-errors>#</a>
+<a class="border-0 text-primary" href=#import-errors>
+#
+</a>
 </h2>
 <p>Import errors are also slightly different:</p>
 <pre><code>============================= test session starts ==============================
@@ -297,9 +305,11 @@ E   ModuleNotFoundError: No module named 'pytes'
 to capture the filename. It ends with an <code>E %m</code> and we already a pattern to
 capture this. But we do need to tell how it continues, and it&rsquo;s fine to just put
 something that would match anything like <code>%C%.%#</code>.</p>
-<h2 class="text-primary group mb-8 mt-16" id=fixture-errors>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=fixture-errors>
 Fixture errors
-<a class="border-0 hidden text-highlight group-hover:inline" href=#fixture-errors>#</a>
+<a class="border-0 text-primary" href=#fixture-errors>
+#
+</a>
 </h2>
 <p>Fixture errors are also in a different format:</p>
 <pre><code>_____________________ ERROR at setup of test_zero_division _____________________
@@ -316,9 +326,11 @@ cord_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
 </code></pre>
 <p>The line <code>%+ZE %.%#not found</code> means that the error will match <code>E .*not found</code>,
 the preceding <code>+</code> will include the whole line as a message.</p>
-<h2 class="text-primary group mb-8 mt-16" id=further-improvements>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=further-improvements>
 Further improvements
-<a class="border-0 hidden text-highlight group-hover:inline" href=#further-improvements>#</a>
+<a class="border-0 text-primary" href=#further-improvements>
+#
+</a>
 </h2>
 <p>Notice how syntax, import and fixture errors are preceded with something like</p>
 <pre><code>______________________________ ERROR.* ______________________________
@@ -329,9 +341,11 @@ it will ignore it first.</p>
 <p>Also, if all tests passed, capture it too:</p>
 <pre><code>  \%+G%[=]%\\+\ %*\\d\ passed%.%#,
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=conclusion>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusion>
 Conclusion
-<a class="border-0 hidden text-highlight group-hover:inline" href=#conclusion>#</a>
+<a class="border-0 text-primary" href=#conclusion>
+#
+</a>
 </h2>
 <p>Check out the whole
 <a href=https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/pytest.vim>compiler plugin</a>
@@ -358,7 +372,7 @@ or e-mail. <i>Unsubscribe at any time</i>.
 <form class="embeddable-buttondown-form flex justify-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
 <div class=min-w-0>
 <label for=bd-email class=hidden>E-mail</label>
-<input class="h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
+<input class="border border-primary h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
 </div>
 <button class="btn btn-primary rounded-r" type=submit value=Subscribe>
 Subscribe
@@ -372,18 +386,18 @@ Powered by Buttondown
 </div>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
-<div class="flex items-center gap-2 group">
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+<div class="flex items-center gap-2">
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/posts/async-make-in-nvim-with-lua/ title="Previous post">
 Asynchronous :make in Neovim with Lua
 </a>
 </div>
-<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2">
 <a class=border-0 href=/posts/deploying-flask-app-on-heroku/ title="Next post">
 Deploying a Flask app on a Heroku free dyno
 </a>
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 </div>
 </div>
 </nav>

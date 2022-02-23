@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator.">
-<meta name=deploy-date content="2022-02-22">
+<meta name=deploy-date content="2022-02-23">
 <meta name=publish-date content="2022-01-25">
 <meta name=last-modified-date content="2022-02-09">
 <meta name=author content>
@@ -32,7 +32,7 @@ Improving the Android Studio experience in dwm | Phelipe Teles
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
@@ -51,13 +51,13 @@ Resumé
 </svg>
 </button>
 <ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 Auto
 </li>
 </ul>
@@ -66,6 +66,8 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<div class="border-t-4 border-primary mb-8" style=width:8ch>
+</div>
 <h1 class="text-4xl mb-4">
 Improving the Android Studio experience in dwm
 </h1>
@@ -74,7 +76,7 @@ Improving the Android Studio experience in dwm
 January 25, 2022
 </time>
 <br class="inline sm:hidden">
-<span class="hidden sm:inline">
+<span class="hidden sm:inline text-heading">
 &nbsp;·&nbsp;
 </span>
 <time class=italic datetime=2022-02-09>
@@ -82,12 +84,10 @@ Last modified at February 09, 2022
 </time>
 </div>
 <div>
-<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-</span>
-<a href=/tags/c/ class=no-underline>c</a><span class=last:hidden>,</span>
-<a href=/tags/linux/ class=no-underline>linux</a><span class=last:hidden>,</span>
-<a href=/tags/dwm/ class=no-underline>dwm</a><span class=last:hidden>,</span>
-<a href=/tags/x11/ class=no-underline>x11</a><span class=last:hidden>,</span>
+<a href=/tags/c/ class="no-underline rounded-full border-2 px-2">c</a>
+<a href=/tags/linux/ class="no-underline rounded-full border-2 px-2">linux</a>
+<a href=/tags/dwm/ class="no-underline rounded-full border-2 px-2">dwm</a>
+<a href=/tags/x11/ class="no-underline rounded-full border-2 px-2">x11</a>
 </div>
 <hr class=my-8>
 <p>In this post, I want to share how I started to change <a href=dwm.suckless.org/>dwm</a>
@@ -150,9 +150,11 @@ to its transient windows.</li>
 <li>On floating layout, if I focus on a leader window, I want its transient
 windows to be raised into view as well.</li>
 </ul>
-<h2 class="text-primary group mb-8 mt-16" id=skipping-transient-windows-in-the-taskbar>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=skipping-transient-windows-in-the-taskbar>
 Skipping transient windows in the taskbar
-<a class="border-0 hidden text-highlight group-hover:inline" href=#skipping-transient-windows-in-the-taskbar>#</a>
+<a class="border-0 text-primary" href=#skipping-transient-windows-in-the-taskbar>
+#
+</a>
 </h2>
 <p>The taskbar is drawn by the <code>drawbar</code> function.</p>
 <p>I just need to check if a window is transient and, if so, skip:</p>
@@ -219,9 +221,11 @@ called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;
 in the taskbar, this seemed like a better idea too so <a href=https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc>I implemented it as
 well</a>
 .</p>
-<h2 class="text-primary group mb-8 mt-16" id=skipping-transient-windows-in-monocle-layout-count>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=skipping-transient-windows-in-monocle-layout-count>
 Skipping transient windows in monocle layout count
-<a class="border-0 hidden text-highlight group-hover:inline" href=#skipping-transient-windows-in-monocle-layout-count>#</a>
+<a class="border-0 text-primary" href=#skipping-transient-windows-in-monocle-layout-count>
+#
+</a>
 </h2>
 <p>This is simple, we just need to <em>not</em> increment a counter when the window is
 transient, in the <code>monocle</code> function:</p>
@@ -239,9 +243,11 @@ transient, in the <code>monocle</code> function:</p>
 		<span class=n>snprintf</span><span class=p>(</span><span class=n>m</span><span class=o>-&gt;</span><span class=n>ltsymbol</span><span class=p>,</span> <span class=k>sizeof</span> <span class=n>m</span><span class=o>-&gt;</span><span class=n>ltsymbol</span><span class=p>,</span> <span class=s>&#34;[%d]&#34;</span><span class=p>,</span> <span class=n>n</span><span class=p>);</span>
 	<span class=c1>// ...
 </span><span class=c1></span><span class=p>}</span>
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
 Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
-<a class="border-0 hidden text-highlight group-hover:inline" href=#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>#</a>
+<a class="border-0 text-primary" href=#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
+#
+</a>
 </h2>
 <p>I started by checking which function is bound to these keys in <code>config.h</code>: the
 <code>focusstack</code> function.</p>
@@ -285,9 +291,11 @@ if statements (careful not to mix up the <code>i</code> and <code>c</code> varia
 </span><span class=gd></span><span class=gi>+				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))
 </span><span class=gi></span>					c = i;
 	}
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=applying-nth-tag-to-a-leader-windows-transient-windows>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=applying-nth-tag-to-a-leader-windows-transient-windows>
 Applying nth tag to a leader window&rsquo;s transient windows
-<a class="border-0 hidden text-highlight group-hover:inline" href=#applying-nth-tag-to-a-leader-windows-transient-windows>#</a>
+<a class="border-0 text-primary" href=#applying-nth-tag-to-a-leader-windows-transient-windows>
+#
+</a>
 </h2>
 <p>To achieve this, I also started by checking which function is bound to
 <kbd>Mod</kbd> + <kbd>Shift</kbd> + <kbd>n</kbd> in <code>config.h</code>, which is the
@@ -315,9 +323,11 @@ leader is the selected client:</p>
 		<span class=n>arrange</span><span class=p>(</span><span class=n>selmon</span><span class=p>);</span>
 	<span class=p>}</span>
 <span class=p>}</span>
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=raising-all-transient-windows-when-the-leader-window-gets-focused>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=raising-all-transient-windows-when-the-leader-window-gets-focused>
 Raising all transient windows when the leader window gets focused
-<a class="border-0 hidden text-highlight group-hover:inline" href=#raising-all-transient-windows-when-the-leader-window-gets-focused>#</a>
+<a class="border-0 text-primary" href=#raising-all-transient-windows-when-the-leader-window-gets-focused>
+#
+</a>
 </h2>
 <p>Since the transient windows do not appear in the taskbar and we also ignore
 them in the <code>focusstack</code> function, there is no way to focus on them if they&rsquo;re
@@ -392,8 +402,8 @@ the <code>unfocus</code> function to fix this:</p>
 		<span class=n>XDeleteProperty</span><span class=p>(</span><span class=n>dpy</span><span class=p>,</span> <span class=n>root</span><span class=p>,</span> <span class=n>netatom</span><span class=p>[</span><span class=n>NetActiveWindow</span><span class=p>]);</span>
 	<span class=p>}</span>
 <span class=p>}</span>
-</code></pre></div><section data-warn class="flex gap-4 my-8 px-8 py-4 rounded bg-warn-background text-warn border-2 border-warn-border">
-<div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><title>Warn</title><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+</code></pre></div><section data-warn class="flex my-8 gap-4 p-4 bg-divider border-l-2 border-warn">
+<div class=text-warn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><title>Warn</title><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
 </div>
 <div>
 This is pretty cutting-edge and coming from a person with
@@ -401,9 +411,11 @@ no expertise in C, so it might be broken in several ways. I&rsquo;m just messing
 around.
 </div>
 </section>
-<h2 class="text-primary group mb-8 mt-16" id=final-result>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=final-result>
 Final result
-<a class="border-0 hidden text-highlight group-hover:inline" href=#final-result>#</a>
+<a class="border-0 text-primary" href=#final-result>
+#
+</a>
 </h2>
 <p>Here&rsquo;s a demonstration of the final result:</p>
 <video controls width=100%>
@@ -419,7 +431,7 @@ or e-mail. <i>Unsubscribe at any time</i>.
 <form class="embeddable-buttondown-form flex justify-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
 <div class=min-w-0>
 <label for=bd-email class=hidden>E-mail</label>
-<input class="h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
+<input class="border border-primary h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
 </div>
 <button class="btn btn-primary rounded-r" type=submit value=Subscribe>
 Subscribe
@@ -433,18 +445,18 @@ Powered by Buttondown
 </div>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
-<div class="flex items-center gap-2 group">
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+<div class="flex items-center gap-2">
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/posts/making-vim-understand-typescript-path-mapping/ title="Previous post">
 Making Vim understand TypeScript path mapping
 </a>
 </div>
-<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2">
 <a class=border-0 href=/posts/nodejs-one-liner-to-read-json-files/ title="Next post">
 Node.js one-liner to read JSON files
 </a>
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 </div>
 </div>
 </nav>

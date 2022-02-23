@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial.">
-<meta name=deploy-date content="2022-02-22">
+<meta name=deploy-date content="2022-02-23">
 <meta name=publish-date content="2019-03-17">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -36,7 +36,7 @@ Método de Newton | Phelipe Teles
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Navegação principal">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/pt/>
@@ -53,13 +53,13 @@ Projetos
 </svg>
 </button>
 <ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1>
-<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sol</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Claro
 </li>
-<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Lua</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Escuro
 </li>
-<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 Auto
 </li>
 </ul>
@@ -68,6 +68,8 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<div class="border-t-4 border-primary mb-8" style=width:8ch>
+</div>
 <h1 class="text-4xl mb-4">
 Método de Newton
 </h1>
@@ -76,7 +78,7 @@ Método de Newton
 17 de Março
 </time>
 <br class="inline sm:hidden">
-<span class="hidden sm:inline">
+<span class="hidden sm:inline text-heading">
 &nbsp;·&nbsp;
 </span>
 <time class=italic datetime=2021-04-24>
@@ -84,11 +86,9 @@ Editado em 24 de Agosto
 </time>
 </div>
 <div>
-<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-</span>
-<a href=/pt/tags/matplotlib/ class=no-underline>matplotlib</a><span class=last:hidden>,</span>
-<a href=/pt/tags/numpy/ class=no-underline>numpy</a><span class=last:hidden>,</span>
-<a href=/pt/tags/sympy/ class=no-underline>sympy</a><span class=last:hidden>,</span>
+<a href=/pt/tags/matplotlib/ class="no-underline rounded-full border-2 px-2">matplotlib</a>
+<a href=/pt/tags/numpy/ class="no-underline rounded-full border-2 px-2">numpy</a>
+<a href=/pt/tags/sympy/ class="no-underline rounded-full border-2 px-2">sympy</a>
 </div>
 <hr class=my-8>
 <p>O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de
@@ -134,9 +134,11 @@ parábola, que não é linear, é claro.</p>
 novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
 solução.</p>
-<h2 class="text-primary group mb-8 mt-16" id=aproximação-linear>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=aproximação-linear>
 Aproximação Linear
-<a class="border-0 hidden text-highlight group-hover:inline" href=#aproxima%c3%a7%c3%a3o-linear>#</a>
+<a class="border-0 text-primary" href=#aproxima%c3%a7%c3%a3o-linear>
+#
+</a>
 </h2>
 <p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
 exemplo, retomando a função quadrática. A derivada dela é obtida pela regra da
@@ -232,9 +234,11 @@ e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
 <p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
 inevitavelmente teria lidar com cálculo diferencial. Para isso, existe uma
 biblioteca que pode nos ajudar.</p>
-<h2 class="text-primary group mb-8 mt-16" id=introduzindo-sympy>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=introduzindo-sympy>
 Introduzindo SymPy
-<a class="border-0 hidden text-highlight group-hover:inline" href=#introduzindo-sympy>#</a>
+<a class="border-0 text-primary" href=#introduzindo-sympy>
+#
+</a>
 </h2>
 <p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
 contamos com funções para calcular limites, derivadas, integrais, expandir
@@ -259,9 +263,11 @@ polinômicos, simplificar expressões etc.</p>
 praticamente só aceita funções do próprio SymPy. Para a utilizarmos como uma
 função qualquer, devemos usar <code>lambdify()</code>. Para nossos objetivos, essa última e
 a função diff serão suficientes.</p>
-<h2 class="text-primary group mb-8 mt-16" id=um-código-para-o-algoritmo>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=um-código-para-o-algoritmo>
 Um código para o algoritmo
-<a class="border-0 hidden text-highlight group-hover:inline" href=#um-c%c3%b3digo-para-o-algoritmo>#</a>
+<a class="border-0 text-primary" href=#um-c%c3%b3digo-para-o-algoritmo>
+#
+</a>
 </h2>
 <p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p>
 <p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
@@ -354,9 +360,11 @@ nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
 
 -2.0588469658492823
 </code></pre>
-<h2 class="text-primary group mb-8 mt-16" id=limitações-do-método>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=limitações-do-método>
 Limitações do método
-<a class="border-0 hidden text-highlight group-hover:inline" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo>#</a>
+<a class="border-0 text-primary" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo>
+#
+</a>
 </h2>
 <p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
 criou. Por exemplo, imagine que usemos como estimativa um valor próximo de um
@@ -429,9 +437,11 @@ Veja o gráfico.</p>
 <span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
 </code></pre></div><p><img src=./output_26_1.png alt=png class="rounded my-8" style=background-color:#fff>
 </p>
-<h2 class="text-primary group mb-8 mt-16" id=conclusões>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusões>
 Conclusões
-<a class="border-0 hidden text-highlight group-hover:inline" href=#conclus%c3%b5es>#</a>
+<a class="border-0 text-primary" href=#conclus%c3%b5es>
+#
+</a>
 </h2>
 <p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
 bastante simples sem sacrificar o lado da eficiência, mas também vimos que há
@@ -441,18 +451,18 @@ como acabamos de fazer aqui com a ajuda do matplotlib.</p>
 </article>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
-<div class="flex items-center gap-2 group">
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+<div class="flex items-center gap-2">
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/ title="Post anterior">
 Três algoritmos para a sequência de Fibonacci
 </a>
 </div>
-<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2">
 <a class=border-0 href=/pt/posts/spread-bancario-brasileiro-r/ title="Próximo post">
 Spread bancário brasileiro: limpeza e visualização de dados
 </a>
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 </div>
 </div>
 </nav>

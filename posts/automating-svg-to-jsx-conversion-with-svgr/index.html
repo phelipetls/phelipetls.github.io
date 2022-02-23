@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="I found that getting svg files from Figma ready to be used in your React applications can be a bottleneck and prone to error.">
-<meta name=deploy-date content="2022-02-22">
+<meta name=deploy-date content="2022-02-23">
 <meta name=publish-date content="2021-09-08">
 <meta name=last-modified-date content="2021-09-10">
 <meta name=author content>
@@ -32,7 +32,7 @@ Automating svg to jsx conversion with svgr | Phelipe Teles
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
@@ -51,13 +51,13 @@ Resumé
 </svg>
 </button>
 <ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 Auto
 </li>
 </ul>
@@ -66,6 +66,8 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<div class="border-t-4 border-primary mb-8" style=width:8ch>
+</div>
 <h1 class="text-4xl mb-4">
 Automating svg to jsx conversion with svgr
 </h1>
@@ -74,7 +76,7 @@ Automating svg to jsx conversion with svgr
 September 08, 2021
 </time>
 <br class="inline sm:hidden">
-<span class="hidden sm:inline">
+<span class="hidden sm:inline text-heading">
 &nbsp;·&nbsp;
 </span>
 <time class=italic datetime=2021-09-10>
@@ -82,11 +84,9 @@ Last modified at September 10, 2021
 </time>
 </div>
 <div>
-<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-</span>
-<a href=/tags/react/ class=no-underline>react</a><span class=last:hidden>,</span>
-<a href=/tags/javascript/ class=no-underline>javascript</a><span class=last:hidden>,</span>
-<a href=/tags/typescript/ class=no-underline>typescript</a><span class=last:hidden>,</span>
+<a href=/tags/react/ class="no-underline rounded-full border-2 px-2">react</a>
+<a href=/tags/javascript/ class="no-underline rounded-full border-2 px-2">javascript</a>
+<a href=/tags/typescript/ class="no-underline rounded-full border-2 px-2">typescript</a>
 </div>
 <hr class=my-8>
 <p>I found that getting svg files from Figma ready to be used in your React
@@ -177,9 +177,11 @@ opt out of it:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=kr>const</span> <span class=nx>plugins</span> <span class=o>=</span> <span class=p>[</span><span class=s1>&#39;jsx&#39;</span><span class=p>,</span> <span class=s1>&#39;typescript&#39;</span><span class=p>]</span>
 
 <span class=kr>const</span> <span class=nx>typescriptTemplate</span> <span class=o>=</span> <span class=nx>template</span><span class=p>.</span><span class=nx>smart</span><span class=p>({</span> <span class=nx>plugins</span> <span class=p>})</span>
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=jsx>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=jsx>
 Jsx
-<a class="border-0 hidden text-highlight group-hover:inline" href=#jsx>#</a>
+<a class="border-0 text-primary" href=#jsx>
+#
+</a>
 </h2>
 <p>Now, the jsx part. Our goal is to replace the built-in <code>svg</code> element with the
 <code>SvgIcon</code> component. We can do this by creating a new
@@ -204,9 +206,11 @@ but we could I guess).</p>
 element and also spread <code>props</code> into them using
 <a href=https://babeljs.io/docs/en/babel-types#jsxspreadattribute>jsxSpreadAttribute</a>
 .</p>
-<h2 class="text-primary group mb-8 mt-16" id=type-annotation>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=type-annotation>
 Type Annotation
-<a class="border-0 hidden text-highlight group-hover:inline" href=#type-annotation>#</a>
+<a class="border-0 text-primary" href=#type-annotation>
+#
+</a>
 </h2>
 <p>Now, to inject the type annotation into the template is what took me the most part.</p>
 <p>Initially I thought that this would have worked:</p>
@@ -238,9 +242,11 @@ I came up with this (more verbose) solution:</p>
 nodes so the next time I have to do it will be hopefully more easy. I figured
 this out by reading the <a href=https://babeljs.io/docs/en/babel-types>babel-types</a>
 docs.</p>
-<h2 class="text-primary group mb-8 mt-16" id=usage-in-vim>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=usage-in-vim>
 Usage in Vim
-<a class="border-0 hidden text-highlight group-hover:inline" href=#usage-in-vim>#</a>
+<a class="border-0 text-primary" href=#usage-in-vim>
+#
+</a>
 </h2>
 <p>If you&rsquo;re a vimmer, you can convert the current file by using <code>%!npx @svgr/cli --template path/to/template.js</code>, which will pass the entire file to the command
 as standard input and replace its content with the command&rsquo;s standard output.
@@ -255,9 +261,11 @@ project&rsquo;s root folder:</p>
 </span><span class=c1></span><span class=nx>module</span><span class=p>.</span><span class=nx>exports</span> <span class=o>=</span> <span class=p>{</span>
 <span class=nx>template</span><span class=o>:</span> <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;./path/to/template.js&#39;</span><span class=p>)</span>
 <span class=p>}</span>
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=usage-in-vs-code>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=usage-in-vs-code>
 Usage in VS Code
-<a class="border-0 hidden text-highlight group-hover:inline" href=#usage-in-vs-code>#</a>
+<a class="border-0 text-primary" href=#usage-in-vs-code>
+#
+</a>
 </h2>
 <p>Of course, svgr also has a <a href="https://marketplace.visualstudio.com/items?itemName=NathHorrigan.code-svgr">VS Code
 extension</a>
@@ -265,9 +273,11 @@ extension</a>
 But, if you prefer, you could use the <a href="https://marketplace.visualstudio.com/items?itemName=ryu1kn.edit-with-shell">Edit With Shell
 Command</a>
 extension, which allows you to do something similar to Vim&rsquo;s filter.</p>
-<h2 class="text-primary group mb-8 mt-16" id=todos>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=todos>
 TODOs
-<a class="border-0 hidden text-highlight group-hover:inline" href=#todos>#</a>
+<a class="border-0 text-primary" href=#todos>
+#
+</a>
 </h2>
 <p>Here are some improvements I couldn&rsquo;t figure out how to do/don&rsquo;t care so much,
 but it would be nice to have:</p>
@@ -277,9 +287,11 @@ but it would be nice to have:</p>
 <li>Remove semicolons.</li>
 </ul>
 <p>Right now this still requires some manual labor to get 100% right, but it&rsquo;s ok.</p>
-<h2 class="text-primary group mb-8 mt-16" id=conclusion>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusion>
 Conclusion
-<a class="border-0 hidden text-highlight group-hover:inline" href=#conclusion>#</a>
+<a class="border-0 text-primary" href=#conclusion>
+#
+</a>
 </h2>
 <p>Ideally I shouldn&rsquo;t be converting svg files into React components in this ad
 hoc way, but rather use a library with all the icons ready, which unfortunately
@@ -297,7 +309,7 @@ or e-mail. <i>Unsubscribe at any time</i>.
 <form class="embeddable-buttondown-form flex justify-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
 <div class=min-w-0>
 <label for=bd-email class=hidden>E-mail</label>
-<input class="h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
+<input class="border border-primary h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
 </div>
 <button class="btn btn-primary rounded-r" type=submit value=Subscribe>
 Subscribe
@@ -311,18 +323,18 @@ Powered by Buttondown
 </div>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
-<div class="flex items-center gap-2 group">
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+<div class="flex items-center gap-2">
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/posts/extending-vim-with-ripgrep/ title="Previous post">
 Extending Vim with ripgrep
 </a>
 </div>
-<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2">
 <a class=border-0 href=/posts/making-vim-understand-typescript-path-mapping/ title="Next post">
 Making Vim understand TypeScript path mapping
 </a>
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"/></svg>
 </div>
 </div>
 </nav>

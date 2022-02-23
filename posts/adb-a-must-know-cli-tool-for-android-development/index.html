@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="adb is a CLI that lets you control your Android device from your computer. In this post I want to share its features that made me enjoy more mobile development.">
-<meta name=deploy-date content="2022-02-22">
+<meta name=deploy-date content="2022-02-23">
 <meta name=publish-date content="2022-02-07">
 <meta name=last-modified-date content="2022-02-13">
 <meta name=author content>
@@ -32,7 +32,7 @@ adb: a must-know CLI tool for Android development | Phelipe Teles
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-80 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a class=text-foreground href=https://phelipetls.github.io/>
@@ -51,13 +51,13 @@ Resumé
 </svg>
 </button>
 <ul data-theme-menu id=theme-menu class="absolute bg-background border-2 border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><title>Sun</title><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><title>Moon</title><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li id=theme-option-auto data-focus aria-selected=true data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><title>Monitor</title><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 Auto
 </li>
 </ul>
@@ -66,6 +66,8 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<div class="border-t-4 border-primary mb-8" style=width:8ch>
+</div>
 <h1 class="text-4xl mb-4">
 adb: a must-know CLI tool for Android development
 </h1>
@@ -74,7 +76,7 @@ adb: a must-know CLI tool for Android development
 February 07, 2022
 </time>
 <br class="inline sm:hidden">
-<span class="hidden sm:inline">
+<span class="hidden sm:inline text-heading">
 &nbsp;·&nbsp;
 </span>
 <time class=italic datetime=2022-02-13>
@@ -82,20 +84,20 @@ Last modified at February 13, 2022
 </time>
 </div>
 <div>
-<span class=mr-1><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-tag" style="display:inline"><title>Tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
-</span>
-<a href=/tags/react-native/ class=no-underline>react native</a><span class=last:hidden>,</span>
-<a href=/tags/android/ class=no-underline>android</a><span class=last:hidden>,</span>
-<a href=/tags/mobile/ class=no-underline>mobile</a><span class=last:hidden>,</span>
+<a href=/tags/react-native/ class="no-underline rounded-full border-2 px-2">react native</a>
+<a href=/tags/android/ class="no-underline rounded-full border-2 px-2">android</a>
+<a href=/tags/mobile/ class="no-underline rounded-full border-2 px-2">mobile</a>
 </div>
 <hr class=my-8>
 <p><a href=https://developer.android.com/studio/command-line/adb class=border-foreground><code>adb</code></a>
 is a CLI that
 lets you control your Android device from your computer. In this post I want to
 share its features that made me enjoy more mobile development.</p>
-<h2 class="text-primary group mb-8 mt-16" id=initial-setup>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=initial-setup>
 Initial Setup
-<a class="border-0 hidden text-highlight group-hover:inline" href=#initial-setup>#</a>
+<a class="border-0 text-primary" href=#initial-setup>
+#
+</a>
 </h2>
 <p>First, you&rsquo;ll need to connect your device to your computer, either <a href=https://developer.android.com/studio/command-line/adb#Enabling>through
 USB</a>
@@ -114,9 +116,11 @@ something like this:</p>
 List of devices attached
 emulator-5554	device
 0035714150	device
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=record-screen-with-adb-shell-screenrecord>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=record-screen-with-adb-shell-screenrecord>
 Record screen with <code>adb shell screenrecord</code>
-<a class="border-0 hidden text-highlight group-hover:inline" href=#record-screen-with-adb-shell-screenrecord>#</a>
+<a class="border-0 text-primary" href=#record-screen-with-adb-shell-screenrecord>
+#
+</a>
 </h2>
 <p>To record your screen, it&rsquo;s as simple as running <code>adb shell screenrecord /sdcard/video.mp4</code>. After you&rsquo;re done, press <kbd>Ctrl</kbd> + <kbd>C</kbd>.
 Run <code>adb pull /sdcard/video.mp4 ~/Videos/video.mp4</code> to get the video into your
@@ -127,14 +131,18 @@ options</a>
 my favorite ones being to limit the video size with <code>--size</code> and recording time
 with <code>--time-limit</code>.</p>
 <p>For example, I typically run <code>adb shell screenrecord --size 320x568 --time-limit=120 /sdcard/video.mp4</code>.</p>
-<h2 class="text-primary group mb-8 mt-16" id=capture-screen-with-adb-shell-screencap>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=capture-screen-with-adb-shell-screencap>
 Capture screen with <code>adb shell screencap</code>
-<a class="border-0 hidden text-highlight group-hover:inline" href=#capture-screen-with-adb-shell-screencap>#</a>
+<a class="border-0 text-primary" href=#capture-screen-with-adb-shell-screencap>
+#
+</a>
 </h2>
 <p>This is straightforward, it just captures the screen with <code>adb shell screencap /sdcard/img.png</code>, then getit locally with <code>adb pull /sdcard/img.png ~/Images/img.png</code>.</p>
-<h2 class="text-primary group mb-8 mt-16" id=debugging-with-adb-logcat>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=debugging-with-adb-logcat>
 Debugging with <code>adb logcat</code>
-<a class="border-0 hidden text-highlight group-hover:inline" href=#debugging-with-adb-logcat>#</a>
+<a class="border-0 text-primary" href=#debugging-with-adb-logcat>
+#
+</a>
 </h2>
 <p>This has proved useful to me so many times. In the context of React Native
 development, this is usually less useful in debug builds. But in release builds
@@ -149,9 +157,11 @@ if I wanted to see only logs tagged with <code>Sentry</code>, <code>ReactNative<
 </code></pre></div><p>The official Google
 <a href=https://developer.android.com/studio/command-line/logcat#filteringOutput>documentation</a>
 explains nicely how this works.</p>
-<h2 class="text-primary group mb-8 mt-16" id=networking-with-adb-reverse>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=networking-with-adb-reverse>
 Networking with <code>adb reverse</code>
-<a class="border-0 hidden text-highlight group-hover:inline" href=#networking-with-adb-reverse>#</a>
+<a class="border-0 text-primary" href=#networking-with-adb-reverse>
+#
+</a>
 </h2>
 <p>Imagine you want to see your <a href=https://storybook.js.org/>Storybook</a>
 files in a
@@ -167,9 +177,11 @@ device can&rsquo;t find the JS bundle or is stuck loading it we usually need to 
 it again.</p>
 <p>There&rsquo;s also <code>adb forward</code>, in case you need to make a web server running on
 your phone also available in your computer.</p>
-<h2 class="text-primary group mb-8 mt-16" id=startkill-apps>
+<h2 class="mb-8 mt-16 flex items-center gap-2" id=startkill-apps>
 Start/kill apps
-<a class="border-0 hidden text-highlight group-hover:inline" href=#startkill-apps>#</a>
+<a class="border-0 text-primary" href=#startkill-apps>
+#
+</a>
 </h2>
 <p>You can start and kill an app with the <code>adb shell am</code>, in which <code>am</code> stands for
 <a href=https://developer.android.com/studio/command-line/adb#am><em>Activity Manager</em></a>
@@ -180,9 +192,11 @@ Start/kill apps
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>adb shell am force-stop com.company.app
 </code></pre></div><p>You can also open a URL, this is specially useful to test deep links:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>adb shell am start -a android.intent.action.VIEW -d company://Screen
-</code></pre></div><h2 class="text-primary group mb-8 mt-16" id=installuninstall-apps>
+</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=installuninstall-apps>
 Install/uninstall apps
-<a class="border-0 hidden text-highlight group-hover:inline" href=#installuninstall-apps>#</a>
+<a class="border-0 text-primary" href=#installuninstall-apps>
+#
+</a>
 </h2>
 <p>You can install an <code>.apk</code> file with <code>adb install app.apk</code>.</p>
 <p>And uninstall it with <code>adb uninstall com.company.app</code>.</p>
@@ -202,7 +216,7 @@ or e-mail. <i>Unsubscribe at any time</i>.
 <form class="embeddable-buttondown-form flex justify-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
 <div class=min-w-0>
 <label for=bd-email class=hidden>E-mail</label>
-<input class="h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
+<input class="border border-primary h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
 </div>
 <button class="btn btn-primary rounded-r" type=submit value=Subscribe>
 Subscribe
@@ -216,14 +230,14 @@ Powered by Buttondown
 </div>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
-<div class="flex items-center gap-2 group">
-<div class="flex items-center group-hover:text-highlight"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
+<div class="flex items-center gap-2">
+<div class="flex items-center text-primary"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg>
 </div>
 <a class=border-0 href=/posts/nodejs-one-liner-to-read-json-files/ title="Previous post">
 Node.js one-liner to read JSON files
 </a>
 </div>
-<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2 group">
+<div class="self-end text-right mt-2 sm:mt-0 h-full flex justify-end gap-2">
 </div>
 </nav>
 </main>
