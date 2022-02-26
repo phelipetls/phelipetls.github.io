@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on Stack Overflow  I really like Vim&rsquo;s :h errorformat feature, but only when I manage to get it right.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2020-10-07">
 <meta name=last-modified-date content="2022-02-12">
 <meta name=author content>
@@ -31,8 +31,8 @@ A Vim errorformat for pytest | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
@@ -66,19 +66,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2020-10-07>
 October 07, 2020
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Last modified:
 <time datetime=2022-02-12>
 February 12, 2022
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 A Vim errorformat for pytest
@@ -148,11 +148,11 @@ E     ?               +++++
 ============================== 3 failed in 0.03s ===============================
 </code></pre>
 <p>Now, for the difficult part.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=writing-an-errorformat>
-Writing an errorformat
-<a class="border-0 text-primary" href=#writing-an-errorformat>
+<h2 class="mb-8 mt-16" id=writing-an-errorformat>
+<a class="border-0 text-primary inline-block" href=#writing-an-errorformat>
 #
 </a>
+Writing an errorformat
 </h2>
 <p>To make Vim understand these lines so that we can jump to each error, we must
 give patterns. It will then go through every line testing against those
@@ -169,11 +169,11 @@ multiple lines.</p>
 <p>I found out that <code>pytest</code> gives inconsistent patterns depending on the error
 (test failure, missing fixture and syntax error), so I had to handle them
 separately.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=handling-test-failures>
-Handling test failures
-<a class="border-0 text-primary" href=#handling-test-failures>
+<h2 class="mb-8 mt-16" id=handling-test-failures>
+<a class="border-0 text-primary inline-block" href=#handling-test-failures>
 #
 </a>
+Handling test failures
 </h2>
 <p>A test failure starts like this:</p>
 <pre><code>______________________________ TEST_NAME ______________________________
@@ -219,11 +219,11 @@ test_set_comparison|22|  AssertionError: assert {'1', '0', '3', '8'} == {'0', '3
 </code></pre>
 <p>So far, it will understand tests failures but not syntax errors, import errors
 and fixture errors, which would fail silently. This is no good.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=syntax-errors>
-Syntax errors
-<a class="border-0 text-primary" href=#syntax-errors>
+<h2 class="mb-8 mt-16" id=syntax-errors>
+<a class="border-0 text-primary inline-block" href=#syntax-errors>
 #
 </a>
+Syntax errors
 </h2>
 <p>For syntax errors, we need to parse something like this:</p>
 <pre><code>============================= test session starts ==============================
@@ -270,11 +270,11 @@ its length to later use as column number.</p>
 exactly, which is needed to distinguish it from the others, see <code>:h \@=</code>.</p>
 <p>We also need to include a continuation format (any line starting with E and
 space that didn&rsquo;t match the earlier ones).</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=import-errors>
-Import errors
-<a class="border-0 text-primary" href=#import-errors>
+<h2 class="mb-8 mt-16" id=import-errors>
+<a class="border-0 text-primary inline-block" href=#import-errors>
 #
 </a>
+Import errors
 </h2>
 <p>Import errors are also slightly different:</p>
 <pre><code>============================= test session starts ==============================
@@ -305,11 +305,11 @@ E   ModuleNotFoundError: No module named 'pytes'
 to capture the filename. It ends with an <code>E %m</code> and we already a pattern to
 capture this. But we do need to tell how it continues, and it&rsquo;s fine to just put
 something that would match anything like <code>%C%.%#</code>.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=fixture-errors>
-Fixture errors
-<a class="border-0 text-primary" href=#fixture-errors>
+<h2 class="mb-8 mt-16" id=fixture-errors>
+<a class="border-0 text-primary inline-block" href=#fixture-errors>
 #
 </a>
+Fixture errors
 </h2>
 <p>Fixture errors are also in a different format:</p>
 <pre><code>_____________________ ERROR at setup of test_zero_division _____________________
@@ -326,11 +326,11 @@ cord_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
 </code></pre>
 <p>The line <code>%+ZE %.%#not found</code> means that the error will match <code>E .*not found</code>,
 the preceding <code>+</code> will include the whole line as a message.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=further-improvements>
-Further improvements
-<a class="border-0 text-primary" href=#further-improvements>
+<h2 class="mb-8 mt-16" id=further-improvements>
+<a class="border-0 text-primary inline-block" href=#further-improvements>
 #
 </a>
+Further improvements
 </h2>
 <p>Notice how syntax, import and fixture errors are preceded with something like</p>
 <pre><code>______________________________ ERROR.* ______________________________
@@ -341,11 +341,11 @@ it will ignore it first.</p>
 <p>Also, if all tests passed, capture it too:</p>
 <pre><code>  \%+G%[=]%\\+\ %*\\d\ passed%.%#,
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusion>
-Conclusion
-<a class="border-0 text-primary" href=#conclusion>
+<h2 class="mb-8 mt-16" id=conclusion>
+<a class="border-0 text-primary inline-block" href=#conclusion>
 #
 </a>
+Conclusion
 </h2>
 <p>Check out the whole
 <a href=https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/pytest.vim>compiler plugin</a>

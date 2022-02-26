@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2019-03-17">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -35,8 +35,8 @@ Método de Newton | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Navegação principal">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
@@ -68,19 +68,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2019-03-17>
 17 de Março
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Editado em:
 <time datetime=2021-04-24>
 24 de Agosto
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Método de Newton
@@ -134,11 +134,11 @@ parábola, que não é linear, é claro.</p>
 novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
 solução.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=aproximação-linear>
-Aproximação Linear
-<a class="border-0 text-primary" href=#aproxima%c3%a7%c3%a3o-linear>
+<h2 class="mb-8 mt-16" id=aproximação-linear>
+<a class="border-0 text-primary inline-block" href=#aproxima%c3%a7%c3%a3o-linear>
 #
 </a>
+Aproximação Linear
 </h2>
 <p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
 exemplo, retomando a função quadrática. A derivada dela é obtida pela regra da
@@ -234,11 +234,11 @@ e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
 <p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
 inevitavelmente teria lidar com cálculo diferencial. Para isso, existe uma
 biblioteca que pode nos ajudar.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=introduzindo-sympy>
-Introduzindo SymPy
-<a class="border-0 text-primary" href=#introduzindo-sympy>
+<h2 class="mb-8 mt-16" id=introduzindo-sympy>
+<a class="border-0 text-primary inline-block" href=#introduzindo-sympy>
 #
 </a>
+Introduzindo SymPy
 </h2>
 <p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
 contamos com funções para calcular limites, derivadas, integrais, expandir
@@ -263,11 +263,11 @@ polinômicos, simplificar expressões etc.</p>
 praticamente só aceita funções do próprio SymPy. Para a utilizarmos como uma
 função qualquer, devemos usar <code>lambdify()</code>. Para nossos objetivos, essa última e
 a função diff serão suficientes.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=um-código-para-o-algoritmo>
-Um código para o algoritmo
-<a class="border-0 text-primary" href=#um-c%c3%b3digo-para-o-algoritmo>
+<h2 class="mb-8 mt-16" id=um-código-para-o-algoritmo>
+<a class="border-0 text-primary inline-block" href=#um-c%c3%b3digo-para-o-algoritmo>
 #
 </a>
+Um código para o algoritmo
 </h2>
 <p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p>
 <p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
@@ -360,11 +360,11 @@ nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
 
 -2.0588469658492823
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=limitações-do-método>
-Limitações do método
-<a class="border-0 text-primary" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo>
+<h2 class="mb-8 mt-16" id=limitações-do-método>
+<a class="border-0 text-primary inline-block" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo>
 #
 </a>
+Limitações do método
 </h2>
 <p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
 criou. Por exemplo, imagine que usemos como estimativa um valor próximo de um
@@ -437,11 +437,11 @@ Veja o gráfico.</p>
 <span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
 </code></pre></div><p><img src=./output_26_1.png alt=png class="rounded my-8" style=background-color:#fff>
 </p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusões>
-Conclusões
-<a class="border-0 text-primary" href=#conclus%c3%b5es>
+<h2 class="mb-8 mt-16" id=conclusões>
+<a class="border-0 text-primary inline-block" href=#conclus%c3%b5es>
 #
 </a>
+Conclusões
 </h2>
 <p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
 bastante simples sem sacrificar o lado da eficiência, mas também vimos que há

@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Quando comecei a estudar R, via muito os vídeos do [Roger Peng]. Este vídeo foi um que particularmente me impressionou , em que ele faz uso de regular expressions para manipular e extrair informações de texto.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2019-04-01">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -31,8 +31,8 @@ Extraindo dados de texto com regex no R | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Navegação principal">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
@@ -64,19 +64,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2019-04-01>
 1 de Abril
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Editado em:
 <time datetime=2021-04-24>
 24 de Agosto
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Extraindo dados de texto com regex no R
@@ -111,11 +111,11 @@ que pudermos.</p>
 <p>Há algum padrão na forma do registro, mas nem sempre é respeitado. Por exemplo,
 a coordenada geográfica sempre vêm primeiro; a causa da morte depois de “Cause:
 ”; a raça, o sexo e a idade vêm todas tipo “black male, 17 years old”.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=expressões-regulares-regex>
-Expressões regulares (regex)
-<a class="border-0 text-primary" href=#express%c3%b5es-regulares-regex>
+<h2 class="mb-8 mt-16" id=expressões-regulares-regex>
+<a class="border-0 text-primary inline-block" href=#express%c3%b5es-regulares-regex>
 #
 </a>
+Expressões regulares (regex)
 </h2>
 <p>O melhor modo de proceder é com Expressões Regulares, ou regex, que é, digamos,
 uma “linguagem” para encontrar padrões em strings, para daí extrair, substituir,
@@ -184,20 +184,20 @@ condição lógica etc.</p>
 </tr>
 </tbody>
 </table>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=extraindo-as-variáveis-com-stringr>
-Extraindo as variáveis com stringr
-<a class="border-0 text-primary" href=#extraindo-as-vari%c3%a1veis-com-stringr>
+<h2 class="mb-8 mt-16" id=extraindo-as-variáveis-com-stringr>
+<a class="border-0 text-primary inline-block" href=#extraindo-as-vari%c3%a1veis-com-stringr>
 #
 </a>
+Extraindo as variáveis com stringr
 </h2>
 <p>Para extrairmos os dados do texto, vamos usar o pacote stringr do tidyverse,
 mais especificamente a função <code>stringr::str_match</code>, que extrai de uma string o
 padrão e seus grupos.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=causa-da-morte>
-Causa da morte
-<a class="border-0 text-primary" href=#causa-da-morte>
+<h2 class="mb-8 mt-16" id=causa-da-morte>
+<a class="border-0 text-primary inline-block" href=#causa-da-morte>
 #
 </a>
+Causa da morte
 </h2>
 <p>Ok, vamos começar extraindo a causa da morte. As primeiras linhas indicam que
 ela é registrada deste modo: “Cause: <em>descrição</em>”, sendo a descrição uma string
@@ -222,11 +222,11 @@ da linha com a função <code>stringr::str_match</code>.</p>
 ## [5,] &quot;Cause: blunt force&quot;  &quot;blunt force&quot;
 ## [6,] &quot;Cause: shooting&quot;     &quot;shooting&quot;
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=latitude-e-longitude>
-Latitude e Longitude
-<a class="border-0 text-primary" href=#latitude-e-longitude>
+<h2 class="mb-8 mt-16" id=latitude-e-longitude>
+<a class="border-0 text-primary inline-block" href=#latitude-e-longitude>
 #
 </a>
+Latitude e Longitude
 </h2>
 <p>Agora, a latitude e longitude. As strings que as representam são formadas por
 números <code>\d</code>, sinais de menos, <code>-</code> e pontos <code>.</code>. Para indicar que queremos um
@@ -246,11 +246,11 @@ colchetes, o <code>.</code> não é um metacharacter, mas um ponto comum mesmo.<
 ## [5,] &quot;39.238928, -76.602718&quot; &quot;39.238928&quot; &quot;-76.602718&quot;
 ## [6,] &quot;39.352676, -76.607979&quot; &quot;39.352676&quot; &quot;-76.607979&quot;
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=raça>
-Raça
-<a class="border-0 text-primary" href=#ra%c3%a7a>
+<h2 class="mb-8 mt-16" id=raça>
+<a class="border-0 text-primary inline-block" href=#ra%c3%a7a>
 #
 </a>
+Raça
 </h2>
 <p>Outra coisa em que estamos interessados é na raça da pessoa. Esse caso, no
 entanto, é mais irregular.</p>
@@ -284,11 +284,11 @@ Daí que:</p>
 <p>Veja que, inseri um grupo a mais para indicar que é opcional todo o grupo “fe”
 em sexo, ele pode ou não ocorrer. Daí que o uso de grupos pode não ser somente
 para extrair.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=gênero>
-Gênero
-<a class="border-0 text-primary" href=#g%c3%aanero>
+<h2 class="mb-8 mt-16" id=gênero>
+<a class="border-0 text-primary inline-block" href=#g%c3%aanero>
 #
 </a>
+Gênero
 </h2>
 <p>Esse caso é muito similar ao anterior:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>genero</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
@@ -314,11 +314,11 @@ Gênero
 ## [1249,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 ## [1250,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=idade>
-Idade
-<a class="border-0 text-primary" href=#idade>
+<h2 class="mb-8 mt-16" id=idade>
+<a class="border-0 text-primary inline-block" href=#idade>
 #
 </a>
+Idade
 </h2>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>idade</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
   <span class=n>homicides</span><span class=p>,</span>
@@ -343,11 +343,11 @@ Idade
 ## [1249,] &quot;Age: 62&quot; NA   &quot;62&quot;
 ## [1250,] &quot;Age: 65&quot; NA   &quot;65&quot;
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=data>
-Data
-<a class="border-0 text-primary" href=#data>
+<h2 class="mb-8 mt-16" id=data>
+<a class="border-0 text-primary inline-block" href=#data>
 #
 </a>
+Data
 </h2>
 <p>Pelas primeiras linhas, vemos que a data normalmente vem depois de “Found on”.</p>
 <p>Precisamos também uma regex para capturar a data. Ela deve conter:</p>
@@ -373,11 +373,11 @@ opcional a mais <code>?</code>.</p>
 ## [5,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 ## [6,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=endereço>
-Endereço
-<a class="border-0 text-primary" href=#endere%c3%a7o>
+<h2 class="mb-8 mt-16" id=endereço>
+<a class="border-0 text-primary inline-block" href=#endere%c3%a7o>
 #
 </a>
+Endereço
 </h2>
 <p>Também pode ser interessante termos disponível o endereço de cada morte:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>endereco</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
@@ -394,11 +394,11 @@ Endereço
 ## [5,] &quot;&gt;500 Maude Ave.&lt;br /&gt;&quot;       &quot;500 Maude Ave.&quot;
 ## [6,] &quot;&gt;5200 Ready Ave.&lt;br /&gt;&quot;      &quot;5200 Ready Ave.&quot;
 </code></pre>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=agregando-tudo-em-um-dataframe>
-Agregando tudo em um data.frame
-<a class="border-0 text-primary" href=#agregando-tudo-em-um-dataframe>
+<h2 class="mb-8 mt-16" id=agregando-tudo-em-um-dataframe>
+<a class="border-0 text-primary inline-block" href=#agregando-tudo-em-um-dataframe>
 #
 </a>
+Agregando tudo em um data.frame
 </h2>
 <p>Agora precisamos juntar tudo num data.frame. Vamos pegar só as colunas dos
 grupos que nos interessam.</p>

@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="O altíssimo spread bancário 1 brasileiro é um motivo de preocupação das autoridades, já que dificulta uma economia mais guiada pelo crédito, dificultando o crescimento etc.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2019-03-31">
 <meta name=last-modified-date content="2021-04-25">
 <meta name=author content>
@@ -31,8 +31,8 @@ Spread bancário brasileiro: limpeza e visualização de dados | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Navegação principal">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
@@ -64,19 +64,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2019-03-31>
 31 de Março
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Editado em:
 <time datetime=2021-04-25>
 25 de Agosto
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Spread bancário brasileiro: limpeza e visualização de dados
@@ -104,11 +104,11 @@ tudo disponibilizado para download em um .csv.</p>
 quando usamos R.</p>
 <p>Se você não sabe, um <em>tidy dataset</em> é aquele em que cada coluna corresponde a
 uma variável e cada linha a uma observação.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=limpando-os-dados>
-Limpando os dados
-<a class="border-0 text-primary" href=#limpando-os-dados>
+<h2 class="mb-8 mt-16" id=limpando-os-dados>
+<a class="border-0 text-primary inline-block" href=#limpando-os-dados>
 #
 </a>
+Limpando os dados
 </h2>
 <p>Os dados eu baixei <a href=https://data.worldbank.org/indicator/fr.inr.lndp>daqui</a>
 e o
@@ -192,11 +192,11 @@ coluna “x64”, que não me interessa então a tirei (a função dá um warnin
 o omiti aqui). Daí que o clean_names prefixou um “x” às colunas com números, que
 também removi com <code>stringr::str_remove()</code>. Eu também não vou precisar das
 colunas com informações sobre o indicador. E, pronto, está limpo.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=visualização>
-Visualização
-<a class="border-0 text-primary" href=#visualiza%c3%a7%c3%a3o>
+<h2 class="mb-8 mt-16" id=visualização>
+<a class="border-0 text-primary inline-block" href=#visualiza%c3%a7%c3%a3o>
 #
 </a>
+Visualização
 </h2>
 <p>Vamos primeiro ver como evoluiu o spread no Brasil no decorrer do tempo.</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>dados</span> <span class=o>%&gt;%</span>

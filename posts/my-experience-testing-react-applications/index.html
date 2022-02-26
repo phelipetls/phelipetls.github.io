@@ -4,7 +4,7 @@
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Thoughts about writing integration tests for React apps, from
 react-testing-library to Cypress.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2021-04-28">
 <meta name=last-modified-date content="2022-02-02">
 <meta name=author content>
@@ -34,8 +34,8 @@ react-testing-library to Cypress.">
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
@@ -69,19 +69,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2021-04-28>
 April 28, 2021
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Last modified:
 <time datetime=2022-02-02>
 February 02, 2022
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 My experience testing React applications
@@ -117,11 +117,11 @@ appear or disappear.</li>
 </ul>
 <p>In this blog post I&rsquo;m going to talk about my experience with JavaScript
 libraries for testing front-end web apps.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=react-testing-library>
-<code>react-testing-library</code>
-<a class="border-0 text-primary" href=#react-testing-library>
+<h2 class="mb-8 mt-16" id=react-testing-library>
+<a class="border-0 text-primary inline-block" href=#react-testing-library>
 #
 </a>
+<code>react-testing-library</code>
 </h2>
 <p>This library seems to be what everyone is using now, and I do see how that
 happened. It has a very consistent API and good documentation.</p>
@@ -156,22 +156,22 @@ use canvas in your app,
 </ul>
 <p>But it got the job done most of the time.</p>
 <p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=nock>
-<code>nock</code>
-<a class="border-0 text-primary" href=#nock>
+<h2 class="mb-8 mt-16" id=nock>
+<a class="border-0 text-primary inline-block" href=#nock>
 #
 </a>
+<code>nock</code>
 </h2>
 <p>The <code>nock</code> library works in node-only environment and has a well-thought, easy
 to use API.</p>
 <p>In my experience, it has just a few unexpected issues like
 <a href=https://www.npmjs.com/package/nock#axios>not working with axios out of the box</a>
 .</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=msw>
-<code>msw</code>
-<a class="border-0 text-primary" href=#msw>
+<h2 class="mb-8 mt-16" id=msw>
+<a class="border-0 text-primary inline-block" href=#msw>
 #
 </a>
+<code>msw</code>
 </h2>
 <p>I later also tried <code>msw</code> after reading
 <a href=https://kentcdodds.com/blog/stop-mocking-fetch/>Stop mocking fetch</a>
@@ -186,11 +186,11 @@ This is by design though, it&rsquo;s just something I disliked.</p>
 <p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
 which I thought made tests harder to read. It doesn&rsquo;t have to be like that of
 course, but it&rsquo;s response handlers can get pretty long so it&rsquo;s a sane option.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=cypress>
-<code>cypress</code>
-<a class="border-0 text-primary" href=#cypress>
+<h2 class="mb-8 mt-16" id=cypress>
+<a class="border-0 text-primary inline-block" href=#cypress>
 #
 </a>
+<code>cypress</code>
 </h2>
 <p>All of these led me to try <a href=https://docs.cypress.io/><code>Cypress</code></a>
 , and I&rsquo;m
@@ -222,11 +222,11 @@ browser DevTools.</li>
 <li>There are snapshots of the UI state for each step.</li>
 <li>Screenshots and videos of the test runs are recorded by default.</li>
 </ul>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusion>
-Conclusion
-<a class="border-0 text-primary" href=#conclusion>
+<h2 class="mb-8 mt-16" id=conclusion>
+<a class="border-0 text-primary inline-block" href=#conclusion>
 #
 </a>
+Conclusion
 </h2>
 <p>I think everyone would agree that Cypress is much well-suited for integration
 tests. I thought <code>react-testing-library</code> to be complicated for complex

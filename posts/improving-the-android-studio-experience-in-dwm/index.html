@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2022-01-25">
 <meta name=last-modified-date content="2022-02-09">
 <meta name=author content>
@@ -31,8 +31,8 @@ Improving the Android Studio experience in dwm | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
@@ -66,19 +66,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2022-01-25>
 January 25, 2022
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Last modified:
 <time datetime=2022-02-09>
 February 09, 2022
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Improving the Android Studio experience in dwm
@@ -150,11 +150,11 @@ to its transient windows.</li>
 <li>On floating layout, if I focus on a leader window, I want its transient
 windows to be raised into view as well.</li>
 </ul>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=skipping-transient-windows-in-the-taskbar>
-Skipping transient windows in the taskbar
-<a class="border-0 text-primary" href=#skipping-transient-windows-in-the-taskbar>
+<h2 class="mb-8 mt-16" id=skipping-transient-windows-in-the-taskbar>
+<a class="border-0 text-primary inline-block" href=#skipping-transient-windows-in-the-taskbar>
 #
 </a>
+Skipping transient windows in the taskbar
 </h2>
 <p>The taskbar is drawn by the <code>drawbar</code> function.</p>
 <p>I just need to check if a window is transient and, if so, skip:</p>
@@ -221,11 +221,11 @@ called <code>_NET_WM_STATE_SKIP_TASKBAR</code> so window managers shouldn&rsquo;
 in the taskbar, this seemed like a better idea too so <a href=https://github.com/phelipetls/dotfiles/commit/7333e85b50abc63da0193705d204cf40c19b63bc>I implemented it as
 well</a>
 .</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=skipping-transient-windows-in-monocle-layout-count>
-Skipping transient windows in monocle layout count
-<a class="border-0 text-primary" href=#skipping-transient-windows-in-monocle-layout-count>
+<h2 class="mb-8 mt-16" id=skipping-transient-windows-in-monocle-layout-count>
+<a class="border-0 text-primary inline-block" href=#skipping-transient-windows-in-monocle-layout-count>
 #
 </a>
+Skipping transient windows in monocle layout count
 </h2>
 <p>This is simple, we just need to <em>not</em> increment a counter when the window is
 transient, in the <code>monocle</code> function:</p>
@@ -243,11 +243,11 @@ transient, in the <code>monocle</code> function:</p>
 		<span class=n>snprintf</span><span class=p>(</span><span class=n>m</span><span class=o>-&gt;</span><span class=n>ltsymbol</span><span class=p>,</span> <span class=k>sizeof</span> <span class=n>m</span><span class=o>-&gt;</span><span class=n>ltsymbol</span><span class=p>,</span> <span class=s>&#34;[%d]&#34;</span><span class=p>,</span> <span class=n>n</span><span class=p>);</span>
 	<span class=c1>// ...
 </span><span class=c1></span><span class=p>}</span>
-</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
-Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
-<a class="border-0 text-primary" href=#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
+</code></pre></div><h2 class="mb-8 mt-16" id=do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
+<a class="border-0 text-primary inline-block" href=#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
 #
 </a>
+Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
 </h2>
 <p>I started by checking which function is bound to these keys in <code>config.h</code>: the
 <code>focusstack</code> function.</p>
@@ -291,11 +291,11 @@ if statements (careful not to mix up the <code>i</code> and <code>c</code> varia
 </span><span class=gd></span><span class=gi>+				if (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))
 </span><span class=gi></span>					c = i;
 	}
-</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=applying-nth-tag-to-a-leader-windows-transient-windows>
-Applying nth tag to a leader window&rsquo;s transient windows
-<a class="border-0 text-primary" href=#applying-nth-tag-to-a-leader-windows-transient-windows>
+</code></pre></div><h2 class="mb-8 mt-16" id=applying-nth-tag-to-a-leader-windows-transient-windows>
+<a class="border-0 text-primary inline-block" href=#applying-nth-tag-to-a-leader-windows-transient-windows>
 #
 </a>
+Applying nth tag to a leader window&rsquo;s transient windows
 </h2>
 <p>To achieve this, I also started by checking which function is bound to
 <kbd>Mod</kbd> + <kbd>Shift</kbd> + <kbd>n</kbd> in <code>config.h</code>, which is the
@@ -323,11 +323,11 @@ leader is the selected client:</p>
 		<span class=n>arrange</span><span class=p>(</span><span class=n>selmon</span><span class=p>);</span>
 	<span class=p>}</span>
 <span class=p>}</span>
-</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=raising-all-transient-windows-when-the-leader-window-gets-focused>
-Raising all transient windows when the leader window gets focused
-<a class="border-0 text-primary" href=#raising-all-transient-windows-when-the-leader-window-gets-focused>
+</code></pre></div><h2 class="mb-8 mt-16" id=raising-all-transient-windows-when-the-leader-window-gets-focused>
+<a class="border-0 text-primary inline-block" href=#raising-all-transient-windows-when-the-leader-window-gets-focused>
 #
 </a>
+Raising all transient windows when the leader window gets focused
 </h2>
 <p>Since the transient windows do not appear in the taskbar and we also ignore
 them in the <code>focusstack</code> function, there is no way to focus on them if they&rsquo;re
@@ -411,11 +411,11 @@ no expertise in C, so it might be broken in several ways. I&rsquo;m just messing
 around.
 </div>
 </section>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=final-result>
-Final result
-<a class="border-0 text-primary" href=#final-result>
+<h2 class="mb-8 mt-16" id=final-result>
+<a class="border-0 text-primary inline-block" href=#final-result>
 #
 </a>
+Final result
 </h2>
 <p>Here&rsquo;s a demonstration of the final result:</p>
 <video controls width=100%>

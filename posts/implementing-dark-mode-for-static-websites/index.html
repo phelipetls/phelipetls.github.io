@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="From the basic to the hacky stuff you should do to deliver the best experience.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2021-04-29">
 <meta name=last-modified-date content="2022-02-09">
 <meta name=author content>
@@ -31,8 +31,8 @@ Implementing dark mode for static websites | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
@@ -66,19 +66,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2021-04-29>
 April 29, 2021
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Last modified:
 <time datetime=2022-02-09>
 February 09, 2022
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Implementing dark mode for static websites
@@ -98,11 +98,11 @@ on reload,
 handling transitions, persistence etc.</p>
 <p>In this blog post I&rsquo;ll dive into the implementation details on how to make it
 work in general and then on how to implement it in Hugo-powered websites.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=css>
-CSS
-<a class="border-0 text-primary" href=#css>
+<h2 class="mb-8 mt-16" id=css>
+<a class="border-0 text-primary inline-block" href=#css>
 #
 </a>
+CSS
 </h2>
 <p>CSS variables makes it very easy to define which colors you&rsquo;ll use for dark or
 light mode:</p>
@@ -131,11 +131,11 @@ light mode:</p>
   <span class=p>}</span>
   <span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>setAttribute</span><span class=p>(</span><span class=s2>&#34;data-theme&#34;</span><span class=p>,</span> <span class=s2>&#34;dark&#34;</span><span class=p>);</span>
 <span class=p>});</span>
-</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=theme-persistence>
-Theme persistence
-<a class="border-0 text-primary" href=#theme-persistence>
+</code></pre></div><h2 class="mb-8 mt-16" id=theme-persistence>
+<a class="border-0 text-primary inline-block" href=#theme-persistence>
 #
 </a>
+Theme persistence
 </h2>
 <p>To make the theme persist, we&rsquo;ll use
 <a href=https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage><code>localStorage</code></a>
@@ -206,11 +206,11 @@ The script tag <em>has</em> to be inline, otherwise the flash will still
 happen.
 </div>
 </section>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=transition-between-themes>
-Transition between themes
-<a class="border-0 text-primary" href=#transition-between-themes>
+<h2 class="mb-8 mt-16" id=transition-between-themes>
+<a class="border-0 text-primary inline-block" href=#transition-between-themes>
 #
 </a>
+Transition between themes
 </h2>
 <p>This works, but we want some animations:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=nt>body</span> <span class=p>{</span>
@@ -230,11 +230,11 @@ happen on reload.
 </code></pre></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=nb>window</span><span class=p>.</span><span class=nx>addEventListener</span><span class=p>(</span><span class=s2>&#34;load&#34;</span><span class=p>,</span> <span class=kd>function</span><span class=p>()</span> <span class=p>{</span>
   <span class=nb>document</span><span class=p>.</span><span class=nx>body</span><span class=p>.</span><span class=nx>classList</span><span class=p>.</span><span class=nx>remove</span><span class=p>(</span><span class=s2>&#34;preload&#34;</span><span class=p>);</span>
 <span class=p>});</span>
-</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=respect-system-preferences>
-Respect system preferences
-<a class="border-0 text-primary" href=#respect-system-preferences>
+</code></pre></div><h2 class="mb-8 mt-16" id=respect-system-preferences>
+<a class="border-0 text-primary inline-block" href=#respect-system-preferences>
 #
 </a>
+Respect system preferences
 </h2>
 <p>Finally, to respect the
 <a href=https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme><code>prefers-color-scheme</code></a>
@@ -247,11 +247,11 @@ media query, we add to our first script:</p>
   <span class=nb>window</span><span class=p>.</span><span class=mi>__</span><span class=nx>setTheme</span><span class=p>(</span><span class=s2>&#34;dark&#34;</span><span class=p>);</span>
 <span class=p>}</span>
 </code></pre></div><p>So that, if there&rsquo;s nothing in <code>localStorage</code>, we respect system settings.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=hugo-implementation-details>
-Hugo implementation details
-<a class="border-0 text-primary" href=#hugo-implementation-details>
+<h2 class="mb-8 mt-16" id=hugo-implementation-details>
+<a class="border-0 text-primary inline-block" href=#hugo-implementation-details>
 #
 </a>
+Hugo implementation details
 </h2>
 <p>In <code>layouts/_default/baseof.html</code> template, we need something like this:</p>
 <div class=highlight><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=cp>&lt;!DOCTYPE html&gt;</span>

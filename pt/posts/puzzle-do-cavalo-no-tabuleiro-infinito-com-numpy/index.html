@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2019-02-18">
 <meta name=last-modified-date content="2021-04-25">
 <meta name=author content>
@@ -31,8 +31,8 @@ Puzzle do cavalo no tabuleiro infinito com NumPy | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Navegação principal">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
@@ -64,19 +64,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2019-02-18>
 18 de Fevereiro
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Editado em:
 <time datetime=2021-04-25>
 25 de Agosto
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Puzzle do cavalo no tabuleiro infinito com NumPy
@@ -99,11 +99,11 @@ facilita a criação de visualizações do problema com o ggplot2.</p>
 seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
 operações vetorizadas e eficientes.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=o-que-está-por-trás-da-eficiência-do-numpy>
-O que está por trás da eficiência do Numpy
-<a class="border-0 text-primary" href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy>
+<h2 class="mb-8 mt-16" id=o-que-está-por-trás-da-eficiência-do-numpy>
+<a class="border-0 text-primary inline-block" href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy>
 #
 </a>
+O que está por trás da eficiência do Numpy
 </h2>
 <p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
 de tipagem dinâmica e de script (não-compilada): ele não é tão bom em fazer
@@ -160,11 +160,11 @@ TypeError                                 Traceback (most recent call last)
 TypeError: can't convert complex to int
 </code></pre>
 <p>Esse comportamento é muito similar ao vetor do R.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=simulando-os-movimentos-do-cavalo>
-Simulando os movimentos do cavalo
-<a class="border-0 text-primary" href=#simulando-os-movimentos-do-cavalo>
+<h2 class="mb-8 mt-16" id=simulando-os-movimentos-do-cavalo>
+<a class="border-0 text-primary inline-block" href=#simulando-os-movimentos-do-cavalo>
 #
 </a>
+Simulando os movimentos do cavalo
 </h2>
 <p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p>
 <ul>
@@ -302,11 +302,11 @@ simples histograma, feito com 100 repetições do experimento.</p>
 <span class=n>plt</span><span class=o>.</span><span class=n>hist</span><span class=p>(</span><span class=n>knight_probs</span><span class=p>,</span> <span class=n>bins</span> <span class=o>=</span> <span class=mi>20</span><span class=p>)</span>
 </code></pre></div><p><img src=./histograma.png alt=Histograma class="rounded my-8" style=background-color:#fff>
 </p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=a-eficiência-em-números>
-A eficiência em números
-<a class="border-0 text-primary" href=#a-efici%c3%aancia-em-n%c3%bameros>
+<h2 class="mb-8 mt-16" id=a-eficiência-em-números>
+<a class="border-0 text-primary inline-block" href=#a-efici%c3%aancia-em-n%c3%bameros>
 #
 </a>
+A eficiência em números
 </h2>
 <p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
 verificar isso facilmente com o magic command do IPython, o %%timeit. Criei uma
@@ -331,11 +331,11 @@ algoritmo.</p>
 <p>É extraordinariamente rápido. Mesmo quando se trata de cálculos com uma matriz
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
 Python seria absurdamente mais lento.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusões>
-Conclusões
-<a class="border-0 text-primary" href=#conclus%c3%b5es>
+<h2 class="mb-8 mt-16" id=conclusões>
+<a class="border-0 text-primary inline-block" href=#conclus%c3%b5es>
 #
 </a>
+Conclusões
 </h2>
 <p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
 ferramenta muito útil, garantindo eficiência com uma sintaxe simples e limpa. Há

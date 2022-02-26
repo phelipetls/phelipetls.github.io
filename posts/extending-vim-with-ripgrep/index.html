@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Take full advantage of Vim&rsquo;s shel integration and the quick fix list.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2021-06-11">
 <meta name=last-modified-date content="2022-02-02">
 <meta name=author content>
@@ -31,8 +31,8 @@ Extending Vim with ripgrep | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
@@ -66,19 +66,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2021-06-11>
 June 11, 2021
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Last modified:
 <time datetime=2022-02-02>
 February 02, 2022
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Extending Vim with ripgrep
@@ -100,11 +100,11 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 </span><span class=err></span><span class=k>endif</span><span class=err>
 </span></code></pre></div><p>At first, it was not obvious to me how I could use it beyond <code>:grep foo</code>, so I
 want to share how I do.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=common-use-cases>
-Common use cases
-<a class="border-0 text-primary" href=#common-use-cases>
+<h2 class="mb-8 mt-16" id=common-use-cases>
+<a class="border-0 text-primary inline-block" href=#common-use-cases>
 #
 </a>
+Common use cases
 </h2>
 <ul>
 <li>Search for <code>foo</code> in current working directory: <code>:grep foo</code>.</li>
@@ -112,11 +112,11 @@ Common use cases
 <li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup id=fnref:1><a href=#fn:1 class=footnote-ref role=doc-noteref>1</a></sup>.</li>
 <li>Search for <code>foo</code> in current file directory&rsquo;s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=less-common-use-cases>
-Less common use cases
-<a class="border-0 text-primary" href=#less-common-use-cases>
+<h2 class="mb-8 mt-16" id=less-common-use-cases>
+<a class="border-0 text-primary inline-block" href=#less-common-use-cases>
 #
 </a>
+Less common use cases
 </h2>
 <ul>
 <li>Search for the exact word <code>foo</code> (not <code>foobar</code>): <code>:grep -w foo</code> (equivalent to
@@ -124,11 +124,11 @@ Less common use cases
 <li>Search for <code>foo</code> in JavaScript files: <code>:grep foo -t js</code></li>
 <li>Search for <code>foo</code> in files matching a glob: <code>:grep foo -g '*.js'</code></li>
 </ul>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=extensibility>
-Extensibility
-<a class="border-0 text-primary" href=#extensibility>
+<h2 class="mb-8 mt-16" id=extensibility>
+<a class="border-0 text-primary inline-block" href=#extensibility>
 #
 </a>
+Extensibility
 </h2>
 <p>This is nice but here is where it truly shines. I can give any command line
 output as an argument.</p>
@@ -137,22 +137,22 @@ output as an argument.</p>
 </code></pre><p>Or only modified files:</p>
 <pre tabindex=0><code>:grep foo `git ls-files --modified`
 </code></pre><p>I don&rsquo;t use this everyday but I enjoy it when I do.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=usage-with-vim>
-Usage with Vim
-<a class="border-0 text-primary" href=#usage-with-vim>
+<h2 class="mb-8 mt-16" id=usage-with-vim>
+<a class="border-0 text-primary inline-block" href=#usage-with-vim>
 #
 </a>
+Usage with Vim
 </h2>
 <p>This will populate the quickfix list with the search results, so I can navigate
 them with commands I&rsquo;m already familiar with.</p>
 <p>For example, to replace foo with bar across files (asking me to confirm
 before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Sometimes I narrow the
 search down with <code>:Cfilter</code> too.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=downsides>
-Downsides
-<a class="border-0 text-primary" href=#downsides>
+<h2 class="mb-8 mt-16" id=downsides>
+<a class="border-0 text-primary inline-block" href=#downsides>
 #
 </a>
+Downsides
 </h2>
 <p><s>A downside is that you can&rsquo;t use backreferences or look-around in regex. In
 the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&utm_medium=web2x&context=3">thanks to
@@ -164,11 +164,11 @@ or <code>--engine auto</code> and I can&rsquo;t wait to use it!!</p>
 <p>Another one is that it&rsquo;s synchronous, so if the directory is huge it may block <code>vim</code>
 for a few seconds. But I don&rsquo;t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusion>
-Conclusion
-<a class="border-0 text-primary" href=#conclusion>
+<h2 class="mb-8 mt-16" id=conclusion>
+<a class="border-0 text-primary inline-block" href=#conclusion>
 #
 </a>
+Conclusion
 </h2>
 <p>This might be one of the few sane reasons why I insist on using <code>nvim</code> for
 development (<code>vim-fugitive</code> and LSP as well). It&rsquo;s just one of those things I

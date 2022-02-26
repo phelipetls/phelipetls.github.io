@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="The way we&rsquo;ll get this to work is by using a generic Language Server called efm-langserver , which is written in Go.">
-<meta name=deploy-date content="2022-02-23">
+<meta name=deploy-date content="2022-02-26">
 <meta name=publish-date content="2020-12-28">
 <meta name=last-modified-date content="2021-04-25">
 <meta name=author content>
@@ -31,8 +31,8 @@ Configuring eslint to work with Neovim LSP | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="my-4 flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
@@ -66,19 +66,19 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class="border-t-4 border-primary mb-8" style=width:8ch>
-</div>
-<div class="flex flex-row items-center gap-2 mb-4">
+<div class=mb-4>
 <time class="uppercase text-sm" datetime=2020-12-28>
 December 28, 2020
 </time>
+<span class="hidden sm:inline">
 ·
-<div class="uppercase text-sm">
+</span>
+<span class="uppercase text-sm">
 Last modified:
 <time datetime=2021-04-25>
 April 25, 2021
 </time>
-</div>
+</span>
 </div>
 <h1 class="text-4xl mb-4">
 Configuring eslint to work with Neovim LSP
@@ -96,21 +96,21 @@ Configuring eslint to work with Neovim LSP
 Go.</p>
 <p>These Language Servers are generic in that they were made to be powered by
 command-line tools and for any programming language.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=making-eslint-faster-with-eslint_d>
-Making eslint faster with eslint_d
-<a class="border-0 text-primary" href=#making-eslint-faster-with-eslint_d>
+<h2 class="mb-8 mt-16" id=making-eslint-faster-with-eslint_d>
+<a class="border-0 text-primary inline-block" href=#making-eslint-faster-with-eslint_d>
 #
 </a>
+Making eslint faster with eslint_d
 </h2>
 <p>To reduce latency when invoking <code>eslint</code>, I&rsquo;m gonna use
 <a href=https://github.com/mantoni/eslint_d.js/><code>eslint_d</code></a>
 , which runs <code>eslint</code> as a
 daemon process.</p>
-<h2 class="mb-8 mt-16 flex items-center gap-2" id=configuring-eslint_d-in-efm-langserver>
-Configuring eslint_d in efm-langserver
-<a class="border-0 text-primary" href=#configuring-eslint_d-in-efm-langserver>
+<h2 class="mb-8 mt-16" id=configuring-eslint_d-in-efm-langserver>
+<a class="border-0 text-primary inline-block" href=#configuring-eslint_d-in-efm-langserver>
 #
 </a>
+Configuring eslint_d in efm-langserver
 </h2>
 <p>It&rsquo;s possible to configure it with a YAML file, by following their README. I did
 this initially I found that it&rsquo;s more powerful to configure it with Lua.</p>
@@ -192,11 +192,11 @@ configuration. So I created a function to do this:</p>
 
   <span class=kr>return</span> <span class=kc>false</span>
 <span class=kr>end</span>
-</code></pre></div><h2 class="mb-8 mt-16 flex items-center gap-2" id=conclusion>
-Conclusion
-<a class="border-0 text-primary" href=#conclusion>
+</code></pre></div><h2 class="mb-8 mt-16" id=conclusion>
+<a class="border-0 text-primary inline-block" href=#conclusion>
 #
 </a>
+Conclusion
 </h2>
 <p>This is kind like a poor replacement for the VS Code eslint extension, which
 does a similar thing as <code>eslint_d</code>. And it works ok, it&rsquo;s pretty fast, much
