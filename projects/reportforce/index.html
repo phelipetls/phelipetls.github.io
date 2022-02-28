@@ -31,8 +31,8 @@ reportforce | Phelipe Teles
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="my-4 flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
+<div data-scroll-container class="flex flex-col min-h-full">
+<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
 <div class="flex items-center justify-between mx-auto max-w-prose px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
