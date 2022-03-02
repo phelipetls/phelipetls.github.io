@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &#34;app:create_app()&#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call 'app:create_app' Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier.">
-<meta name=deploy-date content="2022-03-01">
+<meta name=deploy-date content="2022-03-02">
 <meta name=publish-date content="2020-10-11">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -66,23 +66,18 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
-<div class=mb-4>
 <time class="uppercase text-sm" datetime=2020-10-11>
 October 11, 2020
 </time>
-<span class="hidden sm:inline">
-·
-</span>
-<span class="uppercase text-sm">
+<h1 class="text-4xl mb-4">
+Deploying a Flask app on a Heroku free dyno
+</h1>
+<div class="text-sm mb-4 italic">
 Last modified:
 <time datetime=2021-04-24>
 April 24, 2021
 </time>
-</span>
 </div>
-<h1 class="text-4xl mb-4">
-Deploying a Flask app on a Heroku free dyno
-</h1>
 <div class=mb-4>
 <a href=/tags/python/ class="no-underline rounded-full border-2 px-2">python</a>
 <a href=/tags/flask/ class="no-underline rounded-full border-2 px-2">flask</a>
