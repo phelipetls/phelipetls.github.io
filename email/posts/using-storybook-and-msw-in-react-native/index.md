@@ -205,7 +205,7 @@ project using <code>react-native</code> CLI:</p>
 </code></pre></div><p><a href="https://github.com/phelipetls/react-native-storybook-msw">You can check the final result in this GitHub
 repository</a>. Here&rsquo;s a
 video:</p>
-<div class="bg-divider rounded py-4 px-8 my-4">
+<div class="bg-surface rounded py-4 px-8 my-4">
   <video class="mx-auto" controls src="./demo-msw-storybook-react-native.mp4">
   </video>
 </div>
