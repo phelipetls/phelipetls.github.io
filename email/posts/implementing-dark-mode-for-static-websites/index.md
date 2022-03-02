@@ -104,7 +104,7 @@ the hack) we use a global variable.</p>
   <span class="p">}</span>
   <span class="nb">window</span><span class="p">.</span><span class="mi">__</span><span class="nx">setTheme</span><span class="p">(</span><span class="s2">&#34;dark&#34;</span><span class="p">);</span>
 <span class="p">});</span>
-</code></pre></div><section data-note class="flex my-8 gap-4 p-4 border-2 rounded border-note">
+</code></pre></div><section data-note class="flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface">
   <div class="text-note">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
   <circle cx="12" cy="12" r="10"/>

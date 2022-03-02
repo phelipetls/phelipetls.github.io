@@ -66,18 +66,22 @@ Auto
 <div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
+<header>
+<div class=mb-2>
 <time class="uppercase text-sm" datetime=2021-04-29>
 April 29, 2021
 </time>
+</div>
 <h1 class="text-4xl mb-4">
 Implementing dark mode for static websites
 </h1>
 <div class="text-sm mb-4 italic">
-Last modified:
+Last modified at
 <time datetime=2022-02-09>
 February 09, 2022
 </time>
 </div>
+</header>
 <div class=mb-4>
 <a href=/tags/hugo/ class="no-underline rounded-full border-2 px-2">hugo</a>
 <a href=/tags/html/ class="no-underline rounded-full border-2 px-2">html</a>
@@ -193,7 +197,7 @@ the hack) we use a global variable.</p>
   <span class=p>}</span>
   <span class=nb>window</span><span class=p>.</span><span class=mi>__</span><span class=nx>setTheme</span><span class=p>(</span><span class=s2>&#34;dark&#34;</span><span class=p>);</span>
 <span class=p>});</span>
-</code></pre></div><section data-note class="flex my-8 gap-4 p-4 border-2 rounded border-note">
+</code></pre></div><section data-note class="flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface">
 <div class=text-note><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
 </div>
 <div>
@@ -290,11 +294,11 @@ hugo gen chromastyles --style<span class=o>=</span>lovelace &gt; light-syntax-hi
 <span class=p>};</span>
 </code></pre></div><p>And that&rsquo;s it, hopefully we can enjoy dark mode now.</p>
 </article>
-<div class="rounded border-2 border-divider p-4 my-8 shadow">
+<div class="rounded bg-surface p-4 my-8">
+<h1 class=text-center>Subscribe for latest content</h1>
 <p class=text-center>
-Subscribe via
-<a href=https://phelipetls.github.io/posts/index.xml>RSS</a>
-or e-mail. <i>Unsubscribe at any time</i>.
+<a href=https://phelipetls.github.io/posts/index.xml>Grab the RSS link</a>
+or subscribe via e-mail below.
 </p>
 <form class="embeddable-buttondown-form flex justify-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
 <div class=min-w-0>
