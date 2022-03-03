@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &#34;app:create_app()&#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call 'app:create_app' Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier.">
-<meta name=deploy-date content="2022-03-02">
+<meta name=deploy-date content="2022-03-03">
 <meta name=publish-date content="2020-10-11">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -159,27 +159,6 @@ and
 2020-10-09T13:22:49.127433+00:00 heroku[web.1]: Starting process with command `waitress-serve --port=55574 --threads=${WEB_CONCURRENCY:-2} --call 'app:create_app'`
 </code></pre>
 </article>
-<div class="rounded bg-surface border-2 border-divider p-4 my-8">
-<h1 class=text-center>Subscribe for latest content</h1>
-<p class=text-center>
-<a href=https://phelipetls.github.io/posts/index.xml>Grab the RSS link</a>
-or subscribe via e-mail below.
-</p>
-<form class="embeddable-buttondown-form flex justify-center my-4" action=https://buttondown.email/api/emails/embed-subscribe/phelipetls method=post target=popupwindow onsubmit="window.open('https://buttondown.email/phelipetls','popupwindow')">
-<div class=min-w-0>
-<label for=bd-email class=hidden>E-mail</label>
-<input class="border border-primary h-full p-2 rounded-l" type=email name=email id=bd-email placeholder=E-mail>
-</div>
-<button class="btn btn-primary rounded-r" type=submit value=Subscribe>
-Subscribe
-</button>
-</form>
-<p class=text-center>
-<a href=https://buttondown.email target=_blank>
-Powered by Buttondown
-</a>
-</p>
-</div>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
 <a class="flex basis-1/2 items-center gap-2 border-0" href=/posts/vim-errorformat-for-pytest/ title="Previous post">
