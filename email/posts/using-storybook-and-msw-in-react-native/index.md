@@ -217,7 +217,7 @@ video:</p>
 issues related with a Promise polyfill that caused <code>Promises</code> to never resolve
 and to <a href="https://github.com/storybookjs/react-native/issues/20"><code>Promise.finally</code> being
 undefined</a>. I fixed it
-by using <code>patch-package</code> to remove the line importing the polyfill, <a href="https://github.com/storybookjs/react-native/issues/20">as the
+by using <code>patch-package</code> to remove the line importing the polyfill, <a href="https://github.com/storybookjs/react-native/issues/20#issuecomment-1046101914">as the
 <code>@storybook/react-native</code> maintainer
 recommended</a>. This is
 unfortunate&hellip; I hope that a stable Storybook v6 comes soon enough for React
