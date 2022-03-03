@@ -138,8 +138,8 @@ API</a>.</p>
 </span><span class="hl"><span class="p">}</span>
 </span>
 <span class="kr">export</span> <span class="kr">const</span> <span class="nx">withMsw</span> <span class="o">=</span> <span class="p">(</span><span class="nx">storyFn</span><span class="p">,</span> <span class="p">{</span> <span class="nx">parameters</span><span class="o">:</span> <span class="p">{</span> <span class="nx">msw</span> <span class="p">}</span> <span class="p">})</span> <span class="p">=&gt;</span> <span class="p">{</span>
-  <span class="nx">server</span><span class="p">.</span><span class="nx">resetHandlers</span><span class="p">()</span>
-
+<span class="hl">  <span class="nx">server</span><span class="p">.</span><span class="nx">resetHandlers</span><span class="p">()</span>
+</span>
   <span class="k">if</span> <span class="p">(</span><span class="nx">msw</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="nb">Array</span><span class="p">.</span><span class="nx">isArray</span><span class="p">(</span><span class="nx">msw</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="nx">msw</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Support an Array of request handlers (backwards compatibility).
