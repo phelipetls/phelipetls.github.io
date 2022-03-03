@@ -24,7 +24,7 @@ Using Storybook and MSW in React Native | Phelipe Teles
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://phelipetls.github.io/posts/using-storybook-and-msw-in-react-native/"><meta property="article:section" content="posts">
 <meta property="article:published_time" content="2022-03-02T00:00:00+00:00">
-<meta property="article:modified_time" content="2022-03-03T00:05:34-03:00">
+<meta property="article:modified_time" content="2022-03-03T00:11:21-03:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Using Storybook and MSW in React Native">
 <meta name=twitter:description content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server.">
@@ -186,8 +186,8 @@ how you configure/use it:</p>
 Porting <code>msw-storybook-addon</code> to React Native
 </h2>
 <p>A decorator is simply a function that does something before rendering the
-storybok, which is a React component.</p>
-<p>Here&rsquo;s what we need to do before rendering the story:</p>
+story, which is a React component.</p>
+<p>Here is what we need to do:</p>
 <ul>
 <li>Initialize the MSW server.</li>
 <li>Clean it up, which means to reset old request handlers.</li>
