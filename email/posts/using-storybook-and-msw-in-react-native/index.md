@@ -95,7 +95,7 @@ how you configure/use it:</p>
 </code></pre></div><h1>
   Porting <code>msw-storybook-addon</code> to React Native
 </h1>
-<p>A decorator is simply a function that do something before rendering the
+<p>A decorator is simply a function that does something before rendering the
 storybok, which is a React component.</p>
 <p>Here&rsquo;s what we need to do before rendering the story:</p>
 <ul>
