@@ -17,7 +17,7 @@ makes it easy to get started. It&rsquo;s another story for React Native though, 
 <p>I find this combination of tools invaluable, so I couldn&rsquo;t resist attempting to
 make it work in React Native, even though it&rsquo;s pretty new.</p>
 <p>In this post, I&rsquo;m gonna explain in detail how I did it.</p>
-<section data-note class="flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface">
+<div data-note class="flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface">
   <div class="text-note">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info">
   <circle cx="12" cy="12" r="10"/>
@@ -33,7 +33,7 @@ repository</a> or this
 <a href="https://github.com/phelipetls/react-native-storybook-msw/pull/1">pull request</a>
 instead.
   </div>
-</section>
+</div>
 
 <h1>
   How <code>msw-storybook-addon</code> works?

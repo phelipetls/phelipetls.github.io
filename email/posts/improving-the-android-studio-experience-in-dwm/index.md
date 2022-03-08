@@ -293,7 +293,7 @@ the <code>unfocus</code> function to fix this:</p>
 		<span class="n">XDeleteProperty</span><span class="p">(</span><span class="n">dpy</span><span class="p">,</span> <span class="n">root</span><span class="p">,</span> <span class="n">netatom</span><span class="p">[</span><span class="n">NetActiveWindow</span><span class="p">]);</span>
 	<span class="p">}</span>
 <span class="p">}</span>
-</code></pre></div><section data-warn class="flex my-8 gap-4 p-4 border-2 rounded border-warn bg-surface">
+</code></pre></div><div data-warn class="flex my-8 gap-4 p-4 border-2 rounded border-warn bg-surface">
   <div class="text-warn">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon">
   <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
@@ -308,7 +308,7 @@ the <code>unfocus</code> function to fix this:</p>
 no expertise in C, so it might be broken in several ways. I&rsquo;m just messing
 around.
   </div>
-</section>
+</div>
 
 <h1>
   Final result
