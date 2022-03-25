@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="tl;dr: Use waitress instead of gunicorn diff --git a/Procfile b/Procfile index d49e1a0..0cd38da 100644 --- a/Procfile +++ b/Procfile @@ -1 +1 @@ -web: gunicorn &#34;app:create_app()&#34; +web: waitress-serve --port=$PORT --threads=${WEB_CONCURRENCY:-2} --call 'app:create_app' Recently, I had trouble deploying a Flask application using gunicorn as the WSGI server on a Heroku&rsquo;s free dyno tier.">
-<meta name=deploy-date content="2022-03-08">
+<meta name=deploy-date content="2022-03-25">
 <meta name=publish-date content="2020-10-11">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -63,7 +63,7 @@ System
 </ul>
 </div>
 </div>
-<div class="my-8 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
+<div class="my-16 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
 <main class="flex flex-1 flex-col">
 <article>
 <header>
