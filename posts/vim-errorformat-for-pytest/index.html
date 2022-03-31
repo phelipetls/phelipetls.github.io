@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on Stack Overflow  I really like Vim&rsquo;s :h errorformat feature, but only when I manage to get it right.">
-<meta name=deploy-date content="2022-03-25">
+<meta name=deploy-date content="2022-03-31">
 <meta name=publish-date content="2020-10-07">
 <meta name=last-modified-date content="2022-02-12">
 <meta name=author content>
@@ -33,7 +33,7 @@ A Vim errorformat for pytest | Phelipe Teles
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
 <div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
 About
@@ -45,41 +45,47 @@ Projects
 Resumé
 </a></div>
 </nav>
-<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<div class="flex items-center">
+<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="var(--icon-size)" height="var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 </defs>
 <use data-theme-button-svg-icon href=#sun>
 </svg>
 </button>
-<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 System
 </li>
 </ul>
 </div>
 </div>
-<div class="my-16 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
-<main class="flex flex-1 flex-col">
+</div>
+<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
+<main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
-<div class=mb-2>
-<time class="uppercase text-sm" datetime=2020-10-07>
-October 07, 2020
-</time>
-</div>
 <h1 class="text-4xl mb-4">
 A Vim errorformat for pytest
 </h1>
-<div class="text-sm mb-4 italic">
+<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
+<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<time datetime=2020-10-07>
+October 07, 2020
+</time>
+</div>
+<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+<div>
 Last modified at
 <time datetime=2022-02-12>
 February 12, 2022
 </time>
+</div>
+</div>
 </div>
 </header>
 <div class=mb-4>
@@ -89,6 +95,7 @@ February 12, 2022
 </div>
 </div>
 <hr class=my-8>
+<section data-blog-post class=max-w-prose>
 <blockquote>
 <p>Ah, errorformat, the feature everybody loves to hate. :) &ndash; lcd047, on
 <a href=https://stackoverflow.com/a/29102995>Stack Overflow</a>
@@ -149,11 +156,12 @@ E     ?               +++++
 ============================== 3 failed in 0.03s ===============================
 </code></pre>
 <p>Now, for the difficult part.</p>
-<h2 class="mb-8 mt-16" id=writing-an-errorformat>
-<a class="border-0 text-primary inline-block" href=#writing-an-errorformat>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=writing-an-errorformat>
+<span class=text-dark-foreground>
 Writing an errorformat
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#writing-an-errorformat><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>To make Vim understand these lines so that we can jump to each error, we must
 give patterns. It will then go through every line testing against those
@@ -170,11 +178,12 @@ multiple lines.</p>
 <p>I found out that <code>pytest</code> gives inconsistent patterns depending on the error
 (test failure, missing fixture and syntax error), so I had to handle them
 separately.</p>
-<h2 class="mb-8 mt-16" id=handling-test-failures>
-<a class="border-0 text-primary inline-block" href=#handling-test-failures>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=handling-test-failures>
+<span class=text-dark-foreground>
 Handling test failures
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#handling-test-failures><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>A test failure starts like this:</p>
 <pre><code>______________________________ TEST_NAME ______________________________
@@ -220,11 +229,12 @@ test_set_comparison|22|  AssertionError: assert {'1', '0', '3', '8'} == {'0', '3
 </code></pre>
 <p>So far, it will understand tests failures but not syntax errors, import errors
 and fixture errors, which would fail silently. This is no good.</p>
-<h2 class="mb-8 mt-16" id=syntax-errors>
-<a class="border-0 text-primary inline-block" href=#syntax-errors>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=syntax-errors>
+<span class=text-dark-foreground>
 Syntax errors
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#syntax-errors><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>For syntax errors, we need to parse something like this:</p>
 <pre><code>============================= test session starts ==============================
@@ -271,11 +281,12 @@ its length to later use as column number.</p>
 exactly, which is needed to distinguish it from the others, see <code>:h \@=</code>.</p>
 <p>We also need to include a continuation format (any line starting with E and
 space that didn&rsquo;t match the earlier ones).</p>
-<h2 class="mb-8 mt-16" id=import-errors>
-<a class="border-0 text-primary inline-block" href=#import-errors>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=import-errors>
+<span class=text-dark-foreground>
 Import errors
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#import-errors><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>Import errors are also slightly different:</p>
 <pre><code>============================= test session starts ==============================
@@ -306,11 +317,12 @@ E   ModuleNotFoundError: No module named 'pytes'
 to capture the filename. It ends with an <code>E %m</code> and we already a pattern to
 capture this. But we do need to tell how it continues, and it&rsquo;s fine to just put
 something that would match anything like <code>%C%.%#</code>.</p>
-<h2 class="mb-8 mt-16" id=fixture-errors>
-<a class="border-0 text-primary inline-block" href=#fixture-errors>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=fixture-errors>
+<span class=text-dark-foreground>
 Fixture errors
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#fixture-errors><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>Fixture errors are also in a different format:</p>
 <pre><code>_____________________ ERROR at setup of test_zero_division _____________________
@@ -327,11 +339,12 @@ cord_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
 </code></pre>
 <p>The line <code>%+ZE %.%#not found</code> means that the error will match <code>E .*not found</code>,
 the preceding <code>+</code> will include the whole line as a message.</p>
-<h2 class="mb-8 mt-16" id=further-improvements>
-<a class="border-0 text-primary inline-block" href=#further-improvements>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=further-improvements>
+<span class=text-dark-foreground>
 Further improvements
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#further-improvements><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>Notice how syntax, import and fixture errors are preceded with something like</p>
 <pre><code>______________________________ ERROR.* ______________________________
@@ -342,11 +355,12 @@ it will ignore it first.</p>
 <p>Also, if all tests passed, capture it too:</p>
 <pre><code>  \%+G%[=]%\\+\ %*\\d\ passed%.%#,
 </code></pre>
-<h2 class="mb-8 mt-16" id=conclusion>
-<a class="border-0 text-primary inline-block" href=#conclusion>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusion>
+<span class=text-dark-foreground>
 Conclusion
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>Check out the whole
 <a href=https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/pytest.vim>compiler plugin</a>
@@ -363,6 +377,7 @@ and, of course,
 <code>:h errorformat</code>.</p>
 <p>If you&rsquo;re commited to learn Vim, It&rsquo;s worth it to know about this in order to
 integrate a command line program into Vim.</p>
+</section>
 </article>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
@@ -371,7 +386,7 @@ integrate a command line program into Vim.</p>
 </span>
 Asynchronous :make in Neovim with Lua
 </a>
-<a class="flex basis-1/2 grow items-center self-end text-right mt-2 sm:mt-0 h-full justify-end gap-2 border-0" href=/posts/deploying-flask-app-on-heroku/ title="Next post">
+<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/posts/deploying-flask-app-on-heroku/ title="Next post">
 Deploying a Flask app on a Heroku free dyno
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 </span>
@@ -379,21 +394,26 @@ Deploying a Flask app on a Heroku free dyno
 </nav>
 </main>
 </div>
-<footer class="flex flex-col py-8 gap-2">
-<div class="flex flex-wrap justify-center">
-<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
+<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
+<nav aria-label=Links>
+<div class="flex gap-4">
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 </a>
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
 </a>
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
 </a>
+<a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</a>
+</div>
 </nav>
 </div>
-<p class=text-center>
+<p class=flex-1>
 This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.

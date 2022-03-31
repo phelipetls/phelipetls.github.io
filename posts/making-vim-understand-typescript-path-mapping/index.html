@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .">
-<meta name=deploy-date content="2022-03-25">
+<meta name=deploy-date content="2022-03-31">
 <meta name=publish-date content="2021-09-15">
 <meta name=last-modified-date content="2021-10-02">
 <meta name=author content>
@@ -33,7 +33,7 @@ Making Vim understand TypeScript path mapping | Phelipe Teles
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
 <div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
 About
@@ -45,41 +45,47 @@ Projects
 Resumé
 </a></div>
 </nav>
-<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<div class="flex items-center">
+<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="var(--icon-size)" height="var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 </defs>
 <use data-theme-button-svg-icon href=#sun>
 </svg>
 </button>
-<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 System
 </li>
 </ul>
 </div>
 </div>
-<div class="my-16 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
-<main class="flex flex-1 flex-col">
+</div>
+<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
+<main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
-<div class=mb-2>
-<time class="uppercase text-sm" datetime=2021-09-15>
-September 15, 2021
-</time>
-</div>
 <h1 class="text-4xl mb-4">
 Making Vim understand TypeScript path mapping
 </h1>
-<div class="text-sm mb-4 italic">
+<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
+<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<time datetime=2021-09-15>
+September 15, 2021
+</time>
+</div>
+<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
+<div>
 Last modified at
 <time datetime=2021-10-02>
 October 02, 2021
 </time>
+</div>
+</div>
 </div>
 </header>
 <div class=mb-4>
@@ -91,6 +97,7 @@ October 02, 2021
 </div>
 </div>
 <hr class=my-8>
+<section data-blog-post class=max-w-prose>
 <p>Vim has this well-known feature of opening the path under cursor with <a href=http://vimdoc.sourceforge.net/htmldoc/editing.html#gf><code>:h gf</code></a>
 . <a href=https://vim.fandom.com/wiki/Open_file_under_cursor>This article
 explains well how this
@@ -134,11 +141,12 @@ just <code>~/components</code>, you&rsquo;d use the following <code>tsconfig.jso
 <span class=p>}</span>
 </code></pre></div><p>This is great but it breaks <code>gf</code>, so in this post I want to share how to make
 it work again for TypeScript projects that use this feature.</p>
-<h2 class="mb-8 mt-16" id=why-not-lsp>
-<a class="border-0 text-primary inline-block" href=#why-not-lsp>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=why-not-lsp>
+<span class=text-dark-foreground>
 Why not LSP?
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#why-not-lsp><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>You might be wondering why not just use a language server for that?</p>
 <p>And you&rsquo;d be right, that&rsquo;s certainly better than implementing the TypeScript
@@ -147,11 +155,12 @@ module resolution algorithm in Lua&mldr;</p>
 so I find that it does pay off to use a dumber way to navigate files with
 built-in Vim features in case the language server is still booting or just
 being slow.</p>
-<h2 class="mb-8 mt-16" id=implementation-details>
-<a class="border-0 text-primary inline-block" href=#implementation-details>
-#
-</a>
+<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=implementation-details>
+<span class=text-dark-foreground>
 Implementation details
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#implementation-details><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p>Our goal is to pass a function to the <code>includeexpr</code> option that will try to
 substitute the &ldquo;alias&rdquo; (<code>~/*</code>) with its associated path (<code>src/*</code>) until it
@@ -201,11 +210,12 @@ function:</p>
 
 <span class=kr>return</span> <span class=n>M</span>
 </code></pre></div><p>How exactly we try to find a file will be explained later.</p>
-<h3 class="mb-8 mt-16" id=finding-tsconfigjson>
-<a class="border-0 text-primary inline-block" href=#finding-tsconfigjson>
-##
-</a>
+<h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=finding-tsconfigjson>
+<span class=text-dark-foreground>
 Finding <code>tsconfig.json</code>
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#finding-tsconfigjson><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h3>
 <p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
 upwards starting from the current file&rsquo;s directory with the <a href=https://vimhelp.org/eval.txt.html#findfile%28%29><code>:h findfile</code></a>
@@ -223,11 +233,12 @@ that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are no
   <span class=kr>end</span>
 <span class=kr>end</span>
 </code></pre></div><p>I use a similar function called <code>find_dir</code> that wraps <code>:h finddir</code>.</p>
-<h3 class="mb-8 mt-16" id=reading-json-with-comments>
-<a class="border-0 text-primary inline-block" href=#reading-json-with-comments>
-##
-</a>
+<h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=reading-json-with-comments>
+<span class=text-dark-foreground>
 Reading JSON with comments
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#reading-json-with-comments><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h3>
 <p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
 JSON, <a href=https://vimhelp.org/eval.txt.html#json_decode%28%29><code>:h json_decode</code></a>
@@ -243,11 +254,12 @@ allows comments. No problem, we can just remove them before we pass it to
   <span class=kd>local</span> <span class=n>json_without_comments</span> <span class=o>=</span> <span class=n>vim.tbl_map</span><span class=p>(</span><span class=n>remove_comments</span><span class=p>,</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>readfile</span><span class=p>(</span><span class=n>fname</span><span class=p>))</span>
   <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>json_decode</span><span class=p>(</span><span class=n>json_without_comments</span><span class=p>)</span>
 <span class=kr>end</span>
-</code></pre></div><h3 class="mb-8 mt-16" id=parsing-compileroptionspaths>
-<a class="border-0 text-primary inline-block" href=#parsing-compileroptionspaths>
-##
-</a>
+</code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=parsing-compileroptionspaths>
+<span class=text-dark-foreground>
 Parsing <code>compilerOptions.paths</code>
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#parsing-compileroptionspaths><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h3>
 <p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
 aliases into their full paths. For example, given this configuration:</p>
@@ -295,11 +307,12 @@ should remove the catch-all character <code>*</code>:</p>
 
   <span class=kr>return</span> <span class=n>alias_to_paths</span>
 <span class=kr>end</span>
-</code></pre></div><h3 class="mb-8 mt-16" id=expand-tsconfig>
-<a class="border-0 text-primary inline-block" href=#expand-tsconfig>
-##
-</a>
+</code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=expand-tsconfig>
+<span class=text-dark-foreground>
 Expand tsconfig
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#expand-tsconfig><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h3>
 <p>Now let&rsquo;s remove that TODO we left earlier.</p>
 <p>We just need to &ldquo;expand&rdquo; (replace) the alias with its path until we find a file
@@ -325,11 +338,12 @@ path (<code>~/file</code> -> <code>src/file</code>) and try to find it:</p>
 
   <span class=kr>return</span> <span class=n>input</span>
 <span class=kr>end</span>
-</code></pre></div><h3 class="mb-8 mt-16" id=handling-configuration-inheritance>
-<a class="border-0 text-primary inline-block" href=#handling-configuration-inheritance>
-##
-</a>
+</code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=handling-configuration-inheritance>
+<span class=text-dark-foreground>
 Handling configuration inheritance
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#handling-configuration-inheritance><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h3>
 <p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
 <a href=https://www.typescriptlang.org/tsconfig#extends><code>extends</code></a>
@@ -364,11 +378,12 @@ is now just ignores these other configurations completely.</p>
 </span><span class=hl>
 </span><span class=hl>  <span class=kr>return</span> <span class=n>vim.tbl_extend</span><span class=p>(</span><span class=s2>&#34;force&#34;</span><span class=p>,</span> <span class=n>alias_to_paths</span><span class=p>,</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_extends</span><span class=p>,</span> <span class=n>base_url</span><span class=p>))</span>
 </span><span class=kr>end</span>
-</code></pre></div><h2 class="mb-8 mt-16" id=conclusion>
-<a class="border-0 text-primary inline-block" href=#conclusion>
-#
-</a>
+</code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusion>
+<span class=text-dark-foreground>
 Conclusion
+</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+</a>
 </h2>
 <p><a href=https://github.com/phelipetls/dotfiles/blob/84303bfdf877d1ded6b8287f83806ebb73af1cce/.config/nvim/lua/tsconfig.lua>You can check the full implementation
 here</a>
@@ -387,6 +402,7 @@ a working <code>gf</code> at least&mldr; It&rsquo;s also a good idea to <a href=
 vim-apathy plugin does for
 JavaScript</a>
 if you want to dive more deep into it.</p>
+</section>
 </article>
 <hr class=my-8>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
@@ -395,7 +411,7 @@ if you want to dive more deep into it.</p>
 </span>
 Automating SVG to JSX conversion with svgr
 </a>
-<a class="flex basis-1/2 grow items-center self-end text-right mt-2 sm:mt-0 h-full justify-end gap-2 border-0" href=/posts/improving-the-android-studio-experience-in-dwm/ title="Next post">
+<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/posts/improving-the-android-studio-experience-in-dwm/ title="Next post">
 Improving the Android Studio experience in dwm
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
 </span>
@@ -403,21 +419,26 @@ Improving the Android Studio experience in dwm
 </nav>
 </main>
 </div>
-<footer class="flex flex-col py-8 gap-2">
-<div class="flex flex-wrap justify-center">
-<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
+<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
+<nav aria-label=Links>
+<div class="flex gap-4">
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 </a>
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
 </a>
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
 </a>
+<a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</a>
+</div>
 </nav>
 </div>
-<p class=text-center>
+<p class=flex-1>
 This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.

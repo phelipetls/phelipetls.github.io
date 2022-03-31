@@ -4,7 +4,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="A blog to share my interests (mostly programming)">
-<meta name=deploy-date content="2022-03-25">
+<meta name=deploy-date content="2022-03-31">
 <meta name=publish-date content="0001-01-01">
 <meta name=last-modified-date content="2022-03-04">
 <meta name=author content>
@@ -33,7 +33,7 @@ About | Phelipe Teles
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
 <div data-scroll-container class="flex flex-col min-h-full">
 <div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-prose px-4">
+<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
 <nav aria-label="Main navigation">
 <div class="flex flex-row flex-wrap gap-2"><a class=border-primary href=https://phelipetls.github.io/>
 About
@@ -45,36 +45,33 @@ Projects
 Resumé
 </a></div>
 </nav>
-<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="24" height="24" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<div class="flex items-center">
+<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg width="var(--icon-size)" height="var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 </defs>
 <use data-theme-button-svg-icon href=#sun>
 </svg>
 </button>
-<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+<ul data-theme-menu id=theme-menu class="absolute bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
 Light
 </li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
 Dark
 </li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
 System
 </li>
 </ul>
 </div>
 </div>
-<div class="my-16 px-4 flex-1 max-w-prose flex flex-col container mx-auto">
-<main class="flex flex-1 flex-col">
+</div>
+<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
+<main class="flex flex-1 shrink-0 flex-col w-full">
 <div class="flex flex-col sm:flex-row">
-<aside class="sm:mr-4 mb-4 sm:mb-0">
-<div class="relative mx-auto" style=width:200px;height:200px>
-<canvas data-gravatar-blurhash class="absolute w-full h-full inset-0 rounded-full border-4 border-divider" width=200 height=200 data-blurhash=UZGuUQs,yDax~pRj-;oJ%gRj-pj[WURkjYfQ></canvas>
-<div class="relative h-full">
-<img id=gravatar alt="A photo of me" width=200 height=200 class="absolute h-full w-full rounded-full border-4 border-divider bg-transparent" src="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"></img>
+<div class="sm:mr-4 mb-4 sm:mb-0 shrink-0 w-[200] h-[200]">
+<img id=gravatar alt="A photo of me" width=200 height=200 class="rounded-full border-4 border-divider bg-transparent max-w-full" src="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"></img>
 </div>
-</div>
-</aside>
-<article>
+<article class=max-w-prose>
 <p>Hi 👋, I&rsquo;m a front-end developer from Rio, Brazil.</p>
 <p>I currently work at <a href=https://mutual.club/>Mutual</a>, building web and mobile
 apps with React, React Native and TypeScript.</p>
@@ -84,21 +81,26 @@ Econometrics and Statistics.</p>
 </div>
 </main>
 </div>
-<footer class="flex flex-col py-8 gap-2">
-<div class="flex flex-wrap justify-center">
-<nav class="flex gap-4 order-last sm:order-first" aria-label=Links>
+<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
+<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
+<nav aria-label=Links>
+<div class="flex gap-4">
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
 </a>
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
 </a>
 <a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
 </a>
+<a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
+</a>
+</div>
 </nav>
 </div>
-<p class=text-center>
+<p class=flex-1>
 This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.
@@ -107,6 +109,5 @@ license.
 </div>
 <script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
 <script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
-<script>(()=>{var p=["0","1","2","3","4","5","6","7","8","9","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","#","$","%","*","+",",","-",".",":",";","=","?","@","[","]","^","_","{","|","}","~"],b=b=>{let a=0;for(let c=0;c<b.length;c++){const d=b[c],e=p.indexOf(d);a=a*83+e}return a},c=b=>{let a=b/255;return a<=.04045?a/12.92:Math.pow((a+.055)/1.055,2.4)},d=b=>{let a=Math.max(0,Math.min(1,b));return a<=.0031308?Math.round(a*12.92*255+.5):Math.round((1.055*Math.pow(a,1/2.4)-.055)*255+.5)},n=a=>a<0?-1:1,e=(a,b)=>n(a)*Math.pow(Math.abs(a),b),h=class extends Error{constructor(a){super(a),this.name="ValidationError",this.message=a}},m=a=>{if(!a||a.length<6)throw new h("The blurhash string must be at least 6 characters");const c=b(a[0]),d=Math.floor(c/9)+1,e=c%9+1;if(a.length!==4+2*e*d)throw new h(`blurhash length mismatch: length is ${a.length} but it should be ${4+2*e*d}`)},i=a=>{const b=a>>16,d=a>>8&255,e=a&255;return[c(b),c(d),c(e)]},j=(a,b)=>{const c=Math.floor(a/(19*19)),d=Math.floor(a/19)%19,f=a%19,g=[e((c-9)/9,2)*b,e((d-9)/9,2)*b,e((f-9)/9,2)*b];return g},k=(a,g,h,l)=>{m(a),l=l|1;const n=b(a[0]),o=Math.floor(n/9)+1,k=n%9+1,p=b(a[1]),q=(p+1)/166,f=new Array(k*o);for(let c=0;c<f.length;c++)if(c===0){const d=b(a.substring(2,6));f[c]=i(d)}else{const d=b(a.substring(4+c*2,6+c*2));f[c]=j(d,q*l)}const c=g*4,e=new Uint8ClampedArray(c*h);for(let a=0;a<h;a++)for(let b=0;b<g;b++){let i=0,j=0,l=0;for(let c=0;c<o;c++)for(let d=0;d<k;d++){const e=Math.cos(Math.PI*b*d/g)*Math.cos(Math.PI*a*c/h);let m=f[d+c*k];i+=m[0]*e,j+=m[1]*e,l+=m[2]*e}let m=d(i),n=d(j),p=d(l);e[4*b+0+a*c]=m,e[4*b+1+a*c]=n,e[4*b+2+a*c]=p,e[4*b+3+a*c]=255}return e},l=k,a=document.querySelector("[data-gravatar-blurhash]"),g=a.getContext("2d"),o=l(a.dataset.blurhash,a.width,a.height),f=g.createImageData(a.width,a.height);f.data.set(o),g.putImageData(f,0,0)})()</script>
 </body>
 </html>
