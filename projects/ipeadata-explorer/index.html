@@ -2,10 +2,10 @@
 <head>
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="A React app to explore and visualize the Ipeadata database.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=description content="A React app to search and visualize time series from the Ipeadata database.">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2020-09-02">
-<meta name=last-modified-date content="2022-01-29">
+<meta name=last-modified-date content="2022-04-02">
 <meta name=author content>
 <meta name=color-scheme content="dark light">
 <link rel=icon href=/favicon.ico sizes=any>
@@ -20,14 +20,14 @@
 Ipeadata Explorer | Phelipe Teles
 </title>
 <meta property="og:title" content="Ipeadata Explorer">
-<meta property="og:description" content="A React app to explore and visualize the Ipeadata database.">
+<meta property="og:description" content="A React app to search and visualize time series from the Ipeadata database.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://phelipetls.github.io/projects/ipeadata-explorer/"><meta property="article:section" content="projects">
 <meta property="article:published_time" content="2020-09-02T00:00:00+00:00">
-<meta property="article:modified_time" content="2022-01-29T10:27:46-03:00">
+<meta property="article:modified_time" content="2022-04-02T17:28:46-03:00">
 <meta name=twitter:card content="summary">
 <meta name=twitter:title content="Ipeadata Explorer">
-<meta name=twitter:description content="A React app to explore and visualize the Ipeadata database.">
+<meta name=twitter:description content="A React app to search and visualize time series from the Ipeadata database.">
 </head>
 <body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
 <script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
@@ -68,7 +68,7 @@ System
 <div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
-<p>A <strong>React</strong> app to explore and visualize the
+<p>A React app to search and visualize time series from the
 <a href=http://ipeadata.gov.br/api/>Ipeadata</a> database.</p>
 </article>
 </main>
@@ -99,7 +99,6 @@ license.
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

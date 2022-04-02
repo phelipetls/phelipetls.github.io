@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="A sequência de fibonacci é uma velha conhecida dos que estudam programação. Por isso, esse post não deve soar tão estimulante para pessoas que trabalham com programação há muito tempo, mas prometo que algo ainda pode ser aproveitado.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2019-03-03">
 <meta name=last-modified-date content="2021-04-25">
 <meta name=author content>
@@ -71,6 +71,9 @@ Sistema
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Três algoritmos para a sequência de Fibonacci
 </h1>
@@ -119,10 +122,12 @@ Fibonacci como um sistema de equações lineares dinâmico, que evolui no tempo.
 para entender melhor como isso funciona, precisamos introduzir o conceito de
 autovalores/autovetores. Mas antes vejamos os algoritmos mais simples.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=a-maneira-comum>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 A maneira comum
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#a-maneira-comum><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#a-maneira-comum><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Apenas para recordar o que é a sequência de fibonacci: dados os dois primeiros
@@ -165,10 +170,12 @@ próximo 1 + 2, 2 + 3 etc.</p>
 </code></pre></div><pre><code>2.46 ms ± 96.5 µs per loop (mean ± std. dev. of 7 runs, 100 loops each)
 </code></pre>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=por-recursão>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Por recursão
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#por-recurs%c3%a3o><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#por-recurs%c3%a3o><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Como não sou estudante de ciência da computação, esse eu conheci recentemente
@@ -230,10 +237,12 @@ melhorar o código. Uma coisa a se notar, no entanto, é que se você chamar a
 função com 10000, pelo menos com esse código, dá &ldquo;stack overflow&rdquo;&mldr; o que eu
 não esperava e honestamente nem sei por que é assim.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=por-álgebra-linear>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Por Álgebra Linear
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#por-%c3%a1lgebra-linear><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#por-%c3%a1lgebra-linear><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <div style=position:relative;padding-bottom:56.25%;height:0;overflow:hidden>
@@ -392,6 +401,10 @@ que conta com ótimas visualizações do que acabamos de fazer aqui.</p>
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
 <a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/ title="Post anterior">
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -431,7 +444,6 @@ Este conteúdo está sob a licença
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

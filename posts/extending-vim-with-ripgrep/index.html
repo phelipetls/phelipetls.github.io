@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Take full advantage of Vim&rsquo;s shel integration and the quick fix list.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2021-06-11">
 <meta name=last-modified-date content="2022-02-02">
 <meta name=author content>
@@ -69,6 +69,9 @@ System
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Extending Vim with ripgrep
 </h1>
@@ -109,10 +112,12 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 </span></code></pre></div><p>At first, it was not obvious to me how I could use it beyond <code>:grep foo</code>, so I
 want to share how I do.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=common-use-cases>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Common use cases
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#common-use-cases><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#common-use-cases><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <ul>
@@ -122,10 +127,12 @@ Common use cases
 <li>Search for <code>foo</code> in current file directory&rsquo;s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=less-common-use-cases>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Less common use cases
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#less-common-use-cases><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#less-common-use-cases><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <ul>
@@ -135,10 +142,12 @@ Less common use cases
 <li>Search for <code>foo</code> in files matching a glob: <code>:grep foo -g '*.js'</code></li>
 </ul>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=extensibility>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Extensibility
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#extensibility><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#extensibility><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>This is nice but here is where it truly shines. I can give any command line
@@ -149,10 +158,12 @@ output as an argument.</p>
 <pre tabindex=0><code>:grep foo `git ls-files --modified`
 </code></pre><p>I don&rsquo;t use this everyday but I enjoy it when I do.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=usage-with-vim>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Usage with Vim
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#usage-with-vim><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#usage-with-vim><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>This will populate the quickfix list with the search results, so I can navigate
@@ -161,10 +172,12 @@ them with commands I&rsquo;m already familiar with.</p>
 before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Sometimes I narrow the
 search down with <code>:Cfilter</code> too.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=downsides>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Downsides
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#downsides><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#downsides><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p><s>A downside is that you can&rsquo;t use backreferences or look-around in regex. In
@@ -178,10 +191,12 @@ or <code>--engine auto</code> and I can&rsquo;t wait to use it!!</p>
 for a few seconds. But I don&rsquo;t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusion>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Conclusion
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>This might be one of the few sane reasons why I insist on using <code>nvim</code> for
@@ -198,6 +213,10 @@ enjoy using and makes development more fun (to me).</p>
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
 <a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/implementing-dark-mode-for-static-websites/ title="Previous post">
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -238,7 +257,6 @@ license.
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

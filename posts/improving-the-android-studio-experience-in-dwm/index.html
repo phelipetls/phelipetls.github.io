@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="In this post, I want to share how I started to change dwm source code in order to improve my experience with Android Emulator.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2022-01-25">
 <meta name=last-modified-date content="2022-02-09">
 <meta name=author content>
@@ -69,6 +69,9 @@ System
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Improving the Android Studio experience in dwm
 </h1>
@@ -159,10 +162,12 @@ to its transient windows.</li>
 windows to be raised into view as well.</li>
 </ul>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=skipping-transient-windows-in-the-taskbar>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Skipping transient windows in the taskbar
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#skipping-transient-windows-in-the-taskbar><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#skipping-transient-windows-in-the-taskbar><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>The taskbar is drawn by the <code>drawbar</code> function.</p>
@@ -231,10 +236,12 @@ in the taskbar, this seemed like a better idea too so <a href=https://github.com
 well</a>
 .</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=skipping-transient-windows-in-monocle-layout-count>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Skipping transient windows in monocle layout count
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#skipping-transient-windows-in-monocle-layout-count><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#skipping-transient-windows-in-monocle-layout-count><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>This is simple, we just need to <em>not</em> increment a counter when the window is
@@ -254,10 +261,12 @@ transient, in the <code>monocle</code> function:</p>
 	<span class=c1>// ...
 </span><span class=c1></span><span class=p>}</span>
 </code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Do not focus transient windows with <kbd>mod</kbd> + <kbd>j</kbd> and <kbd>mod</kbd> + <kbd>k</kbd>
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#do-not-focus-transient-windows-with-kbdmodkbd--kbdjkbd-and-kbdmodkbd--kbdkkbd><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>I started by checking which function is bound to these keys in <code>config.h</code>: the
@@ -303,10 +312,12 @@ if statements (careful not to mix up the <code>i</code> and <code>c</code> varia
 </span><span class=gi></span>					c = i;
 	}
 </code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=applying-nth-tag-to-a-leader-windows-transient-windows>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Applying nth tag to a leader window&rsquo;s transient windows
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#applying-nth-tag-to-a-leader-windows-transient-windows><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#applying-nth-tag-to-a-leader-windows-transient-windows><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>To achieve this, I also started by checking which function is bound to
@@ -336,10 +347,12 @@ leader is the selected client:</p>
 	<span class=p>}</span>
 <span class=p>}</span>
 </code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=raising-all-transient-windows-when-the-leader-window-gets-focused>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Raising all transient windows when the leader window gets focused
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#raising-all-transient-windows-when-the-leader-window-gets-focused><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#raising-all-transient-windows-when-the-leader-window-gets-focused><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Since the transient windows do not appear in the taskbar and we also ignore
@@ -425,10 +438,12 @@ around.
 </div>
 </div>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=final-result>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Final result
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#final-result><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#final-result><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Here&rsquo;s a demonstration of the final result:</p>
@@ -438,6 +453,10 @@ Final result
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
 <a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/making-vim-understand-typescript-path-mapping/ title="Previous post">
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -478,7 +497,6 @@ license.
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2019-03-17">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -71,6 +71,9 @@ Sistema
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Método de Newton
 </h1>
@@ -143,10 +146,12 @@ novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
 solução.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=aproximação-linear>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Aproximação Linear
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#aproxima%c3%a7%c3%a3o-linear><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#aproxima%c3%a7%c3%a3o-linear><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
@@ -244,10 +249,12 @@ e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
 inevitavelmente teria lidar com cálculo diferencial. Para isso, existe uma
 biblioteca que pode nos ajudar.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=introduzindo-sympy>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Introduzindo SymPy
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#introduzindo-sympy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#introduzindo-sympy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
@@ -274,10 +281,12 @@ praticamente só aceita funções do próprio SymPy. Para a utilizarmos como uma
 função qualquer, devemos usar <code>lambdify()</code>. Para nossos objetivos, essa última e
 a função diff serão suficientes.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=um-código-para-o-algoritmo>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Um código para o algoritmo
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#um-c%c3%b3digo-para-o-algoritmo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#um-c%c3%b3digo-para-o-algoritmo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p>
@@ -372,10 +381,12 @@ nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
 -2.0588469658492823
 </code></pre>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=limitações-do-método>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Limitações do método
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
@@ -450,10 +461,12 @@ Veja o gráfico.</p>
 </code></pre></div><p><img src=./output_26_1.png alt=png class="rounded my-8" style=background-color:#fff>
 </p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Conclusões
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
@@ -464,6 +477,10 @@ como acabamos de fazer aqui com a ajuda do matplotlib.</p>
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
 <a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/ title="Post anterior">
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -503,7 +520,6 @@ Este conteúdo está sob a licença
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

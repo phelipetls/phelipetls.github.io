@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2019-04-07">
 <meta name=last-modified-date content="2021-04-25">
 <meta name=author content>
@@ -67,6 +67,9 @@ Sistema
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Homicídios em Baltimore: visualizações com ggplot2 e gganimate
 </h1>
@@ -132,10 +135,12 @@ da cidade são as mais violentas etc.</p>
 <p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
 Será que vem declinando com o passar dos anos?</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=evolução-do-número-de-vítimas-no-tempo>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Evolução do número de vítimas no tempo
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
@@ -226,10 +231,12 @@ tentei replicar abaixo:</p>
 meses. Também salta aos olhos que a violência diminuiu em relação a 2007, mas se
 manteve mais ou menos estável no resto do período.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=aspectos-sociais-das-vítimas>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Aspectos sociais das vítimas
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#aspectos-sociais-das-v%c3%adtimas><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#aspectos-sociais-das-v%c3%adtimas><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
@@ -257,10 +264,12 @@ nas regiões onde a violência é maior.</p>
 <p>Também impressiona o contraste entre os números para cada gênero. Os homens são
 muito mais propensos a serem mortos violentamente.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=que-causa-de-morte-é-a-mais-comum>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Que causa de morte é a mais comum?
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#que-causa-de-morte-%c3%a9-a-mais-comum><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#que-causa-de-morte-%c3%a9-a-mais-comum><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
@@ -282,10 +291,12 @@ barras:</p>
 <p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
 esfaqueamento e contusão.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=mapas-e-animações>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Mapas e animações
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#mapas-e-anima%c3%a7%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#mapas-e-anima%c3%a7%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
@@ -379,10 +390,12 @@ números crescem.</p>
 </code></pre></div><p><img src=./unnamed-chunk-9-1.gif alt=gif3 class="rounded my-8" style=background-color:#fff>
 </p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Conclusões
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
@@ -404,6 +417,10 @@ ou o próprio <a href=https://gganimate.com/>site do pacote</a>
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
 <a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/homicidios-em-baltimore-minerando-dados-r/ title="Post anterior">
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -443,7 +460,6 @@ Este conteúdo está sob a licença
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

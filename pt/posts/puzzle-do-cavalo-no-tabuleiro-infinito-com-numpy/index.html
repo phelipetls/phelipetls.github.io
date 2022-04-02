@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="Para estrear o blog, escolhi explorar um puzzle probabilístico, que vi no blog do David Robinson , que consiste em estimar a probabilidade de um cavalo voltar à sua posição inicial após ter saltado aleatoriamente 20 vezes num tabuleiro de xadrez infinito (sendo os 8 possíveis saltos igualmente prováveis).">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2019-02-18">
 <meta name=last-modified-date content="2021-04-25">
 <meta name=author content>
@@ -67,6 +67,9 @@ Sistema
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Puzzle do cavalo no tabuleiro infinito com NumPy
 </h1>
@@ -108,10 +111,12 @@ seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
 operações vetorizadas e eficientes.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=o-que-está-por-trás-da-eficiência-do-numpy>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 O que está por trás da eficiência do Numpy
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
@@ -170,10 +175,12 @@ TypeError: can't convert complex to int
 </code></pre>
 <p>Esse comportamento é muito similar ao vetor do R.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=simulando-os-movimentos-do-cavalo>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Simulando os movimentos do cavalo
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#simulando-os-movimentos-do-cavalo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#simulando-os-movimentos-do-cavalo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p>
@@ -313,10 +320,12 @@ simples histograma, feito com 100 repetições do experimento.</p>
 </code></pre></div><p><img src=./histograma.png alt=Histograma class="rounded my-8" style=background-color:#fff>
 </p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=a-eficiência-em-números>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 A eficiência em números
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#a-efici%c3%aancia-em-n%c3%bameros><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#a-efici%c3%aancia-em-n%c3%bameros><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
@@ -343,10 +352,12 @@ algoritmo.</p>
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
 Python seria absurdamente mais lento.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Conclusões
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
@@ -362,6 +373,10 @@ Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
 <a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/ title="Próximo post">
 Três algoritmos para a sequência de Fibonacci
@@ -396,7 +411,6 @@ Este conteúdo está sob a licença
 </p>
 </footer>
 </div>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>

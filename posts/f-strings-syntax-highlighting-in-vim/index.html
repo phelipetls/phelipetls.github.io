@@ -3,7 +3,7 @@
 <meta charset=utf-8>
 <meta name=viewport content="width=device-width,initial-scale=1">
 <meta name=description content="UPDATE 2020-10-30: First iteration of this post was very naive, supporting only the very basic. See the diff that adds support for string modifiers and escape sequences.">
-<meta name=deploy-date content="2022-04-01">
+<meta name=deploy-date content="2022-04-02">
 <meta name=publish-date content="2020-10-28">
 <meta name=last-modified-date content="2021-04-24">
 <meta name=author content>
@@ -70,6 +70,9 @@ System
 <main class="flex flex-1 shrink-0 flex-col w-full">
 <article>
 <header>
+<div class="text-primary mb-4">
+░░░░░░░░░░
+</div>
 <h1 class="text-4xl mb-4">
 Python f-strings syntax highlighting in Vim
 </h1>
@@ -130,10 +133,12 @@ my surprise.</p>
 </span><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonfDocstring</span> <span class=nx>String</span><span class=err>
 </span><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonStringModifier</span> <span class=nx>PreProc</span><span class=err>
 </span></code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=declaring-a-syntax-region-for-f-strings>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Declaring a syntax region for f-strings
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#declaring-a-syntax-region-for-f-strings><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#declaring-a-syntax-region-for-f-strings><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>The first two lines define a new syntax region (see <code>:h syn-region</code>) called
@@ -148,10 +153,12 @@ see <code>:h \z(</code>).</p>
 highlight the start/end pattern. The group <code>pythonQuotes</code> come from the default
 syntax file.</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=handling-expressions-inside-f-strings>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Handling expressions inside f-strings
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#handling-expressions-inside-f-strings><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#handling-expressions-inside-f-strings><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>We also need to declare what this region contains.</p>
@@ -162,10 +169,12 @@ want a match if the preceding token is present (see <code>:h \@!</code>).</p>
 <p>This region may contain only expressions, so stuff like a function declaration
 does not make sense (notice there is a syntax for that, <code>:helpgrep ALLBUT</code>)</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=handling-string-modifiers>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Handling string modifiers
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#handling-string-modifiers><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#handling-string-modifiers><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>f-strings supports
@@ -185,10 +194,12 @@ that should be used.</p>
 <p>It should only be highlighted inside a <code>pythonInterpolation</code> so we take
 advantage of the <code>containedin</code> argument (see <code>:h syn-containedin</code>).</p>
 <h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=highlighting-declared-groups>
-<span class=text-dark-foreground>
+<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
+</div>
+<span>
 Highlighting declared groups
 </span>
-<a class="text-primary border-0 hidden group-hover:inline-block" href=#highlighting-declared-groups><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#highlighting-declared-groups><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
 </a>
 </h2>
 <p>Finally, we link these new highlight groups with an appropriate/whichever you
@@ -197,6 +208,10 @@ for f-strings and <code>PreProc</code> for modifiers. And it should work as expe
 </section>
 </article>
 <hr class=my-8>
+<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
+Copied!
+<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
+</div>
 <nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
 <a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/deploying-flask-app-on-heroku/ title="Previous post">
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
@@ -239,7 +254,6 @@ license.
 </div>
 <script type=module src=/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js></script>
 <script type=module src=/posts/f-strings-syntax-highlighting-in-vim/script.js></script>
-<script type=module src=https://phelipetls.github.io/js/theme-button.min.js></script>
-<script type=module src=https://phelipetls.github.io/js/nav.min.js></script>
+<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
 </body>
 </html>
