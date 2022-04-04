@@ -1,359 +1,179 @@
-<!doctype html><html class=h-full lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server.">
-<meta name=deploy-date content="2022-04-03">
-<meta name=publish-date content="2022-03-02">
-<meta name=last-modified-date content="2022-03-30">
-<meta name=author content>
-<meta name=color-scheme content="dark light">
-<link rel=icon href=/favicon.ico sizes=any>
-<link rel=icon href=/icon.svg type=image/svg+xml>
-<link rel=apple-touch-icon href=/apple-touch-icon.png>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
-<link rel=stylesheet href="/css/main.min.css">
-<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
-<title>
-Using Storybook and MSW in React Native | Phelipe Teles
-</title>
-<meta property="og:title" content="Using Storybook and MSW in React Native">
-<meta property="og:description" content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://phelipetls.github.io/posts/using-storybook-and-msw-in-react-native/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2022-03-02T00:00:00+00:00">
-<meta property="article:modified_time" content="2022-03-30T13:41:56-03:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Using Storybook and MSW in React Native">
-<meta name=twitter:description content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server.">
-</head>
-<body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
-<script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
-<nav aria-label="Main navigation">
-<div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
-About
-</a><a class=border-primary href=https://phelipetls.github.io/posts/>
-Posts
-</a><a href=https://phelipetls.github.io/projects/>
-Projects
-</a><a href=https://phelipetls.github.io/embedded-resume/>
-Resumé
-</a></div>
-</nav>
-<div class="flex items-center">
-<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</defs>
-<use data-theme-button-svg-icon href=#sun>
-</svg>
-</button>
-<ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-Light
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-Dark
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-System
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
-<main class="flex flex-1 shrink-0 flex-col w-full">
-<article>
-<header>
-<h1 class="text-4xl mb-4">
-Using Storybook and MSW in React Native
-</h1>
-<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-<time datetime=2022-03-02>
-March 02, 2022
-</time>
-</div>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-<div>
-Last modified at
-<time datetime=2022-03-30>
-March 30, 2022
-</time>
-</div>
-</div>
-</div>
-</header>
-<div class=mb-4>
-<div class="flex flex-wrap gap-2 py-2">
-<a href=/tags/react-native/ class="no-underline rounded-full border-2 px-4 py-1/2">react native</a>
+<!doctype html><html class=h-full lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server."><meta name=deploy-date content="2022-04-04"><meta name=publish-date content="2022-03-02"><meta name=last-modified-date content="2022-03-30"><meta name=author content><meta name=color-scheme content="dark light"><link rel=prelaod as=image href="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"><link rel=icon href=/favicon.ico sizes=any><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Using Storybook and MSW in React Native | Phelipe Teles</title><meta property="og:title" content="Using Storybook and MSW in React Native"><meta property="og:description" content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/using-storybook-and-msw-in-react-native/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-03-02T00:00:00+00:00"><meta property="article:modified_time" content="2022-03-30T13:41:56-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Using Storybook and MSW in React Native"><meta name=twitter:description content="The integration between Storybook and Mock Service Worker enables you to develop components isolated from your app and your back-end server."></head><body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out"><script>function storeTheme(e){e&&localStorage.setItem("__theme",e)}function getStoredTheme(){return localStorage.getItem("__theme")}function setTheme(e){e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),e==="dark"?document.body.classList.add("dark"):document.body.classList.remove("dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:e}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeTheme(e),dispatchNewThemeEvent(e)};const storedTheme=getStoredTheme()||"auto";window.__setTheme(storedTheme),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedTheme)})</script><div data-scroll-container class="flex flex-col min-h-full"><div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)><div class="flex items-center justify-between mx-auto max-w-5xl px-4"><nav aria-label="Main navigation"><div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>About
+</a><a class=border-primary href=https://phelipetls.github.io/posts/>Posts
+</a><a href=https://phelipetls.github.io/projects/>Projects
+</a><a href=https://phelipetls.github.io/embedded-resume/>Resumé</a></div></nav><div class="flex items-center"><button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Light</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Dark</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>System</li></ul></div></div></div><div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto"><main class="flex flex-1 shrink-0 flex-col w-full"><article><header><h1 class="text-4xl mb-4">Using Storybook and MSW in React Native</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2022-03-02>March 02, 2022</time></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg><div>Last modified at
+<time datetime=2022-03-30>March 30, 2022</time></div></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/tags/react-native/ class="no-underline rounded-full border-2 px-4 py-1/2">react native</a>
 <a href=/tags/javascript/ class="no-underline rounded-full border-2 px-4 py-1/2">javascript</a>
 <a href=/tags/mobile/ class="no-underline rounded-full border-2 px-4 py-1/2">mobile</a>
 <a href=/tags/storybook/ class="no-underline rounded-full border-2 px-4 py-1/2">storybook</a>
-<a href=/tags/msw/ class="no-underline rounded-full border-2 px-4 py-1/2">msw</a>
-</div>
-</div>
-<hr class=my-8>
-<section data-blog-post class=max-w-prose>
-<p>The integration between <a href=storybook.js.org/>Storybook</a>
+<a href=/tags/msw/ class="no-underline rounded-full border-2 px-4 py-1/2">msw</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p>The integration between <a href=storybook.js.org/>Storybook</a>
 and <a href=https://mswjs.io/>Mock Service
 Worker</a>
 enables you to develop components isolated from your
-app and your back-end server.</p>
-<p>This is
+app and your back-end server.</p><p>This is
 <a href=https://hmh.engineering/storybook-and-mock-service-worker-a-match-made-in-heaven-e762bd7951ce>not</a>
 <a href=https://blog.logrocket.com/using-storybook-and-mock-service-worker-for-mocked-api-responses/>new</a>
 on the web, the
 <a href=https://storybook.js.org/addons/msw-storybook-addon><code>msw-storybook-addon</code></a>
 makes it easy to get started. It&rsquo;s another story for React Native though, since
 <a href=https://github.com/mswjs/msw/issues/203>MSW has only recently started supporting it</a>
-.</p>
-<p>I find this combination of tools invaluable, so I couldn&rsquo;t resist attempting to
-make it work in React Native, even though it&rsquo;s pretty new.</p>
-<p>In this post, I&rsquo;m gonna explain in detail how I did it.</p>
-<div data-note class="max-w-prose flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface">
-<div class=text-note><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-</div>
-<div>
-<strong>tl;dr:</strong> You can read the <a href=https://github.com/phelipetls/react-native-storybook-msw>example
+.</p><p>I find this combination of tools invaluable, so I couldn&rsquo;t resist attempting to
+make it work in React Native, even though it&rsquo;s pretty new.</p><p>In this post, I&rsquo;m gonna explain in detail how I did it.</p><div data-note class="max-w-prose flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface"><div class=text-note><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div><strong>tl;dr:</strong> You can read the <a href=https://github.com/phelipetls/react-native-storybook-msw>example
 repository</a> or this
 <a href=https://github.com/phelipetls/react-native-storybook-msw/pull/1>pull request</a>
-instead.
-</div>
-</div>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=how-msw-storybook-addon-works>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-How <code>msw-storybook-addon</code> works?
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#how-msw-storybook-addon-works><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Our end goal is to port <code>msw-storybook-addon</code> to React Native. So let&rsquo;s first
-understand how it works.</p>
-<p>This is a library by the MSW team that provides you with a
+instead.</div></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=how-msw-storybook-addon-works><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>How <code>msw-storybook-addon</code> works?</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#how-msw-storybook-addon-works><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Our end goal is to port <code>msw-storybook-addon</code> to React Native. So let&rsquo;s first
+understand how it works.</p><p>This is a library by the MSW team that provides you with a
 <a href=https://storybook.js.org/docs/react/writing-stories/decorators>global Storybook decorator</a>
 .
 From the docs, <a href=https://github.com/mswjs/msw-storybook-addon>here&rsquo;s how you add to your Storybook configuration</a>
-:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// ./storybook/preview.js
-</span><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>initialize</span><span class=p>,</span> <span class=nx>mswDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw-storybook-addon&#39;</span><span class=p>;</span>
-
-<span class=nx>initialize</span><span class=p>();</span>
-<span class=kr>export</span> <span class=kr>const</span> <span class=nx>decorators</span> <span class=o>=</span> <span class=p>[</span><span class=nx>mswDecorator</span><span class=p>];</span>
-</code></pre></div><p>And <a href=https://github.com/mswjs/msw-storybook-addon#usage>here&rsquo;s how you use
+:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// ./storybook/preview.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>initialize</span><span class=p>,</span> <span class=nx>mswDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw-storybook-addon&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>initialize</span><span class=p>();</span>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>decorators</span> <span class=o>=</span> <span class=p>[</span><span class=nx>mswDecorator</span><span class=p>];</span>
+</span></span></code></pre></div><p>And <a href=https://github.com/mswjs/msw-storybook-addon#usage>here&rsquo;s how you use
 it</a>
-:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=kr>import</span> <span class=p>{</span> <span class=nx>rest</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw&#39;</span>
-<span class=kr>import</span> <span class=p>{</span> <span class=nx>UserProfile</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./UserProfile&#39;</span>
-
-<span class=kr>export</span> <span class=kr>const</span> <span class=nx>SuccessBehavior</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=o>&lt;</span><span class=nx>UserProfile</span> <span class=o>/&gt;</span>
-
-<span class=nx>SuccessBehavior</span><span class=p>.</span><span class=nx>parameters</span> <span class=o>=</span> <span class=p>{</span>
-  <span class=nx>msw</span><span class=o>:</span> <span class=p>{</span>
-    <span class=nx>handlers</span><span class=o>:</span> <span class=p>[</span>
-      <span class=nx>rest</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/user&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-        <span class=k>return</span> <span class=nx>res</span><span class=p>(</span>
-          <span class=nx>ctx</span><span class=p>.</span><span class=nx>json</span><span class=p>({</span>
-            <span class=nx>firstName</span><span class=o>:</span> <span class=s1>&#39;Neil&#39;</span><span class=p>,</span>
-            <span class=nx>lastName</span><span class=o>:</span> <span class=s1>&#39;Maverick&#39;</span><span class=p>,</span>
-          <span class=p>})</span>
-        <span class=p>)</span>
-      <span class=p>}),</span>
-    <span class=p>]</span>
-  <span class=p>},</span>
-<span class=p>}</span>
-</code></pre></div><p>This code is using Storybook v6, but only Storybook v5 is available for React
+:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>rest</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>UserProfile</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./UserProfile&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>SuccessBehavior</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=o>&lt;</span><span class=nx>UserProfile</span> <span class=o>/&gt;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>SuccessBehavior</span><span class=p>.</span><span class=nx>parameters</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>msw</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>handlers</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>      <span class=nx>rest</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/user&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span> <span class=nx>res</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>          <span class=nx>ctx</span><span class=p>.</span><span class=nx>json</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>            <span class=nx>firstName</span><span class=o>:</span> <span class=s1>&#39;Neil&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=nx>lastName</span><span class=o>:</span> <span class=s1>&#39;Maverick&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>          <span class=p>})</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>}),</span>
+</span></span><span class=line><span class=cl>    <span class=p>]</span>
+</span></span><span class=line><span class=cl>  <span class=p>},</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>This code is using Storybook v6, but only Storybook v5 is available for React
 Native. Fortunately, both versions support decorators, they differ mostly about
-how you configure/use it:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// storybook/index.js
-</span><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>getStorybookUI</span><span class=p>,</span> <span class=nx>configure</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
-<span class=hl><span class=kr>import</span> <span class=p>{</span> <span class=nx>addDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
-</span><span class=hl><span class=kr>import</span> <span class=p>{</span> <span class=nx>withMsw</span><span class=p>,</span> <span class=nx>initialize</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./mswDecorator&#39;</span>
-</span>
-<span class=kr>import</span> <span class=s1>&#39;./rn-addons&#39;</span>
-
-<span class=hl><span class=nx>initialize</span><span class=p>()</span>
-</span><span class=hl><span class=nx>addDecorator</span><span class=p>(</span><span class=nx>withMsw</span><span class=p>)</span>
-</span>
-<span class=c1>// import stories
-</span><span class=c1></span><span class=nx>configure</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
-  <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../components/Task.stories.js&#39;</span><span class=p>)</span>
-<span class=p>},</span> <span class=nx>module</span><span class=p>)</span>
-
-<span class=kr>const</span> <span class=nx>StorybookUIRoot</span> <span class=o>=</span> <span class=nx>getStorybookUI</span><span class=p>({</span>
-  <span class=nx>asyncStorage</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
-<span class=p>})</span>
-
-<span class=kr>export</span> <span class=k>default</span> <span class=nx>StorybookUIRoot</span>
-</code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=porting-msw-storybook-addon-to-react-native>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Porting <code>msw-storybook-addon</code> to React Native
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#porting-msw-storybook-addon-to-react-native><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>A decorator is simply a function that does something before rendering the
-story, which is a React component.</p>
-<p>Here is what we need to do:</p>
-<ul>
-<li>Initialize the MSW server.</li>
-<li>Clean it up, which means to reset old request handlers.</li>
-<li>Set up the new request handlers, if any.</li>
-</ul>
-<p>Our implementation should not differ very much from the <code>msw-storybook-addon</code>
+how you configure/use it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// storybook/index.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>getStorybookUI</span><span class=p>,</span> <span class=nx>configure</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
+</span></span><span class="line hl"><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>addDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
+</span></span><span class="line hl"><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>withMsw</span><span class=p>,</span> <span class=nx>initialize</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./mswDecorator&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=s1>&#39;./rn-addons&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class="line hl"><span class=cl><span class=nx>initialize</span><span class=p>()</span>
+</span></span><span class="line hl"><span class=cl><span class=nx>addDecorator</span><span class=p>(</span><span class=nx>withMsw</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>// import stories
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=nx>configure</span><span class=p>(()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>require</span><span class=p>(</span><span class=s1>&#39;../components/Task.stories.js&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=p>},</span> <span class=nx>module</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>const</span> <span class=nx>StorybookUIRoot</span> <span class=o>=</span> <span class=nx>getStorybookUI</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>  <span class=nx>asyncStorage</span><span class=o>:</span> <span class=kc>null</span><span class=p>,</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=k>default</span> <span class=nx>StorybookUIRoot</span>
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=porting-msw-storybook-addon-to-react-native><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Porting <code>msw-storybook-addon</code> to React Native</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#porting-msw-storybook-addon-to-react-native><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>A decorator is simply a function that does something before rendering the
+story, which is a React component.</p><p>Here is what we need to do:</p><ul><li>Initialize the MSW server.</li><li>Clean it up, which means to reset old request handlers.</li><li>Set up the new request handlers, if any.</li></ul><p>Our implementation should not differ very much from the <code>msw-storybook-addon</code>
 <a href=https://github.com/mswjs/msw-storybook-addon/blob/35a4b198a4b4eead9a2d0771f81460c6788e77a7/packages/msw-addon/src/mswDecorator.ts#L69-L102>implementation</a>
-.</p>
-<h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=first-problem-how-to-initialize-the-server>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-First problem: how to initialize the server?
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#first-problem-how-to-initialize-the-server><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>We can&rsquo;t use <a href=https://mswjs.io/docs/api/setup-worker><code>setupWorker</code></a>
+.</p><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=first-problem-how-to-initialize-the-server><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>First problem: how to initialize the server?</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#first-problem-how-to-initialize-the-server><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>We can&rsquo;t use <a href=https://mswjs.io/docs/api/setup-worker><code>setupWorker</code></a>
 because
 we&rsquo;re not in a browser, we don&rsquo;t have service workers.
 <a href=https://mswjs.io/docs/api/setup-server><code>setupServer</code></a>
 also won&rsquo;t work,
-because we&rsquo;re not in a Node.js environment.</p>
-<p>It turns out that we need to use the <code>setupServer</code> function from the
+because we&rsquo;re not in a Node.js environment.</p><p>It turns out that we need to use the <code>setupServer</code> function from the
 <code>msw/native</code> module. This is still undocumented, you&rsquo;ll only read about it in
 <a href=https://github.com/mswjs/msw/issues/203>this GitHub issue</a>
 and in <a href=https://github.com/mswjs/examples/pull/60>this
 example with more details on how to use
 it</a>
-.</p>
-<h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=implementation>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Implementation
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#implementation><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>What follows is an implementation that worked for me. You can ignore all non
+.</p><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=implementation><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Implementation</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#implementation><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>What follows is an implementation that worked for me. You can ignore all non
 highlighted code, since it&rsquo;s only meant to stay compatible with the
 <a href=https://github.com/mswjs/msw-storybook-addon/blob/35a4b198a4b4eead9a2d0771f81460c6788e77a7/packages/msw-addon/src/mswDecorator.ts#L69-L102><code>msw-storybook-addon</code>
 API</a>
-.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=c1>// ./mswDecorator.js
-</span><span class=hl><span class=c1></span><span class=kr>import</span> <span class=s1>&#39;react-native-url-polyfill/auto&#39;</span>
-</span><span class=hl><span class=kr>import</span> <span class=p>{</span> <span class=nx>setupServer</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw/native&#39;</span>
-</span><span class=hl>
-</span><span class=hl><span class=kr>const</span> <span class=nx>server</span> <span class=o>=</span> <span class=nx>setupServer</span><span class=p>()</span>
-</span><span class=hl>
-</span><span class=hl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>initialize</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
-</span><span class=hl>  <span class=c1>// Do not warn or error out if a non-mocked request happens.
-</span></span><span class=hl><span class=c1></span>  <span class=c1>// If we don&#39;t use this, Storybook will be spammy about requests made to
-</span></span><span class=hl><span class=c1></span>  <span class=c1>// fetch the JS bundle etc.
-</span></span><span class=hl><span class=c1></span>  <span class=nx>server</span><span class=p>.</span><span class=nx>listen</span><span class=p>({</span> <span class=nx>onUnhandledRequest</span><span class=o>:</span> <span class=s1>&#39;bypass&#39;</span> <span class=p>})</span>
-</span><span class=hl><span class=p>}</span>
-</span>
-<span class=kr>export</span> <span class=kr>const</span> <span class=nx>withMsw</span> <span class=o>=</span> <span class=p>(</span><span class=nx>storyFn</span><span class=p>,</span> <span class=p>{</span> <span class=nx>parameters</span><span class=o>:</span> <span class=p>{</span> <span class=nx>msw</span> <span class=p>}</span> <span class=p>})</span> <span class=p>=&gt;</span> <span class=p>{</span>
-<span class=hl>  <span class=nx>server</span><span class=p>.</span><span class=nx>resetHandlers</span><span class=p>()</span>
-</span>
-  <span class=k>if</span> <span class=p>(</span><span class=nx>msw</span><span class=p>)</span> <span class=p>{</span>
-    <span class=k>if</span> <span class=p>(</span><span class=nb>Array</span><span class=p>.</span><span class=nx>isArray</span><span class=p>(</span><span class=nx>msw</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=nx>msw</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
-      <span class=c1>// Support an Array of request handlers (backwards compatibility).
-</span><span class=c1></span>      <span class=nx>server</span><span class=p>.</span><span class=nx>use</span><span class=p>(...</span><span class=nx>msw</span><span class=p>)</span>
-    <span class=p>}</span>
-  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=s1>&#39;handlers&#39;</span> <span class=k>in</span> <span class=nx>msw</span> <span class=o>&amp;&amp;</span> <span class=nx>msw</span><span class=p>.</span><span class=nx>handlers</span><span class=p>)</span> <span class=p>{</span>
-    <span class=c1>// Support an Array named request handlers handlers
-</span><span class=c1></span>    <span class=c1>// or an Object of named request handlers with named arrays of handlers
-</span><span class=c1></span>    <span class=kr>const</span> <span class=nx>handlers</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>values</span><span class=p>(</span><span class=nx>msw</span><span class=p>.</span><span class=nx>handlers</span><span class=p>)</span>
-      <span class=p>.</span><span class=nx>filter</span><span class=p>(</span><span class=nb>Boolean</span><span class=p>)</span>
-      <span class=p>.</span><span class=nx>reduce</span><span class=p>(</span>
-          <span class=p>(</span><span class=nx>handlers</span><span class=p>,</span> <span class=nx>handlersList</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>handlers</span><span class=p>.</span><span class=nx>concat</span><span class=p>(</span><span class=nx>handlersList</span><span class=p>),</span>
-          <span class=p>[]</span> <span class=nx>as</span> <span class=nx>RequestHandler</span><span class=p>[]</span>
-          <span class=p>)</span>
-
-      <span class=k>if</span> <span class=p>(</span><span class=nx>handlers</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
-        <span class=nx>api</span><span class=p>.</span><span class=nx>use</span><span class=p>(...</span><span class=nx>handlers</span><span class=p>)</span>
-      <span class=p>}</span>
-  <span class=p>}</span>
-
-  <span class=k>return</span> <span class=nx>storyFn</span><span class=p>()</span>
-<span class=p>}</span>
-</code></pre></div><p>You&rsquo;ll notice that we import a polyfill. <a href=https://github.com/mswjs/examples/pull/60/files>This is required, as explained in
+.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=c1>// ./mswDecorator.js
+</span></span></span><span class="line hl"><span class=cl><span class=c1></span><span class=kr>import</span> <span class=s1>&#39;react-native-url-polyfill/auto&#39;</span>
+</span></span><span class="line hl"><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>setupServer</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw/native&#39;</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl><span class=kr>const</span> <span class=nx>server</span> <span class=o>=</span> <span class=nx>setupServer</span><span class=p>()</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>initialize</span> <span class=o>=</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class="line hl"><span class=cl>  <span class=c1>// Do not warn or error out if a non-mocked request happens.
+</span></span></span><span class="line hl"><span class=cl><span class=c1></span>  <span class=c1>// If we don&#39;t use this, Storybook will be spammy about requests made to
+</span></span></span><span class="line hl"><span class=cl><span class=c1></span>  <span class=c1>// fetch the JS bundle etc.
+</span></span></span><span class="line hl"><span class=cl><span class=c1></span>  <span class=nx>server</span><span class=p>.</span><span class=nx>listen</span><span class=p>({</span> <span class=nx>onUnhandledRequest</span><span class=o>:</span> <span class=s1>&#39;bypass&#39;</span> <span class=p>})</span>
+</span></span><span class="line hl"><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>export</span> <span class=kr>const</span> <span class=nx>withMsw</span> <span class=o>=</span> <span class=p>(</span><span class=nx>storyFn</span><span class=p>,</span> <span class=p>{</span> <span class=nx>parameters</span><span class=o>:</span> <span class=p>{</span> <span class=nx>msw</span> <span class=p>}</span> <span class=p>})</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class="line hl"><span class=cl>  <span class=nx>server</span><span class=p>.</span><span class=nx>resetHandlers</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=p>(</span><span class=nx>msw</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nb>Array</span><span class=p>.</span><span class=nx>isArray</span><span class=p>(</span><span class=nx>msw</span><span class=p>)</span> <span class=o>&amp;&amp;</span> <span class=nx>msw</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=c1>// Support an Array of request handlers (backwards compatibility).
+</span></span></span><span class=line><span class=cl><span class=c1></span>      <span class=nx>server</span><span class=p>.</span><span class=nx>use</span><span class=p>(...</span><span class=nx>msw</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span> <span class=k>else</span> <span class=k>if</span> <span class=p>(</span><span class=s1>&#39;handlers&#39;</span> <span class=k>in</span> <span class=nx>msw</span> <span class=o>&amp;&amp;</span> <span class=nx>msw</span><span class=p>.</span><span class=nx>handlers</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=c1>// Support an Array named request handlers handlers
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=c1>// or an Object of named request handlers with named arrays of handlers
+</span></span></span><span class=line><span class=cl><span class=c1></span>    <span class=kr>const</span> <span class=nx>handlers</span> <span class=o>=</span> <span class=nb>Object</span><span class=p>.</span><span class=nx>values</span><span class=p>(</span><span class=nx>msw</span><span class=p>.</span><span class=nx>handlers</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>.</span><span class=nx>filter</span><span class=p>(</span><span class=nb>Boolean</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>.</span><span class=nx>reduce</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>          <span class=p>(</span><span class=nx>handlers</span><span class=p>,</span> <span class=nx>handlersList</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>handlers</span><span class=p>.</span><span class=nx>concat</span><span class=p>(</span><span class=nx>handlersList</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>          <span class=p>[]</span> <span class=nx>as</span> <span class=nx>RequestHandler</span><span class=p>[]</span>
+</span></span><span class=line><span class=cl>          <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      <span class=k>if</span> <span class=p>(</span><span class=nx>handlers</span><span class=p>.</span><span class=nx>length</span> <span class=o>&gt;</span> <span class=mi>0</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>api</span><span class=p>.</span><span class=nx>use</span><span class=p>(...</span><span class=nx>handlers</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>      <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>storyFn</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>You&rsquo;ll notice that we import a polyfill. <a href=https://github.com/mswjs/examples/pull/60/files>This is required, as explained in
 this Pull Request with an
 example</a>
-:</p>
-<blockquote>
-<p>The polyfill <code>react-native-url-polyfill</code> is required or else calling
+:</p><blockquote><p>The polyfill <code>react-native-url-polyfill</code> is required or else calling
 <code>server.start()</code> will result in an Error: not implemented message followed
 by Error: Invariant Violation: Module AppRegistry is not a registered
 callable module (calling runApplication)&mldr; due to the barebones React
 Native URL polyfill that throws Not Implemented exceptions for functions
 that MSW calls such as
 <a href=https://github.com/facebook/react-native/blob/cd347a7e0ed29ae1049e041fcb34588e1aac76f9/Libraries/Blob/URL.js#L194>search()</a>
-.</p>
-</blockquote>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=usage>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Usage
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#usage><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Now things should work exactly like <code>msw-storybook-addon</code>, except that you&rsquo;ll
-be using Storybook v5, so it&rsquo;s a little bit different:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=kr>import</span> <span class=nx>React</span> <span class=nx>from</span> <span class=s1>&#39;react&#39;</span>
-<span class=kr>import</span> <span class=p>{</span> <span class=nx>storiesOf</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
-<span class=kr>import</span> <span class=p>{</span> <span class=nx>rest</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw&#39;</span>
-<span class=kr>import</span> <span class=p>{</span> <span class=nx>UserProfile</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./UserProfile&#39;</span>
-
-<span class=nx>storiesOf</span><span class=p>(</span><span class=s1>&#39;Routes&#39;</span><span class=p>,</span> <span class=nx>module</span><span class=p>)</span>
-  <span class=p>.</span><span class=nx>add</span><span class=p>(</span><span class=s1>&#39;SuccessBehavior&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>&lt;</span><span class=nt>UserProfile</span> <span class=p>/&gt;,</span> <span class=p>{</span>
-    <span class=nx>msw</span><span class=o>:</span> <span class=p>{</span>
-      <span class=nx>handlers</span><span class=o>:</span> <span class=p>[</span>
-        <span class=nx>rest</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/user&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-          <span class=k>return</span> <span class=nx>res</span><span class=p>(</span>
-            <span class=nx>ctx</span><span class=p>.</span><span class=nx>json</span><span class=p>({</span>
-              <span class=nx>firstName</span><span class=o>:</span> <span class=s1>&#39;Neil&#39;</span><span class=p>,</span>
-              <span class=nx>lastName</span><span class=o>:</span> <span class=s1>&#39;Maverick&#39;</span><span class=p>,</span>
-            <span class=p>})</span>
-          <span class=p>)</span>
-        <span class=p>}),</span>
-      <span class=p>],</span>
-    <span class=p>},</span>
-  <span class=p>})</span>
-</code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=example-repository-using-the-official-react-native-cli>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Example repository using the official <code>react-native</code> CLI
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#example-repository-using-the-official-react-native-cli><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>To prove my point, I implemented the whole thing in a brand new React Native
-project using <code>react-native</code> CLI:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh>npx react-native init projectName
-</code></pre></div><p><a href=https://github.com/phelipetls/react-native-storybook-msw>You can check the final result in this GitHub
+.</p></blockquote><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=usage><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Usage</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#usage><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Now things should work exactly like <code>msw-storybook-addon</code>, except that you&rsquo;ll
+be using Storybook v5, so it&rsquo;s a little bit different:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>import</span> <span class=nx>React</span> <span class=nx>from</span> <span class=s1>&#39;react&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>storiesOf</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>rest</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>UserProfile</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;./UserProfile&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>storiesOf</span><span class=p>(</span><span class=s1>&#39;Routes&#39;</span><span class=p>,</span> <span class=nx>module</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>.</span><span class=nx>add</span><span class=p>(</span><span class=s1>&#39;SuccessBehavior&#39;</span><span class=p>,</span> <span class=p>()</span> <span class=p>=&gt;</span> <span class=p>&lt;</span><span class=nt>UserProfile</span> <span class=p>/&gt;,</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>msw</span><span class=o>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nx>handlers</span><span class=o>:</span> <span class=p>[</span>
+</span></span><span class=line><span class=cl>        <span class=nx>rest</span><span class=p>.</span><span class=nx>get</span><span class=p>(</span><span class=s1>&#39;/user&#39;</span><span class=p>,</span> <span class=p>(</span><span class=nx>req</span><span class=p>,</span> <span class=nx>res</span><span class=p>,</span> <span class=nx>ctx</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>          <span class=k>return</span> <span class=nx>res</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=nx>ctx</span><span class=p>.</span><span class=nx>json</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>              <span class=nx>firstName</span><span class=o>:</span> <span class=s1>&#39;Neil&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>              <span class=nx>lastName</span><span class=o>:</span> <span class=s1>&#39;Maverick&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=p>})</span>
+</span></span><span class=line><span class=cl>          <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=p>}),</span>
+</span></span><span class=line><span class=cl>      <span class=p>],</span>
+</span></span><span class=line><span class=cl>    <span class=p>},</span>
+</span></span><span class=line><span class=cl>  <span class=p>})</span>
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=example-repository-using-the-official-react-native-cli><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Example repository using the official <code>react-native</code> CLI</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#example-repository-using-the-official-react-native-cli><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>To prove my point, I implemented the whole thing in a brand new React Native
+project using <code>react-native</code> CLI:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>npx react-native init projectName
+</span></span></code></pre></div><p><a href=https://github.com/phelipetls/react-native-storybook-msw>You can check the final result in this GitHub
 repository</a>
 . Here&rsquo;s a
-video:</p>
-<figure class="bg-surface rounded py-4 px-8 my-8">
-<video class=mx-auto controls src=./demo-msw-storybook-react-native.mp4>
-</video>
-<figcaption class="mt-2 text-center">
-A demo showing Storybook and MSW working in React Native
-</figcaption>
-</figure>
-<p>To my surprise, I struggled the most to get Storybook working. I came up with
+video:</p><figure class="bg-surface rounded py-4 px-8 my-8"><video class=mx-auto controls src=./demo-msw-storybook-react-native.mp4></video><figcaption class="mt-2 text-center">A demo showing Storybook and MSW working in React Native</figcaption></figure><p>To my surprise, I struggled the most to get Storybook working. I came up with
 issues related with a Promise polyfill that caused <code>Promises</code> to never resolve
 and to <a href=https://github.com/storybookjs/react-native/issues/20><code>Promise.finally</code> being
 undefined</a>
@@ -363,74 +183,24 @@ by using <code>patch-package</code> to remove the line importing the polyfill, <
 recommended</a>
 . This is
 unfortunate&mldr; I hope that a stable Storybook v6 comes soon enough for React
-Native.</p>
-<p>Besides that, everything worked as expected and I hope it works for your
+Native.</p><p>Besides that, everything worked as expected and I hope it works for your
 project too! I didn&rsquo;t have this problem with a project using Expo&rsquo;s Bare
-Workflow, not sure why though.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=advice-for-react-query-users>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Advice for <code>react-query</code> users
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#advice-for-react-query-users><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>If you use <code>react-query</code>, I think it&rsquo;s also wise to call
+Workflow, not sure why though.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=advice-for-react-query-users><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Advice for <code>react-query</code> users</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#advice-for-react-query-users><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>If you use <code>react-query</code>, I think it&rsquo;s also wise to call
 <a href=https://react-query.tanstack.com/reference/QueryClient#queryclientclear><code>QueryClient.clear</code></a>
-in a decorator, to avoid surprises with the cache.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=c1>// storybook/index.js
-</span><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>addDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
-<span class=kr>import</span> <span class=p>{</span> <span class=nx>queryClient</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;../lib/react-query&#39;</span>
-
-<span class=nx>addDecorator</span><span class=p>((</span><span class=nx>storyFn</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-  <span class=nx>queryClient</span><span class=p>.</span><span class=nx>clear</span><span class=p>()</span>
-
-  <span class=k>return</span> <span class=nx>storyFn</span><span class=p>()</span>
-<span class=p>})</span>
-</code></pre></div>
-</section>
-</article>
-<hr class=my-8>
-<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
-Copied!
-<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
-</div>
-<nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
-<a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/adb-a-must-know-cli-tool-for-android-development/ title="Previous post">
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-</span>
-adb: a must-know CLI tool for Android development
-</a>
-</nav>
-</main>
-</div>
-<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
-<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
-<nav aria-label=Links>
-<div class="flex gap-4">
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-</a>
-</div>
-</nav>
-</div>
-<p class=flex-1>
-This content is under a
+in a decorator, to avoid surprises with the cache.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// storybook/index.js
+</span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>addDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
+</span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>queryClient</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;../lib/react-query&#39;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nx>addDecorator</span><span class=p>((</span><span class=nx>storyFn</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nx>queryClient</span><span class=p>.</span><span class=nx>clear</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=nx>storyFn</span><span class=p>()</span>
+</span></span><span class=line><span class=cl><span class=p>})</span>
+</span></span></code></pre></div></section></article><hr class=my-8><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>Copied<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/adb-a-must-know-cli-tool-for-android-development/ title="Previous post"><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>adb: a must-know CLI tool for Android development</a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class=flex-1>This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
-license.
-</p>
-</footer>
-</div>
-<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-</body>
-</html>
+license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>

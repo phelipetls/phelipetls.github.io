@@ -1,414 +1,226 @@
-<!doctype html><html class=h-full lang=en>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .">
-<meta name=deploy-date content="2022-04-03">
-<meta name=publish-date content="2021-09-15">
-<meta name=last-modified-date content="2021-10-02">
-<meta name=author content>
-<meta name=color-scheme content="dark light">
-<link rel=icon href=/favicon.ico sizes=any>
-<link rel=icon href=/icon.svg type=image/svg+xml>
-<link rel=apple-touch-icon href=/apple-touch-icon.png>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
-<link rel=stylesheet href="/css/main.min.css">
-<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
-<title>
-Making Vim understand TypeScript path mapping | Phelipe Teles
-</title>
-<meta property="og:title" content="Making Vim understand TypeScript path mapping">
-<meta property="og:description" content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://phelipetls.github.io/posts/making-vim-understand-typescript-path-mapping/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2021-09-15T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-10-02T16:21:58-03:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Making Vim understand TypeScript path mapping">
-<meta name=twitter:description content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works .">
-</head>
-<body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
-<script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
-<nav aria-label="Main navigation">
-<div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>
-About
-</a><a class=border-primary href=https://phelipetls.github.io/posts/>
-Posts
-</a><a href=https://phelipetls.github.io/projects/>
-Projects
-</a><a href=https://phelipetls.github.io/embedded-resume/>
-Resumé
-</a></div>
-</nav>
-<div class="flex items-center">
-<button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</defs>
-<use data-theme-button-svg-icon href=#sun>
-</svg>
-</button>
-<ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-Light
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-Dark
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-System
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
-<main class="flex flex-1 shrink-0 flex-col w-full">
-<article>
-<header>
-<h1 class="text-4xl mb-4">
-Making Vim understand TypeScript path mapping
-</h1>
-<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-<time datetime=2021-09-15>
-September 15, 2021
-</time>
-</div>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-<div>
-Last modified at
-<time datetime=2021-10-02>
-October 02, 2021
-</time>
-</div>
-</div>
-</div>
-</header>
-<div class=mb-4>
-<div class="flex flex-wrap gap-2 py-2">
-<a href=/tags/typescript/ class="no-underline rounded-full border-2 px-4 py-1/2">typescript</a>
+<!doctype html><html class=h-full lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works ."><meta name=deploy-date content="2022-04-04"><meta name=publish-date content="2021-09-15"><meta name=last-modified-date content="2021-10-02"><meta name=author content><meta name=color-scheme content="dark light"><link rel=prelaod as=image href="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"><link rel=icon href=/favicon.ico sizes=any><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Making Vim understand TypeScript path mapping | Phelipe Teles</title><meta property="og:title" content="Making Vim understand TypeScript path mapping"><meta property="og:description" content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works ."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/making-vim-understand-typescript-path-mapping/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-09-15T00:00:00+00:00"><meta property="article:modified_time" content="2021-10-02T16:21:58-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Making Vim understand TypeScript path mapping"><meta name=twitter:description content="Vim has this well-known feature of opening the path under cursor with :h gf . This article explains well how this works ."></head><body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out"><script>function storeTheme(e){e&&localStorage.setItem("__theme",e)}function getStoredTheme(){return localStorage.getItem("__theme")}function setTheme(e){e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),e==="dark"?document.body.classList.add("dark"):document.body.classList.remove("dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:e}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeTheme(e),dispatchNewThemeEvent(e)};const storedTheme=getStoredTheme()||"auto";window.__setTheme(storedTheme),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedTheme)})</script><div data-scroll-container class="flex flex-col min-h-full"><div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)><div class="flex items-center justify-between mx-auto max-w-5xl px-4"><nav aria-label="Main navigation"><div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/>About
+</a><a class=border-primary href=https://phelipetls.github.io/posts/>Posts
+</a><a href=https://phelipetls.github.io/projects/>Projects
+</a><a href=https://phelipetls.github.io/embedded-resume/>Resumé</a></div></nav><div class="flex items-center"><button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Light</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Dark</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>System</li></ul></div></div></div><div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto"><main class="flex flex-1 shrink-0 flex-col w-full"><article><header><h1 class="text-4xl mb-4">Making Vim understand TypeScript path mapping</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2021-09-15>September 15, 2021</time></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg><div>Last modified at
+<time datetime=2021-10-02>October 02, 2021</time></div></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/tags/typescript/ class="no-underline rounded-full border-2 px-4 py-1/2">typescript</a>
 <a href=/tags/vim/ class="no-underline rounded-full border-2 px-4 py-1/2">vim</a>
 <a href=/tags/nvim/ class="no-underline rounded-full border-2 px-4 py-1/2">nvim</a>
-<a href=/tags/lua/ class="no-underline rounded-full border-2 px-4 py-1/2">lua</a>
-</div>
-</div>
-<hr class=my-8>
-<section data-blog-post class=max-w-prose>
-<p>Vim has this well-known feature of opening the path under cursor with <a href=http://vimdoc.sourceforge.net/htmldoc/editing.html#gf><code>:h gf</code></a>
+<a href=/tags/lua/ class="no-underline rounded-full border-2 px-4 py-1/2">lua</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p>Vim has this well-known feature of opening the path under cursor with <a href=http://vimdoc.sourceforge.net/htmldoc/editing.html#gf><code>:h gf</code></a>
 . <a href=https://vim.fandom.com/wiki/Open_file_under_cursor>This article
 explains well how this
 works</a>
-.</p>
-<p>Things work out of the box with full paths with no special characters, like
+.</p><p>Things work out of the box with full paths with no special characters, like
 <code>/home/phelipe/script.js</code>, but it also expands <code>~</code> and environment variables,
-like <code>$HOME/script.js</code> or <code>~/script.js</code>.</p>
-<p>Things don&rsquo;t work well when languages have special syntax to import a file,
-which is most languages. For example, Java:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=kn>import</span> <span class=nn>foo.bar</span>
-</code></pre></div><p>Or Python:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>module</span>
-<span class=kn>import</span> <span class=nn>.module</span>
-<span class=kn>import</span> <span class=nn>..module</span>
-</code></pre></div><p>But it&rsquo;s possible to configure Vim to understand this special syntax with the
+like <code>$HOME/script.js</code> or <code>~/script.js</code>.</p><p>Things don&rsquo;t work well when languages have special syntax to import a file,
+which is most languages. For example, Java:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-java data-lang=java><span class=line><span class=cl><span class=kn>import</span> <span class=nn>foo.bar</span>
+</span></span></code></pre></div><p>Or Python:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>module</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>.module</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>..module</span>
+</span></span></code></pre></div><p>But it&rsquo;s possible to configure Vim to understand this special syntax with the
 <a href=http://vimdoc.sourceforge.net/htmldoc/options.html#%27includeexpr%27><code>:h includeexpr</code></a>
 option, which is a function that receives the filename in the special variable
-<code>v:fname</code> so you can manipulate it.</p>
-<p>For Java, such a function could just replace <code>.</code> with <code>/</code>, but for Python <a href=https://github.com/vim/vim/blob/4b4b1b84eee70b74fa3bb57624533c65bafd8428/runtime/ftplugin/python.vim#L19,L35>it&rsquo;s
+<code>v:fname</code> so you can manipulate it.</p><p>For Java, such a function could just replace <code>.</code> with <code>/</code>, but for Python <a href=https://github.com/vim/vim/blob/4b4b1b84eee70b74fa3bb57624533c65bafd8428/runtime/ftplugin/python.vim#L19,L35>it&rsquo;s
 more
 complicated</a>
-.</p>
-<p>In the JavaScript world this is even more complex&mldr; We have <a href=https://webpack.js.org/configuration/resolve/>webpack
+.</p><p>In the JavaScript world this is even more complex&mldr; We have <a href=https://webpack.js.org/configuration/resolve/>webpack
 aliases</a>
 , <a href=https://jestjs.io/docs/configuration#modulenamemapper-objectstring-string--arraystring>Jest&rsquo;s
 moduleNameMapper</a>
-and much more.</p>
-<p>The TypeScript compiler has this feature as well, it&rsquo;s called <a href=https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping>path
+and much more.</p><p>The TypeScript compiler has this feature as well, it&rsquo;s called <a href=https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping>path
 mapping</a>
-.</p>
-<p>For example, to import a component from <code>src/components</code> from anywhere with
-just <code>~/components</code>, you&rsquo;d use the following <code>tsconfig.json</code>:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
-  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
-   <span class=nt>&#34;baseUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;.&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;paths&#34;</span><span class=p>:</span> <span class=p>{</span>
-      <span class=nt>&#34;~/*&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;src/*&#34;</span><span class=p>]</span>
-    <span class=p>}</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></div><p>This is great but it breaks <code>gf</code>, so in this post I want to share how to make
-it work again for TypeScript projects that use this feature.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=why-not-lsp>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Why not LSP?
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#why-not-lsp><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>You might be wondering why not just use a language server for that?</p>
-<p>And you&rsquo;d be right, that&rsquo;s certainly better than implementing the TypeScript
-module resolution algorithm in Lua&mldr;</p>
-<p>But the TypeScript language servers are very resource hungry and slow to boot,
+.</p><p>For example, to import a component from <code>src/components</code> from anywhere with
+just <code>~/components</code>, you&rsquo;d use the following <code>tsconfig.json</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>   <span class=nt>&#34;baseUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;.&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;paths&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;~/*&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;src/*&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>This is great but it breaks <code>gf</code>, so in this post I want to share how to make
+it work again for TypeScript projects that use this feature.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=why-not-lsp><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Why not LSP?</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#why-not-lsp><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>You might be wondering why not just use a language server for that?</p><p>And you&rsquo;d be right, that&rsquo;s certainly better than implementing the TypeScript
+module resolution algorithm in Lua&mldr;</p><p>But the TypeScript language servers are very resource hungry and slow to boot,
 so I find that it does pay off to use a dumber way to navigate files with
 built-in Vim features in case the language server is still booting or just
-being slow.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=implementation-details>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Implementation details
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#implementation-details><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Our goal is to pass a function to the <code>includeexpr</code> option that will try to
+being slow.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=implementation-details><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Implementation details</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#implementation-details><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Our goal is to pass a function to the <code>includeexpr</code> option that will try to
 substitute the &ldquo;alias&rdquo; (<code>~/*</code>) with its associated path (<code>src/*</code>) until it
-finds a file/directory that exists, then return it. Otherwise, return <code>nil</code>.</p>
-<p>I decided to write it in Lua in the <code>lua/tsconfig.lua</code> module. Here&rsquo;s how we
+finds a file/directory that exists, then return it. Otherwise, return <code>nil</code>.</p><p>I decided to write it in Lua in the <code>lua/tsconfig.lua</code> module. Here&rsquo;s how we
 can configure the <code>includeexpr</code> for JavaScript/TypeScript to use this lua
-function:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=c>&#34; after/ftplugin/javascript.vim</span><span class=err>
-</span><span class=err></span><span class=c>&#34; after/ftplugin/typescript.vim</span><span class=err>
-</span><span class=err></span><span class=c>
-</span><span class=c>&#34; It&#39;s common in JavaScript to omit the file extension</span><span class=err>
-</span><span class=err></span><span class=c>&#34; Also some plugins mess this up so I overwite it...</span><span class=err>
-</span><span class=err></span><span class=nx>setlocal</span> <span class=nx>suffixesadd</span><span class=p>=</span>.<span class=nx>js</span><span class=p>,</span>.<span class=nx>jsx</span><span class=p>,</span>.<span class=nx>ts</span><span class=p>,</span>.<span class=nx>tsx</span><span class=p>,</span>.<span class=nx>d</span>.<span class=nx>ts</span><span class=err>
-</span><span class=err>
-</span><span class=err></span><span class=k>if</span> <span class=nx>has</span><span class=p>(</span><span class=s2>&#34;nvim&#34;</span><span class=p>)</span><span class=err>
-</span><span class=hl><span class=err></span>  <span class=nx>setlocal</span> <span class=nx>includeexpr</span><span class=p>=</span><span class=nx>luaeval</span><span class=p>(</span>\<span class=s2>&#34;require&#39;tsconfig&#39;.includeexpr(_A)\&#34;</span><span class=p>,</span><span class=nx>v</span>:<span class=nx>fname</span><span class=p>)</span><span class=err>
-</span></span><span class=err></span><span class=k>endif</span><span class=err>
-</span></code></pre></div><p>And here&rsquo;s an skeleton of the Lua module:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=c1>-- lua/tsconfig.lua</span>
-
-<span class=kd>local</span> <span class=n>M</span> <span class=o>=</span> <span class=p>{}</span>
-
-<span class=kd>local</span> <span class=kr>function</span> <span class=nf>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
-  <span class=kd>local</span> <span class=n>tsconfig_file</span> <span class=o>=</span> <span class=n>get_tsconfig_file</span><span class=p>()</span>
-
-  <span class=kr>if</span> <span class=ow>not</span> <span class=n>tsconfig_file</span> <span class=kr>then</span>
-    <span class=kr>return</span> <span class=n>input</span>
-  <span class=kr>end</span>
-
-  <span class=kd>local</span> <span class=n>alias_to_paths</span> <span class=o>=</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_file</span><span class=p>)</span>
-
-  <span class=kr>if</span> <span class=ow>not</span> <span class=n>alias_to_paths</span> <span class=kr>then</span>
-    <span class=kr>return</span> <span class=n>input</span>
-  <span class=kr>end</span>
-
-  <span class=kr>for</span> <span class=n>alias</span><span class=p>,</span> <span class=n>path</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>alias_to_paths</span><span class=p>)</span> <span class=kr>do</span>
-    <span class=c1>-- TODO: work to find a file that exists</span>
-  <span class=kr>end</span>
-
-  <span class=kr>return</span> <span class=n>input</span>
-<span class=kr>end</span>
-
-<span class=kr>function</span> <span class=nc>M</span><span class=p>.</span><span class=nf>includeeexpr</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
-  <span class=kd>local</span> <span class=n>path</span> <span class=o>=</span> <span class=n>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
-  <span class=kr>return</span> <span class=n>path</span>
-<span class=kr>end</span>
-
-<span class=kr>return</span> <span class=n>M</span>
-</code></pre></div><p>How exactly we try to find a file will be explained later.</p>
-<h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=finding-tsconfigjson>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Finding <code>tsconfig.json</code>
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#finding-tsconfigjson><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
+function:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=c>&#34; after/ftplugin/javascript.vim</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>&#34; after/ftplugin/typescript.vim</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>
+</span></span></span><span class=line><span class=cl><span class=c>&#34; It&#39;s common in JavaScript to omit the file extension</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>&#34; Also some plugins mess this up so I overwite it...</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=nx>setlocal</span> <span class=nx>suffixesadd</span><span class=p>=</span>.<span class=nx>js</span><span class=p>,</span>.<span class=nx>jsx</span><span class=p>,</span>.<span class=nx>ts</span><span class=p>,</span>.<span class=nx>tsx</span><span class=p>,</span>.<span class=nx>d</span>.<span class=nx>ts</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>if</span> <span class=nx>has</span><span class=p>(</span><span class=s2>&#34;nvim&#34;</span><span class=p>)</span><span class=err>
+</span></span></span><span class="line hl"><span class=cl><span class=err></span>  <span class=nx>setlocal</span> <span class=nx>includeexpr</span><span class=p>=</span><span class=nx>luaeval</span><span class=p>(</span>\<span class=s2>&#34;require&#39;tsconfig&#39;.includeexpr(_A)\&#34;</span><span class=p>,</span><span class=nx>v</span>:<span class=nx>fname</span><span class=p>)</span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endif</span><span class=err>
+</span></span></span></code></pre></div><p>And here&rsquo;s an skeleton of the Lua module:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=c1>-- lua/tsconfig.lua</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>local</span> <span class=n>M</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>tsconfig_file</span> <span class=o>=</span> <span class=n>get_tsconfig_file</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>tsconfig_file</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>return</span> <span class=n>input</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>alias_to_paths</span> <span class=o>=</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_file</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>alias_to_paths</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>return</span> <span class=n>input</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>for</span> <span class=n>alias</span><span class=p>,</span> <span class=n>path</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>alias_to_paths</span><span class=p>)</span> <span class=kr>do</span>
+</span></span><span class=line><span class=cl>    <span class=c1>-- TODO: work to find a file that exists</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>input</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>function</span> <span class=nc>M</span><span class=p>.</span><span class=nf>includeeexpr</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>path</span> <span class=o>=</span> <span class=n>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>path</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kr>return</span> <span class=n>M</span>
+</span></span></code></pre></div><p>How exactly we try to find a file will be explained later.</p><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=finding-tsconfigjson><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Finding <code>tsconfig.json</code></span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#finding-tsconfigjson><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
 upwards starting from the current file&rsquo;s directory with the <a href=https://vimhelp.org/eval.txt.html#findfile%28%29><code>:h findfile</code></a>
 function:
-<code>findfile('tsconfig.json', '.;')</code>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_file</span><span class=p>()</span>
-  <span class=kr>return</span> <span class=n>find_file</span><span class=p>(</span><span class=s2>&#34;tsconfig.json&#34;</span><span class=p>,</span> <span class=s2>&#34;.;&#34;</span><span class=p>)</span> <span class=ow>or</span> <span class=n>find_file</span><span class=p>(</span><span class=s2>&#34;jsconfig.json&#34;</span><span class=p>,</span> <span class=s2>&#34;.;&#34;</span><span class=p>)</span>
-<span class=kr>end</span>
-</code></pre></div><p>You&rsquo;ll notice the <code>find_file</code> usage, which is just a wrapper around <code>findfile</code>
-that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are not falsy in Lua):</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>find_file</span><span class=p>(</span><span class=n>fname</span><span class=p>,</span> <span class=n>path</span><span class=p>)</span>
-  <span class=kd>local</span> <span class=n>found</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>findfile</span><span class=p>(</span><span class=n>fname</span><span class=p>,</span> <span class=n>path</span> <span class=ow>or</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
-  <span class=kr>if</span> <span class=n>found</span> <span class=o>~=</span> <span class=s2>&#34;&#34;</span> <span class=kr>then</span>
-    <span class=kr>return</span> <span class=n>found</span>
-  <span class=kr>end</span>
-<span class=kr>end</span>
-</code></pre></div><p>I use a similar function called <code>find_dir</code> that wraps <code>:h finddir</code>.</p>
-<h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=reading-json-with-comments>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Reading JSON with comments
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#reading-json-with-comments><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
+<code>findfile('tsconfig.json', '.;')</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_file</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>find_file</span><span class=p>(</span><span class=s2>&#34;tsconfig.json&#34;</span><span class=p>,</span> <span class=s2>&#34;.;&#34;</span><span class=p>)</span> <span class=ow>or</span> <span class=n>find_file</span><span class=p>(</span><span class=s2>&#34;jsconfig.json&#34;</span><span class=p>,</span> <span class=s2>&#34;.;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span></code></pre></div><p>You&rsquo;ll notice the <code>find_file</code> usage, which is just a wrapper around <code>findfile</code>
+that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are not falsy in Lua):</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>find_file</span><span class=p>(</span><span class=n>fname</span><span class=p>,</span> <span class=n>path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>found</span> <span class=o>=</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>findfile</span><span class=p>(</span><span class=n>fname</span><span class=p>,</span> <span class=n>path</span> <span class=ow>or</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=n>found</span> <span class=o>~=</span> <span class=s2>&#34;&#34;</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>return</span> <span class=n>found</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span></code></pre></div><p>I use a similar function called <code>find_dir</code> that wraps <code>:h finddir</code>.</p><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=reading-json-with-comments><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Reading JSON with comments</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#reading-json-with-comments><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
 JSON, <a href=https://vimhelp.org/eval.txt.html#json_decode%28%29><code>:h json_decode</code></a>
 ,
 which is great, except that <code>tsconfig.json</code> is not strictly JSON, since it
 allows comments. No problem, we can just remove them before we pass it to
-<code>json_decode</code>:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>remove_comments</span><span class=p>(</span><span class=n>line</span><span class=p>)</span>
-  <span class=kr>return</span> <span class=n>line</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;/%*.*%*/&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>):</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;//.*&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
-<span class=kr>end</span>
-
-<span class=kd>local</span> <span class=kr>function</span> <span class=nf>decode_json_with_comments</span><span class=p>(</span><span class=n>fname</span><span class=p>)</span>
-  <span class=kd>local</span> <span class=n>json_without_comments</span> <span class=o>=</span> <span class=n>vim.tbl_map</span><span class=p>(</span><span class=n>remove_comments</span><span class=p>,</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>readfile</span><span class=p>(</span><span class=n>fname</span><span class=p>))</span>
-  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>json_decode</span><span class=p>(</span><span class=n>json_without_comments</span><span class=p>)</span>
-<span class=kr>end</span>
-</code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=parsing-compileroptionspaths>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Parsing <code>compilerOptions.paths</code>
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#parsing-compileroptionspaths><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
-aliases into their full paths. For example, given this configuration:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=p>{</span>
-  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=nt>&#34;baseUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;.&#34;</span><span class=p>,</span>
-    <span class=nt>&#34;paths&#34;</span><span class=p>:</span> <span class=p>{</span>
-      <span class=nt>&#34;~/*&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;src/*&#34;</span><span class=p>]</span>
-    <span class=p>}</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></div><p>We want something like this:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=p>{</span>
-  <span class=s2>&#34;~/*&#34;</span><span class=p>:</span> <span class=p>{</span>
-    <span class=n>get_full_path</span><span class=p>(</span><span class=n>base_url</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;src/&#34;</span>
-  <span class=p>}</span>
-<span class=p>}</span>
-</code></pre></div><p>This is because paths are relative to <code>compilerOptions.baseUrl</code>. Also, we
-should remove the catch-all character <code>*</code>:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_dir</span><span class=p>(</span><span class=n>fname</span><span class=p>)</span>
-  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>fnamemodify</span><span class=p>(</span><span class=n>fname</span><span class=p>,</span> <span class=s2>&#34;:h&#34;</span><span class=p>)</span>
-<span class=kr>end</span>
-
-<span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
-  <span class=kr>if</span> <span class=ow>not</span> <span class=n>tsconfig_fname</span> <span class=kr>then</span>
-    <span class=kr>return</span> <span class=p>{}</span>
-  <span class=kr>end</span>
-
-  <span class=kd>local</span> <span class=n>json</span> <span class=o>=</span> <span class=n>decode_json_with_comments</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
-  <span class=kd>local</span> <span class=n>base_url</span> <span class=o>=</span> <span class=n>json</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>baseUrl</span>
-
-  <span class=kd>local</span> <span class=n>alias</span><span class=o>-</span><span class=n>to_paths</span> <span class=o>=</span> <span class=p>{}</span>
-
-  <span class=kr>if</span> <span class=n>json</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>paths</span> <span class=kr>then</span>
-    <span class=kr>for</span> <span class=n>alias</span><span class=p>,</span> <span class=n>paths</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>paths</span><span class=p>)</span> <span class=kr>do</span>
-      <span class=n>alias_to_paths</span><span class=p>[</span><span class=n>alias</span><span class=p>]</span> <span class=o>=</span>
-        <span class=n>vim.tbl_map</span><span class=p>(</span>
-        <span class=kr>function</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
-<span class=hl>          <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>simplify</span><span class=p>(</span><span class=n>get_dir</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;/&#34;</span> <span class=o>..</span> <span class=n>base_url</span> <span class=o>..</span> <span class=s2>&#34;/&#34;</span> <span class=o>..</span> <span class=n>path</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;*&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>))</span>
-</span>        <span class=kr>end</span><span class=p>,</span>
-        <span class=n>paths</span>
-      <span class=p>)</span>
-    <span class=kr>end</span>
-  <span class=kr>end</span>
-
-  <span class=kr>return</span> <span class=n>alias_to_paths</span>
-<span class=kr>end</span>
-</code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=expand-tsconfig>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Expand tsconfig
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#expand-tsconfig><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>Now let&rsquo;s remove that TODO we left earlier.</p>
-<p>We just need to &ldquo;expand&rdquo; (replace) the alias with its path until we find a file
-that exist.</p>
-<p>First, we check if the input filename matches the alias (e.g., <code>~/file</code> should
+<code>json_decode</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>remove_comments</span><span class=p>(</span><span class=n>line</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>line</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;/%*.*%*/&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>):</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;//.*&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>decode_json_with_comments</span><span class=p>(</span><span class=n>fname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>json_without_comments</span> <span class=o>=</span> <span class=n>vim.tbl_map</span><span class=p>(</span><span class=n>remove_comments</span><span class=p>,</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>readfile</span><span class=p>(</span><span class=n>fname</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>json_decode</span><span class=p>(</span><span class=n>json_without_comments</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=parsing-compileroptionspaths><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Parsing <code>compilerOptions.paths</code></span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#parsing-compileroptionspaths><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
+aliases into their full paths. For example, given this configuration:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;baseUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;.&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nt>&#34;paths&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>      <span class=nt>&#34;~/*&#34;</span><span class=p>:</span> <span class=p>[</span><span class=s2>&#34;src/*&#34;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>We want something like this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=s2>&#34;~/*&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=n>get_full_path</span><span class=p>(</span><span class=n>base_url</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;src/&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></div><p>This is because paths are relative to <code>compilerOptions.baseUrl</code>. Also, we
+should remove the catch-all character <code>*</code>:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_dir</span><span class=p>(</span><span class=n>fname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>fnamemodify</span><span class=p>(</span><span class=n>fname</span><span class=p>,</span> <span class=s2>&#34;:h&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>tsconfig_fname</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>return</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>json</span> <span class=o>=</span> <span class=n>decode_json_with_comments</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>base_url</span> <span class=o>=</span> <span class=n>json</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>baseUrl</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>alias</span><span class=o>-</span><span class=n>to_paths</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=n>json</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>paths</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>for</span> <span class=n>alias</span><span class=p>,</span> <span class=n>paths</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>paths</span><span class=p>)</span> <span class=kr>do</span>
+</span></span><span class=line><span class=cl>      <span class=n>alias_to_paths</span><span class=p>[</span><span class=n>alias</span><span class=p>]</span> <span class=o>=</span>
+</span></span><span class=line><span class=cl>        <span class=n>vim.tbl_map</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>        <span class=kr>function</span><span class=p>(</span><span class=n>path</span><span class=p>)</span>
+</span></span><span class="line hl"><span class=cl>          <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>simplify</span><span class=p>(</span><span class=n>get_dir</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span> <span class=o>..</span> <span class=s2>&#34;/&#34;</span> <span class=o>..</span> <span class=n>base_url</span> <span class=o>..</span> <span class=s2>&#34;/&#34;</span> <span class=o>..</span> <span class=n>path</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;*&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>        <span class=kr>end</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=n>paths</span>
+</span></span><span class=line><span class=cl>      <span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=kr>end</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>alias_to_paths</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=expand-tsconfig><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Expand tsconfig</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#expand-tsconfig><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Now let&rsquo;s remove that TODO we left earlier.</p><p>We just need to &ldquo;expand&rdquo; (replace) the alias with its path until we find a file
+that exist.</p><p>First, we check if the input filename matches the alias (e.g., <code>~/file</code> should
 match <code>~/*</code> but also <code>*</code> since it means any value), replace the alias with its
-path (<code>~/file</code> -> <code>src/file</code>) and try to find it:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
-  <span class=c1>-- ...</span>
-
-  <span class=kr>for</span> <span class=n>alias</span><span class=p>,</span> <span class=n>paths</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>alias_to_paths</span><span class=p>)</span> <span class=kr>do</span>
-<span class=hl>    <span class=kr>if</span> <span class=n>alias</span> <span class=o>==</span> <span class=s2>&#34;*&#34;</span> <span class=ow>or</span> <span class=n>vim.startswith</span><span class=p>(</span><span class=n>input</span><span class=p>,</span> <span class=n>alias</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;*&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>))</span> <span class=kr>then</span>
-</span>      <span class=kr>for</span> <span class=n>_</span><span class=p>,</span> <span class=n>path</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>paths</span><span class=p>)</span> <span class=kr>do</span>
-<span class=hl>        <span class=kd>local</span> <span class=n>expanded_path</span> <span class=o>=</span> <span class=n>input</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=n>alias</span><span class=p>,</span> <span class=n>path</span><span class=p>)</span>
-</span><span class=hl>        <span class=kd>local</span> <span class=n>real_path</span> <span class=o>=</span> <span class=n>find_file</span><span class=p>(</span><span class=n>expanded_path</span><span class=p>)</span> <span class=ow>or</span> <span class=n>find_dir</span><span class=p>(</span><span class=n>expanded_path</span><span class=p>)</span>
-</span>
-        <span class=kr>if</span> <span class=n>real_path</span> <span class=kr>then</span>
-          <span class=kr>return</span> <span class=n>real_path</span>
-        <span class=kr>end</span>
-      <span class=kr>end</span>
-    <span class=kr>end</span>
-  <span class=kr>end</span>
-
-  <span class=kr>return</span> <span class=n>input</span>
-<span class=kr>end</span>
-</code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=handling-configuration-inheritance>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Handling configuration inheritance
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#handling-configuration-inheritance><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h3>
-<p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
+path (<code>~/file</code> -> <code>src/file</code>) and try to find it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=c1>-- ...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>for</span> <span class=n>alias</span><span class=p>,</span> <span class=n>paths</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>alias_to_paths</span><span class=p>)</span> <span class=kr>do</span>
+</span></span><span class="line hl"><span class=cl>    <span class=kr>if</span> <span class=n>alias</span> <span class=o>==</span> <span class=s2>&#34;*&#34;</span> <span class=ow>or</span> <span class=n>vim.startswith</span><span class=p>(</span><span class=n>input</span><span class=p>,</span> <span class=n>alias</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=s2>&#34;*&#34;</span><span class=p>,</span> <span class=s2>&#34;&#34;</span><span class=p>))</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>      <span class=kr>for</span> <span class=n>_</span><span class=p>,</span> <span class=n>path</span> <span class=kr>in</span> <span class=n>pairs</span><span class=p>(</span><span class=n>paths</span><span class=p>)</span> <span class=kr>do</span>
+</span></span><span class="line hl"><span class=cl>        <span class=kd>local</span> <span class=n>expanded_path</span> <span class=o>=</span> <span class=n>input</span><span class=p>:</span><span class=n>gsub</span><span class=p>(</span><span class=n>alias</span><span class=p>,</span> <span class=n>path</span><span class=p>)</span>
+</span></span><span class="line hl"><span class=cl>        <span class=kd>local</span> <span class=n>real_path</span> <span class=o>=</span> <span class=n>find_file</span><span class=p>(</span><span class=n>expanded_path</span><span class=p>)</span> <span class=ow>or</span> <span class=n>find_dir</span><span class=p>(</span><span class=n>expanded_path</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=kr>if</span> <span class=n>real_path</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>          <span class=kr>return</span> <span class=n>real_path</span>
+</span></span><span class=line><span class=cl>        <span class=kr>end</span>
+</span></span><span class=line><span class=cl>      <span class=kr>end</span>
+</span></span><span class=line><span class=cl>    <span class=kr>end</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>input</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=handling-configuration-inheritance><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Handling configuration inheritance</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#handling-configuration-inheritance><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
 <a href=https://www.typescriptlang.org/tsconfig#extends><code>extends</code></a>
 option, which
-allows you to inherit from other configuration files.</p>
-<p>If a <code>tsconfig.json</code> inherits from another configuration, our algorithm as it
-is now just ignores these other configurations completely.</p>
-<p>To handle this, we&rsquo;ll need to recursively call <code>get_tsconfig_paths</code> for every
-<code>tsconfig.json</code> that has an <code>extends</code> option, until it doesn&rsquo;t:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=kd>local</span> <span class=kr>function</span> <span class=nf>find_tsconfig_extends</span><span class=p>(</span><span class=n>extends</span><span class=p>,</span> <span class=n>tsconfig_fname</span><span class=p>)</span>
-  <span class=kr>if</span> <span class=ow>not</span> <span class=n>extends</span> <span class=ow>or</span> <span class=n>vim.startswith</span><span class=p>(</span><span class=n>extends</span><span class=p>,</span> <span class=s2>&#34;@&#34;</span><span class=p>)</span> <span class=kr>then</span>
-    <span class=kr>return</span>
-  <span class=kr>end</span>
-
-  <span class=kd>local</span> <span class=n>tsconfig_dir</span> <span class=o>=</span> <span class=n>get_dir</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
-  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>simplify</span><span class=p>(</span><span class=n>tsconfig_dir</span> <span class=o>..</span> <span class=s2>&#34;/&#34;</span> <span class=o>..</span> <span class=n>extends</span><span class=p>)</span>
-<span class=kr>end</span>
-
-<span class=hl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>,</span> <span class=n>prev_base_url</span><span class=p>)</span>
-</span>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>tsconfig_fname</span> <span class=kr>then</span>
-    <span class=kr>return</span> <span class=p>{}</span>
-  <span class=kr>end</span>
-
-  <span class=kd>local</span> <span class=n>json</span> <span class=o>=</span> <span class=n>decode_json_with_comments</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
-<span class=hl>  <span class=kd>local</span> <span class=n>base_url</span> <span class=o>=</span> <span class=n>json</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>baseUrl</span> <span class=ow>or</span> <span class=n>prev_base_url</span>
-</span>
-  <span class=kd>local</span> <span class=n>alias_to_paths</span> <span class=o>=</span> <span class=p>{}</span>
-
-  <span class=c1>-- ...</span>
-
-<span class=hl>  <span class=kd>local</span> <span class=n>tsconfig_extends</span> <span class=o>=</span> <span class=n>find_tsconfig_extends</span><span class=p>(</span><span class=n>json.extends</span><span class=p>,</span> <span class=n>get_dir</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>))</span>
-</span><span class=hl>
-</span><span class=hl>  <span class=kr>return</span> <span class=n>vim.tbl_extend</span><span class=p>(</span><span class=s2>&#34;force&#34;</span><span class=p>,</span> <span class=n>alias_to_paths</span><span class=p>,</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_extends</span><span class=p>,</span> <span class=n>base_url</span><span class=p>))</span>
-</span><span class=kr>end</span>
-</code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusion>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Conclusion
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p><a href=https://github.com/phelipetls/dotfiles/blob/84303bfdf877d1ded6b8287f83806ebb73af1cce/.config/nvim/lua/tsconfig.lua>You can check the full implementation
+allows you to inherit from other configuration files.</p><p>If a <code>tsconfig.json</code> inherits from another configuration, our algorithm as it
+is now just ignores these other configurations completely.</p><p>To handle this, we&rsquo;ll need to recursively call <code>get_tsconfig_paths</code> for every
+<code>tsconfig.json</code> that has an <code>extends</code> option, until it doesn&rsquo;t:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>find_tsconfig_extends</span><span class=p>(</span><span class=n>extends</span><span class=p>,</span> <span class=n>tsconfig_fname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>extends</span> <span class=ow>or</span> <span class=n>vim.startswith</span><span class=p>(</span><span class=n>extends</span><span class=p>,</span> <span class=s2>&#34;@&#34;</span><span class=p>)</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>return</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>tsconfig_dir</span> <span class=o>=</span> <span class=n>get_dir</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>simplify</span><span class=p>(</span><span class=n>tsconfig_dir</span> <span class=o>..</span> <span class=s2>&#34;/&#34;</span> <span class=o>..</span> <span class=n>extends</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class="line hl"><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>,</span> <span class=n>prev_base_url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=kr>if</span> <span class=ow>not</span> <span class=n>tsconfig_fname</span> <span class=kr>then</span>
+</span></span><span class=line><span class=cl>    <span class=kr>return</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>  <span class=kr>end</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>json</span> <span class=o>=</span> <span class=n>decode_json_with_comments</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>)</span>
+</span></span><span class="line hl"><span class=cl>  <span class=kd>local</span> <span class=n>base_url</span> <span class=o>=</span> <span class=n>json</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span> <span class=ow>and</span> <span class=n>json.compilerOptions</span><span class=p>.</span><span class=n>baseUrl</span> <span class=ow>or</span> <span class=n>prev_base_url</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>alias_to_paths</span> <span class=o>=</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1>-- ...</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class="line hl"><span class=cl>  <span class=kd>local</span> <span class=n>tsconfig_extends</span> <span class=o>=</span> <span class=n>find_tsconfig_extends</span><span class=p>(</span><span class=n>json.extends</span><span class=p>,</span> <span class=n>get_dir</span><span class=p>(</span><span class=n>tsconfig_fname</span><span class=p>))</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl>  <span class=kr>return</span> <span class=n>vim.tbl_extend</span><span class=p>(</span><span class=s2>&#34;force&#34;</span><span class=p>,</span> <span class=n>alias_to_paths</span><span class=p>,</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_extends</span><span class=p>,</span> <span class=n>base_url</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=kr>end</span>
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusion><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Conclusion</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p><a href=https://github.com/phelipetls/dotfiles/blob/84303bfdf877d1ded6b8287f83806ebb73af1cce/.config/nvim/lua/tsconfig.lua>You can check the full implementation
 here</a>
 .
-Be aware that this will likely change.</p>
-<p>As I said earlier, Vim&rsquo;s built-in file navigation features are not the best
+Be aware that this will likely change.</p><p>As I said earlier, Vim&rsquo;s built-in file navigation features are not the best
 tool for the job but it does help me when tsserver/coc.nvim/watchman are being
-slow, unreliable or making my computer fans go crazy.</p>
-<p>Vim support for go-to-definition functionality <a href=https://vimways.org/2018/death-by-a-thousand-files/>does not stop at the
+slow, unreliable or making my computer fans go crazy.</p><p>Vim support for go-to-definition functionality <a href=https://vimways.org/2018/death-by-a-thousand-files/>does not stop at the
 <code>includeexpr</code> option</a>
 , but
 the API is cumbersome to use. I tried to get go-to-defintion working for
@@ -417,54 +229,12 @@ up (the <code>v:fname</code> API is not enough for nested imports), but it&rsquo
 a working <code>gf</code> at least&mldr; It&rsquo;s also a good idea to <a href=https://github.com/tpope/vim-apathy/blame/master/after/ftplugin/javascript_apathy.vim>check out what the
 vim-apathy plugin does for
 JavaScript</a>
-if you want to dive more deep into it.</p>
-</section>
-</article>
-<hr class=my-8>
-<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
-Copied!
-<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
-</div>
-<nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation">
-<a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/automating-svg-to-jsx-conversion-with-svgr/ title="Previous post">
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-</span>
-Automating SVG to JSX conversion with svgr
-</a>
-<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/posts/improving-the-android-studio-experience-in-dwm/ title="Next post">
-Improving the Android Studio experience in dwm
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-</span>
-</a>
-</nav>
-</main>
-</div>
-<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
-<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
-<nav aria-label=Links>
-<div class="flex gap-4">
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-</a>
-</div>
-</nav>
-</div>
-<p class=flex-1>
-This content is under a
+if you want to dive more deep into it.</p></section></article><hr class=my-8><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>Copied<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/automating-svg-to-jsx-conversion-with-svgr/ title="Previous post"><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Automating SVG to JSX conversion with svgr</a>
+<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/posts/improving-the-android-studio-experience-in-dwm/ title="Next post">Improving the Android Studio experience in dwm
+<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class=flex-1>This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
-license.
-</p>
-</footer>
-</div>
-<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-</body>
-</html>
+license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>

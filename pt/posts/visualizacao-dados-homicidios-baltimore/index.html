@@ -1,117 +1,23 @@
-<!doctype html><html class=h-full lang=pt-br>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R.">
-<meta name=deploy-date content="2022-04-03">
-<meta name=publish-date content="2019-04-07">
-<meta name=last-modified-date content="2021-04-25">
-<meta name=author content>
-<meta name=color-scheme content="dark light">
-<link rel=icon href=/favicon.ico sizes=any>
-<link rel=icon href=/icon.svg type=image/svg+xml>
-<link rel=apple-touch-icon href=/apple-touch-icon.png>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
-<link rel=stylesheet href="/css/main.min.css">
-<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
-<title>
-Homicídios em Baltimore: visualizações com ggplot2 e gganimate | Phelipe Teles
-</title>
-<meta property="og:title" content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate">
-<meta property="og:description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-04-07T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-04-25T11:44:48-03:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate">
-<meta name=twitter:description content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R.">
-</head>
-<body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
-<script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
-<nav aria-label="Navegação principal">
-<div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
-Sobre
-</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>
-Posts
-</a><a href=https://phelipetls.github.io/pt/projects/>
-Projetos
-</a></div>
-</nav>
-<div class="flex items-center">
-<button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</defs>
-<use data-theme-button-svg-icon href=#sun>
-</svg>
-</button>
-<ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-Claro
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-Escuro
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-Sistema
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
-<main class="flex flex-1 shrink-0 flex-col w-full">
-<article>
-<header>
-<h1 class="text-4xl mb-4">
-Homicídios em Baltimore: visualizações com ggplot2 e gganimate
-</h1>
-<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-<time datetime=2019-04-07>
-7 de Abril
-</time>
-</div>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-<div>
-Editado em
-<time datetime=2021-04-25>
-25 de Agosto
-</time>
-</div>
-</div>
-</div>
-</header>
-<div class=mb-4>
-<div class="flex flex-wrap gap-2 py-2">
-<a href=/pt/tags/dataviz/ class="no-underline rounded-full border-2 px-4 py-1/2">dataviz</a>
+<!doctype html><html class=h-full lang=pt-br><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R."><meta name=deploy-date content="2022-04-04"><meta name=publish-date content="2019-04-07"><meta name=last-modified-date content="2021-04-25"><meta name=author content><meta name=color-scheme content="dark light"><link rel=prelaod as=image href="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"><link rel=icon href=/favicon.ico sizes=any><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Homicídios em Baltimore: visualizações com ggplot2 e gganimate | Phelipe Teles</title><meta property="og:title" content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate"><meta property="og:description" content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-04-07T00:00:00+00:00"><meta property="article:modified_time" content="2021-04-25T11:44:48-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Homicídios em Baltimore: visualizações com ggplot2 e gganimate"><meta name=twitter:description content="Neste post pretendo continuar o que foi iniciado no último, onde transformamos dados contidos em texto em um data.frame, um formato muito mais amigável para a exploração e visualização de dados no R."></head><body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out"><script>function storeTheme(e){e&&localStorage.setItem("__theme",e)}function getStoredTheme(){return localStorage.getItem("__theme")}function setTheme(e){e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),e==="dark"?document.body.classList.add("dark"):document.body.classList.remove("dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:e}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeTheme(e),dispatchNewThemeEvent(e)};const storedTheme=getStoredTheme()||"auto";window.__setTheme(storedTheme),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedTheme)})</script><div data-scroll-container class="flex flex-col min-h-full"><div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)><div class="flex items-center justify-between mx-auto max-w-5xl px-4"><nav aria-label="Navegação principal"><div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>Sobre
+</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>Posts
+</a><a href=https://phelipetls.github.io/pt/projects/>Projetos</a></div></nav><div class="flex items-center"><button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Claro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Escuro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Sistema</li></ul></div></div></div><div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto"><main class="flex flex-1 shrink-0 flex-col w-full"><article><header><h1 class="text-4xl mb-4">Homicídios em Baltimore: visualizações com ggplot2 e gganimate</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2019-04-07>7 de Abril</time></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg><div>Editado em
+<time datetime=2021-04-25>25 de Agosto</time></div></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/pt/tags/dataviz/ class="no-underline rounded-full border-2 px-4 py-1/2">dataviz</a>
 <a href=/pt/tags/tidyverse/ class="no-underline rounded-full border-2 px-4 py-1/2">tidyverse</a>
 <a href=/pt/tags/gganimate/ class="no-underline rounded-full border-2 px-4 py-1/2">gganimate</a>
-<a href=/pt/tags/ggplot2/ class="no-underline rounded-full border-2 px-4 py-1/2">ggplot2</a>
-</div>
-</div>
-<hr class=my-8>
-<section data-blog-post class=max-w-prose>
-<p>Neste post pretendo continuar o que foi iniciado no último, onde transformamos
+<a href=/pt/tags/ggplot2/ class="no-underline rounded-full border-2 px-4 py-1/2">ggplot2</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p>Neste post pretendo continuar o que foi iniciado no último, onde transformamos
 dados contidos em texto em um data.frame, um formato muito mais amigável para a
-exploração e visualização de dados no R.</p>
-<p>O procedimento geral agora, com os dados já limpos, é transformá-los e fazer a
+exploração e visualização de dados no R.</p><p>O procedimento geral agora, com os dados já limpos, é transformá-los e fazer a
 visualização que queremos. Daí o uso extensivo do tidyverse antes de chamar o
-ggplot2.</p>
-<p>Ok, vamos primeiro olhar para a nossa
+ggplot2.</p><p>Ok, vamos primeiro olhar para a nossa
 <a href=https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv title="Link do arquivo raw">base de dados</a>
-e ver que perguntas gostaríamos de responder:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>tidyverse</span><span class=p>)</span>
-
-<span class=n>df</span> <span class=o>&lt;-</span> <span class=nf>read_csv</span><span class=p>(</span><span class=s>&#34;https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>na.omit</span><span class=p>()</span>
-
-<span class=n>df</span> <span class=o>%&gt;%</span> <span class=nf>head</span><span class=p>()</span>
-</code></pre></div><pre><code>## # A tibble: 6 x 8
+e ver que perguntas gostaríamos de responder:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>tidyverse</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>df</span> <span class=o>&lt;-</span> <span class=nf>read_csv</span><span class=p>(</span><span class=s>&#34;https://raw.githubusercontent.com/phelipetls/phelipetls.github.io/master/assets/homicides_df.csv&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>na.omit</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span> <span class=nf>head</span><span class=p>()</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 6 x 8
 ##   causas         lon   lat raca  genero idade data       endereco
 ##   &lt;chr&gt;        &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;  &lt;dbl&gt; &lt;date&gt;     &lt;chr&gt;
 ## 1 Shooting     -76.7  39.3 Black Male      17 2007-01-01 3400 Clifton Ave.
@@ -120,289 +26,210 @@ e ver que perguntas gostaríamos de responder:</p>
 ## 4 Asphyxiation -76.6  39.4 Black Male      21 2007-01-03 5900 Northwood Dr~
 ## 5 Blunt Force  -76.6  39.2 White Male      61 2007-01-05 500 Maude Ave.
 ## 6 Shooting     -76.6  39.4 Black Male      46 2007-01-05 5200 Ready Ave.
-</code></pre>
-<p>Há diversas questões a serem exploradas aqui, a primeira e mais sensível que vem
+</code></pre><p>Há diversas questões a serem exploradas aqui, a primeira e mais sensível que vem
 a mente é a racial: quais raças costumam ser vítimas de homicídio? Vamos,
 naturalmente, estar interessados também na mesma pergunta para diferentes
 características das pessoas, como gênero, idade etc. e como elas se relacionam
 umas com as outras. Por exemplo, será que mulheres negras acabam vítimas de
-homicídios muito mais que as brancas?</p>
-<p>Os dados nos possibilitam também enxergar a distribuição geográfica, que áreas
-da cidade são as mais violentas etc.</p>
-<p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
-Será que vem declinando com o passar dos anos?</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=evolução-do-número-de-vítimas-no-tempo>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Evolução do número de vítimas no tempo
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
-visualização com um gráfico de linhas:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>lubridate</span><span class=p>)</span>
-
-<span class=c1># configurando o tema</span>
-<span class=nf>theme_set</span><span class=p>(</span><span class=nf>theme_minimal</span><span class=p>())</span>
-<span class=nf>theme_update</span><span class=p>(</span><span class=n>legend.position</span> <span class=o>=</span> <span class=s>&#34;bottom&#34;</span><span class=p>)</span>
-
-<span class=c1># criando a variável pro ano</span>
-<span class=n>df</span> <span class=o>&lt;-</span> <span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span><span class=n>ano</span> <span class=o>=</span> <span class=nf>year</span><span class=p>(</span><span class=n>data</span><span class=p>))</span>
-
-<span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>ano</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=n>ano</span><span class=p>,</span>
-    <span class=n>y</span> <span class=o>=</span> <span class=n>n</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_line</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;\nAno&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Número de homicídios na cidade de Baltimore por ano&#34;</span>
-  <span class=p>)</span>
-</code></pre></div><p><img src=./unnamed-chunk-2-1.png alt=plot1 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Ok, uma boa notícia, parece que o número de homicídios vem reduzindo com os
-anos…</p>
-<p>Exceto por essa queda brusca em 2012, que deveria gerar suspeitas. De fato, essa
+homicídios muito mais que as brancas?</p><p>Os dados nos possibilitam também enxergar a distribuição geográfica, que áreas
+da cidade são as mais violentas etc.</p><p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
+Será que vem declinando com o passar dos anos?</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=evolução-do-número-de-vítimas-no-tempo><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Evolução do número de vítimas no tempo</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
+visualização com um gráfico de linhas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>lubridate</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># configurando o tema</span>
+</span></span><span class=line><span class=cl><span class=nf>theme_set</span><span class=p>(</span><span class=nf>theme_minimal</span><span class=p>())</span>
+</span></span><span class=line><span class=cl><span class=nf>theme_update</span><span class=p>(</span><span class=n>legend.position</span> <span class=o>=</span> <span class=s>&#34;bottom&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># criando a variável pro ano</span>
+</span></span><span class=line><span class=cl><span class=n>df</span> <span class=o>&lt;-</span> <span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span><span class=n>ano</span> <span class=o>=</span> <span class=nf>year</span><span class=p>(</span><span class=n>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>ano</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=n>ano</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=n>n</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_line</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;\nAno&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Número de homicídios na cidade de Baltimore por ano&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-2-1.png alt=plot1 class="rounded my-8" style=background-color:#fff></p><p>Ok, uma boa notícia, parece que o número de homicídios vem reduzindo com os
+anos…</p><p>Exceto por essa queda brusca em 2012, que deveria gerar suspeitas. De fato, essa
 queda será esclarecida por outra visualização mais adiante. Se desconsiderarmos
-2012, o quadro da violência não parece apresentar melhoras tão significativas.</p>
-<p>É interessante visualizar também como isso se deu para as diferentes raças:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=c1># contagem dos casos por raça e ano</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>raca</span><span class=p>,</span> <span class=n>ano</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=n>ano</span><span class=p>,</span>
-    <span class=n>y</span> <span class=o>=</span> <span class=n>n</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>raca</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_col</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Raça das vítimas de homicídios em Baltimore&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>,</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;Raça&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_x_continuous</span><span class=p>(</span><span class=n>breaks</span> <span class=o>=</span> <span class=m>2007</span><span class=o>:</span><span class=m>2012</span><span class=p>)</span>
-</code></pre></div><p><img src=./unnamed-chunk-3-1.png alt=plot2 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Essa é a primeira visualização do que já era esperado: na cidade de Baltimore, a
+2012, o quadro da violência não parece apresentar melhoras tão significativas.</p><p>É interessante visualizar também como isso se deu para as diferentes raças:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=c1># contagem dos casos por raça e ano</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>raca</span><span class=p>,</span> <span class=n>ano</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=n>ano</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=n>n</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>raca</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_col</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Raça das vítimas de homicídios em Baltimore&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>,</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;Raça&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_x_continuous</span><span class=p>(</span><span class=n>breaks</span> <span class=o>=</span> <span class=m>2007</span><span class=o>:</span><span class=m>2012</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-3-1.png alt=plot2 class="rounded my-8" style=background-color:#fff></p><p>Essa é a primeira visualização do que já era esperado: na cidade de Baltimore, a
 violência afeta muito mais os negros do que a qualquer outra raça. Impressiona a
-magnitude da desigualdade.</p>
-<p>Um gráfico interessante que vi <a href=https://homicides.news.baltimoresun.com/>aqui</a>
+magnitude da desigualdade.</p><p>Um gráfico interessante que vi <a href=https://homicides.news.baltimoresun.com/>aqui</a>
 ,
 foi o do crescimento acumulado do número de vítimas por mês para cada ano, que
-tentei replicar abaixo:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>acumulado</span> <span class=o>&lt;-</span> <span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span><span class=n>mes</span> <span class=o>=</span> <span class=nf>month</span><span class=p>(</span><span class=n>data</span><span class=p>))</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>ano</span><span class=p>,</span> <span class=n>mes</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>group_by</span><span class=p>(</span><span class=n>ano</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span><span class=n>soma_cumulativa</span> <span class=o>=</span> <span class=nf>cumsum</span><span class=p>(</span><span class=n>n</span><span class=p>))</span> <span class=o>%&gt;%</span>
-  <span class=nf>na.omit</span><span class=p>()</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=n>mes</span><span class=p>,</span>
-    <span class=n>y</span> <span class=o>=</span> <span class=n>soma_cumulativa</span><span class=p>,</span>
-    <span class=n>color</span> <span class=o>=</span> <span class=nf>factor</span><span class=p>(</span><span class=n>ano</span><span class=p>),</span>
-    <span class=n>group</span> <span class=o>=</span> <span class=n>ano</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>scale_color_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Dark2&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;# acumulado de homicídios\n&#34;</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Evolução temporal dos homicídios em Baltimore&#34;</span><span class=p>,</span>
-    <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;Ano&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>geom_line</span><span class=p>(</span><span class=n>size</span> <span class=o>=</span> <span class=m>1.2</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_x_continuous</span><span class=p>(</span>
-    <span class=n>breaks</span> <span class=o>=</span> <span class=m>1</span><span class=o>:</span><span class=m>12</span><span class=p>,</span>
-    <span class=n>labels</span> <span class=o>=</span> <span class=nf>month</span><span class=p>(</span><span class=n>df</span><span class=o>$</span><span class=n>data</span><span class=p>,</span> <span class=n>label</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span> <span class=o>%&gt;%</span> <span class=nf>levels</span><span class=p>()</span>
-  <span class=p>)</span>
-
-
-<span class=n>acumulado</span>
-</code></pre></div><p><img src=./unnamed-chunk-4-1.png alt=plot3 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>E aqui fica claro o porquê da queda em 2012: não temos os dados de todos os
+tentei replicar abaixo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>acumulado</span> <span class=o>&lt;-</span> <span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span><span class=n>mes</span> <span class=o>=</span> <span class=nf>month</span><span class=p>(</span><span class=n>data</span><span class=p>))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>ano</span><span class=p>,</span> <span class=n>mes</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>group_by</span><span class=p>(</span><span class=n>ano</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span><span class=n>soma_cumulativa</span> <span class=o>=</span> <span class=nf>cumsum</span><span class=p>(</span><span class=n>n</span><span class=p>))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>na.omit</span><span class=p>()</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=n>mes</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=n>soma_cumulativa</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>color</span> <span class=o>=</span> <span class=nf>factor</span><span class=p>(</span><span class=n>ano</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>group</span> <span class=o>=</span> <span class=n>ano</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_color_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Dark2&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;# acumulado de homicídios\n&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Evolução temporal dos homicídios em Baltimore&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;Ano&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_line</span><span class=p>(</span><span class=n>size</span> <span class=o>=</span> <span class=m>1.2</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_x_continuous</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>breaks</span> <span class=o>=</span> <span class=m>1</span><span class=o>:</span><span class=m>12</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>labels</span> <span class=o>=</span> <span class=nf>month</span><span class=p>(</span><span class=n>df</span><span class=o>$</span><span class=n>data</span><span class=p>,</span> <span class=n>label</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span> <span class=o>%&gt;%</span> <span class=nf>levels</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>acumulado</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-4-1.png alt=plot3 class="rounded my-8" style=background-color:#fff></p><p>E aqui fica claro o porquê da queda em 2012: não temos os dados de todos os
 meses. Também salta aos olhos que a violência diminuiu em relação a 2007, mas se
-manteve mais ou menos estável no resto do período.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=aspectos-sociais-das-vítimas>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Aspectos sociais das vítimas
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#aspectos-sociais-das-v%c3%adtimas><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
-grupos:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>idade</span><span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_histogram</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>fill</span> <span class=o>=</span> <span class=n>raca</span><span class=p>),</span>
-    <span class=n>binwidth</span> <span class=o>=</span> <span class=m>5</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>facet_grid</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>genero</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Idade&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=s>&#34;Raça&#34;</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Número de homicídios na cidade de Baltimore&#34;</span><span class=p>,</span>
-    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Por gênero, raça e idade (de 2007 até maio de 2012)&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_x_continuous</span><span class=p>(</span><span class=n>breaks</span> <span class=o>=</span> <span class=nf>seq</span><span class=p>(</span><span class=m>0</span><span class=p>,</span> <span class=m>100</span><span class=p>,</span> <span class=m>10</span><span class=p>))</span>
-</code></pre></div><p><img src=./unnamed-chunk-5-1.png alt=plot3 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>E assim podemos ver que o mais afetado pela violência é o homem negro da faixa
+manteve mais ou menos estável no resto do período.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=aspectos-sociais-das-vítimas><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Aspectos sociais das vítimas</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#aspectos-sociais-das-v%c3%adtimas><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
+grupos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>idade</span><span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_histogram</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>fill</span> <span class=o>=</span> <span class=n>raca</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>binwidth</span> <span class=o>=</span> <span class=m>5</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>facet_grid</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>genero</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Idade&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=s>&#34;Raça&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Número de homicídios na cidade de Baltimore&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Por gênero, raça e idade (de 2007 até maio de 2012)&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_x_continuous</span><span class=p>(</span><span class=n>breaks</span> <span class=o>=</span> <span class=nf>seq</span><span class=p>(</span><span class=m>0</span><span class=p>,</span> <span class=m>100</span><span class=p>,</span> <span class=m>10</span><span class=p>))</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-5-1.png alt=plot3 class="rounded my-8" style=background-color:#fff></p><p>E assim podemos ver que o mais afetado pela violência é o homem negro da faixa
 dos 20-30 anos. Se olharmos bem, pode-se também observar que a mulher negra está
 em posição mais vulnerável à violência que a branca, provavelmente porque vive
-nas regiões onde a violência é maior.</p>
-<p>Também impressiona o contraste entre os números para cada gênero. Os homens são
-muito mais propensos a serem mortos violentamente.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=que-causa-de-morte-é-a-mais-comum>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Que causa de morte é a mais comum?
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#que-causa-de-morte-%c3%a9-a-mais-comum><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
-barras:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=n>causas</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>causas</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_bar</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=s>&#34;Causas&#34;</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Causas de morte mais comuns&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span>
-</code></pre></div><p><img src=./unnamed-chunk-6-1.png alt=plot5 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
-esfaqueamento e contusão.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=mapas-e-animações>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Mapas e animações
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#mapas-e-anima%c3%a7%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
+nas regiões onde a violência é maior.</p><p>Também impressiona o contraste entre os números para cada gênero. Os homens são
+muito mais propensos a serem mortos violentamente.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=que-causa-de-morte-é-a-mais-comum><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Que causa de morte é a mais comum?</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#que-causa-de-morte-%c3%a9-a-mais-comum><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
+barras:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=n>causas</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>causas</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_bar</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=s>&#34;Causas&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Causas de morte mais comuns&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-6-1.png alt=plot5 class="rounded my-8" style=background-color:#fff></p><p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
+esfaqueamento e contusão.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=mapas-e-animações><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Mapas e animações</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#mapas-e-anima%c3%a7%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
 primeiro plotar o mapa da cidade. O código abaixo mostra como fazer isso, com a
 ajuda do dataset <code>county</code> do pacote <code>maps</code>, de onde extraímos as coordenadas
-geográficas, para depois plotar com <code>geom_polyon()</code>.</p>
-<p>Uma vez com o mapa, minha ideia foi criar uma animação para visualizar o aspecto
+geográficas, para depois plotar com <code>geom_polyon()</code>.</p><p>Uma vez com o mapa, minha ideia foi criar uma animação para visualizar o aspecto
 temporal, espacial e qualitativo (nesse caso, pela raça das vítimas) com um
 único gráfico. Para isso, vamos usar a função <code>gganimate::transition_manual</code>, de
-forma a mostrar por mês o crescimento no número de vítimas:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>gganimate</span><span class=p>)</span>
-
-<span class=c1># mapa de baltimore city</span>
-<span class=n>baltimore_map</span> <span class=o>&lt;-</span> <span class=nf>map_data</span><span class=p>(</span><span class=s>&#34;county&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=n>subregion</span> <span class=o>==</span> <span class=s>&#34;baltimore city&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>long</span><span class=p>,</span> <span class=n>lat</span><span class=p>,</span> <span class=n>group</span> <span class=o>=</span> <span class=n>group</span><span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_polygon</span><span class=p>(</span><span class=n>fill</span> <span class=o>=</span> <span class=s>&#34;lightgray&#34;</span><span class=p>,</span> <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;black&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>coord_map</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>theme_void</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>theme</span><span class=p>(</span><span class=n>legend.position</span> <span class=o>=</span> <span class=s>&#34;bottom&#34;</span><span class=p>)</span>
-
-<span class=c1># criando variável para cada mês de cada ano</span>
-<span class=n>df</span> <span class=o>&lt;-</span> <span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>arrange</span><span class=p>(</span><span class=n>data</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span><span class=n>ano_mes</span> <span class=o>=</span> <span class=nf>format</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=s>&#34;%B de %Y&#34;</span><span class=p>))</span>
-
-<span class=c1># criando a animação</span>
-<span class=n>anim</span> <span class=o>&lt;-</span> <span class=n>baltimore_map</span> <span class=o>+</span>
-  <span class=nf>geom_point</span><span class=p>(</span>
-    <span class=n>data</span> <span class=o>=</span> <span class=n>df</span><span class=p>,</span>
-    <span class=nf>aes</span><span class=p>(</span><span class=n>lon</span><span class=p>,</span>
-      <span class=n>lat</span><span class=p>,</span>
-      <span class=n>group</span> <span class=o>=</span> <span class=n>ano_mes</span><span class=p>,</span>
-      <span class=n>color</span> <span class=o>=</span> <span class=n>raca</span>
-    <span class=p>),</span>
-    <span class=n>size</span> <span class=o>=</span> <span class=m>3.5</span><span class=p>,</span> <span class=n>alpha</span> <span class=o>=</span> <span class=m>.7</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Que raças e regiões são mais vulneráveis ao homicídio?&#34;</span><span class=p>,</span>
-    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;{ current_frame }&#34;</span><span class=p>,</span>
-    <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;Raça&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_color_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>transition_manual</span><span class=p>(</span><span class=nf>factor</span><span class=p>(</span><span class=n>ano_mes</span><span class=p>,</span> <span class=c1># ordernando os meses</span>
-    <span class=n>levels</span> <span class=o>=</span> <span class=nf>unique</span><span class=p>(</span><span class=n>ano_mes</span><span class=p>)</span>
-  <span class=p>),</span>
-  <span class=n>cumulative</span> <span class=o>=</span> <span class=bp>T</span>
-  <span class=p>)</span>
-
-<span class=c1># desacelerando a animação (padrão é 10fps)</span>
-<span class=nf>animate</span><span class=p>(</span><span class=n>anim</span><span class=p>,</span> <span class=n>fps</span> <span class=o>=</span> <span class=m>5</span><span class=p>)</span>
-</code></pre></div><p><img src=./unnamed-chunk-7-1.gif alt=gif1 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Fica evidente daí como a violência é concentrada em certos bairros.</p>
-<p>Outra ideia é visualizar a evolução dos homicídios no tempo, por causa de morte.
+forma a mostrar por mês o crescimento no número de vítimas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>gganimate</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># mapa de baltimore city</span>
+</span></span><span class=line><span class=cl><span class=n>baltimore_map</span> <span class=o>&lt;-</span> <span class=nf>map_data</span><span class=p>(</span><span class=s>&#34;county&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=n>subregion</span> <span class=o>==</span> <span class=s>&#34;baltimore city&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>long</span><span class=p>,</span> <span class=n>lat</span><span class=p>,</span> <span class=n>group</span> <span class=o>=</span> <span class=n>group</span><span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_polygon</span><span class=p>(</span><span class=n>fill</span> <span class=o>=</span> <span class=s>&#34;lightgray&#34;</span><span class=p>,</span> <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;black&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>coord_map</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>theme_void</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>theme</span><span class=p>(</span><span class=n>legend.position</span> <span class=o>=</span> <span class=s>&#34;bottom&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># criando variável para cada mês de cada ano</span>
+</span></span><span class=line><span class=cl><span class=n>df</span> <span class=o>&lt;-</span> <span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>arrange</span><span class=p>(</span><span class=n>data</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span><span class=n>ano_mes</span> <span class=o>=</span> <span class=nf>format</span><span class=p>(</span><span class=n>data</span><span class=p>,</span> <span class=s>&#34;%B de %Y&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># criando a animação</span>
+</span></span><span class=line><span class=cl><span class=n>anim</span> <span class=o>&lt;-</span> <span class=n>baltimore_map</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_point</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>df</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=nf>aes</span><span class=p>(</span><span class=n>lon</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=n>lat</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=n>group</span> <span class=o>=</span> <span class=n>ano_mes</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>      <span class=n>color</span> <span class=o>=</span> <span class=n>raca</span>
+</span></span><span class=line><span class=cl>    <span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>size</span> <span class=o>=</span> <span class=m>3.5</span><span class=p>,</span> <span class=n>alpha</span> <span class=o>=</span> <span class=m>.7</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Que raças e regiões são mais vulneráveis ao homicídio?&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;{ current_frame }&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;Raça&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_color_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>transition_manual</span><span class=p>(</span><span class=nf>factor</span><span class=p>(</span><span class=n>ano_mes</span><span class=p>,</span> <span class=c1># ordernando os meses</span>
+</span></span><span class=line><span class=cl>    <span class=n>levels</span> <span class=o>=</span> <span class=nf>unique</span><span class=p>(</span><span class=n>ano_mes</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=n>cumulative</span> <span class=o>=</span> <span class=bp>T</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># desacelerando a animação (padrão é 10fps)</span>
+</span></span><span class=line><span class=cl><span class=nf>animate</span><span class=p>(</span><span class=n>anim</span><span class=p>,</span> <span class=n>fps</span> <span class=o>=</span> <span class=m>5</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-7-1.gif alt=gif1 class="rounded my-8" style=background-color:#fff></p><p>Fica evidente daí como a violência é concentrada em certos bairros.</p><p>Outra ideia é visualizar a evolução dos homicídios no tempo, por causa de morte.
 Para isso, vamos usar ot <code>gganimate::transition_states</code>, para visualizarmos as
-mudanças ocorridas no decorrer dos anos.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>df</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>ano</span><span class=p>,</span> <span class=n>causas</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=n>causas</span><span class=p>,</span>
-    <span class=n>y</span> <span class=o>=</span> <span class=n>n</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>causas</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>geom_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>label</span> <span class=o>=</span> <span class=nf>paste0</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span> <span class=nf>round</span><span class=p>(</span><span class=n>n</span><span class=p>)),</span>
-    <span class=n>hjust</span> <span class=o>=</span> <span class=m>-0.2</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>coord_flip</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>fill</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Causas de morte mais comuns&#34;</span><span class=p>,</span>
-    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Ano: { closest_state }&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>transition_states</span><span class=p>(</span><span class=n>ano</span><span class=p>)</span>
-</code></pre></div><p><img src=./unnamed-chunk-8-1.gif alt=gif2 class="rounded my-8" style=background-color:#fff>
-</p>
-<p>E que tal animarmos aquele gráfico do número acumulado? Vamos usar o
+mudanças ocorridas no decorrer dos anos.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>ano</span><span class=p>,</span> <span class=n>causas</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=n>causas</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>y</span> <span class=o>=</span> <span class=n>n</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>causas</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span> <span class=o>=</span> <span class=nf>paste0</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span> <span class=nf>round</span><span class=p>(</span><span class=n>n</span><span class=p>)),</span>
+</span></span><span class=line><span class=cl>    <span class=n>hjust</span> <span class=o>=</span> <span class=m>-0.2</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>coord_flip</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>fill</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Causas de morte mais comuns&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Ano: { closest_state }&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>transition_states</span><span class=p>(</span><span class=n>ano</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-8-1.gif alt=gif2 class="rounded my-8" style=background-color:#fff></p><p>E que tal animarmos aquele gráfico do número acumulado? Vamos usar o
 <code>gganimate::transition_reveal()</code> para revelar ao longo do eixo do tempo como os
-números crescem.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>acumulado</span> <span class=o>+</span>
-  <span class=nf>geom_segment</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>xend</span> <span class=o>=</span> <span class=m>12.5</span><span class=p>,</span>
-    <span class=n>yend</span> <span class=o>=</span> <span class=n>soma_cumulativa</span>
-  <span class=p>),</span>
-  <span class=n>linetype</span> <span class=o>=</span> <span class=m>2</span><span class=p>,</span> <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;grey&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>geom_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>x</span> <span class=o>=</span> <span class=m>13</span><span class=p>,</span> <span class=n>label</span> <span class=o>=</span> <span class=nf>paste0</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span> <span class=n>soma_cumulativa</span><span class=p>)))</span> <span class=o>+</span>
-  <span class=nf>transition_reveal</span><span class=p>(</span><span class=n>mes</span><span class=p>)</span>
-</code></pre></div><p><img src=./unnamed-chunk-9-1.gif alt=gif3 class="rounded my-8" style=background-color:#fff>
-</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Conclusões
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
+números crescem.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>acumulado</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_segment</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>xend</span> <span class=o>=</span> <span class=m>12.5</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>yend</span> <span class=o>=</span> <span class=n>soma_cumulativa</span>
+</span></span><span class=line><span class=cl>  <span class=p>),</span>
+</span></span><span class=line><span class=cl>  <span class=n>linetype</span> <span class=o>=</span> <span class=m>2</span><span class=p>,</span> <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;grey&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>x</span> <span class=o>=</span> <span class=m>13</span><span class=p>,</span> <span class=n>label</span> <span class=o>=</span> <span class=nf>paste0</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span> <span class=n>soma_cumulativa</span><span class=p>)))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>transition_reveal</span><span class=p>(</span><span class=n>mes</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./unnamed-chunk-9-1.gif alt=gif3 class="rounded my-8" style=background-color:#fff></p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Conclusões</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
 talvez uma das maiores vantagens de se usar o R, e espero que te ajude a criar
 as suas próprias visualizações, apesar de não ter sido exatamente o intuito ser
-didático.</p>
-<p>O gganimate é bem novo ainda e tem relativamente pouca informação sobre na
+didático.</p><p>O gganimate é bem novo ainda e tem relativamente pouca informação sobre na
 internet. Eu demorei bastante para fazer alguns desses gráficos, mas acho que o
-resultado valeu a pena.</p>
-<p>Para aprender mais sobre ggplot2, tente este
+resultado valeu a pena.</p><p>Para aprender mais sobre ggplot2, tente este
 <a href=http://www.cookbook-r.com/Graphs/>cookbook</a>
 é ótimo. Para maiores referências
 sobre animações, tente o respositório
@@ -410,53 +237,11 @@ sobre animações, tente o respositório
 , esse
 <a href=https://cran.r-project.org/web/packages/gganimate/vignettes/gganimate.html>vignette</a>
 ou o próprio <a href=https://gganimate.com/>site do pacote</a>
-.</p>
-</section>
-</article>
-<hr class=my-8>
-<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
-Copied!
-<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
-</div>
-<nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
-<a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/homicidios-em-baltimore-minerando-dados-r/ title="Post anterior">
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-</span>
-Extraindo dados de texto com regex no R
-</a>
-<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/game-of-thrones-text-mining/ title="Próximo post">
-Mineração de Texto com as legendas de Game of Thrones
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-</span>
-</a>
-</nav>
-</main>
-</div>
-<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
-<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
-<nav aria-label=Links>
-<div class="flex gap-4">
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-</a>
-</div>
-</nav>
-</div>
-<p class=flex-1>
-Este conteúdo está sob a licença
-<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.
-</p>
-</footer>
-</div>
-<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-</body>
-</html>
+.</p></section></article><hr class=my-8><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>Copiado<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/homicidios-em-baltimore-minerando-dados-r/ title="Post anterior"><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Extraindo dados de texto com regex no R</a>
+<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/game-of-thrones-text-mining/ title="Próximo post">Mineração de Texto com as legendas de Game of Thrones
+<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class=flex-1>Este conteúdo está sob a licença
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>

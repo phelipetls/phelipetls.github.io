@@ -1,323 +1,161 @@
-<!doctype html><html class=h-full lang=pt-br>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial.">
-<meta name=deploy-date content="2022-04-03">
-<meta name=publish-date content="2019-03-17">
-<meta name=last-modified-date content="2021-04-24">
-<meta name=author content>
-<meta name=color-scheme content="dark light">
-<link rel=icon href=/favicon.ico sizes=any>
-<link rel=icon href=/icon.svg type=image/svg+xml>
-<link rel=apple-touch-icon href=/apple-touch-icon.png>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
-<link rel=stylesheet href="/css/main.min.css">
-<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
-<title>
-Método de Newton | Phelipe Teles
-</title>
-<link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous>
-<script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script>
+<!doctype html><html class=h-full lang=pt-br><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial."><meta name=deploy-date content="2022-04-04"><meta name=publish-date content="2019-03-17"><meta name=last-modified-date content="2021-04-24"><meta name=author content><meta name=color-scheme content="dark light"><link rel=prelaod as=image href="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"><link rel=icon href=/favicon.ico sizes=any><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Método de Newton | Phelipe Teles</title><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css integrity=sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X crossorigin=anonymous><script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js integrity=sha384-g7c+Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI+sEnkvrMWph2EDg4 crossorigin=anonymous></script>
 <script defer src=https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js integrity=sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa crossorigin=anonymous onload=renderMathInElement(document.body)></script>
-<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body)})</script>
-<meta property="og:title" content="Método de Newton">
-<meta property="og:description" content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/metodo-de-newton/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-03-17T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-04-24T13:17:50-03:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Método de Newton">
-<meta name=twitter:description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial.">
-</head>
-<body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
-<script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
-<nav aria-label="Navegação principal">
-<div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
-Sobre
-</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>
-Posts
-</a><a href=https://phelipetls.github.io/pt/projects/>
-Projetos
-</a></div>
-</nav>
-<div class="flex items-center">
-<button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</defs>
-<use data-theme-button-svg-icon href=#sun>
-</svg>
-</button>
-<ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-Claro
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-Escuro
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-Sistema
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
-<main class="flex flex-1 shrink-0 flex-col w-full">
-<article>
-<header>
-<h1 class="text-4xl mb-4">
-Método de Newton
-</h1>
-<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-<time datetime=2019-03-17>
-17 de Março
-</time>
-</div>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-<div>
-Editado em
-<time datetime=2021-04-24>
-24 de Agosto
-</time>
-</div>
-</div>
-</div>
-</header>
-<div class=mb-4>
-<div class="flex flex-wrap gap-2 py-2">
-<a href=/pt/tags/matplotlib/ class="no-underline rounded-full border-2 px-4 py-1/2">matplotlib</a>
+<script>document.addEventListener("DOMContentLoaded",function(){renderMathInElement(document.body)})</script><meta property="og:title" content="Método de Newton"><meta property="og:description" content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/pt/posts/metodo-de-newton/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-03-17T00:00:00+00:00"><meta property="article:modified_time" content="2021-04-24T13:17:50-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Método de Newton"><meta name=twitter:description content="O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de uma equação, normalmente uma para a qual a solução não é tão trivial."></head><body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out"><script>function storeTheme(e){e&&localStorage.setItem("__theme",e)}function getStoredTheme(){return localStorage.getItem("__theme")}function setTheme(e){e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),e==="dark"?document.body.classList.add("dark"):document.body.classList.remove("dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:e}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeTheme(e),dispatchNewThemeEvent(e)};const storedTheme=getStoredTheme()||"auto";window.__setTheme(storedTheme),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedTheme)})</script><div data-scroll-container class="flex flex-col min-h-full"><div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)><div class="flex items-center justify-between mx-auto max-w-5xl px-4"><nav aria-label="Navegação principal"><div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>Sobre
+</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>Posts
+</a><a href=https://phelipetls.github.io/pt/projects/>Projetos</a></div></nav><div class="flex items-center"><button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Claro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Escuro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Sistema</li></ul></div></div></div><div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto"><main class="flex flex-1 shrink-0 flex-col w-full"><article><header><h1 class="text-4xl mb-4">Método de Newton</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2019-03-17>17 de Março</time></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg><div>Editado em
+<time datetime=2021-04-24>24 de Agosto</time></div></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/pt/tags/matplotlib/ class="no-underline rounded-full border-2 px-4 py-1/2">matplotlib</a>
 <a href=/pt/tags/numpy/ class="no-underline rounded-full border-2 px-4 py-1/2">numpy</a>
-<a href=/pt/tags/sympy/ class="no-underline rounded-full border-2 px-4 py-1/2">sympy</a>
-</div>
-</div>
-<hr class=my-8>
-<section data-blog-post class=max-w-prose>
-<p>O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de
+<a href=/pt/tags/sympy/ class="no-underline rounded-full border-2 px-4 py-1/2">sympy</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p>O Método de Newton é um conhecido algoritmo para chegar a soluções númericas de
 uma equação, normalmente uma para a qual a solução não é tão trivial. Por
 exemplo, imagine que queiramos encontrar encontrar a raiz da função quadrática
 \( x = \sqrt{5} \Rightarrow x^2 = 5 \Rightarrow x^2 - 5 = 0 \). Como
-poderíamos fazer isso?</p>
-<p>Newton criou um método (verdadeiramente um algoritmo) extraordinariamente
+poderíamos fazer isso?</p><p>Newton criou um método (verdadeiramente um algoritmo) extraordinariamente
 eficiente para chegar à solução, em que se faz uso de seus estudos em cálculo
-diferencial.</p>
-<p>Calcular \( \sqrt{5} \), hoje em dia, é trivial, basta qualquer calculadora.
+diferencial.</p><p>Calcular \( \sqrt{5} \), hoje em dia, é trivial, basta qualquer calculadora.
 Mas, como será que a calculadora faz esse cálculo? Talvez seja esse o algoritmo
-que ela mesma usa. Vamos entender como isso funciona então.</p>
-<p>Para melhor entendimento do problema, vejamos o gráfico da função antes.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=o>%</span><span class=n>matplotlib</span> <span class=n>inline</span>
-<span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
-<span class=kn>import</span> <span class=nn>seaborn</span> <span class=k>as</span> <span class=nn>sns</span>
-<span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
-
-<span class=n>sns</span><span class=o>.</span><span class=n>set</span><span class=p>()</span>
-
-<span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>x</span><span class=p>):</span> <span class=k>return</span> <span class=n>x</span><span class=o>**</span><span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span>
-<span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>500</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>f</span><span class=p>(</span><span class=n>X</span><span class=p>))</span>
-</code></pre></div><p><img src=./output_1_1.png alt=png class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Podemos verificar que ela intercepta o eixo x quando \( x \) é um pouquinho
-acima de 2, quer dizer, quando \( x = \sqrt{5} \approx 2.23 \).</p>
-<p>Ok, mas como chegamos até ali com cálculo diferencial? O raciocínio é como
+que ela mesma usa. Vamos entender como isso funciona então.</p><p>Para melhor entendimento do problema, vejamos o gráfico da função antes.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=o>%</span><span class=n>matplotlib</span> <span class=n>inline</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>matplotlib.pyplot</span> <span class=k>as</span> <span class=nn>plt</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>seaborn</span> <span class=k>as</span> <span class=nn>sns</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>numpy</span> <span class=k>as</span> <span class=nn>np</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>sns</span><span class=o>.</span><span class=n>set</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>x</span><span class=p>):</span> <span class=k>return</span> <span class=n>x</span><span class=o>**</span><span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span>
+</span></span><span class=line><span class=cl><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>500</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>f</span><span class=p>(</span><span class=n>X</span><span class=p>))</span>
+</span></span></code></pre></div><p><img src=./output_1_1.png alt=png class="rounded my-8" style=background-color:#fff></p><p>Podemos verificar que ela intercepta o eixo x quando \( x \) é um pouquinho
+acima de 2, quer dizer, quando \( x = \sqrt{5} \approx 2.23 \).</p><p>Ok, mas como chegamos até ali com cálculo diferencial? O raciocínio é como
 segue: vamos fazer uma estimativa inicial, um valor que achamos que seja próximo
-da solução. Por exemplo, 1.</p>
-<p>Com esse valor, a ideia é obter a reta tangente àquele ponto, o que é algo muito
-mais fácil de lidar. E, para isso, é claro que precisamos calcular \( f^{'}(1)
-\), a inclinação dessa reta naquele ponto.</p>
-<p>E, com ela em mãos, queremos achar onde <em>essa reta</em> intercepta o eixo x, e este
+da solução. Por exemplo, 1.</p><p>Com esse valor, a ideia é obter a reta tangente àquele ponto, o que é algo muito
+mais fácil de lidar. E, para isso, é claro que precisamos calcular \( f^{&rsquo;}(1)
+\), a inclinação dessa reta naquele ponto.</p><p>E, com ela em mãos, queremos achar onde <em>essa reta</em> intercepta o eixo x, e este
 deve ser um ponto mais próximo da raiz, mas não exatamente a raiz. Isto porque
 estamos calculando a raiz de uma reta pra nos aproximarmos da raiz de uma
-parábola, que não é linear, é claro.</p>
-<p><img src=./newtonraphson1.png alt=Img class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Até então, o método não parece tão impressionante. Mas e se fizermos isso de
+parábola, que não é linear, é claro.</p><p><img src=./newtonraphson1.png alt=Img class="rounded my-8" style=background-color:#fff></p><p>Até então, o método não parece tão impressionante. Mas e se fizermos isso de
 novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
-solução.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=aproximação-linear>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Aproximação Linear
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#aproxima%c3%a7%c3%a3o-linear><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
+solução.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=aproximação-linear><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Aproximação Linear</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#aproxima%c3%a7%c3%a3o-linear><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
 exemplo, retomando a função quadrática. A derivada dela é obtida pela regra da
 potência, \( \frac{d(x^2)}{dx} = 2x \). Já a equação da tangente é obtida
-simplesmente da equação de uma reta:</p>
-<p>$$
-\Delta y = f'(x)\Delta x \ (y - y_0) = f'(x_0)(x - x_0) \ y =
+simplesmente da equação de uma reta:</p><p>$$
+\Delta y = f&rsquo;(x)\Delta x \ (y - y_0) = f&rsquo;(x_0)(x - x_0) \ y =
 y_0 + m(x - x_0)
-$$</p>
-<p>No nosso caso, queremos achar a reta tangente quando \( x_0 = 1 \), sendo \(
+$$</p><p>No nosso caso, queremos achar a reta tangente quando \( x_0 = 1 \), sendo \(
 f(x_0) = x^2 - 5 = 1 - 5 = -4 \). Logo, a reta que tangencia o ponto \( (1,
--4) \) é:</p>
-<p>$$
+-4) \) é:</p><p>$$
 y = y_0 + 2x(x - x_0) \ y = -4 + 2\cdot 1(x - 1) \ y = -4 + 2x
 -2 \ y = 2x - 6
-$$</p>
-<p>Mas, é crucial perceber que essa é a <em>equação da reta tangente ao ponto \(
+$$</p><p>Mas, é crucial perceber que essa é a <em>equação da reta tangente ao ponto \(
 (x_0, y_0) \) da função f(x)</em>. Então, o que realmente podemos alegar é que,
 para um dado número \( a \), o valor de \( f(a) \approx y(a) \), quando \(
 a \approx x_0 \): a reta tangente a um dado ponto de uma função é muito próxima
-da própria função para valores não muito distantes do ponto.</p>
-<p>$$
+da própria função para valores não muito distantes do ponto.</p><p>$$
 f(a) \approx y_0 + m(a - x_0)
-$$</p>
-<p>No gráfico abaixo isso pode ser melhor visualizado. Perceba que para valores
+$$</p><p>No gráfico abaixo isso pode ser melhor visualizado. Perceba que para valores
 próximos de 1, a reta tangente está bem próxima da parábola, mas vai ficando
 cada vez mais distante quando x se afasta de 1. E é esse o sentido de uma
-aproximação linear.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>tang</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
-    <span class=k>return</span> <span class=mi>2</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>6</span>
-
-
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>f</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$x^2 - 5$&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>tang</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$2x - 6$&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>3.5</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
-</code></pre></div><p><img src=./output_3_1.png alt=png class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Nesse zoom, também podemos ver que a reta tangente ao ponto \( (1, -4) \)
+aproximação linear.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>tang</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>2</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>6</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>f</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$x^2 - 5$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>tang</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$2x - 6$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>3.5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span></code></pre></div><p><img src=./output_3_1.png alt=png class="rounded my-8" style=background-color:#fff></p><p>Nesse zoom, também podemos ver que a reta tangente ao ponto \( (1, -4) \)
 cruza o eixo \( x \) um pouco mais adiante de \( 2.23 \). Mais
-especificamente, quando \( 2x - 6 = 0 \Rightarrow 2x = 6 \Rightarrow x = 3 \).</p>
-<p>O que é um pouco mais próximo da raiz do que a estimativa inicial 1. E é
+especificamente, quando \( 2x - 6 = 0 \Rightarrow 2x = 6 \Rightarrow x = 3 \).</p><p>O que é um pouco mais próximo da raiz do que a estimativa inicial 1. E é
 exatamente nisso que consiste o Método de Newton, em se aproximar cada vez mais
-da raiz de \( f(x) \) usando a reta que tangencia um dado ponto desta função.</p>
-<p>Assim, nosso objetivo fica melhor delineado dessa forma: queremos sempre o valor
+da raiz de \( f(x) \) usando a reta que tangencia um dado ponto desta função.</p><p>Assim, nosso objetivo fica melhor delineado dessa forma: queremos sempre o valor
 de \( x \) da reta tangente a um ponto \( (x_0, y_0) \) que faz com que \(
-y = 0 \):</p>
-<p>$$
+y = 0 \):</p><p>$$
 y - y_0 = m(x - x_0) \text{ dividindo tudo por m e sumindo com o y: } \newline
 \frac{y_0}{m} = x - x_0 \Rightarrow x = x_0 - \frac{y_0}{m} \newline
 \text{ o que também pode ser escrito como: } \newline
-x = x_0 - \frac{f(x_0)}{f'(x_0)} \Rightarrow x_{n+1} = x_n - \frac{f(x_n)}{f'(x_n)} \newline
-$$</p>
-<p>Plugando os valores de nossa estimativa inicial, obtemos:</p>
-<p>$$
+x = x_0 - \frac{f(x_0)}{f&rsquo;(x_0)} \Rightarrow x_{n+1} = x_n - \frac{f(x_n)}{f&rsquo;(x_n)} \newline
+$$</p><p>Plugando os valores de nossa estimativa inicial, obtemos:</p><p>$$
 x = 1 - \frac{1^2 - 5}{2\cdot1} = 1 - \frac{-4}{2} = 1 - (-2) = 3
-$$</p>
-<p>E a ideia é usarmos o 3 como um novo \( x_0 \), e com ele calcularmos uma nova
-estimativa para a raiz com a reta que tangencia \( (3, 4) \).</p>
-<p>$$
+$$</p><p>E a ideia é usarmos o 3 como um novo \( x_0 \), e com ele calcularmos uma nova
+estimativa para a raiz com a reta que tangencia \( (3, 4) \).</p><p>$$
 x = 3 - \frac{3^2 - 5}{2\cdot3} = 3 - \frac{4}{6} = 3 - \frac{2}{3} \approx 2.333
-$$</p>
-<p>O que já é uma ótima aproximação de \( \sqrt{5} \). Abaixo um gráfico do que
+$$</p><p>O que já é uma ótima aproximação de \( \sqrt{5} \). Abaixo um gráfico do que
 mais ou menos aconteceu. A função laranja é a tangente ao ponto \( (1, -4) \),
 e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
-último ponto é próximo da raiz da parábola.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
-    <span class=k>return</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span>
-
-
-<span class=k>def</span> <span class=nf>tangente_um</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
-    <span class=k>return</span> <span class=mi>2</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>6</span>
-
-
-<span class=k>def</span> <span class=nf>tangente_dois</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
-    <span class=k>return</span> <span class=mi>6</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>14</span>
-
-
-<span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>f</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$x^2 - 5$&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>tangente_um</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$2x - 6$&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>tangente_dois</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$6x - 14$&#34;</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=s2>&#34;grey&#34;</span><span class=p>,</span> <span class=s2>&#34;dashed&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>vlines</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=o>-</span><span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=s2>&#34;grey&#34;</span><span class=p>,</span> <span class=s2>&#34;dashed&#34;</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
-</code></pre></div><p><img src=./newton_visualization.png alt=Image class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
+último ponto é próximo da raiz da parábola.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>f</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>tangente_um</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>2</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>6</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>tangente_dois</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=mi>6</span> <span class=o>*</span> <span class=n>x</span> <span class=o>-</span> <span class=mi>14</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>f</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$x^2 - 5$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>tangente_um</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$2x - 6$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>tangente_dois</span><span class=p>(</span><span class=n>X</span><span class=p>),</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$6x - 14$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>,</span> <span class=s2>&#34;grey&#34;</span><span class=p>,</span> <span class=s2>&#34;dashed&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>vlines</span><span class=p>(</span><span class=mi>3</span><span class=p>,</span> <span class=o>-</span><span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>,</span> <span class=s2>&#34;grey&#34;</span><span class=p>,</span> <span class=s2>&#34;dashed&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>1</span><span class=p>,</span> <span class=mi>4</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mi>10</span><span class=p>,</span> <span class=mi>10</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span></code></pre></div><p><img src=./newton_visualization.png alt=Image class="rounded my-8" style=background-color:#fff></p><p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
 inevitavelmente teria lidar com cálculo diferencial. Para isso, existe uma
-biblioteca que pode nos ajudar.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=introduzindo-sympy>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Introduzindo SymPy
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#introduzindo-sympy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
+biblioteca que pode nos ajudar.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=introduzindo-sympy><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Introduzindo SymPy</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#introduzindo-sympy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
 contamos com funções para calcular limites, derivadas, integrais, expandir
-polinômicos, simplificar expressões etc.</p>
-<p>Por exemplo, se quisermos calcular a derivada da função \( x^2 - 5 \).</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>sympy</span> <span class=kn>import</span> <span class=n>symbols</span><span class=p>,</span> <span class=n>diff</span><span class=p>,</span> <span class=n>limit</span><span class=p>,</span> <span class=n>integrate</span><span class=p>,</span> <span class=n>oo</span>
-
-<span class=n>x</span> <span class=o>=</span> <span class=n>symbols</span><span class=p>(</span><span class=s2>&#34;x&#34;</span><span class=p>)</span>
-
-<span class=n>diff</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span><span class=p>)</span>
-</code></pre></div><pre><code>2*x
-</code></pre>
-<p>Podemos também calcular limites, por exemplo \( \lim_{x \to \infty}
-\frac{1}{x} = 0 \)</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>limit</span><span class=p>(</span><span class=mi>1</span> <span class=o>/</span> <span class=n>x</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>oo</span><span class=p>)</span>
-</code></pre></div><pre tabindex=0><code>0
-</code></pre><p>Ou mesmo integrais indefinidas, \( \int x^2 , dx = \frac{x^3}{3} + c \)</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>integrate</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>)</span>
-</code></pre></div><pre><code>x**3/3
-</code></pre>
-<p>A função assim como está não serve para retornar qualquer valor, ela
+polinômicos, simplificar expressões etc.</p><p>Por exemplo, se quisermos calcular a derivada da função \( x^2 - 5 \).</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>sympy</span> <span class=kn>import</span> <span class=n>symbols</span><span class=p>,</span> <span class=n>diff</span><span class=p>,</span> <span class=n>limit</span><span class=p>,</span> <span class=n>integrate</span><span class=p>,</span> <span class=n>oo</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>x</span> <span class=o>=</span> <span class=n>symbols</span><span class=p>(</span><span class=s2>&#34;x&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>diff</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>2*x
+</code></pre><p>Podemos também calcular limites, por exemplo \( \lim_{x \to \infty}
+\frac{1}{x} = 0 \)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>limit</span><span class=p>(</span><span class=mi>1</span> <span class=o>/</span> <span class=n>x</span><span class=p>,</span> <span class=n>x</span><span class=p>,</span> <span class=n>oo</span><span class=p>)</span>
+</span></span></code></pre></div><pre tabindex=0><code>0
+</code></pre><p>Ou mesmo integrais indefinidas, \( \int x^2 , dx = \frac{x^3}{3} + c \)</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>integrate</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>x**3/3
+</code></pre><p>A função assim como está não serve para retornar qualquer valor, ela
 praticamente só aceita funções do próprio SymPy. Para a utilizarmos como uma
 função qualquer, devemos usar <code>lambdify()</code>. Para nossos objetivos, essa última e
-a função diff serão suficientes.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=um-código-para-o-algoritmo>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Um código para o algoritmo
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#um-c%c3%b3digo-para-o-algoritmo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p>
-<p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
+a função diff serão suficientes.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=um-código-para-o-algoritmo><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Um código para o algoritmo</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#um-c%c3%b3digo-para-o-algoritmo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p><p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
 queremos uma solução, e a estimativa inicial. Por exemplo, no nosso caso, ela
-tomaria os argumentos \( x^2 \), \( 5 \) e \( 1 \).</p>
-<p>Em seguida, construirei simbolicamente, com estes argumentos, nossa \( f(x) \)
-e sua derivada, \( f'(x) \). E com isso temos tudo que precisamos para
-executarmos o método.</p>
-<p>No algoritmo, decidi por 5 iterações, printando três colunas com os resultados a
+tomaria os argumentos \( x^2 \), \( 5 \) e \( 1 \).</p><p>Em seguida, construirei simbolicamente, com estes argumentos, nossa \( f(x) \)
+e sua derivada, \( f&rsquo;(x) \). E com isso temos tudo que precisamos para
+executarmos o método.</p><p>No algoritmo, decidi por 5 iterações, printando três colunas com os resultados a
 cada iteração: a estimativa inicial, a nova estimativa e, por fim, a diferença
 entre as duas, a fim de verificar como a cada iteração o valor de x se aproxima
-mais do da raiz.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>sympy.utilities.lambdify</span> <span class=kn>import</span> <span class=n>lambdify</span>
-
-
-<span class=k>def</span> <span class=nf>newton</span><span class=p>(</span><span class=n>funcao</span><span class=p>,</span> <span class=n>numero</span><span class=p>,</span> <span class=n>estimativa</span><span class=p>):</span>
-    <span class=n>f</span> <span class=o>=</span> <span class=n>lambdify</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>funcao</span> <span class=o>-</span> <span class=n>numero</span><span class=p>)</span>  <span class=c1># x^2 - 5</span>
-    <span class=n>df</span> <span class=o>=</span> <span class=n>lambdify</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>diff</span><span class=p>(</span><span class=n>funcao</span> <span class=o>-</span> <span class=n>numero</span><span class=p>))</span>  <span class=c1># 2x</span>
-
-    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;est.    | nova est. | diferença&#34;</span><span class=p>)</span>
-
-    <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>5</span><span class=p>):</span>
-        <span class=n>nova_est</span> <span class=o>=</span> <span class=n>estimativa</span> <span class=o>-</span> <span class=n>f</span><span class=p>(</span><span class=n>estimativa</span><span class=p>)</span> <span class=o>/</span> <span class=n>df</span><span class=p>(</span><span class=n>estimativa</span><span class=p>)</span>
-        <span class=nb>print</span><span class=p>(</span>
-            <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>estimativa</span><span class=si>:</span><span class=s2>.5f</span><span class=si>}</span><span class=s2> | </span><span class=si>{</span><span class=n>nova_est</span><span class=si>:</span><span class=s2>^ 9.5f</span><span class=si>}</span><span class=s2> | </span><span class=si>{</span><span class=nb>abs</span><span class=p>(</span><span class=n>nova_est</span> <span class=o>-</span> <span class=n>estimativa</span><span class=p>)</span><span class=si>:</span><span class=s2>.20f</span><span class=si>}</span><span class=s2>&#34;</span>
-        <span class=p>)</span>
-        <span class=n>estimativa</span> <span class=o>=</span> <span class=n>nova_est</span>
-
-    <span class=k>return</span> <span class=n>estimativa</span>
-
-
-<span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>O quanto erramos: </span><span class=si>{</span><span class=nb>abs</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>sqrt</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span> <span class=o>-</span> <span class=n>newton</span><span class=p>(</span><span class=n>x</span><span class=o>**</span><span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1</span><span class=p>))</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+mais do da raiz.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>sympy.utilities.lambdify</span> <span class=kn>import</span> <span class=n>lambdify</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>newton</span><span class=p>(</span><span class=n>funcao</span><span class=p>,</span> <span class=n>numero</span><span class=p>,</span> <span class=n>estimativa</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>f</span> <span class=o>=</span> <span class=n>lambdify</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>funcao</span> <span class=o>-</span> <span class=n>numero</span><span class=p>)</span>  <span class=c1># x^2 - 5</span>
+</span></span><span class=line><span class=cl>    <span class=n>df</span> <span class=o>=</span> <span class=n>lambdify</span><span class=p>(</span><span class=n>x</span><span class=p>,</span> <span class=n>diff</span><span class=p>(</span><span class=n>funcao</span> <span class=o>-</span> <span class=n>numero</span><span class=p>))</span>  <span class=c1># 2x</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=nb>print</span><span class=p>(</span><span class=s2>&#34;est.    | nova est. | diferença&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>5</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=n>nova_est</span> <span class=o>=</span> <span class=n>estimativa</span> <span class=o>-</span> <span class=n>f</span><span class=p>(</span><span class=n>estimativa</span><span class=p>)</span> <span class=o>/</span> <span class=n>df</span><span class=p>(</span><span class=n>estimativa</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=nb>print</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>            <span class=sa>f</span><span class=s2>&#34;</span><span class=si>{</span><span class=n>estimativa</span><span class=si>:</span><span class=s2>.5f</span><span class=si>}</span><span class=s2> | </span><span class=si>{</span><span class=n>nova_est</span><span class=si>:</span><span class=s2>^ 9.5f</span><span class=si>}</span><span class=s2> | </span><span class=si>{</span><span class=nb>abs</span><span class=p>(</span><span class=n>nova_est</span> <span class=o>-</span> <span class=n>estimativa</span><span class=p>)</span><span class=si>:</span><span class=s2>.20f</span><span class=si>}</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>        <span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=n>estimativa</span> <span class=o>=</span> <span class=n>nova_est</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>estimativa</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>O quanto erramos: </span><span class=si>{</span><span class=nb>abs</span><span class=p>(</span><span class=n>np</span><span class=o>.</span><span class=n>sqrt</span><span class=p>(</span><span class=mi>5</span><span class=p>)</span> <span class=o>-</span> <span class=n>newton</span><span class=p>(</span><span class=n>x</span><span class=o>**</span><span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1</span><span class=p>))</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 1.00000 |  3.00000  | 2.00000000000000000000
 3.00000 |  2.33333  | 0.66666666666666651864
 2.33333 |  2.23810  | 0.09523809523809534383
@@ -325,12 +163,9 @@ mais do da raiz.</p>
 2.23607 |  2.23607  | 0.00000091814338532004
 
 O quanto erramos: 1.8829382497642655e-13
-</code></pre>
-<p>E assim vemos que o erro foi desprezível.</p>
-<p>A vantagem de usar o SymPy é que agora podemos estimar a raiz de qualquer tipo
-de função. Por exemplo, a raiz cúbica de 5, ou algo mais complicado:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>O quanto erramos: </span><span class=si>{</span><span class=nb>abs</span><span class=p>(</span><span class=mi>5</span><span class=o>**</span><span class=p>(</span><span class=mi>1</span><span class=o>/</span><span class=mi>3</span><span class=p>)</span> <span class=o>-</span> <span class=n>newton</span><span class=p>(</span><span class=n>x</span><span class=o>**</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+</code></pre><p>E assim vemos que o erro foi desprezível.</p><p>A vantagem de usar o SymPy é que agora podemos estimar a raiz de qualquer tipo
+de função. Por exemplo, a raiz cúbica de 5, ou algo mais complicado:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;</span><span class=se>\n</span><span class=s2>O quanto erramos: </span><span class=si>{</span><span class=nb>abs</span><span class=p>(</span><span class=mi>5</span><span class=o>**</span><span class=p>(</span><span class=mi>1</span><span class=o>/</span><span class=mi>3</span><span class=p>)</span> <span class=o>-</span> <span class=n>newton</span><span class=p>(</span><span class=n>x</span><span class=o>**</span><span class=mi>3</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>2</span><span class=p>))</span><span class=si>}</span><span class=s2>&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 2.00000 |  1.75000  | 0.25000000000000000000
 1.75000 |  1.71088  | 0.03911564625850338928
 1.71088 |  1.70998  | 0.00090792482452184409
@@ -338,10 +173,8 @@ de função. Por exemplo, a raiz cúbica de 5, ou algo mais complicado:</p>
 1.70998 |  1.70998  | 0.00000000000013589130
 
 O quanto erramos: 2.220446049250313e-16
-</code></pre>
-<p>Uma das raízes para função \( x^4 + x^3 - x^2 - 5 \) deve ser:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+</code></pre><p>Uma das raízes para função \( x^4 + x^3 - x^2 - 5 \) deve ser:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 1.00000 |  1.80000  | 0.80000000000000004441
 1.80000 |  1.52529  | 0.27470795979353446192
 1.52529 |  1.43509  | 0.09020236587892971336
@@ -349,26 +182,21 @@ O quanto erramos: 2.220446049250313e-16
 1.42600 |  1.42591  | 0.00008681126625442737
 
 1.4259134245660217
-</code></pre>
-<p>Se plotarmos seu gráfico, veremos que esse é um valor razoável. Uma raiz parece
-estar entre 1 e 2, e foi a que achamos. E uma outra está muito próxima de -2.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
-
-
-<span class=k>def</span> <span class=nf>g</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
-    <span class=k>return</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span>
-
-
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>g</span><span class=p>(</span><span class=n>X</span><span class=p>))</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;grey&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>7.5</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span>
-</code></pre></div><p><img src=./output_17_1.png alt=png class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Vamos tentar achar essa outra raiz com nossa função. Para isso, basta mudarmos
-nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=o>-</span><span class=mf>1.5</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+</code></pre><p>Se plotarmos seu gráfico, veremos que esse é um valor razoável. Uma raiz parece
+estar entre 1 e 2, e foi a que achamos. E uma outra está muito próxima de -2.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>g</span><span class=p>(</span><span class=n>x</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span> <span class=o>-</span> <span class=mi>5</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>g</span><span class=p>(</span><span class=n>X</span><span class=p>))</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;grey&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>7.5</span><span class=p>,</span> <span class=mi>5</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./output_17_1.png alt=png class="rounded my-8" style=background-color:#fff></p><p>Vamos tentar achar essa outra raiz com nossa função. Para isso, basta mudarmos
+nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=o>-</span><span class=mf>1.5</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 -1.50000 | -2.98333  | 1.48333333333333339255
 -2.98333 | -2.45626  | 0.52707184463468736979
 -2.45626 | -2.16542  | 0.29084549734551234934
@@ -376,21 +204,11 @@ nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p>
 -2.06890 | -2.05885  | 0.01005450745933744727
 
 -2.0588469658492823
-</code></pre>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=limitações-do-método>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Limitações do método
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
+</code></pre><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=limitações-do-método><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Limitações do método</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
 criou. Por exemplo, imagine que usemos como estimativa um valor próximo de um
-mínimo, digamos que 0.5.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+mínimo, digamos que 0.5.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 0.50000 |  20.75000 | 20.25000000000000000000
 20.75000 |  15.50807 | 5.24193178745838928023
 15.50807 |  11.57934 | 3.92872823960125217013
@@ -399,31 +217,22 @@ mínimo, digamos que 0.5.</p>
 
 
 6.434733086164693
-</code></pre>
-<p>O resultado foi bem catastrófico. É claro, não poderíamos esperar que ele fosse
-infalível. Vejamos as razões pelas quais ele pode falhar.</p>
-<p>Primeiro, é muito claro que o resultado final a que chegaremos depende da
+</code></pre><p>O resultado foi bem catastrófico. É claro, não poderíamos esperar que ele fosse
+infalível. Vejamos as razões pelas quais ele pode falhar.</p><p>Primeiro, é muito claro que o resultado final a que chegaremos depende da
 estimativa inicial. Logo, se fizermos uma estimativa desarrazoada, é muito
-provável que não cheguemos a uma solução pertinente.</p>
-<p>Além disso, a derivada da função naquele ponto não deve ser muito pequena. No
-limite, se ela for zero, teremos uma indefinição, uma divisão por zero.</p>
-<p>E se ela for muito pequena, a reta tangente será muito pouco inclinada e jogará
+provável que não cheguemos a uma solução pertinente.</p><p>Além disso, a derivada da função naquele ponto não deve ser muito pequena. No
+limite, se ela for zero, teremos uma indefinição, uma divisão por zero.</p><p>E se ela for muito pequena, a reta tangente será muito pouco inclinada e jogará
 a estimativa para muito longe da raiz. E foi isso o que aconteceu ali em cima.
-Por exemplo, consideremos a função \( x^3 - x \).</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>X</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>X</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;grey&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
-</code></pre></div><p><img src=./output_20_1.png alt=png class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Pelo gráfico, salta à vista que as três raízes são 0, 1 e -1. Ok, mas imagine
-que queiramos estimar a raiz não-nula positiva com este método.</p>
-<p>Não poderíamos escolher 0.5 como estimativa, porque isso nos jogaria para o
-outro lado e acabaríamos achando algo próximo da raiz negativa:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+Por exemplo, consideremos a função \( x^3 - x \).</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>X</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>X</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;grey&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./output_20_1.png alt=png class="rounded my-8" style=background-color:#fff></p><p>Pelo gráfico, salta à vista que as três raízes são 0, 1 e -1. Ok, mas imagine
+que queiramos estimar a raiz não-nula positiva com este método.</p><p>Não poderíamos escolher 0.5 como estimativa, porque isso nos jogaria para o
+outro lado e acabaríamos achando algo próximo da raiz negativa:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 0.50000 | -5.00000  | 5.50000000000000000000
 -5.00000 | -3.36486  | 1.63513513513513508713
 -3.36486 | -2.28096  | 1.08390981119991192116
@@ -431,10 +240,8 @@ outro lado e acabaríamos achando algo próximo da raiz negativa:</p>
 -1.55628 | -1.04351  | 0.51277134078822550478
 
 -1.0435052271790375
-</code></pre>
-<p>E se escolhêssemos algo muito perto do mínimo, aquele mesmo fiasco aconteceria.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mf>0.6</span><span class=p>)</span>
-</code></pre></div><pre><code>est.    | nova est. | diferença
+</code></pre><p>E se escolhêssemos algo muito perto do mínimo, aquele mesmo fiasco aconteceria.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mf>0.6</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>est.    | nova est. | diferença
 0.60000 |  17.90000 | 17.29999999999998294697
 17.90000 |  11.94680 | 5.95319767139122291155
 11.94680 |  7.98552  | 3.96128197667255399494
@@ -442,81 +249,27 @@ outro lado e acabaríamos achando algo próximo da raiz negativa:</p>
 5.35691 |  3.62500  | 1.73191328184936210732
 
 3.624996032946096
-</code></pre>
-<p>Como esperado, a tangente ali é pouquíssimo inclinada, e jogou a estimativa para
+</code></pre><p>Como esperado, a tangente ali é pouquíssimo inclinada, e jogou a estimativa para
 muito longe, tanto que em 5 tentativas não conseguimos uma estimativa muito boa.
-Veja o gráfico.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>X</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>X</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$x^3 - x$&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=o>-</span><span class=mf>0.432</span> <span class=o>+</span> <span class=mf>0.08</span> <span class=o>*</span> <span class=n>X</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$-0.432 + 0.08x$&#34;</span><span class=p>)</span>
-
-<span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;grey&#34;</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
-<span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
-</code></pre></div><p><img src=./output_26_1.png alt=png class="rounded my-8" style=background-color:#fff>
-</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Conclusões
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
+Veja o gráfico.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>X</span> <span class=o>=</span> <span class=n>np</span><span class=o>.</span><span class=n>linspace</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>1000</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=n>X</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>X</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$x^3 - x$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>plot</span><span class=p>(</span><span class=n>X</span><span class=p>,</span> <span class=o>-</span><span class=mf>0.432</span> <span class=o>+</span> <span class=mf>0.08</span> <span class=o>*</span> <span class=n>X</span><span class=p>,</span> <span class=n>label</span><span class=o>=</span><span class=sa>r</span><span class=s2>&#34;$-0.432 + 0.08x$&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>hlines</span><span class=p>(</span><span class=mi>0</span><span class=p>,</span> <span class=o>-</span><span class=mi>5</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=n>color</span><span class=o>=</span><span class=s2>&#34;grey&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>xlim</span><span class=p>(</span><span class=o>-</span><span class=mi>2</span><span class=p>,</span> <span class=mi>2</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
+</span></span></code></pre></div><p><img src=./output_26_1.png alt=png class="rounded my-8" style=background-color:#fff></p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=conclusões><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Conclusões</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
 bastante simples sem sacrificar o lado da eficiência, mas também vimos que há
 certas limitações. É claro, ele não poderia fazer milagres. Mas, hoje em dia,
 basta plotar o gráfico em questão para ter uma ideia de onde estão as raízes,
-como acabamos de fazer aqui com a ajuda do matplotlib.</p>
-</section>
-</article>
-<hr class=my-8>
-<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
-Copied!
-<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
-</div>
-<nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
-<a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/ title="Post anterior">
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-</span>
-Três algoritmos para a sequência de Fibonacci
-</a>
-<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/spread-bancario-brasileiro-r/ title="Próximo post">
-Spread bancário brasileiro: limpeza e visualização de dados
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-</span>
-</a>
-</nav>
-</main>
-</div>
-<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
-<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
-<nav aria-label=Links>
-<div class="flex gap-4">
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-</a>
-</div>
-</nav>
-</div>
-<p class=flex-1>
-Este conteúdo está sob a licença
-<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.
-</p>
-</footer>
-</div>
-<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-</body>
-</html>
+como acabamos de fazer aqui com a ajuda do matplotlib.</p></section></article><hr class=my-8><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>Copiado<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/ title="Post anterior"><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Três algoritmos para a sequência de Fibonacci</a>
+<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/spread-bancario-brasileiro-r/ title="Próximo post">Spread bancário brasileiro: limpeza e visualização de dados
+<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class=flex-1>Este conteúdo está sob a licença
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>

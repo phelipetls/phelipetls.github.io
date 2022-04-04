@@ -1,140 +1,37 @@
-<!doctype html><html class=h-full lang=pt-br>
-<head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa.">
-<meta name=deploy-date content="2022-04-03">
-<meta name=publish-date content="2019-04-20">
-<meta name=last-modified-date content="2021-04-24">
-<meta name=author content>
-<meta name=color-scheme content="dark light">
-<link rel=icon href=/favicon.ico sizes=any>
-<link rel=icon href=/icon.svg type=image/svg+xml>
-<link rel=apple-touch-icon href=/apple-touch-icon.png>
-<link rel=preconnect href=https://fonts.googleapis.com>
-<link rel=preconnect href=https://fonts.gstatic.com crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet>
-<link rel=stylesheet href="/css/main.min.css">
-<link rel=stylesheet href=/css/dark-syntax-highlight.min.css>
-<title>
-Mineração de Texto com as legendas de Game of Thrones | Phelipe Teles
-</title>
-<meta property="og:title" content="Mineração de Texto com as legendas de Game of Thrones">
-<meta property="og:description" content="Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://phelipetls.github.io/pt/posts/game-of-thrones-text-mining/"><meta property="article:section" content="posts">
-<meta property="article:published_time" content="2019-04-20T00:00:00+00:00">
-<meta property="article:modified_time" content="2021-04-24T13:17:50-03:00">
-<meta name=twitter:card content="summary">
-<meta name=twitter:title content="Mineração de Texto com as legendas de Game of Thrones">
-<meta name=twitter:description content="Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa.">
-</head>
-<body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out">
-<script>function storeTheme(a){a&&localStorage.setItem('__theme',a)}function getStoredTheme(){return localStorage.getItem('__theme')}function setTheme(a){a==='auto'&&window.matchMedia('(prefers-color-scheme: dark)').matches&&(a='dark'),a==='dark'?document.body.classList.add('dark'):document.body.classList.remove('dark')}function dispatchNewThemeEvent(a){const b=new CustomEvent('newTheme',{detail:{theme:a}});document.body.dispatchEvent(b)}window.__setTheme=function(a){setTheme(a),storeTheme(a),dispatchNewThemeEvent(a)};const storedTheme=getStoredTheme()||'auto';window.__setTheme(storedTheme),window.addEventListener('load',function(){document.body.removeAttribute('data-preload'),dispatchNewThemeEvent(storedTheme)})</script>
-<div data-scroll-container class="flex flex-col min-h-full">
-<div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)>
-<div class="flex items-center justify-between mx-auto max-w-5xl px-4">
-<nav aria-label="Navegação principal">
-<div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>
-Sobre
-</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>
-Posts
-</a><a href=https://phelipetls.github.io/pt/projects/>
-Projetos
-</a></div>
-</nav>
-<div class="flex items-center">
-<button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-</defs>
-<use data-theme-button-svg-icon href=#sun>
-</svg>
-</button>
-<ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-Claro
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-Escuro
-</li>
-<li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-Sistema
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto">
-<main class="flex flex-1 shrink-0 flex-col w-full">
-<article>
-<header>
-<h1 class="text-4xl mb-4">
-Mineração de Texto com as legendas de Game of Thrones
-</h1>
-<div class="flex flex-col gap-2 mb-4" style=--icon-size:24px>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-<time datetime=2019-04-20>
-20 de Abril
-</time>
-</div>
-<div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg>
-<div>
-Editado em
-<time datetime=2021-04-24>
-24 de Agosto
-</time>
-</div>
-</div>
-</div>
-</header>
-<div class=mb-4>
-<div class="flex flex-wrap gap-2 py-2">
-<a href=/pt/tags/tidyverse/ class="no-underline rounded-full border-2 px-4 py-1/2">tidyverse</a>
+<!doctype html><html class=h-full lang=pt-br><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa."><meta name=deploy-date content="2022-04-04"><meta name=publish-date content="2019-04-20"><meta name=last-modified-date content="2021-04-24"><meta name=author content><meta name=color-scheme content="dark light"><link rel=prelaod as=image href="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"><link rel=icon href=/favicon.ico sizes=any><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Mineração de Texto com as legendas de Game of Thrones | Phelipe Teles</title><meta property="og:title" content="Mineração de Texto com as legendas de Game of Thrones"><meta property="og:description" content="Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/pt/posts/game-of-thrones-text-mining/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2019-04-20T00:00:00+00:00"><meta property="article:modified_time" content="2021-04-24T13:17:50-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Mineração de Texto com as legendas de Game of Thrones"><meta name=twitter:description content="Neste post procuro visualizar dados textuais das legendads de Game of Thrones com o R, utilizando o pacote tidytext , que torna trivial esse tipo de tarefa."></head><body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out"><script>function storeTheme(e){e&&localStorage.setItem("__theme",e)}function getStoredTheme(){return localStorage.getItem("__theme")}function setTheme(e){e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),e==="dark"?document.body.classList.add("dark"):document.body.classList.remove("dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:e}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeTheme(e),dispatchNewThemeEvent(e)};const storedTheme=getStoredTheme()||"auto";window.__setTheme(storedTheme),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedTheme)})</script><div data-scroll-container class="flex flex-col min-h-full"><div data-nav-container class="sticky bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm top-0 my-4 py-4 flex-shrink-0 z-30 will-change-transform transition-transform duration-200 ease-linear" style=transform:translateY(0%)><div class="flex items-center justify-between mx-auto max-w-5xl px-4"><nav aria-label="Navegação principal"><div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>Sobre
+</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>Posts
+</a><a href=https://phelipetls.github.io/pt/projects/>Projetos</a></div></nav><div class="flex items-center"><button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Claro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Escuro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Sistema</li></ul></div></div></div><div class="my-16 px-4 flex-1 max-w-5xl flex container mx-auto"><main class="flex flex-1 shrink-0 flex-col w-full"><article><header><h1 class="text-4xl mb-4">Mineração de Texto com as legendas de Game of Thrones</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2019-04-20>20 de Abril</time></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg><div>Editado em
+<time datetime=2021-04-24>24 de Agosto</time></div></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/pt/tags/tidyverse/ class="no-underline rounded-full border-2 px-4 py-1/2">tidyverse</a>
 <a href=/pt/tags/dataviz/ class="no-underline rounded-full border-2 px-4 py-1/2">dataviz</a>
 <a href=/pt/tags/ggplot2/ class="no-underline rounded-full border-2 px-4 py-1/2">ggplot2</a>
-<a href=/pt/tags/tidytext/ class="no-underline rounded-full border-2 px-4 py-1/2">tidytext</a>
-</div>
-</div>
-<hr class=my-8>
-<section data-blog-post class=max-w-prose>
-<p>Neste post procuro visualizar dados textuais das legendads de Game of Thrones
+<a href=/pt/tags/tidytext/ class="no-underline rounded-full border-2 px-4 py-1/2">tidytext</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p>Neste post procuro visualizar dados textuais das legendads de Game of Thrones
 com o R, utilizando o pacote <a href=https://www.tidytextmining.com><code>tidytext</code></a>
 , que
-torna trivial esse tipo de tarefa.</p>
-<p>A ideia é transformar um bloco de texto, como um livro, em um tidy DataFrame. No
-nosso, caso faremos com as legendas de GOT.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=obtendo-os-dados>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Obtendo os dados
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#obtendo-os-dados><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Os dados brutos foram coletados
+torna trivial esse tipo de tarefa.</p><p>A ideia é transformar um bloco de texto, como um livro, em um tidy DataFrame. No
+nosso, caso faremos com as legendas de GOT.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=obtendo-os-dados><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Obtendo os dados</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#obtendo-os-dados><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Os dados brutos foram coletados
 <a href=https://www.kaggle.com/gunnvant/game-of-thrones-srt>aqui</a>
 , formato JSON. São 7
 arquivos, que contêm todas as legendas para as sete temporadas de GOT.
-Felizmente, há uma biblioteca para ler arquivos JSON no R, o <code>jsonlite</code>.</p>
-<p>No código abaixo, o que fiz foi ler cada arquivo, aplicando a função
+Felizmente, há uma biblioteca para ler arquivos JSON no R, o <code>jsonlite</code>.</p><p>No código abaixo, o que fiz foi ler cada arquivo, aplicando a função
 <code>jsonlite::fromJSON()</code> a cada um deles com <code>purrr::map()</code>, o que me dá uma
 lista. Depois, transformei essa lista em um vetor com <code>unlist()</code>, que por fim
-transformei em um data.frame com <code>tibble::enframe()</code>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>jsonlite</span><span class=p>)</span>
-<span class=nf>library</span><span class=p>(</span><span class=n>tidyverse</span><span class=p>)</span>
-
-<span class=nf>setwd</span><span class=p>(</span><span class=s>&#34;~/got_subtitles/&#34;</span><span class=p>)</span>
-
-<span class=c1># vetor com o endereço dos arquivos</span>
-<span class=n>arquivos</span> <span class=o>&lt;-</span> <span class=nf>dir</span><span class=p>(</span><span class=n>path</span> <span class=o>=</span> <span class=nf>getwd</span><span class=p>(),</span> <span class=n>pattern</span> <span class=o>=</span> <span class=s>&#34;json$&#34;</span><span class=p>,</span> <span class=n>full.names</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
-
-<span class=c1># lendo os arquivos</span>
-<span class=n>got_subs_raw</span> <span class=o>&lt;-</span> <span class=nf>map</span><span class=p>(</span><span class=n>arquivos</span><span class=p>,</span> <span class=o>~</span> <span class=nf>fromJSON</span><span class=p>(</span><span class=n>.x</span><span class=p>))</span> <span class=o>%&gt;%</span>
-  <span class=nf>unlist</span><span class=p>()</span> <span class=o>%&gt;%</span>
-  <span class=nf>enframe</span><span class=p>()</span>
-
-<span class=n>got_subs_raw</span>
-</code></pre></div><pre><code>## # A tibble: 44,890 x 2
+transformei em um data.frame com <code>tibble::enframe()</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>jsonlite</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>tidyverse</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>setwd</span><span class=p>(</span><span class=s>&#34;~/got_subtitles/&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># vetor com o endereço dos arquivos</span>
+</span></span><span class=line><span class=cl><span class=n>arquivos</span> <span class=o>&lt;-</span> <span class=nf>dir</span><span class=p>(</span><span class=n>path</span> <span class=o>=</span> <span class=nf>getwd</span><span class=p>(),</span> <span class=n>pattern</span> <span class=o>=</span> <span class=s>&#34;json$&#34;</span><span class=p>,</span> <span class=n>full.names</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># lendo os arquivos</span>
+</span></span><span class=line><span class=cl><span class=n>got_subs_raw</span> <span class=o>&lt;-</span> <span class=nf>map</span><span class=p>(</span><span class=n>arquivos</span><span class=p>,</span> <span class=o>~</span> <span class=nf>fromJSON</span><span class=p>(</span><span class=n>.x</span><span class=p>))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>unlist</span><span class=p>()</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>enframe</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_subs_raw</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 44,890 x 2
 ##    name                             value
 ##    &lt;chr&gt;                            &lt;chr&gt;
 ##  1 Game Of Thrones S01E01 Winter I~ Easy, boy.
@@ -148,31 +45,28 @@ transformei em um data.frame com <code>tibble::enframe()</code>.</p>
 ##  9 Game Of Thrones S01E01 Winter I~ One for each of the Stark children.
 ## 10 Game Of Thrones S01E01 Winter I~ The direwolf is the sigil of your hous~
 ## # ... with 44,880 more rows
-</code></pre>
-<p>Agora vamos limpar esse DataFrame, procurando extrair variáveis interessantes
-como temporada, número e nome do episódio etc.</p>
-<p>Primeiro vamos retirar o prefixo &lsquo;Game of Throns S&rsquo;, o que nos deixa com &lsquo;01E01
+</code></pre><p>Agora vamos limpar esse DataFrame, procurando extrair variáveis interessantes
+como temporada, número e nome do episódio etc.</p><p>Primeiro vamos retirar o prefixo &lsquo;Game of Throns S&rsquo;, o que nos deixa com &lsquo;01E01
 Winter Is Coming&rsquo;, &lsquo;{Temporada}E{Episódio} {Nome do episódio}&rsquo;. Vamos usar
-regexes para extrair cada parte individualmente.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_subs</span> <span class=o>&lt;-</span> <span class=n>got_subs_raw</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span>
-    <span class=n>name</span> <span class=o>=</span> <span class=nf>str_remove</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s>&#34;Game Of Thrones S&#34;</span><span class=p>),</span>
-    <span class=n>season_episode</span> <span class=o>=</span> <span class=nf>str_extract</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s>&#34;\\d+E\\d+&#34;</span><span class=p>),</span>
-    <span class=n>name</span> <span class=o>=</span> <span class=nf>str_match</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s>&#34;([A-z,&#39; ]+)\\.srt&#34;</span><span class=p>)</span><span class=n>[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span> <span class=o>%&gt;%</span> <span class=nf>trimws</span><span class=p>()</span>
-  <span class=p>)</span> <span class=o>%&gt;%</span>
-
-  <span class=c1># separando a temporada do episódio</span>
-  <span class=nf>separate</span><span class=p>(</span><span class=n>season_episode</span><span class=p>,</span> <span class=nf>c</span><span class=p>(</span><span class=s>&#34;season&#34;</span><span class=p>,</span> <span class=s>&#34;episode&#34;</span><span class=p>),</span> <span class=n>sep</span> <span class=o>=</span> <span class=s>&#34;E&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-
-  <span class=c1># transformando o que é número para numeric</span>
-  <span class=nf>mutate</span><span class=p>(</span>
-    <span class=n>season</span> <span class=o>=</span> <span class=nf>as.numeric</span><span class=p>(</span><span class=n>season</span><span class=p>),</span>
-    <span class=n>episode</span> <span class=o>=</span> <span class=nf>as.numeric</span><span class=p>(</span><span class=n>episode</span><span class=p>)</span>
-  <span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>select</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>episode</span><span class=p>,</span> <span class=n>name</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
-
-<span class=n>got_subs</span>
-</code></pre></div><pre><code>## # A tibble: 44,890 x 4
+regexes para extrair cada parte individualmente.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_subs</span> <span class=o>&lt;-</span> <span class=n>got_subs_raw</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>name</span> <span class=o>=</span> <span class=nf>str_remove</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s>&#34;Game Of Thrones S&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>season_episode</span> <span class=o>=</span> <span class=nf>str_extract</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s>&#34;\\d+E\\d+&#34;</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>name</span> <span class=o>=</span> <span class=nf>str_match</span><span class=p>(</span><span class=n>name</span><span class=p>,</span> <span class=s>&#34;([A-z,&#39; ]+)\\.srt&#34;</span><span class=p>)</span><span class=n>[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span> <span class=o>%&gt;%</span> <span class=nf>trimws</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1># separando a temporada do episódio</span>
+</span></span><span class=line><span class=cl>  <span class=nf>separate</span><span class=p>(</span><span class=n>season_episode</span><span class=p>,</span> <span class=nf>c</span><span class=p>(</span><span class=s>&#34;season&#34;</span><span class=p>,</span> <span class=s>&#34;episode&#34;</span><span class=p>),</span> <span class=n>sep</span> <span class=o>=</span> <span class=s>&#34;E&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>  <span class=c1># transformando o que é número para numeric</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>season</span> <span class=o>=</span> <span class=nf>as.numeric</span><span class=p>(</span><span class=n>season</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>episode</span> <span class=o>=</span> <span class=nf>as.numeric</span><span class=p>(</span><span class=n>episode</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>select</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>episode</span><span class=p>,</span> <span class=n>name</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_subs</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 44,890 x 4
 ##    season episode name          value
 ##     &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;         &lt;chr&gt;
 ##  1      1       1 Winter Is Co~ Easy, boy.
@@ -186,21 +80,18 @@ regexes para extrair cada parte individualmente.</p>
 ##  9      1       1 Winter Is Co~ One for each of the Stark children.
 ## 10      1       1 Winter Is Co~ The direwolf is the sigil of your house.
 ## # ... with 44,880 more rows
-</code></pre>
-<p>Podemos tornar isso se quebrarmos a coluna <code>value</code> em unidades menores, como
+</code></pre><p>Podemos tornar isso se quebrarmos a coluna <code>value</code> em unidades menores, como
 palavras. O pacote <code>tidytext</code> tem uma função para isso, chamada <code>unnest_tokens</code>.
 É mais geral e pode servir para separar um texto em caracteres, frases,
-parágrafos etc.</p>
-<p>Será útil também a função <code>rownames_to_column</code>, para podermos saber quais
-palavras pertencem à mesma frase após a separação etc.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>tidytext</span><span class=p>)</span>
-
-<span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_subs</span> <span class=o>%&gt;%</span>
-  <span class=nf>rownames_to_column</span><span class=p>()</span> <span class=o>%&gt;%</span>
-  <span class=nf>unnest_tokens</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
-
-<span class=n>got_words</span>
-</code></pre></div><pre><code>## # A tibble: 286,901 x 5
+parágrafos etc.</p><p>Será útil também a função <code>rownames_to_column</code>, para podermos saber quais
+palavras pertencem à mesma frase após a separação etc.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>tidytext</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_subs</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>rownames_to_column</span><span class=p>()</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>unnest_tokens</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>value</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 286,901 x 5
 ##    rowname season episode name             word
 ##    &lt;chr&gt;    &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;            &lt;chr&gt;
 ##  1 1            1       1 Winter Is Coming easy
@@ -214,11 +105,9 @@ palavras pertencem à mesma frase após a separação etc.</p>
 ##  9 2            1       1 Winter Is Coming wildlings
 ## 10 3            1       1 Winter Is Coming right
 ## # ... with 286,891 more rows
-</code></pre>
-<p>Vamos contar quais são as palavras mais comuns:</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
-</code></pre></div><pre><code>## # A tibble: 9,695 x 2
+</code></pre><p>Vamos contar quais são as palavras mais comuns:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 9,695 x 2
 ##    word      n
 ##    &lt;chr&gt; &lt;int&gt;
 ##  1 the   11856
@@ -232,18 +121,15 @@ palavras pertencem à mesma frase após a separação etc.</p>
 ##  9 my     3234
 ## 10 it     2962
 ## # ... with 9,685 more rows
-</code></pre>
-<p>A maioria são preposições, pronomes etc., o que não é muito interessante.
+</code></pre><p>A maioria são preposições, pronomes etc., o que não é muito interessante.
 Felizmente, isso é muito facilmente resolvido por esse pacote. Basta rodar um
 <code>dplyr::anti_join</code> com um dataset que contém essas palavras, conhecidas como
-‘stop words’.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>anti_join</span><span class=p>(</span><span class=n>stop_words</span><span class=p>)</span>
-</code></pre></div><pre><code>## Joining, by = &quot;word&quot;
-</code></pre>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
-</code></pre></div><pre><code>## # A tibble: 9,079 x 2
+‘stop words’.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>anti_join</span><span class=p>(</span><span class=n>stop_words</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## Joining, by = &quot;word&quot;
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 9,079 x 2
 ##    word        n
 ##    &lt;chr&gt;   &lt;int&gt;
 ##  1 lord     1133
@@ -257,23 +143,21 @@ Felizmente, isso é muito facilmente resolvido por esse pacote. Basta rodar um
 ##  9 people    394
 ## 10 brother   393
 ## # ... with 9,069 more rows
-</code></pre>
-<p>E aqui vemos algo mais específico de GOT, mas essas palavras são assim tão
+</code></pre><p>E aqui vemos algo mais específico de GOT, mas essas palavras são assim tão
 frequentes por serem pronomes de tratamento de GOT, são as stop words desse
-universo. Por isso, achei prudente retirá-las.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_stop_words</span> <span class=o>&lt;-</span> <span class=nf>c</span><span class=p>(</span>
-  <span class=s>&#34;father&#34;</span><span class=p>,</span> <span class=s>&#34;mother&#34;</span><span class=p>,</span> <span class=s>&#34;queen&#34;</span><span class=p>,</span> <span class=s>&#34;king&#34;</span><span class=p>,</span>
-  <span class=s>&#34;boy&#34;</span><span class=p>,</span> <span class=s>&#34;girl&#34;</span><span class=p>,</span> <span class=s>&#34;lord&#34;</span><span class=p>,</span> <span class=s>&#34;lady&#34;</span><span class=p>,</span> <span class=s>&#34;son&#34;</span><span class=p>,</span> <span class=s>&#34;sister&#34;</span><span class=p>,</span>
-  <span class=s>&#34;grace&#34;</span><span class=p>,</span> <span class=s>&#34;ser&#34;</span><span class=p>,</span> <span class=s>&#34;brother&#34;</span><span class=p>,</span> <span class=s>&#34;sister&#34;</span><span class=p>,</span> <span class=s>&#34;king&#39;s&#34;</span>
-<span class=p>)</span>
-
-<span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>word</span> <span class=o>%in%</span> <span class=n>got_stop_words</span><span class=p>))</span> <span class=o>%&gt;%</span>
-  <span class=nf>add_count</span><span class=p>(</span><span class=n>word</span><span class=p>)</span>
-
-<span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
-</code></pre></div><pre><code>## # A tibble: 9,065 x 2
+universo. Por isso, achei prudente retirá-las.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_stop_words</span> <span class=o>&lt;-</span> <span class=nf>c</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;father&#34;</span><span class=p>,</span> <span class=s>&#34;mother&#34;</span><span class=p>,</span> <span class=s>&#34;queen&#34;</span><span class=p>,</span> <span class=s>&#34;king&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;boy&#34;</span><span class=p>,</span> <span class=s>&#34;girl&#34;</span><span class=p>,</span> <span class=s>&#34;lord&#34;</span><span class=p>,</span> <span class=s>&#34;lady&#34;</span><span class=p>,</span> <span class=s>&#34;son&#34;</span><span class=p>,</span> <span class=s>&#34;sister&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>  <span class=s>&#34;grace&#34;</span><span class=p>,</span> <span class=s>&#34;ser&#34;</span><span class=p>,</span> <span class=s>&#34;brother&#34;</span><span class=p>,</span> <span class=s>&#34;sister&#34;</span><span class=p>,</span> <span class=s>&#34;king&#39;s&#34;</span>
+</span></span><span class=line><span class=cl><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>word</span> <span class=o>%in%</span> <span class=n>got_stop_words</span><span class=p>))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>add_count</span><span class=p>(</span><span class=n>word</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 9,065 x 2
 ##    word       n
 ##    &lt;chr&gt;  &lt;int&gt;
 ##  1 time     513
@@ -287,35 +171,22 @@ universo. Por isso, achei prudente retirá-las.</p>
 ##  9 die      284
 ## 10 life     278
 ## # ... with 9,055 more rows
-</code></pre>
-<p>E aqui as coisas começam a ficar interessantes!</p>
-<p>A <a href=./got_words.csv>base limpa com essas palavras pode ser baixada aqui</a>
-.</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=correlação-entre-as-palavras>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Correlação entre as palavras
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#correla%c3%a7%c3%a3o-entre-as-palavras><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Agora, vamos visualizar quais as palavras que aparecem juntas com mais
-frequência, com a função <code>pairwise_cor</code> do pacote <code>widyr</code>.</p>
-<p>Só precisamos filtrar nossa base antes, porque não queremos que o R compare cada
-par de 81579 palavras: escolheremos as palavras que apareçam 50 vezes ou mais.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>widyr</span><span class=p>)</span>
-
-<span class=n>word_pairs</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>add_count</span><span class=p>(</span><span class=n>word</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=n>n</span> <span class=o>&gt;=</span> <span class=m>50</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>pairwise_cor</span><span class=p>(</span><span class=n>word</span><span class=p>,</span>
-    <span class=n>rowname</span><span class=p>,</span>
-    <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span>
-  <span class=p>)</span>
-
-<span class=n>word_pairs</span>
-</code></pre></div><pre><code>## # A tibble: 109,892 x 3
+</code></pre><p>E aqui as coisas começam a ficar interessantes!</p><p>A <a href=./got_words.csv>base limpa com essas palavras pode ser baixada aqui</a>
+.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=correlação-entre-as-palavras><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Correlação entre as palavras</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#correla%c3%a7%c3%a3o-entre-as-palavras><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Agora, vamos visualizar quais as palavras que aparecem juntas com mais
+frequência, com a função <code>pairwise_cor</code> do pacote <code>widyr</code>.</p><p>Só precisamos filtrar nossa base antes, porque não queremos que o R compare cada
+par de 81579 palavras: escolheremos as palavras que apareçam 50 vezes ou mais.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>widyr</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>word_pairs</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>add_count</span><span class=p>(</span><span class=n>word</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=n>n</span> <span class=o>&gt;=</span> <span class=m>50</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>pairwise_cor</span><span class=p>(</span><span class=n>word</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>rowname</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>sort</span> <span class=o>=</span> <span class=bp>T</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>word_pairs</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 109,892 x 3
 ##    item1    item2    correlation
 ##    &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt;
 ##  1 color    font           0.968
@@ -329,110 +200,79 @@ par de 81579 palavras: escolheremos as palavras que apareçam 50 vezes ou mais.<
 ##  9 jon      snow           0.540
 ## 10 snow     jon            0.540
 ## # ... with 109,882 more rows
-</code></pre>
-<p>Dentre alguns resultado interessantes, nos deparamos com um bastante anormal.
+</code></pre><p>Dentre alguns resultado interessantes, nos deparamos com um bastante anormal.
 color font? font color? Isso é código HTML usado para formatação que acabou
-entrando no documento, que eventualmente serão ignoradas.</p>
-<p>Para visualizar essas relações, vamos usar grafos. Nele as palavras são nós e os
+entrando no documento, que eventualmente serão ignoradas.</p><p>Para visualizar essas relações, vamos usar grafos. Nele as palavras são nós e os
 vértices as corrrelações (um vértice mais escuro indica uma correlação mais
 alta), teremos assim uma network dos top 100 par de palavras mais
-correlacionados entre si.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>ggraph</span><span class=p>)</span>
-<span class=nf>library</span><span class=p>(</span><span class=n>igraph</span><span class=p>)</span>
-
-<span class=nf>set.seed</span><span class=p>(</span><span class=m>0</span><span class=p>)</span>
-
-<span class=n>word_pairs</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>item1</span> <span class=o>%in%</span> <span class=nf>c</span><span class=p>(</span><span class=s>&#34;font&#34;</span><span class=p>,</span> <span class=s>&#34;color&#34;</span><span class=p>,</span> <span class=s>&#34;game&#34;</span><span class=p>)))</span> <span class=o>%&gt;%</span>
-  <span class=nf>top_n</span><span class=p>(</span><span class=m>100</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>graph_from_data_frame</span><span class=p>()</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggraph</span><span class=p>(</span><span class=n>layout</span> <span class=o>=</span> <span class=s>&#34;fr&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>geom_edge_link</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>edge_alpha</span> <span class=o>=</span> <span class=n>correlation</span><span class=p>),</span>
-    <span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>geom_node_point</span><span class=p>(</span>
-    <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;skyblue&#34;</span><span class=p>,</span>
-    <span class=n>size</span> <span class=o>=</span> <span class=m>3</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>geom_node_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>label</span> <span class=o>=</span> <span class=n>name</span><span class=p>),</span>
-    <span class=n>repel</span> <span class=o>=</span> <span class=bp>T</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>theme_void</span><span class=p>()</span>
-</code></pre></div><p><img src=./grafo-de-palavras.png alt="Grafo das palavras mais comuns em Game of Thrones" class="rounded my-8" style=background-color:#fff>
-</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=palavras-mais-frequentes>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Palavras mais frequentes
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#palavras-mais-frequentes><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Agora, vamos visualizar quais as palavras mais frequentes em geral e por
-temporada. Para isso vamos utilizar nuvem de palavras.</p>
-<p>O em geral primeiro. Vamos ver quais são as top 50 palavras em uma nuvem, com a
+correlacionados entre si.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>ggraph</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>igraph</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>set.seed</span><span class=p>(</span><span class=m>0</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>word_pairs</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=o>!</span><span class=p>(</span><span class=n>item1</span> <span class=o>%in%</span> <span class=nf>c</span><span class=p>(</span><span class=s>&#34;font&#34;</span><span class=p>,</span> <span class=s>&#34;color&#34;</span><span class=p>,</span> <span class=s>&#34;game&#34;</span><span class=p>)))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>top_n</span><span class=p>(</span><span class=m>100</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>graph_from_data_frame</span><span class=p>()</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggraph</span><span class=p>(</span><span class=n>layout</span> <span class=o>=</span> <span class=s>&#34;fr&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_edge_link</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>edge_alpha</span> <span class=o>=</span> <span class=n>correlation</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_node_point</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>color</span> <span class=o>=</span> <span class=s>&#34;skyblue&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>size</span> <span class=o>=</span> <span class=m>3</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_node_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>label</span> <span class=o>=</span> <span class=n>name</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>repel</span> <span class=o>=</span> <span class=bp>T</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>theme_void</span><span class=p>()</span>
+</span></span></code></pre></div><p><img src=./grafo-de-palavras.png alt="Grafo das palavras mais comuns em Game of Thrones" class="rounded my-8" style=background-color:#fff></p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=palavras-mais-frequentes><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Palavras mais frequentes</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#palavras-mais-frequentes><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Agora, vamos visualizar quais as palavras mais frequentes em geral e por
+temporada. Para isso vamos utilizar nuvem de palavras.</p><p>O em geral primeiro. Vamos ver quais são as top 50 palavras em uma nuvem, com a
 função <code>wordcloud::wordcloud</code>, que toma como argumentos principais um vetor de
-palavras e um de frequências.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>wordcloud</span><span class=p>)</span>
-<span class=nf>library</span><span class=p>(</span><span class=n>RColorBrewer</span><span class=p>)</span>
-
-<span class=n>paleta</span> <span class=o>&lt;-</span> <span class=nf>brewer.pal</span><span class=p>(</span><span class=m>6</span><span class=p>,</span> <span class=s>&#34;Dark2&#34;</span><span class=p>)</span>
-
-<span class=nf>set.seed</span><span class=p>(</span><span class=m>99</span><span class=p>)</span>
-
-<span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>with</span><span class=p>(</span><span class=nf>wordcloud</span><span class=p>(</span><span class=n>word</span><span class=p>,</span>
-    <span class=n>n</span><span class=p>,</span>
-    <span class=n>max.words</span> <span class=o>=</span> <span class=m>50</span><span class=p>,</span>
-    <span class=n>colors</span> <span class=o>=</span> <span class=n>paleta</span>
-  <span class=p>))</span>
-</code></pre></div><p><img src=./nuvem-de-palavras.png alt="Nuvem de palavras das palavras mais comuns em Game of Thrones" class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Agora, vamos ver como isso varia para cada temporada, com o pacote
-<code>ggwordcloud</code>.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>library</span><span class=p>(</span><span class=n>ggwordcloud</span><span class=p>)</span>
-
-<span class=nf>theme_set</span><span class=p>(</span><span class=nf>theme_minimal</span><span class=p>())</span>
-
-<span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=o>!</span><span class=nf>str_detect</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=s>&#34;font|color&#34;</span><span class=p>))</span>
-
-<span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>word</span><span class=p>,</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;count&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>group_by</span><span class=p>(</span><span class=n>season</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>top_n</span><span class=p>(</span><span class=m>20</span><span class=p>,</span> <span class=n>count</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
-    <span class=n>label</span> <span class=o>=</span> <span class=n>word</span><span class=p>,</span>
-    <span class=n>size</span> <span class=o>=</span> <span class=n>count</span><span class=p>,</span>
-    <span class=n>color</span> <span class=o>=</span> <span class=n>count</span> <span class=o>%&gt;%</span> <span class=nf>as.numeric</span><span class=p>()</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_text_wordcloud</span><span class=p>(</span><span class=n>rm_outside</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_size_area</span><span class=p>(</span><span class=n>max_size</span> <span class=o>=</span> <span class=m>10</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_color_viridis_c</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>season</span><span class=p>,</span> <span class=n>nrow</span> <span class=o>=</span> <span class=m>3</span><span class=p>,</span> <span class=n>ncol</span> <span class=o>=</span> <span class=m>3</span><span class=p>)</span>
-</code></pre></div><p><img src=./nuvem_de_palavras_por_temporada.png alt="Nuvem de palavras por temporada" class="rounded my-8" style=background-color:#fff>
-</p>
-<h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=análise-de-sentimentos>
-<div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0">
-</div>
-<span>
-Análise de sentimentos
-</span>
-<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#an%c3%a1lise-de-sentimentos><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
-</a>
-</h2>
-<p>Outra coisa que é interessante de ser feita é analisar o sentimento médio do
-texto, se nele há mais palavras consideradas negativas ou positivas etc.</p>
-<p>Esse é um tópico delicado teoricamente, já que não é algo tão trivial para um
+palavras e um de frequências.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>wordcloud</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>RColorBrewer</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>paleta</span> <span class=o>&lt;-</span> <span class=nf>brewer.pal</span><span class=p>(</span><span class=m>6</span><span class=p>,</span> <span class=s>&#34;Dark2&#34;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>set.seed</span><span class=p>(</span><span class=m>99</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>word</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>with</span><span class=p>(</span><span class=nf>wordcloud</span><span class=p>(</span><span class=n>word</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>n</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>max.words</span> <span class=o>=</span> <span class=m>50</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>colors</span> <span class=o>=</span> <span class=n>paleta</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span>
+</span></span></code></pre></div><p><img src=./nuvem-de-palavras.png alt="Nuvem de palavras das palavras mais comuns em Game of Thrones" class="rounded my-8" style=background-color:#fff></p><p>Agora, vamos ver como isso varia para cada temporada, com o pacote
+<code>ggwordcloud</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>ggwordcloud</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nf>theme_set</span><span class=p>(</span><span class=nf>theme_minimal</span><span class=p>())</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=o>!</span><span class=nf>str_detect</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=s>&#34;font|color&#34;</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>word</span><span class=p>,</span> <span class=n>name</span> <span class=o>=</span> <span class=s>&#34;count&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>group_by</span><span class=p>(</span><span class=n>season</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>top_n</span><span class=p>(</span><span class=m>20</span><span class=p>,</span> <span class=n>count</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>label</span> <span class=o>=</span> <span class=n>word</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>size</span> <span class=o>=</span> <span class=n>count</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>color</span> <span class=o>=</span> <span class=n>count</span> <span class=o>%&gt;%</span> <span class=nf>as.numeric</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_text_wordcloud</span><span class=p>(</span><span class=n>rm_outside</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_size_area</span><span class=p>(</span><span class=n>max_size</span> <span class=o>=</span> <span class=m>10</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_color_viridis_c</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>season</span><span class=p>,</span> <span class=n>nrow</span> <span class=o>=</span> <span class=m>3</span><span class=p>,</span> <span class=n>ncol</span> <span class=o>=</span> <span class=m>3</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./nuvem_de_palavras_por_temporada.png alt="Nuvem de palavras por temporada" class="rounded my-8" style=background-color:#fff></p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=análise-de-sentimentos><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Análise de sentimentos</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#an%c3%a1lise-de-sentimentos><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Outra coisa que é interessante de ser feita é analisar o sentimento médio do
+texto, se nele há mais palavras consideradas negativas ou positivas etc.</p><p>Esse é um tópico delicado teoricamente, já que não é algo tão trivial para um
 computador deduzir se uma frase expressa um sentimento bom ou ruim. Não vamos
 deixar o computador fazer isso, mas usar um léxico que mapeia palavras a
-sentimentos, feito por humanos.</p>
-<p>Por exemplo, o léxico <code>afinn</code> classifica algumas mil palavras em uma escala que
-varia de -5 (muito negativo) até 5 (muito positivo).</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;afinn&#34;</span><span class=p>)</span>
-</code></pre></div><pre><code>## # A tibble: 2,476 x 2
+sentimentos, feito por humanos.</p><p>Por exemplo, o léxico <code>afinn</code> classifica algumas mil palavras em uma escala que
+varia de -5 (muito negativo) até 5 (muito positivo).</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;afinn&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 2,476 x 2
 ##    word       score
 ##    &lt;chr&gt;      &lt;int&gt;
 ##  1 abandon       -2
@@ -446,11 +286,9 @@ varia de -5 (muito negativo) até 5 (muito positivo).</p>
 ##  9 abhorrent     -3
 ## 10 abhors        -3
 ## # ... with 2,466 more rows
-</code></pre>
-<p>Já esse classifica cada palavra binariamente, em ‘negativa’ ou ‘positiva’,
-cobrindo uma porção maior de palavras.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;bing&#34;</span><span class=p>)</span>
-</code></pre></div><pre><code>## # A tibble: 6,788 x 2
+</code></pre><p>Já esse classifica cada palavra binariamente, em ‘negativa’ ou ‘positiva’,
+cobrindo uma porção maior de palavras.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;bing&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 6,788 x 2
 ##    word        sentiment
 ##    &lt;chr&gt;       &lt;chr&gt;
 ##  1 2-faced     negative
@@ -464,12 +302,10 @@ cobrindo uma porção maior de palavras.</p>
 ##  9 abomination negative
 ## 10 abort       negative
 ## # ... with 6,778 more rows
-</code></pre>
-<p>Outra base possível de ser usada é essa, que cobre muito mais palavras e
+</code></pre><p>Outra base possível de ser usada é essa, que cobre muito mais palavras e
 categorias, além de ter mais palavras positivas (em relação às negativas) que a
-base &lsquo;bing&rsquo;.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;nrc&#34;</span><span class=p>)</span>
-</code></pre></div><pre><code>## # A tibble: 13,901 x 2
+base &lsquo;bing&rsquo;.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;nrc&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><pre><code>## # A tibble: 13,901 x 2
 ##    word        sentiment
 ##    &lt;chr&gt;       &lt;chr&gt;
 ##  1 abacus      trust
@@ -483,184 +319,122 @@ base &lsquo;bing&rsquo;.</p>
 ##  9 abandonment anger
 ## 10 abandonment fear
 ## # ... with 13,891 more rows
-</code></pre>
-<p>Vamos aplicar a análise de sentimento com as três e ver como elas se
-diferenciam.</p>
-<p>Vejamos primeiro quais são as palavras negativas e positivas mais comuns.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_bing</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=n>word</span> <span class=o>!=</span> <span class=s>&#34;stark&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>rowname</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>inner_join</span><span class=p>(</span><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;bing&#34;</span><span class=p>))</span>
-</code></pre></div><pre><code>## Joining, by = &quot;word&quot;
-</code></pre>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_bing</span> <span class=o>%&gt;%</span>
-  <span class=nf>distinct</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>.keep_all</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>group_by</span><span class=p>(</span><span class=n>sentiment</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>top_n</span><span class=p>(</span><span class=m>10</span><span class=p>,</span> <span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=nf>fct_reorder</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>n</span><span class=p>),</span>
-    <span class=n>n</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>sentiment</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>coord_flip</span><span class=p>()</span> <span class=o>+</span>
-  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>sentiment</span><span class=p>,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_y&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Palavras Negativas e Positivas Mais Comuns&#34;</span>
-  <span class=p>)</span>
-</code></pre></div><p><img src=./palavras-negativas-e-positivas.png alt="Palavras negativas e positivas" class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Agora, vamos fazer isso em por temporada e medir o sentimento médio a cada seção
-de n palavras.</p>
-<p>Vamos usar o dataset <code>afinn</code> e uma seção formada por 25 palavras.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_afinn</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>inner_join</span><span class=p>(</span><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;afinn&#34;</span><span class=p>))</span> <span class=o>%&gt;%</span>
-  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>rowname</span><span class=p>,</span> <span class=o>-</span><span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span>
-    <span class=n>row</span> <span class=o>=</span> <span class=nf>row_number</span><span class=p>(),</span>
-    <span class=n>section</span> <span class=o>=</span> <span class=n>row</span> <span class=o>%/%</span> <span class=m>25</span>
-  <span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ungroup</span><span class=p>()</span>
-</code></pre></div><pre><code>## Joining, by = &quot;word&quot;
-</code></pre>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_afinn</span> <span class=o>%&gt;%</span>
-  <span class=nf>group_by</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>section</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>summarise</span><span class=p>(</span><span class=n>avg_sentiment</span> <span class=o>=</span> <span class=nf>mean</span><span class=p>(</span><span class=n>score</span><span class=p>))</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>section</span><span class=p>,</span>
-    <span class=n>avg_sentiment</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>avg_sentiment</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Seções&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio\n&#34;</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio a cada 25 palavras por temporada&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_fill_gradient2</span><span class=p>(</span>
-    <span class=n>low</span> <span class=o>=</span> <span class=s>&#34;firebrick3&#34;</span><span class=p>,</span>
-    <span class=n>high</span> <span class=o>=</span> <span class=s>&#34;dodgerblue3&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>season</span> <span class=o>~</span> <span class=n>.,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_x&#34;</span><span class=p>)</span>
-</code></pre></div><p><img src=./sentimento-medio-afinn.png alt="Sentimento médio, método afinn" class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Em geral, podemos ver que as temporadas foram ficando mais pesadas. Os picos
+</code></pre><p>Vamos aplicar a análise de sentimento com as três e ver como elas se
+diferenciam.</p><p>Vejamos primeiro quais são as palavras negativas e positivas mais comuns.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_bing</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=n>word</span> <span class=o>!=</span> <span class=s>&#34;stark&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>rowname</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>inner_join</span><span class=p>(</span><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;bing&#34;</span><span class=p>))</span>
+</span></span></code></pre></div><pre><code>## Joining, by = &quot;word&quot;
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_bing</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>distinct</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>.keep_all</span> <span class=o>=</span> <span class=bp>T</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>group_by</span><span class=p>(</span><span class=n>sentiment</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>top_n</span><span class=p>(</span><span class=m>10</span><span class=p>,</span> <span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=nf>fct_reorder</span><span class=p>(</span><span class=n>word</span><span class=p>,</span> <span class=n>n</span><span class=p>),</span>
+</span></span><span class=line><span class=cl>    <span class=n>n</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>sentiment</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>coord_flip</span><span class=p>()</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>sentiment</span><span class=p>,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_y&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=kc>NULL</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Palavras Negativas e Positivas Mais Comuns&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span></code></pre></div><p><img src=./palavras-negativas-e-positivas.png alt="Palavras negativas e positivas" class="rounded my-8" style=background-color:#fff></p><p>Agora, vamos fazer isso em por temporada e medir o sentimento médio a cada seção
+de n palavras.</p><p>Vamos usar o dataset <code>afinn</code> e uma seção formada por 25 palavras.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_afinn</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>inner_join</span><span class=p>(</span><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;afinn&#34;</span><span class=p>))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>rowname</span><span class=p>,</span> <span class=o>-</span><span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>row</span> <span class=o>=</span> <span class=nf>row_number</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=n>section</span> <span class=o>=</span> <span class=n>row</span> <span class=o>%/%</span> <span class=m>25</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ungroup</span><span class=p>()</span>
+</span></span></code></pre></div><pre><code>## Joining, by = &quot;word&quot;
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_afinn</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>group_by</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>section</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>summarise</span><span class=p>(</span><span class=n>avg_sentiment</span> <span class=o>=</span> <span class=nf>mean</span><span class=p>(</span><span class=n>score</span><span class=p>))</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>section</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>avg_sentiment</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>avg_sentiment</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Seções&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio\n&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio a cada 25 palavras por temporada&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_fill_gradient2</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>low</span> <span class=o>=</span> <span class=s>&#34;firebrick3&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>high</span> <span class=o>=</span> <span class=s>&#34;dodgerblue3&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>season</span> <span class=o>~</span> <span class=n>.,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_x&#34;</span><span class=p>)</span>
+</span></span></code></pre></div><p><img src=./sentimento-medio-afinn.png alt="Sentimento médio, método afinn" class="rounded my-8" style=background-color:#fff></p><p>Em geral, podemos ver que as temporadas foram ficando mais pesadas. Os picos
 azuis claros foram ficando cada vez mais raros e os vales vermelhos mais agudos,
-chegando a seu clímax na temporada 5, o Walk of Shame.</p>
-<p>Vamos tentar o mesmo com as outras duas bases. Como elas classificam as palavras
+chegando a seu clímax na temporada 5, o Walk of Shame.</p><p>Vamos tentar o mesmo com as outras duas bases. Como elas classificam as palavras
 binariamente, a ideia é calcular o &lsquo;sentimento líquido&rsquo;, o que se entende pela
-diferença no número de palavras positivas e negativas, para cada seção.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_bing</span> <span class=o>%&gt;%</span>
-  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span>
-    <span class=n>row</span> <span class=o>=</span> <span class=nf>row_number</span><span class=p>(),</span>
-    <span class=n>section</span> <span class=o>=</span> <span class=n>row</span> <span class=o>%/%</span> <span class=m>25</span>
-  <span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>episode</span><span class=p>,</span> <span class=n>section</span><span class=p>,</span> <span class=n>sentiment</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>spread</span><span class=p>(</span><span class=n>sentiment</span><span class=p>,</span> <span class=n>n</span><span class=p>,</span> <span class=n>fill</span> <span class=o>=</span> <span class=m>0</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span><span class=n>net_sentiment</span> <span class=o>=</span> <span class=n>positive</span> <span class=o>-</span> <span class=n>negative</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>section</span><span class=p>,</span>
-    <span class=n>net_sentiment</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>net_sentiment</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_fill_gradient2</span><span class=p>(</span>
-    <span class=n>low</span> <span class=o>=</span> <span class=s>&#34;firebrick3&#34;</span><span class=p>,</span>
-    <span class=n>high</span> <span class=o>=</span> <span class=s>&#34;navyblue&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>season</span><span class=p>,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_x&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Seções&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio\n&#34;</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio a cada 25 palavras por temporada&#34;</span><span class=p>,</span>
-    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Método Bing&#34;</span>
-  <span class=p>)</span>
-</code></pre></div><p><img src=./sentimento-medio-bing.png alt="Sentimento médio, método bing" class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Ok, isso em geral vai de encontro com o que já havíamos visto.</p>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_nrc</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
-  <span class=nf>filter</span><span class=p>(</span><span class=n>word</span> <span class=o>!=</span> <span class=s>&#34;stark&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>rowname</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>inner_join</span><span class=p>(</span><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;nrc&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
-    <span class=nf>filter</span><span class=p>(</span><span class=n>sentiment</span> <span class=o>%in%</span> <span class=nf>c</span><span class=p>(</span><span class=s>&#34;negative&#34;</span><span class=p>,</span> <span class=s>&#34;positive&#34;</span><span class=p>)))</span>
-</code></pre></div><pre><code>## Joining, by = &quot;word&quot;
-</code></pre>
-<div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=n>got_nrc</span> <span class=o>%&gt;%</span>
-  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span>
-    <span class=n>row</span> <span class=o>=</span> <span class=nf>row_number</span><span class=p>(),</span>
-    <span class=n>section</span> <span class=o>=</span> <span class=n>row</span> <span class=o>%/%</span> <span class=m>25</span>
-  <span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>count</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>episode</span><span class=p>,</span> <span class=n>section</span><span class=p>,</span> <span class=n>sentiment</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>spread</span><span class=p>(</span><span class=n>sentiment</span><span class=p>,</span> <span class=n>n</span><span class=p>,</span> <span class=n>fill</span> <span class=o>=</span> <span class=m>0</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>mutate</span><span class=p>(</span><span class=n>net_sentiment</span> <span class=o>=</span> <span class=n>positive</span> <span class=o>-</span> <span class=n>negative</span><span class=p>)</span> <span class=o>%&gt;%</span>
-  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>section</span><span class=p>,</span>
-    <span class=n>net_sentiment</span><span class=p>,</span>
-    <span class=n>fill</span> <span class=o>=</span> <span class=n>net_sentiment</span>
-  <span class=p>))</span> <span class=o>+</span>
-  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>scale_fill_gradient2</span><span class=p>(</span>
-    <span class=n>low</span> <span class=o>=</span> <span class=s>&#34;firebrick3&#34;</span><span class=p>,</span>
-    <span class=n>high</span> <span class=o>=</span> <span class=s>&#34;navyblue&#34;</span>
-  <span class=p>)</span> <span class=o>+</span>
-  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>season</span><span class=p>,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_x&#34;</span><span class=p>)</span> <span class=o>+</span>
-  <span class=nf>labs</span><span class=p>(</span>
-    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Seções&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio\n&#34;</span><span class=p>,</span>
-    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio a cada 25 palavras por temporada&#34;</span><span class=p>,</span>
-    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Método NRC&#34;</span>
-  <span class=p>)</span>
-</code></pre></div><p><img src=./sentimento-medio-nrc.png alt="Sentimento médio, método NRC" class="rounded my-8" style=background-color:#fff>
-</p>
-<p>Pera! Já esse nos dá quase que o resultado oposto! De fato, por esse método a
+diferença no número de palavras positivas e negativas, para cada seção.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_bing</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>row</span> <span class=o>=</span> <span class=nf>row_number</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=n>section</span> <span class=o>=</span> <span class=n>row</span> <span class=o>%/%</span> <span class=m>25</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>episode</span><span class=p>,</span> <span class=n>section</span><span class=p>,</span> <span class=n>sentiment</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>spread</span><span class=p>(</span><span class=n>sentiment</span><span class=p>,</span> <span class=n>n</span><span class=p>,</span> <span class=n>fill</span> <span class=o>=</span> <span class=m>0</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span><span class=n>net_sentiment</span> <span class=o>=</span> <span class=n>positive</span> <span class=o>-</span> <span class=n>negative</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>section</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>net_sentiment</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>net_sentiment</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_fill_gradient2</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>low</span> <span class=o>=</span> <span class=s>&#34;firebrick3&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>high</span> <span class=o>=</span> <span class=s>&#34;navyblue&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>season</span><span class=p>,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_x&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Seções&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio\n&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio a cada 25 palavras por temporada&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Método Bing&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span></code></pre></div><p><img src=./sentimento-medio-bing.png alt="Sentimento médio, método bing" class="rounded my-8" style=background-color:#fff></p><p>Ok, isso em geral vai de encontro com o que já havíamos visto.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_nrc</span> <span class=o>&lt;-</span> <span class=n>got_words</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>filter</span><span class=p>(</span><span class=n>word</span> <span class=o>!=</span> <span class=s>&#34;stark&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>rowname</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>inner_join</span><span class=p>(</span><span class=nf>get_sentiments</span><span class=p>(</span><span class=s>&#34;nrc&#34;</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>    <span class=nf>filter</span><span class=p>(</span><span class=n>sentiment</span> <span class=o>%in%</span> <span class=nf>c</span><span class=p>(</span><span class=s>&#34;negative&#34;</span><span class=p>,</span> <span class=s>&#34;positive&#34;</span><span class=p>)))</span>
+</span></span></code></pre></div><pre><code>## Joining, by = &quot;word&quot;
+</code></pre><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>got_nrc</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>select</span><span class=p>(</span><span class=o>-</span><span class=n>n</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>row</span> <span class=o>=</span> <span class=nf>row_number</span><span class=p>(),</span>
+</span></span><span class=line><span class=cl>    <span class=n>section</span> <span class=o>=</span> <span class=n>row</span> <span class=o>%/%</span> <span class=m>25</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>count</span><span class=p>(</span><span class=n>season</span><span class=p>,</span> <span class=n>episode</span><span class=p>,</span> <span class=n>section</span><span class=p>,</span> <span class=n>sentiment</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>spread</span><span class=p>(</span><span class=n>sentiment</span><span class=p>,</span> <span class=n>n</span><span class=p>,</span> <span class=n>fill</span> <span class=o>=</span> <span class=m>0</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>mutate</span><span class=p>(</span><span class=n>net_sentiment</span> <span class=o>=</span> <span class=n>positive</span> <span class=o>-</span> <span class=n>negative</span><span class=p>)</span> <span class=o>%&gt;%</span>
+</span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>section</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>net_sentiment</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>fill</span> <span class=o>=</span> <span class=n>net_sentiment</span>
+</span></span><span class=line><span class=cl>  <span class=p>))</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>geom_col</span><span class=p>(</span><span class=n>show.legend</span> <span class=o>=</span> <span class=bp>F</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>scale_fill_gradient2</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>low</span> <span class=o>=</span> <span class=s>&#34;firebrick3&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>high</span> <span class=o>=</span> <span class=s>&#34;navyblue&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>facet_wrap</span><span class=p>(</span><span class=n>. </span><span class=o>~</span> <span class=n>season</span><span class=p>,</span> <span class=n>scale</span> <span class=o>=</span> <span class=s>&#34;free_x&#34;</span><span class=p>)</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>  <span class=nf>labs</span><span class=p>(</span>
+</span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=s>&#34;Seções&#34;</span><span class=p>,</span> <span class=n>y</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio\n&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>title</span> <span class=o>=</span> <span class=s>&#34;Sentimento médio a cada 25 palavras por temporada&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>    <span class=n>subtitle</span> <span class=o>=</span> <span class=s>&#34;Método NRC&#34;</span>
+</span></span><span class=line><span class=cl>  <span class=p>)</span>
+</span></span></code></pre></div><p><img src=./sentimento-medio-nrc.png alt="Sentimento médio, método NRC" class="rounded my-8" style=background-color:#fff></p><p>Pera! Já esse nos dá quase que o resultado oposto! De fato, por esse método a
 série não parece ser tão negativa quanto os outros haviam sugerido. Isso porque
 essa base tem muito mais palavras positivas em relação a negativas. Palavras
-como &lsquo;land&rsquo;, &lsquo;prince&rsquo; etc. são nela &lsquo;positivas&rsquo;, enquanto que nas outras, não.
-Por ter mais palavras, aumentam também o número de seções.</p>
-<p>Enfim, esse é um ponto delicado, incluído aqui somente por ser interessante em
-si mesmo.</p>
-</section>
-</article>
-<hr class=my-8>
-<div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>
-Copied!
-<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div>
-</div>
-<nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts">
-<a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/visualizacao-dados-homicidios-baltimore/ title="Post anterior">
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
-</span>
-Homicídios em Baltimore: visualizações com ggplot2 e gganimate
-</a>
-<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/gram-schmidt/ title="Próximo post">
-Processo de Gram-Schmidt com NumPy
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-</span>
-</a>
-</nav>
-</main>
-</div>
-<footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8">
-<div class="flex flex-wrap justify-center sm:order-last sm:justify-end">
-<nav aria-label=Links>
-<div class="flex gap-4">
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
-</a>
-<a class="border-0
-transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg>
-</a>
-</div>
-</nav>
-</div>
-<p class=flex-1>
-Este conteúdo está sob a licença
-<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.
-</p>
-</footer>
-</div>
-<script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-</body>
-</html>
+como &rsquo;land&rsquo;, &lsquo;prince&rsquo; etc. são nela &lsquo;positivas&rsquo;, enquanto que nas outras, não.
+Por ter mais palavras, aumentam também o número de seções.</p><p>Enfim, esse é um ponto delicado, incluído aqui somente por ser interessante em
+si mesmo.</p></section></article><hr class=my-8><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>Copiado<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/visualizacao-dados-homicidios-baltimore/ title="Post anterior"><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Homicídios em Baltimore: visualizações com ggplot2 e gganimate</a>
+<a class="flex basis-1/2 grow items-center self-end text-right h-full justify-end gap-2 border-0" href=/pt/posts/gram-schmidt/ title="Próximo post">Processo de Gram-Schmidt com NumPy
+<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class=flex-1>Este conteúdo está sob a licença
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>
