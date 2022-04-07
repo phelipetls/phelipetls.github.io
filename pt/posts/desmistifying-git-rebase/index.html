@@ -1,0 +1,187 @@
+<!doctype html><html class=h-full lang=pt-br><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="git rebase é um comando suado para reescrever histórico de commit, o que pode parecer assustado de início mas que você vai começar a gostar de pois."><meta name=deploy-date content="2022-04-07"><meta name=publish-date content="2022-04-06"><meta name=last-modified-date content="2022-04-06"><meta name=author content><meta name=color-scheme content="dark light"><link rel=prelaod as=image href="https://www.gravatar.com/avatar/5f1211751ab0e072f561ad15c991e192?s=384"><link rel=icon href=/favicon.ico sizes=any><link rel=icon href=/icon.svg type=image/svg+xml><link rel=apple-touch-icon href=/apple-touch-icon.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Fira+Sans&display=swap" rel=stylesheet><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Desmistificando git rebase | Phelipe Teles</title><meta property="og:title" content="Desmistificando git rebase"><meta property="og:description" content="git rebase é um comando suado para reescrever histórico de commit, o que pode parecer assustado de início mas que você vai começar a gostar de pois."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/pt/posts/desmistifying-git-rebase/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-04-06T00:00:00+00:00"><meta property="article:modified_time" content="2022-04-06T23:26:06-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Desmistificando git rebase"><meta name=twitter:description content="git rebase é um comando suado para reescrever histórico de commit, o que pode parecer assustado de início mas que você vai começar a gostar de pois."></head><body data-preload class="h-full text-foreground bg-background transition transition-colors duration-500 ease-out"><script>function storeTheme(e){e&&localStorage.setItem("__theme",e)}function getStoredTheme(){return localStorage.getItem("__theme")}function setTheme(e){e==="auto"&&window.matchMedia("(prefers-color-scheme: dark)").matches&&(e="dark"),e==="dark"?document.body.classList.add("dark"):document.body.classList.remove("dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:e}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeTheme(e),dispatchNewThemeEvent(e)};const storedTheme=getStoredTheme()||"auto";window.__setTheme(storedTheme),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedTheme)})</script><div data-scroll-container class="flex flex-col min-h-full"><div data-nav-container class="fixed top-0 w-full h-20 bg-background bg-opacity-90 backdrop-filter backdrop-blur-sm flex-shrink-0 z-30"><div class="flex items-center justify-between mx-auto max-w-5xl py-4 px-4"><nav aria-label="Navegação principal"><div class="flex flex-row flex-wrap gap-2"><a href=https://phelipetls.github.io/pt/>Sobre
+</a><a class=border-primary href=https://phelipetls.github.io/pt/posts/>Posts
+</a><a href=https://phelipetls.github.io/pt/projects/>Projetos</a></div></nav><div class="flex items-center"><button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded z-50 shadow-xl shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Claro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Escuro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Sistema</li></ul></div></div></div><div class="mt-36 mb-16 px-4 flex-1 max-w-5xl flex container mx-auto"><main class="flex flex-1 shrink-0 flex-col w-full"><article><header><h1 class="text-4xl mb-4">Desmistificando git rebase</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2022-04-06>6 de Abril</time></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-edit-2"><path d="M17 3a2.828 2.828.0 114 4L7.5 20.5 2 22l1.5-5.5L17 3z"/></svg><div>Editado em
+<time datetime=2022-04-06>06 de Agosto</time></div></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/pt/tags/git/ class="no-underline rounded-full border-2 px-4 py-1/2">git</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p><code>git rebase</code> é um comando suado para reescrever histórico de commit, o que pode
+parecer assustado de início mas que você vai começar a gostar de pois.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=por-que-aprender-git-rebase><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Por que aprender <code>git rebase</code>?</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#por-que-aprender-git-rebase><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Eu lembro que, como inciante no git, como foi difícil entender o <em>rebase</em>. Eu não
+sei explicar o porquê da dificuldade, mas eu chutaria que é porque eu não
+entendia quando eu precisaria usar esse comando.</p><p>Acontece que você <em>não precisa de rebase</em> no seu dia-a-dia, você pode trabalhar
+de boa sabendo o básico do git: add-commit-push-pull.</p><p><code>git rebase</code> é bastante similar ao <code>git merge</code>, no sentido de que você também o
+usa para pegar commits mais recentes em uma branch upstream. Mas, além disso, é
+útil também para:</p><ul><li>mudar a ordem de commits.</li><li>juntar vários commits em um só.</li><li>separar um commit em vários.</li><li>editar um commit, por exemplo remover um <code>.env</code> incluído acidentalmente.</li><li>editar a mensagem de um commit.</li><li>deletar um commit.</li></ul><p>Normalmente você vai querer fazer uma dessas coisas para arrumar o histórico de
+commit, por qualquer razão que seja.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=um-modelo-mental-para-git-rebase><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Um modelo mental para <code>git rebase</code></span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#um-modelo-mental-para-git-rebase><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Eis como eu entendo: <code>git rebase</code> vai repetir os commits da sua branch sobre os
+commits de outra branch.</p><p>Para ilustrar, vamos imaginar que você esteja trabalhar numa feature branch, e
+a main branch foi atualizada com código que você quer:</p><pre tabindex=0><code>      E---F---G feature
+     /
+A---B---C---D main
+</code></pre><p>Você pode rodar <code>git rebase main</code>, se você já estiver com a feature branch
+checked out, para chegar ao seguinte resultado:</p><pre tabindex=0><code>              E&#39;---F&#39;---G&#39; feature
+             /
+A---B---C---D main
+</code></pre><p>Os commits <code>E</code>, <code>F</code> e <code>G</code> agora são diferentes, o hash deles mudou, porque o
+commit pai deles mudou.</p><p>Isto é parecido com o <code>git merge main</code>, mas a branch resultante é mais limpa,
+porque o histórico é linear: parece que você nunca começou a desenvolver a
+feature a partir de um commit antigo de main.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=razões-para-temer-o-rebase><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Razões para temer o <em>rebase</em></span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#raz%c3%b5es-para-temer-o-rebase><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Devido ao <em>rebase</em> poder mudar a identidade de um commit (seu hash), você nunca
+deve fazê-lo em uma branch pública, ou seja, uma branch que mais alguém pode
+estar contribuindo.</p><p>Para ilustrar, vamos imaginar uma feature branch que você já compartilhou com
+seus colegas no repositório remoto:</p><pre tabindex=0><code>              E---F feature
+             /
+A---B---C---D main
+</code></pre><p>Por alguma razão, um colega de trabalho decidiu colaborar com um commit:</p><pre tabindex=0><code>              E---F---G feature
+             /
+A---B---C---D main
+</code></pre><p>Mas, antes disso, você decidiu fazer um <em>rebase</em>, talvez porque quis melhorar a
+a mensagem do commit <code>E</code>, e deu um push:</p><pre tabindex=0><code>              E&#39;---F&#39; feature
+             /
+A---B---C---D main
+</code></pre><p>Agora, o seu colega não vai conseguir fazer um push das changes dele, porque o
+commit <code>G</code> foi feito sobre o commit <code>F</code>, que não existe mais na branch remota.</p><p>Quando seu colega quiser compartilhar o trabalho dele, o git vai falar: &ldquo;remote
+contains work that you do not have locally. [&mldr;] You may want to first
+integrate the remote changes&rdquo;.</p><p>Ele poderia então fazer um <code>git force --push</code>, mas isso só pioraria as coisas é
+o seu trabalho que seria descartado.</p><p>Agora que o dano foi feito, você precisa recomendar a leitura da seção
+<a href=https://git-scm.com/docs/git-rebase#_recovering_from_upstream_rebase><code>RECOVERING FROM UPSTREAM REBASE</code></a>
+na man page do <code>git-rebase</code>, e proceder como aconselhado lá.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=razões-para-não-temer-rebase><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Razões para NÃO temer <em>rebase</em></span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#raz%c3%b5es-para-n%c3%a3o-temer-rebase><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Você não deveria evitar <em>rebase</em> com medo de trabalho perdido &ndash; se você commitou
+seu código, é muito difícil de perder.</p><p>Mesmo que você acabe se enrolando e feito cagada, você pode sempre resetar sua
+branch para um estado anterior em que as coisas estavam funcionando, basta
+procurar no <code>git reflog feature</code> ou <code>git reflog HEAD</code> e então usar <code>git reset</code>
+para voltar àquele estado, por exemplo com <code>git reset --hard feature@{1}</code> ou
+<code>git reset --hard feature@{one.min.ago}</code>. <a href=https://git-scm.com/docs/git-reflog>Leia a documentação sobre
+<code>git-reflog</code> para aprender mais</a>
+.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=rebase-interativo><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span><em>Rebase</em> interativo</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#rebase-interativo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Você deve estar se perguntando: ok mas como o <em>rebase</em> vai me ajudar a separar um
+commit?</p><p>Isso é possível no modo interativo, disponível sob a opção <code>--interactive</code>.
+Nesse modo, o git vai abrir o seu editor de texto listando os commits que serão
+repetidos sobre outra branch, com instruções logo abaixo:</p><pre tabindex=0><code>pick df4adc E
+pick 180a94 F
+pick 490b6c G
+
+# Rebase 3409df0 onto main (3 commands)
+#
+# Commands:
+# p, pick &lt;commit&gt; = use commit
+# r, reword &lt;commit&gt; = use commit, but edit the commit message
+# e, edit &lt;commit&gt; = use commit, but stop for amending
+# s, squash &lt;commit&gt; = use commit, but meld into previous commit
+# f, fixup &lt;commit&gt; = like &#34;squash&#34;, but discard this commit&#39;s log message
+# x, exec &lt;command&gt; = run command (the rest of the line) using shell
+# b, break = stop here (continue rebase later with &#39;git rebase --continue&#39;)
+# d, drop &lt;commit&gt; = remove commit
+# l, label &lt;label&gt; = label current HEAD with a name
+# t, reset &lt;label&gt; = reset HEAD to a label
+# m, merge [-C &lt;commit&gt; | -c &lt;commit&gt;] &lt;label&gt; [# &lt;oneline&gt;]
+# .       create a merge commit using the original merge commit&#39;s
+# .       message (or the oneline, if no original merge commit was
+# .       specified). Use -c &lt;commit&gt; to reword the commit message.
+#
+# These lines can be re-ordered; they are executed from top to bottom.
+#
+# If you remove a line here THAT COMMIT WILL BE LOST.
+#
+# However, if you remove everything, the rebase will be aborted.
+#
+</code></pre><p>Isso é referido como uma todo list. Aqui, você usa comandos para descrever o
+que o git deve fazer a cada commit para te ajudar a produzir o <em>commit history</em>
+desejado.</p><div data-warn class="max-w-prose flex my-8 gap-4 p-4 border-2 rounded border-warn bg-surface"><div class=text-warn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><div class=overflow-x-hidden><p>O editor que será aberto é controlado pela variável de ambiente <code>GIT_EDITOR</code>,
+cujo valor padrão é o valor das variáveis de ambiente (normalmente <code>vim</code> ou
+<code>vi</code> na maioria dos sistemas Unix).</p><p>Você pode mudar isso em configuração do git em <code>~/.gitconfig</code> ou com a CLI:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>git config --global core.editor emacs
+</span></span></code></pre></div><p>Por exemplo, caso você use o VS Code:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl>git config --global core.editor <span class=s1>&#39;code --wait&#39;</span>
+</span></span></code></pre></div><p>Se você tiver instalada a extensão <em>GitLens</em>, você vai ver uma <a href="https://www.youtube.com/watch?v=P5p71fguFNI">interface mais
+sofisticada para a todo list</a>.</p></div></div><p>O comando padrão para todos os commits é &ldquo;pick&rdquo;, que significa &ldquo;repita esse
+commit nessa ordem, sem mudar nada&rdquo;.</p><p>Esse arquivo é só um arquivo de texto, você pode editar ele normalmente. Quando
+terminar, salve e feche o arquivo.</p><p>Agora, vamos ver na prática como usar o <code>git rebase -i</code>.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=mudando-a-ordem-dos-commits><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Mudando a ordem dos commits</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#mudando-a-ordem-dos-commits><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Digamos que você queira inverter a ordem dos commits, dado o <em>commit history</em>
+abaixo:</p><pre tabindex=0><code>              E---F---G feature
+             /
+A---B---C---D main
+</code></pre><p>Depois de rodar <code>git rebase -i main</code>, você vai ver a seguinte todo list:</p><pre tabindex=0><code>pick df4adc E
+pick 180a94 F
+pick 490b6c G
+</code></pre><p>Agora, simplesmente inverta a ordem das linhas:</p><pre tabindex=0><code>pick 490b6c G
+pick 180a94 F
+pick df4adc E
+</code></pre><p>Salve o arquivo e feche. Caso não haja conflitos, tudo funcionará e o resultado
+vai ser esse novo <em>commit history</em>:</p><pre tabindex=0><code>              G&#39;---F&#39;---E&#39; feature
+             /
+A---B---C---D main
+</code></pre><div data-warn class="max-w-prose flex my-8 gap-4 p-4 border-2 rounded border-warn bg-surface"><div class=text-warn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><div class=overflow-x-hidden><p><code>git rebase</code> pode resultar em <strong>conflitos</strong>. Neste caso, você precisa
+resolvê-los como normalmente já o faz, por exemplo usando <code>git mergetool</code>.</p><p>Re-ordenar commits provavelmente vai resultar em conflitos. Se você não tiver
+certeza do que está fazendo, você pode cancelar o <em>rebase</em> a qualquer momento com
+<code>git rebase --abort</code>.</p></div></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=juntando-commits-sem-mudar-a-commit-message><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Juntando commits, sem mudar a commit message</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#juntando-commits-sem-mudar-a-commit-message><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Eis um cenário mais típico: você commitou algum código quebrado e só percebeu
+um tempo depois e agora quer consertar aquele commit.</p><p>Se o commit for o mais recente, você pode só escrever o fix e commitar com <code>git commit --amend</code>. Se você não quiser editar a mensagem, você pode até usar <code>git commit --amend --no-edit</code>.</p><p>Mas, caso o commit não seja o mais recente, você vai precisar usar o <em>rebase</em>. Se
+você não quer editar a mensagem também, o comando certo a se usar é o <code>fixup</code>.</p><p>Por exemplo, suponha que você tenha a seguinte branch:</p><pre tabindex=0><code>df4adc Add script
+180a94 foo
+490b6c bar
+</code></pre><p>O commit &ldquo;Add script&rdquo; tem um bug e você quer consertar. Você fez o fix e
+commitou com <code>git commit -m "Fix script"</code>:</p><pre tabindex=0><code>df4adc Add script
+180a94 foo
+490b6c bar
+3409df Fix script
+</code></pre><p>Depois de rodar <code>git rebase -i main</code>, a seguinte todo list vai aparecer:</p><pre tabindex=0><code>pick df4adc Add script
+pick 180a94 foo
+pick 490b6c bar
+pick 3409df Fix script
+</code></pre><p>Para juntar os dois commits, você precisa mover a linha do commit &ldquo;Fix script&rdquo;
+para cima e usar o comando <code>fixup</code>, ao invés de <code>pick</code>.</p><pre tabindex=0><code>pick df4adc Add script
+fixup 3409df Fix script
+pick 180a94 foo
+pick 490b6c bar
+</code></pre><p>No <em>commit history</em> resultante vai parecer que você nunca introduziu aquele bug:</p><pre tabindex=0><code>2d5b33 Add script
+c404e9 foo
+20ec55 bar
+</code></pre><p>Outro modo de se chegar ao mesmo resultado é fazendo o commit com <code>git commit --fixup=df4adc</code> (ou <code>git commit --fixup=:/"Add script"</code>). Se você então rodar o
+comando <code>git rebase --interactive --autosquash</code>, o git vai editar a todo list
+automaticamente para você.</p><pre tabindex=0><code>pick df4adc Add script
+fixup 3409df0 fixup! Add script
+pick 180a94 Add environment variables
+pick 490b6c Add .gitlab-ci.yml
+</code></pre><div data-note class="max-w-prose flex my-8 gap-4 p-4 border-2 rounded border-note bg-surface"><div class=text-note><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class=overflow-x-hidden>Se essa notação de referenciar commits pela mensagem, tipo <code>git show :/"Add script"</code>, for nova para você, recomendo a leitura da man page de
+<a href=https://git-scm.com/docs/gitrevisions><code>gitrevisions</code></a> para várias outras
+dicas.</div></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=juntar-commits-mas-preservando-a-mensagem><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Juntar commits, mas preservando a mensagem</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#juntar-commits-mas-preservando-a-mensagem><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Se quisermos juntar vários commits e quisermos preservar ou reusar a mensagem
+deles, precisamos usar o comando <code>squash</code>.</p><p>A única diferença de usar o comando <code>fixup</code> é que você vai ter a chance de
+editar a mensagem de commit final durante o processo de <em>rebase</em>:</p><pre tabindex=0><code># This is a combination of 2 commits.
+# This is the 1st commit message:
+
+Add script
+
+# This is the commit message #2:
+
+squash! Fix script
+
+# Please enter the commit message for your changes. Lines starting
+# with &#39;#&#39; will be ignored, and an empty message aborts the commit.
+#
+# ...
+</code></pre><p>Analogamente à opção <code>--fixup</code> no <code>git commit</code>, também pode-se usar <code>git commit --squash=sha</code> para se ter o mesmo efeito.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=separar-um-commit><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Separar um commit</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#separar-um-commit><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Para separar um commit em um ou mais, você pode usar o comando <code>edit</code>.</p><p>O git vai então parar o <em>rebase</em> naquele commit e deixar você fazer o que bem
+entender. Quando terminar, rode o comando <code>git rebase --continue</code>.</p><p>Para separar um commit, eu normalmente primeiro desfaço o commit com <code>git reset</code>, e então vou adicionando e commitando as changes de novo de forma
+diferente.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl><span class=c1># undo the commit, but keep its changes in the working tree</span>
+</span></span><span class=line><span class=cl>git reset HEAD^
+</span></span><span class=line><span class=cl>git add foo
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;One commit&#34;</span>
+</span></span><span class=line><span class=cl>git add bar
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;Another commit&#34;</span>
+</span></span><span class=line><span class=cl>git rebase --continue
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=remover-um-arquivo-de-um-commit><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Remover um arquivo de um commit</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#remover-um-arquivo-de-um-commit><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Você vai precisar do comando <code>edit</code> aqui também.</p><p>Mas agora, é mais conveniente usar o <code>git reset --soft</code> para desfazer o commit,
+porque as mudanças daquele commit vão permanecer na staging area, e então basta
+remover o arquivo da staging area e commitar de novo:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-sh data-lang=sh><span class=line><span class=cl><span class=c1># undo the commit, but keep its changes in the staging area</span>
+</span></span><span class=line><span class=cl>git reset --soft HEAD^
+</span></span><span class=line><span class=cl><span class=c1># remove the file from the staging area</span>
+</span></span><span class=line><span class=cl>git rm --cached .env
+</span></span><span class=line><span class=cl><span class=c1># reuse the previous commit message</span>
+</span></span><span class=line><span class=cl>git commit -c ORIG_HEAD
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=editar-uma-mensagem><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Editar uma mensagem</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#editar-uma-mensagem><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Use o comando <code>reword</code>. git vai abrir seu editor e deixar você editar a
+mensagem como se fosse pela primeira vez commitando.</p><h2 class="mb-8 pt-8 mt-8 flex items-center gap-4 group" id=deletar-um-commit><div class="w-[0.75em] h-[0.75em] rotate-45 bg-primary rounded-sm shrink-0"></div><span>Deletar um commit</span>
+<a class="text-primary border-0 hidden group-hover:inline-block" style=--icon-size:24px href=#deletar-um-commit><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Para deletar um commit, use o comando <code>drop</code> ou apenas delete a linha.</p></section></article><hr class=my-8><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-surface rounded-md px-2" style=opacity:0>Copiado<div data-theme-copy-code-tooltip-arrow class="absolute bg-surface border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Navegação entre posts"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/pt/posts/web-scraping-de-paginas-dinamicas/ title="Post anterior"><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Web Scraping de páginas dinâmicas com Python</a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 px-4 py-8"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com title=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles title=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls title=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml title="Blog's RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class=flex-1>Este conteúdo está sob a licença
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>
