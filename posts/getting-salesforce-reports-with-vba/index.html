@@ -9,7 +9,7 @@ better programming language. I
 <a href=https://github.com/reportforce>created a Python package for this purpose</a>
 but
 I didn&rsquo;t use it so much because it&rsquo;s hard to integrate with Excel.</p><p>Instead, I looked into a way to do something similar with VBA and I managed to
-do it. In this post I&rsquo;ll share this with you.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=authentication>Authentication
+do it. In this post I&rsquo;ll share this with you.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=authentication>Authentication
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#authentication><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>The more painless way I know of to
 <a href=https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_quickstart_login.htm>authenticate your requests for a Salesforce web service is via SOAP API</a>
 ,
@@ -65,7 +65,7 @@ header <code>Authorization: Bearer $sessionId</code>.</p><div class=highlight><p
 </span></span><span class=line><span class=cl>    <span class=k>Set</span> <span class=n>Request</span> <span class=o>=</span> <span class=k>Nothing</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
-</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=parsing-json-inside-vba>Parsing JSON inside VBA?
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=parsing-json-inside-vba>Parsing JSON inside VBA?
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#parsing-json-inside-vba><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Now, to get an actual report inside Excel we will need to use the Analytics API.
 So far, we didn&rsquo;t had to rely on any external tools, there is an XML parser
 inside VBA, but not a JSON parser at least that I know of. So we&rsquo;re in trouble
@@ -73,14 +73,14 @@ here because that&rsquo;s what Analytics speaks.</p><p>Fortunately, there is a
 <a href=https://github.com/VBA-tools/VBA-JSON>JSON parser implementation for VBA</a>
 which works flawlessly. You just need to download
 <a href=https://raw.githubusercontent.com/VBA-tools/VBA-JSON/master/JsonConverter.bas>this file</a>
-and import it as a module.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=unfortunate-api-limitations>Unfortunate API limitations
+and import it as a module.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=unfortunate-api-limitations>Unfortunate API limitations
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#unfortunate-api-limitations><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>This API unfortunately have a
 <a href=https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_limits_limitations.htm>critical limitation</a>
 ,
 which is to return only a maximum of 2000 rows per report. Also, there is no way
 to filter by row limits.</p><p>This almost turns it useless. The only way I know of is to use a column which
 has only unique values and exclude already seen values with a filter, which is
-what we&rsquo;ll gonna do.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=getting-report-metadata>Getting report metadata
+what we&rsquo;ll gonna do.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=getting-report-metadata>Getting report metadata
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#getting-report-metadata><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>To be able to filter a report, we will need to fetch its metadata, which is a
 huge JSON with key-value pairs describing the report.</p><p>We can get it with a <code>GET</code> request to
 <code>https://$YOUR_INSTANCE_URL/services/data/v47.0/analytics/reports/$REPORT_ID/describe</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vb data-lang=vb><span class=line><span class=cl><span class=k>Function</span> <span class=nf>GetMetadata</span><span class=p>(</span><span class=n>ReportId</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> <span class=n>SessionId</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>)</span> <span class=ow>As</span> <span class=kt>String</span>
@@ -98,7 +98,7 @@ huge JSON with key-value pairs describing the report.</p><p>We can get it with a
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=n>GetMetadata</span> <span class=o>=</span> <span class=n>Request</span><span class=p>.</span><span class=n>responseText</span>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
-</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=getting-an-individual-report>Getting an individual report
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=getting-an-individual-report>Getting an individual report
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#getting-an-individual-report><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>With the function below, you will be able to get the report in JSON format.</p><p>This is achieved with a <code>POST</code> request to
 <code>https://$YOUR_INSTANCE_URL/services/data/v47.0/analytics/reports/$REPORT_ID</code>,
 optional metadata goes into the request body, this is what we use to filter the
@@ -129,7 +129,7 @@ report.</p><div class=highlight><pre tabindex=0 class=chroma><code class=languag
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>    <span class=n>GetReport</span> <span class=o>=</span> <span class=n>Response</span>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
-</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=writing-the-data-into-a-worksheet>Writing the data into a worksheet
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=writing-the-data-into-a-worksheet>Writing the data into a worksheet
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#writing-the-data-into-a-worksheet><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Now we need to extract the data and write it into a worksheet.</p><p><a href=https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm title="Salesforce documentation on how to decode the factMap">Every thing we need is inside the <code>factMap</code> key</a>
 .
 This can get complex if we intend to cover matrix and summary reports, which has
@@ -201,7 +201,7 @@ from column A.</p><div class=highlight><pre tabindex=0 class=chroma><code class=
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
 </span></span></code></pre></div><p>We also need to get the values at <code>.reportMetadata.detailColumns</code> and
 <code>reportExtendedMetadata.detailColumnInfo</code> to check how many columns the report
-have and to extract the value at <code>.value</code> if it is a date.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=getting-the-entire-report>Getting the entire report
+have and to extract the value at <code>.value</code> if it is a date.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=getting-the-entire-report>Getting the entire report
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#getting-the-entire-report><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>To get the entire report, the key thing to overcome the API limitations is a key
 called <code>.allData</code>, which will be <code>true</code> only if we got all the data from the
 API.</p><p>So we get the first 2000 rows and, if <code>.allData</code> is <code>false</code>, we get the values
@@ -322,7 +322,7 @@ we need, then add it to the <code>reportFilters</code> object, and change its va
 later iterations. Then we convert the metadata into a JSON string, get a new
 filtered report and repeat the loop until we get all data.</p><p>Also notice that I use a custom function to get all values at a given column,
 <code>GetValuesAtColumn</code>.</p><p><a href=https://gist.github.com/phelipetls/57a27f529561eefe73633093c737b7e0>Get the full source code in this GitHub gist</a>
-.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=how-to-use-it>How to use it
+.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=how-to-use-it>How to use it
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#how-to-use-it><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>It&rsquo;s up to you how you&rsquo;re gonna use this code. Here&rsquo;s an example.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vb data-lang=vb><span class=line><span class=cl><span class=k>Sub</span> <span class=nf>DownloadReports</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>Dim</span> <span class=n>Username</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> <span class=n>Password</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> <span class=n>SecurityToken</span> <span class=ow>As</span> <span class=kt>String</span>
@@ -349,7 +349,7 @@ filtered report and repeat the loop until we get all data.</p><p>Also notice tha
 </span></span><span class=line><span class=cl>                            <span class=n>endDate</span><span class=p>:</span><span class=o>=</span><span class=s>&#34;31/07/2020&#34;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Sub</span>
-</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=final-words>Final words
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=final-words>Final words
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#final-words><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>You probably have a better way to do it, I would only recommend this approach to
 someone in an environment very dependent on Excel, simply because it is super
 convenient. You can put the report anywhere you want with zero overhead &ndash; no

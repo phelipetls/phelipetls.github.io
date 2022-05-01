@@ -36,12 +36,12 @@ just <code>~/components</code>, you&rsquo;d use the following <code>tsconfig.jso
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><p>This is great but it breaks <code>gf</code>, so in this post I want to share how to make
-it work again for TypeScript projects that use this feature.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=why-not-lsp>Why not LSP?
+it work again for TypeScript projects that use this feature.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=why-not-lsp>Why not LSP?
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#why-not-lsp><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>You might be wondering why not just use a language server for that?</p><p>And you&rsquo;d be right, that&rsquo;s certainly better than implementing the TypeScript
 module resolution algorithm in Lua&mldr;</p><p>But the TypeScript language servers are very resource hungry and slow to boot,
 so I find that it does pay off to use a dumber way to navigate files with
 built-in Vim features in case the language server is still booting or just
-being slow.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=implementation-details>Implementation details
+being slow.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=implementation-details>Implementation details
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#implementation-details><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Our goal is to pass a function to the <code>includeexpr</code> option that will try to
 substitute the &ldquo;alias&rdquo; (<code>~/*</code>) with its associated path (<code>src/*</code>) until it
 finds a file/directory that exists, then return it. Otherwise, return <code>nil</code>.</p><p>I decided to write it in Lua in the <code>lua/tsconfig.lua</code> module. Here&rsquo;s how we
@@ -86,7 +86,7 @@ function:</p><div class=highlight><pre tabindex=0 class=chroma><code class=langu
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kr>return</span> <span class=n>M</span>
-</span></span></code></pre></div><p>How exactly we try to find a file will be explained later.</p><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=finding-tsconfigjson>Finding <code>tsconfig.json</code>
+</span></span></code></pre></div><p>How exactly we try to find a file will be explained later.</p><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=finding-tsconfigjson>Finding <code>tsconfig.json</code>
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#finding-tsconfigjson><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
 upwards starting from the current file&rsquo;s directory with the <a href=https://vimhelp.org/eval.txt.html#findfile%28%29><code>:h findfile</code></a>
 function:
@@ -100,7 +100,7 @@ that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are no
 </span></span><span class=line><span class=cl>    <span class=kr>return</span> <span class=n>found</span>
 </span></span><span class=line><span class=cl>  <span class=kr>end</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
-</span></span></code></pre></div><p>I use a similar function called <code>find_dir</code> that wraps <code>:h finddir</code>.</p><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=reading-json-with-comments>Reading JSON with comments
+</span></span></code></pre></div><p>I use a similar function called <code>find_dir</code> that wraps <code>:h finddir</code>.</p><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=reading-json-with-comments>Reading JSON with comments
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#reading-json-with-comments><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
 JSON, <a href=https://vimhelp.org/eval.txt.html#json_decode%28%29><code>:h json_decode</code></a>
 ,
@@ -114,7 +114,7 @@ allows comments. No problem, we can just remove them before we pass it to
 </span></span><span class=line><span class=cl>  <span class=kd>local</span> <span class=n>json_without_comments</span> <span class=o>=</span> <span class=n>vim.tbl_map</span><span class=p>(</span><span class=n>remove_comments</span><span class=p>,</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>readfile</span><span class=p>(</span><span class=n>fname</span><span class=p>))</span>
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>json_decode</span><span class=p>(</span><span class=n>json_without_comments</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
-</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=parsing-compileroptionspaths>Parsing <code>compilerOptions.paths</code>
+</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=parsing-compileroptionspaths>Parsing <code>compilerOptions.paths</code>
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#parsing-compileroptionspaths><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
 aliases into their full paths. For example, given this configuration:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
@@ -158,7 +158,7 @@ should remove the catch-all character <code>*</code>:</p><div class=highlight><p
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>alias_to_paths</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
-</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=expand-tsconfig>Expand tsconfig
+</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=expand-tsconfig>Expand tsconfig
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#expand-tsconfig><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>Now let&rsquo;s remove that TODO we left earlier.</p><p>We just need to &ldquo;expand&rdquo; (replace) the alias with its path until we find a file
 that exist.</p><p>First, we check if the input filename matches the alias (e.g., <code>~/file</code> should
 match <code>~/*</code> but also <code>*</code> since it means any value), replace the alias with its
@@ -180,7 +180,7 @@ path (<code>~/file</code> -> <code>src/file</code>) and try to find it:</p><div 
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>input</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
-</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=handling-configuration-inheritance>Handling configuration inheritance
+</span></span></code></pre></div><h3 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=handling-configuration-inheritance>Handling configuration inheritance
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#handling-configuration-inheritance><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h3><p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
 <a href=https://www.typescriptlang.org/tsconfig#extends><code>extends</code></a>
 option, which
@@ -211,7 +211,7 @@ is now just ignores these other configurations completely.</p><p>To handle this,
 </span></span><span class="line hl"><span class=cl>
 </span></span><span class="line hl"><span class=cl>  <span class=kr>return</span> <span class=n>vim.tbl_extend</span><span class=p>(</span><span class=s2>&#34;force&#34;</span><span class=p>,</span> <span class=n>alias_to_paths</span><span class=p>,</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_extends</span><span class=p>,</span> <span class=n>base_url</span><span class=p>))</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
-</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=conclusion>Conclusion
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=conclusion>Conclusion
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p><a href=https://github.com/phelipetls/dotfiles/blob/84303bfdf877d1ded6b8287f83806ebb73af1cce/.config/nvim/lua/tsconfig.lua>You can check the full implementation
 here</a>
 .

@@ -11,7 +11,7 @@ que o permite simular o experimento de maneira eficiente e numa estrutura que
 facilita a criação de visualizações do problema com o ggplot2.</p><p>Porém esse aqui não é um post sobre R. Como estou aprendendo Python, achei que
 seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
-operações vetorizadas e eficientes.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=o-que-está-por-trás-da-eficiência-do-numpy>O que está por trás da eficiência do Numpy
+operações vetorizadas e eficientes.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=o-que-está-por-trás-da-eficiência-do-numpy>O que está por trás da eficiência do Numpy
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
 de tipagem dinâmica e de script (não-compilada): ele não é tão bom em fazer
 repetidas operações múltiplas vezes. Precisamente o que garante a ele uma
@@ -55,7 +55,7 @@ TypeError                                 Traceback (most recent call last)
 
 
 TypeError: can't convert complex to int
-</code></pre><p>Esse comportamento é muito similar ao vetor do R.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=simulando-os-movimentos-do-cavalo>Simulando os movimentos do cavalo
+</code></pre><p>Esse comportamento é muito similar ao vetor do R.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=simulando-os-movimentos-do-cavalo>Simulando os movimentos do cavalo
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#simulando-os-movimentos-do-cavalo><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p><ul><li>devo todo o thought process no que diz respeito à modelagem ao Robinson, e
 encorajo a todos lendo que confiram o post dele, se não antes, depois de ler
 aqui. O único trabalho que tive foi o de escrever o código em Python.</li></ul><p>A ideia de Robinson para a simulação foi imaginar o tabuleiro como um plano
@@ -163,7 +163,7 @@ simples histograma, feito com 100 repetições do experimento.</p><div class=hig
 </span></span><span class=line><span class=cl><span class=n>knight_probs</span> <span class=o>=</span> <span class=p>[</span><span class=n>knight_infinite_board</span><span class=p>(</span><span class=mi>100000</span><span class=p>)</span> <span class=k>for</span> <span class=n>_</span> <span class=ow>in</span> <span class=nb>range</span><span class=p>(</span><span class=mi>100</span><span class=p>)]</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>hist</span><span class=p>(</span><span class=n>knight_probs</span><span class=p>,</span> <span class=n>bins</span> <span class=o>=</span> <span class=mi>20</span><span class=p>)</span>
-</span></span></code></pre></div><p><img src=./histograma.png alt=Histograma class="rounded my-8" style=background-color:#fff></p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=a-eficiência-em-números>A eficiência em números
+</span></span></code></pre></div><p><img src=./histograma.png alt=Histograma class="rounded my-8" style=background-color:#fff></p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=a-eficiência-em-números>A eficiência em números
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#a-efici%c3%aancia-em-n%c3%bameros><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
 verificar isso facilmente com o magic command do IPython, o %%timeit. Criei uma
 função que toma como argumento qualquer número de tentativas para testarmos o
@@ -183,7 +183,7 @@ algoritmo.</p><div class=highlight><pre tabindex=0 class=chroma><code class=lang
 </span></span></code></pre></div><pre><code>1.15 s ± 97.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
 </code></pre><p>É extraordinariamente rápido. Mesmo quando se trata de cálculos com uma matriz
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
-Python seria absurdamente mais lento.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=conclusões>Conclusões
+Python seria absurdamente mais lento.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=conclusões>Conclusões
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#conclus%c3%b5es><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
 ferramenta muito útil, garantindo eficiência com uma sintaxe simples e limpa. Há
 dentro dele ainda muito mais a ser explorado do que o exposto aqui, incluindo as

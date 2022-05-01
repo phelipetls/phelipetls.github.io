@@ -7,11 +7,11 @@
 <a href=https://github.com/mattn/efm-langserver><code>efm-langserver</code></a>
 , which is written in
 Go.</p><p>These Language Servers are generic in that they were made to be powered by
-command-line tools and for any programming language.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=making-eslint-faster-with-eslint_d>Making eslint faster with eslint_d
+command-line tools and for any programming language.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=making-eslint-faster-with-eslint_d>Making eslint faster with eslint_d
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#making-eslint-faster-with-eslint_d><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>To reduce latency when invoking <code>eslint</code>, I&rsquo;m gonna use
 <a href=https://github.com/mantoni/eslint_d.js/><code>eslint_d</code></a>
 , which runs <code>eslint</code> as a
-daemon process.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=configuring-eslint_d-in-efm-langserver>Configuring eslint_d in efm-langserver
+daemon process.</p><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=configuring-eslint_d-in-efm-langserver>Configuring eslint_d in efm-langserver
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#configuring-eslint_d-in-efm-langserver><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>It&rsquo;s possible to configure it with a YAML file, by following their README. I did
 this initially I found that it&rsquo;s more powerful to configure it with Lua.</p><p>Here&rsquo;s the configuration, which more explanation below.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=n>lspconfig</span> <span class=o>=</span> <span class=n>require</span><span class=s2>&#34;lspconfig&#34;</span>
 </span></span><span class=line><span class=cl>
@@ -86,7 +86,7 @@ configuration. So I created a function to do this:</p><div class=highlight><pre 
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=kc>false</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
-</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-1" id=conclusion>Conclusion
+</span></span></code></pre></div><h2 class="mb-8 pt-8 mt-8 group relative after:content-[''] after:absolute after:-bottom-2 after:left-0 after:bg-primary after:w-6 after:h-[2px]" id=conclusion>Conclusion
 <a class="text-primary border-0 hidden group-hover:inline-block align-middle" style=--icon-size:24px href=#conclusion><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link-2"><path d="M15 7h3a5 5 0 015 5 5 5 0 01-5 5h-3m-6 0H6a5 5 0 01-5-5 5 5 0 015-5h3"/><line x1="8" y1="12" x2="16" y2="12"/></svg></a></h2><p>This is kind like a poor replacement for the VS Code eslint extension, which
 does a similar thing as <code>eslint_d</code>. And it works ok, it&rsquo;s pretty fast, much
 faster than <code>typescript-language-server</code>, so it&rsquo;s definitely an improvement.</p><p>It would be nice if there was a way to shut down the server if <code>eslint</code> is
