@@ -1,0 +1,563 @@
+<!doctype html><html class=h-full lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="A blog to share my interests (mostly programming)"><meta name=deploy-date content="2022-05-26"><meta name=publish-date content="2022-05-26"><meta name=last-modified-date content="2022-05-26"><meta name=author content><meta name=color-scheme content="dark light"><meta name=keywords content="ansible,linux,fedora,ubuntu,macos"><style>@font-face{font-family:fira sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/firasans/v16/va9E4kDNxMZdWfMOD5VfkA.ttf)format('truetype')}@font-face{font-family:merriweather;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5Oew.ttf)format('truetype')}</style><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Ansible for dotfiles: the introduction I wish I've had | Phelipe Teles</title><meta property="og:title" content="Ansible for dotfiles: the introduction I wish I've had"><meta property="og:description" content="A dotfiles repo will help you manage configuration over time and synchronize them across machines, but it won&rsquo;t help you with your dependencies &ndash; you still have to install git, tmux, vim, etc."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/introduction-to-ansible/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-05-26T00:00:00+00:00"><meta property="article:modified_time" content="2022-05-26T09:42:06-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Ansible for dotfiles: the introduction I wish I've had"><meta name=twitter:description content="A dotfiles repo will help you manage configuration over time and synchronize them across machines, but it won&rsquo;t help you with your dependencies &ndash; you still have to install git, tmux, vim, etc."><script async defer data-website-id=32b90065-c2a6-4390-9684-dfde99409815 src=https://umami-production-10b2.up.railway.app/main.js></script>
+<link rel=stylesheet href=https://phelipetls.github.io/css/lite-yt-embed.min.css></head><body data-preload class="text-foreground bg-secondary-background transition-colors duration-500 ease-out"><script>function storeThemeOption(e){e&&localStorage.setItem("__theme",e)}function getStoredThemeOption(){return localStorage.getItem("__theme")||"auto"}function getAutoTheme(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function getThemeFromOption(e){return e==="auto"?getAutoTheme():e}function setTheme(e){const t=getThemeFromOption(e);document.body.classList.toggle("dark",t==="dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:getThemeFromOption(e)}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeThemeOption(e),dispatchNewThemeEvent(e)};const storedThemeOption=getStoredThemeOption();window.__setTheme(storedThemeOption),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedThemeOption)})</script><div data-scroll-container><div data-nav-container class="fixed top-0 w-full h-20 bg-secondary-background z-30 transition-transform transition-duration-700 transition-ease-out"><div class="h-full pt-4 pb-4 flex items-center justify-between mx-auto max-w-5xl pr-default-padding"><nav class="h-full py-1 overflow-x-auto flex items-center px-default-padding" aria-label="Main navigation"><ul class="m-0 list-none flex items-center flex-row flex-nowrap gap-2 h-full"><li class=h-full><a href=https://phelipetls.github.io/ class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+after:content-['']
+after:absolute
+after:-z-10
+after:bg-background
+after:w-full
+after:h-full
+after:rounded-md
+after:duration-500
+transition-transform
+after:scale-0
+hover:after:scale-100
+after:shadow-md
+after:shadow-divider
+after:opacity-0
+hover:after:opacity-100
+transition-opacity">About</a></li><li class=h-full><a href=https://phelipetls.github.io/posts/ data-active-navlink class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+bg-background
+shadow-md
+shadow-divider">Posts</a></li><li class=h-full><a href=https://phelipetls.github.io/projects/ class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+after:content-['']
+after:absolute
+after:-z-10
+after:bg-background
+after:w-full
+after:h-full
+after:rounded-md
+after:duration-500
+transition-transform
+after:scale-0
+hover:after:scale-100
+after:shadow-md
+after:shadow-divider
+after:opacity-0
+hover:after:opacity-100
+transition-opacity">Projects</a></li><li class=h-full><a href=https://phelipetls.github.io/resume/ class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+after:content-['']
+after:absolute
+after:-z-10
+after:bg-background
+after:w-full
+after:h-full
+after:rounded-md
+after:duration-500
+transition-transform
+after:scale-0
+hover:after:scale-100
+after:shadow-md
+after:shadow-divider
+after:opacity-0
+hover:after:opacity-100
+transition-opacity">Resumé</a></li></ul></nav><div class="h-full py-1"><div class="h-full px-2 flex items-center gap-2 bg-background rounded-md shadow-md shadow-divider"><button data-theme-button class="btn btn-icon" aria-label="Change theme" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button></div></div><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded-md z-50 shadow-md shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Theme options" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Light</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Dark</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>System</li></ul></div></div><div class="max-w-5xl mx-auto w-full px-default-padding mt-20 py-4"><main class="bg-background w-full rounded-md shadow-md shadow-divider py-16 sm:px-16 px-default-padding"><article><header><h1 class="text-4xl mb-4">Ansible for dotfiles: the introduction I wish I've had</h1><div class="flex flex-col gap-2 mb-4" style=--icon-size:24px><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg><div>13 min.</div></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2022-05-26>May 26, 2022</time></div></div></header><div class=mb-4><div class="flex flex-wrap gap-2 py-2"><a href=/tags/ansible/ class=tag>ansible</a>
+<a href=/tags/linux/ class=tag>linux</a>
+<a href=/tags/fedora/ class=tag>fedora</a>
+<a href=/tags/ubuntu/ class=tag>ubuntu</a>
+<a href=/tags/macos/ class=tag>macos</a>
+<a href=/tags class=tag aria-label="More tags">...</a></div></div><hr class=my-8><section data-blog-post class=max-w-prose><p>A dotfiles repo will help you manage configuration over time and synchronize
+them across machines, but it won&rsquo;t help you with your dependencies &ndash; you still
+have to install git, tmux, vim, etc. Let&rsquo;s see how Ansible can help with that.</p><p>Ansible would often come up as a solution to dependency management, but I&rsquo;d
+quickly dismiss it because it looked too complex and enterprise-y, an
+impression that the <a href=https://www.ansible.com>landing page</a>
+certainly
+contributed to. In my opinion, It doesn&rsquo;t help convey the idea of what Ansible
+turned out to be for me: a tool to automate tasks in a declarative way.</p><p>I wish I was introduced to Ansible differently, so this post is an attempt to
+write the introduction I wish I&rsquo;ve had. We&rsquo;ll deliberately abstract away the
+more complex applications of Ansible and focus on solving one problem: how to
+set up a machine with your preferred programs, appearances, settings etc.</p><h2 class="mb-8 mt-8 pt-8" id=installing-ansible>Installing Ansible
+<a class="text-primary border-0" href=#installing-ansible>#</a></h2><p>First things first, let&rsquo;s install Ansible. The official docs has an
+extensive <a href=https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems>list with installation instructions for many Unix-like operating
+systems</a>
+.</p><div data-warn class="alert border-warn"><div class="text-warn hidden sm:block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><div class=overflow-x-hidden><a href=https://docs.ansible.com/ansible/latest/user_guide/windows_faq.html#windows-faq-ansible>Ansible cannot run on a Windows
+machine</a>,
+which is surprising. It can only <em>remotely manage</em> Windows machines, from a
+Unix-like OS, such as WSL.</div></div><p>Another option, available at every operating system, is to use
+<a href=https://pypi.org/project/pip/>pip</a>
+, the package manager for Python, which was
+my choice:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> pip install ansible
+</span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=how-ansible-clicked-for-me>How Ansible clicked for me
+<a class="text-primary border-0" href=#how-ansible-clicked-for-me>#</a></h2><p>If I remember correctly, it was by looking at the source code of a dotfiles
+repo that used it. The <code>README.md</code> explained that you needed to run a one
+single command to set up everything:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-playbook --ask-become-pass bootstrap.yml
+</span></span></code></pre></div><p>So I went and looked at what was going on at the <code>bootstrap.yml</code> file:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Bootstrap development environment</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>hosts</span><span class=p>:</span><span class=w> </span><span class=l>localhost</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install packages with apt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ansible.builtin.apt</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span></code></pre></div><p>Things immediately clicked for me once I saw it, like, it&rsquo;s clear that this is
+using <code>apt</code> to download packages!</p><p>Of course, at this level, how is that much better than directly running <code>apt install git tmux</code> in a shell script called, say, <code>bootstrap.sh</code>? In this
+particular example, it&rsquo;s not much better but it&rsquo;s better already, as we&rsquo;ll see.
+We&rsquo;re just getting started.</p><p>There&rsquo;s still a lot going on that we have to understand, e.g. what is <code>become</code>,
+and <code>hosts</code>? But I think the terminology already shows what is Ansible&rsquo;s
+primary goal: <em>to leave a machine in a desired state by playing a bunch of
+tasks</em>. In this example, the desired state is to have git and tmux installed
+(or &ldquo;present&rdquo;), but the desired state will likely not be that simple. Also,
+what if we&rsquo;re on macOS? Or Fedora? We won&rsquo;t be able to use <code>apt</code> in this case.
+We&rsquo;ll see that Ansible makes it easy to handle this.</p><h2 class="mb-8 mt-8 pt-8" id=playbook>Playbook
+<a class="text-primary border-0" href=#playbook>#</a></h2><p>The file <code>bootstrap.yml</code> is, in Ansible terminology, a
+<a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html>playbook</a>
+,
+which is, in my own words, a way to declare which tasks should run in a machine
+in order to achieve the desired state. Playbooks are written in YAML, which is
+easy to read and <a href=https://learnxinyminutes.com/docs/yaml/>learn</a>
+.</p><p>A playbook may contain various plays, and each play may contain various tasks.
+For example, the <code>bootstrap.yml</code> playbook has a single play, named &ldquo;Boostrap
+development environment&rdquo;, with one task, &ldquo;Install packages with apt&rdquo;.</p><h2 class="mb-8 mt-8 pt-8" id=hosts-and-inventory>Hosts and inventory
+<a class="text-primary border-0" href=#hosts-and-inventory>#</a></h2><p>Ansible can execute tasks on remote and local machines. This is managed with
+the help of an
+&ldquo;<a href=https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html>inventory</a>
+&rdquo;,
+where these machines (<code>hosts</code>) are classified with patterns like &ldquo;prod&rdquo;,
+&ldquo;test&rdquo;, &ldquo;webserver&rdquo; etc..</p><p>We&rsquo;re not interested in that here since we just want to run tasks on our local
+machine. Passing <code>localhost</code> as a playbook&rsquo;s <code>hosts</code> will do what we want,
+without any inventory, because <a href=https://docs.ansible.com/ansible/latest/inventory/implicit_localhost.html>Ansible will implicitly define <code>localhost</code> to
+match the local
+machine</a>
+.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Bootstrap development environment</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>hosts</span><span class=p>:</span><span class=w> </span><span class=l>localhost</span><span class=w>
+</span></span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=tasks>Tasks
+<a class="text-primary border-0" href=#tasks>#</a></h2><p>Now, let&rsquo;s dissect the &ldquo;Install packages with apt&rdquo; task. Here it is again:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install packages with apt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ansible.builtin.apt</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=become>Become
+<a class="text-primary border-0" href=#become>#</a></h3><p>Let&rsquo;s start with the keyword
+<a href=https://docs.ansible.com/ansible/latest/user_guide/become.html><code>become</code></a>
+. It
+is used so that you can &ldquo;become another user while this task is executing&rdquo;,
+that user being by default <code>root</code>. So it&rsquo;s, effectively, the equivalent of
+using <code>sudo</code>. This is also why you need to run the playbook with the option
+<code>--ask-become-pass</code> (<code>-K</code> for short), because it&rsquo;ll be necessary to prompt for
+your password.</p><p>If you need to become another user other than <code>root</code>, use the <code>become_user</code>
+keyword.</p><h3 class="mb-8 mt-8 pt-8" id=modules>Modules
+<a class="text-primary border-0" href=#modules>#</a></h3><p><code>ansible.builtin.apt</code> is an <a href=https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html>Ansible
+module</a>
+,
+which is the preferred way to interact with another program in an Ansible
+playbook.</p><p>Ansible has several built-in modules, <a href=https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html>here&rsquo;s a full
+list</a>
+.
+It has modules for most Linux distributions package managers, like
+<a href=https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html><code>dnf</code></a>
+.
+But there are also community-developed modules, like one for
+<a href=https://docs.ansible.com/ansible/latest/collections/community/general/homebrew_module.html>Homebrew</a>
+,
+if you&rsquo;re on macOS, which we&rsquo;ll have to download separately, which we&rsquo;ll learn
+how shortly.</p><p>An Ansible module takes arguments to accomplish a task. In the
+<code>ansible.builtin.apt</code> case, we pass a list of packages to the
+<a href=https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-name><code>name</code></a>
+argument and the desired state we want them to be in to the
+<a href=https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-state><code>state</code></a>
+argument.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install packages with apt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>ansible.builtin.apt</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span>- <span class=l>git</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w> </span><span class=c># could also be &#39;latest&#39; or &#39;absent&#39;</span><span class=w>
+</span></span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=idempotency>Idempotency
+<a class="text-primary border-0" href=#idempotency>#</a></h3><p>Ansible playbooks are meant to be idempotent, meaning that, no matter how many
+times they run, the machine will end up in the same desired state.</p><p>An Ansible module can tell if something changed between runs. For example,
+let&rsquo;s say I already have git and tmux installed and run the <code>bootstrap.yml</code>
+playbook:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-playbook -K bootstrap.yml
+</span></span><span class=line><span class=cl><span class=go>BECOME password:
+</span></span></span><span class=line><span class=cl><span class=go></span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=go>PLAY [Bootstrap development environment] *****************************************************************************
+</span></span></span><span class=line><span class=cl><span class=go></span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=go>TASK [Gathering Facts] ***********************************************************************************************
+</span></span></span><span class=line><span class=cl><span class=go>ok: [localhost]
+</span></span></span><span class=line><span class=cl><span class=go></span><span class=err>
+</span></span></span><span class="line hl"><span class=cl><span class=err></span><span class=go>TASK [Install packages with apt] ******************************************************************************************
+</span></span></span><span class="line hl"><span class=cl><span class=go>ok: [localhost]
+</span></span></span><span class=line><span class=cl><span class=go></span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=go>PLAY RECAP ***********************************************************************************************************
+</span></span></span><span class=line><span class=cl><span class=go>localhost                  : ok=2    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0
+</span></span></span></code></pre></div><p>The task &ldquo;Install packages with apt&rdquo; was labelled &ldquo;ok&rdquo;, as in &ldquo;nothing
+changed&rdquo;: git and tmux were already present. If either were absent, the task
+would have been labelled as &ldquo;changed&rdquo;, because now both are present.</p><p>This feature is module-dependent. The task could be idempotent by nature, yet
+Ansible wouldn&rsquo;t know about it unless the module is smart enough to tell it.</p><p>To illustrate this, let&rsquo;s use the
+<a href=https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#shell-module><code>ansible.builtin.shell</code></a>
+,
+which is used to run arbitrary commands into a shell. <a href=https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html>Let&rsquo;s run a task using
+this module in an ad hoc
+way</a>
+(outside of a playbook):</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible localhost -m ansible.builtin.shell -a <span class=s1>&#39;echo $SHELL&#39;</span>
+</span></span><span class=line><span class=cl><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=go>[WARNING]: No inventory was parsed, only implicit localhost is available
+</span></span></span><span class=line><span class=cl><span class=go>localhost | CHANGED | rc=0 &gt;&gt;
+</span></span></span><span class=line><span class=cl><span class=go>/bin/bash
+</span></span></span></code></pre></div><p>Ansible says something changed, but why? Running <code>echo $SHELL</code> cannot change
+anything in a system (I guess?). But Ansible has no way to know this, since it
+could be any arbitrary command, such as <code>rm -rf $HOME</code>.</p><p>Most of Ansible built-in modules are idempotent and smart enough to tell if
+something changed between runs. <code>ansible.builtin.shell</code> is kind of a low-level
+one, so it&rsquo;s best to avoid it whenever possible. There are ways to make it
+smarter with parameters such as
+<a href=https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-creates><code>creates</code></a>
+,
+<a href=https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-removes><code>removes</code></a>
+,
+or, at the task level,
+<a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#defining-changed><code>changed_when</code></a>
+.</p><h2 class="mb-8 mt-8 pt-8" id=facts-and-conditionals>Facts and conditionals
+<a class="text-primary border-0" href=#facts-and-conditionals>#</a></h2><p>Now let&rsquo;s imagine you use both macOS and Ubuntu. You want to install git and
+tmux in both operating systems with Ansible. You&rsquo;ll need to add some sort of
+conditional logic to your playbook since <code>apt</code> isn&rsquo;t available in macOS, and
+you probably don&rsquo;t want to use Homebrew in Linux, even though you could.</p><p><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#basic-conditionals-with-when>We can run a task conditionally with the <code>when</code>
+keyword</a>
+:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install packages with apt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ansible.builtin.apt</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;Ubuntu&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install packages with brew</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>community.general.homebew</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;MacOSX&#34;</span><span class=w>
+</span></span></span></code></pre></div><p>The task will run if the expression passed to <code>when</code> evaluates to <code>True</code>. This
+expression is a Jinja2 expression, a template engine written in Python, so it&rsquo;s
+not strictly Python syntax but it looks a lot like it.</p><p>The <code>ansible_distribution</code> variable is an <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html>Ansible
+fact</a>
+:
+information about your system gathered and provided by Ansible, for
+convenience. There are a LOT of facts, you can run <code>ansible localhost -m ansible.builtin.setup</code> to check what&rsquo;s available, but here&rsquo;s the <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#commonly-used-facts>most commonly
+used
+ones</a>
+:
+<code>ansible_distribution</code>, <code>ansible_distribution_version</code> and <code>ansible_os_family</code>.</p><h2 class="mb-8 mt-8 pt-8" id=ansible-galaxy>Ansible Galaxy
+<a class="text-primary border-0" href=#ansible-galaxy>#</a></h2><p>The module <code>community.general.homebrew</code> is not a built-in module, you have to
+install it separately via <a href=https://galaxy.ansible.com/docs/>Ansible Galaxy</a>
+,
+which is a hub for Ansible content.</p><p>Ansible Galaxy provides a command-line interface to install stuff, like
+<a href=https://galaxy.ansible.com/docs/contributing/creating_collections.html>collections</a>
+and roles (which we&rsquo;ll learn about shortly). <code>community.general</code> is a
+collection of modules, which we can install by running:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-galaxy collection install community.general
+</span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=loops>Loops
+<a class="text-primary border-0" href=#loops>#</a></h2><p>You may need a loop to accomplish a task. For example, the following task will
+build <code>dwm</code>, <code>slock</code> and <code>dmenu</code> from source, by running <code>sudo make install</code> in
+each directory containing the source code:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build and install suckless tools</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>loop</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>dwm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>slock</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>dmenu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.make</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>target</span><span class=p>:</span><span class=w> </span><span class=l>install</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;suckless/{{ item }}&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>make</span><span class=p>:</span><span class=w> </span><span class=l>/usr/bin/make</span><span class=w>
+</span></span></span></code></pre></div><p>Another example is if a module do not accept a list of strings as an argument,
+just a string.
+<a href=https://docs.ansible.com/ansible/latest/collections/community/general/npm_module.html><code>community.general.npm</code></a>
+is one of such modules. Here&rsquo;s an example of how to install some npm modules
+globally:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install npm global packages</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>loop</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span>- <span class=l>yalc</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span>- <span class=l>npm-merge-driver</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span>- <span class=l>diff-so-fancy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.npm</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ item }}&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>global</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=jinja2>Jinja2
+<a class="text-primary border-0" href=#jinja2>#</a></h2><p><a href=https://jinja.palletsprojects.com/en/3.1.x/templates/>Jinja2</a>
+was mentioned
+briefly in conditionals, but because it&rsquo;s a huge component of Ansible, it
+deserves a few more words than that.</p><p>We&rsquo;ve been using Jinja2 throughout this post already, e.g., <code>{{ item }}</code> is a
+Jinja2 expression to expand the value in the variable <code>item</code>.</p><p>It&rsquo;s possible to manipulate this value with
+<a href=https://jinja.palletsprojects.com/en/3.1.x/templates/#filters>filters</a>
+, e.g.
+<code>{{ item | upper }}</code>.</p><p><a href=https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters>There are a lot of built-in
+filters</a>
+.
+The <code>upper</code> filter is kind of an innocuous one, there are some more powerful,
+e.g. <code>product</code> to build a <a href=https://docs.ansible.com/ansible/2.8/user_guide/playbooks_filters.html#product-filters>cartesian
+product</a>
+from lists:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Give users access to multiple databases</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.mysql.mysql_user</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ item[0] }}&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>    </span><span class=nt>priv</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ item[1] }}.*:ALL&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>append_privs</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>password</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;foo&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>loop</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ [&#39;alice&#39;, &#39;bob&#39;] | product([&#39;clientdb&#39;, &#39;employeedb&#39;, &#39;providerdb&#39;]) | list }}&#34;</span><span class=w>
+</span></span></span></code></pre></div><p>Ansible uses <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#playbooks-tests>Jinja2
+tests</a>
+to express conditional logic. The syntax for tests is slightly different than
+the filter syntax:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>vars</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>url</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;https://example.com/users/foo/resources/bar&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>debug</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>msg</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;matched pattern 1&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>url is match(&#34;https://example.com/users/.*/resources&#34;)</span><span class=w>
+</span></span></span></code></pre></div><p>The usual <a href=https://jinja.palletsprojects.com/en/latest/templates/#comparisons>comparison
+operators</a>
+are available, like <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>></code>, <code>>=</code>, and it&rsquo;s, of course, also
+possible to <a href=https://jinja.palletsprojects.com/en/latest/templates/#logic>combine or transform multiple boolean
+expressions</a>
+with
+<code>and</code>, <code>or</code>, <code>not</code> etc.</p><h2 class="mb-8 mt-8 pt-8" id=roles>Roles
+<a class="text-primary border-0" href=#roles>#</a></h2><p>An Ansible role is a way to organize your tasks logic in a file structure. A
+role is usually the format in which you use other people&rsquo;s Ansible tasks. For
+example, <a href=https://github.com/gantsign/ansible-role-visual-studio-code>there is an Ansible role to install Visual Studio
+Code</a>
+. It&rsquo;s
+available in Ansible Galaxy, so we can install it like this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-galaxy role install gantsign.visual-studio-code
+</span></span></code></pre></div><p>A role is usually customizable via parameters. For example, the
+<code>gantsign.visual-studio-code</code> extension has a parameter that allows you to
+install extensions:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>    </span>- <span class=nt>role</span><span class=p>:</span><span class=w> </span><span class=l>gantsign.visual-studio-code</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>users</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=nt>username</span><span class=p>:</span><span class=w> </span><span class=l>phelipe</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>          </span><span class=nt>visual_studio_code_extensions</span><span class=p>:</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>            </span>- <span class=s2>&#34;eamodio.gitlens&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>            </span>- <span class=s2>&#34;kahole.magit&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>            </span>- <span class=s2>&#34;PhilHindle.errorlens&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>            </span>- <span class=s2>&#34;sleistner.vscode-fileutils&#34;</span><span class=w>
+</span></span></span><span class="line hl"><span class=cl><span class=w>            </span>- <span class=s2>&#34;vscodevim.vim&#34;</span><span class=w>
+</span></span></span></code></pre></div><p>In practice, creating a role is a matter of organizing things like tasks,
+default variables, templates, files etc. in a file structure that Ansible can
+understand.</p><p>You start by creating a <code>tasks/main.yml</code> file, which is the role&rsquo;s entry point,
+from which all tasks will derive.</p><p>Let&rsquo;s check a role I made to install Neovim, to illustrate this:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> tree roles/nvim
+</span></span><span class=line><span class=cl><span class=go>roles/nvim
+</span></span></span><span class=line><span class=cl><span class=go>└── tasks
+</span></span></span><span class=line><span class=cl><span class=go>    ├── fedora.yml
+</span></span></span><span class=line><span class=cl><span class=go>    ├── macos.yml
+</span></span></span><span class=line><span class=cl><span class=go>    ├── main.yml
+</span></span></span><span class=line><span class=cl><span class=go>    └── ubuntu.yml
+</span></span></span><span class=line><span class=cl><span class=go></span><span class=err>
+</span></span></span><span class=line><span class=cl><span class=err></span><span class=go>1 directory, 4 files
+</span></span></span></code></pre></div><p>The contents of <code>main.yml</code> simply import tasks from the other files, depending
+on the host&rsquo;s operating system:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build nvim from source in Ubuntu</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>import_tasks</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;Ubuntu&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build nvim from source in Fedora</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>include_tasks</span><span class=p>:</span><span class=w> </span><span class=l>fedora.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;Fedora&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install nvim with Homebrew in macOS</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>import_tasks</span><span class=p>:</span><span class=w> </span><span class=l>macos.yml</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;MacOSX&#34;</span><span class=w>
+</span></span></span></code></pre></div><p>Ansible will make it easy for you to use templates and files stored in the
+role&rsquo;s <code>templates</code> and <code>files</code> directory. You can provide variables&rsquo; default
+values in the <code>default/main.yml</code> file. The list could go on, but I won&rsquo;t go any
+further. Learn more about it in the <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html>official docs about
+roles</a>
+.</p><h2 class="mb-8 mt-8 pt-8" id=dotfiles-use-cases>dotfiles use cases
+<a class="text-primary border-0" href=#dotfiles-use-cases>#</a></h2><p>Now let&rsquo;s look at some examples at how I used Ansible to manage <a href=https://github.com/phelipetls/dotfiles>my
+dotfiles</a>
+.</p><h3 class="mb-8 mt-8 pt-8" id=building-neovim-from-source>Building Neovim from source
+<a class="text-primary border-0" href=#building-neovim-from-source>#</a></h3><p>Let&rsquo;s build Neovim from source with Ansible, in Ubuntu, with the help of the
+<a href=https://github.com/neovim/neovim/wiki/Building-Neovim>official guide</a>
+.</p><div data-note class="alert border-note"><div class="text-note hidden sm:block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class=overflow-x-hidden>I say Ubuntu because Fedora and Homebrew usually have an up-to-date Neovim
+stable, so I can&rsquo;t be bothered.</div></div><p>I already have Neovim source code as a git submodule in <code>deps/neovim</code>, but it&rsquo;s
+also possible to add a task to clone its repository with the
+<a href=https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html><code>ansible.builtin.git</code></a>
+module.</p><p>We&rsquo;ll need to install build dependencies, run some <code>make</code> commands, and that&rsquo;s
+it!</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># In case you don&#39;t like git submodules</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Clone nvim repository</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>git</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>repo</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/neovim/neovim</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>dest</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ ansible_env.HOME }}/src/nvim&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>clone</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>version</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;v6.0.0&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install nvim build dependencies</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>apt</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>ninja-build</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>gettext</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>libtool</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>libtool-bin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>autoconf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>automake</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>cmake</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>g++</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>pkg-config</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>unzip</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>curl</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build nvim release version</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.make</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=l>deps/neovim</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>params</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>CMAKE_BUILD_TYPE</span><span class=p>:</span><span class=w> </span><span class=l>Release</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install nvim release version</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.make</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=l>deps/neovim</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>target</span><span class=p>:</span><span class=w> </span><span class=l>install</span><span class=w>
+</span></span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=installing-efm-langserver>Installing efm-langserver
+<a class="text-primary border-0" href=#installing-efm-langserver>#</a></h3><p><a href=https://github.com/mattn/efm-langserver><code>efm-langserver</code></a>
+is a Language
+Server to make any LSP client understand the output of an arbitrary linter or
+formatter.</p><p>Let&rsquo;s install it using Ansible too! It&rsquo;s a Golang app, so we could use the Go
+toolchain to install it, but I had too much trouble going down this path, so
+now I just download the tarball from GitHub, unpack (with
+<code>ansible.builtin.archive</code> module) it and put the binary into my <code>PATH</code> (in
+<code>$HOME/.local/bin</code>):</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Create directory ~/.local/bin/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>file</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ ansible_env.HOME }}/.local/bin&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>directory</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install efm-langserver in Linux</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>unarchive</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>src</span><span class=p>:</span><span class=w> </span><span class=l>https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>dest</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ ansible_env.HOME }}/.local/bin&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>remote_src</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>extra_opts</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s2>&#34;--strip-components=1&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=s2>&#34;efm-langserver_v0.0.37_linux_amd64/efm-langserver&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;Ubuntu&#34; or ansible_distribution == &#34;Fedora&#34;</span><span class=w>
+</span></span></span></code></pre></div><p><a href=https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/macos.yml>It isn&rsquo;t as easy to do this in macOS
+though</a>
+,
+just because it&rsquo;s a zip file instead, which lacks the convenience of the
+<code>extra_opts</code> parameter&mldr; But I might be missing something.</p><h3 class="mb-8 mt-8 pt-8" id=installing-linters-and-formatters>Installing linters and formatters
+<a class="text-primary border-0" href=#installing-linters-and-formatters>#</a></h3><p>I also install the linters and formatters I use with Ansible. Here&rsquo;s a snippet
+of it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install linters and formatters with dnf</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>dnf</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>ShellCheck</span><span class=w> </span><span class=c># this is shellcheck in apt and brew</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>when</span><span class=p>:</span><span class=w> </span><span class=l>ansible_distribution == &#34;Fedora&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span><span class=c># ...</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install linters and formatters with pip</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>ansible.builtin.pip</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>flake8</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>black</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>yamllint</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>git+https://github.com/Vimjas/vint@master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>executable</span><span class=p>:</span><span class=w> </span><span class=l>pip3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install linters and formatters with npm</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>loop</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>eslint_d</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>prettier</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.npm</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ item }}&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>global</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
+</span></span></span></code></pre></div><p><a href=https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/main.yml#L21-L62>If you&rsquo;re interested, you can look at the file on
+GitHub</a>
+.</p><h3 class="mb-8 mt-8 pt-8" id=stow>Stow
+<a class="text-primary border-0" href=#stow>#</a></h3><p>Stow is a huge part of dotfiles management: it&rsquo;s responsible to put the
+contents of my dofiles into my <code>$HOME</code> directory, as symlinks, while preserving
+the same folder structure.</p><p>I also install and run Stow in my playbook. There isn&rsquo;t an Ansible module for
+Stow though, so I have to resort to <code>ansible.builtin.shell</code>, which isn&rsquo;t great
+because it&rsquo;s dumb. But not all is lost, we can make it smarter by tweaking the
+task parameters. We can determine if something changed between runs by running
+Stow in verbose mode (<code>--verbose=2</code>), to make it describe everything it did,
+and then analyze its output.</p><pre tabindex=0><code>stow dir is /home/phelipe/dotfiles
+stow dir path relative to target /home/phelipe is dotfiles
+Planning stow of package ....
+--- Skipping .profile as it already points to dotfiles/.profile
+Planning stow of package .... done
+Processing tasks...
+</code></pre><p>By looking at the output, we see that Stow says it skipped a file if there is
+already a symlink for it in <code>$HOME</code>. But in the case there isn&rsquo;t, it&rsquo;ll say it
+linked that file, like so:</p><pre tabindex=0><code>LINK: .profile =&gt; dotfiles/.profile
+</code></pre><p>So if the string <code>LINK</code> is in the stderr, it means a symlink was created,
+something changed:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Run stow</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>shell</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;stow . --target {{ ansible_env.HOME }} --verbose=2&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>register</span><span class=p>:</span><span class=w> </span><span class=l>result</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>changed_when</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;result.stderr is search(&#34;LINK: &#34;)&#39;</span><span class=w>
+</span></span></span></code></pre></div><p>This is a small thing, but it&rsquo;s just nice to run a playbook and have everything
+labelled as &ldquo;ok&rdquo;.</p><h2 class="mb-8 mt-8 pt-8" id=gnome>GNOME
+<a class="text-primary border-0" href=#gnome>#</a></h2><p>We can&rsquo;t customize GNOME with configuration files. We normally configure it
+with GUIs, which is not a great thing if we&rsquo;re interested in automating the
+customization step.</p><p>Fortunately, there is a command line interface to make this possible called
+<a href=https://wiki.gnome.org/Projects/dconf><code>dconf</code></a>
+(there&rsquo;s also <code>gsettings</code> but
+we won&rsquo;t use it). The collection <code>community.general</code> has a <a href=https://docs.ansible.com/ansible/latest/collections/community/general/dconf_module.html>module for
+<code>dconf</code></a>
+,
+so let&rsquo;s use it.</p><p>For now, I just made two tweaks to my GNOME DE:</p><ul><li>Click by tapping on the touchpad.</li><li>Show battery percentage next to the battery icon.</li></ul><p>Here are the equivalent tasks:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Enable tap to click on touchpad</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.dconf</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/org/gnome/desktop/peripherals/touchpad/tap-to-click&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;true&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w></span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Show battery percentage</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>community.general.dconf</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/org/gnome/desktop/interface/show-battery-percentage&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>value</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;true&#34;</span><span class=w>
+</span></span></span></code></pre></div><p>But how did I find that I needed this specific key
+<code>/org/gnome/desktop/peripherals/touchpad/tap-to-click</code>? That&rsquo;s the hard part,
+but it&rsquo;s easier if we use
+<a href=https://wiki.gnome.org/Apps/DconfEditor><code>dconf-editor</code></a>
+, a GUI to explore
+GNOME applications&rsquo; internal settings. Navigate through it until you find the
+desired setting that seems responsible for what you want, grab its path and
+pass the value you want to it.</p><h2 class="mb-8 mt-8 pt-8" id=conclusion>Conclusion
+<a class="text-primary border-0" href=#conclusion>#</a></h2><p>You should now be able to automate downloading your favorite programs with your
+preferred configuration across operating systems, with tasks/roles written by
+you or by the community (which is the nicest part).</p><p>The next step should be to test if it really works by using a virtual machine
+&ndash; the Vagrant and Virtual Box combo seems to be a popular choice.</p><p>It&rsquo;s not wise to assume that your playbook will work on a fresh machine because
+you might be relying on a dependency your playbook does not ensure it&rsquo;s true,
+even though it is in your current host.</p></section></article><div data-theme-copy-code-tooltip role=tooltip class="absolute pointer-events-none border border-divider bg-secondary-background rounded-md px-2" style=opacity:0>Copied<div data-theme-copy-code-tooltip-arrow class="absolute bg-secondary-background border-r border-b border-divider w-[8px] h-[8px] rotate-45"></div></div><hr class=my-8><script src=https://utteranc.es/client.js repo=phelipetls/phelipetls.github.io issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><hr class=my-8><nav class="flex justify-between flex-wrap sm:flex-nowrap gap-2" aria-label="Posts navigation"><a class="flex basis-1/2 grow items-center gap-2 border-0" href=/posts/discovering-tailscale/><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Discovering Tailscale</a></nav></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between gap-4 px-default-padding py-4"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/posts/index.xml aria-label="Blog RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">This content is under a
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
+license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
+<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
+<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
