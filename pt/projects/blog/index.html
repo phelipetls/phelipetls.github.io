@@ -1,0 +1,89 @@
+<!doctype html><html class=h-full lang=pt-br><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="Um blog para compartilhar meus interesses em programação, estatística e mais"><meta name=deploy-date content="2022-05-29"><meta name=publish-date content="2019-01-01"><meta name=last-modified-date content="2022-05-29"><meta name=author content><meta name=color-scheme content="dark light"><style>@font-face{font-family:fira sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/firasans/v16/va9E4kDNxMZdWfMOD5VfkA.ttf)format('truetype')}@font-face{font-family:merriweather;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5Oew.ttf)format('truetype')}</style><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=/css/dark-syntax-highlight.min.css><title>Blog | Phelipe Teles</title><meta property="og:title" content="Blog"><meta property="og:description" content="Site pessoal e blog feito com Hugo, JavaScript puro e Tailwind CSS."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/pt/projects/blog/"><meta property="article:section" content="projects"><meta property="article:published_time" content="2019-01-01T00:00:00+00:00"><meta property="article:modified_time" content="2022-05-29T12:07:16-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Blog"><meta name=twitter:description content="Site pessoal e blog feito com Hugo, JavaScript puro e Tailwind CSS."><script async defer data-website-id=32b90065-c2a6-4390-9684-dfde99409815 src=https://umami-production-10b2.up.railway.app/main.js></script>
+<link href=/pt/projects/blog/speedlify.css rel=stylesheet></head><body data-preload class="text-foreground bg-secondary-background transition-colors duration-500 ease-out"><script>function storeThemeOption(e){e&&localStorage.setItem("__theme",e)}function getStoredThemeOption(){return localStorage.getItem("__theme")||"auto"}function getAutoTheme(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function getThemeFromOption(e){return e==="auto"?getAutoTheme():e}function setTheme(e){const t=getThemeFromOption(e);document.body.classList.toggle("dark",t==="dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:getThemeFromOption(e)}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeThemeOption(e),dispatchNewThemeEvent(e)};const storedThemeOption=getStoredThemeOption();window.__setTheme(storedThemeOption),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedThemeOption)})</script><div data-scroll-container><div data-nav-container class="fixed top-0 w-full h-20 bg-secondary-background z-30 transition-transform transition-duration-700 transition-ease-out"><div class="h-full pt-4 pb-4 flex items-center justify-between mx-auto max-w-5xl pr-default-padding"><nav class="h-full py-1 overflow-x-auto flex items-center px-default-padding" aria-label="Navegação principal"><ul class="m-0 list-none flex items-center flex-row flex-nowrap gap-2 h-full"><li class=h-full><a href=https://phelipetls.github.io/pt/ class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+after:content-['']
+after:absolute
+after:-z-10
+after:bg-background
+after:w-full
+after:h-full
+after:rounded-md
+after:duration-500
+transition-transform
+after:scale-0
+hover:after:scale-100
+after:shadow-md
+after:shadow-divider
+after:opacity-0
+hover:after:opacity-100
+transition-opacity">Sobre</a></li><li class=h-full><a href=https://phelipetls.github.io/pt/posts/ class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+after:content-['']
+after:absolute
+after:-z-10
+after:bg-background
+after:w-full
+after:h-full
+after:rounded-md
+after:duration-500
+transition-transform
+after:scale-0
+hover:after:scale-100
+after:shadow-md
+after:shadow-divider
+after:opacity-0
+hover:after:opacity-100
+transition-opacity">Posts</a></li><li class=h-full><a href=https://phelipetls.github.io/pt/projects/ data-active-navlink class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+bg-background
+shadow-md
+shadow-divider">Projetos</a></li><li class=h-full><a href=https://phelipetls.github.io/pt/resume/ class="h-full
+border-0
+px-2
+flex
+relative
+items-center
+justify-center
+rounded-md
+after:content-['']
+after:absolute
+after:-z-10
+after:bg-background
+after:w-full
+after:h-full
+after:rounded-md
+after:duration-500
+transition-transform
+after:scale-0
+hover:after:scale-100
+after:shadow-md
+after:shadow-divider
+after:opacity-0
+hover:after:opacity-100
+transition-opacity">Currículo</a></li></ul></nav><div class="h-full py-1"><div class="h-full px-2 flex items-center bg-background rounded-md shadow-md shadow-divider"><button data-language-button class="btn btn-icon" aria-label="Clique para ler em outra linguagem" aria-expanded=false aria-controls=language-menu aria-haspopup=true><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-globe inline"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3.0 014 10 15.3 15.3.0 01-4 10A15.3 15.3.0 018 12a15.3 15.3.0 014-10z"/></svg></button>
+<button data-theme-button class="btn btn-icon" aria-label="Mudar tema" aria-expanded=false aria-controls=theme-menu aria-haspopup=true><svg style="width:var(--icon-size);height:var(--icon-size)" viewBox="0 0 24 24"><title>Ícone do tema</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs>
+<use data-theme-button-svg-icon href=#sun></svg></button></div></div><ul data-language-menu id=language-menu class="absolute top-0 left-0 bg-background border border-divider rounded-md z-50 shadow-md shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none role=menu aria-orientation=vertical aria-activedescendant=language-pt aria-label=Traduções tabindex=-1><li id=language-en class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" role=menuitem tabindex=-1><a class=border-0 href=https://phelipetls.github.io/projects/blog/ data-lang=en>English</a></li><li id=language-pt class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" role=menuitem tabindex=-1 aria-selected=true><a class=border-0 href=https://phelipetls.github.io/pt/projects/blog/ data-lang=pt>Português</a></li></ul><ul data-theme-menu id=theme-menu class="absolute top-0 left-0 bg-background border border-divider rounded-md z-50 shadow-md shadow-divider/50 flex flex-col list-none m-0 text-lg" style=visibility:hidden;opacity:0;pointer-events:none;--icon-size:24px role=menu aria-orientation=vertical aria-activedescendant=theme-option-auto aria-label="Opções de tema" tabindex=-1><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-light data-theme=light role=menuitem tabindex=-1><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>Claro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-dark data-theme=dark role=menuitem tabindex=-1><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>Escuro</li><li class="px-2 py-1 m-0 cursor-pointer flex items-center gap-1" id=theme-option-auto data-theme=auto role=menuitem tabindex=-1><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>Sistema</li></ul></div></div><div class="max-w-5xl mx-auto w-full px-default-padding mt-20 py-4"><main class="bg-background w-full rounded-md shadow-md shadow-divider py-16 sm:px-16 px-default-padding"><article><p>Site pessoal e blog feito com <a href=https://gohugo.io/>Hugo</a>, JavaScript puro e
+<a href=https://tailwindcss.com/>Tailwind CSS</a>.</p></article></main></div><footer class="mx-auto w-full max-w-5xl flex flex-col sm:flex-row sm:justify-between gap-4 px-default-padding py-4"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a><a class="border-0
+transform hover:scale-110 hover:text-primary transition transition-transform transition-colors" href=https://phelipetls.github.io/pt/posts/index.xml aria-label="Blog RSS Feed"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-rss inline"><path d="M4 11a9 9 0 019 9"/><path d="M4 4a16 16 0 0116 16"/><circle cx="5" cy="19" r="1"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">Este conteúdo está sob a licença
+<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script></body></html>
