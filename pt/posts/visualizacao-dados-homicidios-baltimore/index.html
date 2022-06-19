@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Início</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/pt/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Início</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/pt/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -84,7 +84,7 @@ umas com as outras. Por exemplo, será que mulheres negras acabam vítimas de
 homicídios muito mais que as brancas?</p><p>Os dados nos possibilitam também enxergar a distribuição geográfica, que áreas
 da cidade são as mais violentas etc.</p><p>E, por fim, é interessante visualizar como o número de vítimas evolui no tempo.
 Será que vem declinando com o passar dos anos?</p><h2 class="mb-8 mt-8 pt-8" id=evolução-do-número-de-vítimas-no-tempo>Evolução do número de vítimas no tempo
-<a class="text-foreground border-0" href=#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo>#</a></h2><p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
+<a class="text-primary border-0" href=#evolu%c3%a7%c3%a3o-do-n%c3%bamero-de-v%c3%adtimas-no-tempo>#</a></h2><p>Esse é um bom ponto para se começar a entender os dados. Vamos fazer essa
 visualização com um gráfico de linhas:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>lubridate</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># configurando o tema</span>
@@ -159,7 +159,7 @@ tentei replicar abaixo:</p><div class=highlight><pre tabindex=0 class=chroma><co
 </span></span></code></pre></div><figure><picture><source srcset=https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/unnamed-chunk-4-1_hu9601034d0cb92bc664121e8a33137991_10161_672x480_resize_q75_h2_box_3.webp type=image/webp><img src=./unnamed-chunk-4-1.png alt="Gráfico mostrando como cresceu o número de homicídios em Baltimore por mês, a cada ano, de 2007 a 2012"></picture><figcaption><span class=text-lg>Os homicídios tendem a aumentar ao longo dos meses</span></figcaption></figure><p>E aqui fica claro o porquê da queda em 2012: não temos os dados de todos os
 meses. Também salta aos olhos que a violência diminuiu em relação a 2007, mas se
 manteve mais ou menos estável no resto do período.</p><h2 class="mb-8 mt-8 pt-8" id=aspectos-sociais-das-vítimas>Aspectos sociais das vítimas
-<a class="text-foreground border-0" href=#aspectos-sociais-das-v%c3%adtimas>#</a></h2><p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
+<a class="text-primary border-0" href=#aspectos-sociais-das-v%c3%adtimas>#</a></h2><p>Vamos tentar visualizar agora como a violência afeta as pessoas de diferentes
 grupos:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
 </span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>idade</span><span class=p>))</span> <span class=o>+</span>
 </span></span><span class=line><span class=cl>  <span class=nf>geom_histogram</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>fill</span> <span class=o>=</span> <span class=n>raca</span><span class=p>),</span>
@@ -179,7 +179,7 @@ dos 20-30 anos. Se olharmos bem, pode-se também observar que a mulher negra est
 em posição mais vulnerável à violência que a branca, provavelmente porque vive
 nas regiões onde a violência é maior.</p><p>Também impressiona o contraste entre os números para cada gênero. Os homens são
 muito mais propensos a serem mortos violentamente.</p><h2 class="mb-8 mt-8 pt-8" id=que-causa-de-morte-é-a-mais-comum>Que causa de morte é a mais comum?
-<a class="text-foreground border-0" href=#que-causa-de-morte-%c3%a9-a-mais-comum>#</a></h2><p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
+<a class="text-primary border-0" href=#que-causa-de-morte-%c3%a9-a-mais-comum>#</a></h2><p>Para ver quais são as causas mais comuns, vamos fazer um simples gráfico de
 barras:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>df</span> <span class=o>%&gt;%</span>
 </span></span><span class=line><span class=cl>  <span class=nf>ggplot</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=n>x</span> <span class=o>=</span> <span class=n>causas</span><span class=p>,</span>
@@ -194,7 +194,7 @@ barras:</p><div class=highlight><pre tabindex=0 class=chroma><code class=languag
 </span></span><span class=line><span class=cl>  <span class=nf>scale_fill_brewer</span><span class=p>(</span><span class=n>palette</span> <span class=o>=</span> <span class=s>&#34;Set1&#34;</span><span class=p>)</span>
 </span></span></code></pre></div><figure><picture><source srcset=https://phelipetls.github.io/pt/posts/visualizacao-dados-homicidios-baltimore/unnamed-chunk-6-1_hud5059dcd7fbba475e38e0c6dee2e1531_6939_672x480_resize_q75_h2_box_3.webp type=image/webp><img src=./unnamed-chunk-6-1.png alt="Gráfico mostrando os homicídios por causa de morte, sendo por arma de fogo a mais comum, seguida de esfaqueamento"></picture><figcaption><span class=text-lg>Os homicídios por armas de fogo são os mais comuns</span></figcaption></figure><p>Os homicídios por armas de fogo são de longe os mais comuns, seguido por
 esfaqueamento e contusão.</p><h2 class="mb-8 mt-8 pt-8" id=mapas-e-animações>Mapas e animações
-<a class="text-foreground border-0" href=#mapas-e-anima%c3%a7%c3%b5es>#</a></h2><p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
+<a class="text-primary border-0" href=#mapas-e-anima%c3%a7%c3%b5es>#</a></h2><p>Para visualizar a distribuição geográfica da ocorrência de homicídios, temos que
 primeiro plotar o mapa da cidade. O código abaixo mostra como fazer isso, com a
 ajuda do dataset <code>county</code> do pacote <code>maps</code>, de onde extraímos as coordenadas
 geográficas, para depois plotar com <code>geom_polyon()</code>.</p><p>Uma vez com o mapa, minha ideia foi criar uma animação para visualizar o aspecto
@@ -274,7 +274,7 @@ números crescem.</p><div class=highlight><pre tabindex=0 class=chroma><code cla
 </span></span><span class=line><span class=cl>  <span class=nf>geom_text</span><span class=p>(</span><span class=nf>aes</span><span class=p>(</span><span class=n>x</span> <span class=o>=</span> <span class=m>13</span><span class=p>,</span> <span class=n>label</span> <span class=o>=</span> <span class=nf>paste0</span><span class=p>(</span><span class=s>&#34;&#34;</span><span class=p>,</span> <span class=n>soma_cumulativa</span><span class=p>)))</span> <span class=o>+</span>
 </span></span><span class=line><span class=cl>  <span class=nf>transition_reveal</span><span class=p>(</span><span class=n>mes</span><span class=p>)</span>
 </span></span></code></pre></div><figure><picture><img src=./unnamed-chunk-9-1.gif alt="Animação mostrando a evolução no tempo dos homicídios, por mês"></picture><figcaption><span class=text-lg>O comportamento do crescimento é consistente durante os anos</span></figcaption></figure><h2 class="mb-8 mt-8 pt-8" id=conclusões>Conclusões
-<a class="text-foreground border-0" href=#conclus%c3%b5es>#</a></h2><p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
+<a class="text-primary border-0" href=#conclus%c3%b5es>#</a></h2><p>Este post é certamente só uma amostra do pontecial do combo ggplot2 + gganimate,
 talvez uma das maiores vantagens de se usar o R, e espero que te ajude a criar
 as suas próprias visualizações, apesar de não ter sido exatamente o intuito ser
 didático.</p><p>O gganimate é bem novo ainda e tem relativamente pouca informação sobre na
@@ -291,5 +291,4 @@ ou o próprio <a href=https://gganimate.com/>site do pacote</a>
 <a class="flex h-full grow basis-1/2 items-center justify-end gap-2 self-end border-0 text-right" href=/pt/posts/game-of-thrones-text-mining/>Mineração de Texto com as legendas de Game of Thrones
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">Este conteúdo está sob a licença
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -80,7 +80,7 @@ my surprise.</p><figure class=cocoen><img alt=Before src=./before.png>
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonfDocstring</span> <span class=nx>String</span><span class=err>
 </span></span></span><span class=line><span class=cl><span class=err></span><span class=nx>hi</span> <span class=nx>link</span> <span class=nx>pythonStringModifier</span> <span class=nx>PreProc</span><span class=err>
 </span></span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=declaring-a-syntax-region-for-f-strings>Declaring a syntax region for f-strings
-<a class="text-foreground border-0" href=#declaring-a-syntax-region-for-f-strings>#</a></h2><p>The first two lines define a new syntax region (see <code>:h syn-region</code>) called
+<a class="text-primary border-0" href=#declaring-a-syntax-region-for-f-strings>#</a></h2><p>The first two lines define a new syntax region (see <code>:h syn-region</code>) called
 <code>pythonfString</code>.</p><p>We then declare how it starts with the regex <code>[fF]\@1&lt;=\z(['"]\)</code>, which is
 equivalent to <code>(?:&lt;=[fF])(['"])</code> in Perl regular expressions (see <code>:h \@&lt;=</code>).
 The second line just handles the case of a docstring.</p><p>The string will end how it starts, so we can just reference the captured group
@@ -88,12 +88,12 @@ using <code>\z1</code> (we need to prefix it with <code>z</code> because it is a
 see <code>:h \z(</code>).</p><p>The <code>matchgroup</code> argument tells Vim which highlight group it should use to
 highlight the start/end pattern. The group <code>pythonQuotes</code> come from the default
 syntax file.</p><h2 class="mb-8 mt-8 pt-8" id=handling-expressions-inside-f-strings>Handling expressions inside f-strings
-<a class="text-foreground border-0" href=#handling-expressions-inside-f-strings>#</a></h2><p>We also need to declare what this region contains.</p><p>For this we declare another region called <code>pythonInterpolation</code>, which starts
+<a class="text-primary border-0" href=#handling-expressions-inside-f-strings>#</a></h2><p>We also need to declare what this region contains.</p><p>For this we declare another region called <code>pythonInterpolation</code>, which starts
 with &ldquo;{&rdquo; (but not with &ldquo;{{&rdquo;, which will actually produce a literal &ldquo;{&rdquo;) and
 closes with &ldquo;}&rdquo;. With that in mind, we use the regex <code>{{\@!</code> because we don&rsquo;t
 want a match if the preceding token is present (see <code>:h \@!</code>).</p><p>This region may contain only expressions, so stuff like a function declaration
 does not make sense (notice there is a syntax for that, <code>:helpgrep ALLBUT</code>)</p><h2 class="mb-8 mt-8 pt-8" id=handling-string-modifiers>Handling string modifiers
-<a class="text-foreground border-0" href=#handling-string-modifiers>#</a></h2><p>f-strings supports
+<a class="text-primary border-0" href=#handling-string-modifiers>#</a></h2><p>f-strings supports
 <a href=https://docs.python.org/3/library/string.html#format-examples><code>str.format</code> syntax</a>
 for formatting, for example:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>import</span> <span class=nn>math</span>
 </span></span><span class=line><span class=cl><span class=nb>print</span><span class=p>(</span><span class=sa>f</span><span class=s2>&#34;The value of pi is approximately </span><span class=si>{</span><span class=n>math</span><span class=o>.</span><span class=n>pi</span><span class=si>:</span><span class=s2>.3f</span><span class=si>}</span><span class=s2>.&#34;</span><span class=p>)</span>
@@ -105,7 +105,7 @@ read so I wouldn&rsquo;t recommend you trying.</p><p>It&rsquo;s also possible to
 handle this also.</p><p>For this, I declared a syntax group with <code>:h syn-match</code> and pass the regexes
 that should be used.</p><p>It should only be highlighted inside a <code>pythonInterpolation</code> so we take
 advantage of the <code>containedin</code> argument (see <code>:h syn-containedin</code>).</p><h2 class="mb-8 mt-8 pt-8" id=highlighting-declared-groups>Highlighting declared groups
-<a class="text-foreground border-0" href=#highlighting-declared-groups>#</a></h2><p>Finally, we link these new highlight groups with an appropriate/whichever you
+<a class="text-primary border-0" href=#highlighting-declared-groups>#</a></h2><p>Finally, we link these new highlight groups with an appropriate/whichever you
 like highlight group (see <code>:h hi-link</code> and <code>:h group-name</code>). I chose <code>String</code>
 for f-strings and <code>PreProc</code> for modifiers. And it should work as expected.</p></div></article><div data-theme-copy-code-tooltip role=tooltip class="pointer-events-none absolute rounded-md border border-divider bg-background px-2" style=opacity:0>Copied<div data-theme-copy-code-tooltip-arrow class="absolute h-[8px] w-[8px] rotate-45 border-r border-b border-divider bg-background"></div></div><hr class=my-8><script src=https://utteranc.es/client.js repo=phelipetls/phelipetls.github.io issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><hr class=my-8><nav class="flex flex-wrap justify-between gap-2 sm:flex-nowrap" aria-label="Posts navigation"><a class="flex grow basis-1/2 items-center gap-2 border-0" href=/posts/deploying-flask-app-on-heroku/><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Deploying a Flask app on a Heroku free dyno</a>
 <a class="flex h-full grow basis-1/2 items-center justify-end gap-2 self-end border-0 text-right" href=/posts/configuring-eslint-to-work-with-neovim-lsp/>Configuring eslint to work with Neovim LSP
@@ -114,5 +114,4 @@ for f-strings and <code>PreProc</code> for modifiers. And it should work as expe
 license.</p></footer></div><script type=module src=/posts/f-strings-syntax-highlighting-in-vim/cocoen.min.js></script>
 <script type=module src=/posts/f-strings-syntax-highlighting-in-vim/script.js></script>
 <script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

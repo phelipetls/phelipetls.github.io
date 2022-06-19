@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -66,7 +66,7 @@ turned out to be for me: a tool to automate tasks in a declarative way.</p><p>I 
 write the introduction I wish I&rsquo;ve had. We&rsquo;ll deliberately abstract away the
 more complex applications of Ansible and focus on solving one problem: how to
 set up a machine with your preferred programs, appearances, settings etc.</p><h2 class="mb-8 mt-8 pt-8" id=installing-ansible>Installing Ansible
-<a class="text-foreground border-0" href=#installing-ansible>#</a></h2><p>First things first, let&rsquo;s install Ansible. The official docs has an
+<a class="text-primary border-0" href=#installing-ansible>#</a></h2><p>First things first, let&rsquo;s install Ansible. The official docs has an
 extensive <a href=https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems>list with installation instructions for many Unix-like operating
 systems</a>
 .</p><div data-warn class="alert border-warn"><div class="hidden text-warn sm:block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x-octagon"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg></div><div class=overflow-x-hidden><a href=https://docs.ansible.com/ansible/latest/user_guide/windows_faq.html#windows-faq-ansible>Ansible cannot run on a Windows
@@ -77,7 +77,7 @@ Unix-like OS, such as WSL.</div></div><p>Another option, available at every oper
 , the package manager for Python, which was
 my choice:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> pip install ansible
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=how-ansible-clicked-for-me>How Ansible clicked for me
-<a class="text-foreground border-0" href=#how-ansible-clicked-for-me>#</a></h2><p>If I remember correctly, it was by looking at the source code of a dotfiles
+<a class="text-primary border-0" href=#how-ansible-clicked-for-me>#</a></h2><p>If I remember correctly, it was by looking at the source code of a dotfiles
 repo that used it. The <code>README.md</code> explained that you needed to run a one
 single command to set up everything:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-playbook --ask-become-pass bootstrap.yml
 </span></span></code></pre></div><p>So I went and looked at what was going on at the <code>bootstrap.yml</code> file:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Bootstrap development environment</span><span class=w>
@@ -101,7 +101,7 @@ tasks</em>. In this example, the desired state is to have git and tmux installed
 (or &ldquo;present&rdquo;), but the desired state will likely not be that simple. Also,
 what if we&rsquo;re on macOS? Or Fedora? We won&rsquo;t be able to use <code>apt</code> in this case.
 We&rsquo;ll see that Ansible makes it easy to handle this.</p><h2 class="mb-8 mt-8 pt-8" id=playbook>Playbook
-<a class="text-foreground border-0" href=#playbook>#</a></h2><p>The file <code>bootstrap.yml</code> is, in Ansible terminology, a
+<a class="text-primary border-0" href=#playbook>#</a></h2><p>The file <code>bootstrap.yml</code> is, in Ansible terminology, a
 <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html>playbook</a>
 ,
 which is, in my own words, a way to declare which tasks should run in a machine
@@ -110,7 +110,7 @@ easy to read and <a href=https://learnxinyminutes.com/docs/yaml/>learn</a>
 .</p><p>A playbook may contain various plays, and each play may contain various tasks.
 For example, the <code>bootstrap.yml</code> playbook has a single play, named &ldquo;Boostrap
 development environment&rdquo;, with one task, &ldquo;Install packages with apt&rdquo;.</p><h2 class="mb-8 mt-8 pt-8" id=hosts-and-inventory>Hosts and inventory
-<a class="text-foreground border-0" href=#hosts-and-inventory>#</a></h2><p>Ansible can execute tasks on remote and local machines. This is managed with
+<a class="text-primary border-0" href=#hosts-and-inventory>#</a></h2><p>Ansible can execute tasks on remote and local machines. This is managed with
 the help of an
 &ldquo;<a href=https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html>inventory</a>
 &rdquo;,
@@ -123,7 +123,7 @@ machine</a>
 .</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Bootstrap development environment</span><span class=w>
 </span></span></span><span class="line hl"><span class=cl><span class=w>  </span><span class=nt>hosts</span><span class=p>:</span><span class=w> </span><span class=l>localhost</span><span class=w>
 </span></span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=tasks>Tasks
-<a class="text-foreground border-0" href=#tasks>#</a></h2><p>Now, let&rsquo;s dissect the &ldquo;Install packages with apt&rdquo; task. Here it is again:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
+<a class="text-primary border-0" href=#tasks>#</a></h2><p>Now, let&rsquo;s dissect the &ldquo;Install packages with apt&rdquo; task. Here it is again:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>  </span><span class=nt>tasks</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install packages with apt</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>yes</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>ansible.builtin.apt</span><span class=p>:</span><span class=w>
@@ -132,7 +132,7 @@ machine</a>
 </span></span></span><span class=line><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
 </span></span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=become>Become
-<a class="text-foreground border-0" href=#become>#</a></h3><p>Let&rsquo;s start with the keyword
+<a class="text-primary border-0" href=#become>#</a></h3><p>Let&rsquo;s start with the keyword
 <a href=https://docs.ansible.com/ansible/latest/user_guide/become.html><code>become</code></a>
 . It
 is used so that you can &ldquo;become another user while this task is executing&rdquo;,
@@ -141,7 +141,7 @@ using <code>sudo</code>. This is also why you need to run the playbook with the 
 <code>--ask-become-pass</code> (<code>-K</code> for short), because it&rsquo;ll be necessary to prompt for
 your password.</p><p>If you need to become another user other than <code>root</code>, use the <code>become_user</code>
 keyword.</p><h3 class="mb-8 mt-8 pt-8" id=modules>Modules
-<a class="text-foreground border-0" href=#modules>#</a></h3><p><code>ansible.builtin.apt</code> is an <a href=https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html>Ansible
+<a class="text-primary border-0" href=#modules>#</a></h3><p><code>ansible.builtin.apt</code> is an <a href=https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html>Ansible
 module</a>
 ,
 which is the preferred way to interact with another program in an Ansible
@@ -169,7 +169,7 @@ argument.</p><div class=highlight><pre tabindex=0 class=chroma><code class=langu
 </span></span></span><span class="line hl"><span class=cl><span class=w>        </span>- <span class=l>tmux</span><span class=w>
 </span></span></span><span class="line hl"><span class=cl><span class=w>      </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w> </span><span class=c># could also be &#39;latest&#39; or &#39;absent&#39;</span><span class=w>
 </span></span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=idempotency>Idempotency
-<a class="text-foreground border-0" href=#idempotency>#</a></h3><p>Ansible playbooks are meant to be idempotent, meaning that, no matter how many
+<a class="text-primary border-0" href=#idempotency>#</a></h3><p>Ansible playbooks are meant to be idempotent, meaning that, no matter how many
 times they run, the machine will end up in the same desired state.</p><p>An Ansible module can tell if something changed between runs. For example,
 let&rsquo;s say I already have git and tmux installed and run the <code>bootstrap.yml</code>
 playbook:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-playbook -K bootstrap.yml
@@ -212,7 +212,7 @@ smarter with parameters such as
 or, at the task level,
 <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#defining-changed><code>changed_when</code></a>
 .</p><h2 class="mb-8 mt-8 pt-8" id=facts-and-conditionals>Facts and conditionals
-<a class="text-foreground border-0" href=#facts-and-conditionals>#</a></h2><p>Now let&rsquo;s imagine you use both macOS and Ubuntu. You want to install git and
+<a class="text-primary border-0" href=#facts-and-conditionals>#</a></h2><p>Now let&rsquo;s imagine you use both macOS and Ubuntu. You want to install git and
 tmux in both operating systems with Ansible. You&rsquo;ll need to add some sort of
 conditional logic to your playbook since <code>apt</code> isn&rsquo;t available in macOS, and
 you probably don&rsquo;t want to use Homebrew in Linux, even though you could.</p><p><a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#basic-conditionals-with-when>We can run a task conditionally with the <code>when</code>
@@ -247,7 +247,7 @@ used
 ones</a>
 :
 <code>ansible_distribution</code>, <code>ansible_distribution_version</code> and <code>ansible_os_family</code>.</p><h2 class="mb-8 mt-8 pt-8" id=ansible-galaxy>Ansible Galaxy
-<a class="text-foreground border-0" href=#ansible-galaxy>#</a></h2><p>The module <code>community.general.homebrew</code> is not a built-in module, you have to
+<a class="text-primary border-0" href=#ansible-galaxy>#</a></h2><p>The module <code>community.general.homebrew</code> is not a built-in module, you have to
 install it separately via <a href=https://galaxy.ansible.com/docs/>Ansible Galaxy</a>
 ,
 which is a hub for Ansible content.</p><p>Ansible Galaxy provides a command-line interface to install stuff, like
@@ -255,7 +255,7 @@ which is a hub for Ansible content.</p><p>Ansible Galaxy provides a command-line
 and roles (which we&rsquo;ll learn about shortly). <code>community.general</code> is a
 collection of modules, which we can install by running:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-shell-session data-lang=shell-session><span class=line><span class=cl><span class=gp>$</span> ansible-galaxy collection install community.general
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=loops>Loops
-<a class="text-foreground border-0" href=#loops>#</a></h2><p>You may need a loop to accomplish a task. For example, the following task will
+<a class="text-primary border-0" href=#loops>#</a></h2><p>You may need a loop to accomplish a task. For example, the following task will
 build <code>dwm</code>, <code>slock</code> and <code>dmenu</code> from source, by running <code>sudo make install</code> in
 each directory containing the source code:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build and install suckless tools</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
@@ -281,7 +281,7 @@ globally:</p><div class=highlight><pre tabindex=0 class=chroma><code class=langu
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>state</span><span class=p>:</span><span class=w> </span><span class=l>present</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>global</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
 </span></span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=jinja2>Jinja2
-<a class="text-foreground border-0" href=#jinja2>#</a></h2><p><a href=https://jinja.palletsprojects.com/en/3.1.x/templates/>Jinja2</a>
+<a class="text-primary border-0" href=#jinja2>#</a></h2><p><a href=https://jinja.palletsprojects.com/en/3.1.x/templates/>Jinja2</a>
 was mentioned
 briefly in conditionals, but because it&rsquo;s a huge component of Ansible, it
 deserves a few more words than that.</p><p>We&rsquo;ve been using Jinja2 throughout this post already, e.g., <code>{{ item }}</code> is a
@@ -318,7 +318,7 @@ possible to <a href=https://jinja.palletsprojects.com/en/latest/templates/#logic
 expressions</a>
 with
 <code>and</code>, <code>or</code>, <code>not</code> etc.</p><h2 class="mb-8 mt-8 pt-8" id=roles>Roles
-<a class="text-foreground border-0" href=#roles>#</a></h2><p>An Ansible role is a way to organize your tasks logic in a file structure. A
+<a class="text-primary border-0" href=#roles>#</a></h2><p>An Ansible role is a way to organize your tasks logic in a file structure. A
 role is usually the format in which you use other people&rsquo;s Ansible tasks. For
 example, <a href=https://github.com/gantsign/ansible-role-visual-studio-code>there is an Ansible role to install Visual Studio
 Code</a>
@@ -365,10 +365,10 @@ values in the <code>default/main.yml</code> file. The list could go on, but I wo
 further. Learn more about it in the <a href=https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html>official docs about
 roles</a>
 .</p><h2 class="mb-8 mt-8 pt-8" id=dotfiles-use-cases>dotfiles use cases
-<a class="text-foreground border-0" href=#dotfiles-use-cases>#</a></h2><p>Now let&rsquo;s look at some examples at how I used Ansible to manage <a href=https://github.com/phelipetls/dotfiles>my
+<a class="text-primary border-0" href=#dotfiles-use-cases>#</a></h2><p>Now let&rsquo;s look at some examples at how I used Ansible to manage <a href=https://github.com/phelipetls/dotfiles>my
 dotfiles</a>
 .</p><h3 class="mb-8 mt-8 pt-8" id=building-neovim-from-source>Building Neovim from source
-<a class="text-foreground border-0" href=#building-neovim-from-source>#</a></h3><p>Let&rsquo;s build Neovim from source with Ansible, in Ubuntu, with the help of the
+<a class="text-primary border-0" href=#building-neovim-from-source>#</a></h3><p>Let&rsquo;s build Neovim from source with Ansible, in Ubuntu, with the help of the
 <a href=https://github.com/neovim/neovim/wiki/Building-Neovim>official guide</a>
 .</p><div data-note class="alert border-note"><div class="hidden text-note sm:block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><div class=overflow-x-hidden>I say Ubuntu because Fedora and Homebrew usually have an up-to-date Neovim
 stable, so I can&rsquo;t be bothered.</div></div><p>I already have Neovim source code as a git submodule in <code>deps/neovim</code>, but it&rsquo;s
@@ -412,7 +412,7 @@ it!</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-ya
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>chdir</span><span class=p>:</span><span class=w> </span><span class=l>deps/neovim</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>target</span><span class=p>:</span><span class=w> </span><span class=l>install</span><span class=w>
 </span></span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=installing-efm-langserver>Installing efm-langserver
-<a class="text-foreground border-0" href=#installing-efm-langserver>#</a></h3><p><a href=https://github.com/mattn/efm-langserver><code>efm-langserver</code></a>
+<a class="text-primary border-0" href=#installing-efm-langserver>#</a></h3><p><a href=https://github.com/mattn/efm-langserver><code>efm-langserver</code></a>
 is a Language
 Server to make any LSP client understand the output of an arbitrary linter or
 formatter.</p><p>Let&rsquo;s install it using Ansible too! It&rsquo;s a Golang app, so we could use the Go
@@ -438,7 +438,7 @@ though</a>
 ,
 just because it&rsquo;s a zip file instead, which lacks the convenience of the
 <code>extra_opts</code> parameter&mldr; But I might be missing something.</p><h3 class="mb-8 mt-8 pt-8" id=installing-linters-and-formatters>Installing linters and formatters
-<a class="text-foreground border-0" href=#installing-linters-and-formatters>#</a></h3><p>I also install the linters and formatters I use with Ansible. Here&rsquo;s a snippet
+<a class="text-primary border-0" href=#installing-linters-and-formatters>#</a></h3><p>I also install the linters and formatters I use with Ansible. Here&rsquo;s a snippet
 of it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Install linters and formatters with dnf</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>become</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>dnf</span><span class=p>:</span><span class=w>
@@ -470,7 +470,7 @@ of it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language
 </span></span></span></code></pre></div><p><a href=https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/main.yml#L21-L62>If you&rsquo;re interested, you can look at the file on
 GitHub</a>
 .</p><h3 class="mb-8 mt-8 pt-8" id=stow>Stow
-<a class="text-foreground border-0" href=#stow>#</a></h3><p>Stow is a huge part of dotfiles management: it&rsquo;s responsible to put the
+<a class="text-primary border-0" href=#stow>#</a></h3><p>Stow is a huge part of dotfiles management: it&rsquo;s responsible to put the
 contents of my dofiles into my <code>$HOME</code> directory, as symlinks, while preserving
 the same folder structure.</p><p>I also install and run Stow in my playbook. There isn&rsquo;t an Ansible module for
 Stow though, so I have to resort to <code>ansible.builtin.shell</code>, which isn&rsquo;t great
@@ -493,7 +493,7 @@ something changed:</p><div class=highlight><pre tabindex=0 class=chroma><code cl
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>changed_when</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;result.stderr is search(&#34;LINK: &#34;)&#39;</span><span class=w>
 </span></span></span></code></pre></div><p>This is a small thing, but it&rsquo;s just nice to run a playbook and have everything
 labelled as &ldquo;ok&rdquo;.</p><h2 class="mb-8 mt-8 pt-8" id=gnome>GNOME
-<a class="text-foreground border-0" href=#gnome>#</a></h2><p>We can&rsquo;t customize GNOME with configuration files. We normally configure it
+<a class="text-primary border-0" href=#gnome>#</a></h2><p>We can&rsquo;t customize GNOME with configuration files. We normally configure it
 with GUIs, which is not a great thing if we&rsquo;re interested in automating the
 customization step.</p><p>Fortunately, there is a command line interface to make this possible called
 <a href=https://wiki.gnome.org/Projects/dconf><code>dconf</code></a>
@@ -518,7 +518,7 @@ but it&rsquo;s easier if we use
 GNOME applications&rsquo; internal settings. Navigate through it until you find the
 desired setting that seems responsible for what you want, grab its path and
 pass the value you want to it.</p><h2 class="mb-8 mt-8 pt-8" id=conclusion>Conclusion
-<a class="text-foreground border-0" href=#conclusion>#</a></h2><p>You should now be able to automate downloading your favorite programs with your
+<a class="text-primary border-0" href=#conclusion>#</a></h2><p>You should now be able to automate downloading your favorite programs with your
 preferred configuration across operating systems, with tasks/roles written by
 you or by the community (which is the nicest part).</p><p>The next step should be to test if it really works by using a virtual machine
 &ndash; the Vagrant and Virtual Box combo seems to be a popular choice.</p><p>It&rsquo;s not wise to assume that your playbook will work on a fresh machine because
@@ -526,5 +526,4 @@ you might be relying on a dependency your playbook does not ensure it&rsquo;s tr
 even though it is in your current host.</p></div></article><div data-theme-copy-code-tooltip role=tooltip class="pointer-events-none absolute rounded-md border border-divider bg-background px-2" style=opacity:0>Copied<div data-theme-copy-code-tooltip-arrow class="absolute h-[8px] w-[8px] rotate-45 border-r border-b border-divider bg-background"></div></div><hr class=my-8><script src=https://utteranc.es/client.js repo=phelipetls/phelipetls.github.io issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><hr class=my-8><nav class="flex flex-wrap justify-between gap-2 sm:flex-nowrap" aria-label="Posts navigation"><a class="flex grow basis-1/2 items-center gap-2 border-0" href=/posts/discovering-tailscale/><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Discovering Tailscale</a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

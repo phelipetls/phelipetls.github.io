@@ -16,7 +16,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Início</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/pt/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Início</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/pt/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -86,7 +86,7 @@ parábola, que não é linear, é claro.</p><figure><picture><source srcset=http
 novo, usando como estimativa a raiz dessa reta? Acontece que se repetirmos esse
 processo algumas vezes mais podemos chegar numa estimativa <em>muito</em> próxima da
 solução.</p><h2 class="mb-8 mt-8 pt-8" id=aproximação-linear>Aproximação Linear
-<a class="text-foreground border-0" href=#aproxima%c3%a7%c3%a3o-linear>#</a></h2><p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
+<a class="text-primary border-0" href=#aproxima%c3%a7%c3%a3o-linear>#</a></h2><p>Esse uso da reta tangente é o que se conhece por aproximação linear. Por
 exemplo, retomando a função quadrática. A derivada dela é obtida pela regra da
 potência, \( \frac{d(x^2)}{dx} = 2x \). Já a equação da tangente é obtida
 simplesmente da equação de uma reta:</p><p>$$
@@ -160,7 +160,7 @@ e a verde ao ponto \( (3, 4) \). Veja como o intercepto-x da tangente a este
 </span></span></code></pre></div><figure><picture><source srcset=https://phelipetls.github.io/pt/posts/metodo-de-newton/newton_visualization_hue743eb306217e0bca78962d8e54efe28_19609_392x257_resize_q75_h2_box_3.webp type=image/webp><img src=./newton_visualization.png alt="Segunda iteração, mostrando como a aproximação melhorou"></picture></figure><p>Seria interessante escrevermos uma função para fazer esses cálculos, e ela
 inevitavelmente teria que lidar com cálculo diferencial. Para isso, existe uma
 biblioteca que pode nos ajudar.</p><h2 class="mb-8 mt-8 pt-8" id=introduzindo-sympy>Introduzindo SymPy
-<a class="text-foreground border-0" href=#introduzindo-sympy>#</a></h2><p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
+<a class="text-primary border-0" href=#introduzindo-sympy>#</a></h2><p>Essa biblioteca fornece suporte para trabalhar com álgebra simbólica. Nela
 contamos com funções para calcular limites, derivadas, integrais, expandir
 polinômicos, simplificar expressões etc.</p><p>Por exemplo, se quisermos calcular a derivada da função \( x^2 - 5 \).</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>sympy</span> <span class=kn>import</span> <span class=n>symbols</span><span class=p>,</span> <span class=n>diff</span><span class=p>,</span> <span class=n>limit</span><span class=p>,</span> <span class=n>integrate</span><span class=p>,</span> <span class=n>oo</span>
 </span></span><span class=line><span class=cl>
@@ -177,7 +177,7 @@ polinômicos, simplificar expressões etc.</p><p>Por exemplo, se quisermos calcu
 praticamente só aceita funções do próprio SymPy. Para a utilizarmos como uma
 função qualquer, devemos usar <code>lambdify()</code>. Para nossos objetivos, essa última e
 a função diff serão suficientes.</p><h2 class="mb-8 mt-8 pt-8" id=um-código-para-o-algoritmo>Um código para o algoritmo
-<a class="text-foreground border-0" href=#um-c%c3%b3digo-para-o-algoritmo>#</a></h2><p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p><p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
+<a class="text-primary border-0" href=#um-c%c3%b3digo-para-o-algoritmo>#</a></h2><p>Antes de apresentar a função em si, melhor explicar como eu a pensei.</p><p>Primeiramente, ela tomará três argumentos: a função, o valor para o qual
 queremos uma solução, e a estimativa inicial. Por exemplo, no nosso caso, ela
 tomaria os argumentos \( x^2 \), \( 5 \) e \( 1 \).</p><p>Em seguida, construirei simbolicamente, com estes argumentos, nossa \( f(x) \)
 e sua derivada, \( f&rsquo;(x) \). E com isso temos tudo que precisamos para
@@ -254,7 +254,7 @@ nossa estimativa inicial de forma a nos aproximarmos daquela outra raiz.</p><div
 
 -2.0588469658492823
 </code></pre><h2 class="mb-8 mt-8 pt-8" id=limitações-do-método>Limitações do método
-<a class="text-foreground border-0" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo>#</a></h2><p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
+<a class="text-primary border-0" href=#limita%c3%a7%c3%b5es-do-m%c3%a9todo>#</a></h2><p>Essa é uma função complicadinha e expõe algumas limitações do método que Newton
 criou. Por exemplo, imagine que usemos como estimativa um valor próximo de um
 mínimo, digamos que 0.5.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=n>newton</span><span class=p>(</span><span class=n>x</span> <span class=o>**</span> <span class=mi>4</span> <span class=o>+</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>3</span> <span class=o>-</span> <span class=n>x</span> <span class=o>**</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
 </span></span></code></pre></div><pre><code>est.    | nova est. | diferença
@@ -310,7 +310,7 @@ Veja o gráfico.</p><div class=highlight><pre tabindex=0 class=chroma><code clas
 </span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>ylim</span><span class=p>(</span><span class=o>-</span><span class=mf>0.5</span><span class=p>,</span> <span class=mf>0.5</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>legend</span><span class=p>()</span>
 </span></span></code></pre></div><figure><picture><source srcset=https://phelipetls.github.io/pt/posts/metodo-de-newton/output_26_1_hu683797a1d52f4da2ae4fb68febf05371_15436_388x257_resize_q75_h2_box_3.webp type=image/webp><img src=./output_26_1.png alt="Gráfico de uma função cúbica e de uma aproximação linear conseguida pelo método de Newton-Raphson em 5 iterações mas que não foi boa"></picture></figure><h2 class="mb-8 mt-8 pt-8" id=conclusões>Conclusões
-<a class="text-foreground border-0" href=#conclus%c3%b5es>#</a></h2><p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
+<a class="text-primary border-0" href=#conclus%c3%b5es>#</a></h2><p>O interessante desse algoritmo é ser uma aplicação de cálculo diferencial. É
 bastante simples sem sacrificar o lado da eficiência, mas também vimos que há
 certas limitações. É claro, ele não poderia fazer milagres. Mas, hoje em dia,
 basta plotar o gráfico em questão para ter uma ideia de onde estão as raízes,
@@ -318,5 +318,4 @@ como acabamos de fazer aqui com a ajuda do matplotlib.</p></div></article><div d
 <a class="flex h-full grow basis-1/2 items-center justify-end gap-2 self-end border-0 text-right" href=/pt/posts/spread-bancario-brasileiro-r/>Spread bancário brasileiro: limpeza e visualização de dados
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">Este conteúdo está sob a licença
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

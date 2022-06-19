@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -88,12 +88,12 @@ just <code>~/components</code>, you&rsquo;d use the following <code>tsconfig.jso
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><p>This is great but it breaks <code>gf</code>, so in this post I want to share how to make
 it work again for TypeScript projects that use this feature.</p><h2 class="mb-8 mt-8 pt-8" id=why-not-lsp>Why not LSP?
-<a class="text-foreground border-0" href=#why-not-lsp>#</a></h2><p>You might be wondering why not just use a language server for that?</p><p>And you&rsquo;d be right, that&rsquo;s certainly better than implementing the TypeScript
+<a class="text-primary border-0" href=#why-not-lsp>#</a></h2><p>You might be wondering why not just use a language server for that?</p><p>And you&rsquo;d be right, that&rsquo;s certainly better than implementing the TypeScript
 module resolution algorithm in Lua&mldr;</p><p>But the TypeScript language servers are very resource hungry and slow to boot,
 so I find that it does pay off to use a dumber way to navigate files with
 built-in Vim features in case the language server is still booting or just
 being slow.</p><h2 class="mb-8 mt-8 pt-8" id=implementation-details>Implementation details
-<a class="text-foreground border-0" href=#implementation-details>#</a></h2><p>Our goal is to pass a function to the <code>includeexpr</code> option that will try to
+<a class="text-primary border-0" href=#implementation-details>#</a></h2><p>Our goal is to pass a function to the <code>includeexpr</code> option that will try to
 substitute the &ldquo;alias&rdquo; (<code>~/*</code>) with its associated path (<code>src/*</code>) until it
 finds a file/directory that exists, then return it. Otherwise, return <code>nil</code>.</p><p>I decided to write it in Lua in the <code>lua/tsconfig.lua</code> module. Here&rsquo;s how we
 can configure the <code>includeexpr</code> for JavaScript/TypeScript to use this lua
@@ -138,7 +138,7 @@ function:</p><div class=highlight><pre tabindex=0 class=chroma><code class=langu
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kr>return</span> <span class=n>M</span>
 </span></span></code></pre></div><p>How exactly we try to find a file will be explained later.</p><h3 class="mb-8 mt-8 pt-8" id=finding-tsconfigjson>Finding <code>tsconfig.json</code>
-<a class="text-foreground border-0" href=#finding-tsconfigjson>#</a></h3><p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
+<a class="text-primary border-0" href=#finding-tsconfigjson>#</a></h3><p>Let&rsquo;s start with the <code>get_tsconfig_file</code> function. We can do this by searching
 upwards starting from the current file&rsquo;s directory with the <a href=https://vimhelp.org/eval.txt.html#findfile%28%29><code>:h findfile</code></a>
 function:
 <code>findfile('tsconfig.json', '.;')</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>get_tsconfig_file</span><span class=p>()</span>
@@ -152,7 +152,7 @@ that returns <code>nil</code> if it doesn&rsquo;t find one (empty strings are no
 </span></span><span class=line><span class=cl>  <span class=kr>end</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span></code></pre></div><p>I use a similar function called <code>find_dir</code> that wraps <code>:h finddir</code>.</p><h3 class="mb-8 mt-8 pt-8" id=reading-json-with-comments>Reading JSON with comments
-<a class="text-foreground border-0" href=#reading-json-with-comments>#</a></h3><p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
+<a class="text-primary border-0" href=#reading-json-with-comments>#</a></h3><p>We also need to read the <code>tsconfig.json</code> file. Vim has a function to serialize
 JSON, <a href=https://vimhelp.org/eval.txt.html#json_decode%28%29><code>:h json_decode</code></a>
 ,
 which is great, except that <code>tsconfig.json</code> is not strictly JSON, since it
@@ -166,7 +166,7 @@ allows comments. No problem, we can just remove them before we pass it to
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>vim.fn</span><span class=p>.</span><span class=n>json_decode</span><span class=p>(</span><span class=n>json_without_comments</span><span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=parsing-compileroptionspaths>Parsing <code>compilerOptions.paths</code>
-<a class="text-foreground border-0" href=#parsing-compileroptionspaths>#</a></h3><p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
+<a class="text-primary border-0" href=#parsing-compileroptionspaths>#</a></h3><p>Next step is to parse <code>compilerOptions.paths</code> to create a table that maps
 aliases into their full paths. For example, given this configuration:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=nt>&#34;compilerOptions&#34;</span><span class=p>:</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>    <span class=nt>&#34;baseUrl&#34;</span><span class=p>:</span> <span class=s2>&#34;.&#34;</span><span class=p>,</span>
@@ -210,7 +210,7 @@ should remove the catch-all character <code>*</code>:</p><div class=highlight><p
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>alias_to_paths</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=expand-tsconfig>Expand tsconfig
-<a class="text-foreground border-0" href=#expand-tsconfig>#</a></h3><p>Now let&rsquo;s remove that TODO we left earlier.</p><p>We just need to &ldquo;expand&rdquo; (replace) the alias with its path until we find a file
+<a class="text-primary border-0" href=#expand-tsconfig>#</a></h3><p>Now let&rsquo;s remove that TODO we left earlier.</p><p>We just need to &ldquo;expand&rdquo; (replace) the alias with its path until we find a file
 that exist.</p><p>First, we check if the input filename matches the alias (e.g., <code>~/file</code> should
 match <code>~/*</code> but also <code>*</code> since it means any value), replace the alias with its
 path (<code>~/file</code> -> <code>src/file</code>) and try to find it:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=kr>function</span> <span class=nf>expand_tsconfig_path</span><span class=p>(</span><span class=n>input</span><span class=p>)</span>
@@ -232,7 +232,7 @@ path (<code>~/file</code> -> <code>src/file</code>) and try to find it:</p><div 
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=n>input</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span></code></pre></div><h3 class="mb-8 mt-8 pt-8" id=handling-configuration-inheritance>Handling configuration inheritance
-<a class="text-foreground border-0" href=#handling-configuration-inheritance>#</a></h3><p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
+<a class="text-primary border-0" href=#handling-configuration-inheritance>#</a></h3><p>One problem though&mldr; We&rsquo;re ignoring TS Config&rsquo;s
 <a href=https://www.typescriptlang.org/tsconfig#extends><code>extends</code></a>
 option, which
 allows you to inherit from other configuration files.</p><p>If a <code>tsconfig.json</code> inherits from another configuration, our algorithm as it
@@ -263,7 +263,7 @@ is now just ignores these other configurations completely.</p><p>To handle this,
 </span></span><span class="line hl"><span class=cl>  <span class=kr>return</span> <span class=n>vim.tbl_extend</span><span class=p>(</span><span class=s2>&#34;force&#34;</span><span class=p>,</span> <span class=n>alias_to_paths</span><span class=p>,</span> <span class=n>get_tsconfig_paths</span><span class=p>(</span><span class=n>tsconfig_extends</span><span class=p>,</span> <span class=n>base_url</span><span class=p>))</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=conclusion>Conclusion
-<a class="text-foreground border-0" href=#conclusion>#</a></h2><p><a href=https://github.com/phelipetls/dotfiles/blob/84303bfdf877d1ded6b8287f83806ebb73af1cce/.config/nvim/lua/tsconfig.lua>You can check the full implementation
+<a class="text-primary border-0" href=#conclusion>#</a></h2><p><a href=https://github.com/phelipetls/dotfiles/blob/84303bfdf877d1ded6b8287f83806ebb73af1cce/.config/nvim/lua/tsconfig.lua>You can check the full implementation
 here</a>
 .
 Be aware that this will likely change.</p><p>As I said earlier, Vim&rsquo;s built-in file navigation features are not the best
@@ -282,5 +282,4 @@ if you want to dive more deep into it.</p></div></article><div data-theme-copy-c
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

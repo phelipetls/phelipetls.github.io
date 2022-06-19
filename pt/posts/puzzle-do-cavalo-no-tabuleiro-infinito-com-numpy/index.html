@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Início</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/pt/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Início</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/pt/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -64,7 +64,7 @@ facilita a criação de visualizações do problema com o ggplot2.</p><p>Porém 
 seria interessante tentar fazer a mesma simulação com uma de suas bibliotecas
 mais famosas, o Numpy, para praticar e ver se ele cumpre o que promete:
 operações vetorizadas e eficientes.</p><h2 class="mb-8 mt-8 pt-8" id=o-que-está-por-trás-da-eficiência-do-numpy>O que está por trás da eficiência do Numpy
-<a class="text-foreground border-0" href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy>#</a></h2><p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
+<a class="text-primary border-0" href=#o-que-est%c3%a1-por-tr%c3%a1s-da-efici%c3%aancia-do-numpy>#</a></h2><p>O Numpy chega para suprir uma desvantagem que o Python tem por ser uma linguagem
 de tipagem dinâmica e de script (não-compilada): ele não é tão bom em fazer
 repetidas operações múltiplas vezes. Precisamente o que garante a ele uma
 vantagem pelo lado do desenvolvimento de código (uma linguagem solta, fácil de
@@ -108,7 +108,7 @@ TypeError                                 Traceback (most recent call last)
 
 TypeError: can't convert complex to int
 </code></pre><p>Esse comportamento é muito similar ao vetor do R.</p><h2 class="mb-8 mt-8 pt-8" id=simulando-os-movimentos-do-cavalo>Simulando os movimentos do cavalo
-<a class="text-foreground border-0" href=#simulando-os-movimentos-do-cavalo>#</a></h2><p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p><ul><li>devo todo o thought process no que diz respeito à modelagem ao Robinson, e
+<a class="text-primary border-0" href=#simulando-os-movimentos-do-cavalo>#</a></h2><p>Dito isto, vejamos o que o Numpy pode fazer. Mas antes um esclarecimento</p><ul><li>devo todo o thought process no que diz respeito à modelagem ao Robinson, e
 encorajo a todos lendo que confiram o post dele, se não antes, depois de ler
 aqui. O único trabalho que tive foi o de escrever o código em Python.</li></ul><p>A ideia de Robinson para a simulação foi imaginar o tabuleiro como um plano
 cartesiano, em que o cavalo está no ponto de origem, (0, 0), podendo saltar dali
@@ -216,7 +216,7 @@ simples histograma, feito com 100 repetições do experimento.</p><div class=hig
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=n>plt</span><span class=o>.</span><span class=n>hist</span><span class=p>(</span><span class=n>knight_probs</span><span class=p>,</span> <span class=n>bins</span> <span class=o>=</span> <span class=mi>20</span><span class=p>)</span>
 </span></span></code></pre></div><figure><picture><source srcset=https://phelipetls.github.io/pt/posts/puzzle-do-cavalo-no-tabuleiro-infinito-com-numpy/histograma_hu6d4b9acb46d5887c708d66cc90ebe86f_3617_381x252_resize_q75_h2_box_3.webp type=image/webp><img src=./histograma.png alt="Histograma mostrando que a probabilidade estimada do cavalo voltar à origem após 20 saltos aleatórios é de 0.6%"></picture><figcaption><span class=text-lg>Histograma mostrando que a probabilidade estimada do cavalo voltar à origem após 20 saltos aleatórios é de 0.6%</span></figcaption></figure><h2 class="mb-8 mt-8 pt-8" id=a-eficiência-em-números>A eficiência em números
-<a class="text-foreground border-0" href=#a-efici%c3%aancia-em-n%c3%bameros>#</a></h2><p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
+<a class="text-primary border-0" href=#a-efici%c3%aancia-em-n%c3%bameros>#</a></h2><p>E, só para coisa não ficar vaga, quão eficiente é o Numpy afinal? Podemos
 verificar isso facilmente com o magic command do IPython, o %%timeit. Criei uma
 função que toma como argumento qualquer número de tentativas para testarmos o
 algoritmo.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=k>def</span> <span class=nf>knight_infinite_board</span><span class=p>(</span><span class=n>trials</span><span class=p>):</span>
@@ -236,7 +236,7 @@ algoritmo.</p><div class=highlight><pre tabindex=0 class=chroma><code class=lang
 </code></pre><p>É extraordinariamente rápido. Mesmo quando se trata de cálculos com uma matriz
 de 20 x 1 milhão! E meu computador certamente não ajuda. O mesmo feito no base
 Python seria absurdamente mais lento.</p><h2 class="mb-8 mt-8 pt-8" id=conclusões>Conclusões
-<a class="text-foreground border-0" href=#conclus%c3%b5es>#</a></h2><p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
+<a class="text-primary border-0" href=#conclus%c3%b5es>#</a></h2><p>Acho que com esse simples exercício, pudemos mesmo atestar que o Numpy é uma
 ferramenta muito útil, garantindo eficiência com uma sintaxe simples e limpa. Há
 dentro dele ainda muito mais a ser explorado do que o exposto aqui, incluindo as
 mais diversas distribuições probabílistas com np.random, manipulação de matrizes
@@ -247,5 +247,4 @@ objetivo é crescer na área de data science.</p><p>Pretendo trazer outros posts
 Espero que tenha sido proveitoso. Toda crítica/sugestão será muito bem-vinda.</p></div></article><div data-theme-copy-code-tooltip role=tooltip class="pointer-events-none absolute rounded-md border border-divider bg-background px-2" style=opacity:0>Copiado<div data-theme-copy-code-tooltip-arrow class="absolute h-[8px] w-[8px] rotate-45 border-r border-b border-divider bg-background"></div></div><hr class=my-8><script src=https://utteranc.es/client.js repo=phelipetls/phelipetls.github.io issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><hr class=my-8><nav class="flex flex-wrap justify-between gap-2 sm:flex-nowrap" aria-label="Navegação entre posts"><a class="flex h-full grow basis-1/2 items-center justify-end gap-2 self-end border-0 text-right" href=/pt/posts/tres-algoritmos-para-a-sequencia-de-fibonacci/>Três algoritmos para a sequência de Fibonacci
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">Este conteúdo está sob a licença
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

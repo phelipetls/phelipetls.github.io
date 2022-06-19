@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -70,11 +70,11 @@ section of my
 and my
 <a href=https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/.config/efm-langserver/config.yaml><code>.config/efm-langserver/config.yaml</code></a>
 to learn how I use <code>efm-langserver</code> with it.</p></div></div><h2 class="mb-8 mt-8 pt-8" id=making-eslint-faster-with-eslint_d>Making eslint faster with eslint_d
-<a class="text-foreground border-0" href=#making-eslint-faster-with-eslint_d>#</a></h2><p>To reduce latency when invoking <code>eslint</code>, I&rsquo;m gonna use
+<a class="text-primary border-0" href=#making-eslint-faster-with-eslint_d>#</a></h2><p>To reduce latency when invoking <code>eslint</code>, I&rsquo;m gonna use
 <a href=https://github.com/mantoni/eslint_d.js/><code>eslint_d</code></a>
 , which runs <code>eslint</code> as a
 daemon process.</p><h2 class="mb-8 mt-8 pt-8" id=configuring-eslint_d-in-efm-langserver>Configuring eslint_d in efm-langserver
-<a class="text-foreground border-0" href=#configuring-eslint_d-in-efm-langserver>#</a></h2><p>It&rsquo;s possible to configure it with a YAML file, by following their README. I did
+<a class="text-primary border-0" href=#configuring-eslint_d-in-efm-langserver>#</a></h2><p>It&rsquo;s possible to configure it with a YAML file, by following their README. I did
 this initially I found that it&rsquo;s more powerful to configure it with Lua.</p><p>Here&rsquo;s the configuration, which more explanation below.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-lua data-lang=lua><span class=line><span class=cl><span class=kd>local</span> <span class=n>lspconfig</span> <span class=o>=</span> <span class=n>require</span><span class=s2>&#34;lspconfig&#34;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kd>local</span> <span class=n>eslint</span> <span class=o>=</span> <span class=p>{</span>
@@ -149,7 +149,7 @@ configuration. So I created a function to do this:</p><div class=highlight><pre 
 </span></span><span class=line><span class=cl>  <span class=kr>return</span> <span class=kc>false</span>
 </span></span><span class=line><span class=cl><span class=kr>end</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=conclusion>Conclusion
-<a class="text-foreground border-0" href=#conclusion>#</a></h2><p>This is kind like a poor replacement for the VS Code eslint extension, which
+<a class="text-primary border-0" href=#conclusion>#</a></h2><p>This is kind like a poor replacement for the VS Code eslint extension, which
 does a similar thing as <code>eslint_d</code>. And it works ok, it&rsquo;s pretty fast, much
 faster than <code>typescript-language-server</code>, so it&rsquo;s definitely an improvement.</p><p>It would be nice if there was a way to shut down the server if <code>eslint</code> is
 broken for example, but I didn&rsquo;t manage to do it just yet.</p></div></article><div data-theme-copy-code-tooltip role=tooltip class="pointer-events-none absolute rounded-md border border-divider bg-background px-2" style=opacity:0>Copied<div data-theme-copy-code-tooltip-arrow class="absolute h-[8px] w-[8px] rotate-45 border-r border-b border-divider bg-background"></div></div><hr class=my-8><script src=https://utteranc.es/client.js repo=phelipetls/phelipetls.github.io issue-term=pathname theme=preferred-color-scheme crossorigin=anonymous async></script><hr class=my-8><nav class="flex flex-wrap justify-between gap-2 sm:flex-nowrap" aria-label="Posts navigation"><a class="flex grow basis-1/2 items-center gap-2 border-0" href=/posts/f-strings-syntax-highlighting-in-vim/><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Python f-strings syntax highlighting in Vim</a>
@@ -157,5 +157,4 @@ broken for example, but I didn&rsquo;t manage to do it just yet.</p></div></arti
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

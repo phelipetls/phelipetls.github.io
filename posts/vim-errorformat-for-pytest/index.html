@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -102,7 +102,7 @@ E     + {'3', '8', '0', '5'}
 E     ?               +++++
 ============================== 3 failed in 0.03s ===============================
 </code></pre><p>Now, for the difficult part.</p><h2 class="mb-8 mt-8 pt-8" id=writing-an-errorformat>Writing an errorformat
-<a class="text-foreground border-0" href=#writing-an-errorformat>#</a></h2><p>To make Vim understand these lines so that we can jump to each error, we must
+<a class="text-primary border-0" href=#writing-an-errorformat>#</a></h2><p>To make Vim understand these lines so that we can jump to each error, we must
 give patterns. It will then go through every line testing against those
 patterns. From <code>:h errorformat</code>:</p><blockquote><p>Error format strings are always parsed pattern by pattern until the first
 match occurs.</p></blockquote><p>The order is, thus, important here.</p><p>Also, the pattern has to match the entire line. That is to say the pattern is
@@ -110,7 +110,7 @@ always implicitly surrounded by a <code>^</code> and <code>$</code>.</p><p>We wi
 multiple lines.</p><p>I found out that <code>pytest</code> gives inconsistent patterns depending on the error
 (test failure, missing fixture and syntax error), so I had to handle them
 separately.</p><h2 class="mb-8 mt-8 pt-8" id=handling-test-failures>Handling test failures
-<a class="text-foreground border-0" href=#handling-test-failures>#</a></h2><p>A test failure starts like this:</p><pre><code>______________________________ TEST_NAME ______________________________
+<a class="text-primary border-0" href=#handling-test-failures>#</a></h2><p>A test failure starts like this:</p><pre><code>______________________________ TEST_NAME ______________________________
 </code></pre><p>The pattern for this is <code>%E_%\\+\ %o\ _%\\+</code>. Notice the overwhelming number of
 escape characters needed because I&rsquo;m passing the pattern as an option value,
 like in <code>:set errorformat=%E_%\\+\ %o\ _%\\+</code> (see <code>:h option-backslash</code> to
@@ -139,7 +139,7 @@ test_set_comparison|22|  AssertionError: assert {'1', '0', '3', '8'} == {'0', '3
 || E     ?               +++++
 </code></pre><p>So far, it will understand tests failures but not syntax errors, import errors
 and fixture errors, which would fail silently. This is no good.</p><h2 class="mb-8 mt-8 pt-8" id=syntax-errors>Syntax errors
-<a class="text-foreground border-0" href=#syntax-errors>#</a></h2><p>For syntax errors, we need to parse something like this:</p><pre><code>============================= test session starts ==============================
+<a class="text-primary border-0" href=#syntax-errors>#</a></h2><p>For syntax errors, we need to parse something like this:</p><pre><code>============================= test session starts ==============================
 platform linux -- Python 3.7.5, pytest-5.3.4, py-1.8.1, pluggy-0.13.1 -- /usr/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/phelipe/Documentos/python/tests
@@ -178,7 +178,7 @@ E   SyntaxError: invalid syntax
 its length to later use as column number.</p><p>The end pattern <code>%ZE %[%^ ]%\@=%m</code> matches a line starting with E, three spaces
 exactly, which is needed to distinguish it from the others, see <code>:h \@=</code>.</p><p>We also need to include a continuation format (any line starting with E and
 space that didn&rsquo;t match the earlier ones).</p><h2 class="mb-8 mt-8 pt-8" id=import-errors>Import errors
-<a class="text-foreground border-0" href=#import-errors>#</a></h2><p>Import errors are also slightly different:</p><pre><code>============================= test session starts ==============================
+<a class="text-primary border-0" href=#import-errors>#</a></h2><p>Import errors are also slightly different:</p><pre><code>============================= test session starts ==============================
 platform linux -- Python 3.7.5, pytest-5.3.4, py-1.8.1, pluggy-0.13.1 -- /usr/bin/python3
 cachedir: .pytest_cache
 rootdir: /home/phelipe
@@ -205,7 +205,7 @@ E   ModuleNotFoundError: No module named 'pytes'
 to capture the filename. It ends with an <code>E %m</code> and we already a pattern to
 capture this. But we do need to tell how it continues, and it&rsquo;s fine to just put
 something that would match anything like <code>%C%.%#</code>.</p><h2 class="mb-8 mt-8 pt-8" id=fixture-errors>Fixture errors
-<a class="text-foreground border-0" href=#fixture-errors>#</a></h2><p>Fixture errors are also in a different format:</p><pre><code>_____________________ ERROR at setup of test_zero_division _____________________
+<a class="text-primary border-0" href=#fixture-errors>#</a></h2><p>Fixture errors are also in a different format:</p><pre><code>_____________________ ERROR at setup of test_zero_division _____________________
 file /home/phelipe/Documentos/python/tests/test_assert2.py, line 4
   def test_zero_division(oi):
 E       fixture 'oi' not found
@@ -216,12 +216,12 @@ cord_xml_attribute, recwarn, tmp_path, tmp_path_factory, tmpdir, tmpdir_factory
 \%+ZE\ %mnot\ found,
 </code></pre><p>The line <code>%+ZE %.%#not found</code> means that the error will match <code>E .*not found</code>,
 the preceding <code>+</code> will include the whole line as a message.</p><h2 class="mb-8 mt-8 pt-8" id=further-improvements>Further improvements
-<a class="text-foreground border-0" href=#further-improvements>#</a></h2><p>Notice how syntax, import and fixture errors are preceded with something like</p><pre><code>______________________________ ERROR.* ______________________________
+<a class="text-primary border-0" href=#further-improvements>#</a></h2><p>Notice how syntax, import and fixture errors are preceded with something like</p><pre><code>______________________________ ERROR.* ______________________________
 </code></pre><p>Which will match our pattern to catch the start of a test failure. There&rsquo;s an
 easy fix for this, just put <code>%-G_%\\+\ ERROR%.%#\ _%\\+</code> before that pattern, so
 it will ignore it first.</p><p>Also, if all tests passed, capture it too:</p><pre><code>  \%+G%[=]%\\+\ %*\\d\ passed%.%#,
 </code></pre><h2 class="mb-8 mt-8 pt-8" id=conclusion>Conclusion
-<a class="text-foreground border-0" href=#conclusion>#</a></h2><p>Check out the whole
+<a class="text-primary border-0" href=#conclusion>#</a></h2><p>Check out the whole
 <a href=https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/pytest.vim>compiler plugin</a>
 in my dotfiles repo.</p><p>It&rsquo;s tricky to figure out how to order the patterns, which I didn&rsquo;t risk to
 explain here since I wouldn&rsquo;t say I fully understand how it works. It was mostly
@@ -236,5 +236,4 @@ integrate a command line program into Vim.</p></div></article><div data-theme-co
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>

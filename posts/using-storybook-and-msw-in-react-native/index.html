@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -71,7 +71,7 @@ make it work in React Native, even though it&rsquo;s pretty new.</p><p>In this p
 repository</a> or this
 <a href=https://github.com/phelipetls/react-native-storybook-msw/pull/1>pull request</a>
 instead.</div></div><h2 class="mb-8 mt-8 pt-8" id=how-msw-storybook-addon-works>How <code>msw-storybook-addon</code> works?
-<a class="text-foreground border-0" href=#how-msw-storybook-addon-works>#</a></h2><p>Our end goal is to port <code>msw-storybook-addon</code> to React Native. So let&rsquo;s first
+<a class="text-primary border-0" href=#how-msw-storybook-addon-works>#</a></h2><p>Our end goal is to port <code>msw-storybook-addon</code> to React Native. So let&rsquo;s first
 understand how it works.</p><p>This is a library by the MSW team that provides you with a
 <a href=https://storybook.js.org/docs/react/writing-stories/decorators>global Storybook decorator</a>
 .
@@ -125,11 +125,11 @@ how you configure/use it:</p><div class=highlight><pre tabindex=0 class=chroma><
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kr>export</span> <span class=k>default</span> <span class=nx>StorybookUIRoot</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=porting-msw-storybook-addon-to-react-native>Porting <code>msw-storybook-addon</code> to React Native
-<a class="text-foreground border-0" href=#porting-msw-storybook-addon-to-react-native>#</a></h2><p>A decorator is simply a function that does something before rendering the
+<a class="text-primary border-0" href=#porting-msw-storybook-addon-to-react-native>#</a></h2><p>A decorator is simply a function that does something before rendering the
 story, which is a React component.</p><p>Here is what we need to do:</p><ul><li>Initialize the MSW server.</li><li>Clean it up, which means to reset old request handlers.</li><li>Set up the new request handlers, if any.</li></ul><p>Our implementation should not differ very much from the <code>msw-storybook-addon</code>
 <a href=https://github.com/mswjs/msw-storybook-addon/blob/35a4b198a4b4eead9a2d0771f81460c6788e77a7/packages/msw-addon/src/mswDecorator.ts#L69-L102>implementation</a>
 .</p><h3 class="mb-8 mt-8 pt-8" id=first-problem-how-to-initialize-the-server>First problem: how to initialize the server?
-<a class="text-foreground border-0" href=#first-problem-how-to-initialize-the-server>#</a></h3><p>We can&rsquo;t use <a href=https://mswjs.io/docs/api/setup-worker><code>setupWorker</code></a>
+<a class="text-primary border-0" href=#first-problem-how-to-initialize-the-server>#</a></h3><p>We can&rsquo;t use <a href=https://mswjs.io/docs/api/setup-worker><code>setupWorker</code></a>
 because
 we&rsquo;re not in a browser, we don&rsquo;t have service workers.
 <a href=https://mswjs.io/docs/api/setup-server><code>setupServer</code></a>
@@ -141,7 +141,7 @@ and in <a href=https://github.com/mswjs/examples/pull/60>this
 example with more details on how to use
 it</a>
 .</p><h3 class="mb-8 mt-8 pt-8" id=implementation>Implementation
-<a class="text-foreground border-0" href=#implementation>#</a></h3><p>What follows is an implementation that worked for me. You can ignore all non
+<a class="text-primary border-0" href=#implementation>#</a></h3><p>What follows is an implementation that worked for me. You can ignore all non
 highlighted code, since it&rsquo;s only meant to stay compatible with the
 <a href=https://github.com/mswjs/msw-storybook-addon/blob/35a4b198a4b4eead9a2d0771f81460c6788e77a7/packages/msw-addon/src/mswDecorator.ts#L69-L102><code>msw-storybook-addon</code>
 API</a>
@@ -194,7 +194,7 @@ Native URL polyfill that throws Not Implemented exceptions for functions
 that MSW calls such as
 <a href=https://github.com/facebook/react-native/blob/cd347a7e0ed29ae1049e041fcb34588e1aac76f9/Libraries/Blob/URL.js#L194>search()</a>
 .</p></blockquote><h2 class="mb-8 mt-8 pt-8" id=usage>Usage
-<a class="text-foreground border-0" href=#usage>#</a></h2><p>Now things should work exactly like <code>msw-storybook-addon</code>, except that you&rsquo;ll
+<a class="text-primary border-0" href=#usage>#</a></h2><p>Now things should work exactly like <code>msw-storybook-addon</code>, except that you&rsquo;ll
 be using Storybook v5, so it&rsquo;s a little bit different:</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>import</span> <span class=nx>React</span> <span class=nx>from</span> <span class=s1>&#39;react&#39;</span>
 </span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>storiesOf</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
 </span></span><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>rest</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;msw&#39;</span>
@@ -216,7 +216,7 @@ be using Storybook v5, so it&rsquo;s a little bit different:</p><div class=highl
 </span></span><span class=line><span class=cl>    <span class=p>},</span>
 </span></span><span class=line><span class=cl>  <span class=p>})</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=example-repository-using-the-official-react-native-cli>Example repository using the official <code>react-native</code> CLI
-<a class="text-foreground border-0" href=#example-repository-using-the-official-react-native-cli>#</a></h2><p>To prove my point, I implemented the whole thing in a brand new React Native
+<a class="text-primary border-0" href=#example-repository-using-the-official-react-native-cli>#</a></h2><p>To prove my point, I implemented the whole thing in a brand new React Native
 project using <code>react-native</code> CLI:</p><pre tabindex=0><code class=language-shell-sesson data-lang=shell-sesson>$ npx react-native init projectName
 </code></pre><p><a href=https://github.com/phelipetls/react-native-storybook-msw>You can check the final result in this GitHub
 repository</a>
@@ -234,7 +234,7 @@ unfortunate&mldr; I hope that a stable Storybook v6 comes soon enough for React
 Native.</p><p>Besides that, everything worked as expected and I hope it works for your
 project too! I didn&rsquo;t have this problem with a project using Expo&rsquo;s Bare
 Workflow, not sure why though.</p><h2 class="mb-8 mt-8 pt-8" id=advice-for-react-query-users>Advice for <code>react-query</code> users
-<a class="text-foreground border-0" href=#advice-for-react-query-users>#</a></h2><p>If you use <code>react-query</code>, I think it&rsquo;s also wise to call
+<a class="text-primary border-0" href=#advice-for-react-query-users>#</a></h2><p>If you use <code>react-query</code>, I think it&rsquo;s also wise to call
 <a href=https://react-query.tanstack.com/reference/QueryClient#queryclientclear><code>QueryClient.clear</code></a>
 in a decorator, to avoid surprises with the cache.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-javascript data-lang=javascript><span class=line><span class=cl><span class=c1>// storybook/index.js
 </span></span></span><span class=line><span class=cl><span class=c1></span><span class=kr>import</span> <span class=p>{</span> <span class=nx>addDecorator</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;@storybook/react-native&#39;</span>
@@ -250,5 +250,4 @@ in a decorator, to avoid surprises with the cache.</p><div class=highlight><pre 
 <span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div></main><footer class="mx-auto flex w-full max-w-content flex-col gap-4 px-page-padding py-4 sm:flex-row sm:justify-between"><div class="flex flex-wrap justify-center sm:order-last sm:justify-end"><nav aria-label=Links><div class="flex gap-4"><a id=contact-email class=border-0 href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class=border-0 href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class=border-0 href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></nav></div><p class="flex-1 text-center sm:text-left">This content is under a
 <a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
 license.</p></footer></div><script type=module src=https://phelipetls.github.io/js/bundle.min.js></script>
-<script src=https://phelipetls.github.io/js/lite-yt-embed.min.js></script>
-<script src=https://phelipetls.github.io/js/theme-utterances.min.js></script></body></html>
+<script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>
