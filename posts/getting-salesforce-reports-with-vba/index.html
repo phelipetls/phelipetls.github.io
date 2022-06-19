@@ -1,6 +1,6 @@
 <!doctype html><html class=h-full lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
     A blog to share my interests (mostly programming)
-  "><meta name=deploy-date content="2022-06-18"><meta name=publish-date content="2020-08-05"><meta name=last-modified-date content="2021-04-24"><meta name=author content><meta name=color-scheme content="dark light"><meta name=keywords content="salesforce,vba,excel"><style>@font-face{font-family:fira sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/firasans/v16/va9E4kDNxMZdWfMOD5VfkA.ttf)format('truetype')}@font-face{font-family:merriweather;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5Oew.ttf)format('truetype')}</style><link rel=stylesheet href="/css/main.min.css"><title>Getting Salesforce reports with VBA |
+  "><meta name=deploy-date content="2022-06-19"><meta name=publish-date content="2020-08-05"><meta name=last-modified-date content="2021-04-24"><meta name=author content><meta name=color-scheme content="dark light"><meta name=keywords content="salesforce,vba,excel"><style>@font-face{font-family:fira sans;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/firasans/v16/va9E4kDNxMZdWfMOD5VfkA.ttf)format('truetype')}@font-face{font-family:merriweather;font-style:normal;font-weight:400;font-display:swap;src:url(https://fonts.gstatic.com/s/merriweather/v30/u-440qyriQwlOrhSvowK_l5Oew.ttf)format('truetype')}</style><link rel=stylesheet href="/css/main.min.css"><title>Getting Salesforce reports with VBA |
 Phelipe Teles</title><meta property="og:title" content="Getting Salesforce reports with VBA"><meta property="og:description" content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/getting-salesforce-reports-with-vba/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-08-05T00:00:00+00:00"><meta property="article:modified_time" content="2021-04-24T19:44:41-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="Getting Salesforce reports with VBA"><meta name=twitter:description content="For those who find themselves in an environment which heavily relies on Excel and Salesforce, you may be interested in a way to automate the process of downloading reports from inside Excel with VBA only."><script async defer data-website-id=32b90065-c2a6-4390-9684-dfde99409815 src=https://umami-production-10b2.up.railway.app/main.js></script>
 <link rel=stylesheet href=https://phelipetls.github.io/css/lite-yt-embed.min.css><link rel=stylesheet href=/css/dark-syntax-highlight.min.css></head><body data-preload class="h-full bg-background text-foreground transition-colors duration-500 ease-out"><script>function storeThemeOption(e){e&&localStorage.setItem("__theme",e)}function getStoredThemeOption(){return localStorage.getItem("__theme")||"auto"}function getAutoTheme(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function getThemeFromOption(e){return e==="auto"?getAutoTheme():e}function setTheme(e){const t=getThemeFromOption(e);document.body.classList.toggle("dark",t==="dark")}function dispatchNewThemeEvent(e){const t=new CustomEvent("newTheme",{detail:{theme:getThemeFromOption(e)}});document.body.dispatchEvent(t)}window.__setTheme=function(e){setTheme(e),storeThemeOption(e),dispatchNewThemeEvent(e)};const storedThemeOption=getStoredThemeOption();window.__setTheme(storedThemeOption),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),dispatchNewThemeEvent(storedThemeOption)})</script><div><div data-nav-container class="fixed top-0 z-30 h-16 w-full bg-background py-2 transition-transform"><div class="mx-auto flex h-full max-w-5xl items-center justify-between pr-page-padding"><nav class="no-scrollbar flex h-full items-center overflow-x-scroll py-1 px-page-padding" aria-label="Main navigation"><ul class="m-0 flex h-full list-none flex-row flex-nowrap items-center gap-2"><li class=h-full><a id=home href=https://phelipetls.github.io/ class="after:content-[''] after:absolute after:-z-10 after:bg-surface
 after:w-full after:h-full after:rounded-md after:shadow-md
@@ -15,7 +15,7 @@ items-center
 justify-center
 rounded-md
 border-0
-px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ data-active-navlink class="hover:bg-hover card transition-colors duration-500
+px-2">Home</a></li><li class=h-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="text-primary hover:bg-hover card transition-colors duration-500
 relative
 flex
 h-full
@@ -61,7 +61,7 @@ better programming language. I
 but
 I didn&rsquo;t use it so much because it&rsquo;s hard to integrate with Excel.</p><p>Instead, I looked into a way to do something similar with VBA and I managed to
 do it. In this post I&rsquo;ll share this with you.</p><h2 class="mb-8 mt-8 pt-8" id=authentication>Authentication
-<a class="text-primary border-0" href=#authentication>#</a></h2><p>The more painless way I know of to
+<a class="text-foreground border-0" href=#authentication>#</a></h2><p>The more painless way I know of to
 <a href=https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_quickstart_login.htm>authenticate your requests for a Salesforce web service is via SOAP API</a>
 ,
 with username, password and a security token.</p><p>It returns a bunch of XML in the response, but we will only need the session id
@@ -117,7 +117,7 @@ header <code>Authorization: Bearer $sessionId</code>.</p><div class=highlight><p
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=parsing-json-inside-vba>Parsing JSON inside VBA?
-<a class="text-primary border-0" href=#parsing-json-inside-vba>#</a></h2><p>Now, to get an actual report inside Excel we will need to use the Analytics API.
+<a class="text-foreground border-0" href=#parsing-json-inside-vba>#</a></h2><p>Now, to get an actual report inside Excel we will need to use the Analytics API.
 So far, we didn&rsquo;t had to rely on any external tools, there is an XML parser
 inside VBA, but not a JSON parser at least that I know of. So we&rsquo;re in trouble
 here because that&rsquo;s what Analytics speaks.</p><p>Fortunately, there is a
@@ -125,14 +125,14 @@ here because that&rsquo;s what Analytics speaks.</p><p>Fortunately, there is a
 which works flawlessly. You just need to download
 <a href=https://raw.githubusercontent.com/VBA-tools/VBA-JSON/master/JsonConverter.bas>this file</a>
 and import it as a module.</p><h2 class="mb-8 mt-8 pt-8" id=unfortunate-api-limitations>Unfortunate API limitations
-<a class="text-primary border-0" href=#unfortunate-api-limitations>#</a></h2><p>This API unfortunately have a
+<a class="text-foreground border-0" href=#unfortunate-api-limitations>#</a></h2><p>This API unfortunately have a
 <a href=https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_limits_limitations.htm>critical limitation</a>
 ,
 which is to return only a maximum of 2000 rows per report. Also, there is no way
 to filter by row limits.</p><p>This almost turns it useless. The only way I know of is to use a column which
 has only unique values and exclude already seen values with a filter, which is
 what we&rsquo;ll gonna do.</p><h2 class="mb-8 mt-8 pt-8" id=getting-report-metadata>Getting report metadata
-<a class="text-primary border-0" href=#getting-report-metadata>#</a></h2><p>To be able to filter a report, we will need to fetch its metadata, which is a
+<a class="text-foreground border-0" href=#getting-report-metadata>#</a></h2><p>To be able to filter a report, we will need to fetch its metadata, which is a
 huge JSON with key-value pairs describing the report.</p><p>We can get it with a <code>GET</code> request to
 <code>https://$YOUR_INSTANCE_URL/services/data/v47.0/analytics/reports/$REPORT_ID/describe</code>.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vb data-lang=vb><span class=line><span class=cl><span class=k>Function</span> <span class=nf>GetMetadata</span><span class=p>(</span><span class=n>ReportId</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> <span class=n>SessionId</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>)</span> <span class=ow>As</span> <span class=kt>String</span>
 </span></span><span class=line><span class=cl>    <span class=k>Dim</span> <span class=n>Request</span> <span class=ow>As</span> <span class=kt>Object</span>
@@ -150,7 +150,7 @@ huge JSON with key-value pairs describing the report.</p><p>We can get it with a
 </span></span><span class=line><span class=cl>    <span class=n>GetMetadata</span> <span class=o>=</span> <span class=n>Request</span><span class=p>.</span><span class=n>responseText</span>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=getting-an-individual-report>Getting an individual report
-<a class="text-primary border-0" href=#getting-an-individual-report>#</a></h2><p>With the function below, you will be able to get the report in JSON format.</p><p>This is achieved with a <code>POST</code> request to
+<a class="text-foreground border-0" href=#getting-an-individual-report>#</a></h2><p>With the function below, you will be able to get the report in JSON format.</p><p>This is achieved with a <code>POST</code> request to
 <code>https://$YOUR_INSTANCE_URL/services/data/v47.0/analytics/reports/$REPORT_ID</code>,
 optional metadata goes into the request body, this is what we use to filter the
 report.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vb data-lang=vb><span class=line><span class=cl><span class=k>Function</span> <span class=nf>GetReport</span><span class=p>(</span><span class=n>ReportId</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> _
@@ -181,7 +181,7 @@ report.</p><div class=highlight><pre tabindex=0 class=chroma><code class=languag
 </span></span><span class=line><span class=cl>    <span class=n>GetReport</span> <span class=o>=</span> <span class=n>Response</span>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Function</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=writing-the-data-into-a-worksheet>Writing the data into a worksheet
-<a class="text-primary border-0" href=#writing-the-data-into-a-worksheet>#</a></h2><p>Now we need to extract the data and write it into a worksheet.</p><p><a href=https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm>Every thing we need is inside the <code>factMap</code> key</a>
+<a class="text-foreground border-0" href=#writing-the-data-into-a-worksheet>#</a></h2><p>Now we need to extract the data and write it into a worksheet.</p><p><a href=https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_factmap_example.htm>Every thing we need is inside the <code>factMap</code> key</a>
 .
 This can get complex if we intend to cover matrix and summary reports, which has
 groupings etc., but tabular reports are much simpler.</p><p>What we need to do is to iterate through the values at <code>factMap.T!T.rows</code> and,
@@ -253,7 +253,7 @@ from column A.</p><div class=highlight><pre tabindex=0 class=chroma><code class=
 </span></span></code></pre></div><p>We also need to get the values at <code>.reportMetadata.detailColumns</code> and
 <code>reportExtendedMetadata.detailColumnInfo</code> to check how many columns the report
 have and to extract the value at <code>.value</code> if it is a date.</p><h2 class="mb-8 mt-8 pt-8" id=getting-the-entire-report>Getting the entire report
-<a class="text-primary border-0" href=#getting-the-entire-report>#</a></h2><p>To get the entire report, the key thing to overcome the API limitations is a key
+<a class="text-foreground border-0" href=#getting-the-entire-report>#</a></h2><p>To get the entire report, the key thing to overcome the API limitations is a key
 called <code>.allData</code>, which will be <code>true</code> only if we got all the data from the
 API.</p><p>So we get the first 2000 rows and, if <code>.allData</code> is <code>false</code>, we get the values
 of an identifier column, filter them out and request a new report, until we get
@@ -374,7 +374,7 @@ later iterations. Then we convert the metadata into a JSON string, get a new
 filtered report and repeat the loop until we get all data.</p><p>Also notice that I use a custom function to get all values at a given column,
 <code>GetValuesAtColumn</code>.</p><p><a href=https://gist.github.com/phelipetls/57a27f529561eefe73633093c737b7e0>Get the full source code in this GitHub gist</a>
 .</p><h2 class="mb-8 mt-8 pt-8" id=how-to-use-it>How to use it
-<a class="text-primary border-0" href=#how-to-use-it>#</a></h2><p>It&rsquo;s up to you how you&rsquo;re gonna use this code. Here&rsquo;s an example.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vb data-lang=vb><span class=line><span class=cl><span class=k>Sub</span> <span class=nf>DownloadReports</span>
+<a class="text-foreground border-0" href=#how-to-use-it>#</a></h2><p>It&rsquo;s up to you how you&rsquo;re gonna use this code. Here&rsquo;s an example.</p><div class=highlight><pre tabindex=0 class=chroma><code class=language-vb data-lang=vb><span class=line><span class=cl><span class=k>Sub</span> <span class=nf>DownloadReports</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>Dim</span> <span class=n>Username</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> <span class=n>Password</span> <span class=ow>As</span> <span class=kt>String</span><span class=p>,</span> <span class=n>SecurityToken</span> <span class=ow>As</span> <span class=kt>String</span>
 </span></span><span class=line><span class=cl>
@@ -401,7 +401,7 @@ filtered report and repeat the loop until we get all data.</p><p>Also notice tha
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=k>End</span> <span class=k>Sub</span>
 </span></span></code></pre></div><h2 class="mb-8 mt-8 pt-8" id=final-words>Final words
-<a class="text-primary border-0" href=#final-words>#</a></h2><p>You probably have a better way to do it, I would only recommend this approach to
+<a class="text-foreground border-0" href=#final-words>#</a></h2><p>You probably have a better way to do it, I would only recommend this approach to
 someone in an environment very dependent on Excel, simply because it is super
 convenient. You can put the report anywhere you want with zero overhead &ndash; no
 need for a library to understand the complexity of an Excel archive.</p><p>And I gotta say, VBA is kind of a hard, its ecosystem is not great, obviously.
