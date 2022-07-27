@@ -20,9 +20,9 @@ var __toESM = (module, isNodeMode) => {
   return __reExport(__markAsModule(__defProp(module != null ? __create(__getProtoOf(module)) : {}, "default", !isNodeMode && module && module.__esModule ? { get: () => module.default, enumerable: true } : { value: module, enumerable: true })), module);
 };
 
-// ns-hugo:/home/runner/work/blog/blog/assets/js/react.js
+// ns-hugo:/home/runner/work/blog/blog/assets/js/shims/react.js
 var require_react = __commonJS({
-  "ns-hugo:/home/runner/work/blog/blog/assets/js/react.js"(exports, module) {
+  "ns-hugo:/home/runner/work/blog/blog/assets/js/shims/react.js"(exports, module) {
     module.exports = window.React;
   }
 });
@@ -39,4 +39,4 @@ function App() {
   }, isShown ? "Hide me" : "Show me"), isShown && /* @__PURE__ */ React.createElement("div", null, "\u{1F60A}"));
 }
 var root = window.ReactDOM.createRoot(document.getElementById("676d9ae2ff8c916ced28df71c8e69992"));
-root.render(/* @__PURE__ */ React.createElement(App, null));
+root.render(/* @__PURE__ */ React.createElement(React.StrictMode, null, /* @__PURE__ */ React.createElement(App, null)));
