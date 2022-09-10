@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="f5851cb2a7e19cc4f9d9544cd9a52458"></div>
+
+    
+  
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18/umd/react..production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18/umd/react-dom..production.min.js"
+  ></script>
+
+
+    
+
+
+
+
+
+<script type="module">
+  // <stdin>
+function App() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const name = e.target.elements.name.value;
+    const age = e.target.elements.age.valueAsNumber;
+    alert(JSON.stringify({
+      name,
+      age
+    }));
+  };
+  return /* @__PURE__ */ React.createElement("form", {
+    onSubmit: handleSubmit
+  }, /* @__PURE__ */ React.createElement("label", null, "Name:", /* @__PURE__ */ React.createElement("input", {
+    name: "name"
+  })), /* @__PURE__ */ React.createElement("div", null), /* @__PURE__ */ React.createElement("label", null, "Age:", /* @__PURE__ */ React.createElement("input", {
+    name: "age",
+    type: "number"
+  })), /* @__PURE__ */ React.createElement("div", null), /* @__PURE__ */ React.createElement("button", null, "Submit"));
+}
+var appRoot = document.getElementById("f5851cb2a7e19cc4f9d9544cd9a52458");
+if ("createRoot" in window.ReactDOM) {
+  const root = window.ReactDOM.createRoot(appRoot);
+  root.render(/* @__PURE__ */ React.createElement(React.StrictMode, null, /* @__PURE__ */ React.createElement(App, null)));
+} else {
+  window.ReactDOM.render(/* @__PURE__ */ React.createElement(App, null), appRoot);
+}
+
+</script>
+
+  </body>
+</html>

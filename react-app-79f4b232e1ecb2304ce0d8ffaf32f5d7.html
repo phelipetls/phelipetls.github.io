@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <body>
+    <div id="79f4b232e1ecb2304ce0d8ffaf32f5d7"></div>
+
+    
+  
+  <script
+    crossorigin
+    src="https://unpkg.com/react@18.2.0/umd/react..production.min.js"
+  ></script>
+  <script
+    crossorigin
+    src="https://unpkg.com/react-dom@18.2.0/umd/react-dom..production.min.js"
+  ></script>
+
+
+    
+
+
+
+
+
+<script type="module">
+  // <stdin>
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __commonJS = (cb, mod) => function __require() {
+  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target, mod));
+var require_react = __commonJS({
+  "ns-hugo:/home/runner/work/blog/blog/assets/js/shims/react.js"(exports, module) {
+    module.exports = window.React;
+  }
+});
+var import_react = __toESM(require_react());
+function App() {
+  const [isOpen, setIsOpen] = (0, import_react.useState)(false);
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("span", null, "State: ", isOpen ? "open" : "closed"), /* @__PURE__ */ React.createElement("details", {
+    open: isOpen
+  }, /* @__PURE__ */ React.createElement("summary", {
+    onClick: (e) => {
+      e.preventDefault();
+      setIsOpen(!isOpen);
+    }
+  }, "Summary"), "Details"));
+}
+var appRoot = document.getElementById("79f4b232e1ecb2304ce0d8ffaf32f5d7");
+if ("createRoot" in window.ReactDOM) {
+  const root = window.ReactDOM.createRoot(appRoot);
+  root.render(/* @__PURE__ */ React.createElement(React.StrictMode, null, /* @__PURE__ */ React.createElement(App, null)));
+} else {
+  window.ReactDOM.render(/* @__PURE__ */ React.createElement(App, null), appRoot);
+}
+export {
+  App
+};
+
+</script>
+
+  </body>
+</html>
