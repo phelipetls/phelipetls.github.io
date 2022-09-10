@@ -2,7 +2,7 @@
 <script type=module defer src=https://phelipetls.github.io/js/bundle.min.js></script><meta name=description content="
     A blog to share my interests (mostly programming)
   "><meta name=publish-date content="2022-08-28"><meta name=last-modified-date content="2022-09-08"><meta name=keywords content="javascript,react"><title>How not to write forms with React |
-Phelipe Teles</title><meta property="og:title" content="How not to write forms with React"><meta property="og:description" content="Forms are easy to get wrong with React because we can achieve their goal, which is to make a network request when on submission, with any arbitrary HTML and JavaScript."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/how-not-to-write-forms-in-react/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-08-28T00:00:00+00:00"><meta property="article:modified_time" content="2022-09-08T19:47:50-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="How not to write forms with React"><meta name=twitter:description content="Forms are easy to get wrong with React because we can achieve their goal, which is to make a network request when on submission, with any arbitrary HTML and JavaScript."><link rel=stylesheet href="/css/main.min.css"><style>html{scroll-behavior:smooth}</style><link rel=stylesheet href=https://phelipetls.github.io/css/lite-yt-embed.min.css><link rel=stylesheet href=/css/dark-syntax-highlight.min.css></head><body data-preload class="h-full bg-background font-sans text-foreground transition-colors duration-500 ease-out"><script>(()=>{function a(e){localStorage.setItem("__theme",e)}function r(){return localStorage.getItem("__theme")||"auto"}function s(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function n(e){return e==="auto"?s():e}function o(e){const t=n(e);document.body.classList.toggle("dark",t==="dark")}function i(e){return new CustomEvent("newTheme",{detail:{themeChoice:e,theme:n(e)}})}function e(e){document.body.dispatchEvent(i(e))}window.__setTheme=function(t){if(!t)return;o(t),a(t),e(t)};var t=r();window.__setTheme(t),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),e(t)}),window.addEventListener("storage",function(e){const t=e.newValue;e.key==="__theme"&&window.__setTheme(t)})})()</script><div><div data-nav-container class="absolute top-0 z-0 h-nav-height w-full bg-background py-2"><div class="mx-auto flex h-full max-w-content items-center justify-between pr-page-padding"><nav class="no-scrollbar flex h-full items-center overflow-x-scroll py-1 px-page-padding" aria-label="Main navigation"><ul class="m-0 flex h-full list-none flex-row flex-nowrap items-center gap-2"><li class=h-full><a id=home href=https://phelipetls.github.io/ class="after:content-[''] after:absolute after:-z-1 after:bg-surface
+Phelipe Teles</title><meta property="og:title" content="How not to write forms with React"><meta property="og:description" content="Forms are easy to get wrong with React because we can achieve their goal, which is to make a network request when on submission, with any arbitrary HTML and JavaScript."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/how-not-to-write-forms-in-react/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-08-28T00:00:00+00:00"><meta property="article:modified_time" content="2022-09-08T19:47:50-03:00"><meta name=twitter:card content="summary"><meta name=twitter:title content="How not to write forms with React"><meta name=twitter:description content="Forms are easy to get wrong with React because we can achieve their goal, which is to make a network request when on submission, with any arbitrary HTML and JavaScript."><link rel=stylesheet href="/css/main.min.css"><style>html{scroll-behavior:smooth}</style><link rel=stylesheet href=https://phelipetls.github.io/css/lite-yt-embed.min.css><link rel=stylesheet href=/css/dark-syntax-highlight.min.css></head><body data-preload class="h-full bg-background font-sans text-foreground transition-colors duration-500 ease-out"><script>(()=>{window.__setTheme=s;var e=o();window.__setTheme(e),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),t(e)}),window.addEventListener("storage",function(e){const t=e.newValue;e.key==="__theme"&&window.__setTheme(t)});function s(e){if(!e)return;a(e),c(e),t(e)}function c(e){localStorage.setItem("__theme",e)}function o(){return localStorage.getItem("__theme")||"auto"}function i(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function n(e){return e==="auto"?i():e}function a(e){const t=n(e);document.body.classList.toggle("dark",t==="dark")}function r(e){return new CustomEvent("newTheme",{detail:{themeChoice:e,theme:n(e)}})}function t(e){document.body.dispatchEvent(r(e))}})()</script><div><div data-nav-container class="absolute top-0 z-0 h-nav-height w-full bg-background py-2"><div class="mx-auto flex h-full max-w-content items-center justify-between pr-page-padding"><nav class="no-scrollbar flex h-full items-center overflow-x-scroll py-1 px-page-padding" aria-label="Main navigation"><ul class="m-0 flex h-full list-none flex-row flex-nowrap items-center gap-2"><li class=h-full><a id=home href=https://phelipetls.github.io/ class="after:content-[''] after:absolute after:-z-1 after:bg-surface
 after:w-full after:h-full after:rounded-md after:shadow-md
 after:shadow-shadow after:scale-0 hover:after:scale-100
 after:opacity-0 hover:after:opacity-100
@@ -97,20 +97,20 @@ form.</p><p>Also, the user won&rsquo;t be able to submit it by pressing <kbd>Ent
 a text input, which can be frustrating because it&rsquo;s not how most forms on the
 web behave.</p><p>Let&rsquo;s fix it by using proper HTML elements:</p><div data-html-preview class="my-8 -mx-page-padding sm:mx-0"><div data-html-preview-codeblock-container style=--number-of-lines:20 class=sm:rounded-t-md data-is-expanded=true><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kd>function</span> <span class=nx>App</span><span class=p>()</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>handleSubmit</span> <span class=o>=</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>e</span><span class=p>.</span><span class=nx>preventDefault</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>username</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>elements</span><span class=p>[</span><span class=s1>&#39;username&#39;</span><span class=p>].</span><span class=nx>value</span>
-</span></span><span class=line><span class=cl>    <span class=nx>alert</span><span class=p>(</span><span class=sb>`Ok, </span><span class=si>${</span><span class=nx>username</span><span class=si>}</span><span class=sb>, I sent your data to our server ✨`</span><span class=p>)</span>
+</span></span><span class="line hl"><span class=cl>    <span class=nx>e</span><span class=p>.</span><span class=nx>preventDefault</span><span class=p>()</span>
+</span></span><span class="line hl"><span class=cl>    <span class=kr>const</span> <span class=nx>username</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>elements</span><span class=p>[</span><span class=s1>&#39;username&#39;</span><span class=p>].</span><span class=nx>value</span>
+</span></span><span class="line hl"><span class=cl>    <span class=nx>alert</span><span class=p>(</span><span class=sb>`Ok, </span><span class=si>${</span><span class=nx>username</span><span class=si>}</span><span class=sb>, I sent your data to our server ✨`</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>form</span> <span class=na>onSubmit</span><span class=o>=</span><span class=p>{</span><span class=nx>handleSubmit</span><span class=p>}&gt;</span>
-</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>label</span><span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>        <span class=nx>What</span><span class=err>&#39;</span><span class=nx>s</span> <span class=nx>your</span> <span class=nx>name</span><span class=o>?</span>
-</span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>input</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;username&#34;</span> <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Enter your name...&#34;</span> <span class=p>/&gt;</span>
-</span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>button</span><span class=p>&gt;</span><span class=nx>Submit</span><span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>    <span class=p>&lt;</span><span class=nt>form</span> <span class=na>onSubmit</span><span class=o>=</span><span class=p>{</span><span class=nx>handleSubmit</span><span class=p>}&gt;</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>&lt;</span><span class=nt>label</span><span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>        <span class=nx>What</span><span class=err>&#39;</span><span class=nx>s</span> <span class=nx>your</span> <span class=nx>name</span><span class=o>?</span>
+</span></span><span class="line hl"><span class=cl>        <span class=p>&lt;</span><span class=nt>input</span> <span class=na>name</span><span class=o>=</span><span class=s>&#34;username&#34;</span> <span class=na>placeholder</span><span class=o>=</span><span class=s>&#34;Enter your name...&#34;</span> <span class=p>/&gt;</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl>      <span class=p>&lt;</span><span class=nt>button</span><span class=p>&gt;</span><span class=nx>Submit</span><span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>    <span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>  <span class=p>)</span>
 </span></span><span class=line><span class=cl><span class=p>}</span>
 </span></span></code></pre></div><button data-copy-code-button class="btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100" aria-label="Copy code"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard" id="clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></button></div></div><hr><div data-html-preview-iframe-container class="relative bg-[white] py-8 px-page-padding sm:mx-0 sm:rounded-b-md sm:shadow-md sm:shadow-shadow"><button data-html-preview-iframe-refresh aria-label="Refresh app" class="btn-icon btn-icon-action btn-secondary absolute top-3 right-0 -translate-x-1/2 shadow-md shadow-shadow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></button>
@@ -135,17 +135,17 @@ DOM API necessary to do it.</p><p>For example, react-hook-form will give you an 
 their values as an argument to the onSubmit handler:</p><div data-html-preview class="my-8 -mx-page-padding sm:mx-0"><div data-html-preview-codeblock-container style=--number-of-lines:20 class=sm:rounded-t-md data-is-expanded=false><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kr>import</span> <span class=p>{</span> <span class=nx>useForm</span> <span class=p>}</span> <span class=nx>from</span> <span class=s1>&#39;react-hook-form&#39;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>App</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=p>{</span> <span class=nx>handleSubmit</span><span class=p>,</span> <span class=nx>register</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>useForm</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>onSubmit</span> <span class=o>=</span> <span class=p>(</span><span class=nx>d</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>alert</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>d</span><span class=p>))</span>
+</span></span><span class="line hl"><span class=cl>  <span class=kr>const</span> <span class=p>{</span> <span class=nx>handleSubmit</span><span class=p>,</span> <span class=nx>register</span> <span class=p>}</span> <span class=o>=</span> <span class=nx>useForm</span><span class=p>()</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl>  <span class=kr>const</span> <span class=nx>onSubmit</span> <span class=o>=</span> <span class=p>(</span><span class=nx>d</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class="line hl"><span class=cl>    <span class=nx>alert</span><span class=p>(</span><span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>d</span><span class=p>))</span>
 </span></span><span class=line><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>form</span> <span class=na>onSubmit</span><span class=o>=</span><span class=p>{</span><span class=nx>handleSubmit</span><span class=p>(</span><span class=nx>onSubmit</span><span class=p>)}&gt;</span>
+</span></span><span class="line hl"><span class=cl>    <span class=p>&lt;</span><span class=nt>form</span> <span class=na>onSubmit</span><span class=o>=</span><span class=p>{</span><span class=nx>handleSubmit</span><span class=p>(</span><span class=nx>onSubmit</span><span class=p>)}&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>label</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>        <span class=nx>Name</span><span class=o>:</span>
-</span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>input</span> <span class=p>{</span><span class=na>...register</span><span class=err>(&#39;</span><span class=na>name</span><span class=err>&#39;)</span><span class=p>}</span> <span class=p>/&gt;</span>
+</span></span><span class="line hl"><span class=cl>        <span class=p>&lt;</span><span class=nt>input</span> <span class=p>{</span><span class=na>...register</span><span class=err>(&#39;</span><span class=na>name</span><span class=err>&#39;)</span><span class=p>}</span> <span class=p>/&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>div</span> <span class=p>/&gt;</span>
@@ -154,9 +154,9 @@ their values as an argument to the onSubmit handler:</p><div data-html-preview c
 </span></span><span class=line><span class=cl>        <span class=nx>Age</span><span class=o>:</span>
 </span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>input</span>
 </span></span><span class=line><span class=cl>          <span class=na>type</span><span class=o>=</span><span class=s>&#34;number&#34;</span>
-</span></span><span class=line><span class=cl>          <span class=p>{</span><span class=na>...register</span><span class=err>(&#39;</span><span class=na>age</span><span class=err>&#39;,</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>            <span class=na>valueAsNumber</span><span class=err>:</span> <span class=na>true</span><span class=err>,</span>
-</span></span><span class=line><span class=cl>          <span class=p>}</span><span class=err>)</span><span class=p>}</span>
+</span></span><span class="line hl"><span class=cl>          <span class=p>{</span><span class=na>...register</span><span class=err>(&#39;</span><span class=na>age</span><span class=err>&#39;,</span> <span class=p>{</span>
+</span></span><span class="line hl"><span class=cl>            <span class=na>valueAsNumber</span><span class=err>:</span> <span class=na>true</span><span class=err>,</span>
+</span></span><span class="line hl"><span class=cl>          <span class=p>}</span><span class=err>)</span><span class=p>}</span>
 </span></span><span class=line><span class=cl>        <span class=p>/&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
@@ -170,19 +170,19 @@ their values as an argument to the onSubmit handler:</p><div data-html-preview c
 Show more<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></button><hr><div data-html-preview-iframe-container class="relative bg-[white] py-8 px-page-padding sm:mx-0 sm:rounded-b-md sm:shadow-md sm:shadow-shadow"><button data-html-preview-iframe-refresh aria-label="Refresh app" class="btn-icon btn-icon-action btn-secondary absolute top-3 right-0 -translate-x-1/2 shadow-md shadow-shadow"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-refresh-cw"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></button>
 <iframe class=max-w-full src=https://phelipetls.github.io/https:/phelipetls.github.io/posts/how-not-to-write-forms-in-react/react-app-251b00f90ab5121863ac42a3ae1ca0c5.html></iframe></div></div><p>Here&rsquo;s the equivalent JavaScript code we&rsquo;d need if we chose not to use
 react-hook-form:</p><div data-html-preview class="my-8 -mx-page-padding sm:mx-0"><div data-html-preview-codeblock-container style=--number-of-lines:20 class=sm:rounded-t-md data-is-expanded=false><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-jsx data-lang=jsx><span class=line><span class=cl><span class=kd>function</span> <span class=nx>App</span><span class=p>()</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>  <span class=kr>const</span> <span class=nx>handleSubmit</span> <span class=o>=</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
-</span></span><span class=line><span class=cl>    <span class=nx>e</span><span class=p>.</span><span class=nx>preventDefault</span><span class=p>()</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>name</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>elements</span><span class=p>.</span><span class=nx>name</span><span class=p>.</span><span class=nx>value</span>
-</span></span><span class=line><span class=cl>    <span class=kr>const</span> <span class=nx>age</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>elements</span><span class=p>.</span><span class=nx>age</span><span class=p>.</span><span class=nx>valueAsNumber</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>    <span class=nx>alert</span><span class=p>(</span>
-</span></span><span class=line><span class=cl>      <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>({</span>
-</span></span><span class=line><span class=cl>        <span class=nx>name</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>        <span class=nx>age</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>      <span class=p>})</span>
-</span></span><span class=line><span class=cl>    <span class=p>)</span>
-</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class="line hl"><span class=cl>  <span class=kr>const</span> <span class=nx>handleSubmit</span> <span class=o>=</span> <span class=p>(</span><span class=nx>e</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class="line hl"><span class=cl>    <span class=nx>e</span><span class=p>.</span><span class=nx>preventDefault</span><span class=p>()</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl>    <span class=kr>const</span> <span class=nx>name</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>elements</span><span class=p>.</span><span class=nx>name</span><span class=p>.</span><span class=nx>value</span>
+</span></span><span class="line hl"><span class=cl>    <span class=kr>const</span> <span class=nx>age</span> <span class=o>=</span> <span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>elements</span><span class=p>.</span><span class=nx>age</span><span class=p>.</span><span class=nx>valueAsNumber</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl>    <span class=nx>alert</span><span class=p>(</span>
+</span></span><span class="line hl"><span class=cl>      <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>({</span>
+</span></span><span class="line hl"><span class=cl>        <span class=nx>name</span><span class=p>,</span>
+</span></span><span class="line hl"><span class=cl>        <span class=nx>age</span><span class=p>,</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>})</span>
+</span></span><span class="line hl"><span class=cl>    <span class=p>)</span>
+</span></span><span class="line hl"><span class=cl>  <span class=p>}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>  <span class=k>return</span> <span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>form</span> <span class=na>onSubmit</span><span class=o>=</span><span class=p>{</span><span class=nx>handleSubmit</span><span class=p>}&gt;</span>
@@ -272,24 +272,24 @@ below.</p><div data-html-preview class="my-8 -mx-page-padding sm:mx-0"><div data
 </span></span><span class=line><span class=cl>        <span class=p>/&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>      <span class=p>{</span><span class=nx>errorMessage</span> <span class=o>&amp;&amp;</span> <span class=p>(</span>
-</span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>div</span>
-</span></span><span class=line><span class=cl>          <span class=na>style</span><span class=o>=</span><span class=p>{{</span>
-</span></span><span class=line><span class=cl>            <span class=nx>color</span><span class=o>:</span> <span class=s1>&#39;red&#39;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>          <span class=p>}}</span>
-</span></span><span class=line><span class=cl>        <span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>          <span class=err>❌</span> <span class=p>{</span><span class=nx>errorMessage</span><span class=p>}</span>
-</span></span><span class=line><span class=cl>        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>      <span class=p>)}</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>div</span>
-</span></span><span class=line><span class=cl>        <span class=na>style</span><span class=o>=</span><span class=p>{{</span>
-</span></span><span class=line><span class=cl>          <span class=nx>fontSize</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>          <span class=nx>color</span><span class=o>:</span> <span class=s1>&#39;grey&#39;</span><span class=p>,</span>
-</span></span><span class=line><span class=cl>        <span class=p>}}</span>
-</span></span><span class=line><span class=cl>      <span class=p>&gt;</span>
-</span></span><span class=line><span class=cl>        <span class=nx>This</span> <span class=nx>is</span> <span class=nx>what</span> <span class=nx>you</span><span class=err>&#39;</span><span class=nx>ll</span> <span class=nx>use</span> <span class=nx>to</span> <span class=nx>log</span> <span class=k>in</span>
-</span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>{</span><span class=nx>errorMessage</span> <span class=o>&amp;&amp;</span> <span class=p>(</span>
+</span></span><span class="line hl"><span class=cl>        <span class=p>&lt;</span><span class=nt>div</span>
+</span></span><span class="line hl"><span class=cl>          <span class=na>style</span><span class=o>=</span><span class=p>{{</span>
+</span></span><span class="line hl"><span class=cl>            <span class=nx>color</span><span class=o>:</span> <span class=s1>&#39;red&#39;</span><span class=p>,</span>
+</span></span><span class="line hl"><span class=cl>          <span class=p>}}</span>
+</span></span><span class="line hl"><span class=cl>        <span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>          <span class=err>❌</span> <span class=p>{</span><span class=nx>errorMessage</span><span class=p>}</span>
+</span></span><span class="line hl"><span class=cl>        <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>)}</span>
+</span></span><span class="line hl"><span class=cl>
+</span></span><span class="line hl"><span class=cl>      <span class=p>&lt;</span><span class=nt>div</span>
+</span></span><span class="line hl"><span class=cl>        <span class=na>style</span><span class=o>=</span><span class=p>{{</span>
+</span></span><span class="line hl"><span class=cl>          <span class=nx>fontSize</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span>
+</span></span><span class="line hl"><span class=cl>          <span class=nx>color</span><span class=o>:</span> <span class=s1>&#39;grey&#39;</span><span class=p>,</span>
+</span></span><span class="line hl"><span class=cl>        <span class=p>}}</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>&gt;</span>
+</span></span><span class="line hl"><span class=cl>        <span class=nx>This</span> <span class=nx>is</span> <span class=nx>what</span> <span class=nx>you</span><span class=err>&#39;</span><span class=nx>ll</span> <span class=nx>use</span> <span class=nx>to</span> <span class=nx>log</span> <span class=k>in</span>
+</span></span><span class="line hl"><span class=cl>      <span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>button</span><span class=p>&gt;</span><span class=nx>Submit</span><span class=p>&lt;/</span><span class=nt>button</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>form</span><span class=p>&gt;</span>
@@ -329,15 +329,15 @@ and
 </span></span><span class=line><span class=cl>          <span class=na>name</span><span class=o>=</span><span class=s>&#34;username&#34;</span>
 </span></span><span class=line><span class=cl>          <span class=na>value</span><span class=o>=</span><span class=p>{</span><span class=nx>username</span><span class=p>}</span>
 </span></span><span class=line><span class=cl>          <span class=na>onChange</span><span class=o>=</span><span class=p>{(</span><span class=nx>e</span><span class=p>)</span> <span class=p>=&gt;</span> <span class=nx>setUsername</span><span class=p>(</span><span class=nx>e</span><span class=p>.</span><span class=nx>target</span><span class=p>.</span><span class=nx>value</span><span class=p>)}</span>
-</span></span><span class=line><span class=cl>          <span class=na>aria</span><span class=err>-</span><span class=na>invalid</span><span class=o>=</span><span class=p>{</span><span class=nx>errorMessage</span> <span class=o>!==</span> <span class=s1>&#39;&#39;</span> <span class=o>?</span> <span class=s1>&#39;true&#39;</span> <span class=o>:</span> <span class=s1>&#39;false&#39;</span><span class=p>}</span>
-</span></span><span class=line><span class=cl>          <span class=na>aria</span><span class=err>-</span><span class=na>errormessage</span><span class=o>=</span><span class=s>&#34;username-errormessage&#34;</span>
-</span></span><span class=line><span class=cl>          <span class=na>aria</span><span class=err>-</span><span class=na>describedby</span><span class=o>=</span><span class=s>&#34;username-description&#34;</span>
+</span></span><span class="line hl"><span class=cl>          <span class=na>aria</span><span class=err>-</span><span class=na>invalid</span><span class=o>=</span><span class=p>{</span><span class=nx>errorMessage</span> <span class=o>!==</span> <span class=s1>&#39;&#39;</span> <span class=o>?</span> <span class=s1>&#39;true&#39;</span> <span class=o>:</span> <span class=s1>&#39;false&#39;</span><span class=p>}</span>
+</span></span><span class="line hl"><span class=cl>          <span class=na>aria</span><span class=err>-</span><span class=na>errormessage</span><span class=o>=</span><span class=s>&#34;username-errormessage&#34;</span>
+</span></span><span class="line hl"><span class=cl>          <span class=na>aria</span><span class=err>-</span><span class=na>describedby</span><span class=o>=</span><span class=s>&#34;username-description&#34;</span>
 </span></span><span class=line><span class=cl>        <span class=p>/&gt;</span>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;/</span><span class=nt>label</span><span class=p>&gt;</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=p>{</span><span class=nx>errorMessage</span> <span class=o>&amp;&amp;</span> <span class=p>(</span>
 </span></span><span class=line><span class=cl>        <span class=p>&lt;</span><span class=nt>div</span>
-</span></span><span class=line><span class=cl>          <span class=na>id</span><span class=o>=</span><span class=s>&#34;username-errormessage&#34;</span>
+</span></span><span class="line hl"><span class=cl>          <span class=na>id</span><span class=o>=</span><span class=s>&#34;username-errormessage&#34;</span>
 </span></span><span class=line><span class=cl>          <span class=na>style</span><span class=o>=</span><span class=p>{{</span>
 </span></span><span class=line><span class=cl>            <span class=nx>color</span><span class=o>:</span> <span class=s1>&#39;red&#39;</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>          <span class=p>}}</span>
@@ -347,7 +347,7 @@ and
 </span></span><span class=line><span class=cl>      <span class=p>)}</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>      <span class=p>&lt;</span><span class=nt>div</span>
-</span></span><span class=line><span class=cl>        <span class=na>id</span><span class=o>=</span><span class=s>&#34;username-description&#34;</span>
+</span></span><span class="line hl"><span class=cl>        <span class=na>id</span><span class=o>=</span><span class=s>&#34;username-description&#34;</span>
 </span></span><span class=line><span class=cl>        <span class=na>style</span><span class=o>=</span><span class=p>{{</span>
 </span></span><span class=line><span class=cl>          <span class=nx>fontSize</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>          <span class=nx>color</span><span class=o>:</span> <span class=s1>&#39;grey&#39;</span><span class=p>,</span>
