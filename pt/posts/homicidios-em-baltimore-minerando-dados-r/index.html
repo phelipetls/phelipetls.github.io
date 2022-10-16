@@ -91,7 +91,7 @@ em que ele faz uso de regular expressions para manipular e extrair informações
 de texto.</p><p>Neste post, pretendo explorar essa base mais a fundo, para depois, em um outro
 post, visualizar com o ggplot2 as informações coletadas.</p><p>A base de dados é um pouco soturna: trata-se de registros de homicídios na
 cidade de Baltimore, em Maryland, com detalhes incluindo a raça da vítima, seu
-sexo, o local em que morreu, a causa da morte etc.</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>tidyverse</span><span class=p>)</span>
+sexo, o local em que morreu, a causa da morte etc.</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=nf>library</span><span class=p>(</span><span class=n>tidyverse</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=n>homicides</span> <span class=o>&lt;-</span> <span class=nf>read_lines</span><span class=p>(</span><span class=s>&#34;https://raw.githubusercontent.com/hadv/PAR/master/homicides.txt&#34;</span><span class=p>)</span>
 </span></span><span class=line><span class=cl>
@@ -116,7 +116,7 @@ padrão e seus grupos.</p><h2 class="mb-8 mt-4 pt-4" id=causa-da-morte>Causa da 
 ela é registrada deste modo: “Cause: <em>descrição</em>”, sendo a descrição uma string
 de letras (<code>\w</code>) e espaços (<code>\s</code>), logo, <code>Cause: [\\w\\s]+</code>.</p><p>E queremos, na verdade, somente essa combinação, esse prefixo não nos interessa.
 Por isso, colocamos eles entre parênteses, formando um grupo, que vamos extrair
-da linha com a função <code>stringr::str_match</code>.</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=c1># note que, no r, precisamos infelizmente</span>
+da linha com a função <code>stringr::str_match</code>.</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=c1># note que, no r, precisamos infelizmente</span>
 </span></span><span class=line><span class=cl><span class=c1># adicionar uma \ a mais na regex,</span>
 </span></span><span class=line><span class=cl><span class=c1># porque \ é especial dentro de uma string no R</span>
 </span></span><span class=line><span class=cl><span class=n>causes</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
@@ -136,7 +136,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 <a class="text-primary border-0" href=#latitude-e-longitude>#</a></h2><p>Agora, a latitude e longitude. As strings que as representam são formadas por
 números <code>\d</code>, sinais de menos, <code>-</code> e pontos <code>.</code>. Para indicar que queremos um
 match no começo da linha, usaremos o metacharacter <code>^</code>. Observe que, dentro dos
-colchetes, o <code>.</code> não é um metacharacter, mas um ponto comum mesmo.</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>lat_long</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
+colchetes, o <code>.</code> não é um metacharacter, mas um ponto comum mesmo.</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>lat_long</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=n>homicides</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=s>&#34;^([\\d.-]+), ([\\d.-]+)&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>)</span>
@@ -154,7 +154,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 entanto, é mais irregular.</p><p>No início o registro é do tipo “black male” etc., enquanto que, mais para o
 final, se registra assim, “Race: black”. Temos que lidar com isso. Podemos
 indicar que desejamos um match numa regex OU em outra com o metacharacter <code>|</code>.
-Daí que:</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>raca</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
+Daí que:</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>raca</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=n>homicides</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=s>&#34;&lt;dd&gt;(\\w+) (fe)?male|[Rr]ace: (\\w+)&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>)</span>
@@ -167,7 +167,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 ## [4,] &quot;&lt;dd&gt;black male&quot;   &quot;black&quot; NA   NA
 ## [5,] &quot;&lt;dd&gt;white male&quot;   &quot;white&quot; NA   NA
 ## [6,] &quot;&lt;dd&gt;black male&quot;   &quot;black&quot; NA   NA
-</code></pre><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>raca</span> <span class=o>%&gt;%</span> <span class=nf>tail</span><span class=p>()</span></span></span></code></pre></div><button data-copy-code-button class="dark
+</code></pre><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>raca</span> <span class=o>%&gt;%</span> <span class=nf>tail</span><span class=p>()</span></span></span></code></pre></div><button data-copy-code-button class="dark
 btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard" id="clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></button></div><pre><code>##         [,1]          [,2] [,3] [,4]
 ## [1245,] &quot;Race: Black&quot; NA   NA   &quot;Black&quot;
 ## [1246,] &quot;Race: Black&quot; NA   NA   &quot;Black&quot;
@@ -178,7 +178,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 </code></pre><p>Veja que, inseri um grupo a mais para indicar que é opcional todo o grupo “fe”
 em sexo, ele pode ou não ocorrer. Daí que o uso de grupos pode não ser somente
 para extrair.</p><h2 class="mb-8 mt-4 pt-4" id=gênero>Gênero
-<a class="text-primary border-0" href=#g%c3%aanero>#</a></h2><p>Esse caso é muito similar ao anterior:</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>genero</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
+<a class="text-primary border-0" href=#g%c3%aanero>#</a></h2><p>Esse caso é muito similar ao anterior:</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>genero</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=n>homicides</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=s>&#34;&lt;dd&gt;\\w* (\\w+),?|[Gg]ender: (\\w+)&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>)</span>
@@ -191,7 +191,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 ## [4,] &quot;&lt;dd&gt;black male,&quot;   &quot;male&quot;   NA
 ## [5,] &quot;&lt;dd&gt;white male,&quot;   &quot;male&quot;   NA
 ## [6,] &quot;&lt;dd&gt;black male,&quot;   &quot;male&quot;   NA
-</code></pre><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>genero</span> <span class=o>%&gt;%</span> <span class=nf>tail</span><span class=p>()</span></span></span></code></pre></div><button data-copy-code-button class="dark
+</code></pre><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>genero</span> <span class=o>%&gt;%</span> <span class=nf>tail</span><span class=p>()</span></span></span></code></pre></div><button data-copy-code-button class="dark
 btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard" id="clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></button></div><pre><code>##         [,1]             [,2] [,3]
 ## [1245,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 ## [1246,] &quot;Gender: male&quot;   NA   &quot;male&quot;
@@ -200,7 +200,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 ## [1249,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 ## [1250,] &quot;Gender: male&quot;   NA   &quot;male&quot;
 </code></pre><h2 class="mb-8 mt-4 pt-4" id=idade>Idade
-<a class="text-primary border-0" href=#idade>#</a></h2><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>idade</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
+<a class="text-primary border-0" href=#idade>#</a></h2><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>idade</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=n>homicides</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=s>&#34;(\\d+) years? old|[Aa]ge: (\\d+)&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>)</span>
@@ -213,7 +213,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 ## [4,] &quot;21 years old&quot; &quot;21&quot; NA
 ## [5,] &quot;61 years old&quot; &quot;61&quot; NA
 ## [6,] &quot;46 years old&quot; &quot;46&quot; NA
-</code></pre><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>idade</span> <span class=o>%&gt;%</span> <span class=nf>tail</span><span class=p>()</span></span></span></code></pre></div><button data-copy-code-button class="dark
+</code></pre><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>idade</span> <span class=o>%&gt;%</span> <span class=nf>tail</span><span class=p>()</span></span></span></code></pre></div><button data-copy-code-button class="dark
 btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100" aria-label="Copiar código"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard" id="clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></button></div><pre><code>##         [,1]      [,2] [,3]
 ## [1245,] &quot;Age: 30&quot; NA   &quot;30&quot;
 ## [1246,] &quot;Age: 35&quot; NA   &quot;35&quot;
@@ -223,7 +223,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 ## [1250,] &quot;Age: 65&quot; NA   &quot;65&quot;
 </code></pre><h2 class="mb-8 mt-4 pt-4" id=data>Data
 <a class="text-primary border-0" href=#data>#</a></h2><p>Pelas primeiras linhas, vemos que a data normalmente vem depois de “Found on”.</p><p>Precisamos também uma regex para capturar a data. Ela deve conter:</p><ul><li>o mês por extenso, <code>\w+</code></li><li>seguido pelo dia, <code>\d{1,2}</code></li><li>seguido por uma vírgula, <code>,</code>.</li><li>e o ano, um número de 4 dígitos, <code>\d{4}</code>.</li></ul><p>Às vezes acontece de ter um espaço a mais depois do mês, por isso o espaço
-opcional a mais <code>?</code>.</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>data</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
+opcional a mais <code>?</code>.</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>data</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=n>homicides</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=s>&#34;[Ff]ound on (\\w+  ?\\d{1,2}, \\d{4})&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>)</span>
@@ -237,7 +237,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 ## [5,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 ## [6,] &quot;Found on January 5, 2007&quot; &quot;January 5, 2007&quot;
 </code></pre><h2 class="mb-8 mt-4 pt-4" id=endereço>Endereço
-<a class="text-primary border-0" href=#endere%c3%a7o>#</a></h2><p>Também pode ser interessante termos disponível o endereço de cada morte:</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>endereco</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
+<a class="text-primary border-0" href=#endere%c3%a7o>#</a></h2><p>Também pode ser interessante termos disponível o endereço de cada morte:</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>endereco</span> <span class=o>&lt;-</span> <span class=nf>str_match</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>  <span class=n>homicides</span><span class=p>,</span>
 </span></span><span class=line><span class=cl>  <span class=s>&#34;&gt;([A-z0-9 .]+)&lt;br ?/&gt;&#34;</span>
 </span></span><span class=line><span class=cl><span class=p>)</span>
@@ -254,7 +254,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 <a class="text-primary border-0" href=#agregando-tudo-em-um-dataframe>#</a></h2><p>Agora precisamos juntar tudo num data.frame. Vamos pegar só as colunas dos
 grupos que nos interessam.</p><p>Há casos em que há duas colunas para duas regex alternativas, e precisamos
 mesclá-las (substituir os <code>NA</code> de uma com os valores da outra). Vou usar a
-função <code>ifelse</code> para isso.</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>causas</span> <span class=o>&lt;-</span> <span class=n>causes[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span>
+função <code>ifelse</code> para isso.</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>causas</span> <span class=o>&lt;-</span> <span class=n>causes[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span>
 </span></span><span class=line><span class=cl><span class=n>lat</span> <span class=o>&lt;-</span> <span class=n>long_lat[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span>
 </span></span><span class=line><span class=cl><span class=n>lon</span> <span class=o>&lt;-</span> <span class=n>long_lat[</span><span class=p>,</span> <span class=m>3</span><span class=n>]</span>
 </span></span><span class=line><span class=cl><span class=n>raca</span> <span class=o>&lt;-</span> <span class=nf>ifelse</span><span class=p>(</span><span class=nf>is.na</span><span class=p>(</span><span class=n>raca[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span><span class=p>),</span> <span class=n>raca[</span><span class=p>,</span> <span class=m>4</span><span class=n>]</span><span class=p>,</span> <span class=n>raca[</span><span class=p>,</span> <span class=m>2</span><span class=n>]</span><span class=p>)</span>
@@ -284,7 +284,7 @@ btn btn-icon btn-icon-action pointer-events-none absolute right-0 top-3 hidden -
 </code></pre><p>E terminamos nossa limpeza dos dados. Na verdade, seria bom fazer algumas
 coisinhas antes, do tipo, uniformizar os valores das variáveis (alguns estão
 escritos em minúsculo enquanto outros não etc.), mudar o tipo das variáveis (a
-data precisa estar no formato Date) etc:</p><div data-codeblock class="group relative my-8"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>homicides_df</span> <span class=o>&lt;-</span> <span class=n>homicides_df</span> <span class=o>%&gt;%</span>
+data precisa estar no formato Date) etc:</p><div data-codeblock class="group relative"><div class=highlight><pre tabindex=0 class=chroma><code class=language-r data-lang=r><span class=line><span class=cl><span class=n>homicides_df</span> <span class=o>&lt;-</span> <span class=n>homicides_df</span> <span class=o>%&gt;%</span>
 </span></span><span class=line><span class=cl>  <span class=nf>mutate_at</span><span class=p>(</span>
 </span></span><span class=line><span class=cl>    <span class=nf>vars</span><span class=p>(</span><span class=n>causas</span><span class=p>,</span> <span class=n>raca</span><span class=p>,</span> <span class=n>genero</span><span class=p>),</span>
 </span></span><span class=line><span class=cl>    <span class=nf>list</span><span class=p>(</span><span class=o>~</span><span class=n>str_to_title</span><span class=p>)</span>
