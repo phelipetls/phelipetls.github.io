@@ -6,6 +6,8 @@ component in React, as pointed out in
 &lt;a
 href="https://github.com/facebook/react/issues/15486"
 rel="external"
+class="[&amp;_svg]:ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em]
+[&amp;_svg]:align-text-top"
 >this open GitHub
 issue&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/a>. At first, I thought it
 was a React bug, but at the end of my investigation while writing this, I
@@ -15,10 +17,14 @@ shell scripts.&lt;/p></description></item><item><title>Bash for JavaScript devel
 &lt;a
 href="http://vimdoc.sourceforge.net/htmldoc/editing.html#gf"
 rel="external"
+class="[&amp;_svg]:ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em]
+[&amp;_svg]:align-text-top"
 >&lt;code>:h gf&lt;/code>&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/a>.
 &lt;a
 href="https://vim.fandom.com/wiki/Open_file_under_cursor"
 rel="external"
+class="[&amp;_svg]:ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em]
+[&amp;_svg]:align-text-top"
 >This article
 explains well how this
 works&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/a>.&lt;/p></description></item><item><title>Automating SVG to JSX conversion with svgr</title><link>https://phelipetls.github.io/posts/automating-svg-to-jsx-conversion-with-svgr/</link><pubDate>Wed, 08 Sep 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/automating-svg-to-jsx-conversion-with-svgr/</guid><description>Transforming SVG files into JSX is boring and prone to error. We can handle it better with svgr. Its defaults are good enough, but you&amp;rsquo;ll likely need to customize it for your needs, which is made possible by writing a template.</description></item><item><title>Extending Vim with ripgrep</title><link>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</link><pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</guid><description>Take full advantage of Vim&amp;rsquo;s shel integration and the quick fix list.</description></item><item><title>Implementing dark mode for static websites</title><link>https://phelipetls.github.io/posts/implementing-dark-mode-for-static-websites/</link><pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/implementing-dark-mode-for-static-websites/</guid><description>From the basic to the hacky stuff you should do to deliver the best experience.</description></item><item><title>My experience testing React applications</title><link>https://phelipetls.github.io/posts/my-experience-testing-react-applications/</link><pubDate>Wed, 28 Apr 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/my-experience-testing-react-applications/</guid><description>Thoughts about writing integration tests for React apps, from
@@ -28,6 +34,8 @@ my surprise.&lt;/p></description></item><item><title>Deploying a Flask app on a 
 &lt;a
 href="https://stackoverflow.com/a/29102995"
 rel="external"
+class="[&amp;_svg]:ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em]
+[&amp;_svg]:align-text-top"
 >Stack Overflow&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>I really like Vim&amp;rsquo;s &lt;code>:h errorformat&lt;/code> feature, but only when I manage to get it
