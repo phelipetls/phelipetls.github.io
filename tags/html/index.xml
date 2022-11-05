@@ -6,7 +6,8 @@ rel="external"
 >this open GitHub
 issue&lt;span
 class="ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em] [&amp;_svg]:align-text-top"
->&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/span>&lt;/a>. At first, I thought it
+>&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>
+&lt;/span>&lt;/a>. At first, I thought it
 was a React bug, but at the end of my investigation while writing this, I
 concluded it&amp;rsquo;s simply a mistake &amp;ndash; not having a single source of truth for
 state.&lt;/p></description></item><item><title>Implementing dark mode for static websites</title><link>https://phelipetls.github.io/posts/implementing-dark-mode-for-static-websites/</link><pubDate>Thu, 29 Apr 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/implementing-dark-mode-for-static-websites/</guid><description>From the basic to the hacky stuff you should do to deliver the best experience.</description></item></channel></rss>

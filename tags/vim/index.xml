@@ -7,7 +7,8 @@ href="http://vimdoc.sourceforge.net/htmldoc/editing.html#gf"
 rel="external"
 >&lt;code>:h gf&lt;/code>&lt;span
 class="ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em] [&amp;_svg]:align-text-top"
->&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/span>&lt;/a>.
+>&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>
+&lt;/span>&lt;/a>.
 &lt;a
 href="https://vim.fandom.com/wiki/Open_file_under_cursor"
 rel="external"
@@ -15,7 +16,8 @@ rel="external"
 explains well how this
 works&lt;span
 class="ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em] [&amp;_svg]:align-text-top"
->&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/span>&lt;/a>.&lt;/p></description></item><item><title>Extending Vim with ripgrep</title><link>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</link><pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</guid><description>Take full advantage of Vim&amp;rsquo;s shel integration and the quick fix list.</description></item><item><title>Python f-strings syntax highlighting in Vim</title><link>https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/</link><pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/</guid><description>&lt;p>Getting Python syntax highlighting to work in Vim requires very little code, to
+>&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>
+&lt;/span>&lt;/a>.&lt;/p></description></item><item><title>Extending Vim with ripgrep</title><link>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</link><pubDate>Fri, 11 Jun 2021 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/extending-vim-with-ripgrep/</guid><description>Take full advantage of Vim&amp;rsquo;s shel integration and the quick fix list.</description></item><item><title>Python f-strings syntax highlighting in Vim</title><link>https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/</link><pubDate>Wed, 28 Oct 2020 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/f-strings-syntax-highlighting-in-vim/</guid><description>&lt;p>Getting Python syntax highlighting to work in Vim requires very little code, to
 my surprise.&lt;/p></description></item><item><title>A Vim errorformat for pytest</title><link>https://phelipetls.github.io/posts/vim-errorformat-for-pytest/</link><pubDate>Wed, 07 Oct 2020 00:00:00 +0000</pubDate><guid>https://phelipetls.github.io/posts/vim-errorformat-for-pytest/</guid><description>&lt;blockquote>
 &lt;p>Ah, errorformat, the feature everybody loves to hate. :) &amp;ndash; lcd047, on
 &lt;a
@@ -23,7 +25,8 @@ href="https://stackoverflow.com/a/29102995"
 rel="external"
 >Stack Overflow&lt;span
 class="ml-1 [&amp;_svg]:inline-block [&amp;_svg]:h-[1em] [&amp;_svg]:w-[1em] [&amp;_svg]:align-text-top"
->&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>&lt;/span>&lt;/a>&lt;/p>
+>&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">&lt;path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6">&lt;/path>&lt;polyline points="15 3 21 3 21 9">&lt;/polyline>&lt;line x1="10" y1="14" x2="21" y2="3">&lt;/line>&lt;/svg>
+&lt;/span>&lt;/a>&lt;/p>
 &lt;/blockquote>
 &lt;p>I really like Vim&amp;rsquo;s &lt;code>:h errorformat&lt;/code> feature, but only when I manage to get it
 right. Until then, I&amp;rsquo;m sure it will frustrate me more than once. It&amp;rsquo;s very
