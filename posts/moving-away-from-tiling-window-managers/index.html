@@ -1,240 +1,658 @@
-<!doctype html><html class="scroll-smooth scroll-pt-nav-height sm:scroll-pt-0
-h-full text-base selection:bg-primary selection:text-on-primary sm:text-lg" lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=deploy-date content="2022-11-07"><meta name=author content="Phelipe Teles"><meta name=color-scheme content="dark light"><style>@font-face{font-family:fira sans;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/fira-sans-v16-latin-regular.woff2)format('woff2')}@font-face{font-family:fira sans;font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/fira-sans-v16-latin-600.woff2)format('woff2')}@font-face{font-family:merriweather;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/merriweather-v30-latin-regular.woff2)format('woff2')}@font-face{font-family:merriweather;font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/merriweather-v30-latin-700.woff2)format('woff2')}</style><script async defer data-website-id=32b90065-c2a6-4390-9684-dfde99409815 src=https://umami-production-10b2.up.railway.app/main.js></script>
-<script type=module defer src=https://phelipetls.github.io/js/bundle.min.js></script><meta name=description content="Front-end web developer that writes about the programming craft and its tools"><meta name=publish-date content="2022-05-01"><meta name=last-modified-date content="2022-09-09"><meta name=keywords content="linux,dwm,gnome,ansible,fedora,ubuntu"><title>Moving away from tiling window managers |
-Phelipe Teles</title><meta property="og:title" content="Moving away from tiling window managers"><meta property="og:description" content="This is the story about how I&rsquo;m moving away from a tiling window manager, dwm, to a full-blown desktop environment, GNOME."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/moving-away-from-tiling-window-managers/"><meta property="og:image" content="https://phelipetls.github.io/posts/moving-away-from-tiling-window-managers/post-image.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-05-01T00:00:00+00:00"><meta property="article:modified_time" content="2022-09-09T18:49:39-03:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://phelipetls.github.io/posts/moving-away-from-tiling-window-managers/post-image.png"><meta name=twitter:title content="Moving away from tiling window managers"><meta name=twitter:description content="This is the story about how I&rsquo;m moving away from a tiling window manager, dwm, to a full-blown desktop environment, GNOME."><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=https://phelipetls.github.io/css/vendor/lite-yt-embed.min.css><link rel=stylesheet href=/css/dark-syntax-highlight.min.css></head><body data-preload class="ease h-full bg-background font-sans text-on-background transition-colors duration-500"><script>(()=>{window.__setTheme=s;var e=o();window.__setTheme(e),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),t(e)}),window.addEventListener("storage",function(e){const t=e.newValue;e.key==="__theme"&&window.__setTheme(t)});function s(e){if(!e)return;a(e),c(e),t(e)}function c(e){localStorage.setItem("__theme",e)}function o(){return localStorage.getItem("__theme")||"system"}function i(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function n(e){return e==="system"?i():e}function a(e){const t=n(e);document.body.classList.toggle("dark",t==="dark")}function r(e){return new CustomEvent("newTheme",{detail:{themeChoice:e,theme:n(e)}})}function t(e){document.body.dispatchEvent(r(e))}})()</script><div class="relative flex h-full flex-col"><div data-nav-container class="mb-8 w-full"><div class="pt-nav-height sm:hidden"><nav class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur" aria-label="Main navigation"><div class="flex flex-row items-center gap-2 overflow-hidden"><a class=border-0 href=https://phelipetls.github.io/posts/><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg></a><h2 class="m-0 truncate font-sans font-normal">Moving away from tiling window managers</h2></div><button data-a11y-dialog-show=sidenav class="btn btn-icon" aria-label="Open navigation sidebar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></nav></div><div class="hidden h-full w-full sm:block"><div class="flex h-full w-full items-center justify-between bg-background pr-horizontal-padding"><div class="mx-auto flex h-full w-full max-w-content justify-between"><nav class="flex h-full justify-between overflow-x-auto px-horizontal-padding" aria-label="Main navigation"><ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2"><li><a id=about href=https://phelipetls.github.io/ class="hover:bg-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span>About</span></a></li><li><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="bg-primary card hover:bg-primary-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span class=text-on-primary>Posts</span></a></li><li><a id=projects href=https://phelipetls.github.io/projects/ class="hover:bg-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span>Projects</span></a></li><li><a id=resume href=https://phelipetls.github.io/resume/ class="hover:bg-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span>Résumé</span></a></li></ul></nav><div class="h-full py-3"><div class="flex h-full flex-row items-stretch gap-2 pl-2"><div class="relative flex h-full flex-row items-center"><span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm"><svg class="feather" viewBox="0 0 24 24" width="24" height="24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs><use data-theme-select-icon href=#monitor></use></svg></span>
-<select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select id=theme-select aria-label="Choose a theme"><option value=light>Light</option><option value=dark>Dark</option><option value=system>System</option></select>
-<span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></div></div></div></div></div></div></div><aside data-a11y-dialog=sidenav aria-hidden=true class="fixed z-50 h-full w-full" style=visibility:hidden><div data-a11y-dialog-hide class="fixed inset-0 -z-1 w-full bg-neutral-700 bg-opacity-75 backdrop-blur-sm"></div><div role=document class="ml-auto h-full w-3/4 rounded-none bg-background py-0 will-change-transform"><div class="flex h-full flex-col justify-between"><div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding"><button data-a11y-dialog-hide class="btn btn-icon" aria-label=Close><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><nav class="flex flex-1 flex-col"><ul class="m-0 flex list-none flex-col items-center justify-center gap-4 px-horizontal-padding"><li class=w-full><a id=about href=https://phelipetls.github.io/ class="hover:bg-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">About</a></li><li class=w-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="card bg-primary text-on-primary hover:bg-primary-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">Posts</a></li><li class=w-full><a id=projects href=https://phelipetls.github.io/projects/ class="hover:bg-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">Projects</a></li><li class=w-full><a id=resume href=https://phelipetls.github.io/resume/ class="hover:bg-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">Résumé</a></li></ul></nav><div class="mb-4 flex h-12 flex-row items-center justify-center px-horizontal-padding"><div class="relative flex h-full flex-row items-center"><span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm"><svg class="feather" viewBox="0 0 24 24" width="24" height="24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs><use data-theme-select-icon href=#monitor></use></svg></span>
-<select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select id=theme-select aria-label="Choose a theme"><option value=light>Light</option><option value=dark>Dark</option><option value=system>System</option></select>
-<span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></div></div></div></div></aside><main class="grid grid-cols-layout"><div class="col-full max-w-full rounded-none px-horizontal-padding pt-8 shadow-none sm:col-content sm:px-0"><article><header><h1 class="mb-4 text-4xl">Moving away from tiling window managers</h1><div class="mb-4 flex flex-col gap-2"><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg><div>6 min.</div></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2022-05-01>May 01, 2022</time></div></div><div class="mb-4 flex flex-wrap gap-2"><a href=/tags/linux/ class="tag whitespace-nowrap">linux</a>
-<a href=/tags/dwm/ class="tag whitespace-nowrap">dwm</a>
-<a href=/tags/gnome/ class="tag whitespace-nowrap">gnome</a>
-<a href=/tags/ansible/ class="tag whitespace-nowrap">ansible</a>
-<a href=/tags/fedora/ class="tag whitespace-nowrap">fedora</a>
-<a href=/tags/ubuntu/ class="tag whitespace-nowrap">ubuntu</a>
-<a href=/tags class=tag aria-label="All tags">...</a></div></header><hr class=my-8><div class="flex flex-col-reverse lg:grid lg:grid-cols-[1fr,minmax(0,1fr)]"><div data-blog-post class="[&>pre]:full-width-on-mobile
-       [&>figure]:full-width-on-mobile
-    [&>[data-codeblock]]:full-width-on-mobile
-max-w-prose
-[&>[data-codeblock]_pre]:max-sm:rounded-none
-[&>[data-codeblock-with-header]]:mt-16
-[&_img]:mx-auto
-              [&>hr]:border-0
-[&>hr]:text-center
-              [&>hr]:after:content-['⁂']
-[&>pre]:my-8
-              [&>figure]:my-8
-[&>blockquote]:my-8
-              [&>figure_img]:bg-surface
-          [&>figure_img]:shadow
-              [&>figure_img]:shadow-shadow
-       [&>figure_img]:sm:rounded
-          [&>figure_video]:min-h-[15em]
-      [&>figure_video]:bg-surface
-        [&>figure_video]:shadow
-            [&>figure_video]:shadow-shadow
-     [&>figure_video]:sm:rounded
-        [&_.katex-display]:overflow-x-auto
- [&_.katex-display]:overflow-y-hidden"><p>This is the story about how I&rsquo;m moving away from a tiling window manager,
-<a href=https://dwm.suckless.org/ rel=external>dwm<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>, to a full-blown desktop environment,
-<a href=https://www.gnome.org/ rel=external>GNOME<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>. It&rsquo;s hardly an interesting story, but I feel
-like writing about it.</p><p>I started using tiling window managers quite early in my Linux desktop journey,
-which started in 2019 with
-<a href=https://xubuntu.org/ rel=external>Xubuntu<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><h2 class="mb-8 mt-4 pt-4" id=why-xubuntu>Why Xubuntu?
-<a class="text-primary border-0" href=#why-xubuntu>#</a></h2><p>My choice for Xubuntu was largely influenced by my hardware constraints: I
-wanted a lightweight distribution, meaning it shouldn&rsquo;t require too much of my
+<!DOCTYPE html>
+<html class="h-full text-lg selection:bg-primary selection:text-on-primary scroll-smooth scroll-pt-nav-height sm:scroll-pt-0" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="deploy-date" content="2023-01-05">
+    <meta name="author" content="Phelipe Teles">
+    <meta name="color-scheme" content="dark light">
+
+    <title>Moving away from tiling window managers - Phelipe Teles | Phelipe Teles</title>
+
+
+
+<link rel="canonical" href="https://phelipetls.github.io/posts/moving-away-from-tiling-window-managers/">
+
+<meta name="description" content="This is the story about how I’m moving away from a tiling window manager,
+dwm, to a full-blown desktop environment,
+GNOME. It’s hardly an interesting story, but I feel
+like writing about it.">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Moving away from tiling window managers">
+<meta property="og:type" content="article">
+<meta property="og:image" content="/posts/moving-away-from-tiling-window-managers/image.png">
+<meta property="og:url" content="https://phelipetls.github.io/posts/moving-away-from-tiling-window-managers/">
+
+
+
+<meta property="article:published_time" content="2022-05-01T00:00:00Z">
+
+
+<meta property="article:author" content="Phelipe Teles">
+
+<meta property="article:tag" content="linux"><meta property="article:tag" content="dwm"><meta property="article:tag" content="gnome"><meta property="article:tag" content="ansible"><meta property="article:tag" content="fedora"><meta property="article:tag" content="ubuntu">
+
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+
+<meta content="/posts/moving-away-from-tiling-window-managers/image.png" name="twitter:image">
+
+
+    
+
+
+    <meta name="publish-date" content="2022-05-01"><meta name="keywords" content="linux, dwm, gnome, ansible, fedora, ubuntu"><meta name="description" content="This is the story about how I’m moving away from a tiling window manager,
+dwm, to a full-blown desktop environment,
+GNOME. It’s hardly an interesting story, but I feel
+like writing about it."><style id="sandpack">--sxs{--sxs:1 sp-k-cESbVh sp-k-iOHdLQ}@media{@keyframes sp-k-cESbVh{0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-hfoyCM sp-c-fWymNx sp-c-dRhJti sp-c-bpmgvy sp-c-kLppIp sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-dRhJti{-webkit-appearance:none;appearance:none;border:0;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable)}.sp-c-dRhJti:disabled{color:var(--sp-colors-disabled)}.sp-c-dRhJti:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-dRhJti[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-dRhJti svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-dRhJti.sp-c-gMfcns{padding:var(--sp-space-1);width:var(--sp-space-7);height:var(--sp-space-7);display:flex}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}.sp-c-kLppIp{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);transition:flex var(--sp-transitions-default);gap:1px}.sp-c-kLppIp:has(.sp-stack){background-color:var(--sp-colors-surface2)}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
+  <link rel="stylesheet" href="/assets/index.json.3889a60a.css" />
+<link rel="stylesheet" href="/assets/_id_.addb8f3d.css" />
+<link rel="stylesheet" href="/assets/_id_.caa77277.css" /><script type="module" src="/hoisted.143e80f7.js"></script></head>
+
+  <body data-preload class="ease h-full bg-background font-sans text-on-background transition-colors duration-500">
+    <script>
+  // @ts-check
+  const storedThemeChoice = window.localStorage.getItem('__theme') ?? 'system'
+
+  window.__setTheme = setTheme
+  // prettier-ignore
+  window.__setTheme(/** @type {ThemeChoice} */ (storedThemeChoice))
+
+  /**
+   * @type {(themeChoice: ThemeChoice) => void}
+   */
+  function setTheme(themeChoice) {
+    let theme = themeChoice
+
+    if (themeChoice === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+    }
+
+    document.body.classList.toggle('dark', theme === 'dark')
+
+    window.localStorage.setItem('__theme', themeChoice)
+
+    document.body.dispatchEvent(
+      new CustomEvent('newTheme', {
+        detail: {
+          themeChoice,
+          theme,
+        },
+      })
+    )
+  }
+
+  window.addEventListener('storage', function (e) {
+    const newTheme = e.newValue
+    if (newTheme && newTheme && e.key === '__theme') {
+      // prettier-ignore
+      window.__setTheme(/** @type {ThemeChoice} */ (newTheme))
+    }
+  })
+
+  window.addEventListener('load', function () {
+    document.body.removeAttribute('data-preload')
+  })
+</script>
+
+
+    <div class="relative flex h-full flex-col">
+      <div class="mb-8 w-full">
+  <div class="pt-nav-height sm:hidden">
+    <div class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur">
+  <div class="flex flex-row items-center gap-2 overflow-hidden">
+    <a class="border-0" href="https://phelipetls.github.io/posts/moving-away-from-tiling-window-managers">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+
+    <h2 class="m-0 truncate font-sans font-normal">Moving away from tiling window managers - Phelipe Teles</h2>
+  </div>
+
+  <button data-a11y-dialog-show="sidenav" class="btn btn-icon" data-testid="open-sidenav" aria-label="Open navigation sidebar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+  </button>
+</div>
+  </div>
+
+  <div class="hidden h-full w-full sm:block">
+    <div class="flex h-full w-full items-center justify-between bg-background pr-horizontal-padding">
+  <div class="mx-auto flex h-full w-full max-w-content justify-between">
+    <nav class="flex h-full justify-between overflow-x-auto px-horizontal-padding" aria-label="Main navigation">
+      <ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2">
+        <li>
+                <a id="about" href="/" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
+                  About
+                </a>
+              </li><li>
+                <a id="posts" href="/posts" class="bg-primary text-on-primary card hover:bg-primary-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300" aria-current="page">
+                  Posts
+                </a>
+              </li><li>
+                <a id="projects" href="/projects" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
+                  Projects
+                </a>
+              </li><li>
+                <a id="resume" href="/resume" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
+                  Résumé
+                </a>
+              </li>
+      </ul>
+    </nav>
+
+    <div class="h-full py-3">
+      <div class="flex h-full flex-row items-stretch gap-2 pl-2">
+        <div class="relative flex h-full flex-row items-center">
+  <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
+      <title>Theme icon</title>
+
+      <defs>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+      </defs>
+
+      <use data-theme-select-icon href="#monitor"></use>
+    </svg>
+  </span>
+
+  <select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select aria-label="Choose a theme">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="system">System</option>
+  </select>
+
+  <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+      <aside data-a11y-dialog="sidenav" aria-hidden="true" class="fixed z-50 h-full w-full" style="visibility: hidden;">
+  <div data-a11y-dialog-hide class="fixed inset-0 -z-1 w-full bg-neutral-700 bg-opacity-75 backdrop-blur-sm">
+  </div>
+
+  <div role="document" class="ml-auto h-full w-3/4 rounded-none bg-background py-0 will-change-transform">
+    <div class="flex h-full flex-col justify-between">
+      <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
+        <button data-a11y-dialog-hide class="btn btn-icon" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-1 flex-col" aria-label="Main navigation">
+        <ul class="m-0 flex list-none flex-col items-center justify-center gap-4 px-horizontal-padding">
+          <li class="w-full">
+                  <a id="about" href="/" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
+                    About
+                  </a>
+                </li><li class="w-full">
+                  <a id="posts" href="/posts" class="card bg-primary text-on-primary hover:bg-primary-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300" aria-current="page">
+                    Posts
+                  </a>
+                </li><li class="w-full">
+                  <a id="projects" href="/projects" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
+                    Projects
+                  </a>
+                </li><li class="w-full">
+                  <a id="resume" href="/resume" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
+                    Résumé
+                  </a>
+                </li>
+        </ul>
+      </nav>
+
+      <div class="mb-4 flex h-12 flex-row items-center justify-center px-horizontal-padding">
+        <div class="relative flex h-full flex-row items-center">
+  <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
+      <title>Theme icon</title>
+
+      <defs>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+      </defs>
+
+      <use data-theme-select-icon href="#monitor"></use>
+    </svg>
+  </span>
+
+  <select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select aria-label="Choose a theme">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="system">System</option>
+  </select>
+
+  <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</aside>
+
+
+
+      <main class="grid grid-cols-layout">
+    <div class="col-full max-w-full rounded-none px-horizontal-padding pt-8 shadow-none sm:col-content sm:px-0">
+      <article>
+        <header>
+          <h1 class="mb-4 text-4xl">
+            Moving away from tiling window managers
+          </h1>
+
+          <div class="mb-4 flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+
+  <div>5 min.</div>
+</div>
+
+            <div class="flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+
+  <time datetime="2022-05-01">
+    May 01, 2022
+  </time>
+</div>
+          </div>
+
+          <div class="mb-4 flex flex-wrap gap-2">
+                <a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/linux">
+  linux
+</a><a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/dwm">
+  dwm
+</a><a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/gnome">
+  gnome
+</a><a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/ansible">
+  ansible
+</a><a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/fedora">
+  fedora
+</a><a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/ubuntu">
+  ubuntu
+</a>
+
+                <a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags">
+  ...
+</a>
+              </div>
+        </header>
+
+        <hr class="my-8">
+
+        <div class="flex flex-col-reverse lg:grid lg:grid-cols-[1fr,minmax(0,1fr)]">
+          <div data-blog-post class="[&#38;>pre]:full-width-on-mobile [&#38;>figure]:full-width-on-mobile [&#38;>[data-codeblock]]:full-width-on-mobile max-w-prose [&#38;>[data-codeblock]_pre]:max-sm:rounded-none [&#38;>[data-codeblock-with-header]]:mt-16 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>pre]:my-8 [&#38;>figure]:my-8 [&#38;>img]:my-8 [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_img]:bg-surface [&#38;>figure_img]:shadow [&#38;>figure_img]:shadow-shadow [&#38;>figure_img]:sm:rounded [&#38;>figure_video]:min-h-[15em] [&#38;>figure_video]:bg-surface [&#38;>figure_video]:shadow [&#38;>figure_video]:shadow-shadow [&#38;>figure_video]:sm:rounded [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden [&#38;_*:where(h2,h3,h4,h5,h6)]:mb-8 [&#38;_*:where(h2,h3,h4,h5,h6)]:mt-4 [&#38;_*:where(h2,h3,h4,h5,h6)]:pt-4 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:text-primary [&#38;_*:where(h2,h3,h4,h5,h6)_a]:border-0 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:before:content-[&#34;_#&#34;]">
+            <p>This is the story about how I’m moving away from a tiling window manager,
+<a href="https://dwm.suckless.org/">dwm</a>, to a full-blown desktop environment,
+<a href="https://www.gnome.org/">GNOME</a>. It’s hardly an interesting story, but I feel
+like writing about it.</p>
+<p>I started using tiling window managers quite early in my Linux desktop journey,
+which started in 2019 with <a href="https://xubuntu.org/">Xubuntu</a>.</p>
+<h2 id="why-xubuntu">Why Xubuntu?<a aria-hidden="true" tabIndex="-1" href="#why-xubuntu"><span class="icon icon-link"></span></a></h2>
+<p>My choice for Xubuntu was largely influenced by my hardware constraints: I
+wanted a lightweight distribution, meaning it shouldn’t require too much of my
 8GB of RAM (at the time). Because of that, I was later drawn into tiling window
-managers since that&rsquo;s as lightweight as you can get.</p><h2 class="mb-8 mt-4 pt-4" id=dwm-a-weird-choice-for-a-beginner>dwm, a weird choice for a beginner
-<a class="text-primary border-0" href=#dwm-a-weird-choice-for-a-beginner>#</a></h2><p>I made a weird choice for a beginner: dwm. I guess because I felt challenged by
+managers since that’s as lightweight as you can get.</p>
+<h2 id="dwm-a-weird-choice-for-a-beginner">dwm, a weird choice for a beginner<a aria-hidden="true" tabIndex="-1" href="#dwm-a-weird-choice-for-a-beginner"><span class="icon icon-link"></span></a></h2>
+<p>I made a weird choice for a beginner: dwm. I guess because I felt challenged by
 it, like what does it mean to compile it from source and configure it by
-changing its source code? Since I learned a ton from it, so I don&rsquo;t regret it,
-but it wasn&rsquo;t without struggles.</p><h3 class="mb-8 mt-4 pt-4" id=the-bad-parts>The bad parts
-<a class="text-primary border-0" href=#the-bad-parts>#</a></h3><p>It was perfect out of the box for my workflow for some time (mostly terminals
+changing its source code? Since I learned a ton from it, so I don’t regret it,
+but it wasn’t without struggles.</p>
+<h2 id="the-bad-parts">The bad parts<a aria-hidden="true" tabIndex="-1" href="#the-bad-parts"><span class="icon icon-link"></span></a></h2>
+<p>It was perfect out of the box for my workflow for some time (mostly terminals
 and Firefox), until I started to use more GUIs that have a lot of modal windows
 (like Android Studio, GIMP, Inkscape etc.) and whatnot, as you can attest by
-<a href=/posts/improving-the-android-studio-experience-in-dwm/ rel=external>my attempts to tweak
-it<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><p>It might come as a surprise that the function keys don&rsquo;t do anything out of the
-box &ndash; if you try to increase or decrease volume with it, nothing will happen.
+<a href="/posts/improving-the-android-studio-experience-in-dwm/">my attempts to tweak
+it</a>.</p>
+<p>It might come as a surprise that the function keys don’t do anything out of the
+box — if you try to increase or decrease volume with it, nothing will happen.
 You have to add this functionality yourself, typically by binding these keys to
 a shell script like
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/scripts/change-volume rel=external>this<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>,
+<a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/scripts/change-volume">this</a>,
 with software like
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/scripts/change-volume rel=external>sxhkd<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>
-or in your
-<a href=https://github.com/phelipetls/dotfiles/blob/0616a6e0879a8dbfa4373da14780a609773aa6c0/suckless/dwm/config.h#L74-L84 rel=external>dwm
-<code>config.h</code><span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><p>A notification system also needs to be set up,
-<a href=https://github.com/dunst-project/dunst rel=external>dunst<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a> being a popular choice. For
+<a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/scripts/change-volume">sxhkd</a>
+or in your <a href="https://github.com/phelipetls/dotfiles/blob/0616a6e0879a8dbfa4373da14780a609773aa6c0/suckless/dwm/config.h#L74-L84">dwm
+<code>config.h</code></a>.</p>
+<p>A notification system also needs to be set up,
+<a href="https://github.com/dunst-project/dunst">dunst</a> being a popular choice. For
 example, I used
-<a href=https://www.freedesktop.org/software/systemd/man/systemd.timer.html rel=external>systemd-timer<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>
-to
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/.config/systemd/user/battery-notifier.timer rel=external>check every
-minute<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>
-if my
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/scripts/battery-notifier rel=external>battery is dying or if it&rsquo;s fully
-charged<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><p>But this is all stuff you need to maintain. For example, the shell script I
-used to increase/decrease/mute volume worked fine in Xubuntu but not in Fedora.</p><p>The experience will likely never gonna be as good and polished as something you
-have out of the box with GNOME or KDE, as well.</p><h3 class="mb-8 mt-4 pt-4" id=the-good-parts>The good parts
-<a class="text-primary border-0" href=#the-good-parts>#</a></h3><p>Being lightweight is what made me stick with dwm initially, apart from
-curiosity. It hardly requires any RAM to work, and does it job very well.</p><p>Managing windows with dwm was often not a problem too (unless for some GUIs as
-I already noted, which wasn&rsquo;t typical for me anyway), the default keybindings
-are very well thought, and tagging windows is really powerful.</p><p>But I also don&rsquo;t mind Windows-style floating windows. I really like
-Windows-style <kbd>Alt</kbd>+<kbd>Tab</kbd> too, and that&rsquo;s something I missed, particularly to
-toggle between the last two used windows.</p><p>Tiling windows are not a huge productivity gain for me, since I don&rsquo;t have a
+<a href="https://www.freedesktop.org/software/systemd/man/systemd.timer.html">systemd-timer</a>
+to <a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/.config/systemd/user/battery-notifier.timer">check every
+minute</a>
+if my <a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/scripts/battery-notifier">battery is dying or if it’s fully
+charged</a>.</p>
+<p>But this is all stuff you need to maintain. For example, the shell script I
+used to increase/decrease/mute volume worked fine in Xubuntu but not in Fedora.</p>
+<p>The experience will likely never gonna be as good and polished as something you
+have out of the box with GNOME or KDE, as well.</p>
+<h2 id="the-good-parts">The good parts<a aria-hidden="true" tabIndex="-1" href="#the-good-parts"><span class="icon icon-link"></span></a></h2>
+<p>Being lightweight is what made me stick with dwm initially, apart from
+curiosity. It hardly requires any RAM to work, and does it job very well.</p>
+<p>Managing windows with dwm was often not a problem too (unless for some GUIs as
+I already noted, which wasn’t typical for me anyway), the default keybindings
+are very well thought, and tagging windows is really powerful.</p>
+<p>But I also don’t mind Windows-style floating windows. I really like
+Windows-style <kbd>Alt</kbd>+<kbd>Tab</kbd> too, and that’s something I missed, particularly to
+toggle between the last two used windows.</p>
+<p>Tiling windows are not a huge productivity gain for me, since I don’t have a
 huge monitor and other apps other terminals are less usable with half the
 screen real estate. In fact, I would mostly use monocle layout for GUI apps
-anyway.</p><h2 class="mb-8 mt-4 pt-4" id=gnome>GNOME
-<a class="text-primary border-0" href=#gnome>#</a></h2><p>Recently, I found myself more interested by beautiful user interfaces,
-animations etc.. dwm, of course, is by design very plain and boring.</p><p>So I decided to install Fedora 35, with comes with GNOME as desktop environment
-by default and my overall impression until now is that <strong>it&rsquo;s beautiful</strong>.</p><h3 class="mb-8 mt-4 pt-4" id=the-good-parts-1>The good parts
-<a class="text-primary border-0" href=#the-good-parts-1>#</a></h3><p>The whole desktop is beautiful, the animations are smooth and everything works
-out of the box, and that&rsquo;s a major good part.</p><p>This doesn&rsquo;t come at a cost in usability too. I love to use touchpad gestures
-to navigate through the desktop when I&rsquo;m being lazy laying on my bed browsing
-the web with one hand on the touchpad.</p><p>The notification system is pretty good too.</p><p>I&rsquo;m still getting familiar with the keybindings, but I&rsquo;m trying not to
-complicate it too much. For example, I didn&rsquo;t even add one to open a terminal.
+anyway.</p>
+<h2 id="gnome">GNOME<a aria-hidden="true" tabIndex="-1" href="#gnome"><span class="icon icon-link"></span></a></h2>
+<p>Recently, I found myself more interested by beautiful user interfaces,
+animations etc.. dwm, of course, is by design very plain and boring.</p>
+<p>So I decided to install Fedora 35, with comes with GNOME as desktop environment
+by default and my overall impression until now is that <strong>it’s beautiful</strong>.</p>
+<h2 id="the-good-parts-1">The good parts<a aria-hidden="true" tabIndex="-1" href="#the-good-parts-1"><span class="icon icon-link"></span></a></h2>
+<p>The whole desktop is beautiful, the animations are smooth and everything works
+out of the box, and that’s a major good part.</p>
+<p>This doesn’t come at a cost in usability too. I love to use touchpad gestures
+to navigate through the desktop when I’m being lazy laying on my bed browsing
+the web with one hand on the touchpad.</p>
+<p>The notification system is pretty good too.</p>
+<p>I’m still getting familiar with the keybindings, but I’m trying not to
+complicate it too much. For example, I didn’t even add one to open a terminal.
 I just hit <kbd>Super</kbd>, type Terminal and press <kbd>Enter</kbd> to open
-it.</p><p>I see now the value in not having to maintain your desktop environment. I guess
-I just declared
-<a href=https://www.emacswiki.org/emacs/DotEmacsBankruptcy rel=external>dotfiles
-bankruptcy<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>, I&rsquo;m wondering
-if one day I&rsquo;ll have to declare <code>init.vim</code> bankruptcy too&mldr;</p><p>Having learned that lesson, I&rsquo;ll try as much as possible to stick with the
-vanilla experience. As minimal tweaks as possible. It&rsquo;s best if I just get used
+it.</p>
+<p>I see now the value in not having to maintain your desktop environment. I guess
+I just declared <a href="https://www.emacswiki.org/emacs/DotEmacsBankruptcy">dotfiles
+bankruptcy</a>, I’m wondering
+if one day I’ll have to declare <code>init.vim</code> bankruptcy too…</p>
+<p>Having learned that lesson, I’ll try as much as possible to stick with the
+vanilla experience. As minimal tweaks as possible. It’s best if I just get used
 to the stock experience, be productive with it, and avoid maintaining various
-Ansible tasks to reproduce my desktop environment the way I like it.</p><h3 class="mb-8 mt-4 pt-4" id=the-bad-parts-1>The bad parts
-<a class="text-primary border-0" href=#the-bad-parts-1>#</a></h3><p>Unfortunately, there were more bad parts than I expected, but nothing major.
-Some of them are more Fedora-related than GNOME-related.</p><p>To start with one related to GNOME (or shall I say GNOME in Wayland): Alacritty
-window decorations are broken (as in not consistent, ugly etc.).
-<a href=https://github.com/alacritty/alacritty/issues/3258 rel=external>It seems to
+Ansible tasks to reproduce my desktop environment the way I like it.</p>
+<h2 id="the-bad-parts-1">The bad parts<a aria-hidden="true" tabIndex="-1" href="#the-bad-parts-1"><span class="icon icon-link"></span></a></h2>
+<p>Unfortunately, there were more bad parts than I expected, but nothing major.
+Some of them are more Fedora-related than GNOME-related.</p>
+<p>To start with one related to GNOME (or shall I say GNOME in Wayland): Alacritty
+window decorations are broken (as in not consistent, ugly etc.). <a href="https://github.com/alacritty/alacritty/issues/3258">It seems to
 be complicated who is the real
-culprit<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>, nevertheless it
+culprit</a>, nevertheless it
 happened and it sucked since I had to abandon my Alacritty configuration
 because of it in favor of GNOME terminal, which do not provide the convenience
-of a configuration file, so
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/roles/desktop/tasks/gnome.yml#L18-L22 rel=external>I had to came with a questionable way of doing
-it<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><p>Talking about configuration files, this is an issue with GNOME &ndash; it&rsquo;s very
+of a configuration file, so <a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/roles/desktop/tasks/gnome.yml#L18-L22">I had to came with a questionable way of doing
+it</a>.</p>
+<p>Talking about configuration files, this is an issue with GNOME — it’s very
 hard to keep configuration under source control. Essentially, the only way to
 configure it programmatically is with
-<a href=https://wiki.gnome.org/Projects/dconf rel=external>dconf<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>, which
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/roles/desktop/tasks/gnome.yml#L8-L16 rel=external>I have done with
-Ansible&rsquo;s
-help<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><p>Now, going into more Fedora-related issues&mldr; All videos outside YouTube and
-Netflix didn&rsquo;t play at all. Later I found this is solved by downloading the
-<code>ffmpeg-libs</code> from the
-<a href=https://rpmfusion.org/ rel=external>RPM fusion<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a> repository,
-<a href=https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/roles/desktop/tasks/linux.yml#L79-L94 rel=external>a step
+<a href="https://wiki.gnome.org/Projects/dconf">dconf</a>, which <a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/roles/desktop/tasks/gnome.yml#L8-L16">I have done with
+Ansible’s
+help</a>.</p>
+<p>Now, going into more Fedora-related issues… All videos outside YouTube and
+Netflix didn’t play at all. Later I found this is solved by downloading the
+<code>ffmpeg-libs</code> from the <a href="https://rpmfusion.org/">RPM fusion</a> repository, <a href="https://github.com/phelipetls/dotfiles/blob/df7cd1be47f216c42a8f9a82ad97dd913e3ce6bb/roles/desktop/tasks/linux.yml#L79-L94">a step
 I automated with Ansible
-too<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.
-Fedora apparently can&rsquo;t bundle some proprietary video codecs for our
-convenience because of legal reasons, so this is fine.</p><p>And also&mldr; GNOME takes a lot more RAM to work than dwm, obviously. I didn&rsquo;t
-find this to be an issue now, since I&rsquo;m mostly using a browser and doing
-lightweight front-end web development (my side projects), but it may be.</p><h2 class="mb-8 mt-4 pt-4" id=conclusion>Conclusion
-<a class="text-primary border-0" href=#conclusion>#</a></h2><p>I&rsquo;m oddly excited about experiencing this new desktop environment anyway, it&rsquo;s
+too</a>.
+Fedora apparently can’t bundle some proprietary video codecs for our
+convenience because of legal reasons, so this is fine.</p>
+<p>And also… GNOME takes a lot more RAM to work than dwm, obviously. I didn’t
+find this to be an issue now, since I’m mostly using a browser and doing
+lightweight front-end web development (my side projects), but it may be.</p>
+<h2 id="conclusion">Conclusion<a aria-hidden="true" tabIndex="-1" href="#conclusion"><span class="icon icon-link"></span></a></h2>
+<p>I’m oddly excited about experiencing this new desktop environment anyway, it’s
 a feeling familiar to my first time trying dwm as well, so I guess it has
-something to do with trying new stuff. But hope I won&rsquo;t be changing much, I
-hope I&rsquo;ll stick with GNOME for a very long time and just spend my time learning
-other things other than configuring my desktop environment &ndash; even though it&rsquo;s
-fun to do and I can&rsquo;t help myself doing it at times, it can spare me some time.</p></div><aside><div data-toc-wrapper class="w-full sm:overflow-y-auto lg:sticky lg:top-[1rem] lg:max-h-[calc(100vh-1rem)] lg:pb-8 lg:pl-8"><div class="hidden lg:block"><div class="flex justify-between gap-2"><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><h2 class=m-0>Table of Contents</h2></div><div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></div></div><div class="mt-4
-[&_a_*]:indent-0
+something to do with trying new stuff. But hope I won’t be changing much, I
+hope I’ll stick with GNOME for a very long time and just spend my time learning
+other things other than configuring my desktop environment — even though it’s
+fun to do and I can’t help myself doing it at times, it can spare me some time.</p>
+          </div>
+
+          <aside class="">
+            <div data-toc-wrapper class="w-full sm:overflow-y-auto lg:sticky lg:top-[1rem] lg:max-h-[calc(100vh-1rem)] lg:pb-8 lg:pl-8">
+      <div class="hidden lg:block">
+        <div class="flex justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+
+            <h2 class="m-0">Table of Contents</h2>
+          </div>
+
+          <div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+
+        <div class="
+          mt-4
+          [&_a_*]:indent-0
           [&_nav_ol]:m-0
-[&_nav_ol]:list-none
+          [&_nav_ol]:list-none
           [&_nav_ol]:indent-4
-[&_nav_ol_ol]:indent-8
+          [&_nav_ol_ol]:indent-8
           [&_nav_ol_ol_ol]:indent-12
-[&_nav_ol_ol_ol_ol]:indent-16
-      [&_nav_ol_li]:relative
+          [&_nav_ol_ol_ol_ol]:indent-16
+          [&_nav_ol_li]:relative
           [&_nav_ol_li]:before:absolute
-[&_nav_ol_li]:before:top-0
-         [&_nav_ol_li]:before:left-0
-        [&_nav_ol_li]:before:h-full
-        [&_nav_ol_li]:before:w-[1px]
-       [&_nav_ol_li]:before:bg-divider
-    [&_nav_ol_li]:before:content-['']
-  [&_nav_ol_li_a]:block
+          [&_nav_ol_li]:before:top-0
+          [&_nav_ol_li]:before:left-0
+          [&_nav_ol_li]:before:h-full
+          [&_nav_ol_li]:before:w-[1px]
+          [&_nav_ol_li]:before:bg-divider
+          [&_nav_ol_li]:before:content-['']
+          [&_nav_ol_li_a]:block
           [&_nav_ol_li_a]:truncate
-[&_nav_ol_li_a]:border-b-0
-         [&_nav_ol_li_a]:transition-colors
-  [&_nav_ol_li_a]:duration-500
-       [&_nav_ol_li_a:hover]:bg-hover
-     [&_nav_ol_li[data-active]]:before:bg-primary
-[&_nav_ol_li[data-active]>a]:text-primary"><nav data-toc><ol><li><a href=#why-xubuntu>Why Xubuntu?</a></li><li><a href=#dwm-a-weird-choice-for-a-beginner>dwm, a weird choice for a beginner</a><ol><li><a href=#the-bad-parts>The bad parts</a></li><li><a href=#the-good-parts>The good parts</a></li></ol></li><li><a href=#gnome>GNOME</a><ol><li><a href=#the-good-parts-1>The good parts</a></li><li><a href=#the-bad-parts-1>The bad parts</a></li></ol></li><li><a href=#conclusion>Conclusion</a></li></ol></nav></div></div><details class="card group mb-8 max-w-prose px-horizontal-padding py-4 lg:hidden" aria-label="Table of Contents"><summary class=list-none><div class="flex justify-between gap-2"><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><h2 class=m-0>Table of Contents</h2></div><div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></div></div></summary><div class="mt-4
-[&_ol]:m-0
+          [&_nav_ol_li_a]:border-b-0
+          [&_nav_ol_li_a]:transition-colors
+          [&_nav_ol_li_a]:duration-500
+          [&_nav_ol_li_a:hover]:bg-hover
+          [&_nav_ol_li[data-active]]:before:bg-primary
+          [&_nav_ol_li[data-active]>a]:text-primary
+       ">
+          <nav data-toc>
+  <ol>
+  <li>
+          <a href="#why-xubuntu">Why Xubuntu?</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#dwm-a-weird-choice-for-a-beginner">dwm, a weird choice for a beginner</a>
+
+          <ol>
+  <li>
+          <a href="#the-bad-parts">The bad parts</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#the-good-parts">The good parts</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+        </li><li>
+          <a href="#gnome">GNOME</a>
+
+          <ol>
+  <li>
+          <a href="#the-good-parts-1">The good parts</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#the-bad-parts-1">The bad parts</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+        </li><li>
+          <a href="#conclusion">Conclusion</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+</nav>
+        </div>
+      </div>
+
+      <details class="card group mb-8 max-w-prose px-horizontal-padding py-4 lg:hidden" aria-label="Table of Contents">
+        <summary class="list-none">
+          <div class="flex justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+
+              <h2 class="m-0">Table of Contents</h2>
+            </div>
+
+            <div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </summary>
+
+        <div class="
+          mt-4
+          [&_ol]:m-0
           [&_ol]:list-outside
-[&_ol]:px-horizontal-padding
-       [&_ol_li:not(:first-child)]:mt-1"><nav data-toc><ol><li><a href=#why-xubuntu>Why Xubuntu?</a></li><li><a href=#dwm-a-weird-choice-for-a-beginner>dwm, a weird choice for a beginner</a><ol><li><a href=#the-bad-parts>The bad parts</a></li><li><a href=#the-good-parts>The good parts</a></li></ol></li><li><a href=#gnome>GNOME</a><ol><li><a href=#the-good-parts-1>The good parts</a></li><li><a href=#the-bad-parts-1>The bad parts</a></li></ol></li><li><a href=#conclusion>Conclusion</a></li></ol></nav></div></details></div></aside></div></article><template data-theme-copy-code-tooltip-template><div data-theme-copy-code-tooltip role=tooltip class="dark pointer-events-none absolute rounded border border-green-500 bg-background px-2 text-on-background" style=opacity:0>Copied<div data-arrow class="dark absolute h-[8px] w-[8px] rotate-45 border-r border-b border-green-500 bg-background"></div></div></template><hr class="full-width-on-mobile mt-8"><div class="full-width-on-mobile sm:my-8"><nav class="flex items-stretch sm:gap-4" aria-label="Posts navigation"><a class="sm:card flex flex-none basis-1/2 flex-col gap-2 border-0 py-4 px-horizontal-padding transition-colors duration-500 hover:bg-hover" href=/posts/demystifying-git-rebase/><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>Demystifying git rebase</a><div class="border-l border-divider sm:hidden"></div><a class="sm:card flex flex-none basis-1/2 flex-col-reverse items-end justify-end gap-2 border-0 py-4 px-horizontal-padding text-right transition-colors duration-500 hover:bg-hover" href=/posts/discovering-tailscale/>Discovering Tailscale
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div><hr class="full-width-on-mobile mb-8"><template data-utterances-template><div class="grid place-items-center"><div data-utterances-loading role=progressbar class="[&_svg]:animate-spin [&_svg]:duration-[1500ms]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg></div><script src=https://utteranc.es/client.js data-repo=phelipetls/phelipetls.github.io data-issue-term=pathname crossorigin=anonymous data-theme=github-light async></script></div><hr class="mt-8 hidden sm:block"></template></div></main><footer class="mt-8 border-t border-divider bg-background sm:border-0"><div class="mx-auto flex w-full max-w-content flex-col items-center gap-2 px-horizontal-padding pt-4 pb-8 sm:justify-between"><nav aria-label=Contacts class="flex gap-2"><a id=contact-email class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></nav><span class=text-center>All content is under a
-<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
-license.</span></div></footer></div><script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>
+          [&_ol]:px-horizontal-padding
+          [&_ol_li:not(:first-child)]:mt-1
+        ">
+          <nav data-toc>
+  <ol>
+  <li>
+          <a href="#why-xubuntu">Why Xubuntu?</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#dwm-a-weird-choice-for-a-beginner">dwm, a weird choice for a beginner</a>
+
+          <ol>
+  <li>
+          <a href="#the-bad-parts">The bad parts</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#the-good-parts">The good parts</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+        </li><li>
+          <a href="#gnome">GNOME</a>
+
+          <ol>
+  <li>
+          <a href="#the-good-parts-1">The good parts</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#the-bad-parts-1">The bad parts</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+        </li><li>
+          <a href="#conclusion">Conclusion</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+</nav>
+        </div>
+      </details>
+    </div>
+
+
+          </aside>
+        </div>
+      </article>
+
+      <template data-theme-copy-code-tooltip-template>
+        <div data-theme-copy-code-tooltip role="tooltip" class="dark pointer-events-none absolute rounded border border-green-500 bg-background px-2 text-on-background" style="opacity: 0">
+          Copied
+
+          <div data-arrow class="dark absolute h-[8px] w-[8px] rotate-45 border-r border-b border-green-500 bg-background">
+          </div>
+        </div>
+      </template>
+
+      <hr class="full-width-on-mobile mt-8">
+
+      <div class="full-width-on-mobile sm:my-8">
+        <nav class="flex items-stretch sm:gap-4" aria-label="Posts navigation">
+  <a class="sm:card flex flex-none basis-1/2 flex-col gap-2 border-0 py-4 px-horizontal-padding transition-colors duration-500 hover:bg-hover" href="https://phelipetls.github.io/posts/demystifying-git-rebase">
+        <span class="text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </span>
+
+        Demystifying git rebase
+      </a>
+
+  <div class="border-l border-divider sm:hidden"></div>
+
+  <a class="sm:card flex flex-none basis-1/2 flex-col-reverse items-end justify-end gap-2 border-0 py-4 px-horizontal-padding text-right transition-colors duration-500 hover:bg-hover" href="https://phelipetls.github.io/posts/discovering-tailscale">
+        Discovering Tailscale
+
+        <span class="text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </a>
+</nav>
+      </div>
+
+      <hr class="full-width-on-mobile mb-8">
+    </div>
+  </main>
+
+      <footer class="mt-8 border-t border-divider bg-background sm:border-0">
+  <div class="mx-auto flex w-full max-w-content flex-col items-center gap-2 px-horizontal-padding pt-4 pb-8 sm:justify-between">
+    <nav aria-label="Contacts" class="flex gap-2">
+  <a class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" id="contact-email" href="phelipe_teles@hotmail.com" aria-label="E-mail">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+</a>
+
+  <a class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" id="contact-linkedin" href="https://linkedin.com/in/phelipeteles" aria-label="LinkedIn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+</a>
+
+  <a class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" id="contact-github" href="https://github.com/phelipetls" aria-label="GitHub">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+</a>
+</nav>
+
+    <span class="text-center">All content is under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+license.
+</span>
+  </div>
+</footer>
+    </div>
+  </body></html>

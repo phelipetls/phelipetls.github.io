@@ -1,243 +1,740 @@
-<!doctype html><html class="scroll-smooth scroll-pt-nav-height sm:scroll-pt-0
-h-full text-base selection:bg-primary selection:text-on-primary sm:text-lg" lang=en><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=deploy-date content="2022-11-07"><meta name=author content="Phelipe Teles"><meta name=color-scheme content="dark light"><style>@font-face{font-family:fira sans;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/fira-sans-v16-latin-regular.woff2)format('woff2')}@font-face{font-family:fira sans;font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/fira-sans-v16-latin-600.woff2)format('woff2')}@font-face{font-family:merriweather;font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/merriweather-v30-latin-regular.woff2)format('woff2')}@font-face{font-family:merriweather;font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/merriweather-v30-latin-700.woff2)format('woff2')}</style><script async defer data-website-id=32b90065-c2a6-4390-9684-dfde99409815 src=https://umami-production-10b2.up.railway.app/main.js></script>
-<script type=module defer src=https://phelipetls.github.io/js/bundle.min.js></script><meta name=description content="Front-end web developer that writes about the programming craft and its tools"><meta name=publish-date content="2022-09-29"><meta name=last-modified-date content="2022-09-29"><meta name=keywords content="vim"><title>Ergonomic mappings for code formatting in Vim |
-Phelipe Teles</title><meta property="og:title" content="Ergonomic mappings for code formatting in Vim"><meta property="og:description" content="Vim allows you to format text with an arbitrary external program with the :h gq operator. For example, say you want to format with prettier, you just
+<!DOCTYPE html>
+<html class="h-full text-lg selection:bg-primary selection:text-on-primary scroll-smooth scroll-pt-nav-height sm:scroll-pt-0" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="deploy-date" content="2023-01-05">
+    <meta name="author" content="Phelipe Teles">
+    <meta name="color-scheme" content="dark light">
+
+    <title>Ergonomic mappings for code formatting in Vim - Phelipe Teles | Phelipe Teles</title>
+
+
+
+<link rel="canonical" href="https://phelipetls.github.io/posts/code-formatting-vim/">
+
+<meta name="description" content="Vim allows you to format text with an arbitrary external program with the :h
+gq operator. For example, say you want to format with prettier, you just
 need to set :h 'formatprg' option to npx prettier --stdin-filepath %, and
 gqip will format the paragraph with it (it also works if you select the text
-first and then use gq &ndash; vipgq)."><meta property="og:type" content="article"><meta property="og:url" content="https://phelipetls.github.io/posts/code-formatting-vim/"><meta property="og:image" content="https://phelipetls.github.io/posts/code-formatting-vim/post-image.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2022-09-29T00:00:00+00:00"><meta property="article:modified_time" content="2022-09-29T08:36:48-03:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://phelipetls.github.io/posts/code-formatting-vim/post-image.png"><meta name=twitter:title content="Ergonomic mappings for code formatting in Vim"><meta name=twitter:description content="Vim allows you to format text with an arbitrary external program with the :h gq operator. For example, say you want to format with prettier, you just
+first and then use gq — vipgq).">
+
+<meta name="robots" content="index, follow">
+
+<meta property="og:title" content="Ergonomic mappings for code formatting in Vim">
+<meta property="og:type" content="article">
+<meta property="og:image" content="/posts/code-formatting-vim/image.png">
+<meta property="og:url" content="https://phelipetls.github.io/posts/code-formatting-vim/">
+
+
+
+<meta property="article:published_time" content="2022-09-29T00:00:00Z">
+
+
+<meta property="article:author" content="Phelipe Teles">
+
+<meta property="article:tag" content="vim">
+
+<meta name="twitter:card" content="summary_large_image">
+
+
+
+
+<meta content="/posts/code-formatting-vim/image.png" name="twitter:image">
+
+
+    
+
+
+    <meta name="publish-date" content="2022-09-29"><meta name="keywords" content="vim"><meta name="description" content="Vim allows you to format text with an arbitrary external program with the :h
+gq operator. For example, say you want to format with prettier, you just
 need to set :h 'formatprg' option to npx prettier --stdin-filepath %, and
 gqip will format the paragraph with it (it also works if you select the text
-first and then use gq &ndash; vipgq)."><link rel=stylesheet href="/css/main.min.css"><link rel=stylesheet href=https://phelipetls.github.io/css/vendor/lite-yt-embed.min.css><link rel=stylesheet href=/css/dark-syntax-highlight.min.css></head><body data-preload class="ease h-full bg-background font-sans text-on-background transition-colors duration-500"><script>(()=>{window.__setTheme=s;var e=o();window.__setTheme(e),window.addEventListener("load",function(){document.body.removeAttribute("data-preload"),t(e)}),window.addEventListener("storage",function(e){const t=e.newValue;e.key==="__theme"&&window.__setTheme(t)});function s(e){if(!e)return;a(e),c(e),t(e)}function c(e){localStorage.setItem("__theme",e)}function o(){return localStorage.getItem("__theme")||"system"}function i(){return window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}function n(e){return e==="system"?i():e}function a(e){const t=n(e);document.body.classList.toggle("dark",t==="dark")}function r(e){return new CustomEvent("newTheme",{detail:{themeChoice:e,theme:n(e)}})}function t(e){document.body.dispatchEvent(r(e))}})()</script><div class="relative flex h-full flex-col"><div data-nav-container class="mb-8 w-full"><div class="pt-nav-height sm:hidden"><nav class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur" aria-label="Main navigation"><div class="flex flex-row items-center gap-2 overflow-hidden"><a class=border-0 href=https://phelipetls.github.io/posts/><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"/></svg></a><h2 class="m-0 truncate font-sans font-normal">Ergonomic mappings for code formatting in Vim</h2></div><button data-a11y-dialog-show=sidenav class="btn btn-icon" aria-label="Open navigation sidebar"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button></nav></div><div class="hidden h-full w-full sm:block"><div class="flex h-full w-full items-center justify-between bg-background pr-horizontal-padding"><div class="mx-auto flex h-full w-full max-w-content justify-between"><nav class="flex h-full justify-between overflow-x-auto px-horizontal-padding" aria-label="Main navigation"><ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2"><li><a id=about href=https://phelipetls.github.io/ class="hover:bg-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span>About</span></a></li><li><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="bg-primary card hover:bg-primary-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span class=text-on-primary>Posts</span></a></li><li><a id=projects href=https://phelipetls.github.io/projects/ class="hover:bg-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span>Projects</span></a></li><li><a id=resume href=https://phelipetls.github.io/resume/ class="hover:bg-hover
-relative
-flex
-items-center
-justify-center
-rounded
-border-0
-py-1
-px-2
-transition-colors
-duration-300"><span>Résumé</span></a></li></ul></nav><div class="h-full py-3"><div class="flex h-full flex-row items-stretch gap-2 pl-2"><div class="relative flex h-full flex-row items-center"><span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm"><svg class="feather" viewBox="0 0 24 24" width="24" height="24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs><use data-theme-select-icon href=#monitor></use></svg></span>
-<select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select id=theme-select aria-label="Choose a theme"><option value=light>Light</option><option value=dark>Dark</option><option value=system>System</option></select>
-<span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></div></div></div></div></div></div></div><aside data-a11y-dialog=sidenav aria-hidden=true class="fixed z-50 h-full w-full" style=visibility:hidden><div data-a11y-dialog-hide class="fixed inset-0 -z-1 w-full bg-neutral-700 bg-opacity-75 backdrop-blur-sm"></div><div role=document class="ml-auto h-full w-3/4 rounded-none bg-background py-0 will-change-transform"><div class="flex h-full flex-col justify-between"><div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding"><button data-a11y-dialog-hide class="btn btn-icon" aria-label=Close><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><nav class="flex flex-1 flex-col"><ul class="m-0 flex list-none flex-col items-center justify-center gap-4 px-horizontal-padding"><li class=w-full><a id=about href=https://phelipetls.github.io/ class="hover:bg-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">About</a></li><li class=w-full><a id=posts href=https://phelipetls.github.io/posts/ aria-current=page class="card bg-primary text-on-primary hover:bg-primary-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">Posts</a></li><li class=w-full><a id=projects href=https://phelipetls.github.io/projects/ class="hover:bg-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">Projects</a></li><li class=w-full><a id=resume href=https://phelipetls.github.io/resume/ class="hover:bg-hover
-block
-w-full
-rounded
-border-0
-p-2
-text-center
-text-xl
-transition-colors
-duration-300">Résumé</a></li></ul></nav><div class="mb-4 flex h-12 flex-row items-center justify-center px-horizontal-padding"><div class="relative flex h-full flex-row items-center"><span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm"><svg class="feather" viewBox="0 0 24 24" width="24" height="24"><title>Theme icon</title><defs><svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg><svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><svg id="monitor" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></defs><use data-theme-select-icon href=#monitor></use></svg></span>
-<select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select id=theme-select aria-label="Choose a theme"><option value=light>Light</option><option value=dark>Dark</option><option value=system>System</option></select>
-<span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></span></div></div></div></div></aside><main class="grid grid-cols-layout"><div class="col-full max-w-full rounded-none px-horizontal-padding pt-8 shadow-none sm:col-content sm:px-0"><article><header><h1 class="mb-4 text-4xl">Ergonomic mappings for code formatting in Vim</h1><div class="mb-4 flex flex-col gap-2"><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-book-open"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg><div>1 min.</div></div><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg><time datetime=2022-09-29>September 29, 2022</time></div></div><div class="mb-4 flex flex-wrap gap-2"><a href=/tags/vim/ class="tag whitespace-nowrap">vim</a>
-<a href=/tags class=tag aria-label="All tags">...</a></div></header><hr class=my-8><div class="flex flex-col-reverse lg:grid lg:grid-cols-[1fr,minmax(0,1fr)]"><div data-blog-post class="[&>pre]:full-width-on-mobile
-       [&>figure]:full-width-on-mobile
-    [&>[data-codeblock]]:full-width-on-mobile
-max-w-prose
-[&>[data-codeblock]_pre]:max-sm:rounded-none
-[&>[data-codeblock-with-header]]:mt-16
-[&_img]:mx-auto
-              [&>hr]:border-0
-[&>hr]:text-center
-              [&>hr]:after:content-['⁂']
-[&>pre]:my-8
-              [&>figure]:my-8
-[&>blockquote]:my-8
-              [&>figure_img]:bg-surface
-          [&>figure_img]:shadow
-              [&>figure_img]:shadow-shadow
-       [&>figure_img]:sm:rounded
-          [&>figure_video]:min-h-[15em]
-      [&>figure_video]:bg-surface
-        [&>figure_video]:shadow
-            [&>figure_video]:shadow-shadow
-     [&>figure_video]:sm:rounded
-        [&_.katex-display]:overflow-x-auto
- [&_.katex-display]:overflow-y-hidden"><p>Vim allows you to format text with an arbitrary external program with the <code>:h gq</code> operator. For example, say you want to format with <code>prettier</code>, you just
-need to set <code>:h 'formatprg'</code> option to <code>npx prettier --stdin-filepath %</code>, and
+first and then use gq — vipgq)."><style id="sandpack">--sxs{--sxs:0 light sp-482805736}@media{.light{--sp-space-1:4px;--sp-space-2:8px;--sp-space-3:12px;--sp-space-4:16px;--sp-space-5:20px;--sp-space-6:24px;--sp-space-7:28px;--sp-space-8:32px;--sp-space-9:36px;--sp-space-10:40px;--sp-space-11:44px;--sp-border-radius:4px;--sp-layout-height:300px;--sp-layout-headerHeight:40px;--sp-transitions-default:150ms ease;--sp-zIndices-base:1;--sp-zIndices-overlay:2;--sp-zIndices-top:3;--sp-colors-surface1:#ffffff;--sp-colors-surface2:#EFEFEF;--sp-colors-surface3:#F3F3F3;--sp-colors-disabled:#C5C5C5;--sp-colors-base:#323232;--sp-colors-clickable:#808080;--sp-colors-hover:#4D4D4D;--sp-colors-accent:#3973E0;--sp-colors-error:#EA3323;--sp-colors-errorSurface:#FCF1F0;--sp-colors-warning:#6A4516;--sp-colors-warningSurface:#FEF2C0;--sp-font-body:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";--sp-font-mono:"Fira Mono", "DejaVu Sans Mono", Menlo, Consolas, "Liberation Mono", Monaco, "Lucida Console", monospace;--sp-font-size:13px;--sp-font-lineHeight:20px;--sp-syntax-color-plain:#151515;--sp-syntax-color-comment:#999;--sp-syntax-fontStyle-comment:italic;--sp-syntax-color-keyword:#7C5AE3;--sp-syntax-color-tag:#0971F1;--sp-syntax-color-punctuation:#3B3B3B;--sp-syntax-color-definition:#85A600;--sp-syntax-color-property:#3B3B3B;--sp-syntax-color-static:#3B3B3B;--sp-syntax-color-string:#2E6BD0}.sp-482805736{--sp-space-1:4px;--sp-space-2:8px;--sp-space-3:12px;--sp-space-4:16px;--sp-space-5:20px;--sp-space-6:24px;--sp-space-7:28px;--sp-space-8:32px;--sp-space-9:36px;--sp-space-10:40px;--sp-space-11:44px;--sp-border-radius:4px;--sp-layout-height:300px;--sp-layout-headerHeight:40px;--sp-transitions-default:150ms ease;--sp-zIndices-base:1;--sp-zIndices-overlay:2;--sp-zIndices-top:3;--sp-colors-surface1:#282c34;--sp-colors-surface2:#21252b;--sp-colors-surface3:#2c313c;--sp-colors-disabled:#4d4d4d;--sp-colors-base:#a8b1c2;--sp-colors-clickable:#a8b1c2;--sp-colors-hover:#e8effc;--sp-colors-accent:#c678dd;--sp-colors-error:#e06c75;--sp-colors-errorSurface:#ffeceb;--sp-colors-warning:#E7C400;--sp-colors-warningSurface:#3A3000;--sp-font-body:"Fira Sans", sans-serif;--sp-font-mono:Consolas, Menlo, Monaco, "Fira Code", monospace;--sp-font-size:1rem;--sp-font-lineHeight:1.5;--sp-syntax-color-plain:#a8b1c2;--sp-syntax-color-comment:#757575;--sp-syntax-fontStyle-comment:italic;--sp-syntax-color-keyword:#c678dd;--sp-syntax-color-tag:#e06c75;--sp-syntax-color-punctuation:#a8b1c2;--sp-syntax-color-definition:#62aeef;--sp-syntax-color-property:#d19a66;--sp-syntax-color-static:#a8b1c2;--sp-syntax-color-string:#98c379}}--sxs{--sxs:1 sp-k-cESbVh sp-k-iOHdLQ}@media{@keyframes sp-k-cESbVh{0%{opacity:0;transform:translateY(4px)}100%{opacity:1;transform:translateY(0)}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-hfoyCM sp-c-fWymNx sp-c-dRhJti sp-c-bpmgvy sp-c-kLppIp sp-c-PJLV sp-c-fVPbOs sp-c-bNbSGz sp-c-jOWzsE sp-c-jkvvao sp-c-bIhyHd sp-c-fgviib sp-c-eKnQtg}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-dRhJti{-webkit-appearance:none;appearance:none;border:0;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable)}.sp-c-dRhJti:disabled{color:var(--sp-colors-disabled)}.sp-c-dRhJti:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-dRhJti[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-dRhJti svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-dRhJti.sp-c-gMfcns{padding:var(--sp-space-1);width:var(--sp-space-7);height:var(--sp-space-7);display:flex}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}.sp-c-kLppIp{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);transition:flex var(--sp-transitions-default);gap:1px}.sp-c-kLppIp:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-fVPbOs{all:initial;font-size:var(--sp-font-size);font-family:var(--sp-font-body);display:block;box-sizing:border-box;text-rendering:optimizeLegibility;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:subpixel-antialiased}@media screen and (min-resolution: 2dppx){.sp-c-fVPbOs{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}}.sp-c-fVPbOs *{box-sizing:border-box}.sp-c-fVPbOs .sp-wrapper:focus{outline:0}.sp-c-bNbSGz{flex:1;position:relative;overflow:auto;background:var(--sp-colors-surface1)}.sp-c-bNbSGz .cm-scroller{padding:var(--sp-space-4) 0}.sp-c-bNbSGz .sp-c-fWymNx{padding:var(--sp-space-4) 0}.sp-c-jOWzsE{margin:0;outline:none;height:100%}.sp-c-jkvvao .sp-syntax-string{color:var(--sp-syntax-color-string);font-style:var(--sp-syntax-fontStyle-string)}.sp-c-jkvvao .sp-syntax-plain{color:var(--sp-syntax-color-plain);font-style:var(--sp-syntax-fontStyle-plain)}.sp-c-jkvvao .sp-syntax-comment{color:var(--sp-syntax-color-comment);font-style:var(--sp-syntax-fontStyle-comment)}.sp-c-jkvvao .sp-syntax-keyword{color:var(--sp-syntax-color-keyword);font-style:var(--sp-syntax-fontStyle-keyword)}.sp-c-jkvvao .sp-syntax-definition{color:var(--sp-syntax-color-definition);font-style:var(--sp-syntax-fontStyle-definition)}.sp-c-jkvvao .sp-syntax-punctuation{color:var(--sp-syntax-color-punctuation);font-style:var(--sp-syntax-fontStyle-punctuation)}.sp-c-jkvvao .sp-syntax-property{color:var(--sp-syntax-color-property);font-style:var(--sp-syntax-fontStyle-property)}.sp-c-jkvvao .sp-syntax-tag{color:var(--sp-syntax-color-tag);font-style:var(--sp-syntax-fontStyle-tag)}.sp-c-jkvvao .sp-syntax-static{color:var(--sp-syntax-color-static);font-style:var(--sp-syntax-fontStyle-static)}.sp-c-bIhyHd{flex:1;display:flex;flex-direction:column;background:white;overflow:auto;position:relative}.sp-c-fgviib{border:0;outline:0;width:100%;height:100%;min-height:160px;max-height:2000px;flex:1}.sp-c-eKnQtg{display:flex;position:absolute;bottom:var(--sp-space-2);right:var(--sp-space-2);z-index:var(--sp-zIndices-overlay)}.sp-c-eKnQtg > *{margin-left:var(--sp-space-2)}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail sp-c-fVPbOs-gMQIch-variant-light sp-c-fVPbOs-LrWkf-variant-dark}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}.sp-c-fVPbOs-gMQIch-variant-light{color-scheme:light}.sp-c-fVPbOs-LrWkf-variant-dark{color-scheme:dark}}</style>
+  <link rel="stylesheet" href="/assets/index.json.3889a60a.css" />
+<link rel="stylesheet" href="/assets/_id_.addb8f3d.css" />
+<link rel="stylesheet" href="/assets/_id_.caa77277.css" /><script type="module" src="/hoisted.143e80f7.js"></script></head>
+
+  <body data-preload class="ease h-full bg-background font-sans text-on-background transition-colors duration-500">
+    <script>
+  // @ts-check
+  const storedThemeChoice = window.localStorage.getItem('__theme') ?? 'system'
+
+  window.__setTheme = setTheme
+  // prettier-ignore
+  window.__setTheme(/** @type {ThemeChoice} */ (storedThemeChoice))
+
+  /**
+   * @type {(themeChoice: ThemeChoice) => void}
+   */
+  function setTheme(themeChoice) {
+    let theme = themeChoice
+
+    if (themeChoice === 'system') {
+      theme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        ? 'dark'
+        : 'light'
+    }
+
+    document.body.classList.toggle('dark', theme === 'dark')
+
+    window.localStorage.setItem('__theme', themeChoice)
+
+    document.body.dispatchEvent(
+      new CustomEvent('newTheme', {
+        detail: {
+          themeChoice,
+          theme,
+        },
+      })
+    )
+  }
+
+  window.addEventListener('storage', function (e) {
+    const newTheme = e.newValue
+    if (newTheme && newTheme && e.key === '__theme') {
+      // prettier-ignore
+      window.__setTheme(/** @type {ThemeChoice} */ (newTheme))
+    }
+  })
+
+  window.addEventListener('load', function () {
+    document.body.removeAttribute('data-preload')
+  })
+</script>
+
+
+    <div class="relative flex h-full flex-col">
+      <div class="mb-8 w-full">
+  <div class="pt-nav-height sm:hidden">
+    <div class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur">
+  <div class="flex flex-row items-center gap-2 overflow-hidden">
+    <a class="border-0" href="https://phelipetls.github.io/posts/code-formatting-vim">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
+        </a>
+
+    <h2 class="m-0 truncate font-sans font-normal">Ergonomic mappings for code formatting in Vim - Phelipe Teles</h2>
+  </div>
+
+  <button data-a11y-dialog-show="sidenav" class="btn btn-icon" data-testid="open-sidenav" aria-label="Open navigation sidebar">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
+  </button>
+</div>
+  </div>
+
+  <div class="hidden h-full w-full sm:block">
+    <div class="flex h-full w-full items-center justify-between bg-background pr-horizontal-padding">
+  <div class="mx-auto flex h-full w-full max-w-content justify-between">
+    <nav class="flex h-full justify-between overflow-x-auto px-horizontal-padding" aria-label="Main navigation">
+      <ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2">
+        <li>
+                <a id="about" href="/" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
+                  About
+                </a>
+              </li><li>
+                <a id="posts" href="/posts" class="bg-primary text-on-primary card hover:bg-primary-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300" aria-current="page">
+                  Posts
+                </a>
+              </li><li>
+                <a id="projects" href="/projects" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
+                  Projects
+                </a>
+              </li><li>
+                <a id="resume" href="/resume" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
+                  Résumé
+                </a>
+              </li>
+      </ul>
+    </nav>
+
+    <div class="h-full py-3">
+      <div class="flex h-full flex-row items-stretch gap-2 pl-2">
+        <div class="relative flex h-full flex-row items-center">
+  <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
+      <title>Theme icon</title>
+
+      <defs>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+      </defs>
+
+      <use data-theme-select-icon href="#monitor"></use>
+    </svg>
+  </span>
+
+  <select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select aria-label="Choose a theme">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="system">System</option>
+  </select>
+
+  <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+  </div>
+</div>
+      <aside data-a11y-dialog="sidenav" aria-hidden="true" class="fixed z-50 h-full w-full" style="visibility: hidden;">
+  <div data-a11y-dialog-hide class="fixed inset-0 -z-1 w-full bg-neutral-700 bg-opacity-75 backdrop-blur-sm">
+  </div>
+
+  <div role="document" class="ml-auto h-full w-3/4 rounded-none bg-background py-0 will-change-transform">
+    <div class="flex h-full flex-col justify-between">
+      <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
+        <button data-a11y-dialog-hide class="btn btn-icon" aria-label="Close">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+        </button>
+      </div>
+
+      <nav class="flex flex-1 flex-col" aria-label="Main navigation">
+        <ul class="m-0 flex list-none flex-col items-center justify-center gap-4 px-horizontal-padding">
+          <li class="w-full">
+                  <a id="about" href="/" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
+                    About
+                  </a>
+                </li><li class="w-full">
+                  <a id="posts" href="/posts" class="card bg-primary text-on-primary hover:bg-primary-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300" aria-current="page">
+                    Posts
+                  </a>
+                </li><li class="w-full">
+                  <a id="projects" href="/projects" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
+                    Projects
+                  </a>
+                </li><li class="w-full">
+                  <a id="resume" href="/resume" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
+                    Résumé
+                  </a>
+                </li>
+        </ul>
+      </nav>
+
+      <div class="mb-4 flex h-12 flex-row items-center justify-center px-horizontal-padding">
+        <div class="relative flex h-full flex-row items-center">
+  <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
+      <title>Theme icon</title>
+
+      <defs>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+      </defs>
+
+      <use data-theme-select-icon href="#monitor"></use>
+    </svg>
+  </span>
+
+  <select class="card h-full appearance-none bg-surface py-1 px-8 text-center" data-theme-select aria-label="Choose a theme">
+    <option value="light">Light</option>
+    <option value="dark">Dark</option>
+    <option value="system">System</option>
+  </select>
+
+  <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
+</div>
+
+
+      </div>
+    </div>
+  </div>
+</aside>
+
+
+
+      <main class="grid grid-cols-layout">
+    <div class="col-full max-w-full rounded-none px-horizontal-padding pt-8 shadow-none sm:col-content sm:px-0">
+      <article>
+        <header>
+          <h1 class="mb-4 text-4xl">
+            Ergonomic mappings for code formatting in Vim
+          </h1>
+
+          <div class="mb-4 flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-book-open"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+
+  <div>3 min.</div>
+</div>
+
+            <div class="flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+
+  <time datetime="2022-09-29">
+    September 29, 2022
+  </time>
+</div>
+          </div>
+
+          <div class="mb-4 flex flex-wrap gap-2">
+                <a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags/vim">
+  vim
+</a>
+
+                <a class="inline-flex w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-500 hover:border-divider hover:bg-hover whitespace-nowrap" href="/tags">
+  ...
+</a>
+              </div>
+        </header>
+
+        <hr class="my-8">
+
+        <div class="flex flex-col-reverse lg:grid lg:grid-cols-[1fr,minmax(0,1fr)]">
+          <div data-blog-post class="[&#38;>pre]:full-width-on-mobile [&#38;>figure]:full-width-on-mobile [&#38;>[data-codeblock]]:full-width-on-mobile max-w-prose [&#38;>[data-codeblock]_pre]:max-sm:rounded-none [&#38;>[data-codeblock-with-header]]:mt-16 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>pre]:my-8 [&#38;>figure]:my-8 [&#38;>img]:my-8 [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_img]:bg-surface [&#38;>figure_img]:shadow [&#38;>figure_img]:shadow-shadow [&#38;>figure_img]:sm:rounded [&#38;>figure_video]:min-h-[15em] [&#38;>figure_video]:bg-surface [&#38;>figure_video]:shadow [&#38;>figure_video]:shadow-shadow [&#38;>figure_video]:sm:rounded [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden [&#38;_*:where(h2,h3,h4,h5,h6)]:mb-8 [&#38;_*:where(h2,h3,h4,h5,h6)]:mt-4 [&#38;_*:where(h2,h3,h4,h5,h6)]:pt-4 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:text-primary [&#38;_*:where(h2,h3,h4,h5,h6)_a]:border-0 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:before:content-[&#34;_#&#34;]">
+            <p>Vim allows you to format text with an arbitrary external program with the <code>:h gq</code> operator. For example, say you want to format with <code>prettier</code>, you just
+need to set <code>:h &#39;formatprg&#39;</code> option to <code>npx prettier --stdin-filepath %</code>, and
 <code>gqip</code> will format the paragraph with it (it also works if you select the text
-first and then use <code>gq</code> &ndash; <code>vipgq</code>).</p><p>While this feature is great as is, it&rsquo;s still lacking</p><h2 class="mb-8 mt-4 pt-4" id=how-to-customize-gq>How to customize <code>gq</code>
-<a class="text-primary border-0" href=#how-to-customize-gq>#</a></h2><p>We can customize <code>gq</code> by remapping it to use the <code>g@</code> operator instead, which
-will run whatever function you pass to the <code>:h 'operatorfunc'</code> option. See <code>:h :map-operator</code> for more information.</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>Format</span><span class=p>(</span>...<span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>  &#34; Some logic here to do the formatting</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=nx>nmap</span> <span class=p>&lt;</span><span class=nx>silent</span><span class=p>&gt;</span> <span class=nx>gq</span> :<span class=nx>set</span> <span class=nx>operatorfunc</span><span class=p>=&lt;</span><span class=nx>SID</span><span class=p>&gt;</span><span class=nx>Format</span><span class=p>&lt;</span><span class=nx>CR</span><span class=p>&gt;</span><span class=nx>g</span>@<span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=nx>vmap</span> <span class=p>&lt;</span><span class=nx>silent</span><span class=p>&gt;</span> <span class=nx>gq</span> :<span class=p>&lt;</span><span class=nx>C</span><span class=p>-</span><span class=nx>U</span><span class=p>&gt;</span><span class=nx>set</span> <span class=nx>operatorfunc</span><span class=p>=&lt;</span><span class=nx>SID</span><span class=p>&gt;</span><span class=nx>Format</span><span class=p>&lt;</span><span class=nx>CR</span><span class=p>&gt;</span><span class=nx>gvg</span>@</span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><p>Now our job will consist of writing what the <code>s:Format</code> function does.</p><p>The most innocuous implementation is to simply execute the <code>gq</code> behavior,
-unchanged:</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>Format</span><span class=p>(</span>...<span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>normal</span><span class=p>!</span> <span class=s1>&#39;[v&#39;</span>]<span class=nx>gq</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span></span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><div data-alert data-note class="alert
-flex-col
-border-note
-sm:flex-row"><div class="text-note sm:block"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-info"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg></div><article class="overflow-x-hidden
-[&_h2]:first-of-type:mt-0
-      [&_h2]:first-of-type:pt-0"><p>We can programmatically run normal mode commands with <code>normal</code>. The <code>!</code> is
+first and then use <code>gq</code> — <code>vipgq</code>).</p>
+<p>While this feature is great as is, it’s still lacking</p>
+<h2 id="how-to-customize-gq">How to customize <code>gq</code><a aria-hidden="true" tabIndex="-1" href="#how-to-customize-gq"><span class="icon icon-link"></span></a></h2>
+<p>We can customize <code>gq</code> by remapping it to use the <code>g@</code> operator instead, which
+will run whatever function you pass to the <code>:h &#39;operatorfunc&#39;</code> option. See <code>:h :map-operator</code> for more information.</p>
+
+
+<link rel="stylesheet" href="/assets/index.json.3889a60a.css" />
+<link rel="stylesheet" href="/assets/_id_.addb8f3d.css" />
+<link rel="stylesheet" href="/assets/_id_.caa77277.css" /><script type="module" src="/hoisted.143e80f7.js"></script><div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:Format</span><span style="color:#ABB2BF">(...)</span></span><span class="line"><span style="color:#7F848E">  &quot; Some logic here to do the formatting</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"><span> </span></span><span class="line"><span style="color:#C678DD">nmap</span><span style="color:#ABB2BF"> &lt;</span><span style="color:#D19A66">silent</span><span style="color:#ABB2BF">&gt; gq :</span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> operatorfunc=&lt;</span><span style="color:#D19A66">SID</span><span style="color:#ABB2BF">&gt;Format&lt;</span><span style="color:#D19A66">CR</span><span style="color:#ABB2BF">&gt;g@</span></span><span class="line"><span style="color:#C678DD">vmap</span><span style="color:#ABB2BF"> &lt;</span><span style="color:#D19A66">silent</span><span style="color:#ABB2BF">&gt; gq :&lt;</span><span style="color:#D19A66">C-U</span><span style="color:#ABB2BF">&gt;</span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> operatorfunc=&lt;</span><span style="color:#D19A66">SID</span><span style="color:#ABB2BF">&gt;Format&lt;</span><span style="color:#D19A66">CR</span><span style="color:#ABB2BF">&gt;gvg@</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<p>Now our job will consist of writing what the <code>s:Format</code> function does.</p>
+<p>The most innocuous implementation is to simply execute the <code>gq</code> behavior,
+unchanged:</p>
+
+
+<div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:Format</span><span style="color:#ABB2BF">(...)</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">normal</span><span style="color:#ABB2BF">! </span><span style="color:#98C379">&#39;[v&#39;</span><span style="color:#ABB2BF">]gq</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<aside class="my-8 flex max-w-prose gap-4 rounded border-l bg-surface px-horizontal-padding py-4 shadow shadow-shadow sm:mx-0 flex-col sm:flex-row border-note">
+  <div class="hidden sm:block">
+    <div>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-info"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+  </div>
+  </div>
+
+  <article class="overflow-x-hidden [&_h2]:first-of-type:mt-0 [&_h2]:first-of-type:pt-0">
+    <p>We can programmatically run normal mode commands with <code>normal</code>. The <code>!</code> is
 necessary to run the original <code>gq</code> functionality (as if it was never remapped),
 otherwise this would result in an infinite recursion, calling <code>s:Format</code>
-function over and over.</p><p>The <code>'[v']</code> will select the text moved over by the <code>g@</code> operator (the text you
+function over and over.</p><p>The <code>&#39;[v&#39;]</code> will select the text moved over by the <code>g@</code> operator (the text you
 selected or moved over with <code>gqip</code>, see <code>:h mark-motions</code>), and then apply the
-original <code>gq</code> operator into it.</p></article></div><p>Of course, this is pointless, so let&rsquo;s add to that function to enhance our
-experience:</p><h2 class="mb-8 mt-4 pt-4" id=avoid-changing-the-jumplist>Avoid changing the jumplist
-<a class="text-primary border-0" href=#avoid-changing-the-jumplist>#</a></h2><p>The first small tweak is to avoid changing the jumplist when we format text,
-which we do by prefixing the command with <code>:h :keepjumps</code>.</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>Format</span><span class=p>(</span>...<span class=p>)</span><span class=err>
-</span></span></span><span class="line hl"><span class=cl><span class=err></span>  <span class=nx>keepjumps</span> <span class=nx>normal</span><span class=p>!</span> <span class=s1>&#39;[v&#39;</span>]<span class=nx>gq</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span></span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><h2 class="mb-8 mt-4 pt-4" id=silent-execution>Silent execution
-<a class="text-primary border-0" href=#silent-execution>#</a></h2><p>I also make the command execute silently, so I won&rsquo;t be interrupted by
-hit-enter prompts and error messages will not show up in the message history:</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>Format</span><span class=p>(</span>...<span class=p>)</span><span class=err>
-</span></span></span><span class="line hl"><span class=cl><span class=err></span>  <span class=nx>silent</span> <span class=nx>keepjumps</span> <span class=nx>normal</span><span class=p>!</span> <span class=s1>&#39;[v&#39;</span>]<span class=nx>gq</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span></span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><h2 class="mb-8 mt-4 pt-4" id=error-handling>Error handling
-<a class="text-primary border-0" href=#error-handling>#</a></h2><p>The external program might fail to format the file &ndash; e.g. there is a syntax
+original <code>gq</code> operator into it.</p>
+  </article>
+</aside>
+<p>Of course, this is pointless, so let’s add to that function to enhance our
+experience:</p>
+<h2 id="avoid-changing-the-jumplist">Avoid changing the jumplist<a aria-hidden="true" tabIndex="-1" href="#avoid-changing-the-jumplist"><span class="icon icon-link"></span></a></h2>
+<p>The first small tweak is to avoid changing the jumplist when we format text,
+which we do by prefixing the command with <code>:h :keepjumps</code>.</p>
+
+
+<div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim" metastring="{2}"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:Format</span><span style="color:#ABB2BF">(...)</span></span><span class="line highlighted"><span style="color:#ABB2BF">  keepjumps </span><span style="color:#C678DD">normal</span><span style="color:#ABB2BF">! </span><span style="color:#98C379">&#39;[v&#39;</span><span style="color:#ABB2BF">]gq</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<h2 id="silent-execution">Silent execution<a aria-hidden="true" tabIndex="-1" href="#silent-execution"><span class="icon icon-link"></span></a></h2>
+<p>I also make the command execute silently, so I won’t be interrupted by
+hit-enter prompts and error messages will not show up in the message history:</p>
+
+
+<div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim" metastring="{2}"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:Format</span><span style="color:#ABB2BF">(...)</span></span><span class="line highlighted"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">silent</span><span style="color:#ABB2BF"> keepjumps </span><span style="color:#C678DD">normal</span><span style="color:#ABB2BF">! </span><span style="color:#98C379">&#39;[v&#39;</span><span style="color:#ABB2BF">]gq</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<h2 id="error-handling">Error handling<a aria-hidden="true" tabIndex="-1" href="#error-handling"><span class="icon icon-link"></span></a></h2>
+<p>The external program might fail to format the file — e.g. there is a syntax
 error and <code>prettier</code> refuses to format it. The default experience is bad
 because your code will be replaced by error messages, which is absolutely not
-something anyone would want.</p><p><a href=https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c rel=external>I originally learned about how to work around this in a GitHub gist by
-romainl<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>:</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>Format</span><span class=p>(</span>...<span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>silent</span> <span class=nx>keepjumps</span> <span class=nx>normal</span><span class=p>!</span> <span class=s1>&#39;[v&#39;</span>]<span class=nx>gq</span><span class=err>
-</span></span></span><span class="line hl"><span class=cl><span class=err></span>  <span class=k>if</span> <span class=nx>v</span>:<span class=nx>shell_error</span> <span class=p>&gt;</span> <span class=m>0</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=nx>silent</span> <span class=nx>undo</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=nx>echohl</span> <span class=nx>ErrorMsg</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=nx>echomsg</span> <span class=s1>&#39;formatprg &#34;&#39;</span> . &amp;<span class=nx>formatprg</span> . <span class=s1>&#39;&#34; exited with status &#39;</span> . <span class=nx>v</span>:<span class=nx>shell_error</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=nx>echohl</span> <span class=nx>None</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=k>endif</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span></span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><p>After <code>gq</code> is used, we can check if an error occurred during the executing of
+something anyone would want.</p>
+<p><a href="https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c">I originally learned about how to work around this in a GitHub gist by
+romainl</a>:</p>
+
+
+<div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim" metastring="{3-7}"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:Format</span><span style="color:#ABB2BF">(...)</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">silent</span><span style="color:#ABB2BF"> keepjumps </span><span style="color:#C678DD">normal</span><span style="color:#ABB2BF">! </span><span style="color:#98C379">&#39;[v&#39;</span><span style="color:#ABB2BF">]gq</span></span><span class="line highlighted"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">if</span><span style="color:#ABB2BF"> v:shell_error &gt; </span><span style="color:#D19A66">0</span></span><span class="line highlighted"><span style="color:#ABB2BF">    </span><span style="color:#C678DD">silent</span><span style="color:#ABB2BF"> undo</span></span><span class="line highlighted"><span style="color:#ABB2BF">    </span><span style="color:#56B6C2">echohl</span><span style="color:#ABB2BF"> ErrorMsg</span></span><span class="line highlighted"><span style="color:#ABB2BF">    echomsg </span><span style="color:#98C379">&#39;formatprg &quot;&#39;</span><span style="color:#ABB2BF"> . &amp;formatprg . </span><span style="color:#98C379">&#39;&quot; exited with status &#39;</span><span style="color:#ABB2BF"> . v:shell_error</span></span><span class="line highlighted"><span style="color:#ABB2BF">    </span><span style="color:#56B6C2">echohl</span><span style="color:#ABB2BF"> None</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">endif</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<p>After <code>gq</code> is used, we can check if an error occurred during the executing of
 <code>formatprg</code> with the <code>v:shell_error</code> special variable, which holds the
-program&rsquo;s exit code. If it&rsquo;s non-zero, it means the command failed so we undo
-the operation and show up an error message.</p><h2 class="mb-8 mt-4 pt-4" id=format-file-preserving-cursor-position>Format file preserving cursor position
-<a class="text-primary border-0" href=#format-file-preserving-cursor-position>#</a></h2><p>I also learned this from
-<a href=https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c rel=external>romainl&rsquo;s GitHub
-gist<span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a>.</p><p>The procedure remains almost unchanged, if only slightly refactored into one
-function, mapped to <code>gQ</code>:</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>FormatFile</span><span class=p>()</span> <span class=nx>abort</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=k>let</span> <span class=nx>w</span>:<span class=nx>view</span> <span class=p>=</span> <span class=nx>winsaveview</span><span class=p>()</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>keepjumps</span> <span class=nx>normal</span><span class=p>!</span> <span class=nx>gg</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>set</span> <span class=nx>operatorfunc</span><span class=p>=&lt;</span><span class=nx>SID</span><span class=p>&gt;</span><span class=nx>Format</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>keepjumps</span> <span class=nx>normal</span><span class=p>!</span> <span class=nx>g</span>@<span class=nx>G</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>keepjumps</span> <span class=nx>call</span> <span class=nx>winrestview</span><span class=p>(</span><span class=nx>w</span>:<span class=nx>view</span><span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=nx>unlet</span> <span class=nx>w</span>:<span class=nx>view</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=nx>nmap</span> <span class=p>&lt;</span><span class=nx>silent</span><span class=p>&gt;</span> <span class=nx>gQ</span> :<span class=nx>call</span> <span class=p>&lt;</span><span class=nx>SID</span><span class=p>&gt;</span><span class=nx>FormatFile</span><span class=p>()&lt;</span><span class=nx>CR</span><span class=p>&gt;</span></span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><p>It consists of saving the current window view with <code>:h winsaveview()</code>, running
+program’s exit code. If it’s non-zero, it means the command failed so we undo
+the operation and show up an error message.</p>
+<h2 id="format-file-preserving-cursor-position">Format file preserving cursor position<a aria-hidden="true" tabIndex="-1" href="#format-file-preserving-cursor-position"><span class="icon icon-link"></span></a></h2>
+<p>I also learned this from <a href="https://gist.github.com/romainl/d2ad868afd7520519057475bd8e9db0c">romainl’s GitHub
+gist</a>.</p>
+<p>The procedure remains almost unchanged, if only slightly refactored into one
+function, mapped to <code>gQ</code>:</p>
+
+
+<div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:FormatFile</span><span style="color:#ABB2BF">() </span><span style="color:#C678DD">abort</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">let</span><span style="color:#ABB2BF"> w:view = </span><span style="color:#61AFEF">winsaveview</span><span style="color:#ABB2BF">()</span></span><span class="line"><span style="color:#ABB2BF">  keepjumps </span><span style="color:#C678DD">normal</span><span style="color:#ABB2BF">! gg</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> operatorfunc=&lt;</span><span style="color:#D19A66">SID</span><span style="color:#ABB2BF">&gt;Format</span></span><span class="line"><span style="color:#ABB2BF">  keepjumps </span><span style="color:#C678DD">normal</span><span style="color:#ABB2BF">! g@G</span></span><span class="line"><span style="color:#ABB2BF">  keepjumps </span><span style="color:#C678DD">call</span><span style="color:#ABB2BF"> </span><span style="color:#61AFEF">winrestview</span><span style="color:#ABB2BF">(w:view)</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">unlet</span><span style="color:#ABB2BF"> w:view</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"><span> </span></span><span class="line"><span style="color:#C678DD">nmap</span><span style="color:#ABB2BF"> &lt;</span><span style="color:#D19A66">silent</span><span style="color:#ABB2BF">&gt; gQ :</span><span style="color:#C678DD">call</span><span style="color:#ABB2BF"> &lt;</span><span style="color:#D19A66">SID</span><span style="color:#ABB2BF">&gt;</span><span style="color:#61AFEF">FormatFile</span><span style="color:#ABB2BF">()&lt;</span><span style="color:#D19A66">CR</span><span style="color:#ABB2BF">&gt;</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<p>It consists of saving the current window view with <code>:h winsaveview()</code>, running
 the operator as usual but moving over the entire file with <code>ggg@G</code> (but tries
-not to modify the jumplist), then restore the window view with <code>:h winrestview()</code>.</p><h2 class="mb-8 mt-4 pt-4" id=integration-with-cocnvim>Integration with coc.nvim
-<a class="text-primary border-0" href=#integration-with-cocnvim>#</a></h2><p>Since I use
-<a href=https://github.com/neoclide/coc.nvim rel=external><code>coc.nvim</code><span class="ml-1 [&_svg]:inline-block [&_svg]:h-[1em] [&_svg]:w-[1em] [&_svg]:align-text-top"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></span></a> as my LSP
-client, I wish I could reuse <code>gq</code> to format using LSP, if it was available.</p><p>It turns out it was surprisingly simple to implement it:</p><div data-codeblock class="mt-16 [&_pre]:sm:rounded-tl-none
-   group relative mb-8 [&_pre]:shadow [&_pre]:shadow-shadow [&_.highlight_pre]:[color-scheme:_dark]"><div data-codeblock-header class="absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0"><div class="chroma flex items-center gap-2 rounded-t border-t border-primary px-2 py-1"><div class=shrink-0><div class="h-[24px] w-[24px] [&>svg_*]:fill-current"><svg width="24" height="24" xmlns="http://www.w3.org/2000/svg width=" height="24" viewBox="0 0 128 128"><path fill="#179a33" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3.0.7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5.0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2.0-.4-.1-.6.1L73 72c-.2.0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6.0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4.0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6.0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5.0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3.0-.5.0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5.0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6.0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"/></svg width="24" height="24"></div></div><div>Vim</div></div></div><div class=highlight><pre tabindex=0 class=chroma><code class=language-vim data-lang=vim><span class=line><span class=cl><span class=k>function</span><span class=p>!</span> <span class=nx>s</span>:<span class=nx>Format</span><span class=p>(</span><span class=nx>type</span><span class=p>,</span> ...<span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=k>if</span> <span class=nx>CocHasProvider</span><span class=p>(</span><span class=s1>&#39;formatRange&#39;</span><span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=nx>call</span> <span class=nx>CocAction</span><span class=p>(</span><span class=s1>&#39;formatSelected&#39;</span><span class=p>,</span> <span class=nx>a</span>:<span class=nx>type</span><span class=p>)</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>    <span class=nx>return</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span>  <span class=k>endif</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=c>
-</span></span></span><span class=line><span class=cl><span class=c>  &#34; ...</span><span class=err>
-</span></span></span><span class=line><span class=cl><span class=err></span><span class=k>endfunction</span></span></span></code></pre></div><button data-copy-code-button data-user-copied=false class="dark
-btn btn-icon btn-icon-action group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 bg-surface opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500" aria-label="Copy code">
-<span class="group-data-[user-copied=true]:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-clipboard"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg></span><span class="text-green-500 group-data-[user-copied=false]:hidden [&>svg_*]:stroke-current"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check"><polyline points="20 6 9 17 4 12"/></svg></span></button></div><p>As you can see, I first check if check if the current buffer has an LSP server
+not to modify the jumplist), then restore the window view with <code>:h winrestview()</code>.</p>
+<h2 id="integration-with-cocnvim">Integration with coc.nvim<a aria-hidden="true" tabIndex="-1" href="#integration-with-cocnvim"><span class="icon icon-link"></span></a></h2>
+<p>Since I use <a href="https://github.com/neoclide/coc.nvim"><code>coc.nvim</code></a> as my LSP
+client, I wish I could reuse <code>gq</code> to format using LSP, if it was available.</p>
+<p>It turns out it was surprisingly simple to implement it:</p>
+
+
+<div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <div class="dark absolute top-0 left-horizontal-padding mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-full overflow-hidden sm:left-0">
+    <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
+          <div class="shrink-0">
+            <svg viewBox="0 0 128 128" width="1em" height="1em" class="text-2xl"><path fill="currentColor" d="M72.6 80.5c.2.2.6.5.9.5h5.3c.3 0 .7-.3.9-.5l1.4-1.5c.2-.2.3-.4.3-.6l1.5-5.1c.1-.5 0-1-.3-1.3l-1.1-.9c-.2-.2-.6-.1-.9-.1h-4.8l-.2-.2-.1-.1c-.2 0-.4-.1-.6.1L73 72c-.2 0-.3.5-.4.7L71 77.6c-.2.5-.1 1.1.3 1.5l1.3 1.4zm.8 26.4-.4.1h-1.2L79 85.9c.2-.7-.1-1.5-.8-1.7l-.4-.1H65.7c-.5.1-.9.5-1 1l-.7 2.5c-.2.7.3 1.3 1 1.5l.3-.1h1.8l-7.3 20.9c-.2.7.1 1.6.8 1.9l.4.3h11.2c.6 0 1.1-.5 1.3-1.1l.7-2.4c.3-.7-.1-1.5-.8-1.7zm53.1-19.7-1.9-2.5v-.1c-.3-.3-.6-.6-1-.6h-7.2c-.4 0-.7.4-1 .6l-2 2.4h-3.1l-2.1-2.4v-.1c-.2-.3-.6-.5-1-.5h-4l20.2-20.2-22.6-22.4L121 20.6v-9L118.2 8H77.3L74 11.5v2.9L62.7 3 55 10.5 52.6 8H12.2L9 11.7v9.4l3 2.9h3v26.1l-14 14 14 14v32l5.2 2.9h11.6l9.1-9.5 21.6 21.6L77 110.6c.1.4.4.5.9.7l.4-.2h9.4c.6 0 1.1-.1 1.2-.6l.7-2c.2-.7-.1-1.3-.8-1.5l-.4.1H88l3.4-10.7 2.3-2.3h5l-5 15.9c-.2.7.2 1.1.9 1.4l.4-.2h9.1c.5 0 1-.1 1.2-.6l.8-1.8c.3-.7-.1-1.3-.7-1.6-.1-.1-.3 0-.5 0h-.4l4.2-13h6.1l-5.1 15.9c-.2.7.2 1.1.9 1.3l.4-.3h10c.5 0 1-.1 1.2-.6l.8-2c.3-.7-.1-1.3-.8-1.5-.1-.1-.3.1-.5.1h-.7l5.6-18.5c.2-.5.1-1.1-.1-1.4zM62.7 4.9 74 16.2v4.7l3.4 4.1H79L50 53V25h3.3l2.7-4.2v-8.9l-.2-.3 6.9-6.7zM2.9 64.1 15 52v24.2L2.9 64.1zm38.9 38.3 58.4-60 21.4 21.5-20.2 20.2h-.1c-.3.1-.5.3-.7.5L98.5 87h-2.9l-2.2-2.4c-.2-.3-.6-.6-1-.6h-8.8c-.6 0-1.1.4-1.3 1l-.8 2.5c-.2.7.1 1.3.8 1.6h1.5L77.4 108l-15.1 15.2-20.5-20.8z"></path></svg>
+          </div>
+
+          <div class="capitalize">vim</div>
+        </div>
+  </div>
+
+  <pre class="shadow shadow-shadow overflow-x-auto rounded rounded-tl-none bg-[var(--code-bg)] text-[var(--code-fg)] py-4 [color-scheme:dark] [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlighted]:bg-[#272115] [&#38;_code>.line.highlighted]:border-[#624710]"><code class="language-vim"><span class="line"><span style="color:#C678DD">function</span><span style="color:#ABB2BF">! </span><span style="color:#61AFEF">s:Format</span><span style="color:#ABB2BF">(type, ...)</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">if</span><span style="color:#ABB2BF"> </span><span style="color:#61AFEF">CocHasProvider</span><span style="color:#ABB2BF">(</span><span style="color:#98C379">&#39;formatRange&#39;</span><span style="color:#ABB2BF">)</span></span><span class="line"><span style="color:#ABB2BF">    </span><span style="color:#C678DD">call</span><span style="color:#ABB2BF"> </span><span style="color:#61AFEF">CocAction</span><span style="color:#ABB2BF">(</span><span style="color:#98C379">&#39;formatSelected&#39;</span><span style="color:#ABB2BF">, </span><span style="color:#E06C75">a:type</span><span style="color:#ABB2BF">)</span></span><span class="line"><span style="color:#ABB2BF">    </span><span style="color:#C678DD">return</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">endif</span></span><span class="line"><span> </span></span><span class="line"><span style="color:#7F848E">  &quot; ...</span></span><span class="line"><span style="color:#C678DD">endfunction</span></span><span class="line"></span></code></pre>
+
+  <button class="items-center justify-center flex-row gap-2 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow shadow-shadow dark bg-[var(--code-bg)] hover:bg-[var(--code-bg)] group pointer-events-none absolute right-0 top-3 hidden -translate-x-1/2 opacity-0 transition-opacity duration-500 group-hover:pointer-events-auto group-hover:opacity-100 data-[user-copied=true]:border-green-500 text-2xl [&amp;_svg]:w-[1em] [&amp;_svg]:h-[1em]" data-copy-code-button="true" data-user-copied="false" aria-label="Copy code"><span class="group-data-[user-copied=true]:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg>
+    </span><span class="text-green-500 group-data-[user-copied=false]:hidden [&_svg]:stroke-current">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+    </span></button>
+</div>
+
+
+<p>As you can see, I first check if check if the current buffer has an LSP server
 attached to it and is able to format text ranges with the <code>CocHasProvider</code>
-function.</p><p>I then use the <code>formatSelected</code> action, which receives the type of visual mode
+function.</p>
+<p>I then use the <code>formatSelected</code> action, which receives the type of visual mode
 last used (either <code>line</code>, <code>char</code> or <code>block</code>, the output of <code>:h visualmode()</code>),
 which fortunately the <code>operatorfunc</code> function also receives as the first
-argument (see <code>:h :map-operator</code>).</p></div><aside><div data-toc-wrapper class="w-full sm:overflow-y-auto lg:sticky lg:top-[1rem] lg:max-h-[calc(100vh-1rem)] lg:pb-8 lg:pl-8"><div class="hidden lg:block"><div class="flex justify-between gap-2"><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><h2 class=m-0>Table of Contents</h2></div><div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></div></div><div class="mt-4
-[&_a_*]:indent-0
+argument (see <code>:h :map-operator</code>).</p>
+          </div>
+
+          <aside class="">
+            <div data-toc-wrapper class="w-full sm:overflow-y-auto lg:sticky lg:top-[1rem] lg:max-h-[calc(100vh-1rem)] lg:pb-8 lg:pl-8">
+      <div class="hidden lg:block">
+        <div class="flex justify-between gap-2">
+          <div class="flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+
+            <h2 class="m-0">Table of Contents</h2>
+          </div>
+
+          <div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </div>
+        </div>
+
+        <div class="
+          mt-4
+          [&_a_*]:indent-0
           [&_nav_ol]:m-0
-[&_nav_ol]:list-none
+          [&_nav_ol]:list-none
           [&_nav_ol]:indent-4
-[&_nav_ol_ol]:indent-8
+          [&_nav_ol_ol]:indent-8
           [&_nav_ol_ol_ol]:indent-12
-[&_nav_ol_ol_ol_ol]:indent-16
-      [&_nav_ol_li]:relative
+          [&_nav_ol_ol_ol_ol]:indent-16
+          [&_nav_ol_li]:relative
           [&_nav_ol_li]:before:absolute
-[&_nav_ol_li]:before:top-0
-         [&_nav_ol_li]:before:left-0
-        [&_nav_ol_li]:before:h-full
-        [&_nav_ol_li]:before:w-[1px]
-       [&_nav_ol_li]:before:bg-divider
-    [&_nav_ol_li]:before:content-['']
-  [&_nav_ol_li_a]:block
+          [&_nav_ol_li]:before:top-0
+          [&_nav_ol_li]:before:left-0
+          [&_nav_ol_li]:before:h-full
+          [&_nav_ol_li]:before:w-[1px]
+          [&_nav_ol_li]:before:bg-divider
+          [&_nav_ol_li]:before:content-['']
+          [&_nav_ol_li_a]:block
           [&_nav_ol_li_a]:truncate
-[&_nav_ol_li_a]:border-b-0
-         [&_nav_ol_li_a]:transition-colors
-  [&_nav_ol_li_a]:duration-500
-       [&_nav_ol_li_a:hover]:bg-hover
-     [&_nav_ol_li[data-active]]:before:bg-primary
-[&_nav_ol_li[data-active]>a]:text-primary"><nav data-toc><ol><li><a href=#how-to-customize-gq>How to customize <code>gq</code></a></li><li><a href=#avoid-changing-the-jumplist>Avoid changing the jumplist</a></li><li><a href=#silent-execution>Silent execution</a></li><li><a href=#error-handling>Error handling</a></li><li><a href=#format-file-preserving-cursor-position>Format file preserving cursor position</a></li><li><a href=#integration-with-cocnvim>Integration with coc.nvim</a></li></ol></nav></div></div><details class="card group mb-8 max-w-prose px-horizontal-padding py-4 lg:hidden" aria-label="Table of Contents"><summary class=list-none><div class="flex justify-between gap-2"><div class="flex items-center gap-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-list"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg><h2 class=m-0>Table of Contents</h2></div><div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"/></svg></div></div></summary><div class="mt-4
-[&_ol]:m-0
+          [&_nav_ol_li_a]:border-b-0
+          [&_nav_ol_li_a]:transition-colors
+          [&_nav_ol_li_a]:duration-500
+          [&_nav_ol_li_a:hover]:bg-hover
+          [&_nav_ol_li[data-active]]:before:bg-primary
+          [&_nav_ol_li[data-active]>a]:text-primary
+       ">
+          <nav data-toc>
+  <ol>
+  <li>
+          <a href="#how-to-customize-gq">How to customize gq</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#avoid-changing-the-jumplist">Avoid changing the jumplist</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#silent-execution">Silent execution</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#error-handling">Error handling</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#format-file-preserving-cursor-position">Format file preserving cursor position</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#integration-with-cocnvim">Integration with coc.nvim</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+</nav>
+        </div>
+      </div>
+
+      <details class="card group mb-8 max-w-prose px-horizontal-padding py-4 lg:hidden" aria-label="Table of Contents">
+        <summary class="list-none">
+          <div class="flex justify-between gap-2">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+
+              <h2 class="m-0">Table of Contents</h2>
+            </div>
+
+            <div class="flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+        </summary>
+
+        <div class="
+          mt-4
+          [&_ol]:m-0
           [&_ol]:list-outside
-[&_ol]:px-horizontal-padding
-       [&_ol_li:not(:first-child)]:mt-1"><nav data-toc><ol><li><a href=#how-to-customize-gq>How to customize <code>gq</code></a></li><li><a href=#avoid-changing-the-jumplist>Avoid changing the jumplist</a></li><li><a href=#silent-execution>Silent execution</a></li><li><a href=#error-handling>Error handling</a></li><li><a href=#format-file-preserving-cursor-position>Format file preserving cursor position</a></li><li><a href=#integration-with-cocnvim>Integration with coc.nvim</a></li></ol></nav></div></details></div></aside></div></article><template data-theme-copy-code-tooltip-template><div data-theme-copy-code-tooltip role=tooltip class="dark pointer-events-none absolute rounded border border-green-500 bg-background px-2 text-on-background" style=opacity:0>Copied<div data-arrow class="dark absolute h-[8px] w-[8px] rotate-45 border-r border-b border-green-500 bg-background"></div></div></template><hr class="full-width-on-mobile mt-8"><div class="full-width-on-mobile sm:my-8"><nav class="flex items-stretch sm:gap-4" aria-label="Posts navigation"><a class="sm:card flex flex-none basis-1/2 flex-col gap-2 border-0 py-4 px-horizontal-padding transition-colors duration-500 hover:bg-hover" href=/posts/surprising-react-bug/><span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg></span>An apparent React bug</a><div class="border-l border-divider sm:hidden"></div><a class="sm:card flex flex-none basis-1/2 flex-col-reverse items-end justify-end gap-2 border-0 py-4 px-horizontal-padding text-right transition-colors duration-500 hover:bg-hover" href=/posts/template-string-converter-with-neovim-treesitter/>Template String Converter in Neovim with Treesitter
-<span class=text-primary><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a></nav></div><hr class="full-width-on-mobile mb-8"><template data-utterances-template><div class="grid place-items-center"><div data-utterances-loading role=progressbar class="[&_svg]:animate-spin [&_svg]:duration-[1500ms]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-loader"><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"/><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"/><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"/></svg></div><script src=https://utteranc.es/client.js data-repo=phelipetls/phelipetls.github.io data-issue-term=pathname crossorigin=anonymous data-theme=github-light async></script></div><hr class="mt-8 hidden sm:block"></template></div></main><footer class="mt-8 border-t border-divider bg-background sm:border-0"><div class="mx-auto flex w-full max-w-content flex-col items-center gap-2 px-horizontal-padding pt-4 pb-8 sm:justify-between"><nav aria-label=Contacts class="flex gap-2"><a id=contact-email class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" href=mailto:phelipe_teles@hotmail.com aria-label=E-mail><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-mail"><path d="M4 4h16c1.1.0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1.0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></a><a id=contact-linkedin class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" href=https://linkedin.com/in/phelipeteles aria-label=LinkedIn><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a><a id=contact-github class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" href=https://github.com/phelipetls aria-label=GitHub><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></nav><span class=text-center>All content is under a
-<a rel=license href=http://creativecommons.org/licenses/by/4.0/>Creative Commons Attribution 4.0</a>
-license.</span></div></footer></div><script src=https://phelipetls.github.io/js/post-bundle.min.js></script></body></html>
+          [&_ol]:px-horizontal-padding
+          [&_ol_li:not(:first-child)]:mt-1
+        ">
+          <nav data-toc>
+  <ol>
+  <li>
+          <a href="#how-to-customize-gq">How to customize gq</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#avoid-changing-the-jumplist">Avoid changing the jumplist</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#silent-execution">Silent execution</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#error-handling">Error handling</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#format-file-preserving-cursor-position">Format file preserving cursor position</a>
+
+          <ol>
+  
+</ol>
+        </li><li>
+          <a href="#integration-with-cocnvim">Integration with coc.nvim</a>
+
+          <ol>
+  
+</ol>
+        </li>
+</ol>
+</nav>
+        </div>
+      </details>
+    </div>
+
+
+          </aside>
+        </div>
+      </article>
+
+      <template data-theme-copy-code-tooltip-template>
+        <div data-theme-copy-code-tooltip role="tooltip" class="dark pointer-events-none absolute rounded border border-green-500 bg-background px-2 text-on-background" style="opacity: 0">
+          Copied
+
+          <div data-arrow class="dark absolute h-[8px] w-[8px] rotate-45 border-r border-b border-green-500 bg-background">
+          </div>
+        </div>
+      </template>
+
+      <hr class="full-width-on-mobile mt-8">
+
+      <div class="full-width-on-mobile sm:my-8">
+        <nav class="flex items-stretch sm:gap-4" aria-label="Posts navigation">
+  <a class="sm:card flex flex-none basis-1/2 flex-col gap-2 border-0 py-4 px-horizontal-padding transition-colors duration-500 hover:bg-hover" href="https://phelipetls.github.io/posts/surprising-react-bug">
+        <span class="text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        </span>
+
+        An apparent React bug
+      </a>
+
+  <div class="border-l border-divider sm:hidden"></div>
+
+  <a class="sm:card flex flex-none basis-1/2 flex-col-reverse items-end justify-end gap-2 border-0 py-4 px-horizontal-padding text-right transition-colors duration-500 hover:bg-hover" href="https://phelipetls.github.io/posts/template-string-converter-with-neovim-treesitter">
+        Template String Converter in Neovim with Treesitter
+
+        <span class="text-primary">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </span>
+      </a>
+</nav>
+      </div>
+
+      <hr class="full-width-on-mobile mb-8">
+    </div>
+  </main>
+
+      <footer class="mt-8 border-t border-divider bg-background sm:border-0">
+  <div class="mx-auto flex w-full max-w-content flex-col items-center gap-2 px-horizontal-padding pt-4 pb-8 sm:justify-between">
+    <nav aria-label="Contacts" class="flex gap-2">
+  <a class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" id="contact-email" href="phelipe_teles@hotmail.com" aria-label="E-mail">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
+</a>
+
+  <a class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" id="contact-linkedin" href="https://linkedin.com/in/phelipeteles" aria-label="LinkedIn">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+</a>
+
+  <a class="rounded-full transition-colors duration-500 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-200 hover:text-primary border-0" id="contact-github" href="https://github.com/phelipetls" aria-label="GitHub">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg>
+</a>
+</nav>
+
+    <span class="text-center">All content is under a
+<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
+license.
+</span>
+  </div>
+</footer>
+    </div>
+  </body></html>

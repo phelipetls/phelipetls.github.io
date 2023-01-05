@@ -1,0 +1,1 @@
+import"./chunks/ThemeSelect.astro_astro_type_script_index_0_lang.57485eca.js";function n(r,t){const e=new URL(r);return e.searchParams.set("theme",t),e.toString()}document.body.addEventListener("newTheme",function(r){document.querySelectorAll("img[src*=skillicons]").forEach(function(t){const e=t.getAttribute("src");!e||t.setAttribute("src",n(e,r.detail.theme))})});
