@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./chunks/index.1f2a31f8.js";import{j as s}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.64a419de.js";function l(){return s.exports.jsx(e,{template:"react",title:"Infinite loop when using details toggle event",files:{"App.js":t`
+import{S as t,d as e}from"./chunks/index.60fe852b.js";import{j as s}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function u(){return s.exports.jsx(t,{template:"react",title:"Infinite loop when using details toggle event",files:{"App.js":e`
           import { useState } from 'react'
 
           export default function App() {
@@ -22,4 +22,4 @@ import{S as e,d as t}from"./chunks/index.1f2a31f8.js";import{j as s}from"./chunk
               </>
             )
           }
-        `}})}export{l as default};
+        `}})}export{u as default};

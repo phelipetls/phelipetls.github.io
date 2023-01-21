@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./chunks/index.1f2a31f8.js";import{j as a}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.64a419de.js";function l(){return a.exports.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e,d as t}from"./chunks/index.60fe852b.js";import{j as a}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function s(){return a.exports.jsx(e,{template:"react",files:{"/App.js":t`
            export default function App() {
              const handleSubmit = (e) => {
                e.preventDefault()
@@ -34,4 +34,4 @@ import{S as e,d as t}from"./chunks/index.1f2a31f8.js";import{j as a}from"./chunk
                </form>
              )
            }
-        `}})}export{l as default};
+        `}})}export{s as default};

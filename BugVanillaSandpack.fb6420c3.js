@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./chunks/index.1f2a31f8.js";import{j as a}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.64a419de.js";function m(){return a.exports.jsx(e,{template:"vanilla",title:"The same bug observed when using details element can be reproduced with vanilla JavaScript",files:{"/src/index.js":t`
+import{S as e,d as t}from"./chunks/index.60fe852b.js";import{j as a}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function u(){return a.exports.jsx(e,{template:"vanilla",title:"The same bug observed when using details element can be reproduced with vanilla JavaScript",files:{"/src/index.js":t`
            document.getElementById('app').innerHTML = \`
            <span>State: closed</span>
 
@@ -26,4 +26,4 @@ import{S as e,d as t}from"./chunks/index.1f2a31f8.js";import{j as a}from"./chunk
              span.textContent = 'State: open'
              details.setAttribute('open', '')
            })
-        `}})}export{m as default};
+        `}})}export{u as default};

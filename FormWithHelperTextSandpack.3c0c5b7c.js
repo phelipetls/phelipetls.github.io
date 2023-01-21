@@ -1,4 +1,4 @@
-import{S as e,d as r}from"./chunks/index.1f2a31f8.js";import{j as a}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.64a419de.js";function u(){return a.exports.jsx(e,{template:"react",files:{"/App.js":r`
+import{S as e,d as r}from"./chunks/index.60fe852b.js";import{j as t}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function p(){return t.exports.jsx(e,{template:"react",files:{"/App.js":r`
            import { useState } from 'react'
 
            export default function App() {
@@ -56,4 +56,4 @@ import{S as e,d as r}from"./chunks/index.1f2a31f8.js";import{j as a}from"./chunk
                </form>
              )
            }
-        `}})}export{u as default};
+        `}})}export{p as default};
