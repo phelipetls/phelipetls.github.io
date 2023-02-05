@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./chunks/index.60fe852b.js";import{j as s}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function l(){return s.exports.jsx(e,{template:"react",title:"Fixed bug when using details element with React, using preventDefault",files:{"App.js":t`
+import{S as t,d as e}from"./index.c5abd7a6.js";import{j as s}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tabs.096bc574.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.a83bbc9d.js";import"./index.ffa87b56.js";function l(){return s.jsx(t,{template:"react",title:"Bug when using details element with React",files:{"App.js":e`
           import { useState } from 'react'
 
           export default function App() {
@@ -10,8 +10,7 @@ import{S as e,d as t}from"./chunks/index.60fe852b.js";import{j as s}from"./chunk
 
                 <details open={isOpen}>
                   <summary
-                    onClick={(e) => {
-                      e.preventDefault()
+                    onClick={() => {
                       setIsOpen(!isOpen)
                     }}
                   >

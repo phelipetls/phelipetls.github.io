@@ -1,4 +1,4 @@
-import{S as e,d as r}from"./chunks/index.60fe852b.js";import{j as t}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function p(){return t.exports.jsx(e,{template:"react",files:{"/App.js":r`
+import{S as e,d as t}from"./index.c5abd7a6.js";import{j as r}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tabs.096bc574.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.a83bbc9d.js";import"./index.ffa87b56.js";function p(){return r.jsx(e,{template:"react",files:{"/App.js":t`
            import { useState } from 'react'
 
            export default function App() {
@@ -25,15 +25,11 @@ import{S as e,d as r}from"./chunks/index.60fe852b.js";import{j as t}from"./chunk
                      name="username"
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
-                     aria-invalid={errorMessage !== '' ? 'true' : 'false'}
-                     aria-errormessage="username-errormessage"
-                     aria-describedby="username-description"
                    />
                  </label>
 
                  {errorMessage && (
                    <div
-                     id="username-errormessage"
                      style={{
                        color: 'red',
                      }}
@@ -43,7 +39,6 @@ import{S as e,d as r}from"./chunks/index.60fe852b.js";import{j as t}from"./chunk
                  )}
 
                  <div
-                   id="username-description"
                    style={{
                      fontSize: 10,
                      color: 'grey',

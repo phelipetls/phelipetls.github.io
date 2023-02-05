@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./chunks/index.60fe852b.js";import{j as a}from"./chunks/tw-merge.ef383cd6.js";import"./chunks/index.8dbfd31f.js";import"./chunks/_commonjsHelpers.37791fd4.js";import"./chunks/Tab.2d86fb89.js";import"./chunks/createReactComponent.8a376ebc.js";import"./CopyCodeBlockButton.cbf359cc.js";import"./chunks/index.d39fc9d8.js";function s(){return a.exports.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e,d as t}from"./index.c5abd7a6.js";import{j as a}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tabs.096bc574.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.a83bbc9d.js";import"./index.ffa87b56.js";function s(){return a.jsx(e,{template:"react",files:{"/App.js":t`
            export default function App() {
              const handleSubmit = (e) => {
                e.preventDefault()
