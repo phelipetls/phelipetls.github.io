@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./index.c5abd7a6.js";import{j as s}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tabs.096bc574.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.a83bbc9d.js";import"./index.ffa87b56.js";function l(){return s.jsx(e,{template:"react",title:"Fixed bug when using details element with React, using preventDefault",files:{"App.js":t`
+import{S as t,d as e}from"./index.610ad28f.js";import{j as s}from"./jsx-runtime.c931ae04.js";import"./index.385e17fc.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.2ec63c9a.js";import"./createReactComponent.b6a655c0.js";import"./CopyCodeBlockButton.2439efb8.js";import"./index.3b45fd04.js";function l(){return s.jsx(t,{template:"react",title:"Bug when using details element with React",files:{"App.js":e`
           import { useState } from 'react'
 
           export default function App() {
@@ -10,8 +10,7 @@ import{S as e,d as t}from"./index.c5abd7a6.js";import{j as s}from"./jsx-runtime.
 
                 <details open={isOpen}>
                   <summary
-                    onClick={(e) => {
-                      e.preventDefault()
+                    onClick={() => {
                       setIsOpen(!isOpen)
                     }}
                   >
