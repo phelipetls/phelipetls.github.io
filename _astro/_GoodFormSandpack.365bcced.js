@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./index.610ad28f.js";import{j as r}from"./jsx-runtime.c931ae04.js";import"./index.385e17fc.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.2ec63c9a.js";import"./createReactComponent.b6a655c0.js";import"./CopyCodeBlockButton.2439efb8.js";import"./index.3b45fd04.js";function l(){return r.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as t,d as e}from"./index.5aad2424.js";import{j as r}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./types-965d4afd.f5669dee.js";import"./Tab.e3ea653a.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.8fb0fd24.js";import"./index.ffa87b56.js";function d(){return r.jsx(t,{template:"react",files:{"/App.js":e`
            export default function App() {
              const handleSubmit = (e) => {
                e.preventDefault()
@@ -17,4 +17,4 @@ import{S as e,d as t}from"./index.610ad28f.js";import{j as r}from"./jsx-runtime.
                </form>
              )
            }
-        `}})}export{l as default};
+        `}})}export{d as default};
