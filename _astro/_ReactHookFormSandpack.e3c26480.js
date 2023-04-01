@@ -1,4 +1,4 @@
-import{S as t,d as e}from"./index.5aad2424.js";import{j as r}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./types-965d4afd.f5669dee.js";import"./Tab.e3ea653a.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.8fb0fd24.js";import"./index.ffa87b56.js";function d(){return r.jsx(t,{template:"react",files:{"/App.js":e`
+import{S as t,d as e}from"./index.43186375.js";import{j as r}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./types-965d4afd.f5669dee.js";import"./Tab.e3ea653a.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.5df0af12.js";import"./index.ffa87b56.js";import"./floating-ui.dom.esm.5aa821b1.js";function b(){return r.jsx(t,{template:"react",files:{"/App.js":e`
            import { useForm } from 'react-hook-form'
 
            export default function App() {
@@ -33,4 +33,4 @@ import{S as t,d as e}from"./index.5aad2424.js";import{j as r}from"./jsx-runtime.
                </form>
              )
            }
-      `},customSetup:{dependencies:{react:"^18.0.0","react-dom":"^18.0.0","react-hook-form":"^7.39.5"}}})}export{d as default};
+      `},customSetup:{dependencies:{react:"^18.0.0","react-dom":"^18.0.0","react-hook-form":"^7.39.5"}}})}export{b as default};
