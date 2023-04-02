@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./index.43186375.js";import{j as a}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./types-965d4afd.f5669dee.js";import"./Tab.e3ea653a.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.5df0af12.js";import"./index.ffa87b56.js";import"./floating-ui.dom.esm.5aa821b1.js";function f(){return a.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e,d as t}from"./index.8cd12ada.js";import{j as a}from"./jsx-runtime.7a8c40fc.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./types-965d4afd.f5669dee.js";import"./Tab.e3ea653a.js";import"./createReactComponent.099c7328.js";import"./CopyCodeBlockButton.3f07436d.js";import"./index.ffa87b56.js";import"./floating-ui.dom.esm.b18ad48e.js";function f(){return a.jsx(e,{template:"react",files:{"/App.js":t`
            export default function App() {
              const handleSubmit = (e) => {
                e.preventDefault()
