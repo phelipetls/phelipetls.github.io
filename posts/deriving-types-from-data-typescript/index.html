@@ -296,12 +296,12 @@ which gives us the type of a variable, for example:</p>
   </div>
 </div>
 <h2 id="const-vs-let"><code>const</code> vs <code>let</code><a aria-hidden="true" tabIndex="-1" href="#const-vs-let"><span class="icon icon-link"></span></a></h2>
-<p>The resulting type differs by how we declare our variable — where it is a
-<code>const</code> or <code>let</code>.</p>
+<p>The result of <code>typeof</code> will differ depending on how we declare our variable —
+whether we used <code>const</code> or <code>let</code>.</p>
 <p>As you could see, when we used <code>const</code>, the <code>Hello</code> type was the literal string
-<code>&quot;hello&quot;</code> — this is because that variable could not be re-assigned, so it
-could only ever be <code>&quot;hello</code>” at runtime as well.</p>
-<p>But, if we use <code>let</code>:</p>
+<code>&quot;hello&quot;</code> — this is because a <code>const</code> variable can never be re-assigned later,
+so it can only be <code>&quot;hello</code>” at runtime as well.</p>
+<p>What happens if we use <code>let</code>?</p>
 
 
 <div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
@@ -325,7 +325,7 @@ could only ever be <code>&quot;hello</code>” at runtime as well.</p>
 </div>
 <p>The <code>Hello</code> type gets
 <a href="https://mariusschulz.com/blog/literal-type-widening-in-typescript">“widened”</a>
-to the <code>string</code> type — because now that variable could be re-assigned to any
+to the <code>string</code> type — because now the variable can be re-assigned to any
 other value of type <code>string</code> in another part of the program!</p>
 <h2 id="const-assertions"><code>const</code> assertions<a aria-hidden="true" tabIndex="-1" href="#const-assertions"><span class="icon icon-link"></span></a></h2>
 <p>We could achieve the same effect of using <code>const</code> with a <code>const</code> assertion:</p>
@@ -351,8 +351,8 @@ other value of type <code>string</code> in another part of the program!</p>
   </div>
 </div>
 <p>We’ll often use <code>const</code> assertions to prevent type widening when deriving types
-from data — i.e., a more specific (narrower) type being changed to a more
-general (widened) type, such as a <code>0</code> being changed to a <code>number</code> and a
+from data — i.e., avoiding a more specific (narrower) type being changed to a
+more general (widened) type, such as a <code>0</code> being changed to a <code>number</code> and a
 <code>&quot;hello&quot;</code> being changed to <code>string</code>.</p>
 <h2 id="deriving-types-from-arrays">Deriving types from arrays<a aria-hidden="true" tabIndex="-1" href="#deriving-types-from-arrays"><span class="icon icon-link"></span></a></h2>
 <p>Suppose we have an array of strings and we want a type that is an union of the
@@ -379,8 +379,8 @@ array values.</p>
   </div>
 </div>
 <p>The result of <code>typeof arr</code> is just an array type, the trick here is to use
-<code>number</code> to index that array — it’s like saying, what is the possible types
-when I index this array by a <code>number</code>?</p>
+<code>number</code> to index that array — it’s like saying, what are all the possible
+types when I index this array by a <code>number</code>?</p>
 <p>The <code>const</code> assertion is critical here — if we remove it, the type gets
 widened to <code>string</code>.</p>
 
@@ -448,12 +448,12 @@ every value.</p>
     <astro-island uid="Zv0klY" component-url="/_astro/CopyCodeBlockButton.3f07436d.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;tooltipText&quot;:[0,&quot;Copied!&quot;],&quot;code&quot;:[0,&quot;const obj = {\n  foo: 1,\n  bar: 2,\n  baz: 3,\n} as const\n\ntype ObjectKey = keyof typeof obj\ntype ObjectValue = (typeof obj)[ObjectKey]\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p>To get the object keys, we needed to use the <a href="https://www.typescriptlang.org/docs/handbook/2/keyof-types.html"><code>keyof</code>
+<p>To get the object keys, we need to use the <a href="https://www.typescriptlang.org/docs/handbook/2/keyof-types.html"><code>keyof</code>
 operator</a>.</p>
-<p>For the object values, we just needed to index that object with all of the
-object possible keys, which makes sense!</p>
+<p>For the object values, we just need to index that object with all of the object
+possible keys — which makes sense!</p>
 <p>The <code>const</code> assertion is also critical here, because otherwise the object value
-types would have been widened:</p>
+types would have been widened to <code>number</code>:</p>
 
 
 <div data-codeblock class="mt-16 group relative mb-8" style="--code-bg: #282c34;--code-fg: #abb2bf;">
