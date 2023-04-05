@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-03">
+    <meta name="deploy-date" content="2023-04-05">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -39,7 +39,7 @@
     
 
     
-  <link rel="stylesheet" href="/_astro/_id_.8763ea77.css" /><script type="module" src="/_astro/hoisted.cc336266.js"></script></head>
+  <link rel="stylesheet" href="/_astro/_id_.af67fa9c.css" /><script type="module" src="/_astro/hoisted.cc336266.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
     <script>
@@ -228,7 +228,7 @@
 </aside>
 
     <main class="grid grid-cols-layout">
-    <div class="mb-4 hidden flex-row items-center justify-center gap-2 sm:flex">
+    <div class="mb-4 hidden mx-auto gap-2 sm:flex sm:items-center">
       <h1 class="m-0">Posts</h1>
 
       <a href="/pt/posts/index.xml" class="text-sm border-0" aria-label="RSS Feed">
@@ -236,12 +236,11 @@
 </a>
     </div>
 
-    <div>
-      <div class="mx-auto mt-16 mb-8 w-full max-w-prose first:mt-0">
-                  <h2 class="mb-0 text-2xl">
-                    <time datetime="2022-01-01">2022</time>
-                  </h2>
-                </div><ul class="m-0 mx-auto grid w-full max-w-2xl list-none grid-cols-1 gap-4">
+    <div class="flex flex-row gap-16">
+      <div>
+        <h2 id="2022" class="mb-8 text-2xl sm:first:mt-8 sm:mt-16">
+                  <time datetime="2022-01-01">2022</time>
+                </h2><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
                   <li class="h-full">
                           <article class="card flex h-full flex-col justify-between p-8">
   <div>
@@ -280,11 +279,9 @@ assustador de início mas você vai aprender a gostar.
   </div>
 </article>
                         </li>
-                </ul><div class="mx-auto mt-16 mb-8 w-full max-w-prose first:mt-0">
-                  <h2 class="mb-0 text-2xl">
-                    <time datetime="2019-01-01">2019</time>
-                  </h2>
-                </div><ul class="m-0 mx-auto grid w-full max-w-2xl list-none grid-cols-1 gap-4">
+                </ul><h2 id="2019" class="mb-8 text-2xl sm:first:mt-8 sm:mt-16">
+                  <time datetime="2019-01-01">2019</time>
+                </h2><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
                   <li class="h-full">
                           <article class="card flex h-full flex-col justify-between p-8">
   <div>
@@ -631,6 +628,23 @@ os 8 possíveis saltos igualmente prováveis).
 </article>
                         </li>
                 </ul>
+      </div>
+
+      <div class="hidden lg:block pt-8 sticky min-h-0 self-start top-0">
+        <h2>
+          Por ano
+        </h2>
+
+        <ul class="m-0 list-inside">
+          <li class="">
+                  <a href="#2022">2022</a>
+                  (1)
+                </li><li class="">
+                  <a href="#2019">2019</a>
+                  (8)
+                </li>
+        </ul>
+      </div>
     </div>
   </main>
 
