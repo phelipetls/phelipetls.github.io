@@ -1,4 +1,4 @@
-import{c as commonjsGlobal,a as getAugmentedNamespace}from"./_commonjsHelpers.042e6b4d.js";import"./ThemeSelect.astro_astro_type_script_index_0_lang.dc20a56c.js";var pdfobjectExports={},pdfobject={get exports(){return pdfobjectExports},set exports(R){pdfobjectExports=R}};/**
+import{c as commonjsGlobal,a as getAugmentedNamespace}from"./_commonjsHelpers.042e6b4d.js";import"./ThemeSelect.astro_astro_type_script_index_0_lang.d9a256a1.js";var pdfobjectExports={},pdfobject={get exports(){return pdfobjectExports},set exports(R){pdfobjectExports=R}};/**
  *  PDFObject v2.2.8
  *  https://github.com/pipwerks/PDFObject
  *  @license
