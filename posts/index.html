@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="h-full text-base sm:text-lg selection:bg-primary selection:text-on-primary" lang="en">
+<html class="h-full text-base sm:text-lg selection:bg-primary selection:text-on-primary scroll-pt-[calc(var(--nav-height)_+_1rem)] sm:scroll-pt-4" lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-08">
+    <meta name="deploy-date" content="2023-04-09">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -39,7 +39,7 @@
     
 
     
-  <link rel="stylesheet" href="/_astro/_id_.4a492c1c.css" /><script type="module" src="/_astro/hoisted.32a4fd8c.js"></script></head>
+  <link rel="stylesheet" href="/_astro/_id_.59b1c558.css" /><script type="module" src="/_astro/hoisted.32a4fd8c.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
     <script>
@@ -228,7 +228,7 @@
 </aside>
 
     <main class="grid grid-cols-layout my-8">
-    <div class="mb-4 hidden mx-auto gap-2 sm:flex sm:items-center">
+    <div class="mb-8 hidden mx-auto gap-2 sm:flex sm:items-center">
       <h1 class="m-0">Posts</h1>
 
       <a href="/posts/index.xml" class="text-sm border-0" aria-label="RSS Feed">
@@ -236,11 +236,19 @@
 </a>
     </div>
 
-    <div class="flex flex-row">
-      <div>
-        <h2 id="2023" class="mb-8 mt-32 text-2xl first:mt-0">
-                  <time datetime="2023-01-01">2023</time>
-                </h2><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
+    <div class="flex flex-row gap-8">
+      <div class="flex-1">
+        <div class="mb-8 mt-32 flex flex-row justify-between first:mt-0">
+                  <h2 id="2023" class="m-0 text-2xl">
+                    <time datetime="2023-01-01">2023</time>
+                  </h2>
+
+                  <div class="flex flex-row gap-2">
+                    <button disabled="" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></button>
+
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2022"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                  </div>
+                </div><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
                   <li>
                             <article class="flex h-full flex-col justify-between">
   <div>
@@ -379,9 +387,17 @@ for MDX files in Neovim.
   </div>
 </article>
                           </li><div class="my-4 last:hidden"></div>
-                </ul><h2 id="2022" class="mb-8 mt-32 text-2xl first:mt-0">
-                  <time datetime="2022-01-01">2022</time>
-                </h2><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
+                </ul><div class="mb-8 mt-32 flex flex-row justify-between first:mt-0">
+                  <h2 id="2022" class="m-0 text-2xl">
+                    <time datetime="2022-01-01">2022</time>
+                  </h2>
+
+                  <div class="flex flex-row gap-2">
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2023"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></a>
+
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2021"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                  </div>
+                </div><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
                   <li>
                             <article class="flex h-full flex-col justify-between">
   <div>
@@ -1140,9 +1156,17 @@ source code in order to improve my experience with Android Emulator.
   </div>
 </article>
                           </li><div class="my-4 last:hidden"></div>
-                </ul><h2 id="2021" class="mb-8 mt-32 text-2xl first:mt-0">
-                  <time datetime="2021-01-01">2021</time>
-                </h2><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
+                </ul><div class="mb-8 mt-32 flex flex-row justify-between first:mt-0">
+                  <h2 id="2021" class="m-0 text-2xl">
+                    <time datetime="2021-01-01">2021</time>
+                  </h2>
+
+                  <div class="flex flex-row gap-2">
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2022"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></a>
+
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2020"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></a>
+                  </div>
+                </div><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
                   <li>
                             <article class="flex h-full flex-col justify-between">
   <div>
@@ -1466,9 +1490,17 @@ react-testing-library to Cypress.
   </div>
 </article>
                           </li><div class="my-4 last:hidden"></div>
-                </ul><h2 id="2020" class="mb-8 mt-32 text-2xl first:mt-0">
-                  <time datetime="2020-01-01">2020</time>
-                </h2><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
+                </ul><div class="mb-8 mt-32 flex flex-row justify-between first:mt-0">
+                  <h2 id="2020" class="m-0 text-2xl">
+                    <time datetime="2020-01-01">2020</time>
+                  </h2>
+
+                  <div class="flex flex-row gap-2">
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2021"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg></a>
+
+                    <button disabled="" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></button>
+                  </div>
+                </div><ul class="m-0 grid w-full max-w-2xl list-none grid-cols-1 gap-4">
                   <li>
                             <article class="flex h-full flex-col justify-between">
   <div>
@@ -1785,7 +1817,7 @@ downloading reports from inside Excel with VBA only.
                 </ul>
       </div>
 
-      <div class="bg-surface flex-1 pt-4 [&#38;>*:last-child]:pb-4 [&#38;_h2]:px-4 [&#38;_ul]:px-4 rounded shadow shadow-shadow hidden lg:flex flex-col sticky self-start top-4 max-h-[calc(100vh-2rem)]">
+      <div class="max-w-xs bg-surface pt-4 [&#38;>*:last-child]:pb-4 [&#38;_h2]:px-4 [&#38;_ul]:px-4 rounded shadow shadow-shadow hidden lg:flex flex-col sticky top-4 max-h-[calc(100vh-2rem)]">
         <h2 class="">
           By tags
         </h2>
@@ -1797,7 +1829,9 @@ downloading reports from inside Excel with VBA only.
 
   javascript
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">10</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        10
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/nvim">
@@ -1805,7 +1839,9 @@ downloading reports from inside Excel with VBA only.
 
   nvim
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">5</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        5
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/react">
@@ -1813,7 +1849,9 @@ downloading reports from inside Excel with VBA only.
 
   react
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">5</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        5
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/typescript">
@@ -1821,7 +1859,9 @@ downloading reports from inside Excel with VBA only.
 
   typescript
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">5</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        5
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/vim">
@@ -1829,7 +1869,9 @@ downloading reports from inside Excel with VBA only.
 
   vim
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">5</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        5
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/lua">
@@ -1837,7 +1879,9 @@ downloading reports from inside Excel with VBA only.
 
   lua
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">4</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        4
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/git">
@@ -1845,7 +1889,9 @@ downloading reports from inside Excel with VBA only.
 
   git
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">3</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        3
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/python">
@@ -1853,7 +1899,9 @@ downloading reports from inside Excel with VBA only.
 
   python
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">3</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        3
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/linux">
@@ -1861,7 +1909,9 @@ downloading reports from inside Excel with VBA only.
 
   linux
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">3</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        3
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/react native">
@@ -1869,7 +1919,9 @@ downloading reports from inside Excel with VBA only.
 
   react native
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/mobile">
@@ -1877,7 +1929,9 @@ downloading reports from inside Excel with VBA only.
 
   mobile
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/node">
@@ -1885,7 +1939,9 @@ downloading reports from inside Excel with VBA only.
 
   node
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/html">
@@ -1893,7 +1949,9 @@ downloading reports from inside Excel with VBA only.
 
   html
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/dwm">
@@ -1901,7 +1959,9 @@ downloading reports from inside Excel with VBA only.
 
   dwm
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/ansible">
@@ -1909,7 +1969,9 @@ downloading reports from inside Excel with VBA only.
 
   ansible
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/fedora">
@@ -1917,7 +1979,9 @@ downloading reports from inside Excel with VBA only.
 
   fedora
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/ubuntu">
@@ -1925,7 +1989,9 @@ downloading reports from inside Excel with VBA only.
 
   ubuntu
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/treesitter">
@@ -1933,7 +1999,9 @@ downloading reports from inside Excel with VBA only.
 
   treesitter
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">2</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        2
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/android">
@@ -1941,7 +2009,9 @@ downloading reports from inside Excel with VBA only.
 
   android
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/bash">
@@ -1949,7 +2019,9 @@ downloading reports from inside Excel with VBA only.
 
   bash
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/unix">
@@ -1957,7 +2029,9 @@ downloading reports from inside Excel with VBA only.
 
   unix
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/lsp">
@@ -1965,7 +2039,9 @@ downloading reports from inside Excel with VBA only.
 
   lsp
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/eslint">
@@ -1973,7 +2049,9 @@ downloading reports from inside Excel with VBA only.
 
   eslint
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/flask">
@@ -1981,7 +2059,9 @@ downloading reports from inside Excel with VBA only.
 
   flask
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/heroku">
@@ -1989,7 +2069,9 @@ downloading reports from inside Excel with VBA only.
 
   heroku
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/tools">
@@ -1997,7 +2079,9 @@ downloading reports from inside Excel with VBA only.
 
   tools
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/ripgrep">
@@ -2005,7 +2089,9 @@ downloading reports from inside Excel with VBA only.
 
   ripgrep
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/salesforce">
@@ -2013,7 +2099,9 @@ downloading reports from inside Excel with VBA only.
 
   salesforce
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/vba">
@@ -2021,7 +2109,9 @@ downloading reports from inside Excel with VBA only.
 
   vba
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/excel">
@@ -2029,7 +2119,9 @@ downloading reports from inside Excel with VBA only.
 
   excel
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/hugo">
@@ -2037,7 +2129,9 @@ downloading reports from inside Excel with VBA only.
 
   hugo
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/css">
@@ -2045,7 +2139,9 @@ downloading reports from inside Excel with VBA only.
 
   css
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/c">
@@ -2053,7 +2149,9 @@ downloading reports from inside Excel with VBA only.
 
   c
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/x11">
@@ -2061,7 +2159,9 @@ downloading reports from inside Excel with VBA only.
 
   x11
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/macos">
@@ -2069,7 +2169,9 @@ downloading reports from inside Excel with VBA only.
 
   macos
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/gnome">
@@ -2077,7 +2179,9 @@ downloading reports from inside Excel with VBA only.
 
   gnome
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/storybook">
@@ -2085,7 +2189,9 @@ downloading reports from inside Excel with VBA only.
 
   storybook
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li><li class="">
                     <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-4 [&#38;_svg]:h-4" href="/tags/msw">
@@ -2093,7 +2199,9 @@ downloading reports from inside Excel with VBA only.
 
   msw
 
-  <div class="inline-flex text-sm justify-center items-center border-l border-l-divider pl-2">1</div>
+  <div class="inline-flex items-center justify-center border-l border-l-divider pl-2 text-sm">
+        1
+      </div>
 </a>
                   </li>
         </ul>
