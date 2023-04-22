@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html class="h-full text-base sm:text-lg selection:bg-primary selection:text-on-primary" lang="en">
+<html class="h-full min-h-0 text-base sm:text-lg selection:bg-primary selection:text-on-primary" lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-21">
+    <meta name="deploy-date" content="2023-04-22">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -39,8 +39,8 @@
     
 
     
-  <link rel="stylesheet" href="/_astro/_id_.6b92d84b.css" />
-<link rel="stylesheet" href="/_astro/lite-yt-embed.68cd2173.css" /><script type="module" src="/_astro/hoisted.fa74ffe7.js"></script></head>
+  <link rel="stylesheet" href="/_astro/_id_.a316e9c9.css" />
+<link rel="stylesheet" href="/_astro/lite-yt-embed.68cd2173.css" /><script type="module" src="/_astro/hoisted.847713a0.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
     <script>
@@ -109,8 +109,8 @@
 
   <div class="hidden h-full w-full sm:block">
     <div class="flex h-full w-full items-center justify-between bg-background pr-horizontal-padding">
-  <div class="mx-auto flex h-full w-full max-w-content justify-between">
-    <nav class="flex h-full justify-between overflow-x-auto px-horizontal-padding" aria-label="Main navigation">
+  <div class="mx-auto py-3 flex h-full w-full max-w-content justify-between">
+    <nav class="flex h-full justify-between px-horizontal-padding" aria-label="Main navigation">
       <ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2">
         <li>
                 <a id="about" href="/" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
@@ -128,34 +128,55 @@
       </ul>
     </nav>
 
-    <div class="h-full py-3">
-      <div class="flex h-full flex-row items-stretch gap-2 pl-2">
-        <div class="relative flex h-full flex-row items-center">
+    <div class="h-full flex flex-row gap-2">
+      <div class="relative flex h-full flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
-    <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
-      <title>Theme icon</title>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages" slot="start-icon"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
+      </span>
 
-      <defs>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-      </defs>
+  <select class="card h-full appearance-none bg-surface py-1 text-center pl-8 pr-2" data-language-select aria-label="Choose a language">
+    
+  <option selected="true" value="en">English</option>
+  <option value="pt">Português</option>
 
-      <use data-theme-select-icon href="#monitor"></use>
-    </svg>
-  </span>
+  
 
-  <select class="card h-full appearance-none bg-surface py-1 px-10 text-center" data-theme-select aria-label="Choose a theme">
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-    <option value="system">System</option>
+  </select>
+
+  
+</div>
+
+      <div class="relative flex h-full flex-row items-center">
+  <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
+        <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
+    <title>Theme icon</title>
+
+    <defs>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+    </defs>
+
+    <use data-theme-select-icon href="#monitor"></use>
+  </svg>
+      </span>
+
+  <select class="card h-full appearance-none bg-surface py-1 text-center px-10" data-theme-select aria-label="Choose a theme">
+    
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+  <option value="system">System</option>
+
+  
+
+  
+
   </select>
 
   <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-  </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
 </div>
-      </div>
     </div>
   </div>
 </div>
@@ -194,28 +215,34 @@
       <div class="mb-4 flex h-12 flex-row items-center justify-center px-horizontal-padding">
         <div class="relative flex h-full flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
-    <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
-      <title>Theme icon</title>
+        <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
+    <title>Theme icon</title>
 
-      <defs>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
-      </defs>
+    <defs>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon" id="moon"><path d="M12 3a6.364 6.364 0 0 0 9 9 9 9 0 1 1-9-9Z"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun" id="sun"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2"></path><path d="M12 20v2"></path><path d="m4.93 4.93 1.41 1.41"></path><path d="m17.66 17.66 1.41 1.41"></path><path d="M2 12h2"></path><path d="M20 12h2"></path><path d="m6.34 17.66-1.41 1.41"></path><path d="m19.07 4.93-1.41 1.41"></path></svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-monitor" id="monitor"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+    </defs>
 
-      <use data-theme-select-icon href="#monitor"></use>
-    </svg>
-  </span>
+    <use data-theme-select-icon href="#monitor"></use>
+  </svg>
+      </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 px-10 text-center" data-theme-select aria-label="Choose a theme">
-    <option value="light">Light</option>
-    <option value="dark">Dark</option>
-    <option value="system">System</option>
+  <select class="card h-full appearance-none bg-surface py-1 text-center px-10" data-theme-select aria-label="Choose a theme">
+    
+  <option value="light">Light</option>
+  <option value="dark">Dark</option>
+  <option value="system">System</option>
+
+  
+
+  
+
   </select>
 
   <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-  </span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </span>
 </div>
       </div>
     </div>
