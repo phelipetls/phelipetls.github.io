@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-23">
+    <meta name="deploy-date" content="2023-04-26">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -39,7 +39,7 @@
     
 
     
-  <link rel="stylesheet" href="/_astro/_id_.17944bc9.css" /><script type="module" src="/_astro/hoisted.a3d84461.js"></script></head>
+  <link rel="stylesheet" href="/_astro/_id_.0d47a2ff.css" /><script type="module" src="/_astro/hoisted.a3d84461.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
     <script>
@@ -100,7 +100,7 @@
     <h2 class="m-0 truncate font-sans font-normal">Blog posts com a tag &#39;{{tag}}&#39;</h2>
   </div>
 
-  <button data-a11y-dialog-show="sidenav" class="btn btn-icon" data-testid="open-sidenav" aria-label="Abrir barra de navegação lateral">
+  <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full" data-a11y-dialog-show="sidenav" data-testid="open-sidenav" aria-label="Abrir barra de navegação lateral">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
   </button>
 </div>
@@ -112,17 +112,11 @@
     <nav class="flex h-full justify-between px-horizontal-padding" aria-label="Navegação principal">
       <ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2">
         <li>
-                <a id="about" href="/pt/" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
-                  Sobre
-                </a>
+                <a id="about" href="/pt/" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Sobre</a>
               </li><li>
-                <a id="posts" href="/pt/posts" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
-                  Posts
-                </a>
+                <a id="posts" href="/pt/posts" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Posts</a>
               </li><li>
-                <a id="resume" href="/pt/resume" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
-                  Currículo
-                </a>
+                <a id="resume" href="/pt/resume" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Currículo</a>
               </li>
       </ul>
     </nav>
@@ -130,7 +124,7 @@
     <div class="h-full flex flex-row gap-2">
       
 
-      <div class="relative flex h-full flex-row items-center">
+      <div class="relative bg-surface shadow-sm shadow-shadow rounded flex justify-between flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
         <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
     <title>Ícone do tema</title>
@@ -145,7 +139,7 @@
   </svg>
       </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 text-center px-10" data-theme-select aria-label="Escolha um tema">
+  <select class="py-1 h-full w-full rounded bg-surface appearance-none text-center pr-9 pl-9" data-theme-select aria-label="Escolha um tema">
     
   <option value="light">Claro</option>
   <option value="dark">Escuro</option>
@@ -153,13 +147,11 @@
 
   
 
-  
-
   </select>
 
   <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
 </div>
     </div>
   </div>
@@ -170,35 +162,28 @@
   <div data-a11y-dialog-hide class="fixed inset-0 -z-1 w-full bg-neutral-700 bg-opacity-75 backdrop-blur-sm">
   </div>
 
-  <div role="document" class="ml-auto h-full w-3/4 rounded-none bg-background py-0 will-change-transform">
-    <div class="flex h-full flex-col justify-between">
-      <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
-        <button data-a11y-dialog-hide class="btn btn-icon" aria-label="Close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
+  <div role="document" class="ml-auto h-full flex flex-col w-3/4 rounded-none bg-background py-0 will-change-transform">
+    <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
+      <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full" data-a11y-dialog-hide="true" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
 
-      <nav class="flex flex-1 flex-col" aria-label="Navegação principal">
-        <ul class="m-0 flex list-none flex-col items-center justify-center gap-4 px-horizontal-padding">
-          <li class="w-full">
-                  <a id="about" href="/pt/" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
-                    About
-                  </a>
-                </li><li class="w-full">
-                  <a id="posts" href="/pt/posts" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
-                    Posts
-                  </a>
-                </li><li class="w-full">
-                  <a id="resume" href="/pt/resume" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
-                    Résumé
-                  </a>
-                </li>
-        </ul>
-      </nav>
+    <nav class="flex flex-col" aria-label="Navegação principal">
+      <ul class="m-0 flex list-none flex-col items-center justify-center gap-2 px-horizontal-padding">
+        <li class="w-full">
+                <a id="about" href="/pt/" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">About</a>
+              </li><li class="w-full">
+                <a id="posts" href="/pt/posts" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Posts</a>
+              </li><li class="w-full">
+                <a id="resume" href="/pt/resume" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Résumé</a>
+              </li>
+      </ul>
+    </nav>
 
-      <div class="mb-4 flex h-12 flex-row items-center px-horizontal-padding">
-        
-        <div class="relative flex h-full flex-row items-center">
+    <div class="flex flex-col gap-2 pb-4 mt-auto px-horizontal-padding [&_div]:flex-1">
+      
+      <div class="relative bg-surface shadow-sm shadow-shadow rounded flex justify-between flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
         <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
     <title>Ícone do tema</title>
@@ -213,7 +198,7 @@
   </svg>
       </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 text-center px-10" data-theme-select aria-label="Escolha um tema">
+  <select class="py-1 h-full w-full rounded bg-surface appearance-none text-center pr-9 pl-9" data-theme-select aria-label="Escolha um tema">
     
   <option value="light">Claro</option>
   <option value="dark">Escuro</option>
@@ -221,15 +206,12 @@
 
   
 
-  
-
   </select>
 
   <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
 </div>
-      </div>
     </div>
   </div>
 </aside>

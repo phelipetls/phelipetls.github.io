@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-23">
+    <meta name="deploy-date" content="2023-04-26">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -39,7 +39,7 @@
     
 
     
-  <link rel="stylesheet" href="/_astro/_id_.17944bc9.css" /><script type="module" src="/_astro/hoisted.a3d84461.js"></script></head>
+  <link rel="stylesheet" href="/_astro/_id_.0d47a2ff.css" /><script type="module" src="/_astro/hoisted.a3d84461.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
     <script>
@@ -106,7 +106,7 @@
   </div></h2>
   </div>
 
-  <button data-a11y-dialog-show="sidenav" class="btn btn-icon" data-testid="open-sidenav" aria-label="Abrir barra de navegação lateral">
+  <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full" data-a11y-dialog-show="sidenav" data-testid="open-sidenav" aria-label="Abrir barra de navegação lateral">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" y1="12" x2="20" y2="12"></line><line x1="4" y1="6" x2="20" y2="6"></line><line x1="4" y1="18" x2="20" y2="18"></line></svg>
   </button>
 </div>
@@ -118,28 +118,22 @@
     <nav class="flex h-full justify-between px-horizontal-padding" aria-label="Navegação principal">
       <ul class="m-0 flex list-none flex-row flex-nowrap items-center gap-2">
         <li>
-                <a id="about" href="/pt/" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
-                  Sobre
-                </a>
+                <a id="about" href="/pt/" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Sobre</a>
               </li><li>
-                <a id="posts" href="/pt/posts" class="bg-primary text-on-primary card hover:bg-primary-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300" aria-current="page">
-                  Posts
-                </a>
+                <a id="posts" href="/pt/posts" aria-current="page" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-primary text-on-primary hover:bg-primary-hover shadow-sm shadow-shadow">Posts</a>
               </li><li>
-                <a id="resume" href="/pt/resume" class="hover:bg-hover relative flex items-center justify-center rounded border-0 py-1 px-2 transition-colors duration-300">
-                  Currículo
-                </a>
+                <a id="resume" href="/pt/resume" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Currículo</a>
               </li>
       </ul>
     </nav>
 
     <div class="h-full flex flex-row gap-2">
-      <div class="relative flex h-full flex-row items-center">
+      <div class="relative bg-surface shadow-sm shadow-shadow rounded flex justify-between flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages" slot="start-icon"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
       </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 text-center pl-8 pr-2" data-language-select aria-label="Escolha a linguagem">
+  <select class="py-1 h-full w-full rounded bg-surface appearance-none text-center pr-9 pl-9" data-language-select aria-label="Escolha a linguagem">
     
   <option value="en">English</option>
   <option selected="true" value="pt">Português</option>
@@ -148,10 +142,12 @@
 
   </select>
 
-  
+  <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
 </div>
 
-      <div class="relative flex h-full flex-row items-center">
+      <div class="relative bg-surface shadow-sm shadow-shadow rounded flex justify-between flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
         <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
     <title>Ícone do tema</title>
@@ -166,7 +162,7 @@
   </svg>
       </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 text-center px-10" data-theme-select aria-label="Escolha um tema">
+  <select class="py-1 h-full w-full rounded bg-surface appearance-none text-center pr-9 pl-9" data-theme-select aria-label="Escolha um tema">
     
   <option value="light">Claro</option>
   <option value="dark">Escuro</option>
@@ -174,13 +170,11 @@
 
   
 
-  
-
   </select>
 
   <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
 </div>
     </div>
   </div>
@@ -191,39 +185,32 @@
   <div data-a11y-dialog-hide class="fixed inset-0 -z-1 w-full bg-neutral-700 bg-opacity-75 backdrop-blur-sm">
   </div>
 
-  <div role="document" class="ml-auto h-full w-3/4 rounded-none bg-background py-0 will-change-transform">
-    <div class="flex h-full flex-col justify-between">
-      <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
-        <button data-a11y-dialog-hide class="btn btn-icon" aria-label="Close">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-        </button>
-      </div>
+  <div role="document" class="ml-auto h-full flex flex-col w-3/4 rounded-none bg-background py-0 will-change-transform">
+    <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
+      <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full" data-a11y-dialog-hide="true" aria-label="Close">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+    </div>
 
-      <nav class="flex flex-1 flex-col" aria-label="Navegação principal">
-        <ul class="m-0 flex list-none flex-col items-center justify-center gap-4 px-horizontal-padding">
-          <li class="w-full">
-                  <a id="about" href="/pt/" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
-                    About
-                  </a>
-                </li><li class="w-full">
-                  <a id="posts" href="/pt/posts" class="card bg-primary text-on-primary hover:bg-primary-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300" aria-current="page">
-                    Posts
-                  </a>
-                </li><li class="w-full">
-                  <a id="resume" href="/pt/resume" class="hover:bg-hover block w-full rounded border-0 p-2 text-center text-xl transition-colors duration-300">
-                    Résumé
-                  </a>
-                </li>
-        </ul>
-      </nav>
+    <nav class="flex flex-col" aria-label="Navegação principal">
+      <ul class="m-0 flex list-none flex-col items-center justify-center gap-2 px-horizontal-padding">
+        <li class="w-full">
+                <a id="about" href="/pt/" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">About</a>
+              </li><li class="w-full">
+                <a id="posts" href="/pt/posts" aria-current="page" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-primary text-on-primary hover:bg-primary-hover shadow-sm shadow-shadow">Posts</a>
+              </li><li class="w-full">
+                <a id="resume" href="/pt/resume" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded py-1 px-2 bg-background text-on-background">Résumé</a>
+              </li>
+      </ul>
+    </nav>
 
-      <div class="mb-4 flex h-12 flex-row items-center px-horizontal-padding">
-        <div class="relative flex h-full flex-row items-center">
+    <div class="flex flex-col gap-2 pb-4 mt-auto px-horizontal-padding [&_div]:flex-1">
+      <div class="relative bg-surface shadow-sm shadow-shadow rounded flex justify-between flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-languages" slot="start-icon"><path d="m5 8 6 6"></path><path d="m4 14 6-6 2-3"></path><path d="M2 5h12"></path><path d="M7 2h1"></path><path d="m22 22-5-10-5 10"></path><path d="M14 18h6"></path></svg>
       </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 text-center pl-8 pr-2" data-language-select aria-label="Escolha a linguagem">
+  <select class="py-1 h-full w-full rounded bg-surface appearance-none text-center pr-9 pl-9" data-language-select aria-label="Escolha a linguagem">
     
   <option value="en">English</option>
   <option selected="true" value="pt">Português</option>
@@ -232,9 +219,11 @@
 
   </select>
 
-  
+  <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
 </div>
-        <div class="relative flex h-full flex-row items-center">
+      <div class="relative bg-surface shadow-sm shadow-shadow rounded flex justify-between flex-row items-center">
   <span class="pointer-events-none absolute left-2 top-1/2 -translate-y-1/2 text-sm">
         <svg class="feather" viewBox="0 0 24 24" width="24" height="24">
     <title>Ícone do tema</title>
@@ -249,7 +238,7 @@
   </svg>
       </span>
 
-  <select class="card h-full appearance-none bg-surface py-1 text-center px-10" data-theme-select aria-label="Escolha um tema">
+  <select class="py-1 h-full w-full rounded bg-surface appearance-none text-center pr-9 pl-9" data-theme-select aria-label="Escolha um tema">
     
   <option value="light">Claro</option>
   <option value="dark">Escuro</option>
@@ -257,15 +246,12 @@
 
   
 
-  
-
   </select>
 
   <span class="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-sm">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </span>
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
+  </span>
 </div>
-      </div>
     </div>
   </div>
 </aside>
@@ -289,11 +275,11 @@
                   </h2>
 
                   <div class="flex flex-row gap-2">
-                    <button disabled="" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2">
+                    <button disabled="" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>
                     </button>
 
-                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2019" aria-label="Pŕoximo ano">
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full" href="#2019" aria-label="Pŕoximo ano">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </a>
                   </div>
@@ -310,7 +296,7 @@
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/git">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/git">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   git
@@ -350,11 +336,11 @@ assustador de início mas você vai aprender a gostar.
                   </h2>
 
                   <div class="flex flex-row gap-2">
-                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" href="#2022" aria-label="Ano anterior">
+                    <a type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full" href="#2022" aria-label="Ano anterior">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-up"><polyline points="18 15 12 9 6 15"></polyline></svg>
                     </a>
 
-                    <button disabled="" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2">
+                    <button disabled="" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background p-2 text-on-background rounded-full">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
                     </button>
                   </div>
@@ -371,25 +357,25 @@ assustador de início mas você vai aprender a gostar.
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/web-scraping">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/web-scraping">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   web-scraping
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/pandas">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/pandas">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   pandas
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/regex">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/regex">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   regex
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   dataviz
@@ -431,19 +417,19 @@ JavaScript da página construir a página, que é o caso do site do Reclame Aqui
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   numpy
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/python">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/python">
   <svg viewBox="0 0 128 128" width="1em" height="1em"><path fill="currentColor" d="M49.33 62h29.159C86.606 62 93 55.132 93 46.981V19.183c0-7.912-6.632-13.856-14.555-15.176-5.014-.835-10.195-1.215-15.187-1.191-4.99.023-9.612.448-13.805 1.191C37.098 6.188 35 10.758 35 19.183V30h29v4H23.776c-8.484 0-15.914 5.108-18.237 14.811-2.681 11.12-2.8 17.919 0 29.53C7.614 86.983 12.569 93 21.054 93H31V79.952C31 70.315 39.428 62 49.33 62zm-1.838-39.11c-3.026 0-5.478-2.479-5.478-5.545 0-3.079 2.451-5.581 5.478-5.581 3.015 0 5.479 2.502 5.479 5.581-.001 3.066-2.465 5.545-5.479 5.545zm74.789 25.921C120.183 40.363 116.178 34 107.682 34H97v12.981C97 57.031 88.206 65 78.489 65H49.33C41.342 65 35 72.326 35 80.326v27.8c0 7.91 6.745 12.564 14.462 14.834 9.242 2.717 17.994 3.208 29.051 0C85.862 120.831 93 116.549 93 108.126V97H64v-4h43.682c8.484 0 11.647-5.776 14.599-14.66 3.047-9.145 2.916-17.799 0-29.529zm-41.955 55.606c3.027 0 5.479 2.479 5.479 5.547 0 3.076-2.451 5.579-5.479 5.579-3.015 0-5.478-2.502-5.478-5.579 0-3.068 2.463-5.547 5.478-5.547z"></path></svg>
 
   python
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/linear-algebra">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/linear-algebra">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   linear-algebra
@@ -485,25 +471,25 @@ ortogonalização).
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidyverse">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidyverse">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   tidyverse
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   dataviz
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/ggplot2">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/ggplot2">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   ggplot2
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidytext">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidytext">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   tidytext
@@ -545,25 +531,25 @@ torna trivial esse tipo de tarefa.
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   dataviz
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidyverse">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidyverse">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   tidyverse
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/gganimate">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/gganimate">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   gganimate
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/ggplot2">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/ggplot2">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   ggplot2
@@ -605,19 +591,19 @@ exploração e visualização de dados no R.
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidyverse">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/tidyverse">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   tidyverse
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/dataviz">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   dataviz
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/ggplot2">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/ggplot2">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   ggplot2
@@ -662,19 +648,19 @@ de dados, o tratamento com o tidyverse e a visualização com o ggplot2.
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/matplotlib">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/matplotlib">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   matplotlib
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   numpy
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/sympy">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/sympy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   sympy
@@ -715,13 +701,13 @@ uma equação, normalmente uma para a qual a solução não é tão trivial.
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   numpy
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/linear-algebra">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/linear-algebra">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   linear-algebra
@@ -765,13 +751,13 @@ importantes para melhorar meu entendimento de programação.
   </h3>
 
   <div class="flex max-w-prose flex-wrap gap-2">
-        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
+        <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/numpy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   numpy
 
   
-</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/matplotlib">
+</a><a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em] snap-start" href="/pt/tags/matplotlib">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   matplotlib
@@ -810,14 +796,14 @@ os 8 possíveis saltos igualmente prováveis).
               
       </div>
 
-      <div class="max-w-xs bg-surface pt-4 [&#38;>*:last-child]:pb-4 [&#38;_h2]:px-4 [&#38;_ul]:px-4 rounded shadow shadow-shadow hidden lg:flex flex-col sticky top-4 max-h-[calc(100vh-2rem)]">
+      <div class="max-w-xs bg-surface pt-4 [&#38;>*:last-child]:pb-4 [&#38;_h2]:px-4 [&#38;_ul]:px-4 rounded shadow-sm shadow-shadow hidden lg:flex flex-col sticky top-4 max-h-[calc(100vh-2rem)]">
         <h2 class="">
           Por tags
         </h2>
 
-        <ul class="m-0 list-inside list-none flex flex-row flex-wrap gap-2 min-h-0 overflow-y-scroll">
+        <ul class="m-0 list-inside list-none flex flex-row flex-wrap gap-2 min-h-0 overflow-y-auto">
           <li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/dataviz">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/dataviz">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   dataviz
@@ -827,7 +813,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/numpy">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/numpy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   numpy
@@ -837,7 +823,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/tidyverse">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/tidyverse">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   tidyverse
@@ -847,7 +833,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/ggplot2">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/ggplot2">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   ggplot2
@@ -857,7 +843,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/linear-algebra">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/linear-algebra">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   linear-algebra
@@ -867,7 +853,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/matplotlib">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/matplotlib">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   matplotlib
@@ -877,7 +863,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/git">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/git">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   git
@@ -887,7 +873,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/tidytext">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/tidytext">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   tidytext
@@ -897,7 +883,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/python">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/python">
   <svg viewBox="0 0 128 128" width="1em" height="1em"><path fill="currentColor" d="M49.33 62h29.159C86.606 62 93 55.132 93 46.981V19.183c0-7.912-6.632-13.856-14.555-15.176-5.014-.835-10.195-1.215-15.187-1.191-4.99.023-9.612.448-13.805 1.191C37.098 6.188 35 10.758 35 19.183V30h29v4H23.776c-8.484 0-15.914 5.108-18.237 14.811-2.681 11.12-2.8 17.919 0 29.53C7.614 86.983 12.569 93 21.054 93H31V79.952C31 70.315 39.428 62 49.33 62zm-1.838-39.11c-3.026 0-5.478-2.479-5.478-5.545 0-3.079 2.451-5.581 5.478-5.581 3.015 0 5.479 2.502 5.479 5.581-.001 3.066-2.465 5.545-5.479 5.545zm74.789 25.921C120.183 40.363 116.178 34 107.682 34H97v12.981C97 57.031 88.206 65 78.489 65H49.33C41.342 65 35 72.326 35 80.326v27.8c0 7.91 6.745 12.564 14.462 14.834 9.242 2.717 17.994 3.208 29.051 0C85.862 120.831 93 116.549 93 108.126V97H64v-4h43.682c8.484 0 11.647-5.776 14.599-14.66 3.047-9.145 2.916-17.799 0-29.529zm-41.955 55.606c3.027 0 5.479 2.479 5.479 5.547 0 3.076-2.451 5.579-5.479 5.579-3.015 0-5.478-2.502-5.478-5.579 0-3.068 2.463-5.547 5.478-5.547z"></path></svg>
 
   python
@@ -907,7 +893,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/sympy">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/sympy">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   sympy
@@ -917,7 +903,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/gganimate">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/gganimate">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   gganimate
@@ -927,7 +913,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/web-scraping">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/web-scraping">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   web-scraping
@@ -937,7 +923,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/pandas">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/pandas">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   pandas
@@ -947,7 +933,7 @@ os 8 possíveis saltos igualmente prováveis).
       </div>
 </a>
                   </li><li class="">
-                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/regex">
+                    <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/pt/tags/regex">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
   regex
