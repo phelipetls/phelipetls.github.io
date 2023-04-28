@@ -1,4 +1,4 @@
-import{S as e,d as t}from"./index.df1b42e1.js";import{j as a}from"./jsx-runtime.0673f7bd.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.a9c2365b.js";import"./CopyCodeBlockButton.b02e9558.js";import"./index.ffa87b56.js";import"./createLucideIcon.e5a06aca.js";import"./floating-ui.dom.browser.min.0e955118.js";function b(){return a.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e}from"./Sandpack.11d3eb3b.js";import{d as t}from"./index.8aa7c818.js";import{j as a}from"./jsx-runtime.0673f7bd.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.a9c2365b.js";import"./CopyCodeBlockButton.55bfe2f1.js";import"./index.ffa87b56.js";import"./createLucideIcon.59f306f6.js";import"./floating-ui.dom.browser.min.0e955118.js";function f(){return a.jsx(e,{template:"react",files:{"/App.js":t`
            export default function App() {
              const handleSubmit = (e) => {
                e.preventDefault()
@@ -34,4 +34,4 @@ import{S as e,d as t}from"./index.df1b42e1.js";import{j as a}from"./jsx-runtime.
                </form>
              )
            }
-        `}})}export{b as default};
+        `}})}export{f as default};

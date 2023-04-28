@@ -1,4 +1,4 @@
-import{S as e,d as r}from"./index.df1b42e1.js";import{j as t}from"./jsx-runtime.0673f7bd.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.a9c2365b.js";import"./CopyCodeBlockButton.b02e9558.js";import"./index.ffa87b56.js";import"./createLucideIcon.e5a06aca.js";import"./floating-ui.dom.browser.min.0e955118.js";function d(){return t.jsx(e,{template:"react",files:{"/App.js":r`
+import{S as e}from"./Sandpack.11d3eb3b.js";import{d as t}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.0673f7bd.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.a9c2365b.js";import"./CopyCodeBlockButton.55bfe2f1.js";import"./index.ffa87b56.js";import"./createLucideIcon.59f306f6.js";import"./floating-ui.dom.browser.min.0e955118.js";function f(){return r.jsx(e,{template:"react",files:{"/App.js":t`
            import { useState } from 'react'
 
            export default function App() {
@@ -25,15 +25,11 @@ import{S as e,d as r}from"./index.df1b42e1.js";import{j as t}from"./jsx-runtime.
                      name="username"
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
-                     aria-invalid={errorMessage !== '' ? 'true' : 'false'}
-                     aria-errormessage="username-errormessage"
-                     aria-describedby="username-description"
                    />
                  </label>
 
                  {errorMessage && (
                    <div
-                     id="username-errormessage"
                      style={{
                        color: 'red',
                      }}
@@ -43,7 +39,6 @@ import{S as e,d as r}from"./index.df1b42e1.js";import{j as t}from"./jsx-runtime.
                  )}
 
                  <div
-                   id="username-description"
                    style={{
                      fontSize: 10,
                      color: 'grey',
@@ -56,4 +51,4 @@ import{S as e,d as r}from"./index.df1b42e1.js";import{j as t}from"./jsx-runtime.
                </form>
              )
            }
-        `}})}export{d as default};
+        `}})}export{f as default};
