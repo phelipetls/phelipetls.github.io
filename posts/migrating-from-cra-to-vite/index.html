@@ -47,7 +47,7 @@ is slow to start up.">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.bf98d5d3.css" />
+  <link rel="stylesheet" href="/_astro/_id_.41f3a065.css" />
 <link rel="stylesheet" href="/_astro/_id_.aac35682.css" /><script type="module" src="/_astro/hoisted.8f1e5039.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -102,7 +102,7 @@ is slow to start up.">
   <div class="pt-nav-height sm:hidden">
     <div class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur">
   <div class="flex flex-row items-center gap-2 overflow-hidden">
-    <a class="border-0" href="/posts/" data-testid="parent-page-link" aria-label="Go back to previous page">
+    <a href="/posts/" data-testid="parent-page-link" aria-label="Go back to previous page">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </a>
 
@@ -287,11 +287,17 @@ really does its job well. I never had to worry too much about tooling but… it
 is slow to start up.</p>
 <p>This never bothered me too much but it’s noticeable and everyone would agree it
 could be better. Lately, we’re witnessing projects developed to improve on this,
-more noticeably <a href="https://github.com/evanw/esbuild">esbuild</a> and
-<a href="https://vitejs.dev/">Vite</a>.</p>
+more noticeably <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/evanw/esbuild">
+  esbuild
+</a> and
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://vitejs.dev/">
+  Vite
+</a>.</p>
 <p>I wanted to try this out and thought about migrating a small app of mine, mostly
 written in Typescript, to Vite. And it was more easy than I expected.</p>
-<h2 id="initial-setup">Initial setup<a aria-hidden="true" tabindex="-1" href="#initial-setup"><span class="icon icon-link"></span></a></h2>
+<h2 id="initial-setup">Initial setup<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#initial-setup">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>First, I installed Vite:</p>
 
 
@@ -337,7 +343,9 @@ written in Typescript, to Vite. And it was more easy than I expected.</p>
   </div>
 </div>
 <p>Next, I needed to modify my <code>index.html</code> file.
-<a href="https://vitejs.dev/guide/#index-html-and-project-root">The reasons for the following steps are explained in more detail here</a>.</p>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://vitejs.dev/guide/#index-html-and-project-root">
+  The reasons for the following steps are explained in more detail here
+</a>.</p>
 <p>Moved my <code>index.html</code> from the <code>./public</code> folder to my project’s root folder and
 added a <code>script</code> tag with my JS entry point as its <code>src</code> attribute.</p>
 
@@ -363,14 +371,20 @@ added a <code>script</code> tag with my JS entry point as its <code>src</code> a
 </div>
 <p>I didn’t had to but if you have any <code>%PUBLIC_URL%</code> in your html file, just
 replace it with <code>/</code>, as explained in the linked article.</p>
-<h2 id="typescript-setup">TypeScript setup<a aria-hidden="true" tabindex="-1" href="#typescript-setup"><span class="icon icon-link"></span></a></h2>
+<h2 id="typescript-setup">TypeScript setup<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#typescript-setup">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>At this point, I couldn’t get my app to run because my project used
 <code>tsconfig.json</code> <code>include</code> properties to make absolute imports, which Vite didn’t
 understand.</p>
 <p>The solution was simple: install a Vite plugin called
-<a href="https://github.com/aleclarson/vite-tsconfig-paths"><code>vite-tsconfig-paths</code></a> which
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/aleclarson/vite-tsconfig-paths">
+  <code>vite-tsconfig-paths</code>
+</a> which
 supports, apart from
-<a href="https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping">path mapping</a>,
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://www.typescriptlang.org/docs/handbook/module-resolution.html#path-mapping">
+  path mapping
+</a>,
 <code>include</code> and <code>exclude</code> properties as well:</p>
 
 
@@ -418,12 +432,16 @@ supports, apart from
 <p>I also set the output directory to be <code>build</code>, instead of the default <code>dist</code>,
 because that’s what CRA uses.</p>
 <p>After that, I was able to start a server and see my app running.</p>
-<h2 id="jest-setup">Jest setup<a aria-hidden="true" tabindex="-1" href="#jest-setup"><span class="icon icon-link"></span></a></h2>
+<h2 id="jest-setup">Jest setup<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#jest-setup">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Because I intended to remove <code>react-scripts</code> from my project, I needed to figure
 out how to run my Jest tests without <code>react-scripts test</code>.</p>
 <p>I needed a way to get Jest to understand/transpile TypeScript and JSX.</p>
 <p>Fortunately, there is project to help with that called
-<a href="https://kulshekhar.github.io/ts-jest/"><code>ts-jest</code></a>. All we need to do is add it
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://kulshekhar.github.io/ts-jest/">
+  <code>ts-jest</code>
+</a>. All we need to do is add it
 as a jest preset in <code>jest.config.js</code>:</p>
 
 
@@ -454,7 +472,9 @@ the <code>@testing-library/jest-dom/extend-expect</code> wouldn’t be imported.
 <li>Add <code>&quot;src&quot;</code> to <code>moduleDirectories</code>, because it would not understand absolute
 imports that look up paths inside <code>tsconfig.json</code> <code>include</code> property</li>
 </ul>
-<h2 id="conclusion">Conclusion<a aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a></h2>
+<h2 id="conclusion">Conclusion<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>This seems to be working fine so far, development environment is much faster to
 boot, though I haven’t checked how great hot reloading is.</p>
 <p>But I’m amazed by that first experience and how straightforward it was.</p>
@@ -581,7 +601,7 @@ boot, though I haven’t checked how great hot reloading is.</p>
     <footer class="border-t border-divider bg-background sm:border-0">
   <div class="mx-auto flex w-full max-w-content flex-col items-center px-horizontal-padding pt-4 pb-8 sm:justify-between">
     <nav aria-label="Contacts" class="flex gap-2">
-  <a class="rounded-full transition-colors duration-300 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-300 hover:text-primary border-0" id="contact-email" href="phelipe_teles@hotmail.com" aria-label="E-mail">
+  <a class="rounded-full transition-colors duration-300 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-300 hover:text-primary border-0" id="contact-email" href="mailto:phelipe_teles@hotmail.com" aria-label="E-mail">
   
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
   

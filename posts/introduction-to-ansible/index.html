@@ -47,7 +47,7 @@ have to install git, tmux, vim, etc. Let’s see how Ansible can help with that.
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.bf98d5d3.css" />
+  <link rel="stylesheet" href="/_astro/_id_.41f3a065.css" />
 <link rel="stylesheet" href="/_astro/_id_.aac35682.css" /><script type="module" src="/_astro/hoisted.8f1e5039.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -102,7 +102,7 @@ have to install git, tmux, vim, etc. Let’s see how Ansible can help with that.
   <div class="pt-nav-height sm:hidden">
     <div class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur">
   <div class="flex flex-row items-center gap-2 overflow-hidden">
-    <a class="border-0" href="/posts/" data-testid="parent-page-link" aria-label="Go back to previous page">
+    <a href="/posts/" data-testid="parent-page-link" aria-label="Go back to previous page">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </a>
 
@@ -305,17 +305,23 @@ them across machines, but it won’t help you with your dependencies — you sti
 have to install git, tmux, vim, etc. Let’s see how Ansible can help with that.</p>
 <p>Ansible would often come up as a solution to dependency management, but I’d
 quickly dismiss it because it looked too complex and enterprise-y, an
-impression that the <a href="https://www.ansible.com">landing page</a> certainly
+impression that the <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://www.ansible.com">
+  landing page
+</a> certainly
 contributed to. In my opinion, It doesn’t help convey the idea of what Ansible
 turned out to be for me: a tool to automate tasks in a declarative way.</p>
 <p>I wish I was introduced to Ansible differently, so this post is an attempt to
 write the introduction I wish I’ve had. We’ll deliberately abstract away the
 more complex applications of Ansible and focus on solving one problem: how to
 set up a machine with your preferred programs, appearances, settings etc.</p>
-<h2 id="installing-ansible">Installing Ansible<a aria-hidden="true" tabindex="-1" href="#installing-ansible"><span class="icon icon-link"></span></a></h2>
+<h2 id="installing-ansible">Installing Ansible<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#installing-ansible">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>First things first, let’s install Ansible. The official docs has an
-extensive <a href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems">list with installation instructions for many Unix-like operating
-systems</a>.</p>
+extensive <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems">
+  list with installation instructions for many Unix-like operating
+systems
+</a>.</p>
 <aside class="my-8 flex gap-4 sm:rounded border-y sm:border-y-0 sm:border-l bg-surface full-width-on-mobile px-horizontal-padding py-4 sm:shadow-sm sm:shadow-shadow sm:mx-0 flex-row border-warn">
   <div class="">
     <div class="text-warn">
@@ -327,15 +333,19 @@ systems</a>.</p>
     
   
 
-  <p><a href="https://docs.ansible.com/ansible/latest/user_guide/windows_faq.html#windows-faq-ansible">Ansible cannot run on a Windows
-machine</a>,
+  <p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/windows_faq.html#windows-faq-ansible">
+  Ansible cannot run on a Windows
+machine
+</a>,
 which is surprising. It can only <em>remotely manage</em> Windows machines, from a
 Unix-like OS, such as WSL.</p>
 
   </article>
 </aside>
 <p>Another option, available at every operating system, is to use
-<a href="https://pypi.org/project/pip/">pip</a>, the package manager for Python, which was
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://pypi.org/project/pip/">
+  pip
+</a>, the package manager for Python, which was
 my choice:</p>
 
 
@@ -358,7 +368,9 @@ my choice:</p>
     <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="15HImN" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;$ pip install ansible\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="how-ansible-clicked-for-me">How Ansible clicked for me<a aria-hidden="true" tabindex="-1" href="#how-ansible-clicked-for-me"><span class="icon icon-link"></span></a></h2>
+<h2 id="how-ansible-clicked-for-me">How Ansible clicked for me<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#how-ansible-clicked-for-me">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>If I remember correctly, it was by looking at the source code of a dotfiles
 repo that used it. The <code>README.md</code> explained that you needed to run a one
 single command to set up everything:</p>
@@ -417,26 +429,38 @@ tasks</em>. In this example, the desired state is to have git and tmux installed
 (or “present”), but the desired state will likely not be that simple. Also,
 what if we’re on macOS? Or Fedora? We won’t be able to use <code>apt</code> in this case.
 We’ll see that Ansible makes it easy to handle this.</p>
-<h2 id="playbook">Playbook<a aria-hidden="true" tabindex="-1" href="#playbook"><span class="icon icon-link"></span></a></h2>
+<h2 id="playbook">Playbook<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#playbook">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>The file <code>bootstrap.yml</code> is, in Ansible terminology, a
-<a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html">playbook</a>,
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html">
+  playbook
+</a>,
 which is, in my own words, a way to declare which tasks should run in a machine
 in order to achieve the desired state. Playbooks are written in YAML, which is
-easy to read and <a href="https://learnxinyminutes.com/docs/yaml/">learn</a>.</p>
+easy to read and <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://learnxinyminutes.com/docs/yaml/">
+  learn
+</a>.</p>
 <p>A playbook may contain various plays, and each play may contain various tasks.
 For example, the <code>bootstrap.yml</code> playbook has a single play, named “Boostrap
 development environment”, with one task, “Install packages with apt”.</p>
-<h2 id="hosts-and-inventory">Hosts and inventory<a aria-hidden="true" tabindex="-1" href="#hosts-and-inventory"><span class="icon icon-link"></span></a></h2>
+<h2 id="hosts-and-inventory">Hosts and inventory<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#hosts-and-inventory">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Ansible can execute tasks on remote and local machines. This is managed with
 the help of an
-”<a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">inventory</a>”,
+”<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">
+  inventory
+</a>”,
 where these machines (<code>hosts</code>) are classified with patterns like “prod”,
 “test”, “webserver” etc..</p>
 <p>We’re not interested in that here since we just want to run tasks on our local
 machine. Passing <code>localhost</code> as a playbook’s <code>hosts</code> will do what we want,
-without any inventory, because <a href="https://docs.ansible.com/ansible/latest/inventory/implicit_localhost.html">Ansible will implicitly define <code>localhost</code> to
+without any inventory, because <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/inventory/implicit_localhost.html">
+  Ansible will implicitly define <code>localhost</code> to
 match the local
-machine</a>.</p>
+machine
+</a>.</p>
 
 
 <div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
@@ -458,7 +482,9 @@ machine</a>.</p>
     <astro-island uid="Z1R1OnS" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Bootstrap development environment\n  hosts: localhost\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="tasks">Tasks<a aria-hidden="true" tabindex="-1" href="#tasks"><span class="icon icon-link"></span></a></h2>
+<h2 id="tasks">Tasks<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#tasks">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Now, let’s dissect the “Install packages with apt” task. Here it is again:</p>
 
 
@@ -481,9 +507,13 @@ machine</a>.</p>
     <astro-island uid="ZyYawW" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;  tasks:\n  - name: Install packages with apt\n    become: yes\n    ansible.builtin.apt:\n      name:\n        - git\n        - tmux\n      state: present\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="become">Become<a aria-hidden="true" tabindex="-1" href="#become"><span class="icon icon-link"></span></a></h2>
+<h2 id="become">Become<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#become">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Let’s start with the keyword
-<a href="https://docs.ansible.com/ansible/latest/user_guide/become.html"><code>become</code></a>. It
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/become.html">
+  <code>become</code>
+</a>. It
 is used so that you can “become another user while this task is executing”,
 that user being by default <code>root</code>. So it’s, effectively, the equivalent of
 using <code>sudo</code>. This is also why you need to run the playbook with the option
@@ -491,24 +521,38 @@ using <code>sudo</code>. This is also why you need to run the playbook with the 
 your password.</p>
 <p>If you need to become another user other than <code>root</code>, use the <code>become_user</code>
 keyword.</p>
-<h2 id="modules">Modules<a aria-hidden="true" tabindex="-1" href="#modules"><span class="icon icon-link"></span></a></h2>
-<p><code>ansible.builtin.apt</code> is an <a href="https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html">Ansible
-module</a>,
+<h2 id="modules">Modules<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#modules">
+  <span class="icon icon-link"></span>
+</a></h2>
+<p><code>ansible.builtin.apt</code> is an <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html">
+  Ansible
+module
+</a>,
 which is the preferred way to interact with another program in an Ansible
 playbook.</p>
-<p>Ansible has several built-in modules, <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html">here’s a full
-list</a>.
+<p>Ansible has several built-in modules, <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html">
+  here’s a full
+list
+</a>.
 It has modules for most Linux distributions package managers, like
-<a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html"><code>dnf</code></a>.
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html">
+  <code>dnf</code>
+</a>.
 But there are also community-developed modules, like one for
-<a href="https://docs.ansible.com/ansible/latest/collections/community/general/homebrew_module.html">Homebrew</a>,
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/community/general/homebrew_module.html">
+  Homebrew
+</a>,
 if you’re on macOS, which we’ll have to download separately, which we’ll learn
 how shortly.</p>
 <p>An Ansible module takes arguments to accomplish a task. In the
 <code>ansible.builtin.apt</code> case, we pass a list of packages to the
-<a href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-name"><code>name</code></a>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-name">
+  <code>name</code>
+</a>
 argument and the desired state we want them to be in to the
-<a href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-state"><code>state</code></a>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-state">
+  <code>state</code>
+</a>
 argument.</p>
 
 
@@ -531,7 +575,9 @@ argument.</p>
     <astro-island uid="mwTeG" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;  tasks:\n  - name: Install packages with apt\n    become: yes\n    ansible.builtin.apt:\n      name:\n        - git\n        - tmux\n      state: present # could also be &#39;latest&#39; or &#39;absent&#39;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="idempotency">Idempotency<a aria-hidden="true" tabindex="-1" href="#idempotency"><span class="icon icon-link"></span></a></h2>
+<h2 id="idempotency">Idempotency<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#idempotency">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Ansible playbooks are meant to be idempotent, meaning that, no matter how many
 times they run, the machine will end up in the same desired state.</p>
 <p>An Ansible module can tell if something changed between runs. For example,
@@ -564,10 +610,14 @@ would have been labelled as “changed”, because now both are present.</p>
 <p>This feature is module-dependent. The task could be idempotent by nature, yet
 Ansible wouldn’t know about it unless the module is smart enough to tell it.</p>
 <p>To illustrate this, let’s use the
-<a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#shell-module"><code>ansible.builtin.shell</code></a>,
-which is used to run arbitrary commands into a shell. <a href="https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html">Let’s run a task using
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#shell-module">
+  <code>ansible.builtin.shell</code>
+</a>,
+which is used to run arbitrary commands into a shell. <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html">
+  Let’s run a task using
 this module in an ad hoc
-way</a>
+way
+</a>
 (outside of a playbook):</p>
 
 
@@ -597,17 +647,27 @@ could be any arbitrary command, such as <code>rm -rf $HOME</code>.</p>
 something changed between runs. <code>ansible.builtin.shell</code> is kind of a low-level
 one, so it’s best to avoid it whenever possible. There are ways to make it
 smarter with parameters such as
-<a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-creates"><code>creates</code></a>,
-<a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-removes"><code>removes</code></a>,
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-creates">
+  <code>creates</code>
+</a>,
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-removes">
+  <code>removes</code>
+</a>,
 or, at the task level,
-<a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#defining-changed"><code>changed_when</code></a>.</p>
-<h2 id="facts-and-conditionals">Facts and conditionals<a aria-hidden="true" tabindex="-1" href="#facts-and-conditionals"><span class="icon icon-link"></span></a></h2>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#defining-changed">
+  <code>changed_when</code>
+</a>.</p>
+<h2 id="facts-and-conditionals">Facts and conditionals<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#facts-and-conditionals">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Now let’s imagine you use both macOS and Ubuntu. You want to install git and
 tmux in both operating systems with Ansible. You’ll need to add some sort of
 conditional logic to your playbook since <code>apt</code> isn’t available in macOS, and
 you probably don’t want to use Homebrew in Linux, even though you could.</p>
-<p><a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#basic-conditionals-with-when">We can run a task conditionally with the <code>when</code>
-keyword</a>:</p>
+<p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#basic-conditionals-with-when">
+  We can run a task conditionally with the <code>when</code>
+keyword
+</a>:</p>
 
 
 <div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
@@ -632,19 +692,29 @@ keyword</a>:</p>
 <p>The task will run if the expression passed to <code>when</code> evaluates to <code>True</code>. This
 expression is a Jinja2 expression, a template engine written in Python, so it’s
 not strictly Python syntax but it looks a lot like it.</p>
-<p>The <code>ansible_distribution</code> variable is an <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html">Ansible
-fact</a>:
+<p>The <code>ansible_distribution</code> variable is an <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html">
+  Ansible
+fact
+</a>:
 information about your system gathered and provided by Ansible, for
-convenience. There are a LOT of facts, you can run <code>ansible localhost -m ansible.builtin.setup</code> to check what’s available, but here’s the <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#commonly-used-facts">most commonly
+convenience. There are a LOT of facts, you can run <code>ansible localhost -m ansible.builtin.setup</code> to check what’s available, but here’s the <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#commonly-used-facts">
+  most commonly
 used
-ones</a>:
+ones
+</a>:
 <code>ansible_distribution</code>, <code>ansible_distribution_version</code> and <code>ansible_os_family</code>.</p>
-<h2 id="ansible-galaxy">Ansible Galaxy<a aria-hidden="true" tabindex="-1" href="#ansible-galaxy"><span class="icon icon-link"></span></a></h2>
+<h2 id="ansible-galaxy">Ansible Galaxy<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#ansible-galaxy">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>The module <code>community.general.homebrew</code> is not a built-in module, you have to
-install it separately via <a href="https://galaxy.ansible.com/docs/">Ansible Galaxy</a>,
+install it separately via <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://galaxy.ansible.com/docs/">
+  Ansible Galaxy
+</a>,
 which is a hub for Ansible content.</p>
 <p>Ansible Galaxy provides a command-line interface to install stuff, like
-<a href="https://galaxy.ansible.com/docs/contributing/creating_collections.html">collections</a>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://galaxy.ansible.com/docs/contributing/creating_collections.html">
+  collections
+</a>
 and roles (which we’ll learn about shortly). <code>community.general</code> is a
 collection of modules, which we can install by running:</p>
 
@@ -668,7 +738,9 @@ collection of modules, which we can install by running:</p>
     <astro-island uid="1SJa6r" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;$ ansible-galaxy collection install community.general\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="loops">Loops<a aria-hidden="true" tabindex="-1" href="#loops"><span class="icon icon-link"></span></a></h2>
+<h2 id="loops">Loops<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#loops">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>You may need a loop to accomplish a task. For example, the following task will
 build <code>dwm</code>, <code>slock</code> and <code>dmenu</code> from source, by running <code>sudo make install</code> in
 each directory containing the source code:</p>
@@ -695,7 +767,9 @@ each directory containing the source code:</p>
 </div>
 <p>Another example is if a module do not accept a list of strings as an argument,
 just a string.
-<a href="https://docs.ansible.com/ansible/latest/collections/community/general/npm_module.html"><code>community.general.npm</code></a>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/community/general/npm_module.html">
+  <code>community.general.npm</code>
+</a>
 is one of such modules. Here’s an example of how to install some npm modules
 globally:</p>
 
@@ -719,20 +793,30 @@ globally:</p>
     <astro-island uid="Z1IAPsY" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Install npm global packages\n  loop:\n    - yalc\n    - npm-merge-driver\n    - diff-so-fancy\n  community.general.npm:\n    name: \&quot;{{ item }}\&quot;\n    state: present\n    global: true\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="jinja2">Jinja2<a aria-hidden="true" tabindex="-1" href="#jinja2"><span class="icon icon-link"></span></a></h2>
-<p><a href="https://jinja.palletsprojects.com/en/3.1.x/templates/">Jinja2</a> was mentioned
+<h2 id="jinja2">Jinja2<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#jinja2">
+  <span class="icon icon-link"></span>
+</a></h2>
+<p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://jinja.palletsprojects.com/en/3.1.x/templates/">
+  Jinja2
+</a> was mentioned
 briefly in conditionals, but because it’s a huge component of Ansible, it
 deserves a few more words than that.</p>
 <p>We’ve been using Jinja2 throughout this post already, e.g., <code>{{ item }}</code> is a
 Jinja2 expression to expand the value in the variable <code>item</code>.</p>
 <p>It’s possible to manipulate this value with
-<a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#filters">filters</a>, e.g.
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://jinja.palletsprojects.com/en/3.1.x/templates/#filters">
+  filters
+</a>, e.g.
 <code>{{ item | upper }}</code>.</p>
-<p><a href="https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters">There are a lot of built-in
-filters</a>.
+<p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters">
+  There are a lot of built-in
+filters
+</a>.
 The <code>upper</code> filter is kind of an innocuous one, there are some more powerful,
-e.g. <code>product</code> to build a <a href="https://docs.ansible.com/ansible/2.8/user_guide/playbooks_filters.html#product-filters">cartesian
-product</a>
+e.g. <code>product</code> to build a <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/2.8/user_guide/playbooks_filters.html#product-filters">
+  cartesian
+product
+</a>
 from lists:</p>
 
 
@@ -755,8 +839,10 @@ from lists:</p>
     <astro-island uid="1Lksif" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Give users access to multiple databases\n  community.mysql.mysql_user:\n    name: \&quot;{{ item[0] }}\&quot;\n    priv: \&quot;{{ item[1] }}.*:ALL\&quot;\n    append_privs: yes\n    password: \&quot;foo\&quot;\n  loop: \&quot;{{ [&#39;alice&#39;, &#39;bob&#39;] | product([&#39;clientdb&#39;, &#39;employeedb&#39;, &#39;providerdb&#39;]) | list }}\&quot;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p>Ansible uses <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#playbooks-tests">Jinja2
-tests</a>
+<p>Ansible uses <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#playbooks-tests">
+  Jinja2
+tests
+</a>
 to express conditional logic. The syntax for tests is slightly different than
 the filter syntax:</p>
 
@@ -780,17 +866,25 @@ the filter syntax:</p>
     <astro-island uid="Z1GieUj" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;vars:\n  url: \&quot;https://example.com/users/foo/resources/bar\&quot;\n\ntasks:\n    - debug:\n        msg: \&quot;matched pattern 1\&quot;\n      when: url is match(\&quot;https://example.com/users/.*/resources\&quot;)\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p>The usual <a href="https://jinja.palletsprojects.com/en/latest/templates/#comparisons">comparison
-operators</a>
+<p>The usual <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://jinja.palletsprojects.com/en/latest/templates/#comparisons">
+  comparison
+operators
+</a>
 are available, like <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, and it’s, of course, also
-possible to <a href="https://jinja.palletsprojects.com/en/latest/templates/#logic">combine or transform multiple boolean
-expressions</a> with
+possible to <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://jinja.palletsprojects.com/en/latest/templates/#logic">
+  combine or transform multiple boolean
+expressions
+</a> with
 <code>and</code>, <code>or</code>, <code>not</code> etc.</p>
-<h2 id="roles">Roles<a aria-hidden="true" tabindex="-1" href="#roles"><span class="icon icon-link"></span></a></h2>
+<h2 id="roles">Roles<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#roles">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>An Ansible role is a way to organize your tasks logic in a file structure. A
 role is usually the format in which you use other people’s Ansible tasks. For
-example, <a href="https://github.com/gantsign/ansible-role-visual-studio-code">there is an Ansible role to install Visual Studio
-Code</a>. It’s
+example, <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/gantsign/ansible-role-visual-studio-code">
+  there is an Ansible role to install Visual Studio
+Code
+</a>. It’s
 available in Ansible Galaxy, so we can install it like this:</p>
 
 
@@ -890,14 +984,24 @@ on the host’s operating system:</p>
 <p>Ansible will make it easy for you to use templates and files stored in the
 role’s <code>templates</code> and <code>files</code> directory. You can provide variables’ default
 values in the <code>default/main.yml</code> file. The list could go on, but I won’t go any
-further. Learn more about it in the <a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">official docs about
-roles</a>.</p>
-<h2 id="dotfiles-use-cases">dotfiles use cases<a aria-hidden="true" tabindex="-1" href="#dotfiles-use-cases"><span class="icon icon-link"></span></a></h2>
-<p>Now let’s look at some examples at how I used Ansible to manage <a href="https://github.com/phelipetls/dotfiles">my
-dotfiles</a>.</p>
-<h2 id="building-neovim-from-source">Building Neovim from source<a aria-hidden="true" tabindex="-1" href="#building-neovim-from-source"><span class="icon icon-link"></span></a></h2>
+further. Learn more about it in the <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">
+  official docs about
+roles
+</a>.</p>
+<h2 id="dotfiles-use-cases">dotfiles use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#dotfiles-use-cases">
+  <span class="icon icon-link"></span>
+</a></h2>
+<p>Now let’s look at some examples at how I used Ansible to manage <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/phelipetls/dotfiles">
+  my
+dotfiles
+</a>.</p>
+<h2 id="building-neovim-from-source">Building Neovim from source<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#building-neovim-from-source">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Let’s build Neovim from source with Ansible, in Ubuntu, with the help of the
-<a href="https://github.com/neovim/neovim/wiki/Building-Neovim">official guide</a>.</p>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/neovim/neovim/wiki/Building-Neovim">
+  official guide
+</a>.</p>
 <aside class="my-8 flex gap-4 sm:rounded border-y sm:border-y-0 sm:border-l bg-surface full-width-on-mobile px-horizontal-padding py-4 sm:shadow-sm sm:shadow-shadow sm:mx-0 flex-row border-note">
   <div class="">
     <div class="text-note">
@@ -916,7 +1020,9 @@ stable, so I can’t be bothered.</p>
 </aside>
 <p>I already have Neovim source code as a git submodule in <code>deps/neovim</code>, but it’s
 also possible to add a task to clone its repository with the
-<a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html"><code>ansible.builtin.git</code></a>
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html">
+  <code>ansible.builtin.git</code>
+</a>
 module.</p>
 <p>We’ll need to install build dependencies, run some <code>make</code> commands, and that’s
 it!</p>
@@ -941,8 +1047,12 @@ it!</p>
     <astro-island uid="Z2d1vrC" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;# In case you don&#39;t like git submodules\n- name: Clone nvim repository\n  git:\n    repo: https://github.com/neovim/neovim\n    dest: \&quot;{{ ansible_env.HOME }}/src/nvim\&quot;\n    clone: true\n    version: \&quot;v6.0.0\&quot;\n\n- name: Install nvim build dependencies\n  become: true\n  apt:\n    name:\n      - ninja-build\n      - gettext\n      - libtool\n      - libtool-bin\n      - autoconf\n      - automake\n      - cmake\n      - g++\n      - pkg-config\n      - unzip\n      - curl\n    state: present\n\n- name: Build nvim release version\n  community.general.make:\n    chdir: deps/neovim\n    params:\n      CMAKE_BUILD_TYPE: Release\n\n- name: Install nvim release version\n  become: true\n  community.general.make:\n    chdir: deps/neovim\n    target: install\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<h2 id="installing-efm-langserver">Installing efm-langserver<a aria-hidden="true" tabindex="-1" href="#installing-efm-langserver"><span class="icon icon-link"></span></a></h2>
-<p><a href="https://github.com/mattn/efm-langserver"><code>efm-langserver</code></a> is a Language
+<h2 id="installing-efm-langserver">Installing efm-langserver<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#installing-efm-langserver">
+  <span class="icon icon-link"></span>
+</a></h2>
+<p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/mattn/efm-langserver">
+  <code>efm-langserver</code>
+</a> is a Language
 Server to make any LSP client understand the output of an arbitrary linter or
 formatter.</p>
 <p>Let’s install it using Ansible too! It’s a Golang app, so we could use the Go
@@ -971,11 +1081,15 @@ now I just download the tarball from GitHub, unpack (with
     <astro-island uid="Z1dds32" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Create directory ~/.local/bin/\n  file:\n    path: \&quot;{{ ansible_env.HOME }}/.local/bin\&quot;\n    state: directory\n\n- name: Install efm-langserver in Linux\n  unarchive:\n    src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz\n    dest: \&quot;{{ ansible_env.HOME }}/.local/bin\&quot;\n    remote_src: true\n    extra_opts:\n      - \&quot;--strip-components=1\&quot;\n      - \&quot;efm-langserver_v0.0.37_linux_amd64/efm-langserver\&quot;\n  when: ansible_distribution == \&quot;Ubuntu\&quot; or ansible_distribution == \&quot;Fedora\&quot;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p><a href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/macos.yml">It isn’t as easy to do this in macOS
-though</a>,
+<p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/macos.yml">
+  It isn’t as easy to do this in macOS
+though
+</a>,
 just because it’s a zip file instead, which lacks the convenience of the
 <code>extra_opts</code> parameter… But I might be missing something.</p>
-<h2 id="installing-linters-and-formatters">Installing linters and formatters<a aria-hidden="true" tabindex="-1" href="#installing-linters-and-formatters"><span class="icon icon-link"></span></a></h2>
+<h2 id="installing-linters-and-formatters">Installing linters and formatters<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#installing-linters-and-formatters">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>I also install the linters and formatters I use with Ansible. Here’s a snippet
 of it:</p>
 
@@ -999,9 +1113,13 @@ of it:</p>
     <astro-island uid="Z1th7BH" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Install linters and formatters with dnf\n  become: true\n  dnf:\n    name:\n      - ShellCheck # this is shellcheck in apt and brew\n    state: present\n  when: ansible_distribution == \&quot;Fedora\&quot;\n\n# ...\n\n- name: Install linters and formatters with pip\n  ansible.builtin.pip:\n    name:\n      - flake8\n      - black\n      - yamllint\n      - git+https://github.com/Vimjas/vint@master\n    state: present\n    executable: pip3\n\n- name: Install linters and formatters with npm\n  loop:\n    - eslint_d\n    - prettier\n  community.general.npm:\n    name: \&quot;{{ item }}\&quot;\n    global: true\n    state: present\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p><a href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/main.yml#L21-L62">If you’re interested, you can look at the file on
-GitHub</a>.</p>
-<h2 id="stow">Stow<a aria-hidden="true" tabindex="-1" href="#stow"><span class="icon icon-link"></span></a></h2>
+<p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/main.yml#L21-L62">
+  If you’re interested, you can look at the file on
+GitHub
+</a>.</p>
+<h2 id="stow">Stow<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#stow">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>Stow is a huge part of dotfiles management: it’s responsible to put the
 contents of my dofiles into my <code>$HOME</code> directory, as symlinks, while preserving
 the same folder structure.</p>
@@ -1065,14 +1183,20 @@ something changed:</p>
 </div>
 <p>This is a small thing, but it’s just nice to run a playbook and have everything
 labelled as “ok”.</p>
-<h2 id="gnome">GNOME<a aria-hidden="true" tabindex="-1" href="#gnome"><span class="icon icon-link"></span></a></h2>
+<h2 id="gnome">GNOME<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#gnome">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>We can’t customize GNOME with configuration files. We normally configure it
 with GUIs, which is not a great thing if we’re interested in automating the
 customization step.</p>
 <p>Fortunately, there is a command line interface to make this possible called
-<a href="https://wiki.gnome.org/Projects/dconf"><code>dconf</code></a> (there’s also <code>gsettings</code> but
-we won’t use it). The collection <code>community.general</code> has a <a href="https://docs.ansible.com/ansible/latest/collections/community/general/dconf_module.html">module for
-<code>dconf</code></a>,
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://wiki.gnome.org/Projects/dconf">
+  <code>dconf</code>
+</a> (there’s also <code>gsettings</code> but
+we won’t use it). The collection <code>community.general</code> has a <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/community/general/dconf_module.html">
+  module for
+<code>dconf</code>
+</a>,
 so let’s use it.</p>
 <p>For now, I just made two tweaks to my GNOME DE:</p>
 <ul>
@@ -1104,11 +1228,15 @@ so let’s use it.</p>
 <p>But how did I find that I needed this specific key
 <code>/org/gnome/desktop/peripherals/touchpad/tap-to-click</code>? That’s the hard part,
 but it’s easier if we use
-<a href="https://wiki.gnome.org/Apps/DconfEditor"><code>dconf-editor</code></a>, a GUI to explore
+<a class="border-b border-primary no-underline hover:border-primary-hover" href="https://wiki.gnome.org/Apps/DconfEditor">
+  <code>dconf-editor</code>
+</a>, a GUI to explore
 GNOME applications’ internal settings. Navigate through it until you find the
 desired setting that seems responsible for what you want, grab its path and
 pass the value you want to it.</p>
-<h2 id="conclusion">Conclusion<a aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a></h2>
+<h2 id="conclusion">Conclusion<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>You should now be able to automate downloading your favorite programs with your
 preferred configuration across operating systems, with tasks/roles written by
 you or by the community (which is the nicest part).</p>
@@ -1314,7 +1442,7 @@ even though it is in your current host.</p>
     <footer class="border-t border-divider bg-background sm:border-0">
   <div class="mx-auto flex w-full max-w-content flex-col items-center px-horizontal-padding pt-4 pb-8 sm:justify-between">
     <nav aria-label="Contacts" class="flex gap-2">
-  <a class="rounded-full transition-colors duration-300 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-300 hover:text-primary border-0" id="contact-email" href="phelipe_teles@hotmail.com" aria-label="E-mail">
+  <a class="rounded-full transition-colors duration-300 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-300 hover:text-primary border-0" id="contact-email" href="mailto:phelipe_teles@hotmail.com" aria-label="E-mail">
   
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
   

@@ -45,7 +45,7 @@ but it doesn’t matter here).">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.bf98d5d3.css" />
+  <link rel="stylesheet" href="/_astro/_id_.41f3a065.css" />
 <link rel="stylesheet" href="/_astro/_id_.aac35682.css" /><script type="module" src="/_astro/hoisted.8f1e5039.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -100,7 +100,7 @@ but it doesn’t matter here).">
   <div class="pt-nav-height sm:hidden">
     <div class="fixed top-0 left-0 z-30 flex w-screen justify-between rounded-none border-b border-divider bg-background/90 py-4 px-horizontal-padding backdrop-blur">
   <div class="flex flex-row items-center gap-2 overflow-hidden">
-    <a class="border-0" href="/posts/" data-testid="parent-page-link" aria-label="Go back to previous page">
+    <a href="/posts/" data-testid="parent-page-link" aria-label="Go back to previous page">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>
         </a>
 
@@ -314,21 +314,29 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 </div>
 <p>At first, it was not obvious to me how I could use it beyond <code>:grep foo</code>, so I
 want to share how I do.</p>
-<h2 id="common-use-cases">Common use cases<a aria-hidden="true" tabindex="-1" href="#common-use-cases"><span class="icon icon-link"></span></a></h2>
+<h2 id="common-use-cases">Common use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#common-use-cases">
+  <span class="icon icon-link"></span>
+</a></h2>
 <ul>
 <li>Search for <code>foo</code> in current working directory: <code>:grep foo</code>.</li>
 <li>Search for <code>foo</code> in files under <code>src/</code>: <code>:grep foo src</code>.</li>
-<li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>.</li>
+<li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup><a class="border-b border-primary no-underline hover:border-primary-hover" href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">
+  1
+</a></sup>.</li>
 <li>Search for <code>foo</code> in current file directory’s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
-<h2 id="less-common-use-cases">Less common use cases<a aria-hidden="true" tabindex="-1" href="#less-common-use-cases"><span class="icon icon-link"></span></a></h2>
+<h2 id="less-common-use-cases">Less common use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#less-common-use-cases">
+  <span class="icon icon-link"></span>
+</a></h2>
 <ul>
 <li>Search for the exact word <code>foo</code> (not <code>foobar</code>): <code>:grep -w foo</code> (equivalent to
 <code>:grep &#39;\bfoo\b&#39;</code>).</li>
 <li>Search for <code>foo</code> in JavaScript files: <code>:grep foo -t js</code></li>
 <li>Search for <code>foo</code> in files matching a glob: <code>:grep foo -g &#39;*.js&#39;</code></li>
 </ul>
-<h2 id="extensibility">Extensibility<a aria-hidden="true" tabindex="-1" href="#extensibility"><span class="icon icon-link"></span></a></h2>
+<h2 id="extensibility">Extensibility<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#extensibility">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>This is nice but here is where it truly shines. I can give any command line
 output as an argument.</p>
 <p>Say I want to search in files modified between git revisions:</p>
@@ -360,30 +368,42 @@ output as an argument.</p>
   </div>
 </div>
 <p>I don’t use this everyday but I enjoy it when I do.</p>
-<h2 id="usage-with-vim">Usage with Vim<a aria-hidden="true" tabindex="-1" href="#usage-with-vim"><span class="icon icon-link"></span></a></h2>
+<h2 id="usage-with-vim">Usage with Vim<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#usage-with-vim">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>This will populate the quickfix list with the search results, so I can navigate
 them with commands I’m already familiar with.</p>
 <p>For example, to replace foo with bar across files (asking me to confirm
 before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Sometimes I narrow the
 search down with <code>:Cfilter</code> too.</p>
-<h2 id="downsides">Downsides<a aria-hidden="true" tabindex="-1" href="#downsides"><span class="icon icon-link"></span></a></h2>
+<h2 id="downsides">Downsides<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#downsides">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p><s>A downside is that you can’t use backreferences or look-around in regex. In
-the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&#38;utm_medium=web2x&#38;context=3">thanks to
+the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&#38;utm_medium=web2x&#38;context=3">
+  thanks to
 ripgrep’s
-author</a>,
+author
+</a>,
 that you can use backreferences/look-around in regex with the <code>-P/--pcre2</code> flag
 or <code>--engine auto</code> and I can’t wait to use it!!</p>
 <p>Another one is that it’s synchronous, so if the directory is huge it may block <code>vim</code>
 for a few seconds. But I don’t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
-<h2 id="conclusion">Conclusion<a aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a></h2>
+<h2 id="conclusion">Conclusion<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion">
+  <span class="icon icon-link"></span>
+</a></h2>
 <p>This might be one of the few sane reasons why I insist on using <code>nvim</code> for
 development (<code>vim-fugitive</code> and LSP as well). It’s just one of those things I
 enjoy using and makes development more fun (to me).</p>
-<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes<a aria-hidden="true" tabindex="-1" href="#footnote-label"><span class="icon icon-link"></span></a></h2>
+<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#footnote-label">
+  <span class="icon icon-link"></span>
+</a></h2>
 <ol>
 <li id="user-content-fn-1">
-<p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>. <a href="#user-content-fnref-1" data-footnote-backref="" class="data-footnote-backref" aria-label="Back to content">↩</a></p>
+<p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>. <a class="border-b border-primary no-underline hover:border-primary-hover data-footnote-backref" href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to content">
+  ↩
+</a></p>
 </li>
 </ol>
 </section>
@@ -506,7 +526,7 @@ enjoy using and makes development more fun (to me).</p>
     <footer class="border-t border-divider bg-background sm:border-0">
   <div class="mx-auto flex w-full max-w-content flex-col items-center px-horizontal-padding pt-4 pb-8 sm:justify-between">
     <nav aria-label="Contacts" class="flex gap-2">
-  <a class="rounded-full transition-colors duration-300 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-300 hover:text-primary border-0" id="contact-email" href="phelipe_teles@hotmail.com" aria-label="E-mail">
+  <a class="rounded-full transition-colors duration-300 hover:bg-hover p-2 [&_svg]:transition-colors [&_svg]:duration-300 hover:text-primary border-0" id="contact-email" href="mailto:phelipe_teles@hotmail.com" aria-label="E-mail">
   
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
   
