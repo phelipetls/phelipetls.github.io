@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-28">
+    <meta name="deploy-date" content="2023-05-01">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -37,15 +37,13 @@ shell scripts.">
 <meta content="/posts/favorite-custom-git-commands/image.png" name="twitter:image">
 
     
-
-    
     <meta name="publish-date" content="2022-08-03">
     <meta name="keywords" content="git"><meta name="description" content="In this post I want to share my favorite custom git commands — from aliases to
 shell scripts.">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.41f3a065.css" />
+  <link rel="stylesheet" href="/_astro/_id_.e95c4be4.css" />
 <link rel="stylesheet" href="/_astro/_id_.aac35682.css" /><script type="module" src="/_astro/hoisted.8f1e5039.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -107,7 +105,7 @@ shell scripts.">
     <h2 class="m-0 truncate font-sans font-normal">My favorite custom git commands - Phelipe Teles</h2>
   </div>
 
-  <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" data-a11y-dialog-show="sidenav" data-testid="open-sidenav" aria-label="Open navigation sidebar">
+  <button type="button" class="hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded-full p-2 bg-transparent" data-a11y-dialog-show="sidenav" data-testid="open-sidenav" aria-label="Open navigation sidebar">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
   </button>
 </div>
@@ -171,7 +169,7 @@ shell scripts.">
 
   <div role="document" class="ml-auto h-full flex flex-col w-3/4 rounded-none bg-background py-0 will-change-transform">
     <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
-      <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" data-a11y-dialog-hide="true" aria-label="Close">
+      <button type="button" data-a11y-dialog-hide="true" aria-label="Close" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded-full p-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
       </button>
     </div>
@@ -227,20 +225,14 @@ shell scripts.">
   
 
   <main class="grid grid-cols-layout">
-    <div class="col-full max-w-full rounded-none px-horizontal-padding pt-8 shadow-none sm:col-content sm:px-0">
+    <div class="pt-8 sm:col-content px-0">
       <article>
-        <header>
-          <h1 class="mb-4 text-4xl">
+        <header class="flex flex-col sm:items-center">
+          <h1 class="mb-4 text-4xl max-w-prose">
             My favorite custom git commands
           </h1>
 
-          <div class="mb-4 flex flex-col gap-2">
-            <div class="flex items-center gap-2">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
-
-  <div>2 min.</div>
-</div>
-
+          <div class="mb-4 flex gap-2 flex-row">
             <div class="flex items-center gap-2">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
 
@@ -248,9 +240,14 @@ shell scripts.">
     August 03, 2022
   </time>
 </div>
+            <div class="flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
+
+  <div>2 min.</div>
+</div>
           </div>
 
-          <div class="mb-4 flex flex-wrap gap-2">
+          <div class="mb-4 flex max-w-lg flex-wrap gap-2">
                 <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/tags/git">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
@@ -271,14 +268,18 @@ shell scripts.">
 
         <hr class="my-8">
 
-        <div class="flex flex-col-reverse lg:grid lg:grid-cols-[minmax(65ch,1fr),1fr] lg:gap-8">
-          <div data-blog-post class="[&#38;>pre]:full-width-on-mobile [&#38;>figure]:full-width-on-mobile [&#38;>[data-codeblock]]:full-width-on-mobile [&#38;>[data-codeblock]_pre]:max-sm:rounded-none [&#38;>[data-codeblock-with-header]]:mt-16 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>pre]:my-8 [&#38;>figure]:my-8 [&#38;>img]:my-8 [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_video]:min-h-[15em] [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden [&#38;_*:where(h2,h3,h4,h5,h6)]:mb-8 [&#38;_*:where(h2,h3,h4,h5,h6)]:mt-4 [&#38;_*:where(h2,h3,h4,h5,h6)]:pt-4 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:text-primary [&#38;_*:where(h2,h3,h4,h5,h6)_a]:border-0 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:before:content-[&#34;_#&#34;]">
+        <div data-has-toc="true" class="group data-[has-toc=true]:flex data-[has-toc=true]:flex-col-reverse data-[has-toc=true]:lg:grid data-[has-toc=true]:lg:gap-8 data-[has-toc=true]:lg:grid-cols-[minmax(65ch,1fr),1fr]">
+          <div data-blog-post class="sm:group-data-[has-toc=false]:max-w-prose sm:group-data-[has-toc=false]:mx-auto [&#38;>pre]:my-8 [&#38;>pre]:full-width-on-mobile [&#38;>img]:my-8 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>figure]:my-8 [&#38;>figure]:full-width-on-mobile [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_video]:min-h-[15em] [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden">
             
   <p>In this post I want to share my favorite custom git commands — from aliases to
 shell scripts.</p>
-<h2 id="git-recent">git recent<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-recent">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="git-recent">
+  
+  git recent<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-recent">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/phelipetls/dotfiles/blob/7b1d9f14debdeef1f1fd0b6603f1d116504ff1f3/.gitconfig#L29">
   <code>git recent</code> is an
 alias
@@ -286,8 +287,8 @@ alias
 to list the most recent branches:</p>
 
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>[alias]</span></span><span class="line"><span>  recent = branch -v --sort=-committerdate</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>[alias]</span></span><span class="line"><span>  recent = branch -v --sort=-committerdate</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -299,21 +300,25 @@ to list the most recent branches:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="fHGXw" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;[alias]\n  recent = branch -v --sort=-committerdate\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="1DOvV9" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;[alias]\n  recent = branch -v --sort=-committerdate\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>It works by listing branches sorted by commit date, in descending order.</p>
-<h2 id="git-undo">git undo<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-undo">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="git-undo">
+  
+  git undo<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-undo">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p><code>git undo</code> is an alias to undo the last commit:</p>
 
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>[alias]</span></span><span class="line"><span>  undo = reset --soft HEAD^</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>[alias]</span></span><span class="line"><span>  undo = reset --soft HEAD^</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -325,10 +330,10 @@ to list the most recent branches:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="22fVFj" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;[alias]\n  undo = reset --soft HEAD^\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="1OuRFR" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;[alias]\n  undo = reset --soft HEAD^\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>It works by using the <code>git reset</code> command, which will make the tip of the
@@ -366,15 +371,19 @@ split commits.</p>
 the one from git-branchless
 </a> — it’s a
 lot simpler.</p>
-<h2 id="git-recommit">git recommit<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-recommit">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="git-recommit">
+  
+  git recommit<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-recommit">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p><code>git recommit</code> is an alias I use to make a commit while reusing the undone
 commit’s message.</p>
 
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>[alias]</span></span><span class="line"><span>  recommit = commit --reedit-message ORIG_HEAD</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>[alias]</span></span><span class="line"><span>  recommit = commit --reedit-message ORIG_HEAD</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -386,10 +395,10 @@ commit’s message.</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="1Sk08Q" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;[alias]\n  recommit = commit --reedit-message ORIG_HEAD\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="NP0K1" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;[alias]\n  recommit = commit --reedit-message ORIG_HEAD\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>It works by using the symbolic ref name <code>ORIG_HEAD</code>, described by <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://git-scm.com/docs/gitrevisions">
@@ -401,9 +410,13 @@ record the position of the HEAD before their operation […].</p>
 </blockquote>
 <p><code>git reset</code> is one of such commands that “move your HEAD in a drastic way”.
 That’s why I often it after <code>git undo</code>.</p>
-<h2 id="git-spinoff">git spinoff<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-spinoff">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="git-spinoff">
+  
+  git spinoff<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-spinoff">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p>You know when you’re working on a feature for a while, and later realize that
 committed into <code>main</code> the whole time?</p>
 <p><a class="border-b border-primary no-underline hover:border-primary-hover" href="https://magit.vc/">
@@ -429,8 +442,8 @@ git-related shell scripts, including <a class="border-b border-primary no-underl
 new branch (and an optional base — usually it’ll be <code>main</code>).</p>
 
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>usage: git spinoff [-h] &lt;new-name&gt; [&lt;base&gt;]</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-plaintext"><span class="line"><span>usage: git spinoff [-h] &lt;new-name&gt; [&lt;base&gt;]</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -442,10 +455,10 @@ new branch (and an optional base — usually it’ll be <code>main</code>).</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="ZrUvqE" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;usage: git spinoff [-h] &lt;new-name&gt; [&lt;base&gt;]\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="qbt2g" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;usage: git spinoff [-h] &lt;new-name&gt; [&lt;base&gt;]\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <aside class="my-8 flex gap-4 sm:rounded border-y sm:border-y-0 sm:border-l bg-surface full-width-on-mobile px-horizontal-padding py-4 sm:shadow-sm sm:shadow-shadow sm:mx-0 flex-row border-note">
@@ -462,8 +475,8 @@ new branch (and an optional base — usually it’ll be <code>main</code>).</p>
   <p><code>git spinoff</code> is not an alias, but a shell script. To be able to run it with
 <code>git spinoff</code>, download it and put it in your <code>PATH</code>:</p>
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-shell"><span class="line"><span style="color:#ABB2BF">$ git clone https://github.com/nvie/git-toolbelt/</span></span><span class="line"><span style="color:#ABB2BF">$ </span><span style="color:#56B6C2">echo</span><span style="color:#ABB2BF"> </span><span style="color:#98C379">&quot;export PATH=&quot;</span><span style="color:#E06C75">$PATH</span><span style="color:#ABB2BF">:</span><span style="color:#E06C75">$PWD</span><span style="color:#ABB2BF">/git-toolbelt</span><span style="color:#98C379">&quot; &gt;&gt; ~/.bash_profile</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-shell"><span class="line"><span style="color:#ABB2BF">$ git clone https://github.com/nvie/git-toolbelt/</span></span><span class="line"><span style="color:#ABB2BF">$ </span><span style="color:#56B6C2">echo</span><span style="color:#ABB2BF"> </span><span style="color:#98C379">&quot;export PATH=&quot;</span><span style="color:#E06C75">$PATH</span><span style="color:#ABB2BF">:</span><span style="color:#E06C75">$PWD</span><span style="color:#ABB2BF">/git-toolbelt</span><span style="color:#98C379">&quot; &gt;&gt; ~/.bash_profile</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -475,26 +488,30 @@ new branch (and an optional base — usually it’ll be <code>main</code>).</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="2tHdSV" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;$ git clone https://github.com/nvie/git-toolbelt/\n$ echo \&quot;export PATH=\&quot;$PATH:$PWD/git-toolbelt\&quot; &gt;&gt; ~/.bash_profile\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="ZEIxdA" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;$ git clone https://github.com/nvie/git-toolbelt/\n$ echo \&quot;export PATH=\&quot;$PATH:$PWD/git-toolbelt\&quot; &gt;&gt; ~/.bash_profile\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 
   </article>
 </aside>
-<h2 id="git-cb">git cb<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-cb">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="git-cb">
+  
+  git cb<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#git-cb">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p><code>git cb</code> is a script that combines <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://github.com/junegunn/fzf">
   fzf
 </a> and
 <code>git recent</code> to give a nice interface to <strong>c</strong>hange <strong>b</strong>ranches.</p>
 
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-bash" metastring="{4}"><span class="line"><span style="color:#7F848E">#!/bin/bash</span></span><span class="line"><span style="color:#56B6C2">set</span><span style="color:#ABB2BF"> -eu</span></span><span class="line"><span> </span></span><span class="line highlight"><span style="color:#ABB2BF">branch=</span><span style="color:#98C379">$(git recent --format &#39;%(refname:short)&#39; </span><span style="color:#ABB2BF">|</span><span style="color:#98C379"> fzf --height 40% --preview &#39;git log --oneline {}&#39;)</span></span><span class="line"><span> </span></span><span class="line"><span style="color:#C678DD">if</span><span style="color:#ABB2BF"> [[ </span><span style="color:#56B6C2">-n</span><span style="color:#ABB2BF"> </span><span style="color:#98C379">&quot;</span><span style="color:#E06C75">$branch</span><span style="color:#98C379">&quot;</span><span style="color:#ABB2BF"> ]]; </span><span style="color:#C678DD">then</span></span><span class="line"><span style="color:#ABB2BF">  git checkout </span><span style="color:#98C379">&quot;</span><span style="color:#E06C75">$branch</span><span style="color:#98C379">&quot;</span></span><span class="line"><span style="color:#C678DD">fi</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-bash" metastring="{4}"><span class="line"><span style="color:#7F848E">#!/bin/bash</span></span><span class="line"><span style="color:#56B6C2">set</span><span style="color:#ABB2BF"> -eu</span></span><span class="line"><span> </span></span><span class="line highlight"><span style="color:#ABB2BF">branch=</span><span style="color:#98C379">$(git recent --format &#39;%(refname:short)&#39; </span><span style="color:#ABB2BF">|</span><span style="color:#98C379"> fzf --height 40% --preview &#39;git log --oneline {}&#39;)</span></span><span class="line"><span> </span></span><span class="line"><span style="color:#C678DD">if</span><span style="color:#ABB2BF"> [[ </span><span style="color:#56B6C2">-n</span><span style="color:#ABB2BF"> </span><span style="color:#98C379">&quot;</span><span style="color:#E06C75">$branch</span><span style="color:#98C379">&quot;</span><span style="color:#ABB2BF"> ]]; </span><span style="color:#C678DD">then</span></span><span class="line"><span style="color:#ABB2BF">  git checkout </span><span style="color:#98C379">&quot;</span><span style="color:#E06C75">$branch</span><span style="color:#98C379">&quot;</span></span><span class="line"><span style="color:#C678DD">fi</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -506,10 +523,10 @@ new branch (and an optional base — usually it’ll be <code>main</code>).</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="1zwV3j" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;#!/bin/bash\nset -eu\n\nbranch=$(git recent --format &#39;%(refname:short)&#39; | fzf --height 40% --preview &#39;git log --oneline {}&#39;)\n\nif [[ -n \&quot;$branch\&quot; ]]; then\n  git checkout \&quot;$branch\&quot;\nfi\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="Z2begpx" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;#!/bin/bash\nset -eu\n\nbranch=$(git recent --format &#39;%(refname:short)&#39; | fzf --height 40% --preview &#39;git log --oneline {}&#39;)\n\nif [[ -n \&quot;$branch\&quot; ]]; then\n  git checkout \&quot;$branch\&quot;\nfi\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>It’s a good idea to combine fzf with git when a workflow requires you to select
@@ -525,7 +542,7 @@ a commit from a list.</p>
 
           </div>
 
-          <aside class="min-w-0">
+          <aside class="min-w-0 invisible group-data-[has-toc]:visible">
             <div style="--offset-from-top:1rem" class="w-full rounded lg:sticky lg:top-[var(--offset-from-top)] lg:h-[calc(100vh-var(--offset-from-top)_*_2)] lg:bg-surface lg:p-4 lg:shadow-sm lg:shadow-shadow">
       <div class="hidden lg:flex lg:h-full lg:flex-col">
         <div class="flex justify-between gap-2">
@@ -602,7 +619,7 @@ a commit from a list.</p>
       <hr class="full-width-on-mobile mt-8">
 
       <nav class="flex items-stretch sm:gap-4 full-width-on-mobile sm:my-8" aria-label="Posts navigation">
-  <a class="sm:card flex max-w-1/2 flex-1 flex-col gap-2 border-0 px-horizontal-padding py-4 transition-colors duration-300 hover:bg-hover" href="/posts/bash-for-javascript-developers">
+  <a class="sm:card flex flex-1 flex-col gap-2 border-0 px-horizontal-padding py-4 transition-colors duration-300 hover:bg-hover" href="/posts/bash-for-javascript-developers">
         <span class="text-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </span>
@@ -612,7 +629,7 @@ a commit from a list.</p>
 
   <div class="border-l border-divider sm:hidden"></div>
 
-  <a class="sm:card flex max-w-1/2 flex-1 flex-col-reverse items-end justify-end gap-2 border-0 px-horizontal-padding py-4 text-right transition-colors duration-300 hover:bg-hover" href="/posts/how-not-to-write-forms-in-react">
+  <a class="sm:card flex flex-1 flex-col-reverse items-end justify-end gap-2 border-0 px-horizontal-padding py-4 text-right transition-colors duration-300 hover:bg-hover" href="/posts/how-not-to-write-forms-in-react">
         How not to write forms with React
 
         <span class="text-primary">

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-04-28">
+    <meta name="deploy-date" content="2023-05-01">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -37,15 +37,13 @@ but it doesn’t matter here).">
 <meta content="/posts/extending-vim-with-ripgrep/image.png" name="twitter:image">
 
     
-
-    
     <meta name="publish-date" content="2021-06-11">
     <meta name="keywords" content="tools, vim, ripgrep"><meta name="description" content="In this post I want to talk about how I use ripgrep in vim (nvim to me
 but it doesn’t matter here).">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.41f3a065.css" />
+  <link rel="stylesheet" href="/_astro/_id_.e95c4be4.css" />
 <link rel="stylesheet" href="/_astro/_id_.aac35682.css" /><script type="module" src="/_astro/hoisted.8f1e5039.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -107,7 +105,7 @@ but it doesn’t matter here).">
     <h2 class="m-0 truncate font-sans font-normal">Extending Vim with ripgrep - Phelipe Teles</h2>
   </div>
 
-  <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" data-a11y-dialog-show="sidenav" data-testid="open-sidenav" aria-label="Open navigation sidebar">
+  <button type="button" class="hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded-full p-2 bg-transparent" data-a11y-dialog-show="sidenav" data-testid="open-sidenav" aria-label="Open navigation sidebar">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"></line><line x1="4" x2="20" y1="6" y2="6"></line><line x1="4" x2="20" y1="18" y2="18"></line></svg>
   </button>
 </div>
@@ -171,7 +169,7 @@ but it doesn’t matter here).">
 
   <div role="document" class="ml-auto h-full flex flex-col w-3/4 rounded-none bg-background py-0 will-change-transform">
     <div class="mb-2 flex h-nav-height items-center justify-end px-horizontal-padding">
-      <button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded-full p-2" data-a11y-dialog-hide="true" aria-label="Close">
+      <button type="button" data-a11y-dialog-hide="true" aria-label="Close" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded-full p-2">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
       </button>
     </div>
@@ -227,20 +225,14 @@ but it doesn’t matter here).">
   
 
   <main class="grid grid-cols-layout">
-    <div class="col-full max-w-full rounded-none px-horizontal-padding pt-8 shadow-none sm:col-content sm:px-0">
+    <div class="pt-8 sm:col-content px-0">
       <article>
-        <header>
-          <h1 class="mb-4 text-4xl">
+        <header class="flex flex-col sm:items-center">
+          <h1 class="mb-4 text-4xl max-w-prose">
             Extending Vim with ripgrep
           </h1>
 
-          <div class="mb-4 flex flex-col gap-2">
-            <div class="flex items-center gap-2">
-  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
-
-  <div>1 min.</div>
-</div>
-
+          <div class="mb-4 flex gap-2 flex-row">
             <div class="flex items-center gap-2">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"></rect><line x1="16" x2="16" y1="2" y2="6"></line><line x1="8" x2="8" y1="2" y2="6"></line><line x1="3" x2="21" y1="10" y2="10"></line></svg>
 
@@ -248,9 +240,14 @@ but it doesn’t matter here).">
     June 11, 2021
   </time>
 </div>
+            <div class="flex items-center gap-2">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-timer"><line x1="10" x2="14" y1="2" y2="2"></line><line x1="12" x2="15" y1="14" y2="11"></line><circle cx="12" cy="14" r="8"></circle></svg>
+
+  <div>1 min.</div>
+</div>
           </div>
 
-          <div class="mb-4 flex flex-wrap gap-2">
+          <div class="mb-4 flex max-w-lg flex-wrap gap-2">
                 <a class="inline-flex gap-2 w-fit items-center justify-center rounded-full border border-divider bg-surface px-4 no-underline shadow-sm shadow-shadow transition-colors duration-300 hover:border-divider hover:bg-hover whitespace-nowrap [&#38;_svg]:w-[1em] [&#38;_svg]:h-[1em]" href="/tags/tools">
   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-tag"><path d="M12 2H2v10l9.29 9.29c.94.94 2.48.94 3.42 0l6.58-6.58c.94-.94.94-2.48 0-3.42L12 2Z"></path><path d="M7 7h.01"></path></svg>
 
@@ -283,8 +280,8 @@ but it doesn’t matter here).">
 
         <hr class="my-8">
 
-        <div class="flex flex-col-reverse lg:grid lg:grid-cols-[minmax(65ch,1fr),1fr] lg:gap-8">
-          <div data-blog-post class="[&#38;>pre]:full-width-on-mobile [&#38;>figure]:full-width-on-mobile [&#38;>[data-codeblock]]:full-width-on-mobile [&#38;>[data-codeblock]_pre]:max-sm:rounded-none [&#38;>[data-codeblock-with-header]]:mt-16 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>pre]:my-8 [&#38;>figure]:my-8 [&#38;>img]:my-8 [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_video]:min-h-[15em] [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden [&#38;_*:where(h2,h3,h4,h5,h6)]:mb-8 [&#38;_*:where(h2,h3,h4,h5,h6)]:mt-4 [&#38;_*:where(h2,h3,h4,h5,h6)]:pt-4 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:text-primary [&#38;_*:where(h2,h3,h4,h5,h6)_a]:border-0 [&#38;_*:where(h2,h3,h4,h5,h6)_a]:before:content-[&#34;_#&#34;]">
+        <div data-has-toc="true" class="group data-[has-toc=true]:flex data-[has-toc=true]:flex-col-reverse data-[has-toc=true]:lg:grid data-[has-toc=true]:lg:gap-8 data-[has-toc=true]:lg:grid-cols-[minmax(65ch,1fr),1fr]">
+          <div data-blog-post class="sm:group-data-[has-toc=false]:max-w-prose sm:group-data-[has-toc=false]:mx-auto [&#38;>pre]:my-8 [&#38;>pre]:full-width-on-mobile [&#38;>img]:my-8 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>figure]:my-8 [&#38;>figure]:full-width-on-mobile [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_video]:min-h-[15em] [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden">
             
   <p>In this post I want to talk about how I use <code>ripgrep</code> in <code>vim</code> (<code>nvim</code> to me
 but it doesn’t matter here).</p>
@@ -293,8 +290,8 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 <p>Here’s the configuration needed:</p>
 
 
-<div data-codeblock class="mt-16 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-vim"><span class="line"><span style="color:#C678DD">if</span><span style="color:#ABB2BF"> </span><span style="color:#61AFEF">executable</span><span style="color:#ABB2BF">(</span><span style="color:#98C379">&quot;rg&quot;</span><span style="color:#ABB2BF">)</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> grepprg=rg\ --vimgrep\ --smart-case\ --hidden</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> grepformat=%f:%l:%c:%m</span></span><span class="line"><span style="color:#C678DD">endif</span></span></code></pre>
+<div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded rounded-tl-none overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code class="language-vim"><span class="line"><span style="color:#C678DD">if</span><span style="color:#ABB2BF"> </span><span style="color:#61AFEF">executable</span><span style="color:#ABB2BF">(</span><span style="color:#98C379">&quot;rg&quot;</span><span style="color:#ABB2BF">)</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> grepprg=rg\ --vimgrep\ --smart-case\ --hidden</span></span><span class="line"><span style="color:#ABB2BF">  </span><span style="color:#C678DD">set</span><span style="color:#ABB2BF"> grepformat=%f:%l:%c:%m</span></span><span class="line"><span style="color:#C678DD">endif</span></span></code></pre>
 
   <div class="text-md dark absolute left-horizontal-padding top-0 mx-auto max-w-[calc(100%-var(--horizontal-padding)*2)] -translate-y-[100%] overflow-hidden sm:left-0">
         <div class="flex items-center gap-2 rounded-t border-t border-primary bg-[var(--code-bg)] px-2 py-1 text-[var(--code-fg)]">
@@ -306,17 +303,21 @@ extensible because of how nicely <code>vim</code> is integrated with the command
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="Z2m5GwR" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;if executable(\&quot;rg\&quot;)\n  set grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\n  set grepformat=%f:%l:%c:%m\nendif\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="Zu8Q4u" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;if executable(\&quot;rg\&quot;)\n  set grepprg=rg\\ --vimgrep\\ --smart-case\\ --hidden\n  set grepformat=%f:%l:%c:%m\nendif\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>At first, it was not obvious to me how I could use it beyond <code>:grep foo</code>, so I
 want to share how I do.</p>
-<h2 id="common-use-cases">Common use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#common-use-cases">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="common-use-cases">
+  
+  Common use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#common-use-cases">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <ul>
 <li>Search for <code>foo</code> in current working directory: <code>:grep foo</code>.</li>
 <li>Search for <code>foo</code> in files under <code>src/</code>: <code>:grep foo src</code>.</li>
@@ -325,60 +326,76 @@ want to share how I do.</p>
 </a></sup>.</li>
 <li>Search for <code>foo</code> in current file directory’s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
-<h2 id="less-common-use-cases">Less common use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#less-common-use-cases">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="less-common-use-cases">
+  
+  Less common use cases<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#less-common-use-cases">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <ul>
 <li>Search for the exact word <code>foo</code> (not <code>foobar</code>): <code>:grep -w foo</code> (equivalent to
 <code>:grep &#39;\bfoo\b&#39;</code>).</li>
 <li>Search for <code>foo</code> in JavaScript files: <code>:grep foo -t js</code></li>
 <li>Search for <code>foo</code> in files matching a glob: <code>:grep foo -g &#39;*.js&#39;</code></li>
 </ul>
-<h2 id="extensibility">Extensibility<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#extensibility">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="extensibility">
+  
+  Extensibility<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#extensibility">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p>This is nice but here is where it truly shines. I can give any command line
 output as an argument.</p>
 <p>Say I want to search in files modified between git revisions:</p>
 
 
-<div data-codeblock class="mt-8 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code><span class="line"><span>:grep foo `git diff --name-only master..`</span></span></code></pre>
+<div data-codeblock class="mt-8 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code><span class="line"><span>:grep foo `git diff --name-only master..`</span></span></code></pre>
 
   
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="cGX8Q" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;:grep foo `git diff --name-only master..`\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="1kP4Fo" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;:grep foo `git diff --name-only master..`\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>Or only modified files:</p>
 
 
-<div data-codeblock class="mt-8 group relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
-  <pre class="relative shiki shadow-sm shadow-shadow rounded overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code><span class="line"><span>:grep foo `git ls-files --modified`</span></span></code></pre>
+<div data-codeblock class="mt-8 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
+  <pre class="peer relative shiki shadow-sm shadow-shadow rounded overflow-x-auto bg-[var(--code-bg)] text-[var(--code-fg)] [color-scheme:dark] [&#38;_code]:py-4 [&#38;_code]:grid [&#38;_code>.line]:px-8 [&#38;_code>.line]:border-l-[2px] [&#38;_code>.line]:border-[var(--code-bg)] [&#38;_code>.line.highlight]:bg-[#272115] [&#38;_code>.line.highlight]:border-[#624710] [&#38;_.error]:text-sm [&#38;_.error]:px-8 [&#38;_.error]:py-1 [&#38;_.popover]:my-2 [&#38;_.popover]:rounded-sm [&#38;_.popover]:bg-gray-700 [&#38;_.popover]:text-white [&#38;_.arrow]:bg-gray-700 [&#38;_.arrow]:border-gray-700"><code><span class="line"><span>:grep foo `git ls-files --modified`</span></span></code></pre>
 
   
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500 [&#38;_:is(button,a):focus-visible]:opacity-100 [&#38;_:is(button,a):focus-visible]:pointer-events-auto group-hover:[&#38;_:is(button,a)]:opacity-100 group-hover:[&#38;_:is(button,a)]:pointer-events-auto">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
     
 
-    <astro-island uid="Z14foKw" component-url="/_astro/CopyCodeBlockButton.b5782ccc.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;:grep foo `git ls-files --modified`\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="flex items-center justify-center flex-row gap-2 transition-colors duration-300 hover:bg-hover disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled bg-background text-on-background rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
+    <astro-island uid="1nqmEC" component-url="/_astro/CopyCodeBlockButton.1f6dc081.js" component-export="default" renderer-url="/_astro/client.47a71f61.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;:grep foo `git ls-files --modified`\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
 <p>I don’t use this everyday but I enjoy it when I do.</p>
-<h2 id="usage-with-vim">Usage with Vim<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#usage-with-vim">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="usage-with-vim">
+  
+  Usage with Vim<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#usage-with-vim">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p>This will populate the quickfix list with the search results, so I can navigate
 them with commands I’m already familiar with.</p>
 <p>For example, to replace foo with bar across files (asking me to confirm
 before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Sometimes I narrow the
 search down with <code>:Cfilter</code> too.</p>
-<h2 id="downsides">Downsides<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#downsides">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="downsides">
+  
+  Downsides<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#downsides">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p><s>A downside is that you can’t use backreferences or look-around in regex. In
 the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a class="border-b border-primary no-underline hover:border-primary-hover" href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&#38;utm_medium=web2x&#38;context=3">
   thanks to
@@ -390,15 +407,19 @@ or <code>--engine auto</code> and I can’t wait to use it!!</p>
 <p>Another one is that it’s synchronous, so if the directory is huge it may block <code>vim</code>
 for a few seconds. But I don’t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
-<h2 id="conclusion">Conclusion<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="conclusion">
+  
+  Conclusion<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion">
   <span class="icon icon-link"></span>
-</a></h2>
+</a>
+
+</h2>
 <p>This might be one of the few sane reasons why I insist on using <code>nvim</code> for
 development (<code>vim-fugitive</code> and LSP as well). It’s just one of those things I
 enjoy using and makes development more fun (to me).</p>
-<section data-footnotes="" class="footnotes"><h2 class="sr-only" id="footnote-label">Footnotes<a class="border-b border-primary no-underline hover:border-primary-hover" aria-hidden="true" tabindex="-1" href="#footnote-label">
-  <span class="icon icon-link"></span>
-</a></h2>
+<section data-footnotes="" class="footnotes"><h3 class="sr-only" id="footnote-label">
+  
+</h3>
 <ol>
 <li id="user-content-fn-1">
 <p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>. <a class="border-b border-primary no-underline hover:border-primary-hover data-footnote-backref" href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to content">
@@ -410,7 +431,7 @@ enjoy using and makes development more fun (to me).</p>
 
           </div>
 
-          <aside class="min-w-0">
+          <aside class="min-w-0 invisible group-data-[has-toc]:visible">
             <div style="--offset-from-top:1rem" class="w-full rounded lg:sticky lg:top-[var(--offset-from-top)] lg:h-[calc(100vh-var(--offset-from-top)_*_2)] lg:bg-surface lg:p-4 lg:shadow-sm lg:shadow-shadow">
       <div class="hidden lg:flex lg:h-full lg:flex-col">
         <div class="flex justify-between gap-2">
@@ -499,7 +520,7 @@ enjoy using and makes development more fun (to me).</p>
       <hr class="full-width-on-mobile mt-8">
 
       <nav class="flex items-stretch sm:gap-4 full-width-on-mobile sm:my-8" aria-label="Posts navigation">
-  <a class="sm:card flex max-w-1/2 flex-1 flex-col gap-2 border-0 px-horizontal-padding py-4 transition-colors duration-300 hover:bg-hover" href="/posts/implementing-dark-mode-for-static-websites">
+  <a class="sm:card flex flex-1 flex-col gap-2 border-0 px-horizontal-padding py-4 transition-colors duration-300 hover:bg-hover" href="/posts/implementing-dark-mode-for-static-websites">
         <span class="text-primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><line x1="19" x2="5" y1="12" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
         </span>
@@ -509,7 +530,7 @@ enjoy using and makes development more fun (to me).</p>
 
   <div class="border-l border-divider sm:hidden"></div>
 
-  <a class="sm:card flex max-w-1/2 flex-1 flex-col-reverse items-end justify-end gap-2 border-0 px-horizontal-padding py-4 text-right transition-colors duration-300 hover:bg-hover" href="/posts/automating-svg-to-jsx-conversion-with-svgr">
+  <a class="sm:card flex flex-1 flex-col-reverse items-end justify-end gap-2 border-0 px-horizontal-padding py-4 text-right transition-colors duration-300 hover:bg-hover" href="/posts/automating-svg-to-jsx-conversion-with-svgr">
         Automating SVG to JSX conversion with svgr
 
         <span class="text-primary">

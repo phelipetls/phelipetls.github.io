@@ -1,4 +1,4 @@
-import{S as e}from"./Sandpack.ddf6e799.js";import{d as t}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.0673f7bd.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.a9c2365b.js";import"./CopyCodeBlockButton.55bfe2f1.js";import"./index.ffa87b56.js";import"./createLucideIcon.59f306f6.js";import"./floating-ui.dom.browser.min.0e955118.js";function f(){return r.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e}from"./Sandpack.4133e19b.js";import{d as r}from"./index.8aa7c818.js";import{j as t}from"./jsx-runtime.0673f7bd.js";import"./index.57fae3ab.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.a9c2365b.js";import"./CopyCodeBlockButton.ece7709e.js";import"./index.ffa87b56.js";import"./createLucideIcon.c5f18fbe.js";import"./floating-ui.dom.browser.min.0e955118.js";function c(){return t.jsx(e,{template:"react",files:{"/App.js":r`
            import { useState } from 'react'
 
            export default function App() {
@@ -25,11 +25,15 @@ import{S as e}from"./Sandpack.ddf6e799.js";import{d as t}from"./index.8aa7c818.j
                      name="username"
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
+                     aria-invalid={errorMessage !== '' ? 'true' : 'false'}
+                     aria-errormessage="username-errormessage"
+                     aria-describedby="username-description"
                    />
                  </label>
 
                  {errorMessage && (
                    <div
+                     id="username-errormessage"
                      style={{
                        color: 'red',
                      }}
@@ -39,6 +43,7 @@ import{S as e}from"./Sandpack.ddf6e799.js";import{d as t}from"./index.8aa7c818.j
                  )}
 
                  <div
+                   id="username-description"
                    style={{
                      fontSize: 10,
                      color: 'grey',
@@ -51,4 +56,4 @@ import{S as e}from"./Sandpack.ddf6e799.js";import{d as t}from"./index.8aa7c818.j
                </form>
              )
            }
-        `}})}export{f as default};
+        `}})}export{c as default};
