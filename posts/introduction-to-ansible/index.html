@@ -45,7 +45,7 @@ have to install git, tmux, vim, etc. Let’s see how Ansible can help with that.
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.486be8c6.css" />
+  <link rel="stylesheet" href="/_astro/_id_.9cd3df8d.css" />
 <link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.e7ae9d25.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -314,7 +314,7 @@ them across machines, but it won’t help you with your dependencies — you sti
 have to install git, tmux, vim, etc. Let’s see how Ansible can help with that.</p>
 <p>Ansible would often come up as a solution to dependency management, but I’d
 quickly dismiss it because it looked too complex and enterprise-y, an
-impression that the <a class="link" href="https://www.ansible.com">landing page</a> certainly
+impression that the <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://www.ansible.com">landing page</a> certainly
 contributed to. In my opinion, It doesn’t help convey the idea of what Ansible
 turned out to be for me: a tool to automate tasks in a declarative way.</p>
 <p>I wish I was introduced to Ansible differently, so this post is an attempt to
@@ -323,11 +323,11 @@ more complex applications of Ansible and focus on solving one problem: how to
 set up a machine with your preferred programs, appearances, settings etc.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="installing-ansible">
   
-  Installing Ansible<a class="link" aria-hidden="true" tabindex="-1" href="#installing-ansible"><span class="icon icon-link"></span></a>
+  Installing Ansible<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#installing-ansible"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>First things first, let’s install Ansible. The official docs has an
-extensive <a class="link" href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems">list with installation instructions for many Unix-like operating
+extensive <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-specific-operating-systems">list with installation instructions for many Unix-like operating
 systems</a>.</p>
 <aside class="my-8 flex gap-4 sm:rounded border-y sm:border-y-0 sm:border-l bg-surface full-width-on-mobile px-horizontal-padding py-4 sm:shadow-sm sm:shadow-shadow sm:mx-0 flex-row border-warn">
   <div class="">
@@ -340,7 +340,7 @@ systems</a>.</p>
     
   
 
-  <p><a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/windows_faq.html#windows-faq-ansible">Ansible cannot run on a Windows
+  <p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/windows_faq.html#windows-faq-ansible">Ansible cannot run on a Windows
 machine</a>,
 which is surprising. It can only <em>remotely manage</em> Windows machines, from a
 Unix-like OS, such as WSL.</p>
@@ -348,7 +348,7 @@ Unix-like OS, such as WSL.</p>
   </article>
 </aside>
 <p>Another option, available at every operating system, is to use
-<a class="link" href="https://pypi.org/project/pip/">pip</a>, the package manager for Python, which was
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://pypi.org/project/pip/">pip</a>, the package manager for Python, which was
 my choice:</p>
 
 
@@ -373,7 +373,7 @@ my choice:</p>
 </div>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="how-ansible-clicked-for-me">
   
-  How Ansible clicked for me<a class="link" aria-hidden="true" tabindex="-1" href="#how-ansible-clicked-for-me"><span class="icon icon-link"></span></a>
+  How Ansible clicked for me<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#how-ansible-clicked-for-me"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>If I remember correctly, it was by looking at the source code of a dotfiles
@@ -436,30 +436,30 @@ what if we’re on macOS? Or Fedora? We won’t be able to use <code>apt</code> 
 We’ll see that Ansible makes it easy to handle this.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="playbook">
   
-  Playbook<a class="link" aria-hidden="true" tabindex="-1" href="#playbook"><span class="icon icon-link"></span></a>
+  Playbook<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#playbook"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>The file <code>bootstrap.yml</code> is, in Ansible terminology, a
-<a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html">playbook</a>,
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_intro.html">playbook</a>,
 which is, in my own words, a way to declare which tasks should run in a machine
 in order to achieve the desired state. Playbooks are written in YAML, which is
-easy to read and <a class="link" href="https://learnxinyminutes.com/docs/yaml/">learn</a>.</p>
+easy to read and <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://learnxinyminutes.com/docs/yaml/">learn</a>.</p>
 <p>A playbook may contain various plays, and each play may contain various tasks.
 For example, the <code>bootstrap.yml</code> playbook has a single play, named “Boostrap
 development environment”, with one task, “Install packages with apt”.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="hosts-and-inventory">
   
-  Hosts and inventory<a class="link" aria-hidden="true" tabindex="-1" href="#hosts-and-inventory"><span class="icon icon-link"></span></a>
+  Hosts and inventory<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#hosts-and-inventory"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>Ansible can execute tasks on remote and local machines. This is managed with
 the help of an
-”<a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">inventory</a>”,
+”<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">inventory</a>”,
 where these machines (<code>hosts</code>) are classified with patterns like “prod”,
 “test”, “webserver” etc..</p>
 <p>We’re not interested in that here since we just want to run tasks on our local
 machine. Passing <code>localhost</code> as a playbook’s <code>hosts</code> will do what we want,
-without any inventory, because <a class="link" href="https://docs.ansible.com/ansible/latest/inventory/implicit_localhost.html">Ansible will implicitly define <code>localhost</code> to
+without any inventory, because <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/inventory/implicit_localhost.html">Ansible will implicitly define <code>localhost</code> to
 match the local
 machine</a>.</p>
 
@@ -485,7 +485,7 @@ machine</a>.</p>
 </div>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="tasks">
   
-  Tasks<a class="link" aria-hidden="true" tabindex="-1" href="#tasks"><span class="icon icon-link"></span></a>
+  Tasks<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#tasks"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>Now, let’s dissect the “Install packages with apt” task. Here it is again:</p>
@@ -512,11 +512,11 @@ machine</a>.</p>
 </div>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="become">
   
-  Become<a class="link" aria-hidden="true" tabindex="-1" href="#become"><span class="icon icon-link"></span></a>
+  Become<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#become"><span class="icon icon-link"></span></a>
 
 </h3>
 <p>Let’s start with the keyword
-<a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/become.html"><code>become</code></a>. It
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/become.html"><code>become</code></a>. It
 is used so that you can “become another user while this task is executing”,
 that user being by default <code>root</code>. So it’s, effectively, the equivalent of
 using <code>sudo</code>. This is also why you need to run the playbook with the option
@@ -526,26 +526,26 @@ your password.</p>
 keyword.</p>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="modules">
   
-  Modules<a class="link" aria-hidden="true" tabindex="-1" href="#modules"><span class="icon icon-link"></span></a>
+  Modules<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#modules"><span class="icon icon-link"></span></a>
 
 </h3>
-<p><code>ansible.builtin.apt</code> is an <a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html">Ansible
+<p><code>ansible.builtin.apt</code> is an <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/modules_intro.html">Ansible
 module</a>,
 which is the preferred way to interact with another program in an Ansible
 playbook.</p>
-<p>Ansible has several built-in modules, <a class="link" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html">here’s a full
+<p>Ansible has several built-in modules, <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/index.html">here’s a full
 list</a>.
 It has modules for most Linux distributions package managers, like
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html"><code>dnf</code></a>.
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html"><code>dnf</code></a>.
 But there are also community-developed modules, like one for
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/community/general/homebrew_module.html">Homebrew</a>,
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/community/general/homebrew_module.html">Homebrew</a>,
 if you’re on macOS, which we’ll have to download separately, which we’ll learn
 how shortly.</p>
 <p>An Ansible module takes arguments to accomplish a task. In the
 <code>ansible.builtin.apt</code> case, we pass a list of packages to the
-<a class="link" href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-name"><code>name</code></a>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-name"><code>name</code></a>
 argument and the desired state we want them to be in to the
-<a class="link" href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-state"><code>state</code></a>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/2.9/modules/apt_module.html#parameter-state"><code>state</code></a>
 argument.</p>
 
 
@@ -570,7 +570,7 @@ argument.</p>
 </div>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="idempotency">
   
-  Idempotency<a class="link" aria-hidden="true" tabindex="-1" href="#idempotency"><span class="icon icon-link"></span></a>
+  Idempotency<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#idempotency"><span class="icon icon-link"></span></a>
 
 </h3>
 <p>Ansible playbooks are meant to be idempotent, meaning that, no matter how many
@@ -605,8 +605,8 @@ would have been labelled as “changed”, because now both are present.</p>
 <p>This feature is module-dependent. The task could be idempotent by nature, yet
 Ansible wouldn’t know about it unless the module is smart enough to tell it.</p>
 <p>To illustrate this, let’s use the
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#shell-module"><code>ansible.builtin.shell</code></a>,
-which is used to run arbitrary commands into a shell. <a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html">Let’s run a task using
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#shell-module"><code>ansible.builtin.shell</code></a>,
+which is used to run arbitrary commands into a shell. <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html">Let’s run a task using
 this module in an ad hoc
 way</a>
 (outside of a playbook):</p>
@@ -638,20 +638,20 @@ could be any arbitrary command, such as <code>rm -rf $HOME</code>.</p>
 something changed between runs. <code>ansible.builtin.shell</code> is kind of a low-level
 one, so it’s best to avoid it whenever possible. There are ways to make it
 smarter with parameters such as
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-creates"><code>creates</code></a>,
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-removes"><code>removes</code></a>,
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-creates"><code>creates</code></a>,
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/shell_module.html#parameter-removes"><code>removes</code></a>,
 or, at the task level,
-<a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#defining-changed"><code>changed_when</code></a>.</p>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_error_handling.html#defining-changed"><code>changed_when</code></a>.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="facts-and-conditionals">
   
-  Facts and conditionals<a class="link" aria-hidden="true" tabindex="-1" href="#facts-and-conditionals"><span class="icon icon-link"></span></a>
+  Facts and conditionals<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#facts-and-conditionals"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>Now let’s imagine you use both macOS and Ubuntu. You want to install git and
 tmux in both operating systems with Ansible. You’ll need to add some sort of
 conditional logic to your playbook since <code>apt</code> isn’t available in macOS, and
 you probably don’t want to use Homebrew in Linux, even though you could.</p>
-<p><a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#basic-conditionals-with-when">We can run a task conditionally with the <code>when</code>
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#basic-conditionals-with-when">We can run a task conditionally with the <code>when</code>
 keyword</a>:</p>
 
 
@@ -677,23 +677,23 @@ keyword</a>:</p>
 <p>The task will run if the expression passed to <code>when</code> evaluates to <code>True</code>. This
 expression is a Jinja2 expression, a template engine written in Python, so it’s
 not strictly Python syntax but it looks a lot like it.</p>
-<p>The <code>ansible_distribution</code> variable is an <a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html">Ansible
+<p>The <code>ansible_distribution</code> variable is an <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_vars_facts.html">Ansible
 fact</a>:
 information about your system gathered and provided by Ansible, for
-convenience. There are a LOT of facts, you can run <code>ansible localhost -m ansible.builtin.setup</code> to check what’s available, but here’s the <a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#commonly-used-facts">most commonly
+convenience. There are a LOT of facts, you can run <code>ansible localhost -m ansible.builtin.setup</code> to check what’s available, but here’s the <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_conditionals.html#commonly-used-facts">most commonly
 used
 ones</a>:
 <code>ansible_distribution</code>, <code>ansible_distribution_version</code> and <code>ansible_os_family</code>.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="ansible-galaxy">
   
-  Ansible Galaxy<a class="link" aria-hidden="true" tabindex="-1" href="#ansible-galaxy"><span class="icon icon-link"></span></a>
+  Ansible Galaxy<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#ansible-galaxy"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>The module <code>community.general.homebrew</code> is not a built-in module, you have to
-install it separately via <a class="link" href="https://galaxy.ansible.com/docs/">Ansible Galaxy</a>,
+install it separately via <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://galaxy.ansible.com/docs/">Ansible Galaxy</a>,
 which is a hub for Ansible content.</p>
 <p>Ansible Galaxy provides a command-line interface to install stuff, like
-<a class="link" href="https://galaxy.ansible.com/docs/contributing/creating_collections.html">collections</a>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://galaxy.ansible.com/docs/contributing/creating_collections.html">collections</a>
 and roles (which we’ll learn about shortly). <code>community.general</code> is a
 collection of modules, which we can install by running:</p>
 
@@ -719,7 +719,7 @@ collection of modules, which we can install by running:</p>
 </div>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="loops">
   
-  Loops<a class="link" aria-hidden="true" tabindex="-1" href="#loops"><span class="icon icon-link"></span></a>
+  Loops<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#loops"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>You may need a loop to accomplish a task. For example, the following task will
@@ -748,7 +748,7 @@ each directory containing the source code:</p>
 </div>
 <p>Another example is if a module do not accept a list of strings as an argument,
 just a string.
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/community/general/npm_module.html"><code>community.general.npm</code></a>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/community/general/npm_module.html"><code>community.general.npm</code></a>
 is one of such modules. Here’s an example of how to install some npm modules
 globally:</p>
 
@@ -774,21 +774,21 @@ globally:</p>
 </div>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="jinja2">
   
-  Jinja2<a class="link" aria-hidden="true" tabindex="-1" href="#jinja2"><span class="icon icon-link"></span></a>
+  Jinja2<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#jinja2"><span class="icon icon-link"></span></a>
 
 </h2>
-<p><a class="link" href="https://jinja.palletsprojects.com/en/3.1.x/templates/">Jinja2</a> was mentioned
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://jinja.palletsprojects.com/en/3.1.x/templates/">Jinja2</a> was mentioned
 briefly in conditionals, but because it’s a huge component of Ansible, it
 deserves a few more words than that.</p>
 <p>We’ve been using Jinja2 throughout this post already, e.g., <code>{{ item }}</code> is a
 Jinja2 expression to expand the value in the variable <code>item</code>.</p>
 <p>It’s possible to manipulate this value with
-<a class="link" href="https://jinja.palletsprojects.com/en/3.1.x/templates/#filters">filters</a>, e.g.
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://jinja.palletsprojects.com/en/3.1.x/templates/#filters">filters</a>, e.g.
 <code>{{ item | upper }}</code>.</p>
-<p><a class="link" href="https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters">There are a lot of built-in
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://jinja.palletsprojects.com/en/3.1.x/templates/#list-of-builtin-filters">There are a lot of built-in
 filters</a>.
 The <code>upper</code> filter is kind of an innocuous one, there are some more powerful,
-e.g. <code>product</code> to build a <a class="link" href="https://docs.ansible.com/ansible/2.8/user_guide/playbooks_filters.html#product-filters">cartesian
+e.g. <code>product</code> to build a <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/2.8/user_guide/playbooks_filters.html#product-filters">cartesian
 product</a>
 from lists:</p>
 
@@ -812,7 +812,7 @@ from lists:</p>
     <astro-island uid="14Q3C9" prefix="r12" component-url="/_astro/CopyCodeBlockButton.b1689508.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Give users access to multiple databases\n  community.mysql.mysql_user:\n    name: \&quot;{{ item[0] }}\&quot;\n    priv: \&quot;{{ item[1] }}.*:ALL\&quot;\n    append_privs: yes\n    password: \&quot;foo\&quot;\n  loop: \&quot;{{ [&#39;alice&#39;, &#39;bob&#39;] | product([&#39;clientdb&#39;, &#39;employeedb&#39;, &#39;providerdb&#39;]) | list }}\&quot;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p>Ansible uses <a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#playbooks-tests">Jinja2
+<p>Ansible uses <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_tests.html#playbooks-tests">Jinja2
 tests</a>
 to express conditional logic. The syntax for tests is slightly different than
 the filter syntax:</p>
@@ -837,20 +837,20 @@ the filter syntax:</p>
     <astro-island uid="Z1eePbd" prefix="r13" component-url="/_astro/CopyCodeBlockButton.b1689508.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;vars:\n  url: \&quot;https://example.com/users/foo/resources/bar\&quot;\n\ntasks:\n    - debug:\n        msg: \&quot;matched pattern 1\&quot;\n      when: url is match(\&quot;https://example.com/users/.*/resources\&quot;)\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p>The usual <a class="link" href="https://jinja.palletsprojects.com/en/latest/templates/#comparisons">comparison
+<p>The usual <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://jinja.palletsprojects.com/en/latest/templates/#comparisons">comparison
 operators</a>
 are available, like <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, <code>&gt;=</code>, and it’s, of course, also
-possible to <a class="link" href="https://jinja.palletsprojects.com/en/latest/templates/#logic">combine or transform multiple boolean
+possible to <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://jinja.palletsprojects.com/en/latest/templates/#logic">combine or transform multiple boolean
 expressions</a> with
 <code>and</code>, <code>or</code>, <code>not</code> etc.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="roles">
   
-  Roles<a class="link" aria-hidden="true" tabindex="-1" href="#roles"><span class="icon icon-link"></span></a>
+  Roles<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#roles"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>An Ansible role is a way to organize your tasks logic in a file structure. A
 role is usually the format in which you use other people’s Ansible tasks. For
-example, <a class="link" href="https://github.com/gantsign/ansible-role-visual-studio-code">there is an Ansible role to install Visual Studio
+example, <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/gantsign/ansible-role-visual-studio-code">there is an Ansible role to install Visual Studio
 Code</a>. It’s
 available in Ansible Galaxy, so we can install it like this:</p>
 
@@ -951,22 +951,22 @@ on the host’s operating system:</p>
 <p>Ansible will make it easy for you to use templates and files stored in the
 role’s <code>templates</code> and <code>files</code> directory. You can provide variables’ default
 values in the <code>default/main.yml</code> file. The list could go on, but I won’t go any
-further. Learn more about it in the <a class="link" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">official docs about
+further. Learn more about it in the <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html">official docs about
 roles</a>.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="dotfiles-use-cases">
   
-  dotfiles use cases<a class="link" aria-hidden="true" tabindex="-1" href="#dotfiles-use-cases"><span class="icon icon-link"></span></a>
+  dotfiles use cases<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#dotfiles-use-cases"><span class="icon icon-link"></span></a>
 
 </h2>
-<p>Now let’s look at some examples at how I used Ansible to manage <a class="link" href="https://github.com/phelipetls/dotfiles">my
+<p>Now let’s look at some examples at how I used Ansible to manage <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/phelipetls/dotfiles">my
 dotfiles</a>.</p>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="building-neovim-from-source">
   
-  Building Neovim from source<a class="link" aria-hidden="true" tabindex="-1" href="#building-neovim-from-source"><span class="icon icon-link"></span></a>
+  Building Neovim from source<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#building-neovim-from-source"><span class="icon icon-link"></span></a>
 
 </h3>
 <p>Let’s build Neovim from source with Ansible, in Ubuntu, with the help of the
-<a class="link" href="https://github.com/neovim/neovim/wiki/Building-Neovim">official guide</a>.</p>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/neovim/neovim/wiki/Building-Neovim">official guide</a>.</p>
 <aside class="my-8 flex gap-4 sm:rounded border-y sm:border-y-0 sm:border-l bg-surface full-width-on-mobile px-horizontal-padding py-4 sm:shadow-sm sm:shadow-shadow sm:mx-0 flex-row border-note">
   <div class="">
     <div class="text-note">
@@ -985,7 +985,7 @@ stable, so I can’t be bothered.</p>
 </aside>
 <p>I already have Neovim source code as a git submodule in <code>deps/neovim</code>, but it’s
 also possible to add a task to clone its repository with the
-<a class="link" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html"><code>ansible.builtin.git</code></a>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/git_module.html"><code>ansible.builtin.git</code></a>
 module.</p>
 <p>We’ll need to install build dependencies, run some <code>make</code> commands, and that’s
 it!</p>
@@ -1012,10 +1012,10 @@ it!</p>
 </div>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="installing-efm-langserver">
   
-  Installing efm-langserver<a class="link" aria-hidden="true" tabindex="-1" href="#installing-efm-langserver"><span class="icon icon-link"></span></a>
+  Installing efm-langserver<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#installing-efm-langserver"><span class="icon icon-link"></span></a>
 
 </h3>
-<p><a class="link" href="https://github.com/mattn/efm-langserver"><code>efm-langserver</code></a> is a Language
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/mattn/efm-langserver"><code>efm-langserver</code></a> is a Language
 Server to make any LSP client understand the output of an arbitrary linter or
 formatter.</p>
 <p>Let’s install it using Ansible too! It’s a Golang app, so we could use the Go
@@ -1044,13 +1044,13 @@ now I just download the tarball from GitHub, unpack (with
     <astro-island uid="1UiOgJ" prefix="r19" component-url="/_astro/CopyCodeBlockButton.b1689508.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Create directory ~/.local/bin/\n  file:\n    path: \&quot;{{ ansible_env.HOME }}/.local/bin\&quot;\n    state: directory\n\n- name: Install efm-langserver in Linux\n  unarchive:\n    src: https://github.com/mattn/efm-langserver/releases/download/v0.0.37/efm-langserver_v0.0.37_linux_amd64.tar.gz\n    dest: \&quot;{{ ansible_env.HOME }}/.local/bin\&quot;\n    remote_src: true\n    extra_opts:\n      - \&quot;--strip-components=1\&quot;\n      - \&quot;efm-langserver_v0.0.37_linux_amd64/efm-langserver\&quot;\n  when: ansible_distribution == \&quot;Ubuntu\&quot; or ansible_distribution == \&quot;Fedora\&quot;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p><a class="link" href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/macos.yml">It isn’t as easy to do this in macOS
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/macos.yml">It isn’t as easy to do this in macOS
 though</a>,
 just because it’s a zip file instead, which lacks the convenience of the
 <code>extra_opts</code> parameter… But I might be missing something.</p>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="installing-linters-and-formatters">
   
-  Installing linters and formatters<a class="link" aria-hidden="true" tabindex="-1" href="#installing-linters-and-formatters"><span class="icon icon-link"></span></a>
+  Installing linters and formatters<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#installing-linters-and-formatters"><span class="icon icon-link"></span></a>
 
 </h3>
 <p>I also install the linters and formatters I use with Ansible. Here’s a snippet
@@ -1076,11 +1076,11 @@ of it:</p>
     <astro-island uid="Z3UPUu" prefix="r20" component-url="/_astro/CopyCodeBlockButton.b1689508.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;- name: Install linters and formatters with dnf\n  become: true\n  dnf:\n    name:\n      - ShellCheck # this is shellcheck in apt and brew\n    state: present\n  when: ansible_distribution == \&quot;Fedora\&quot;\n\n# ...\n\n- name: Install linters and formatters with pip\n  ansible.builtin.pip:\n    name:\n      - flake8\n      - black\n      - yamllint\n      - git+https://github.com/Vimjas/vint@master\n    state: present\n    executable: pip3\n\n- name: Install linters and formatters with npm\n  loop:\n    - eslint_d\n    - prettier\n  community.general.npm:\n    name: \&quot;{{ item }}\&quot;\n    global: true\n    state: present\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p><a class="link" href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/main.yml#L21-L62">If you’re interested, you can look at the file on
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/phelipetls/dotfiles/blob/d10072c4ab01d02018f5caeb1510d3c6c0ebbd95/roles/efm-langserver/tasks/main.yml#L21-L62">If you’re interested, you can look at the file on
 GitHub</a>.</p>
 <h3 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="stow">
   
-  Stow<a class="link" aria-hidden="true" tabindex="-1" href="#stow"><span class="icon icon-link"></span></a>
+  Stow<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#stow"><span class="icon icon-link"></span></a>
 
 </h3>
 <p>Stow is a huge part of dotfiles management: it’s responsible to put the
@@ -1148,15 +1148,15 @@ something changed:</p>
 labelled as “ok”.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="gnome">
   
-  GNOME<a class="link" aria-hidden="true" tabindex="-1" href="#gnome"><span class="icon icon-link"></span></a>
+  GNOME<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#gnome"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>We can’t customize GNOME with configuration files. We normally configure it
 with GUIs, which is not a great thing if we’re interested in automating the
 customization step.</p>
 <p>Fortunately, there is a command line interface to make this possible called
-<a class="link" href="https://wiki.gnome.org/Projects/dconf"><code>dconf</code></a> (there’s also <code>gsettings</code> but
-we won’t use it). The collection <code>community.general</code> has a <a class="link" href="https://docs.ansible.com/ansible/latest/collections/community/general/dconf_module.html">module for
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://wiki.gnome.org/Projects/dconf"><code>dconf</code></a> (there’s also <code>gsettings</code> but
+we won’t use it). The collection <code>community.general</code> has a <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://docs.ansible.com/ansible/latest/collections/community/general/dconf_module.html">module for
 <code>dconf</code></a>,
 so let’s use it.</p>
 <p>For now, I just made two tweaks to my GNOME DE:</p>
@@ -1189,13 +1189,13 @@ so let’s use it.</p>
 <p>But how did I find that I needed this specific key
 <code>/org/gnome/desktop/peripherals/touchpad/tap-to-click</code>? That’s the hard part,
 but it’s easier if we use
-<a class="link" href="https://wiki.gnome.org/Apps/DconfEditor"><code>dconf-editor</code></a>, a GUI to explore
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://wiki.gnome.org/Apps/DconfEditor"><code>dconf-editor</code></a>, a GUI to explore
 GNOME applications’ internal settings. Navigate through it until you find the
 desired setting that seems responsible for what you want, grab its path and
 pass the value you want to it.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="conclusion">
   
-  Conclusion<a class="link" aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a>
+  Conclusion<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>You should now be able to automate downloading your favorite programs with your
@@ -1422,10 +1422,11 @@ even though it is in your current host.</p>
 </a>
 </nav>
 
-    <span class="text-center">All content is under a
-<a class='link' rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
-license.
-</span>
+    <span class="text-center">
+      
+            Todo conteúdo está sob a licença <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+          
+    </span>
   </div>
 </footer>
   </body></html>

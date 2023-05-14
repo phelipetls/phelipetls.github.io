@@ -47,7 +47,7 @@ errorformat option.">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.486be8c6.css" />
+  <link rel="stylesheet" href="/_astro/_id_.9cd3df8d.css" />
 <link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.e7ae9d25.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -322,7 +322,7 @@ to</p>
 </div>
 <p>Or, you could create a <code>:h compiler</code> plugin named <code>flake8</code>, that set these
 options when you run <code>:compiler flake8</code>,
-<a class="link" href="https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/flake8.vim">as I have in my config</a>.</p>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/phelipetls/dotfiles/blob/master/.config/nvim/compiler/flake8.vim">as I have in my config</a>.</p>
 <p>There are a bunch of compiler plugins built into Vim that you might be
 interested, for example, <code>:compiler pyunit</code> for test suites written with the
 <code>unittest</code> library.</p>
@@ -332,13 +332,13 @@ interested, for example, <code>:compiler pyunit</code> for test suites written w
 expensive programs, you will not be able to edit until it finishes. In this post
 we will solve this in Neovim with Lua.</p>
 <p>In a previous revision of this post, I used
-<a class="link" href="https://github.com/luvit/luv/blob/master/docs.md">libuv bindings for Lua</a>,
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://github.com/luvit/luv/blob/master/docs.md">libuv bindings for Lua</a>,
 accessible under <code>vim.loop</code>, but this is kind of a low level approach. An
 alternative is to use the <code>jobstart()</code> function, which offers several
 conveniences.</p>
 <p>I put the following Lua script under <code>~/.config/nvim/lua/</code> (if you use Neovim
 you can get yours with <code>:echo stdpath(&quot;config&quot;)</code>) for it to be available at
-runtime as <a class="link" href="https://www.tutorialspoint.com/lua/lua_modules.htm">Lua module</a>,
+runtime as <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://www.tutorialspoint.com/lua/lua_modules.htm">Lua module</a>,
 named <code>async_make</code>.</p>
 
 
@@ -443,7 +443,7 @@ parsed and the <code>errorformat</code> to parse the lines with.</p>
     <astro-island uid="ZizoVi" prefix="r4" component-url="/_astro/CopyCodeBlockButton.b1689508.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;command! DisableLintOnSave autocmd! LintOnSave BufWritePost &lt;buffer&gt;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-background hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
   </div>
 </div>
-<p><a class="link" href="https://gist.github.com/phelipetls/639a1b5f021d17c4124cccc83e518566">Get the full code in this gist</a>.</p>
+<p><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://gist.github.com/phelipetls/639a1b5f021d17c4124cccc83e518566">Get the full code in this gist</a>.</p>
 
           </div>
 
@@ -502,10 +502,11 @@ parsed and the <code>errorformat</code> to parse the lines with.</p>
 </a>
 </nav>
 
-    <span class="text-center">All content is under a
-<a class='link' rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
-license.
-</span>
+    <span class="text-center">
+      
+            Todo conteúdo está sob a licença <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+          
+    </span>
   </div>
 </footer>
   </body></html>

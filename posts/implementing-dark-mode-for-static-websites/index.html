@@ -49,7 +49,7 @@ handling transitions, persistence etc.">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.486be8c6.css" />
+  <link rel="stylesheet" href="/_astro/_id_.9cd3df8d.css" />
 <link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.e7ae9d25.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -309,14 +309,14 @@ handling transitions, persistence etc.">
             
   <p>Implementing dark mode for a static website is not as simple as you may
 initially think. There are some hacky things we should do to provide the best
-experience and avoid things like <a class="link" href="https://css-tricks.com/flash-of-inaccurate-color-theme-fart/">flash of incorrect
+experience and avoid things like <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://css-tricks.com/flash-of-inaccurate-color-theme-fart/">flash of incorrect
 theme</a> on reload,
 handling transitions, persistence etc.</p>
 <p>In this blog post I’ll dive into the implementation details on how to make it
 work in general and then on how to implement it in Hugo-powered websites.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="css">
   
-  CSS<a class="link" aria-hidden="true" tabindex="-1" href="#css"><span class="icon icon-link"></span></a>
+  CSS<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#css"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>CSS variables makes it very easy to define which colors you’ll use for dark or
@@ -367,11 +367,11 @@ light mode:</p>
 </div>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="theme-persistence">
   
-  Theme persistence<a class="link" aria-hidden="true" tabindex="-1" href="#theme-persistence"><span class="icon icon-link"></span></a>
+  Theme persistence<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#theme-persistence"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>To make the theme persist, we’ll use
-<a class="link" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code>localStorage</code></a>.</p>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage"><code>localStorage</code></a>.</p>
 <p>Every time the theme changes, we save it to <code>localStorage</code>. When the page
 reloads, we read from <code>localStorage</code> and change the theme:</p>
 
@@ -488,7 +488,7 @@ happen.</p>
 </aside>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="transition-between-themes">
   
-  Transition between themes<a class="link" aria-hidden="true" tabindex="-1" href="#transition-between-themes"><span class="icon icon-link"></span></a>
+  Transition between themes<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#transition-between-themes"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>This works, but we want some animations:</p>
@@ -515,7 +515,7 @@ happen.</p>
 </div>
 <p>Now you reload the page and things are broken again, because the transition will
 happen on reload.
-<a class="link" href="https://css-tricks.com/transitions-only-after-page-load/">To prevent this, I used this trick from CSS-Tricks:</a></p>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://css-tricks.com/transitions-only-after-page-load/">To prevent this, I used this trick from CSS-Tricks:</a></p>
 
 
 <div data-codeblock class="mt-16 full-width-on-mobile [&#38;_pre]:max-sm:rounded-none relative mb-8 last:mb-0" style="--code-bg: #282c34;--code-fg: #abb2bf;">
@@ -581,11 +581,11 @@ happen on reload.
 </div>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="respect-system-preferences">
   
-  Respect system preferences<a class="link" aria-hidden="true" tabindex="-1" href="#respect-system-preferences"><span class="icon icon-link"></span></a>
+  Respect system preferences<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#respect-system-preferences"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>Finally, to respect the
-<a class="link" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"><code>prefers-color-scheme</code></a>
+<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-color-scheme"><code>prefers-color-scheme</code></a>
 media query, we add to our first script:</p>
 
 
@@ -611,7 +611,7 @@ media query, we add to our first script:</p>
 <p>So that, if there’s nothing in <code>localStorage</code>, we respect system settings.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="hugo-implementation-details">
   
-  Hugo implementation details<a class="link" aria-hidden="true" tabindex="-1" href="#hugo-implementation-details"><span class="icon icon-link"></span></a>
+  Hugo implementation details<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#hugo-implementation-details"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>In <code>layouts/_default/baseof.html</code> template, we need something like this:</p>
@@ -835,10 +835,11 @@ them to our assets folder.</p>
 </a>
 </nav>
 
-    <span class="text-center">All content is under a
-<a class='link' rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
-license.
-</span>
+    <span class="text-center">
+      
+            Todo conteúdo está sob a licença <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+          
+    </span>
   </div>
 </footer>
   </body></html>

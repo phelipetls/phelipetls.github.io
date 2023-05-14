@@ -43,7 +43,7 @@ but it doesn’t matter here).">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.486be8c6.css" />
+  <link rel="stylesheet" href="/_astro/_id_.9cd3df8d.css" />
 <link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.e7ae9d25.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -325,18 +325,18 @@ extensible because of how nicely <code>vim</code> is integrated with the command
 want to share how I do.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="common-use-cases">
   
-  Common use cases<a class="link" aria-hidden="true" tabindex="-1" href="#common-use-cases"><span class="icon icon-link"></span></a>
+  Common use cases<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#common-use-cases"><span class="icon icon-link"></span></a>
 
 </h2>
 <ul>
 <li>Search for <code>foo</code> in current working directory: <code>:grep foo</code>.</li>
 <li>Search for <code>foo</code> in files under <code>src/</code>: <code>:grep foo src</code>.</li>
-<li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup><a class="link" href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>.</li>
+<li>Search for <code>foo</code> in current file directory: <code>:grep foo %:h</code><sup><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>.</li>
 <li>Search for <code>foo</code> in current file directory’s parent directory: <code>:grep foo %:h:h</code> (and so on).</li>
 </ul>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="less-common-use-cases">
   
-  Less common use cases<a class="link" aria-hidden="true" tabindex="-1" href="#less-common-use-cases"><span class="icon icon-link"></span></a>
+  Less common use cases<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#less-common-use-cases"><span class="icon icon-link"></span></a>
 
 </h2>
 <ul>
@@ -347,7 +347,7 @@ want to share how I do.</p>
 </ul>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="extensibility">
   
-  Extensibility<a class="link" aria-hidden="true" tabindex="-1" href="#extensibility"><span class="icon icon-link"></span></a>
+  Extensibility<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#extensibility"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>This is nice but here is where it truly shines. I can give any command line
@@ -383,7 +383,7 @@ output as an argument.</p>
 <p>I don’t use this everyday but I enjoy it when I do.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="usage-with-vim">
   
-  Usage with Vim<a class="link" aria-hidden="true" tabindex="-1" href="#usage-with-vim"><span class="icon icon-link"></span></a>
+  Usage with Vim<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#usage-with-vim"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>This will populate the quickfix list with the search results, so I can navigate
@@ -393,11 +393,11 @@ before): <code>:cdo s/foo/bar/gc</code>. And then <code>:cfdo update</code>. Som
 search down with <code>:Cfilter</code> too.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="downsides">
   
-  Downsides<a class="link" aria-hidden="true" tabindex="-1" href="#downsides"><span class="icon icon-link"></span></a>
+  Downsides<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#downsides"><span class="icon icon-link"></span></a>
 
 </h2>
 <p><s>A downside is that you can’t use backreferences or look-around in regex. In
-the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a class="link" href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&#38;utm_medium=web2x&#38;context=3">thanks to
+the rare case I need them, I use <code>:vimgrep</code>.</s> I just find out, <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://www.reddit.com/r/neovim/comments/nyb8am/extending_vim_with_ripgrep/h2403y3?utm_source=share&#38;utm_medium=web2x&#38;context=3">thanks to
 ripgrep’s
 author</a>,
 that you can use backreferences/look-around in regex with the <code>-P/--pcre2</code> flag
@@ -407,7 +407,7 @@ for a few seconds. But I don’t usually experience this because of how fast
 <code>ripgrep</code> is.</p>
 <h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="conclusion">
   
-  Conclusion<a class="link" aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a>
+  Conclusion<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a>
 
 </h2>
 <p>This might be one of the few sane reasons why I insist on using <code>nvim</code> for
@@ -415,12 +415,12 @@ development (<code>vim-fugitive</code> and LSP as well). It’s just one of thos
 enjoy using and makes development more fun (to me).</p>
 <section data-footnotes="" class="footnotes"><h3 class="sr-only" id="footnote-label">
   
-  Footnotes<a class="link" aria-hidden="true" tabindex="-1" href="#footnote-label"><span class="icon icon-link"></span></a>
+  Footnotes<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#footnote-label"><span class="icon icon-link"></span></a>
 
 </h3>
 <ol>
 <li id="user-content-fn-1">
-<p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>. <a class="link data-footnote-backref" href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to content">↩</a></p>
+<p><code>%:h</code> is expanded by <code>vim</code> to get the header of the current file. See <code>:h expand</code>. <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover data-footnote-backref" href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to content">↩</a></p>
 </li>
 </ol>
 </section>
@@ -562,10 +562,11 @@ enjoy using and makes development more fun (to me).</p>
 </a>
 </nav>
 
-    <span class="text-center">All content is under a
-<a class='link' rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>
-license.
-</span>
+    <span class="text-center">
+      
+            Todo conteúdo está sob a licença <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0</a>.
+          
+    </span>
   </div>
 </footer>
   </body></html>
