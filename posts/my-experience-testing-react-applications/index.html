@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-05-29">
+    <meta name="deploy-date" content="2023-05-30">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -45,7 +45,7 @@ features and bugs will inevitably be introduced later.">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.f37f30b5.css" />
+  <link rel="stylesheet" href="/_astro/_id_.000f67c4.css" />
 <link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.e7ae9d25.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
@@ -317,7 +317,7 @@ appear or disappear.</li>
 </ul>
 <p>In this blog post I’m going to talk about my experience with JavaScript
 libraries for testing front-end web apps.</p>
-<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="react-testing-library">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['#'] [&#38;_a]:before:text-xl [&#38;_a]:before:ml-2" id="react-testing-library">
   
   <code>react-testing-library</code><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#react-testing-library"><span class="icon icon-link"></span></a>
 
@@ -349,7 +349,7 @@ use canvas in your app,
 </ul>
 <p>But it got the job done most of the time.</p>
 <p>I usually combined it with <code>nock</code> and <code>msw</code> for mocking network requests.</p>
-<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="nock">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['#'] [&#38;_a]:before:text-xl [&#38;_a]:before:ml-2" id="nock">
   
   <code>nock</code><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#nock"><span class="icon icon-link"></span></a>
 
@@ -358,7 +358,7 @@ use canvas in your app,
 to use API.</p>
 <p>In my experience, it has just a few unexpected issues like
 <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="https://www.npmjs.com/package/nock#axios">not working with axios out of the box</a>.</p>
-<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="msw">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['#'] [&#38;_a]:before:text-xl [&#38;_a]:before:ml-2" id="msw">
   
   <code>msw</code><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#msw"><span class="icon icon-link"></span></a>
 
@@ -374,7 +374,7 @@ This is by design though, it’s just something I disliked.</p>
 <p>Also, all mocks are usually in a separate file, like in <code>./mocks/handlers.js</code>,
 which I thought made tests harder to read. It doesn’t have to be like that of
 course, but it’s response handlers can get pretty long so it’s a sane option.</p>
-<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="cypress">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['#'] [&#38;_a]:before:text-xl [&#38;_a]:before:ml-2" id="cypress">
   
   <code>cypress</code><a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#cypress"><span class="icon icon-link"></span></a>
 
@@ -404,7 +404,7 @@ browser DevTools.</li>
 <li>There are snapshots of the UI state for each step.</li>
 <li>Screenshots and videos of the test runs are recorded by default.</li>
 </ul>
-<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['_#']" id="conclusion">
+<h2 class="mb-8 mt-4 pt-4 [&#38;_a]:text-primary [&#38;_a]:border-0 [&#38;_a]:before:content-['#'] [&#38;_a]:before:text-xl [&#38;_a]:before:ml-2" id="conclusion">
   
   Conclusion<a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" aria-hidden="true" tabindex="-1" href="#conclusion"><span class="icon icon-link"></span></a>
 
