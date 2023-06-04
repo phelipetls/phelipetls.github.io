@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="deploy-date" content="2023-05-31">
+    <meta name="deploy-date" content="2023-06-04">
     <meta name="author" content="Phelipe Teles">
     <meta name="color-scheme" content="dark light">
 
@@ -144,6 +144,7 @@
   <option value="en">English</option>
   <option selected="true" value="pt">Português</option>
 
+  
   </select>
 
   
@@ -211,15 +212,18 @@
     </nav>
 
     <div class="flex flex-col gap-2 pb-4 mt-auto px-horizontal-padding [&_div]:flex-1">
-      <div style="--cols:2" class="rounded items-center grid grid-cols-[repeat(var(--cols),1fr)] bg-background">
-  <select class="py-1 rounded bg-inherit appearance-none text-center row-start-1 col-[1_/_calc(var(--cols)+1)] pr-8" data-language-select aria-label="Escolha a linguagem">
+      <div style="--cols:3" class="rounded items-center grid grid-cols-[repeat(var(--cols),1fr)] bg-background">
+  <select class="py-1 rounded bg-inherit appearance-none text-center row-start-1 col-[1_/_calc(var(--cols)+1)] px-8" data-language-select aria-label="Escolha a linguagem">
     
   <option value="en">English</option>
   <option selected="true" value="pt">Português</option>
 
+  
   </select>
 
-  
+  <span class="pointer-events-none col-start-1 row-start-1 px-1 text-sm">
+        <div></div>
+      </span>
 
   <span class="flex flex-row justify-end pointer-events-none text-sm row-start-1 px-1 col-[var(--cols)_/_var(--cols)]">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down" slot="end-icon"><polyline points="6 9 12 15 18 9"></polyline></svg>
