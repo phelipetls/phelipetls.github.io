@@ -1,4 +1,4 @@
-import{S as e}from"./Sandpack.054b0c60.js";import{d as t}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.f99687ad.js";import"./index.772d13e4.js";import"./createLucideIcon.e05d58c0.js";import"./floating-ui.dom.browser.min.b9202534.js";function f(){return r.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e}from"./Sandpack.ff5aabae.js";import{d as t}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.92c2aa37.js";import"./index.772d13e4.js";import"./createLucideIcon.0eda30d5.js";import"./floating-ui.dom.browser.min.b9202534.js";function f(){return r.jsx(e,{template:"react",files:{"/App.js":t`
            import { useState } from 'react'
 
            export default function App() {
