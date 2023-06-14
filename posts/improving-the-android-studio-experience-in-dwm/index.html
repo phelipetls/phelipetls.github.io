@@ -43,8 +43,8 @@ source code in order to improve my experience with Android Emulator.">
 
     <style id="sandpack">--sxs{--sxs:1 sp-k-eyOShd sp-k-iOHdLQ}@media{@keyframes sp-k-eyOShd{0%{opacity:0}100%{opacity:1}}@keyframes sp-k-iOHdLQ{0%{transform:rotateX(-25.5deg) rotateY(45deg)}100%{transform:rotateX(-25.5deg) rotateY(405deg)}}}--sxs{--sxs:2 sp-c-gMfcns sp-c-bxeRRt sp-c-hfoyCM sp-c-fWymNx sp-c-euXojQ sp-c-bpmgvy sp-c-PJLV}@media{.sp-c-gMfcns svg{margin:auto}.sp-c-bxeRRt{-webkit-appearance:none;appearance:none;outline:none;display:flex;align-items:center;font-size:inherit;font-family:inherit;background-color:transparent;transition:color var(--sp-transitions-default), background var(--sp-transitions-default);cursor:pointer;color:var(--sp-colors-clickable);border:0;text-decoration:none}.sp-c-bxeRRt:disabled{color:var(--sp-colors-disabled)}.sp-c-bxeRRt:hover:not(:disabled,[data-active='true']){color:var(--sp-colors-hover)}.sp-c-bxeRRt[data-active="true"]{color:var(--sp-colors-accent)}.sp-c-bxeRRt svg{min-width:var(--sp-space-4);width:var(--sp-space-4);height:var(--sp-space-4)}.sp-c-bxeRRt.sp-c-gMfcns{padding:var(--sp-space-1);height:var(--sp-space-7);display:flex}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:not(:has(span)){width:var(--sp-space-7)}.sp-c-bxeRRt.sp-c-gMfcns.sp-c-bxeRRt:has(svg + span){padding-right:var(--sp-space-3);padding-left:var(--sp-space-2);gap:var(--sp-space-1)}.sp-c-hfoyCM{padding:0 var(--sp-space-1) 0 var(--sp-space-1);border-radius:var(--sp-border-radius);margin-left:var(--sp-space-1);width:var(--sp-space-5);visibility:hidden}.sp-c-hfoyCM svg{width:var(--sp-space-3);height:var(--sp-space-3);display:block;position:relative;top:1px}.sp-c-fWymNx{margin:0;display:block;font-family:var(--sp-font-mono);font-size:var(--sp-font-size);color:var(--sp-syntax-color-plain);line-height:var(--sp-font-lineHeight)}.sp-c-euXojQ{display:flex;flex-direction:column;width:100%;position:relative;background-color:var(--sp-colors-surface1);gap:1px}.sp-c-euXojQ:has(.sp-stack){background-color:var(--sp-colors-surface2)}.sp-c-bpmgvy{transform:translate(-4px, 9px) scale(0.13, 0.13)}.sp-c-bpmgvy *{position:absolute;width:96px;height:96px}}--sxs{--sxs:3 sp-c-PJLV-kCOVwI-status-pass sp-c-PJLV-kEzYsr-status-fail sp-c-PJLV-gHAhSA-status-skip sp-c-PJLV-jgnHyR-status-title sp-c-PJLV-iCgxLS-status-run sp-c-PJLV-bnDZSy-status-pass sp-c-PJLV-eYuGwt-status-fail}@media{.sp-c-PJLV-kCOVwI-status-pass{color:var(--test-pass)}.sp-c-PJLV-kEzYsr-status-fail{color:var(--test-fail)}.sp-c-PJLV-gHAhSA-status-skip{color:var(--test-skip)}.sp-c-PJLV-jgnHyR-status-title{color:var(--test-title)}.sp-c-PJLV-iCgxLS-status-run{background:var(--test-run);color:var(--sp-colors-surface1)}.sp-c-PJLV-bnDZSy-status-pass{background:var(--test-pass);color:var(--sp-colors-surface1)}.sp-c-PJLV-eYuGwt-status-fail{background:var(--test-fail);color:var(--sp-colors-surface1)}}</style>
   
-  <link rel="stylesheet" href="/_astro/_id_.26341d2e.css" />
-<link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.df5c2d0c.js"></script></head>
+  <link rel="stylesheet" href="/_astro/_id_.5d90a411.css" />
+<link rel="stylesheet" href="/_astro/_id_.f7b41e74.css" /><script type="module" src="/_astro/hoisted.c1e5c1a7.js"></script></head>
 
   <body data-preload class="relative flex h-full flex-col bg-background font-sans text-on-background">
     <script>
@@ -90,7 +90,9 @@ source code in order to improve my experience with Android Emulator.">
   })
 
   window.addEventListener('load', function () {
-    document.body.removeAttribute('data-preload')
+    document.querySelectorAll('[data-preload]').forEach((elem) => {
+      elem.removeAttribute('data-preload')
+    })
   })
 </script>
 
@@ -298,7 +300,91 @@ source code in order to improve my experience with Android Emulator.">
 
         <hr class="my-8">
 
-        <div data-blog-post-container data-toc="open" class="group flex flex-col-reverse w-full lg:gap-8 lg:flex-row">
+        <div data-blog-post-container data-toc="open" class="group flex flex-col w-full lg:gap-8 lg:flex-row-reverse">
+          <aside style="--offset-from-top:1rem" class="relative mb-8 lg:ml-auto lg:mb-0 lg:basis-1/3 lg:sticky lg:top-[var(--offset-from-top)] lg:h-[calc(100vh-var(--offset-from-top)_*_2)]">
+                <div data-blog-post-toc-container data-preload class="card lg:h-full lg:p-4 lg:ml-auto lg:group-data-toc-open:translate-x-0 lg:group-data-toc-open:scale-x-1 lg:group-data-toc-open:opacity-1 lg:group-data-toc-closed:translate-x-full lg:group-data-toc-closed:opacity-0 lg:group-data-toc-closed:scale-x-0 lg:group-data-toc-closed:pointer-events-none transition-[transform,opacity] duration-300 ease-in-out">
+                  <div class="hidden lg:flex lg:h-full lg:flex-col">
+  <div class="flex items-center gap-2 h-10 flex-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"></line><line x1="8" x2="21" y1="12" y2="12"></line><line x1="8" x2="21" y1="18" y2="18"></line><line x1="3" x2="3.01" y1="6" y2="6"></line><line x1="3" x2="3.01" y1="12" y2="12"></line><line x1="3" x2="3.01" y1="18" y2="18"></line></svg>
+
+    <h2 class="m-0">Table of Contents</h2>
+
+    <div class="ml-auto flex items-center transition-transform duration-150 ease-in group-open:rotate-180 lg:hidden">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+    </div>
+  </div>
+
+  <nav data-toc-wrapper class="mt-4 min-h-0 sm:overflow-y-auto [&#38;_a_*]:indent-0 [&#38;_ol]:m-0 [&#38;_ol]:list-none [&#38;_ol]:indent-4 [&#38;_ol_li[data-active]>a]:text-primary [&#38;_ol_li[data-active]]:before:bg-primary [&#38;_ol_li]:relative [&#38;_ol_li]:before:absolute [&#38;_ol_li]:before:left-0 [&#38;_ol_li]:before:top-0 [&#38;_ol_li]:before:h-full [&#38;_ol_li]:before:w-[1px] [&#38;_ol_li]:before:bg-divider [&#38;_ol_li]:before:content-[''] [&#38;_ol_li_a:hover]:bg-hover [&#38;_ol_li_a]:block [&#38;_ol_li_a]:truncate [&#38;_ol_li_a]:border-b-0 [&#38;_ol_li_a]:transition-colors [&#38;_ol_li_a]:duration-300 [&#38;_ol_ol]:indent-8 [&#38;_ol_ol_ol]:indent-12 [&#38;_ol_ol_ol_ol]:indent-16">
+    <ol data-astro-toc="1"><li data-astro-toc="1">
+          <a href="#skipping-transient-windows-in-the-taskbar">Skipping transient windows in the taskbar</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#skipping-transient-windows-in-monocle-layout-count">Skipping transient windows in monocle layout count</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#do-not-focus-transient-windows-with-mod--j-and-mod--k">Do not focus transient windows with mod + j and mod + k</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#applying-nth-tag-to-a-leader-windows-transient-windows">Applying nth tag to a leader window’s transient windows</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#raising-all-transient-windows-when-the-leader-window-gets-focused">Raising all transient windows when the leader window gets focused</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#final-result">Final result</a>
+          
+        </li></ol>
+  </nav>
+</div>
+
+<details class="group px-horizontal-padding py-4 lg:hidden" aria-label="Table of Contents">
+  <summary class="list-none">
+    <div class="flex items-center gap-2">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"></line><line x1="8" x2="21" y1="12" y2="12"></line><line x1="8" x2="21" y1="18" y2="18"></line><line x1="3" x2="3.01" y1="6" y2="6"></line><line x1="3" x2="3.01" y1="12" y2="12"></line><line x1="3" x2="3.01" y1="18" y2="18"></line></svg>
+
+      <h2 class="m-0">Table of Contents</h2>
+
+      <div class="flex items-center ml-auto transition-transform duration-150 ease-in group-open:rotate-180 lg:hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
+      </div>
+    </div>
+  </summary>
+
+  <nav data-toc-wrapper class="mt-4 [&#38;_ol]:m-0 [&#38;_ol]:list-outside [&#38;_ol]:px-horizontal-padding [&#38;_ol_li:not(:first-child)]:mt-1">
+    <ol data-astro-toc="1"><li data-astro-toc="1">
+          <a href="#skipping-transient-windows-in-the-taskbar">Skipping transient windows in the taskbar</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#skipping-transient-windows-in-monocle-layout-count">Skipping transient windows in monocle layout count</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#do-not-focus-transient-windows-with-mod--j-and-mod--k">Do not focus transient windows with mod + j and mod + k</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#applying-nth-tag-to-a-leader-windows-transient-windows">Applying nth tag to a leader window’s transient windows</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#raising-all-transient-windows-when-the-leader-window-gets-focused">Raising all transient windows when the leader window gets focused</a>
+          
+        </li><li data-astro-toc="1">
+          <a href="#final-result">Final result</a>
+          
+        </li></ol>
+  </nav>
+</details>
+                </div>
+
+                <button type="button" data-toggle-toc="true" data-open-toc-label="Open table of contents" data-closed-toc-label="Close table of contents" aria-label="Close table of contents" style="--duration:150ms" data-preload="true" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary h-10 items-center rounded-full px-2 absolute top-4 right-4 hidden lg:grid lg:min-w-0 lg:group-data-toc-open:grid-cols-[0fr_max-content] lg:group-data-toc-closed:grid-cols-[1fr_max-content] transition-all duration-[var(--duration)] ease-in-out overflow-hidden lg:justify-center lg:items-center">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="col-start-2 col-end-2 row-start-1 row-end-1 scale-0 transition-transform duration-[var(--duration)] ease-out group-data-toc-open:scale-100 group-data-toc-open:delay-[var(--duration)]"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
+
+                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="col-start-2 col-end-2 row-start-1 row-end-1 scale-0 transition-transform duration-[var(--duration)] ease-in group-data-toc-closed:scale-100 group-data-toc-closed:delay-[var(--duration)"><line x1="8" x2="21" y1="6" y2="6"></line><line x1="8" x2="21" y1="12" y2="12"></line><line x1="8" x2="21" y1="18" y2="18"></line><line x1="3" x2="3.01" y1="6" y2="6"></line><line x1="3" x2="3.01" y1="12" y2="12"></line><line x1="3" x2="3.01" y1="18" y2="18"></line></svg>
+
+                  <div class="col-start-1 col-end-1 group-data-toc-closed:mx-2 truncate">
+                    Open table of contents
+                  </div>
+                </button>
+              </aside>
+
           <div data-blog-post class="w-full max-w-prose [&#38;>pre]:my-8 [&#38;>pre]:full-width-on-mobile [&#38;>img]:my-8 [&#38;_img]:mx-auto [&#38;>hr]:border-0 [&#38;>hr]:text-center [&#38;>hr]:after:content-['⁂'] [&#38;>figure]:my-8 [&#38;>figure]:full-width-on-mobile [&#38;>astro-island>div]:my-8 [&#38;>lite-youtube]:my-8 [&#38;>blockquote]:my-8 [&#38;>figure_video]:min-h-[15em] [&#38;_.katex-display]:overflow-x-auto [&#38;_.katex-display]:overflow-y-hidden">
             
   <p>In this post, I want to share how I started to change <a class="underline underline-offset-4 decoration-primary hover:decoration-primary-hover" href="dwm.suckless.org/">dwm</a>
@@ -343,7 +429,7 @@ code</a>:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <style>astro-island,astro-slot{display:contents}</style><script>(self.Astro=self.Astro||{}).load=a=>{(async()=>await(await a())())()},window.dispatchEvent(new Event("astro:load"));var l;{const c={0:t=>t,1:t=>JSON.parse(t,o),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(JSON.parse(t,o)),5:t=>new Set(JSON.parse(t,o)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(JSON.parse(t)),9:t=>new Uint16Array(JSON.parse(t)),10:t=>new Uint32Array(JSON.parse(t))},o=(t,s)=>{if(t===""||!Array.isArray(s))return s;const[e,n]=s;return e in c?c[e](n):void 0};customElements.get("astro-island")||customElements.define("astro-island",(l=class extends HTMLElement{constructor(){super(...arguments);this.hydrate=()=>{if(!this.hydrator||this.parentElement&&this.parentElement.closest("astro-island[ssr]"))return;const s=this.querySelectorAll("astro-slot"),e={},n=this.querySelectorAll("template[data-astro-template]");for(const r of n){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("data-astro-template")||"default"]=r.innerHTML,r.remove())}for(const r of s){const i=r.closest(this.tagName);!i||!i.isSameNode(this)||(e[r.getAttribute("name")||"default"]=r.innerHTML)}const a=this.hasAttribute("props")?JSON.parse(this.getAttribute("props"),o):{};this.hydrator(this)(this.Component,a,e,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),window.removeEventListener("astro:hydrate",this.hydrate),window.dispatchEvent(new CustomEvent("astro:hydrate"))}}connectedCallback(){!this.hasAttribute("await-children")||this.firstChild?this.childrenConnectedCallback():new MutationObserver((s,e)=>{e.disconnect(),this.childrenConnectedCallback()}).observe(this,{childList:!0})}async childrenConnectedCallback(){window.addEventListener("astro:hydrate",this.hydrate);let s=this.getAttribute("before-hydration-url");s&&await import(s),this.start()}start(){const s=JSON.parse(this.getAttribute("opts")),e=this.getAttribute("client");if(Astro[e]===void 0){window.addEventListener(`astro:${e}`,()=>this.start(),{once:!0});return}Astro[e](async()=>{const n=this.getAttribute("renderer-url"),[a,{default:r}]=await Promise.all([import(this.getAttribute("component-url")),n?import(n):()=>()=>{}]),i=this.getAttribute("component-export")||"default";if(!i.includes("."))this.Component=a[i];else{this.Component=a;for(const d of i.split("."))this.Component=this.Component[d]}return this.hydrator=r,this.hydrate},s,this)}attributeChangedCallback(){this.hydrator&&this.hydrate()}},l.observedAttributes=["props"],l))}</script><astro-island uid="16kMhD" prefix="r2" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;void\nmanage(Window w, XWindowAttributes *wa)\n{\n\tClient *c, *t = NULL;\n\tWindow trans = None;\n\n\t// ...\n\n\tif (XGetTransientForHint(dpy, w, &amp;trans) &amp;&amp; (t = wintoclient(trans))) {\n\t\tc-&gt;mon = t-&gt;mon;\n\t\tc-&gt;tags = t-&gt;tags;\n\t} else {\n\t\t// ...\n\t}\n}\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -384,7 +470,7 @@ windows to be raised into view as well.</li>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="Z1TySPg" prefix="r3" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;void\ndrawbar(Monitor *m)\n{\n\t// ...\n\tClient *c, *t = NULL;\n\tWindow trans;\n\n\t// ...\n\tfor (c = m-&gt;clients; c; c = c-&gt;next) {\n\t\tif (ISVISIBLE(c) &amp;&amp; !XGetTransientForHint(dpy, c-&gt;win, &amp;trans))\n\t\t\tn++;\n\t\t// ...\n\t}\n\n\t// ...\n\n\tif ((w = m-&gt;ww - sw - stw - x) &gt; bh) {\n\t\tif (n &gt; 0) {\n\t\t\t// ...\n\t\t\tfor (c = m-&gt;clients; c; c = c-&gt;next) {\n\t\t\t\tif (!ISVISIBLE(c) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans))\n\t\t\t\t\tcontinue;\n\t\t\t\tif (m-&gt;sel == c)\n\t\t\t\t\tscm = SchemeSel;\n\t\t\t\telse if (HIDDEN(c))\n\t\t\t\t\tscm = SchemeHid;\n\t\t\t\telse\n\t\t\t\t\tscm = SchemeNorm;\n\t\t\t\tdrw_setscheme(drw, scheme[scm]);\n\t\t\t\t// ...\n\t\t\t}\n\t\t// ...\n\t\t}\n\t}\n\t// ...\n}\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -407,7 +493,7 @@ handles clicks in the taskbar:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="Z1k8qBx" prefix="r4" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;diff --git a/dwm.c b/dwm.c\n--- a/dwm.c\n+++ b/dwm.c\n@@ -518,6 +518,7 @@ buttonpress(XEvent *e)\n\tClient *c;\n\tMonitor *m;\n\tXButtonPressedEvent *ev = &amp;e-&gt;xbutton;\n+\tWindow trans = None;\n \n\tclick = ClkRootWin;\n\t/* focus monitor if necessary */\n@@ -546,7 +547,7 @@ buttonpress(XEvent *e)\n \n\t\t\tif (c) {\n\t\t\t\tdo {\n-\t\t\t\t\tif (!ISVISIBLE(c))\n+\t\t\t\t\tif (!ISVISIBLE(c) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans))\n\t\t\t\t\t\tcontinue;\n\t\t\t\t\telse\n\t\t\t\t\t\tx += (1.0 / (double)m-&gt;bt) * m-&gt;btw;\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -439,7 +525,7 @@ transient, in the <code>monocle</code> function:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="1Aq16J" prefix="r5" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;void\nmonocle(Monitor *m)\n{\n\tunsigned int n = 0;\n\tClient *c;\n\tWindow trans;\n\n\tfor (c = m-&gt;clients; c; c = c-&gt;next)\n\t\tif (ISVISIBLE(c) &amp;&amp; !XGetTransientForHint(dpy, c-&gt;win, &amp;trans))\n\t\t\tn++;\n\tif (n &gt; 0) /* override layout symbol */\n\t\tsnprintf(m-&gt;ltsymbol, sizeof m-&gt;ltsymbol, \&quot;[%d]\&quot;, n);\n\t// ...\n}\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -469,7 +555,7 @@ if statements (careful not to mix up the <code>i</code> and <code>c</code> varia
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="Z1SMbHJ" prefix="r6" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c\nindex 86e4a41..852666b 100644\n--- a/suckless/dwm/dwm.c\n+++ b/suckless/dwm/dwm.c\n@@ -1053,6 +1053,7 @@ void\n focusstack(int inc, int hid)\n {\n\tClient *c = NULL, *i;\n+\tWindow trans = None;\n \n\tif (!selmon-&gt;sel &amp;&amp; !hid)\n\t\treturn;\n@@ -1062,22 +1063,22 @@ focusstack(int inc, int hid)\n\tif (inc &gt; 0) {\n\t\tif (selmon-&gt;sel)\n\t\t\tfor (c = selmon-&gt;sel-&gt;next;\n-\t\t\t\t\t c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)));\n+\t\t\t\t\t c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans));\n\t\t\t\t\t c = c-&gt;next);\n\t\tif (!c)\n\t\t\tfor (c = selmon-&gt;clients;\n-\t\t\t\t\t c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)));\n+\t\t\t\t\t c &amp;&amp; (!ISVISIBLE(c) || (!hid &amp;&amp; HIDDEN(c)) || XGetTransientForHint(dpy, c-&gt;win, &amp;trans));\n\t\t\t\t\t c = c-&gt;next);\n\t} else {\n\t\tif (selmon-&gt;sel) {\n\t\t\tfor (i = selmon-&gt;clients; i != selmon-&gt;sel; i = i-&gt;next)\n-\t\t\t\tif (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)))\n+\t\t\t\tif (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))\n\t\t\t\t\tc = i;\n\t\t} else\n\t\t\tc = selmon-&gt;clients;\n\t\tif (!c)\n\t\t\tfor (; i; i = i-&gt;next)\n-\t\t\t\tif (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)))\n+\t\t\t\tif (ISVISIBLE(i) &amp;&amp; !(!hid &amp;&amp; HIDDEN(i)) &amp;&amp; !XGetTransientForHint(dpy, i-&gt;win, &amp;trans))\n\t\t\t\t\tc = i;\n\t}\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -500,7 +586,7 @@ leader is the selected client:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="ZtTPHH" prefix="r7" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;void\ntag(const Arg *arg)\n{\n\tClient *c, *t = NULL;\n\tWindow trans = None;\n\n\tif (selmon-&gt;sel &amp;&amp; arg-&gt;ui &amp; TAGMASK) {\n\t\tselmon-&gt;sel-&gt;tags = arg-&gt;ui &amp; TAGMASK;\n\n\t\tfor (c = selmon-&gt;stack; c; c = c-&gt;snext) {\n\t\t\tif (XGetTransientForHint(dpy, c-&gt;win, &amp;trans) &amp;&amp; (t = wintoclient(trans))) {\n\t\t\t\tif (selmon-&gt;sel == t) {\n\t\t\t\t\tc-&gt;tags = arg-&gt;ui &amp; TAGMASK;\n\t\t\t\t}\n\t\t\t}\n\t\t}\n\n\t\tfocus(NULL);\n\t\tarrange(selmon);\n\t}\n}\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -534,7 +620,7 @@ as well since transient windows are always floating in dwm). Here’s the code:<
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="ZPalYT" prefix="r8" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;diff --git a/suckless/dwm/dwm.c b/suckless/dwm/dwm.c\nindex 389c61d..70a6dc1 100644\n--- a/suckless/dwm/dwm.c\n+++ b/suckless/dwm/dwm.c\n@@ -1001,6 +1001,9 @@ expose(XEvent *e)\n void\n focus(Client *c)\n {\n+\tClient *i, *t;\n+\tWindow trans = None;\n+\n \tif (!c || !ISVISIBLE(c))\n \t\tfor (c = selmon-&gt;stack; c &amp;&amp; (!ISVISIBLE(c) || HIDDEN(c)); c = c-&gt;snext);\n \tif (selmon-&gt;sel &amp;&amp; selmon-&gt;sel != c) {\n@@ -1023,6 +1026,12 @@ focus(Client *c)\n \t\tgrabbuttons(c, 1);\n \t\tXSetWindowBorder(dpy, c-&gt;win, scheme[SchemeSel][ColBorder].pixel);\n \t\tsetfocus(c);\n\n+\t\tif (XGetTransientForHint(dpy, c-&gt;win, &amp;trans)) {\n+\t\t\tXRaiseWindow(dpy, c-&gt;win);\n+\t\t}\n+\n+\t\tfor (i = selmon-&gt;stack; i; i = i-&gt;snext) {\n+\t\t\tif (ISVISIBLE(i) &amp;&amp; (XGetTransientForHint(dpy, i-&gt;win, &amp;trans) &amp;&amp; (t = wintoclient(trans)) &amp;&amp; (t == c))) {\n+\t\t\t\tXRaiseWindow(dpy, i-&gt;win);\n+\t\t\t}\n+\t\t}\n \t} else {\n \t\tXSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);\n \t\tXDeleteProperty(dpy, root, netatom[NetActiveWindow]);\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -562,7 +648,7 @@ the <code>unfocus</code> function to fix this:</p>
         </div>
       </div>
 
-  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-500">
+  <div class="dark flex flex-row gap-2 absolute top-3 right-[var(--horizontal-padding)] text-2xl [&#38;_svg]:h-[1em] [&#38;_svg]:w-[1em] [&#38;_:is(button,a)]:opacity-0 [&#38;_:is(button,a)]:pointer-events-none peer-hover:[&#38;_:where(button,a)]:opacity-100 peer-hover:[&#38;_:where(button,a)]:pointer-events-auto [&#38;_:where(button,a)]:hover:opacity-100 [&#38;_:where(button,a)]:hover:pointer-events-auto [&#38;_:is(button,a)]:transition-opacity [&#38;_:is(button,a)]:duration-300">
     
 
     <astro-island uid="ZcGpoV" prefix="r9" component-url="/_astro/CopyCodeBlockButton.18eddd7e.js" component-export="default" renderer-url="/_astro/client.e7e19699.js" props="{&quot;aria-label&quot;:[0,&quot;Copy code&quot;],&quot;successTooltipText&quot;:[0,&quot;Copied!&quot;],&quot;errorTooltipText&quot;:[0,&quot;Failed to copy&quot;],&quot;code&quot;:[0,&quot;void\nunfocus(Client *c, int setfocus)\n{\n\tClient *i, *t;\n\tWindow trans = None;\n\n\tif (!c)\n\t\treturn;\n\tgrabbuttons(c, 0);\n\tXSetWindowBorder(dpy, c-&gt;win, scheme[SchemeNorm][ColBorder].pixel);\n\n\tif (XGetTransientForHint(dpy, c-&gt;win, &amp;trans))\n\t\tXLowerWindow(dpy, c-&gt;win);\n\n\tfor (i = c-&gt;mon-&gt;stack; i; i = i-&gt;snext) {\n\t\tif (ISVISIBLE(i) &amp;&amp; (XGetTransientForHint(dpy, i-&gt;win, &amp;trans) &amp;&amp; (t = wintoclient(trans)) &amp;&amp; (t == c))) {\n\t\t\tXLowerWindow(dpy, i-&gt;win);\n\t\t}\n\t}\n\n\tif (setfocus) {\n\t\tXSetInputFocus(dpy, root, RevertToPointerRoot, CurrentTime);\n\t\tXDeleteProperty(dpy, root, netatom[NetActiveWindow]);\n\t}\n}\n&quot;]}" ssr="" client="load" opts="{&quot;name&quot;:&quot;CopyCodeBlockButton&quot;,&quot;value&quot;:true}" await-children=""><button type="button" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary transition-colors duration-300 rounded border border-divider p-1 shadow-sm shadow-shadow" aria-label="Copy code"><span class="text-[var(--code-fg)]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clipboard"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"></rect><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path></svg></span></button></astro-island>
@@ -601,90 +687,6 @@ around.</p>
 </figure>
 
           </div>
-
-          <aside style="--offset-from-top:1rem" class="relative mb-8 lg:ml-auto lg:mb-0 lg:basis-1/3 lg:sticky lg:top-[var(--offset-from-top)] lg:h-[calc(100vh-var(--offset-from-top)_*_2)]">
-                <div data-blog-post-toc-container class="card lg:h-full lg:p-4 lg:ml-auto lg:group-data-toc-open:translate-x-0 lg:group-data-toc-open:scale-x-1 lg:group-data-toc-open:opacity-1 lg:group-data-toc-closed:translate-x-full lg:group-data-toc-closed:opacity-0 lg:group-data-toc-closed:scale-x-0 lg:group-data-toc-closed:pointer-events-none transition-[transform,opacity] duration-300 ease-in-out">
-                  <div class="hidden lg:flex lg:h-full lg:flex-col">
-  <div class="flex items-center gap-2 h-10 flex-none">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"></line><line x1="8" x2="21" y1="12" y2="12"></line><line x1="8" x2="21" y1="18" y2="18"></line><line x1="3" x2="3.01" y1="6" y2="6"></line><line x1="3" x2="3.01" y1="12" y2="12"></line><line x1="3" x2="3.01" y1="18" y2="18"></line></svg>
-
-    <h2 class="m-0">Table of Contents</h2>
-
-    <div class="ml-auto flex items-center transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-    </div>
-  </div>
-
-  <nav data-toc-wrapper class="mt-4 min-h-0 sm:overflow-y-auto [&#38;_a_*]:indent-0 [&#38;_ol]:m-0 [&#38;_ol]:list-none [&#38;_ol]:indent-4 [&#38;_ol_li[data-active]>a]:text-primary [&#38;_ol_li[data-active]]:before:bg-primary [&#38;_ol_li]:relative [&#38;_ol_li]:before:absolute [&#38;_ol_li]:before:left-0 [&#38;_ol_li]:before:top-0 [&#38;_ol_li]:before:h-full [&#38;_ol_li]:before:w-[1px] [&#38;_ol_li]:before:bg-divider [&#38;_ol_li]:before:content-[''] [&#38;_ol_li_a:hover]:bg-hover [&#38;_ol_li_a]:block [&#38;_ol_li_a]:truncate [&#38;_ol_li_a]:border-b-0 [&#38;_ol_li_a]:transition-colors [&#38;_ol_li_a]:duration-300 [&#38;_ol_ol]:indent-8 [&#38;_ol_ol_ol]:indent-12 [&#38;_ol_ol_ol_ol]:indent-16">
-    <ol data-astro-toc="1"><li data-astro-toc="1">
-          <a href="#skipping-transient-windows-in-the-taskbar">Skipping transient windows in the taskbar</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#skipping-transient-windows-in-monocle-layout-count">Skipping transient windows in monocle layout count</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#do-not-focus-transient-windows-with-mod--j-and-mod--k">Do not focus transient windows with mod + j and mod + k</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#applying-nth-tag-to-a-leader-windows-transient-windows">Applying nth tag to a leader window’s transient windows</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#raising-all-transient-windows-when-the-leader-window-gets-focused">Raising all transient windows when the leader window gets focused</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#final-result">Final result</a>
-          
-        </li></ol>
-  </nav>
-</div>
-
-<details class="group px-horizontal-padding py-4 lg:hidden" aria-label="Table of Contents">
-  <summary class="list-none">
-    <div class="flex items-center gap-2">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"></line><line x1="8" x2="21" y1="12" y2="12"></line><line x1="8" x2="21" y1="18" y2="18"></line><line x1="3" x2="3.01" y1="6" y2="6"></line><line x1="3" x2="3.01" y1="12" y2="12"></line><line x1="3" x2="3.01" y1="18" y2="18"></line></svg>
-
-      <h2 class="m-0">Table of Contents</h2>
-
-      <div class="flex items-center ml-auto transition-transform duration-100 ease-in group-open:rotate-180 lg:hidden">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg>
-      </div>
-    </div>
-  </summary>
-
-  <nav data-toc-wrapper class="mt-4 [&#38;_ol]:m-0 [&#38;_ol]:list-outside [&#38;_ol]:px-horizontal-padding [&#38;_ol_li:not(:first-child)]:mt-1">
-    <ol data-astro-toc="1"><li data-astro-toc="1">
-          <a href="#skipping-transient-windows-in-the-taskbar">Skipping transient windows in the taskbar</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#skipping-transient-windows-in-monocle-layout-count">Skipping transient windows in monocle layout count</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#do-not-focus-transient-windows-with-mod--j-and-mod--k">Do not focus transient windows with mod + j and mod + k</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#applying-nth-tag-to-a-leader-windows-transient-windows">Applying nth tag to a leader window’s transient windows</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#raising-all-transient-windows-when-the-leader-window-gets-focused">Raising all transient windows when the leader window gets focused</a>
-          
-        </li><li data-astro-toc="1">
-          <a href="#final-result">Final result</a>
-          
-        </li></ol>
-  </nav>
-</details>
-                </div>
-
-                <button type="button" data-toggle-toc="true" data-open-toc-label="Open table of contents" data-closed-toc-label="Close table of contents" aria-label="Close table of contents" style="--duration:150ms" class="bg-surface hover:bg-hover text-on-background disabled:bg-disabled disabled:text-on-disabled disabled:hover:cursor-not-allowed disabled:hover:bg-disabled hover:text-primary h-10 items-center rounded-full px-2 absolute top-4 right-4 hidden lg:grid lg:min-w-0 lg:group-data-toc-open:grid-cols-[0fr_max-content] lg:group-data-toc-closed:grid-cols-[1fr_max-content] transition-all duration-[var(--duration)] ease-in-out overflow-hidden lg:justify-center lg:items-center">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="col-start-2 col-end-2 row-start-1 row-end-1 scale-0 transition-transform duration-[var(--duration)] ease-out group-data-toc-open:scale-100 group-data-toc-open:delay-[var(--duration)]"><line x1="18" x2="6" y1="6" y2="18"></line><line x1="6" x2="18" y1="6" y2="18"></line></svg>
-
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="col-start-2 col-end-2 row-start-1 row-end-1 scale-0 transition-transform duration-[var(--duration)] ease-in group-data-toc-closed:scale-100 group-data-toc-closed:delay-[var(--duration)"><line x1="8" x2="21" y1="6" y2="6"></line><line x1="8" x2="21" y1="12" y2="12"></line><line x1="8" x2="21" y1="18" y2="18"></line><line x1="3" x2="3.01" y1="6" y2="6"></line><line x1="3" x2="3.01" y1="12" y2="12"></line><line x1="3" x2="3.01" y1="18" y2="18"></line></svg>
-
-                  <div class="col-start-1 col-end-1 group-data-toc-closed:mx-2 truncate">
-                    Open table of contents
-                  </div>
-                </button>
-              </aside>
         </div>
       </article>
 
