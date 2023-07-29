@@ -1,4 +1,4 @@
-import{S as t}from"./Sandpack.48a3ee80.js";import{d as e}from"./index.8aa7c818.js";import{j as s}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.62ba725e.js";import"./createLucideIcon.34e4014c.js";function l(){return s.jsx(t,{template:"react",title:"Bug when using details element with React",files:{"App.js":e`
+import{S as t}from"./Sandpack.258c9453.js";import{d as e}from"./index.8aa7c818.js";import{j as s}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.ddfead15.js";import"./createLucideIcon.dae7146d.js";function l(){return s.jsx(t,{template:"react",title:"Bug when using details element with React",files:{"App.js":e`
           import { useState } from 'react'
 
           export default function App() {
