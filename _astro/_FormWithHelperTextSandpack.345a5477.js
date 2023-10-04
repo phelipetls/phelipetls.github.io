@@ -1,4 +1,4 @@
-import{S as e}from"./Sandpack.5cd6e811.js";import{d as t}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.7cde34a4.js";import"./createLucideIcon.39155ea3.js";function p(){return r.jsx(e,{template:"react",files:{"/App.js":t`
+import{S as e}from"./Sandpack.85ba7565.js";import{d as r}from"./index.8aa7c818.js";import{j as t}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.7cde34a4.js";import"./createLucideIcon.39155ea3.js";function p(){return t.jsx(e,{template:"react",files:{"/App.js":r`
            import { useState } from 'react'
 
            export default function App() {
@@ -25,11 +25,15 @@ import{S as e}from"./Sandpack.5cd6e811.js";import{d as t}from"./index.8aa7c818.j
                      name="username"
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
+                     aria-invalid={errorMessage !== '' ? 'true' : 'false'}
+                     aria-errormessage="username-errormessage"
+                     aria-describedby="username-description"
                    />
                  </label>
 
                  {errorMessage && (
                    <div
+                     id="username-errormessage"
                      style={{
                        color: 'red',
                      }}
@@ -39,6 +43,7 @@ import{S as e}from"./Sandpack.5cd6e811.js";import{d as t}from"./index.8aa7c818.j
                  )}
 
                  <div
+                   id="username-description"
                    style={{
                      fontSize: 10,
                      color: 'grey',
