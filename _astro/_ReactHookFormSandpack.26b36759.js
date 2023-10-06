@@ -1,4 +1,4 @@
-import{S as t}from"./Sandpack.85ba7565.js";import{d as e}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.7cde34a4.js";import"./createLucideIcon.39155ea3.js";function l(){return r.jsx(t,{template:"react",files:{"/App.js":e`
+import{S as t}from"./Sandpack.e48cb1b2.js";import{d as e}from"./index.8aa7c818.js";import{j as r}from"./jsx-runtime.a3ab6fc0.js";import"./index.c0d9332e.js";import"./_commonjsHelpers.042e6b4d.js";import"./Tab.28520c38.js";import"./CopyCodeBlockButton.7cde34a4.js";import"./createLucideIcon.39155ea3.js";function l(){return r.jsx(t,{template:"react",files:{"/App.js":e`
            import { useForm } from 'react-hook-form'
 
            export default function App() {
