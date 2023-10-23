@@ -1,4 +1,4 @@
-import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.3e2859d2.js";import{d as r}from"./index.8aa7c818.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.ef250944.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function p(){return e.jsx(t,{template:"react",files:{"/App.js":r`
+import{j as e}from"./tw-merge.d8067f3d.js";import{S as r}from"./Sandpack.92776d5c.js";import{d as t}from"./index.8aa7c818.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.ef250944.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function p(){return e.jsx(r,{template:"react",files:{"/App.js":t`
            import { useState } from 'react'
 
            export default function App() {
@@ -25,11 +25,15 @@ import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.3e2859d
                      name="username"
                      value={username}
                      onChange={(e) => setUsername(e.target.value)}
+                     aria-invalid={errorMessage !== '' ? 'true' : 'false'}
+                     aria-errormessage="username-errormessage"
+                     aria-describedby="username-description"
                    />
                  </label>
 
                  {errorMessage && (
                    <div
+                     id="username-errormessage"
                      style={{
                        color: 'red',
                      }}
@@ -39,6 +43,7 @@ import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.3e2859d
                  )}
 
                  <div
+                   id="username-description"
                    style={{
                      fontSize: 10,
                      color: 'grey',
