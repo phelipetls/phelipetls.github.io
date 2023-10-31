@@ -1,4 +1,4 @@
-import{j as o}from"./tw-merge.d8067f3d.js";import{S as i}from"./Sandpack.8e4f3a85.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.ef250944.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function l(t){return o.jsx(i,{...t,template:"static",title:"Animating a box moving forward (with requestAnimationFrame)",files:{"/index.html":`<!DOCTYPE html>
+import{j as o}from"./tw-merge.d8067f3d.js";import{S as i}from"./Sandpack.aa26cc4c.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function l(t){return o.jsx(i,{...t,template:"static",title:"Animating a box moving forward (with requestAnimationFrame)",files:{"/index.html":`<!DOCTYPE html>
 <html>
   <style>
     .box {

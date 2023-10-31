@@ -1,4 +1,4 @@
-import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.8e4f3a85.js";import{d as a}from"./index.8aa7c818.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.ef250944.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function u(){return e.jsx(t,{template:"vanilla",title:"The same bug observed when using details element can be reproduced with vanilla JavaScript",files:{"index.js":a`
+import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.aa26cc4c.js";import{d as a}from"./index.8aa7c818.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function u(){return e.jsx(t,{template:"vanilla",title:"The same bug observed when using details element can be reproduced with vanilla JavaScript",files:{"index.js":a`
            document.getElementById('app').innerHTML = \`
            <span>State: closed</span>
 

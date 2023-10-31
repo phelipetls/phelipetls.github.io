@@ -1,4 +1,4 @@
-import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.8e4f3a85.js";import{d as s}from"./index.8aa7c818.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.ef250944.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function l(){return e.jsx(t,{template:"react",title:"Fixed bug when using details element with React, using preventDefault",files:{"App.js":s`
+import{j as t}from"./tw-merge.d8067f3d.js";import{S as e}from"./Sandpack.aa26cc4c.js";import{d as s}from"./index.8aa7c818.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function l(){return t.jsx(e,{template:"react",title:"Bug when using details element with React",files:{"App.js":s`
           import { useState } from 'react'
 
           export default function App() {
@@ -10,8 +10,7 @@ import{j as e}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.8e4f3a8
 
                 <details open={isOpen}>
                   <summary
-                    onClick={(e) => {
-                      e.preventDefault()
+                    onClick={() => {
                       setIsOpen(!isOpen)
                     }}
                   >
