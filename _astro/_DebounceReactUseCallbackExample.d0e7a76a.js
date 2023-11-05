@@ -1,16 +1,16 @@
-import{j as o}from"./tw-merge.d8067f3d.js";import{S as t}from"./Sandpack.35dbff64.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function u(e){return o.jsx(t,{...e,title:"Implementing debounced event handler in React with useMemo",template:"react",files:{"/App.js":`import { debounce } from './debounce.js'
+import{j as t}from"./tw-merge.d8067f3d.js";import{S as o}from"./Sandpack.9ba44f2b.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function c(e){return t.jsx(o,{...e,title:"Implementing debounced event handler in React with useCallback",template:"react",files:{"/App.js":`import { debounce } from './debounce.js'
 import { top100Films } from './top100Films.js'
-import { useState, useMemo } from 'react'
+import { useState, useCallback } from 'react'
 
 export default function App() {
   const [query, setQuery] = useState('')
 
-  const debouncedSearch = useMemo(() => {
-    return debounce((newQuery) => {
-      console.log('I ran')
-      setQuery(newQuery)
-    }, 300)
+  const search = useCallback((newQuery) => {
+    console.log('I ran')
+    setQuery(newQuery)
   }, [setQuery])
+
+  const debouncedSearch = useCallback(debounce(search, 300), [search])
 
   return (
     <>
@@ -133,4 +133,4 @@ export default function App() {
   '3 Idiots',
   'Monty Python and the Holy Grail',
 ]
-        `}})}export{u as default};
+        `}})}export{c as default};
