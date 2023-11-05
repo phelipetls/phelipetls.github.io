@@ -1,21 +1,23 @@
-import{j as t}from"./tw-merge.d8067f3d.js";import{S as o}from"./Sandpack.aa26cc4c.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function d(e){return t.jsx(o,{...e,title:"Attempt to implement debounced event handler in React in a naive way",template:"react",files:{"/App.js":`import { debounce } from './debounce.js'
+import{j as t}from"./tw-merge.d8067f3d.js";import{S as o}from"./Sandpack.48ee3edd.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function c(e){return t.jsx(o,{...e,title:"Implementing debounced event handler in React with useCallback",template:"react",files:{"/App.js":`import { debounce } from './debounce.js'
 import { top100Films } from './top100Films.js'
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 
 export default function App() {
   const [query, setQuery] = useState('')
+
+  const search = useCallback((newQuery) => {
+    console.log('I ran')
+    setQuery(newQuery)
+  }, [setQuery])
+
+  const debouncedSearch = useCallback(debounce(search, 300), [search])
 
   return (
     <>
       <input
         type='text'
         onChange={(e) => {
-          const debouncedSearch = debounce(() => {
-            console.log('I ran')
-            setQuery(e.target.value)
-          }, 300)
-
-          debouncedSearch()
+          debouncedSearch(e.target.value)
         }}
       />
 
@@ -131,4 +133,4 @@ export default function App() {
   '3 Idiots',
   'Monty Python and the Holy Grail',
 ]
-        `}})}export{d as default};
+        `}})}export{c as default};
