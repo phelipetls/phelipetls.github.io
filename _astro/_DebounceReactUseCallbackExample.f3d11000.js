@@ -1,4 +1,4 @@
-import{j as t}from"./tw-merge.d8067f3d.js";import{S as o}from"./Sandpack.48ee3edd.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function c(e){return t.jsx(o,{...e,title:"Implementing debounced event handler in React with useCallback",template:"react",files:{"/App.js":`import { debounce } from './debounce.js'
+import{j as t}from"./tw-merge.d8067f3d.js";import{S as o}from"./Sandpack.35dbff64.js";import"./index.a2a0beca.js";import"./_commonjsHelpers.de833af9.js";import"./Tab.7a91ada5.js";import"./CopyCodeBlockButton.c533e2fc.js";import"./createLucideIcon.85dada26.js";function c(e){return t.jsx(o,{...e,title:"Implementing debounced event handler in React with useCallback",template:"react",files:{"/App.js":`import { debounce } from './debounce.js'
 import { top100Films } from './top100Films.js'
 import { useState, useCallback } from 'react'
 
