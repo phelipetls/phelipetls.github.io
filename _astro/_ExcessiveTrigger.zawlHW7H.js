@@ -17,7 +17,7 @@ import{j as e}from"./tw-merge.D6bB7Zk8.js";import{S as r}from"./Sandpack.BNgqq2D
               const password = watch('password');
 
               return (
-                <form>
+                <form onSubmit={e => e.preventDefault()}>
                   <div>
                     <label>Email:</label>
                     <input
